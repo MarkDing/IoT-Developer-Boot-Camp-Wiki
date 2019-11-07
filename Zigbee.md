@@ -15,7 +15,7 @@
 | 1 hour | [Hands on : Using Event](Zigbee-Hands-on-Using-Event) |
 | 1 hour | [Hands on : Persistent Storage](Zigbee-Hands-on-Persistent-Storage) |
 | 1 hour | [Hands on : Sleepy End Device](Zigbee-Hands-on-Sleepy-End-Device) |
-| ------ | [Silicon Labs ZigBee Onboarding Roadmap](Silicon Labs ZigBee Onboarding Roadmap.pdf) |
+| ------ | [Silicon Labs ZigBee Onboarding Roadmap](Silicon%20Labs%20ZigBee%20Onboarding%20Roadmap.pdf) |
 *************
   
 
