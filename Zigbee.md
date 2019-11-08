@@ -8,14 +8,14 @@
 ## Zigbee Boot Camp Schedule
 | Time | Content |  
 |:---- |:----|    
-| 1 hour | [Intoduction of Zigbee](./Zigbee%20Basic.ppt) |
-| 1 hour | [Introduction of EmberZnet and AppBuilder](EmberZnet%20and@20WSTK.pptx) |
+| 1 hour | [Introduction of Zigbee][Zigbee Introduction] |
+| 1 hour | [Introduction of EmberZnet and AppBuilder][EmberZnet and WSTK] |
 | 1 hour | [Hands on : Forming and Joining](Zigbee-Hands-on-Forming-and-Joining) |
 | 1 hour | [Hands on : Sending on/off commands](Zigbee-Hands-on-Sending-OnOff-Commands) |
 | 1 hour | [Hands on : Using Event](Zigbee-Hands-on-Using-Event) |
 | 1 hour | [Hands on : Persistent Storage](Zigbee-Hands-on-Non-volatile-Data-Storage) |
 | 1 hour | [Hands on : Sleepy End Device](Zigbee-Hands-on-Sleepy-End-Device) |
-| ------ | ![Silicon Labs ZigBee Onboarding Roadmap][Zigbee Onboarding Roadmap] |
+| ------ | [Silicon Labs Zigbee Onboarding Roadmap][Zigbee Onboarding Roadmap] |
 *************
   
 
@@ -27,5 +27,6 @@
 - [Zigbee Specification R22 (Need membership of Zigbee Alliance)](https://zigbee.org/)
 - [Zigbee Cluster Library Rev.7 (Need membership of Zigbee Alliance)](https://zigbee.org/)
 
-
-[Zigbee Onboarding Roadmap]: https://github.com/MarkDing/IoT-Developer-Boot-Camp.wiki/blob/master/zigbee/Zigbee%20Basic.pptx
+[Zigbee Introduction]: https://github.com/MarkDing/IoT-Developer-Boot-Camp-Wiki/blob/master/zigbee/Zigbee%20Basic.pptx
+[EmberZnet and WSTK]: https://github.com/MarkDing/IoT-Developer-Boot-Camp-Wiki/blob/master/zigbee/EmberZnet%20and%20WSTK.pptx
+[Zigbee Onboarding Roadmap]: https://github.com/MarkDing/IoT-Developer-Boot-Camp-Wiki/blob/master/zigbee/Silicon%20Labs%20ZigBee%20Onboarding%20Roadmap.pdf
