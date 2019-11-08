@@ -68,6 +68,12 @@ Since the NVM3 is more configurable which allows for better balance of token cap
 Tokens let the application store defined data types in Non-Volatile Storage, and SimEEv1/v2 and NVM3 are designed to operate below the token system. 
 The diagram below illustrates the relationship between the Tokens and the Non-volatile Data Storage mechanisms. Silicon Labs offers three different dynamic token implementations: Simulated EEPROM Version 1 (SimEEv1), Simulated EEPROM Version 2 (SimEEv2), and Third Generation Non-Volatile Memory (NVM3).  
 
+![](./images/Non-volatile_Data_Storage_and_Tokens.png)
+
+![](images/home.png)
+
+![](images/Non-volatile_Data_Storage_and_Tokens.png)
+
 <div align="center">
   <img src="./images/Non-volatile_Data_Storage_and_Tokens.png">  
 </div>  
