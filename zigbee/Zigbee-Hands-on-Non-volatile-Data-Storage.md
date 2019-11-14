@@ -249,8 +249,8 @@ To view the manufacturing tokens for the EFR32 series of chips, refer to the fol
 This section provides step-by-step instructions to demonstrate how to store and retrieve the LED1's status to/from the Non-Volatile data storage (it's NVM3 in this hands-on) objects with basic token. And also demonstrate how to access manufacturing token with the dedicated APIs. 
 That are the question we raised in the section [You need to do](#non-volatile-data-storage-in-emberznet-pro) at the beginning of this documentation。
 
-**Prerequisites**
-Please make sure that you have finished the [preparatory course]() and make sure all of the SDKs software and Starter Kits are ready.
+**Prerequisites**  
+Please make sure that you have finished the [preparatory course]() and make sure all of the SDKs software and Starter Kits are ready.  
 
 ## Hardware Requirements
 This hands-on requires either EFR32MG21/EFR32MG13/EFR32MG12 radio board, and EFR32MG12 radio board BRD4162A is recommended since we created the example project with that kit. Below is the layout of the starter kit.
@@ -375,8 +375,10 @@ Write the basic token ```LED1_ON_OFF``` with the API ```halCommonSetToken()```. 
 // Non-volatile Data Storage: Step 2
 // Retrieve the previous status of LED1
 halCommonGetToken(&led1OnOffStatus, TOKEN_LED1_ON_OFF);
+
 halToggleLed(led1OnOffStatus.ledIndex);
 led1OnOffStatus.ledOnOff = !led1OnOffStatus.ledOnOff;
+
 // Store the current status of LED1
 halCommonSetToken(TOKEN_LED1_ON_OFF, &led1OnOffStatus);
 ```
@@ -394,7 +396,7 @@ are ready to click on "Program".
 </div>
 </br>
 
-The LED1 on the starter kit will blinky periodically after few seconds delay after power up, reset the device, the application will restore the LED1 to the status before reset/power-off.
+The LED1 on the starter kit will blinky periodically after few seconds delay after power up, reset the device, the application will restore the LED1 to the status before reset/power-off.  
 <font color=red><b>Hint</b></font>: You can modify the delay period of LED1 status after power up, as well as the LED1 toggle interval with the API ```emberEventControlSetDelayMS(ledBlinking, 2000);``` in the ```Zigbee_Switch_ZR_callback.c```.
 
 ### Access the manufacturing Token
@@ -414,11 +416,9 @@ Please note that if the manufacturing string token is not programmed by external
 <font color=red><b>Hint</b></font>: Please back to the section [Accessing Manufacturing Tokens](#accessing-manufacturing-tokens) for getting the answer.  
 
 # 4. Conclusion  
-We hope you enjoyed the Non-volatile data storage Lab, and understood the implementation provided by Silicon Labs, they are [NVM3, SimEEv1/SimEEv2 and PS Store](#how-does-silicon-labs-implement-the-non-volatile-data-storage).
-Also, you should have learned how to create and access the basic token, as well as how to access the manufacturing token.
+We hope you enjoyed the Non-volatile data storage Lab, and understood the implementation provided by Silicon Labs, they are [NVM3, SimEEv1/SimEEv2 and PS Store](#how-does-silicon-labs-implement-the-non-volatile-data-storage). Also, you should have learned how to create and access the basic token, as well as how to access the manufacturing token.  
 
-For more information on Non-volatile data storage and Tokens, please refer to the following documentations.
-
+For more information on Non-volatile data storage and Tokens, please refer to the following documentations.  
 [UG103.7: Non-Volatile Data Storage Fundamentals](https://www.silabs.com/documents/public/user-guides/ug103-07-non-volatile-data-storage-fundamentals.pdf)  
 [AN1154: Using Tokens for Non-Volatile Data Storage](https://www.silabs.com/documents/public/application-notes/an1154-tokens-for-non-volatile-storage.pdf)  
 [AN1135: Using Third Generation NonVolatile Memory (NVM3) Data Storage](https://www.silabs.com/documents/public/application-notes/an1135-using-third-generation-nonvolatile-memory.pdf)  
