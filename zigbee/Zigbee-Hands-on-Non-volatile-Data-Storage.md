@@ -76,7 +76,7 @@ A token has two parts: a token key and token data. The token key is a unique ide
 The diagram below illustrates the relationship between the Tokens and the Non-volatile Data Storage mechanisms. Silicon Labs offers three different dynamic token implementations: Simulated EEPROM Version 1 (SimEEv1), Simulated EEPROM Version 2 (SimEEv2), and Third Generation Non-Volatile Memory (NVM3).  
 
 <div align="center">
-  <img src="./images/Non-volatile_Data_Storage_and_Tokens.png">  
+  <img src="https://github.com/MarkDing/IoT-Developer-Boot-Camp-Wiki/blob/master/zigbee/images/Non-volatile_Data_Storage_and_Tokens.png">  
 </div>  
 <div align="center">
   <b>Non-Volatile Storage and Tokens</b>
@@ -91,7 +91,7 @@ As NVM3 is the recommended implementation for Non-Volatile data storage, the sec
 Depending on how the tokens are going to be used, it can be distinguished as Dynamic Tokens or Manufacturing Tokens. 
 
 <div align="center">
-  <img src="./images/types_of_tokens_1.png">
+  <img src="https://github.com/MarkDing/IoT-Developer-Boot-Camp-Wiki/blob/master/zigbee/images/types_of_tokens_1.png">
 </div>
 </br>
 
@@ -136,7 +136,7 @@ Please note that the token key values must be unique within this device.
 For NVM3, custom application tokens should use the **NVM3KEY_DOMAIN_USER** range so as not to collide with the stack tokens in other ranges such as **NVM3KEY_DOMAIN_ZIGBEE**. See the table below for the NVM3 default instance key space.  
 
 <div align="center">
-  <img src="./images/NVM3_default_instance_key_space.png">
+  <img src="https://github.com/MarkDing/IoT-Developer-Boot-Camp-Wiki/blob/master/zigbee/images/NVM3_default_instance_key_space.png">
 </div>  
 </br>  
 
@@ -255,13 +255,13 @@ Please make sure that you have finished the [preparatory course]() and make sure
 ## Hardware Requirements
 This hands-on requires either EFR32MG21/EFR32MG13/EFR32MG12 radio board, and EFR32MG12 radio board BRD4162A is recommended since we created the example project with that kit. Below is the layout of the starter kit.
 <div align="center">
-  <img src="./images/brd4162_kit.png">
+  <img src="https://github.com/MarkDing/IoT-Developer-Boot-Camp-Wiki/blob/master/zigbee/images/brd4162_kit.png">
 </div>  
 </br>  
 
 Connect the starter kit to PC using the "J-Link USB" connector and the cable provided with the starter kit. And turn the power switch to "AEM" position. Start the Simplicity Studio V4, and it should able to find the attached device, and list it in the "Debug Adapter" area of the launcher console.
 <div align="center">
-  <img src="./images/detect_wstk.png">
+  <img src="https://github.com/MarkDing/IoT-Developer-Boot-Camp-Wiki/blob/master/zigbee/images/detect_wstk.png">
 </div>
 </br>
 
@@ -281,7 +281,7 @@ Import the ```Zigbee_Switch_ZR``` example project to your Simplicity Studio work
 * Click [Finish] to start the importing.
 
 <div align="center">
-  <img src="./images/import_ssv4_project.gif">
+  <img src="https://github.com/MarkDing/IoT-Developer-Boot-Camp-Wiki/blob/master/zigbee/images/import_ssv4_project.gif">
 </div>
 </br>
 
@@ -334,7 +334,7 @@ DEFINE_BASIC_TOKEN(LED1_ON_OFF,
 After creating the custom token header file, you need one more step: add the header file to the application, through the [Includes] tab in the .isc file in Simplicity Studio, under the “Token Configuration” section. 
 
 <div align="center">
-  <img src="./images/add_custom_token_header_file.gif">
+  <img src="https://github.com/MarkDing/IoT-Developer-Boot-Camp-Wiki/blob/master/zigbee/images/add_custom_token_header_file.gif">
 </div>
 </br>
 
@@ -383,14 +383,14 @@ halCommonSetToken(TOKEN_LED1_ON_OFF, &led1OnOffStatus);
 
 #### Step 3: Testing your project
 Once you've added the necessary code to you project, Build and flash the ```Zigbee_Switch_ZR``` project to your BRD4162A radio board. 
-* Click on [Build] ![](./images/build_project.png) button to start building the project.
+* Click on [Build] ![](https://github.com/MarkDing/IoT-Developer-Boot-Camp-Wiki/blob/master/zigbee/images/build_project.png) button to start building the project.
 * When the build finishes, expand the "Binaries" folder and right click the *.hex file to select [Flash to Device...]
 * Select the connected hardware in the pop-up window. The "Flash Programmer" is now pre-filled with all needed data, and you
 are ready to click on "Program".
 * Click "Program", and wait for a short while for program finish.
 
 <div align="center">
-  <img src="./images/build_and_program.gif">
+  <img src="https://github.com/MarkDing/IoT-Developer-Boot-Camp-Wiki/blob/master/zigbee/images/build_and_program.gif">
 </div>
 </br>
 
