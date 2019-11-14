@@ -13,7 +13,7 @@
 | 1 hour | [Hands on : Forming and Joining](Zigbee-Hands-on-Forming-and-Joining) |
 | 1 hour | [Hands on : Sending on/off commands](Zigbee-Hands-on-Sending-OnOff-Commands) |
 | 1 hour | [Hands on : Using Event](Zigbee-Hands-on-Using-Event) |
-| 1 hour | [Hands on : Persistent Storage](Zigbee-Hands-on-Non-volatile-Data-Storage) |
+| 1 hour | [Hands on : Non-volatile Data Storage](Zigbee-Hands-on-Non-volatile-Data-Storage) |
 | 1 hour | [Hands on : Sleepy End Device](Zigbee-Hands-on-Sleepy-End-Device) |
 | ------ | [Silicon Labs Zigbee Onboarding Roadmap][Zigbee Onboarding Roadmap] |
 *************
