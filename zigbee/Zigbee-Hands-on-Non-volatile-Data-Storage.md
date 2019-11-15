@@ -102,11 +102,11 @@ There are two types of dynamic tokens that are distinguished by their format, Ba
 #### Basic (Non-indexed) Tokens
 The basic token can be thought of as a simple char variable type that can only be accessed as a unit. For instance, the basic tokens can be used to store an array, and if any element of the array changes the entire array must be rewritten.  
 A counter token is a special type of non-indexed dynamic token meant to store a number that increments by 1 at a time.  
-<font color=red><b>Hint</b></font>: The counter token will not be covered in this hands-on, more information on counter token can be found in section <a href="#docUG103-7" target="_self">2.6 Counter Objects</a> of UG103-07 and section <a href="#docAN703" target="_self">4.2 When to Define a Counter Token</a> of AN703.  
+<font color=red><b>Hint</b></font>: The counter token will not be covered in this hands-on, more information on counter token can be found in section [2.6 Counter Objects][UG103.7: Non-Volatile Data Storage Fundamentals] of UG103.7 and section [4.2 When to Define a Counter Token][AN703: Simulated EEPROM] of AN703.  
 
 #### Indexed Tokens
 Indexed dynamic tokens can be considered as a linked array of char variables where each element is expected to change independently of the others and therefore is stored internally as an independent token and accessed explicitly through the token API.  
-<font color=red><b>Hint</b></font>: The indexed token will also not be covered in this hands-on, more information on indexed token can be found in section <a href="#docUG103-7" target="_self">2.7 Indexed Objects</a> of UG103-07 and section <a href="#docAN703" target="_self">4.3 Array Tokens Versus Indexed Tokens</a> of AN703.  
+<font color=red><b>Hint</b></font>: The indexed token will also not be covered in this hands-on, more information on indexed token can be found in section [2.7 Indexed Objects][UG103.7: Non-Volatile Data Storage Fundamentals] of UG103.7 and section [4.3 Array Tokens Versus Indexed Tokens][AN703: Simulated EEPROM] of AN703.  
 
 ### Manufacturing Tokens
 Manufacturing Tokens are set at manufacturing time and they are stored at absolute addressed of the flash. The Manufacturing tokens are written either only once or very infrequently during the lifetime of the chip.  
@@ -195,10 +195,10 @@ led1OnOffStatus.ledOnOff = <current status>;
 halCommonSetToken(TOKEN_LED1_ON_OFF, &led1OnOffStatus);
 ```
 
-Since this hands-on is designed for new to the Silicon Labs EmberZNet stack, we will focus on the basic token usage, if you are interested about how to write the counter token, please read the section <a href="#docAN1154" target="_self">3.3.1.1 Accessing Counter Tokens</a> of AN1154.  
+Since this hands-on is designed for new to the Silicon Labs EmberZNet stack, we will focus on the basic token usage, if you are interested about how to write the counter token, please read the section [3.3.1.1 Accessing Counter Tokens][AN1154: Using Tokens for Non-Volatile Data Storage] of AN1154.  
 
 ##### Accessing Indexed Tokens
-For accessing the Indexed Tokens, please use the APIs below. As explained above, we will not spend much space of this documentation to introduce Indexed Tokens, please refer to the section <a href="#docAN1154" target="_self">3.3.2 Accessing Indexed Tokens</a> of AN1154 for more information.  
+For accessing the Indexed Tokens, please use the APIs below. As explained above, we will not spend much space of this documentation to introduce Indexed Tokens, please refer to the section [3.3.2 Accessing Indexed Tokens][AN1154: Using Tokens for Non-Volatile Data Storage] of AN1154 for more information.  
 ```
 void halCommonGetIndexedToken(data, token, index)
 void halCommonSetIndexedToken(token, index, data)
@@ -416,7 +416,12 @@ Please note that if the manufacturing string token is not programmed by external
 We hope you enjoyed the Non-volatile data storage Lab, and understood the implementation provided by Silicon Labs, they are [NVM3, SimEEv1/SimEEv2 and PS Store](#how-does-silicon-labs-implement-the-non-volatile-data-storage). Also, you should have learned how to create and access the basic token, as well as how to access the manufacturing token.  
 
 For more information on Non-volatile data storage and Tokens, please refer to the following documentations.  
-[UG103.7: Non-Volatile Data Storage Fundamentals](https://www.silabs.com/documents/public/user-guides/ug103-07-non-volatile-data-storage-fundamentals.pdf)<span id = "docUG103-7"></span>  
-[AN1154: Using Tokens for Non-Volatile Data Storage](https://www.silabs.com/documents/public/application-notes/an1154-tokens-for-non-volatile-storage.pdf)<span id = "docAN1154"></span>  
-[AN1135: Using Third Generation NonVolatile Memory (NVM3) Data Storage](https://www.silabs.com/documents/public/application-notes/an1135-using-third-generation-nonvolatile-memory.pdf)<span id = "docAN1135"></span>  
-[AN703: Simulated EEPROM](https://www.silabs.com/documents/public/application-notes/an703-simulated-eeprom.pdf)<span id = "docAN703"></span>  
+[UG103.7: Non-Volatile Data Storage Fundamentals](https://www.silabs.com/documents/public/user-guides/ug103-07-non-volatile-data-storage-fundamentals.pdf)  
+[AN1154: Using Tokens for Non-Volatile Data Storage](https://www.silabs.com/documents/public/application-notes/an1154-tokens-for-non-volatile-storage.pdf)  
+[AN1135: Using Third Generation NonVolatile Memory (NVM3) Data Storage](https://www.silabs.com/documents/public/application-notes/an1135-using-third-generation-nonvolatile-memory.pdf)  
+[AN703: Simulated EEPROM](https://www.silabs.com/documents/public/application-notes/an703-simulated-eeprom.pdf)  
+
+[UG103.7: Non-Volatile Data Storage Fundamentals]: https://www.silabs.com/documents/public/user-guides/ug103-07-non-volatile-data-storage-fundamentals.pdf  
+[AN1154: Using Tokens for Non-Volatile Data Storage]: https://www.silabs.com/documents/public/application-notes/an1154-tokens-for-non-volatile-storage.pdf  
+[AN1135: Using Third Generation NonVolatile Memory (NVM3) Data Storage]: https://www.silabs.com/documents/public/application-notes/an1135-using-third-generation-nonvolatile-memory.pdf  
+[AN703: Simulated EEPROM]: https://www.silabs.com/documents/public/application-notes/an703-simulated-eeprom.pdf   
