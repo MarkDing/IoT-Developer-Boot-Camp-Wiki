@@ -6,6 +6,7 @@
 
 
 ## Zigbee Boot Camp Schedule
+### Day One
 | Time | Content |  
 |:---- |:----|    
 | 1 hour | [Introduction of Zigbee][Zigbee Introduction] |
@@ -14,7 +15,12 @@
 | 1 hour | [Hands on : Sending on/off commands][Zigbee Hands On UG] |
 | 1 hour | [Hands on : Using Event][Zigbee Hands On UG] |
 | 1 hour | [Hands on : Non-volatile Data Storage](Zigbee-Hands-on-Non-volatile-Data-Storage) |
-| 1 hour | [Hands on : Sleepy End Device](Zigbee-Hands-on-Sleepy-End-Device) |
+*************
+### Day Two
+| Time | Content |  
+|:---- |:----|    
+| 3 hour | [Sleepy End Device](Zigbee-Hands-on-Sleepy-End-Device) and [Hands-on](Zigbee-Hands-on-Sleepy-End-Device-Hands-on)|
+| 3 hour | Zigbee Gateway and Hands-on |
 | ------ | [Silicon Labs Zigbee Onboarding Roadmap][Zigbee Onboarding Roadmap] |
 *************
   
@@ -31,3 +37,5 @@
 [EmberZnet and WSTK]: https://github.com/MarkDing/IoT-Developer-Boot-Camp-Wiki/blob/master/zigbee/EmberZnet%20and%20WSTK.pptx
 [Zigbee Onboarding Roadmap]: https://github.com/MarkDing/IoT-Developer-Boot-Camp-Wiki/blob/master/zigbee/Silicon%20Labs%20ZigBee%20Onboarding%20Roadmap.pdf
 [Zigbee Hands On UG]:https://github.com/MarkDing/IoT-Developer-Boot-Camp-Wiki/blob/master/zigbee/Zigbee-Hands-on-UsersGuide.docx
+[Zigbee-Hands-on-Sleepy-End-Device]:https://github.com/MarkDing/IoT-Developer-Boot-Camp-Wiki/blob/master/zigbee/Zigbee%20Sleepy%20End%20device.pptx
+[Zigbee-Hands-on-Sleepy-End-Device-Hands-on]:https://github.com/MarkDing/IoT-Developer-Boot-Camp-Wiki/blob/master/zigbee/Sleepy%20End%20Device%20Hands-on.docx
