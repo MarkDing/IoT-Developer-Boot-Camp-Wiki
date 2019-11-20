@@ -19,7 +19,7 @@
 ### Day Two
 | Time | Content |  
 |:---- |:----|    
-| 3 hour | [Sleepy End Device](Zigbee-Hands-on-Sleepy-End-Device) and [Hands-on](Zigbee-Hands-on-Sleepy-End-Device-Hands-on)|
+| 3 hour | [Sleepy End Device][Zigbee-Hands-on-Sleepy-End-Device] and [Hands-on][Zigbee-Hands-on-Sleepy-End-Device-Hands-on]|
 | 3 hour | Zigbee Gateway and Hands-on |
 | ------ | [Silicon Labs Zigbee Onboarding Roadmap][Zigbee Onboarding Roadmap] |
 *************
