@@ -15,13 +15,12 @@ A valid github account is the prerequisite for joining this project, please [Cre
 
 ## Hardware requirements
 Before following the procedures in this guide you should have purchased one of the mesh networking development kits, what the kits used in the boot camp series hands-on are [EFR32 Mighty Gecko Wireless Starter Kit](https://www.silabs.com/products/development-tools/wireless/mesh-networking/mighty-gecko-starter-kit). And then you need to create an account on the [support portal](https://siliconlabs.force.com/), and register the serial number of your development kits on [KitRegistration](https://siliconlabs.force.com/KitRegistration) to grant Zigbee SDK access. Please refer to the [KBA on access to Silicon Labs wireless mesh networking stacks](https://www.silabs.com/community/wireless/zigbee-and-thread/knowledge-base.entry.html/2017/11/22/access_to_siliconla-jk1S) for more information.  
-
 Below is the Kit Contents of the EFR32 Mighty Gecko Wireless Starter Kit.  
-　3 x Wireless starter kit mainboard
-　3 x EFR32MG12 2.4 GHz 19 dBm radio board
-　3 x EFR32MG12 2.4 GHz 10 dBm radio board
-　AA Battery Board (supports running +19 from battery)
-　Cables
+　3 x Wireless starter kit mainboard  
+　3 x EFR32MG12 2.4 GHz 19 dBm radio board  
+　3 x EFR32MG12 2.4 GHz 10 dBm radio board  
+　AA Battery Board (supports running +19 from battery)  
+　Cables  
 　EFR32MG Getting Started Card  
 
 ## Software requirements
@@ -35,6 +34,7 @@ When Simplicity Studio first launches, it presents a License Agreement dialog. A
 <div align="center">
   <img src="./images/preparatory_ss_license_agreement.png">  
 </div>  
+</br>  
 
 Choose a destination location, click [Next] > and then click [Install].  
 
@@ -49,6 +49,7 @@ After login, the Simplicity Studio will check for connected hardware. If you hav
 <div align="center">
   <img src="./images/preparatory_ss_install_required.png">  
 </div>  
+</br>  
 
 The Launcher perspective opens as below. If have the WSTK connected, the device will be identified as J-Link devices and listed in the "Debug Adapters" tab as shown.  
 
@@ -77,14 +78,14 @@ Click the device in the [Debug Adapters] tab on the left side of the launcher, t
   <img src="./images/preparatory_ss_launcher_withEmberZnet.png">  
 </div>  
 
-* Demos
+* Demos  
 Demos are prebuilt application examples that can be directly downloaded to your device.  
 
-* Software Examples
+* Software Examples  
 The software examples provide default configurations needed by the stack and a basic application structure that you can build upon. Silicon Labs recommends that you start your own development with a use case-based example and modify it according to your needs.  
 If none of the use case-based examples meet your needs, you can start with the **ZigbeeMinimal** example. And we will also use the **ZigbeeMinimal** as the starting point for the Zigbee boot camp series hands-on.  
 
-* SDK Documentation
+* SDK Documentation  
 The SDK Documentation lists documentation about the stack, it includes SDK release note, API reference, etc.  
 
 ### Compiler toolchain:
@@ -141,6 +142,7 @@ Click the [Connect] button to connect to the J-Link Adapter, then click [Connect
 <div align="center">
   <img src="./images/preparatory_ss_commander_program.png">  
 </div>
+</br>  
 
 The 2nd way is to use the AppBuilder to create-, generate-, and build your own application. It is possible to customize and add new features to it, but the current lab doesn’t detail these possibilities.  
 1.	Go to File -> New -> Project.  This will bring up the New Project Wizard  
@@ -178,7 +180,8 @@ By having the WSTK connected, the Simplicity Studio will automatically list the 
 
 <div align="center">
   <img src="./images/preparatory_new_a_zigbee_project.gif">  
-</div>
+</div>  
+</br>  
 
 **Note**: As a small quiz for ensuring that you have finished the preparatory course, please submit the build log of your ZigbeeMinimal project to the 5th item of the [Zigbee Preparatory Course feedback](https://forms.office.com/Pages/ResponsePage.aspx?id=ItjbVDFSIEuUTW9KvNVB-xO90oXNwwFJgomf3rxz4l1URjE3UzdSWFRFQlRZS05aMlBYWUNTTUJEUy4u).  
 
@@ -187,6 +190,7 @@ After the image has been downloaded, it's possible to communicate with the devic
 <div align="center">
   <img src="./images/preparatory_ss_launch_console.png">  
 </div>
+</br>  
 
 If the serial console is opened, switch to "Serial 1" and press "Enter", the console should output the project name.  
 <div align="center">
