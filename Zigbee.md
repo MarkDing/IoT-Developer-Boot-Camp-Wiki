@@ -6,6 +6,12 @@
 
 
 ## Zigbee Boot Camp Schedule
+### Preparatory Course
+| Time | Content |  
+|:---- |:----|    
+| 2 hour | [Preparatory Course](Zigbee-Preparatory-Course) |
+
+
 ### Day One
 | Time | Content |  
 |:---- |:----|    
@@ -39,3 +45,4 @@
 [Zigbee Hands On UG]:https://github.com/MarkDing/IoT-Developer-Boot-Camp-Wiki/blob/master/zigbee/Zigbee-Hands-on-UsersGuide.docx
 [Zigbee-Hands-on-Sleepy-End-Device]:https://github.com/MarkDing/IoT-Developer-Boot-Camp-Wiki/blob/master/zigbee/Zigbee%20Sleepy%20End%20device.pptx
 [Zigbee-Hands-on-Sleepy-End-Device-Hands-on]:https://github.com/MarkDing/IoT-Developer-Boot-Camp-Wiki/blob/master/zigbee/Sleepy%20End%20Device%20Hands-on.docx
+
