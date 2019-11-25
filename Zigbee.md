@@ -44,5 +44,5 @@
 [Zigbee Onboarding Roadmap]: https://github.com/MarkDing/IoT-Developer-Boot-Camp-Wiki/blob/master/zigbee/Silicon%20Labs%20ZigBee%20Onboarding%20Roadmap.pdf
 [Zigbee Hands On UG]:https://github.com/MarkDing/IoT-Developer-Boot-Camp-Wiki/blob/master/zigbee/Zigbee-Hands-on-UsersGuide.docx
 [Zigbee-Hands-on-Sleepy-End-Device]:https://github.com/MarkDing/IoT-Developer-Boot-Camp-Wiki/blob/master/zigbee/Zigbee%20Sleepy%20End%20device.pptx
-[Zigbee-Hands-on-Sleepy-End-Device-Hands-on]:https://github.com/MarkDing/IoT-Developer-Boot-Camp-Wiki/blob/master/zigbee/Sleepy%20End%20Device%20Hands-on.docx
+[Zigbee-Hands-on-Sleepy-End-Device-Hands-on]:https://github.com/MarkDing/IoT-Developer-Boot-Camp-Wiki/blob/master/zigbee/Sleepy%20End%20Device%20Hands-on.pdf
 
