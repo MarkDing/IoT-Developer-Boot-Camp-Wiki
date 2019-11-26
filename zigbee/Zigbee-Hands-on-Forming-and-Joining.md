@@ -36,7 +36,7 @@ Make sure you have installed the latest EmberZNet SDK (which is v6.6.4 at the ti
 2. Go to Window -> Preference -> Simplicity Studio -> SDKs, make sure "EmberZNet 6.6.4" is installed.  
 It is part of the Gecko SDK Suite 2.6.4, therefore it doesn't appear itself alone. See Figure 2‑1 below.  
 <div align="center">
-  <img src="./images/check_installed_EmberZNet_SDK.png">  
+  <img src="https://github.com/MarkDing/IoT-Developer-Boot-Camp-Wiki/blob/master/zigbee/images/check_installed_EmberZNet_SDK.png">  
 </div>  
 <div align="center">
   <b>Figure 2-1 Check installed EmberZNet SDK</b>
@@ -47,7 +47,7 @@ It is part of the Gecko SDK Suite 2.6.4, therefore it doesn't appear itself alon
 It is important to use the same toolchain version when building your project that was used to build the libraries supplied as part of the SDK. The list of the proper toolchain-SDK pairing can be found [here](https://www.silabs.com/community/software/simplicity-studio/knowledge-base.entry.html/2018/08/22/gecko_sdk_suite_tool-qlc4). See Figure 2‑2 below.  
 
 <div align="center">
-  <img src="./images/check_toolchain.png">  
+  <img src="https://github.com/MarkDing/IoT-Developer-Boot-Camp-Wiki/blob/master/zigbee/images/check_toolchain.png">  
 </div>  
 <div align="center">
   <b>Figure 2‑2 Check the Toolchain</b>
@@ -70,7 +70,7 @@ Before the builder would be opened, I recommend to select the target board on th
 
 1. Go to File -\> New -\> Project. This will bring up the New Project Wizard. See the Figure 3‑1 below.  
 <div align="center">
-  <img src="./images/Open_AppBuilder.png">  
+  <img src="https://github.com/MarkDing/IoT-Developer-Boot-Camp-Wiki/blob/master/zigbee/images/Open_AppBuilder.png">  
 </div>  
 <div align="center">
   <b>Figure 3‑1 Open AppBuilder</b>
@@ -79,7 +79,7 @@ Before the builder would be opened, I recommend to select the target board on th
 
 2. Select "Silicon Labs Zigbee". Click Next. See Figure 3‑2.  
 <div align="center">
-  <img src="./images/select_the_stack_type.png">  
+  <img src="https://github.com/MarkDing/IoT-Developer-Boot-Camp-Wiki/blob/master/zigbee/images/select_the_stack_type.png">  
 </div>  
 <div align="center">
   <b>Figure 3‑2 Select the stack type</b>
@@ -88,7 +88,7 @@ Before the builder would be opened, I recommend to select the target board on th
 
 3. Select "EmberZNet 6.6.x GA SoC 6.6.x.0". Click Next. See Figure 3‑3.  
 <div align="center">
-  <img src="./images/select_stack_version_and_SoC_application_type.png">  
+  <img src="https://github.com/MarkDing/IoT-Developer-Boot-Camp-Wiki/blob/master/zigbee/images/select_stack_version_and_SoC_application_type.png">  
 </div>  
 <div align="center">
   <b>Figure 3‑3 Select stack version and SoC application type</b>
@@ -98,7 +98,7 @@ Before the builder would be opened, I recommend to select the target board on th
 4. Choose the "ZigbeeMinimal" sample application. Click Next. See Figure 3‑4.  
     **ZigbeeMinimal**: This is a Zigbee minimal network-layer application suitable as a starting point for new application development.  
 <div align="center">
-  <img src="./images/select_ZigbeeMinimal_sample_application.png">  
+  <img src="https://github.com/MarkDing/IoT-Developer-Boot-Camp-Wiki/blob/master/zigbee/images/select_ZigbeeMinimal_sample_application.png">  
 </div>  
 <div align="center">
   <b>Figure 3‑4 Select ZigbeeMinimal sample application</b>
@@ -107,7 +107,7 @@ Before the builder would be opened, I recommend to select the target board on th
 
 5. Name your project to "Zigbee_Light_ZC" and then Click Next. See Figure 3‑5.  
 <div align="center">
-  <img src="./images/name_the_project.png">  
+  <img src="https://github.com/MarkDing/IoT-Developer-Boot-Camp-Wiki/blob/master/zigbee/images/name_the_project.png">  
 </div>  
 <div align="center">
   <b>Figure 3‑5 Name the project</b>
@@ -116,7 +116,7 @@ Before the builder would be opened, I recommend to select the target board on th
 
 6.  In next window (Project Setup), double check the board is BRD4162A, if not, you can correct it manually. And also check the compiler is "GNU ARM v7.2.1". Click Finish. See Figure 3‑6.  
 <div align="center">
-  <img src="./images/check_the_board_and_compiler.png">  
+  <img src="https://github.com/MarkDing/IoT-Developer-Boot-Camp-Wiki/blob/master/zigbee/images/check_the_board_and_compiler.png">  
 </div>  
 <div align="center">
   <b>Figure 3‑6 Check the board and compiler</b>
@@ -134,7 +134,7 @@ This page gives information about the current project configuration, its path, f
 One of the most important setting is the ZCL configurations. The type of the device is based on its clusters and attributes. The Silicon Labs pre-defined most of the available device types. In our tutorial it's a "HA Light On/Off Light" kind of device. To enable all the mandatory clusters and attribute for a Light, click on the "ZCL device type" dropdown menu, then select "HA Light On/Off Light" template. See Figure 3‑7.  
 
 <div align="center">
-  <img src="./images/select_ZCL_device_type.png">  
+  <img src="https://github.com/MarkDing/IoT-Developer-Boot-Camp-Wiki/blob/master/zigbee/images/select_ZCL_device_type.png">  
 </div>  
 <div align="center">
   <b>Figure 3‑7 Select ZCL device type</b>
@@ -148,7 +148,7 @@ After selecting the template, new enabled clusters and attributes are appeared i
 **Zigbee Stack**  
 This tab lets to change the device type in network aspect. Since the router device cannot form centralized network, the "Coordinator and Router" type must be selected. The default "Zigbee 3.0 Security" is appropriate. See Figure 3‑8.  
 <div align="center">
-  <img src="./images/change_device_type_to_coordinator.png">  
+  <img src="https://github.com/MarkDing/IoT-Developer-Boot-Camp-Wiki/blob/master/zigbee/images/change_device_type_to_coordinator.png">  
 </div>  
 <div align="center">
   <b>Figure 3‑8 Change device type to Coordinator</b>
@@ -159,7 +159,7 @@ The rest of the settings should not be modified, because the device operates on 
 **Printing and CLI**  
 Usually the default setting is enough in this Lab. The only thing to do is verify the "Enable debug printing" box is enabled, and check-in the "On off cluster" debug prints to get more information later. See Figure 3‑9.  
 <div align="center">
-  <img src="./images/debug_printing.png">  
+  <img src="https://github.com/MarkDing/IoT-Developer-Boot-Camp-Wiki/blob/master/zigbee/images/debug_printing.png">  
 </div>  
 <div align="center">
   <b>Figure 3‑9 Debug printing</b>
@@ -182,14 +182,14 @@ The **Security Link Keys library** provides management of APS link keys in the k
 The **Serial** establishes the Command Line Interface (CLI). This interface lets the user to communicate with the SoC. In case of selecting the correct board at project creation phase, the plugin settings should fit to the pinout of the device, but it is also important to double check the values. This application uses UART0 via USB Mini-B Connector. The WSTK Main board has a Board Controller which does the UART-USB conversion. This is the Virtual COM port, which must be enabled separately out of the plugin. It will be detailed later.  
 
 <div align="center">
-  <img src="./images/plugins_enable.png">  
+  <img src="https://github.com/MarkDing/IoT-Developer-Boot-Camp-Wiki/blob/master/zigbee/images/plugins_enable.png">  
 </div>  
 </br>
 
 Summarized the above, the following table presents the affected plugins.  
 
 <div align="center">
-  <img src="./images/plugins_to_check_light.png">  
+  <img src="https://github.com/MarkDing/IoT-Developer-Boot-Camp-Wiki/blob/master/zigbee/images/plugins_to_check_light.png">  
 </div>  
 <div align="center">
   <b>Table 3.1 Plugs to check</b>
@@ -200,7 +200,7 @@ Before going ahead, it's a good place to point how the users can find more infor
 
 These files are available from the AppBuilder as well, but some extra information can be found, as the implemented, defined callbacks and APIs by the plugin. See Figure 3‑10.  
 <div align="center">
-  <img src="./images/plugin_details.png">  
+  <img src="https://github.com/MarkDing/IoT-Developer-Boot-Camp-Wiki/blob/master/zigbee/images/plugin_details.png">  
 </div>  
 <div align="center">
   <b>Figure 3‑10 Plugin details</b>
@@ -226,7 +226,7 @@ Press the Generate button on the upper-right of the Appbuilder.
 
 The "Generation successful" label signs all the required files are created. See Figure 3‑11.  
 <div align="center">
-  <img src="./images/generation_result.png">  
+  <img src="https://github.com/MarkDing/IoT-Developer-Boot-Camp-Wiki/blob/master/zigbee/images/generation_result.png">  
 </div>  
 <div align="center">
   <b>Figure 3‑11 Generation result</b>
@@ -239,21 +239,21 @@ It's important to understand that the here applied settings don't directly mean 
 In our project, the VCOM enable pin must be enabled to make the UART-USB converter works. The serial port initializer sets the PA5 to high state. If the board was selected correctly at the beginning, this already has been set. See Figure 3‑12.  
 
 <div align="center">
-  <img src="./images/hardware_configurator.png">  
+  <img src="https://github.com/MarkDing/IoT-Developer-Boot-Camp-Wiki/blob/master/zigbee/images/hardware_configurator.png">  
 </div>  
 <div align="center">
   <b>Figure 3‑12 Hardware configurator</b>
 </div>  
 
 The saving of this file re-generates the "hal-config.h" file according to the settings.  
-Press the Build button (![](./images/build_project.png)). Upon a successful build, the binary files should be appeared in the "Binaries" directory.  
+Press the Build button (![](https://github.com/MarkDing/IoT-Developer-Boot-Camp-Wiki/blob/master/zigbee/images/build_project.png)). Upon a successful build, the binary files should be appeared in the "Binaries" directory.  
 
 *** 
 
 # 4. Download and test the Light application
 Let's download the *Zigbee_Light_ZC.s37* file to the development kit as shown below. See Figure 4‑1 and Figure 4‑2.  
 <div align="center">
-  <img src="./images/open_Flash_Programmer.png">  
+  <img src="https://github.com/MarkDing/IoT-Developer-Boot-Camp-Wiki/blob/master/zigbee/images/open_Flash_Programmer.png">  
 </div>  
 <div align="center">
   <b>Figure 4‑1 Open Flash Programmer</b>
@@ -261,7 +261,7 @@ Let's download the *Zigbee_Light_ZC.s37* file to the development kit as shown be
 </br>  
 
 <div align="center">
-  <img src="./images/download_the_image.png">  
+  <img src="https://github.com/MarkDing/IoT-Developer-Boot-Camp-Wiki/blob/master/zigbee/images/download_the_image.png">  
 </div>  
 <div align="center">
   <b>Figure 4‑2 Download the image</b>
@@ -273,7 +273,7 @@ Keep in mind that neither erase type clean the bootloader section in EFR32MG12 p
 After the image has been downloaded, it's possible to communicate with the device. For this purpose, open the Launch console, which is a built-in serial port terminal in the Studio. See Figure 4‑3.  
 
 <div align="center">
-  <img src="./images/open_Serial_console.png">  
+  <img src="https://github.com/MarkDing/IoT-Developer-Boot-Camp-Wiki/blob/master/zigbee/images/open_Serial_console.png">  
 </div>  
 <div align="center">
   <b>Figure 4‑3 Open Serial console</b>
@@ -282,7 +282,7 @@ After the image has been downloaded, it's possible to communicate with the devic
 
 If the serial console is opened, switch to "Serial 1" and press "Enter". See Figure 4‑4.  
 <div align="center">
-  <img src="./images/select_Serial1_tab.png">  
+  <img src="https://github.com/MarkDing/IoT-Developer-Boot-Camp-Wiki/blob/master/zigbee/images/select_Serial1_tab.png">  
 </div>  
 <div align="center">
   <b>Figure 4‑4 Select Serial 1 tab</b>
@@ -317,7 +317,7 @@ The **Update TC Link Key** is used to request new APS Link Key from the Trust Ce
 The **Install code library** provides an initial link key based upon an install code manufacturering token in the device. The key is hashed according to the ZigBee spec.  
 
 <div align="center">
-  <img src="./images/plugins_to_check_switch.png">  
+  <img src="https://github.com/MarkDing/IoT-Developer-Boot-Camp-Wiki/blob/master/zigbee/images/plugins_to_check_switch.png">  
 </div>  
 <div align="center">
   <b>Table 5.1 Plugs to check</b>
@@ -333,7 +333,7 @@ The **Install code library** provides an initial link key based upon an install 
 # 6. Download and test the Switch application
 Please repeat the steps from the chapter [Download and test the Light application](#4-download-and-test-the-light-application) and test if the Switch application works. See Figure 6‑1.  
 <div align="center">
-  <img src="./images/CLI_testing.png">  
+  <img src="https://github.com/MarkDing/IoT-Developer-Boot-Camp-Wiki/blob/master/zigbee/images/CLI_testing.png">  
 </div>  
 <div align="center">
   <b>Figure 6‑1 CLI testing</b>
@@ -421,7 +421,7 @@ Copy the network key ```C0 1C 81 33 69 98 A3 21  D4 67 92 29 73 59 D0 8E``` and 
 1. Open Window-\>Preferences  
 
 <div align="center">
-  <img src="./images/open_Security_Keys_tab.png">  
+  <img src="https://github.com/MarkDing/IoT-Developer-Boot-Camp-Wiki/blob/master/zigbee/images/open_Security_Keys_tab.png">  
 </div>  
 <div align="center">
   <b>Figure 7‑1 Open Security Keys tab</b>
@@ -430,13 +430,13 @@ Copy the network key ```C0 1C 81 33 69 98 A3 21  D4 67 92 29 73 59 D0 8E``` and 
 
 2. Make sure that Network Analyzer is set to decode the correct protocol. Select Window \> Preferences \> Network Analyzer \> Decoding \> Stack Versions, and verify it is set correctly. If you need to change it, click the correct stack, click Apply, and then OK.  
 <div align="center">
-  <img src="./images/stack_profile.png">  
+  <img src="https://github.com/MarkDing/IoT-Developer-Boot-Camp-Wiki/blob/master/zigbee/images/stack_profile.png">  
 </div>  
 </br>  
 
 3. Navigate to Network Analyzer-\>Decoding-\> Security Keys and add the new key. See Figure 7‑2.  
 <div align="center">
-  <img src="./images/add_new_Network_Key.png">  
+  <img src="https://github.com/MarkDing/IoT-Developer-Boot-Camp-Wiki/blob/master/zigbee/images/add_new_Network_Key.png">  
 </div>  
 <div align="center">
   <b>Figure 7‑2 Add new Network Key</b>
@@ -445,7 +445,7 @@ Copy the network key ```C0 1C 81 33 69 98 A3 21  D4 67 92 29 73 59 D0 8E``` and 
 ## 7.5. Start capturing on Light device
 Right click on Adapter name of the Light-\> *Connect* (if not connected yet)-\>*Start capture*. See Figure 7‑3.  
 <div align="center">
-  <img src="./images/start_capturing.png">  
+  <img src="https://github.com/MarkDing/IoT-Developer-Boot-Camp-Wiki/blob/master/zigbee/images/start_capturing.png">  
 </div>  
 <div align="center">
   <b>Figure 7‑3 Start capturing</b>
@@ -454,7 +454,7 @@ Right click on Adapter name of the Light-\> *Connect* (if not connected yet)-\>*
 
 It should change the view to *Network Analyzer* and immediately start capturing. See Figure 7‑4.  
 <div align="center">
-  <img src="./images/capturing_on_Light.png">  
+  <img src="https://github.com/MarkDing/IoT-Developer-Boot-Camp-Wiki/blob/master/zigbee/images/capturing_on_Light.png">  
 </div>  
 <div align="center">
   <b>Figure 7‑4 Capturing on Light</b>
@@ -527,7 +527,7 @@ Join network complete: 0x00
 Have a look at the Network Analyzer how the joining process works. See Figure 7‑5.  
 
 <div align="center">
-  <img src="./images/joining_process_in_Network_Analyzer.png">  
+  <img src="https://github.com/MarkDing/IoT-Developer-Boot-Camp-Wiki/blob/master/zigbee/images/joining_process_in_Network_Analyzer.png">  
 </div>  
 <div align="center">
   <b>Figure 7‑5 Joining process in Network Analyzer</b>
@@ -571,7 +571,7 @@ C:\SiliconLabs\SimplicityStudio\v4\developer\adapter_packs\commander
 ```
 
 <div align="center">
-  <img src="./images/check_install_code.png">  
+  <img src="https://github.com/MarkDing/IoT-Developer-Boot-Camp-Wiki/blob/master/zigbee/images/check_install_code.png">  
 </div>  
 <div align="center">
   <b>Figure 8‑1 Check installation code</b>
@@ -584,7 +584,7 @@ $ commander flash --tokengroup znet --tokenfile install-code-file.txt
 ```
 You should see output similar to the following:  
 <div align="center">
-  <img src="./images/write_the_installation_code.png">  
+  <img src="https://github.com/MarkDing/IoT-Developer-Boot-Camp-Wiki/blob/master/zigbee/images/write_the_installation_code.png">  
 </div>  
 
 ### 8.1.4 Verifying the Stored Installation Code on an EFR32 Device
@@ -593,7 +593,7 @@ After writing the installation code, it is best to verify the information by exe
 $ commander tokendump --tokengroup znet
 ```
 <div align="center">
-  <img src="./images/verify_the_installation_code.png">  
+  <img src="https://github.com/MarkDing/IoT-Developer-Boot-Camp-Wiki/blob/master/zigbee/images/verify_the_installation_code.png">  
 </div>  
 
 ### 8.1.5 Erasing the Installation Code
@@ -615,7 +615,7 @@ After that, please check the Pan ID of the network, it will be used to identify 
 network id
 ```
 <div align="center">
-  <img src="./images/check_the_network_id.png">  
+  <img src="https://github.com/MarkDing/IoT-Developer-Boot-Camp-Wiki/blob/master/zigbee/images/check_the_network_id.png">  
 </div>  
 </br>
 
@@ -634,7 +634,7 @@ option install-code 0 {00 0B 57 FF FE 64 8D D8} {83 FE D3 40 7A 93 97 23 A5 C6 3
 * The next argument is the EUI64 of the joining node (in this example, Switch). You can find this information by running the CLI ```info``` command on the Switch node, and looking for the string similar to ```node [(>)000B57FFFE648DD8]```.  
 
 <div align="center">
-  <img src="./images/check_device_EUI.png">  
+  <img src="https://github.com/MarkDing/IoT-Developer-Boot-Camp-Wiki/blob/master/zigbee/images/check_device_EUI.png">  
 </div>  
 </br>
 
@@ -644,7 +644,7 @@ option install-code 0 {00 0B 57 FF FE 64 8D D8} {83 FE D3 40 7A 93 97 23 A5 C6 3
 $ commander tokendump --tokengroup znet
 ```
 <div align="center">
-  <img src="./images/verify_the_installation_code.png">  
+  <img src="https://github.com/MarkDing/IoT-Developer-Boot-Camp-Wiki/blob/master/zigbee/images/verify_the_installation_code.png">  
 </div>  
 </br>
 
@@ -652,7 +652,7 @@ The CRC is displayed just below the install code and is printed in little endian
 
 To see if the link key is added successfully, enter the keys print CLI on the Light to see it in the Link Key Table. This shows both the link key derived from the installation code, and the network key.  
 <div align="center">
-  <img src="./images/check_link_key.png">  
+  <img src="https://github.com/MarkDing/IoT-Developer-Boot-Camp-Wiki/blob/master/zigbee/images/check_link_key.png">  
 </div>  
 </br>
 
@@ -674,7 +674,7 @@ plugin network-creator-security open-with-key {00 0B 57 FF FE 64 8D D8} {66 B6 9
 ### 8.3 Join the network
 For using the install code on the Switch node, please make sure that the "Install Code Library" plugin is enabled on the joining device, Generate and build the project again.  
 <div align="center">
-  <img src="./images/enable_install_code_library.png">  
+  <img src="https://github.com/MarkDing/IoT-Developer-Boot-Camp-Wiki/blob/master/zigbee/images/enable_install_code_library.png">  
 </div>  
 </br>
 
@@ -685,7 +685,7 @@ plugin network-steering start 0
 And the serial console will output similar as below to indicate that the Switch node has joined the network 0xD31F successfully.  
 
 <div align="center">
-  <img src="./images/join_network_successfully.png">  
+  <img src="https://github.com/MarkDing/IoT-Developer-Boot-Camp-Wiki/blob/master/zigbee/images/join_network_successfully.png">  
 </div>  
 </br>
 
@@ -724,7 +724,7 @@ Copy the network key ```C0 1C 81 33 69 98 A3 21  D4 67 92 29 73 59 D0 8E``` and 
 1. Open Window-\>Preferences  
 
 <div align="center">
-  <img src="./images/open_Security_Keys_tab.png">  
+  <img src="https://github.com/MarkDing/IoT-Developer-Boot-Camp-Wiki/blob/master/zigbee/images/open_Security_Keys_tab.png">  
 </div>  
 <div align="center">
   <b>Figure 7‑1 Open Security Keys tab</b>
@@ -733,13 +733,13 @@ Copy the network key ```C0 1C 81 33 69 98 A3 21  D4 67 92 29 73 59 D0 8E``` and 
 
 2. Make sure that Network Analyzer is set to decode the correct protocol. Select Window \> Preferences \> Network Analyzer \> Decoding \> Stack Versions, and verify it is set correctly. If you need to change it, click the correct stack, click Apply, and then OK.  
 <div align="center">
-  <img src="./images/stack_profile.png">  
+  <img src="https://github.com/MarkDing/IoT-Developer-Boot-Camp-Wiki/blob/master/zigbee/images/stack_profile.png">  
 </div>  
 </br>  
 
 3. Navigate to Network Analyzer-\>Decoding-\> Security Keys and add the new key. See Figure 7‑2.  
 <div align="center">
-  <img src="./images/add_new_Network_Key.png">  
+  <img src="https://github.com/MarkDing/IoT-Developer-Boot-Camp-Wiki/blob/master/zigbee/images/add_new_Network_Key.png">  
 </div>  
 <div align="center">
   <b>Figure 7‑2 Add new Network Key</b>
@@ -753,7 +753,7 @@ network leave
 
 Right click on Adapter name of the Light-\> *Connect* (if not connected yet)-\>*Start capture*. See Figure 7‑3.  
 <div align="center">
-  <img src="./images/start_capturing.png">  
+  <img src="https://github.com/MarkDing/IoT-Developer-Boot-Camp-Wiki/blob/master/zigbee/images/start_capturing.png">  
 </div>  
 <div align="center">
   <b>Figure 7‑3 Start capturing</b>
@@ -762,7 +762,7 @@ Right click on Adapter name of the Light-\> *Connect* (if not connected yet)-\>*
 
 It should change the view to *Network Analyzer* and immediately start capturing. See Figure 7‑4.  
 <div align="center">
-  <img src="./images/capturing_on_Light.png">  
+  <img src="https://github.com/MarkDing/IoT-Developer-Boot-Camp-Wiki/blob/master/zigbee/images/capturing_on_Light.png">  
 </div>  
 <div align="center">
   <b>Figure 7‑4 Capturing on Light</b>
@@ -776,7 +776,7 @@ The capture file (\*Live) should show the packets on the network.
 Have a look at the Network Analyzer how the joining process works. See Figure 7‑5.  
 
 <div align="center">
-  <img src="./images/joining_process_in_Network_Analyzer_install_code.png">  
+  <img src="https://github.com/MarkDing/IoT-Developer-Boot-Camp-Wiki/blob/master/zigbee/images/joining_process_in_Network_Analyzer_install_code.png">  
 </div>  
 <div align="center">
   <b>Figure 7‑5 Joining process in Network Analyzer</b>

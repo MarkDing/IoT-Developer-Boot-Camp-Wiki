@@ -32,7 +32,7 @@ Make sure you have installed the EmberZNet 6.6.4 SDK or later and GCC toolchain 
 It is part of the Gecko SDK Suite 2.6.4, therefore it doesn’t appear itself. See the Figure 2-1 below.  
 
 <div align="center">
-  <img src="./images/check_installed_EmberZNet_SDK.png">  
+  <img src="https://github.com/MarkDing/IoT-Developer-Boot-Camp-Wiki/blob/master/zigbee/images/check_installed_EmberZNet_SDK.png">  
 </div>  
 <div align="center">
   <b>Figure 2-1 Check installed EmberZNet SDK</b>
@@ -43,7 +43,7 @@ It is part of the Gecko SDK Suite 2.6.4, therefore it doesn’t appear itself. S
 It is important to use the same toolchain version when building your project that was used to build the libraries supplied as part of the SDK. The list of the proper toolchain-SDK pairing can be found [here](https://www.silabs.com/community/software/simplicity-studio/knowledge-base.entry.html/2018/08/22/gecko_sdk_suite_tool-qlc4). See Figure 2‑2.
 
 <div align="center">
-  <img src="./images/check_toolchain.png">  
+  <img src="https://github.com/MarkDing/IoT-Developer-Boot-Camp-Wiki/blob/master/zigbee/images/check_toolchain.png">  
 </div>  
 <div align="center">
   <b>Figure 2‑2 Check the Toolchain</b>
@@ -72,7 +72,7 @@ These functions can be enabled in the "Callbacks" tab of the AppBuilder.
 Open this tab, find and enable the “On” “Off” callbacks under “General/OnOff Cluster” menu. See Figure 3‑1.
 
 <div align="center">
-  <img src="./images/onOff_Cluster_callbacks_enabling.png">  
+  <img src="https://github.com/MarkDing/IoT-Developer-Boot-Camp-Wiki/blob/master/zigbee/images/onOff_Cluster_callbacks_enabling.png">  
 </div>  
 <div align="center">
   <b>Figure 3‑1 On/Off Cluster callbacks enabling</b>
@@ -87,7 +87,7 @@ When a callback is enabled, it should be taken off from the *callback-stub.c* an
 Open Zigbee_Light_ZC_Callback.c from the project explorer as show below.
 
 <div align="center">
-  <img src="./images/project_explorer.png">  
+  <img src="https://github.com/MarkDing/IoT-Developer-Boot-Camp-Wiki/blob/master/zigbee/images/project_explorer.png">  
 </div> 
 </br>   
 
@@ -205,7 +205,7 @@ Off command is received
 The above transactions can be observed in the Network Analyzer as well. See Figure 3‑2.
 
 <div align="center">
-  <img src="./images/ZCL_OnOff_commands_in_Network_Analyzer.png">  
+  <img src="https://github.com/MarkDing/IoT-Developer-Boot-Camp-Wiki/blob/master/zigbee/images/ZCL_OnOff_commands_in_Network_Analyzer.png">  
 </div>  
 <div align="center">
   <b>Figure 3‑2 ZCL On/Off commands in Network Analyzer</b>

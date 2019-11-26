@@ -17,9 +17,9 @@
 |:---- |:----|    
 | 1 hour | [Introduction of Zigbee][Zigbee Introduction] |
 | 1 hour | [Introduction of EmberZnet and AppBuilder][EmberZnet and WSTK] |
-| 1 hour | [Hands on : Forming and Joining][Zigbee Hands On UG] |
-| 1 hour | [Hands on : Sending on/off commands][Zigbee Hands On UG] |
-| 1 hour | [Hands on : Using Event][Zigbee Hands On UG] |
+| 1 hour | [Hands on : Forming and Joining](Zigbee-Hands-on-Forming-and-Joining) |
+| 1 hour | [Hands on : Sending on/off commands](Zigbee-Hands-on-Sending-onoff-commands) |
+| 1 hour | [Hands on : Using Event](Zigbee-Hands-on-Using-Event) |
 | 1 hour | [Hands on : Non-volatile Data Storage](Zigbee-Hands-on-Non-volatile-Data-Storage) |
 *************
 ### Day Two
@@ -45,4 +45,3 @@
 [Zigbee Hands On UG]:https://github.com/MarkDing/IoT-Developer-Boot-Camp-Wiki/blob/master/zigbee/Zigbee-Hands-on-UsersGuide.docx
 [Zigbee-Hands-on-Sleepy-End-Device]:https://github.com/MarkDing/IoT-Developer-Boot-Camp-Wiki/blob/master/zigbee/Zigbee%20Sleepy%20End%20device.pptx
 [Zigbee-Hands-on-Sleepy-End-Device-Hands-on]:https://github.com/MarkDing/IoT-Developer-Boot-Camp-Wiki/blob/master/zigbee/Sleepy%20End%20Device%20Hands-on.pdf
-

@@ -26,7 +26,7 @@ The *Main Init* callback is called from the application’s main function. It gi
 Double click the Zigbee_Switch_ZR.isc file to open it with the AppBuilder, and then enable this callback in the AppBuilder’s Callbacks tab. See the figure below.  
 
 <div align="center">
-  <img src="./images/main_init_enableing.png">  
+  <img src="https://github.com/MarkDing/IoT-Developer-Boot-Camp-Wiki/blob/master/zigbee/images/main_init_enableing.png">  
 </div>  
 <div align="center">
   <b>Main Init callback enabling</b>
@@ -41,7 +41,7 @@ Basically, two things need for this.
 
 Open the *AppBuilder* -> *Includes* tab. Add the custom event to the *Event Configuration* window. See figure below.  
 <div align="center">
-  <img src="./images/custom_event_adding_in_AppBuilder.png">  
+  <img src="https://github.com/MarkDing/IoT-Developer-Boot-Camp-Wiki/blob/master/zigbee/images/custom_event_adding_in_AppBuilder.png">  
 </div>  
 <div align="center">
   <b>Custom event adding in AppBuilder</b>
