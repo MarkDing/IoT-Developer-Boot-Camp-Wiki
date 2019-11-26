@@ -39,7 +39,7 @@ Basically, two things need for this.
 -   Event Controller – structure of the task  
 -   Event Handler – function on the task  
 
-Open the *AppBuilder* -> *Includes* tab. Add the custom event to the *Event Configuration* window. See figure below.  
+Open the *AppBuilder* -> *Includes* tab. Add the custom event command ```ledBlinkingEventControl``` and callback ```ledBlinkingEventHandler``` to the *Event Configuration* window respectively. See figure below.  
 <div align="center">
   <img src="https://github.com/MarkDing/IoT-Developer-Boot-Camp-Wiki/blob/master/zigbee/images/custom_event_adding_in_AppBuilder.png">  
 </div>  

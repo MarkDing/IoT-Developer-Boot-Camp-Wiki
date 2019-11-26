@@ -436,7 +436,7 @@ Copy the network key ```C0 1C 81 33 69 98 A3 21  D4 67 92 29 73 59 D0 8E``` and 
 
 3. Navigate to Network Analyzer-\>Decoding-\> Security Keys and add the new key. See Figure 7‑2.  
 <div align="center">
-  <img src="https://github.com/MarkDing/IoT-Developer-Boot-Camp-Wiki/blob/master/zigbee/images/add_new_Network_Key.png">  
+  <img src="https://github.com/MarkDing/IoT-Developer-Boot-Camp-Wiki/blob/master/zigbee/images/add_new_network_key.png">  
 </div>  
 <div align="center">
   <b>Figure 7‑2 Add new Network Key</b>
@@ -719,7 +719,7 @@ Index IEEE Address         In FC     TTL(s) Flag    Key
 ```
 
 ## 8.4.2 Add network key to Network Analyzer
-Copy the network key ```C0 1C 81 33 69 98 A3 21  D4 67 92 29 73 59 D0 8E``` and add it to the Network Analyzer's key storage to be able to decode the messages. See Figure 7‑1.  
+Copy the network key ```C0 1C 81 33 69 98 A3 21  D4 67 92 29 73 59 D0 8E``` and add it to the Network Analyzer's key storage to be able to decode the messages. See Figure 8‑1.  
 
 1. Open Window-\>Preferences  
 
@@ -727,7 +727,7 @@ Copy the network key ```C0 1C 81 33 69 98 A3 21  D4 67 92 29 73 59 D0 8E``` and 
   <img src="https://github.com/MarkDing/IoT-Developer-Boot-Camp-Wiki/blob/master/zigbee/images/open_Security_Keys_tab.png">  
 </div>  
 <div align="center">
-  <b>Figure 7‑1 Open Security Keys tab</b>
+  <b>Figure 8‑1 Open Security Keys tab</b>
 </div>  
 </br>  
 
@@ -737,12 +737,12 @@ Copy the network key ```C0 1C 81 33 69 98 A3 21  D4 67 92 29 73 59 D0 8E``` and 
 </div>  
 </br>  
 
-3. Navigate to Network Analyzer-\>Decoding-\> Security Keys and add the new key. See Figure 7‑2.  
+3. Navigate to Network Analyzer-\>Decoding-\> Security Keys and add the new key. See Figure 8‑2.  
 <div align="center">
-  <img src="https://github.com/MarkDing/IoT-Developer-Boot-Camp-Wiki/blob/master/zigbee/images/add_new_Network_Key.png">  
+  <img src="https://github.com/MarkDing/IoT-Developer-Boot-Camp-Wiki/blob/master/zigbee/images/add_new_network_key.png">  
 </div>  
 <div align="center">
-  <b>Figure 7‑2 Add new Network Key</b>
+  <b>Figure 8‑2 Add new Network Key</b>
 </div>  
 
 ## 8.4.3 Start capturing on Light device
@@ -751,21 +751,21 @@ Now the Switch should have joined the network created by the Light, please use t
 network leave
 ```
 
-Right click on Adapter name of the Light-\> *Connect* (if not connected yet)-\>*Start capture*. See Figure 7‑3.  
+Right click on Adapter name of the Light-\> *Connect* (if not connected yet)-\>*Start capture*. See Figure 8‑3.  
 <div align="center">
   <img src="https://github.com/MarkDing/IoT-Developer-Boot-Camp-Wiki/blob/master/zigbee/images/start_capturing.png">  
 </div>  
 <div align="center">
-  <b>Figure 7‑3 Start capturing</b>
+  <b>Figure 8‑3 Start capturing</b>
 </div>  
 </br>  
 
-It should change the view to *Network Analyzer* and immediately start capturing. See Figure 7‑4.  
+It should change the view to *Network Analyzer* and immediately start capturing. See Figure 8‑4.  
 <div align="center">
   <img src="https://github.com/MarkDing/IoT-Developer-Boot-Camp-Wiki/blob/master/zigbee/images/capturing_on_Light.png">  
 </div>  
 <div align="center">
-  <b>Figure 7‑4 Capturing on Light</b>
+  <b>Figure 8‑4 Capturing on Light</b>
 </div>  
 </br>  
 
@@ -773,13 +773,13 @@ And then repeat the step in [Open the network with the derived link key](#823-op
 The capture file (\*Live) should show the packets on the network.  
 
 ## 8.4.4 Joining process in Network Analyzer
-Have a look at the Network Analyzer how the joining process works. See Figure 7‑5.  
+Have a look at the Network Analyzer how the joining process works. See Figure 8‑5.  
 
 <div align="center">
   <img src="https://github.com/MarkDing/IoT-Developer-Boot-Camp-Wiki/blob/master/zigbee/images/joining_process_in_Network_Analyzer_install_code.png">  
 </div>  
 <div align="center">
-  <b>Figure 7‑5 Joining process in Network Analyzer</b>
+  <b>Figure 8‑5 Joining process in Network Analyzer</b>
 </div>  
 </br>  
 
