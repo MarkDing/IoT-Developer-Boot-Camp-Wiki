@@ -115,7 +115,18 @@ bool emberAfOnOffClusterToggleCallback(void){
 
 ## 3.2. Command sending from Switch device
 First, a place should be found to reside our code for sending the command. For this purpose, a callback is triggered by button press is used.
-The button operations are handled by the *Button Interface* plugin, so it should be enabled. The plugin defines some callbacks, so these can be found in the *Callbacks* tab. Move there and enable the “*Button1 Pressed Short”* callback function.
+The button operations are handled by the *Button Interface* plugin, so it should be enabled. 
+
+<div align="center">
+  <img src="https://github.com/MarkDing/IoT-Developer-Boot-Camp-Wiki/blob/master/zigbee/images/plugin_button_interface_enable.png">  
+</div> 
+</br>  
+
+The plugin defines some callbacks, so these can be found in the *Callbacks* tab. Move there and enable the “*Button1 Pressed Short”* callback function.
+<div align="center">
+  <img src="https://github.com/MarkDing/IoT-Developer-Boot-Camp-Wiki/blob/master/zigbee/images/callback_button_pressed.png">  
+</div> 
+</br>  
 
 Save and generate.
 
