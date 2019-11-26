@@ -35,6 +35,7 @@ Double click the Zigbee_Switch_ZR.isc file to open it with the AppBuilder, and t
 <div align="center">
   <b>Main Init callback enabling</b>
 </div>  
+</br>  
 
 **Step 2**:
 The AppBuilder provides manner to add any custom event to the application.  
@@ -49,6 +50,7 @@ Open the *AppBuilder* -\> *Includes* tab. Add the custom event to the *Event Con
 <div align="center">
   <b>Custom event adding in AppBuilder</b>
 </div>  
+</br>  
 
 **Step 3**:
 Save and Generate the project.  
@@ -78,6 +80,9 @@ void ledBlinkingEventHandler(void)
 ```
 
 It’s worth to mention that the event should be set to inactive right after its function starts to be executed and re-schedule after it’s done.  
+
+# Testing your project
+Build the applications and download the output files to the Switch devices. Press the Reset button on the starter kit, you will notice that the LED1 on the board will be turned on, and then blink with 2s interval.
 
 # Conclusion
 In this hands-on, you learned how to create a custom event, define the event function and event control structure, and implement the event function for scheduling the LED blinking event.  

@@ -59,7 +59,7 @@ It is important to use the same toolchain version when building your project tha
 
 ### 2.2.3. Using Gecko Bootloader
 A bootloader is a program stored in reserved flash memory that can initialize a device, update firmware images, and possibly perform some integrity checks. If the application seems to do not running, always check the bootloader, because lack of it causes program crash.  
-For how to add Gecko Bootloader to your Zigbee project, please read the [preparatory course](https://github.com/MarkDing/IoT-Developer-Boot-Camp/wiki/Zigbee-Preparatory-Course#using-gecko-bootloader).
+For how to add Gecko Bootloader to your Zigbee project, please read the [preparatory course](https://github.com/MarkDing/IoT-Developer-Boot-Camp/wiki/Zigbee-Preparatory-Course#using-gecko-bootloader).  
 **Hint**: More information about Gecko Bootloader, please find the documentations below.  
 [UG266: Silicon Labs Gecko Bootloader User’s Guide](https://www.silabs.com/documents/public/user-guides/ug266-gecko-bootloader-user-guide.pdf)  
 [UG103.6: Bootloader Fundamentals](https://www.silabs.com/documents/public/user-guides/ug103-06-fundamentals-bootloading.pdf)  
@@ -79,6 +79,7 @@ Similarly to the bootloader project, the AppBuilder is needed to create the appl
 <div align="center">
   <b>Figure 3‑1 Open AppBuilder</b>
 </div>  
+</br>  
 
 2. Select “Silicon Labs Zigbee”. Click Next. See Figure 3‑2.  
 <div align="center">
@@ -124,13 +125,14 @@ Similarly to the bootloader project, the AppBuilder is needed to create the appl
 <div align="center">
   <b>Figure 3‑6 Check the board and compiler</b>
 </div>  
+</br>  
 
 At this point the project is placed into the default workspace directory, but most of the source files are missing. These files will be later linked or generated according to the AppBuilder settings. To open the AppBuilder, click double to the “Zigbee_Light_ZC.isc” file. There are multiple tabs in the file, let's have a closer look at each tab.  
 
-**General**
+**General**  
 This page gives information about the current project configuration, its path, furthermore, shows the selected toolchain and board. Nothing to do with this tab. It’s important to mention that in case of changing the toolchain or the board, always create a new project rather than modify the project settings.  
 
-**ZCL Clusters**
+**ZCL Clusters**  
 One of the most important setting is the ZCL configurations. The type of the device is based on its clusters and attributes. The Silicon Labs pre-defined most of the available device types. In our tutorial it’s a “HA Light On/Off Light” kind of device. To enable all the mandatory clusters and attribute for a Light, click on the “ZCL device type” dropdown menu, then select “HA Light On/Off Light” template. See Figure 3‑7.  
 
 <div align="center">
@@ -147,7 +149,7 @@ After selecting the template, new enabled clusters and attributes are appeared i
 
 **Note**: It’s not possible to modify these templates, therefore the “ZigBee Custom..” should be used if there is need to add any additional cluster.  
 
-**Zigbee Stack**
+**Zigbee Stack**  
 This tab lets to change the device type in network aspect. Since the router device cannot form centralized network, the “Coordinator and Router” type must be selected. The default Zigbee 3.0 Security is appropriate. See Figure 3‑8.  
 <div align="center">
   <img src="./images/change_device_type_to_coordinator.png">  
@@ -158,7 +160,7 @@ This tab lets to change the device type in network aspect. Since the router devi
 
 The rest of the settings should not be modified, because the device operates on Single network with basic clusters.  
 
-**Printing and CLI**
+**Printing and CLI**  
 Usually the default setting is enough in this Lab. The only thing to do is verify the “Enable debug printing” box is enabled, and check-in the “On off cluster” debug prints to get more information later. See Figure 3‑9.  
 <div align="center">
   <img src="./images/debug_printing.png">  
@@ -169,10 +171,10 @@ Usually the default setting is enough in this Lab. The only thing to do is verif
 
 Note: Like in **3.2 ZCL Clusters** part, the “On off cluster” debug print also serves the later implemented features.  
 
-**HAL**
+**HAL**  
 This tab is modified quite rarely. It would be possible to use external hardware configurator and change bootloader type, but it’s rather exists for legacy purposes.  
 
-**Plugin**
+**Plugin**  
 The plugins are individual software packages which implement a functionality. A plugin can consist of libraries and source files as well. These are collected on this tab, and the selection of device type doesn’t filter out the plugins that the device cannot use, thus it must be done manually. For example, this sample application doesn’t enable the necessary plugins for network forming/opening.  
 The below plugins must be added or removed to get a device which can operate as a Coordinator.  
 
@@ -192,6 +194,7 @@ Summarized the above, the following table presents the affected plugins.
 <div align="center">
   <b>Table 3.1 Plugs to check</b>
 </div>  
+</br>  
 
 Before going ahead, it’s a good place to point how the users can find more information about the plugins. As mentioned above, some plugins have source files, not just pre-built libraries. These files can be examined to find some not detailed information about its internal working. The header-, and source files can be found at “C:\\SiliconLabs\\SimplicityStudio\\v4\\developer\\sdks\\gecko_sdk_suite\\v2.6\\protocol\\zigbee\\app\\framework”, under “plugin”, “plugin-soc” and “plugin-host” folders. This separation is used to identify the commonly used, SoC and Host specific plugins.  
 
@@ -203,17 +206,17 @@ These files are available from the AppBuilder as well, but some extra informatio
   <b>Figure 3‑10 Plugin details</b>
 </div>  
 
-**Callbacks**
+**Callbacks**  
 The callbacks are a set of functions for the implementation of the application level functionalities. Some of them are related to plugins, while others can be used without any limitation. This tab is dynamically changing based on the previous *Plugins* and *ZCL Clusters* tab. It means some callbacks are visible/usable only if the appropriate plugin or cluster has been enabled.  
 It’s not necessary to use any callback for the basic network forming and opening functionalities. It will be used later.  
 
-**Includes**
+**Includes**  
 Project specific macros and include paths are defined here. It should not be modified, unless the user would use any custom token, or event. It will be used later.  
 
-**Other options**
+**Other options**  
 Advance settings in case of using dual band functionalities. It’s not used in this project.  
 
-**Bluetooth GATT**
+**Bluetooth GATT**  
 The Zigbee-BLE Dynamic Multiprotocol bluetooth side configurator is resided into the AppBuilder. It’s not used in this project.  
 Note: Some BLE related plugin make it editable.  
 
@@ -229,7 +232,7 @@ Press the Generate button. See Figure 3‑11.
 
 The “Generation successful” label signs all the required files are created.  
 
-**Hardware configurator**
+**Hardware configurator**  
 The hardware configurator is NOT part of the AppBuilder. It’s unique file in the project for generating the “hal-config/hal-config.h” file. This header file contains includes, which will used by other source files.  
 It’s important to understand that the here applied settings don’t directly mean that the peripheral is initialized, it just provides macros for the proper pin and clock settings. It could happen that the UART peripheral is enabled in this configurator, but not in the Serial plugin. In this case the initializer functions will not be called, thus the UART won’t work. However, the other way around, if a plugin refers to a macro which is not defined by the hardware configurator, it causes compiler errors.  
 
@@ -244,6 +247,8 @@ In our project, the VCOM enable pin must be enabled to make the UART-USB convert
 
 The saving of this file re-generates the “hal-config.h” file according to the settings.  
 Press the Build button (![](./images/build_project.png)). Upon a successful build, the binary files should be appeared in the “Binaries” directory.  
+
+*** 
 
 # 4. Download and test the Light application
 Let’s download the *Zigbee_Light_ZC.s37* file to the development kit as shown below. See Figure 4‑1 and Figure 4‑2.  
@@ -287,6 +292,8 @@ If the serial console is opened, switch to “Serial 1” and press “Enter”.
 The “\\n\\r” characters triggers the project name printing. This basic test shows that the RX and TX of the CLI is working correctly.  
 If the same text is printed, put a bit away the Light application and start to create the Switch.  
 
+*** 
+
 # 5. Create Switch application
 The 1st step of the Switch is to be able to join to the network what is created and opened by the Light.  
 
@@ -312,13 +319,16 @@ The **Update TC Link Key** is used to request new APS Link Key from the Trust Ce
 <div align="center">
   <b>Table 5.1 Plugs to check</b>
 </div>  
+</br>  
 
 3. Press *Generate* button  
-4. Verify the VCOM enable is enabled in the Hardware Configurator (likewise to **3.11 Hardware configurator**)  
+4. Verify the VCOM enable is enabled in the Hardware Configurator (likewise to **3.12 Hardware configurator**)  
 5. Build the project  
 
+*** 
+
 # 6. Download and test the Switch application
-Please repeat the steps from the chapter **4 Download and test the Light application** and test it. See Figure 6‑1.  
+Please repeat the steps from the chapter **4 Download and test the Light application** and test if the Switch application works. See Figure 6‑1.  
 <div align="center">
   <img src="./images/CLI_testing.png">  
 </div>  
@@ -326,6 +336,7 @@ Please repeat the steps from the chapter **4 Download and test the Light applica
   <b>Figure 6‑1 CLI testing</b>
 </div>  
 
+***
 
 # 7. Establish connection between Light and Switch
 This chapter presents how to form a network and join to this. The communication between the devices will be captured by Network Analyzer tool.  
@@ -522,6 +533,8 @@ Have a look at the Network Analyzer how the joining process works. See Figure 7�
 
 **Note**: Probably a lot of “Many-to-One Route Discovery” appear in the log. The upper green filter box can be used to filter these messages out. Right click on this package and “Show only summary: Many…..”, then negate the condition from “==” to “!=”.  
 
+***
+
 # 8. Establish connection between Light and Switch with an installation code-derived link key
 As you are now experienced in establishing connection between light and switch by using the default link key, we will provides another approach for joining the Switch to the network formed by the Light by using a installation code.  
 
@@ -576,7 +589,7 @@ $ commander tokendump --tokengroup znet
 </div>  
 
 ### 8.1.5 Erasing the Installation Code
-**Note**: By default, you don't to process this step in this hands-on, except you need to update the programmed installation code.  
+**Note**: By default, you don't need to process this step in this hands-on, except you need to update the programmed installation code.  
 If you want to remove the install code from the device you just programmed, simply create an installation code file with the contents as below, and then execute the command to program this file into the target.  
 ```
 Install Code: !ERASE!

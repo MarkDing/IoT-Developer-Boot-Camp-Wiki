@@ -169,9 +169,11 @@ void emberAfPluginButtonInterfaceButton1PressedShortCallback(uint16_t timePresse
     emberAfCorePrintln("Status code: 0x%x",status);
   }
 }
-```  
+```
 
-# 4. Testing
+***
+
+# 4. Testing your project
 The previous 2 chapters presented how to make the devices to be able to send and receive commands through some APIs.
 
 Build the applications and download the output files to the target devices. Please exit from the network log capturing before programming the device, because the debugger has no access to the chip while the Network Analyzer (or Energy Profiler) is connected.
@@ -193,7 +195,7 @@ Command is zcl on-off OFF
 Command is successfully sent
 ```
 
-The CLI of the Light is:  
+The serial console output of the Light is:  
 ```
 Processing message: len=3 profile=0104 cluster=0006
 T00000000:RX len 3, ep 01, clus 0x0006 (On/off) FC 01 seq 17 cmd 01 payload[]
@@ -212,6 +214,8 @@ The above transactions can be observed in the Network Analyzer as well. See Figu
 <div align="center">
   <b>Figure 3‑2 ZCL On/Off commands in Network Analyzer</b>
 </div>  
+
+***
 
 # 5. Conclusion
 In this hands-on, you learned how to create your Zigbee application projects starting with ZigbeeMinimal example. And how to configure your application as different type of Zigbee node (coordinator, Router, etc.), how to enable/disable different plugins for different functionality to meet your needs, and how to form a centralized network and join this network.  
