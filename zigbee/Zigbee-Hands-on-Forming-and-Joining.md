@@ -1,7 +1,3 @@
----
-title: "IoT Developer Boot-camp: Forming and Joinng"
----
-
 # 1. Introduction
 In this worksheet we provide a step-by-step guide to create, build and run ZigBee 3.0 applications based on EmberZNet Stack 6.6.4. If you use a later release in the future, most of the instructions should be still applied, although there could be minor differences not foreseen at the time of this document.  
 These exercises help you get familiar with ZigBee 3.0 in the EmberZNet Stack, Simplicity Studio v4 development environment, and the Wireless Start Kit (WSTK) with EFR32MG12 SoC. We assume that you have a WSTK and the following software.  
@@ -9,36 +5,36 @@ These exercises help you get familiar with ZigBee 3.0 in the EmberZNet Stack, Si
 ## 1.1. Application features
 The boot camp series hands-on workshop will cover four functionalities below, and the application development is split into four steps respectively to show how an application should be built up from the beginning.  
 
-The exercise in this documentation is the first exercise in the “Zigbee Boot Camp” series.  
--   **In the 1st phase, a basic network forming by the Light-, and a joining process by the Switch will be realized.**
--   The 2nd part will prepare the devices to transmit-, receive-, and process the On-Off commands by using APIs.  
+The exercise in this documentation is the first exercise in the "Zigbee Boot Camp" series.  
+-   **In the 1st phase, a basic network forming by the Light, and a joining process by the Switch will be realized.**
+-   The 2nd part will prepare the devices to transmit, receive, and process the On-Off commands by using APIs.  
 -   At the 3rd step the Switch will have a periodic event to execute any custom code, which will be a LED blinking in our case.  
 -   The 4th thing to do is to make the Switch to be able to store any custom data in its flash by using Non-volatile memory.  
 
 ## 1.2. Purpose
-This tutorial will give an overall knowledge about how to build a Light and Switch device from the scratch. For the end of the Lab, the user will be familiar with the Simplicity Studio, fundamental needs to make an SoC to work, SDK source architecture, the key points of EmberZNet stack, events, non-volatile memory using.  
-The network will consist of two devices by using board of BRD4162A (EFR32MG12).  
-One of them is the Light. Since the realized network is centralized, it will work as the Coordinator and Trust Center of the network. This device forms- and opens the network, permits other devices to join, and manages the security keys.  
-The other device is the Switch. It joins to the opened network and send On-Off commands to the Light.  
+This tutorial will give an overall knowledge about how to build a Light and Switch device from the scratch. For the end of the Lab, the user will be familiar with the Simplicity Studio, fundamental needs to make an SoC to work, SDK source architecture.  
 
-Before all the individual steps would be performed, it’s necessary to check some basics to avoid unwanted issues during the development.  
+The network will consist of two devices by using board of BRD4162A (EFR32MG12).  
+* One of them is the Light. Since the realized network is centralized, it will work as the Coordinator and Trust Center of the network. This device forms and opens the network, permits other devices to join, and manages the security keys.  
+* The other device is the Switch. It joins to the opened network and send On-Off commands to the Light.  
 
 *** 
 
 # 2. Fundamental steps
-Regardless of the created application or device type, there are some general steps that must be done prior to start the development.  
+Before all the individual steps would be performed, it's necessary to check some basics to avoid unwanted issues during the development.  
+In fact, the prerequisites of the Zigbee boot camp series training is documented in the [Zigbee Preparatory Course](https://github.com/MarkDing/IoT-Developer-Boot-Camp/wiki/Zigbee-Preparatory-Course), we just highlight some items here again to make sure that the development environment is ready on your side.  
 
 ## 2.1. Hardware Requirements
 * 2 WSTK Main Development Board  
 * 2 EFR32MG12 radio boards (BRD4162A)  
 
 ## 2.2. Software Requirements
-Make sure you have installed the EmberZNet 6.6.3 SDK or later and GCC toolchain on your PC.  
+Make sure you have installed the latest EmberZNet SDK (which is v6.6.4 at the time of this document) and compatible GCC toolchain on your PC.  
 
 ### 2.2.1. Check EmberZNet SDK
-1.  Launch Simplicity Studio v4.  
-2.  *WindowPreferenceSimplicity StudioSDK*s, make sure “EmberZNet 6.6.4” is installed.  
-It is part of the Gecko SDK Suite 2.6.4, therefore it doesn’t appear itself. See Figure 2‑1 below.  
+1. Launch Simplicity Studio v4.  
+2. Go to Window -> Preference -> Simplicity Studio -> SDKs, make sure "EmberZNet 6.6.4" is installed.  
+It is part of the Gecko SDK Suite 2.6.4, therefore it doesn't appear itself alone. See Figure 2‑1 below.  
 <div align="center">
   <img src="./images/check_installed_EmberZNet_SDK.png">  
 </div>  
@@ -47,7 +43,7 @@ It is part of the Gecko SDK Suite 2.6.4, therefore it doesn’t appear itself. S
 </div>  
 
 ### 2.2.2. Check Toolchains
-1.  *WindowsPreferenceSimplicity StudioToolchains*, make sure GCC toolchain is installed.  
+1. Go to Windows -> Preference -> Simplicity Studio -> Toolchains, make sure GCC toolchain is installed.  
 It is important to use the same toolchain version when building your project that was used to build the libraries supplied as part of the SDK. The list of the proper toolchain-SDK pairing can be found [here](https://www.silabs.com/community/software/simplicity-studio/knowledge-base.entry.html/2018/08/22/gecko_sdk_suite_tool-qlc4). See Figure 2‑2 below.  
 
 <div align="center">
@@ -61,16 +57,16 @@ It is important to use the same toolchain version when building your project tha
 A bootloader is a program stored in reserved flash memory that can initialize a device, update firmware images, and possibly perform some integrity checks. If the application seems to do not running, always check the bootloader, because lack of it causes program crash.  
 For how to add Gecko Bootloader to your Zigbee project, please read the [preparatory course](https://github.com/MarkDing/IoT-Developer-Boot-Camp/wiki/Zigbee-Preparatory-Course#using-gecko-bootloader).  
 **Hint**: More information about Gecko Bootloader, please find the documentations below.  
-[UG266: Silicon Labs Gecko Bootloader User’s Guide](https://www.silabs.com/documents/public/user-guides/ug266-gecko-bootloader-user-guide.pdf)  
+[UG266: Silicon Labs Gecko Bootloader User's Guide](https://www.silabs.com/documents/public/user-guides/ug266-gecko-bootloader-user-guide.pdf)  
 [UG103.6: Bootloader Fundamentals](https://www.silabs.com/documents/public/user-guides/ug103-06-fundamentals-bootloading.pdf)  
 [AN1084: Using the Gecko Bootloader with EmberZNet and Silicon Labs Thread](https://www.silabs.com/documents/public/application-notes/an1084-gecko-bootloader-emberznet-silicon-labs-thread.pdf)  
 
 *** 
 
 # 3. Create Light application
-After the previous steps have been done, it’s time to realize the 1st feature of the Light device. As discussed before, the Light should be able to form-, and open the network.  
-
-Similarly to the bootloader project, the AppBuilder is needed to create the application. Before the builder would be opened, I recommend to select the target board on the left side of the Launcher view. It helps to the AppBuilder to recognize the target device, thus the proper board related configurations (peripherals, pins) are automatically applied.  
+After the previous steps have been done, it's time to realize the 1st feature of the Light device. As discussed before, the Light should be able to form, and open the network.  
+The AppBuilder will be used for creating the application. Appbuilder is an interactive GUI tool that allows developers to create and configure most of their Zigbee application.  
+Before the builder would be opened, I recommend to select the target board on the left side of the Launcher view. It helps to the AppBuilder to recognize the target device, thus the proper board related configurations (peripherals, pins) are automatically applied.  
 
 1. Go to File -\> New -\> Project. This will bring up the New Project Wizard. See the Figure 3‑1 below.  
 <div align="center">
@@ -81,7 +77,7 @@ Similarly to the bootloader project, the AppBuilder is needed to create the appl
 </div>  
 </br>  
 
-2. Select “Silicon Labs Zigbee”. Click Next. See Figure 3‑2.  
+2. Select "Silicon Labs Zigbee". Click Next. See Figure 3‑2.  
 <div align="center">
   <img src="./images/select_the_stack_type.png">  
 </div>  
@@ -90,7 +86,7 @@ Similarly to the bootloader project, the AppBuilder is needed to create the appl
 </div>  
 </br>  
 
-3. Select “EmberZNet 6.6.x GA SoC 6.6.x.0”. Click Next. See Figure 3‑3.  
+3. Select "EmberZNet 6.6.x GA SoC 6.6.x.0". Click Next. See Figure 3‑3.  
 <div align="center">
   <img src="./images/select_stack_version_and_SoC_application_type.png">  
 </div>  
@@ -99,17 +95,17 @@ Similarly to the bootloader project, the AppBuilder is needed to create the appl
 </div>  
 </br>  
 
-4. Choose the “ZigbeeMinimal” sample application. Click Next. See Figure 3‑4.  
+4. Choose the "ZigbeeMinimal" sample application. Click Next. See Figure 3‑4.  
     **ZigbeeMinimal**: This is a Zigbee minimal network-layer application suitable as a starting point for new application development.  
 <div align="center">
   <img src="./images/select_ZigbeeMinimal_sample_application.png">  
 </div>  
 <div align="center">
   <b>Figure 3‑4 Select ZigbeeMinimal sample application</b>
-</div>   
+</div>  
 </br>  
 
-5. Name your project to “Zigbee_Light_ZC” and then Click Next. See Figure 3‑5.  
+5. Name your project to "Zigbee_Light_ZC" and then Click Next. See Figure 3‑5.  
 <div align="center">
   <img src="./images/name_the_project.png">  
 </div>  
@@ -118,7 +114,7 @@ Similarly to the bootloader project, the AppBuilder is needed to create the appl
 </div>  
 </br>  
 
-6.  In next window (Project Setup), double check the board is BRD4162A, and “GNU ARM v7.2.1” compiler. Click Finish. See Figure 3‑6.  
+6.  In next window (Project Setup), double check the board is BRD4162A, if not, you can correct it manually. And also check the compiler is "GNU ARM v7.2.1". Click Finish. See Figure 3‑6.  
 <div align="center">
   <img src="./images/check_the_board_and_compiler.png">  
 </div>  
@@ -127,13 +123,15 @@ Similarly to the bootloader project, the AppBuilder is needed to create the appl
 </div>  
 </br>  
 
-At this point the project is placed into the default workspace directory, but most of the source files are missing. These files will be later linked or generated according to the AppBuilder settings. To open the AppBuilder, click double to the “Zigbee_Light_ZC.isc” file. There are multiple tabs in the file, let's have a closer look at each tab.  
+At this point the project is placed into the default workspace directory, but most of the source files are missing. These files will be later linked or generated according to the AppBuilder settings.  
+To open the AppBuilder, click double to the "Zigbee_Light_ZC.isc" file. There are multiple tabs in the file, let's have a closer look at each tab.  
 
 **General**  
-This page gives information about the current project configuration, its path, furthermore, shows the selected toolchain and board. Nothing to do with this tab. It’s important to mention that in case of changing the toolchain or the board, always create a new project rather than modify the project settings.  
+This page gives information about the current project configuration, its path, furthermore, shows the selected toolchain and board. Nothing to do with this tab. 
+**Note**: It's important to mention that in case of changing the toolchain or the board, please always create a new project rather than modify the project settings.  
 
 **ZCL Clusters**  
-One of the most important setting is the ZCL configurations. The type of the device is based on its clusters and attributes. The Silicon Labs pre-defined most of the available device types. In our tutorial it’s a “HA Light On/Off Light” kind of device. To enable all the mandatory clusters and attribute for a Light, click on the “ZCL device type” dropdown menu, then select “HA Light On/Off Light” template. See Figure 3‑7.  
+One of the most important setting is the ZCL configurations. The type of the device is based on its clusters and attributes. The Silicon Labs pre-defined most of the available device types. In our tutorial it's a "HA Light On/Off Light" kind of device. To enable all the mandatory clusters and attribute for a Light, click on the "ZCL device type" dropdown menu, then select "HA Light On/Off Light" template. See Figure 3‑7.  
 
 <div align="center">
   <img src="./images/select_ZCL_device_type.png">  
@@ -144,13 +142,11 @@ One of the most important setting is the ZCL configurations. The type of the dev
 
 After selecting the template, new enabled clusters and attributes are appeared in the list, moreover, the endpoint configuration is changed. These settings are applied based on the Zigbee Specification.  
 
-**It’s important to mention that the ZCL selection in not strictly mandatory for network creating and opening!**  
-**This step prepares the device to be able to receive and process the On-Off commands in the 2nd step.**  
-
-**Note**: It’s not possible to modify these templates, therefore the “ZigBee Custom..” should be used if there is need to add any additional cluster.  
+**Note**: It's important to mention that the ZCL selection in not strictly mandatory for network creating and opening. This step prepares the device to be able to receive and process the On-Off commands in the 2nd step.  
+**Note**: It's not possible to modify these templates, therefore the "ZigBee Custom.." should be used if there is need to add any additional cluster.  
 
 **Zigbee Stack**  
-This tab lets to change the device type in network aspect. Since the router device cannot form centralized network, the “Coordinator and Router” type must be selected. The default Zigbee 3.0 Security is appropriate. See Figure 3‑8.  
+This tab lets to change the device type in network aspect. Since the router device cannot form centralized network, the "Coordinator and Router" type must be selected. The default "Zigbee 3.0 Security" is appropriate. See Figure 3‑8.  
 <div align="center">
   <img src="./images/change_device_type_to_coordinator.png">  
 </div>  
@@ -161,7 +157,7 @@ This tab lets to change the device type in network aspect. Since the router devi
 The rest of the settings should not be modified, because the device operates on Single network with basic clusters.  
 
 **Printing and CLI**  
-Usually the default setting is enough in this Lab. The only thing to do is verify the “Enable debug printing” box is enabled, and check-in the “On off cluster” debug prints to get more information later. See Figure 3‑9.  
+Usually the default setting is enough in this Lab. The only thing to do is verify the "Enable debug printing" box is enabled, and check-in the "On off cluster" debug prints to get more information later. See Figure 3‑9.  
 <div align="center">
   <img src="./images/debug_printing.png">  
 </div>  
@@ -169,22 +165,26 @@ Usually the default setting is enough in this Lab. The only thing to do is verif
   <b>Figure 3‑9 Debug printing</b>
 </div>  
 
-Note: Like in **3.2 ZCL Clusters** part, the “On off cluster” debug print also serves the later implemented features.  
+**Note**: The "On off cluster" debug print also serves the later implemented features in the second hands-on.  
 
 **HAL**  
-This tab is modified quite rarely. It would be possible to use external hardware configurator and change bootloader type, but it’s rather exists for legacy purposes.  
+This tab is modified quite rarely. It would be possible to use external hardware configurator and change bootloader type, but it's rather exists for legacy purposes. In this lab, there is no need to do anything on this tab.  
 
 **Plugin**  
-The plugins are individual software packages which implement a functionality. A plugin can consist of libraries and source files as well. These are collected on this tab, and the selection of device type doesn’t filter out the plugins that the device cannot use, thus it must be done manually. For example, this sample application doesn’t enable the necessary plugins for network forming/opening.  
-The below plugins must be added or removed to get a device which can operate as a Coordinator.  
+The plugins are individual software packages which implement a functionality. A plugin can consist of libraries and source files as well. These are collected on this tab, and the selection of device type doesn't filter out the plugins that the device cannot use, thus it must be done manually. For example, this sample application doesn't enable the necessary plugins for network forming/opening, we need to do that manually.  
+The below plugins must be added or removed to get a device which can operate as a Coordinator. See the Figure below for how to enable the plugins in Appbuilder.
 
 The **Network Creator** and **Network Creator Security** plugins implement the network forming and opening functionality, therefore these are required to have.  
 The **Security Link Keys Library** provides the APS security key management which is key feature in Zigbee 3.0. This plugin serves the Trust Center functionality.  
-The **Network Steering** and **Update TC Link Key** can be removed, since the device doesn’t intend to joint to any network.  
-
-The **ZigBee PRO Stack Library** includes one of the most complex stack libraries. It contains the routing-, networking-, scanning-, neighbor-, child-handler and other functionalities. It’s mandatory for Coordinator and Router. The sample application uses this plugin by default.  
-
+The **Network Steering** and **Update TC Link Key** can be removed, since the device doesn't intend to joint to any network.  
+The **ZigBee PRO Stack Library** includes one of the most complex stack libraries. It contains the routing, networking, scanning, neighbor, child-handler and other functionalities. It's mandatory for Coordinator and Router. The sample application uses this plugin by default.  
+The **Security Link Keys library** provides management of APS link keys in the key table. It is used by a trust center (coordinator) to manage link keys of devices in the network, or by non trust center devices wishing to manage partner link keys. Therefore it is required to have.
 The **Serial** establishes the Command Line Interface (CLI). This interface lets the user to communicate with the SoC. In case of selecting the correct board at project creation phase, the plugin settings should fit to the pinout of the device, but it is also important to double check the values. This application uses UART0 via USB Mini-B Connector. The WSTK Main board has a Board Controller which does the UART-USB conversion. This is the Virtual COM port, which must be enabled separately out of the plugin. It will be detailed later.  
+
+<div align="center">
+  <img src="./images/plugins_enable.png">  
+</div>  
+</br>
 
 Summarized the above, the following table presents the affected plugins.  
 
@@ -196,9 +196,9 @@ Summarized the above, the following table presents the affected plugins.
 </div>  
 </br>  
 
-Before going ahead, it’s a good place to point how the users can find more information about the plugins. As mentioned above, some plugins have source files, not just pre-built libraries. These files can be examined to find some not detailed information about its internal working. The header-, and source files can be found at “C:\\SiliconLabs\\SimplicityStudio\\v4\\developer\\sdks\\gecko_sdk_suite\\v2.6\\protocol\\zigbee\\app\\framework”, under “plugin”, “plugin-soc” and “plugin-host” folders. This separation is used to identify the commonly used, SoC and Host specific plugins.  
+Before going ahead, it's a good place to point how the users can find more information about the plugins. As mentioned above, some plugins have source files, not just pre-built libraries. These files can be examined to find some not detailed information about its internal working. The header, and source files can be found at "C:\\SiliconLabs\\SimplicityStudio\\v4\\developer\\sdks\\gecko_sdk_suite\\v2.6\\protocol\\zigbee\\app\\framework", under "plugin", "plugin-soc" and "plugin-host" folders. This separation is used to identify the commonly used, SoC and Host specific plugins.  
 
-These files are available from the AppBuilder as well, but some extra information can be found, as the implemented-, defined callbacks and APIs by the plugin. See Figure 3‑10.  
+These files are available from the AppBuilder as well, but some extra information can be found, as the implemented, defined callbacks and APIs by the plugin. See Figure 3‑10.  
 <div align="center">
   <img src="./images/plugin_details.png">  
 </div>  
@@ -208,21 +208,23 @@ These files are available from the AppBuilder as well, but some extra informatio
 
 **Callbacks**  
 The callbacks are a set of functions for the implementation of the application level functionalities. Some of them are related to plugins, while others can be used without any limitation. This tab is dynamically changing based on the previous *Plugins* and *ZCL Clusters* tab. It means some callbacks are visible/usable only if the appropriate plugin or cluster has been enabled.  
-It’s not necessary to use any callback for the basic network forming and opening functionalities. It will be used later.  
+It's not necessary to use any callback for the basic network forming and opening functionalities. It will be used later.  
 
 **Includes**  
 Project specific macros and include paths are defined here. It should not be modified, unless the user would use any custom token, or event. It will be used later.  
 
 **Other options**  
-Advance settings in case of using dual band functionalities. It’s not used in this project.  
+Advance settings in case of using dual band functionalities. It's not used in this project.  
 
 **Bluetooth GATT**  
-The Zigbee-BLE Dynamic Multiprotocol bluetooth side configurator is resided into the AppBuilder. It’s not used in this project.  
+The Zigbee-BLE Dynamic Multiprotocol bluetooth side configurator is resided into the AppBuilder. It's not used in this project.  
 Note: Some BLE related plugin make it editable.  
 
 After saving the modifications the .isc file ready to generate the project files and link the necessary SDK sources and libraries.  
 
-Press the Generate button. See Figure 3‑11.  
+Press the Generate button on the upper-right of the Appbuilder.  
+
+The "Generation successful" label signs all the required files are created. See Figure 3‑11.  
 <div align="center">
   <img src="./images/generation_result.png">  
 </div>  
@@ -230,13 +232,11 @@ Press the Generate button. See Figure 3‑11.
   <b>Figure 3‑11 Generation result</b>
 </div>  
 
-The “Generation successful” label signs all the required files are created.  
-
 **Hardware configurator**  
-The hardware configurator is NOT part of the AppBuilder. It’s unique file in the project for generating the “hal-config/hal-config.h” file. This header file contains includes, which will used by other source files.  
-It’s important to understand that the here applied settings don’t directly mean that the peripheral is initialized, it just provides macros for the proper pin and clock settings. It could happen that the UART peripheral is enabled in this configurator, but not in the Serial plugin. In this case the initializer functions will not be called, thus the UART won’t work. However, the other way around, if a plugin refers to a macro which is not defined by the hardware configurator, it causes compiler errors.  
+The hardware configurator is NOT part of the AppBuilder. It's unique file in the project for generating the "hal-config/hal-config.h" file. This header file contains includes, which will be used by other source files.  
+It's important to understand that the here applied settings don't directly mean that the peripheral is initialized, it just provides macros for the proper pin and clock settings. It could happen that the UART peripheral is enabled in this configurator, but not in the Serial plugin. In this case the initializer functions will not be called, thus the UART won't work. However, the other way around, if a plugin refers to a macro which is not defined by the hardware configurator, it causes compiler errors.  
 
-In our project, the VCOM enable pin must be enabled to make the UART-USB converter works. The serial port initializer sets the PA5 to high state. If the board was selected correctly at the begging, this already has been set. See Figure 3‑12.  
+In our project, the VCOM enable pin must be enabled to make the UART-USB converter works. The serial port initializer sets the PA5 to high state. If the board was selected correctly at the beginning, this already has been set. See Figure 3‑12.  
 
 <div align="center">
   <img src="./images/hardware_configurator.png">  
@@ -245,13 +245,13 @@ In our project, the VCOM enable pin must be enabled to make the UART-USB convert
   <b>Figure 3‑12 Hardware configurator</b>
 </div>  
 
-The saving of this file re-generates the “hal-config.h” file according to the settings.  
-Press the Build button (![](./images/build_project.png)). Upon a successful build, the binary files should be appeared in the “Binaries” directory.  
+The saving of this file re-generates the "hal-config.h" file according to the settings.  
+Press the Build button (![](./images/build_project.png)). Upon a successful build, the binary files should be appeared in the "Binaries" directory.  
 
 *** 
 
 # 4. Download and test the Light application
-Let’s download the *Zigbee_Light_ZC.s37* file to the development kit as shown below. See Figure 4‑1 and Figure 4‑2.  
+Let's download the *Zigbee_Light_ZC.s37* file to the development kit as shown below. See Figure 4‑1 and Figure 4‑2.  
 <div align="center">
   <img src="./images/open_Flash_Programmer.png">  
 </div>  
@@ -268,9 +268,9 @@ Let’s download the *Zigbee_Light_ZC.s37* file to the development kit as shown 
 </div> 
 </br>  
 
-The highlighted “Advanced Settings..” provides possibility to decide how to flash the chip. Here the flash can be merged with new image (Merge Content), partially- (Page Erase) or completely (Full Erase) erased before downloading the file.  
+The highlighted "Advanced Settings.." provides possibility to decide how to flash the chip. Here the flash can be merged with new image (Merge Content), partially (Page Erase) or completely (Full Erase) erased before downloading the file.  
 Keep in mind that neither erase type clean the bootloader section in EFR32MG12 part, but the Full erase deletes the region of the tokens.  
-After the image has been downloaded, it’s possible to communicate with the device. For this purpose, open the Launch console, which is a built-in serial port terminal in the Studio. See Figure 4‑3.  
+After the image has been downloaded, it's possible to communicate with the device. For this purpose, open the Launch console, which is a built-in serial port terminal in the Studio. See Figure 4‑3.  
 
 <div align="center">
   <img src="./images/open_Serial_console.png">  
@@ -280,7 +280,7 @@ After the image has been downloaded, it’s possible to communicate with the dev
 </div>  
 </br>  
 
-If the serial console is opened, switch to “Serial 1” and press “Enter”. See Figure 4‑4.  
+If the serial console is opened, switch to "Serial 1" and press "Enter". See Figure 4‑4.  
 <div align="center">
   <img src="./images/select_Serial1_tab.png">  
 </div>  
@@ -289,30 +289,33 @@ If the serial console is opened, switch to “Serial 1” and press “Enter”.
 </div>  
 </br>  
 
-The “\\n\\r” characters triggers the project name printing. This basic test shows that the RX and TX of the CLI is working correctly.  
+The "\\n\\r" characters triggers the project name printing. This basic test shows that the RX and TX of the CLI is working correctly.  
 If the same text is printed, put a bit away the Light application and start to create the Switch.  
 
 *** 
 
 # 5. Create Switch application
-The 1st step of the Switch is to be able to join to the network what is created and opened by the Light.  
+In this hands-on, the Switch is the device that be able to join to the network what is created and opened by the Light.  
 
 The creating of the project and configuration way of the AppBuilder are the same as in case of the Light application, therefore this chapter will include a bit less figure than the Light.  
-The project also based on the “ZigBeeMinimal” sample application, so please  
-1. Repeat the step 1-6 of chapter **3 Create Light application**, except name the project to “Zigbee_Switch_ZR”.  
+The project also based on the "ZigBeeMinimal" sample application, so please  
+1. Repeat the step 1-6 of chapter [Create Light application](#3-create-light-application), except name the project to "Zigbee_Switch_ZR".  
 2. Open the .isc file of the project.  
    * Go to *ZCL Clusters* tab and choose **HA On/Off Switch** device template.  
    * Go to *Zigbee Stack* tab and select the **Router** device type from　the dropdown menu.  
-   * Go to *Printing and CLI* tab and double check the “Enable debug printing” is turned on.  
+   * Go to *Printing and CLI* tab and double check the "Enable debug printing" is turned on.  
    * Go to *Plugins* tab and double check the below plugins are enabled  
       -   Serial  
       -   Network Steering  
       -   Update TC Link Key  
+      -   Install code library
 
 The major difference between the Light application and Switch application is the selection of the network related plugins. Let's have a closer look at the enabled plugins.  
-The **Serial** has already been discussed at the Light. It’ required for the CLI.  
-The **Network Steering** plugin serves to discover the existing networks on the enabled channels. The device issues a Beacon Request message and listens the responses. If the Beacon response (from ZC or ZR) is received with set “permit association” flag, the device starts the joining process for the network, otherwise continue the scanning. Please see the Table 5.1 below for the recommended and required plugins.  
+The **Serial** has already been discussed at the Light. It' required for the CLI.  
+The **Network Steering** plugin serves to discover the existing networks on the enabled channels. The device issues a Beacon Request message and listens the responses. If the Beacon response (from ZC or ZR) is received with set "permit association" flag, the device starts the joining process for the network, otherwise continue the scanning. Please see the Table 5.1 below for the recommended and required plugins.  
 The **Update TC Link Key** is used to request new APS Link Key from the Trust Center. It should be enabled since the Light (Trust Center) has the Security Link Keys Library.  
+The **Install code library** provides an initial link key based upon an install code manufacturering token in the device. The key is hashed according to the ZigBee spec.  
+
 <div align="center">
   <img src="./images/plugins_to_check_switch.png">  
 </div>  
@@ -328,7 +331,7 @@ The **Update TC Link Key** is used to request new APS Link Key from the Trust Ce
 *** 
 
 # 6. Download and test the Switch application
-Please repeat the steps from the chapter **4 Download and test the Light application** and test if the Switch application works. See Figure 6‑1.  
+Please repeat the steps from the chapter [Download and test the Light application](#4-download-and-test-the-light-application) and test if the Switch application works. See Figure 6‑1.  
 <div align="center">
   <img src="./images/CLI_testing.png">  
 </div>  
@@ -340,7 +343,7 @@ Please repeat the steps from the chapter **4 Download and test the Light applica
 
 # 7. Establish connection between Light and Switch
 This chapter presents how to form a network and join to this. The communication between the devices will be captured by Network Analyzer tool.  
-For the 0th step, open both Light and Switch serial console, and type the “echo 1” command. It helps to track the released command which makes the log more understandable.  
+At the beginning, open both Light and Switch serial console, and type the "echo 1" command. It helps to track the released command which makes the log more understandable.  
 Please perform the following operations:  
 
 ## 7.1. Create a centralized network
@@ -349,7 +352,7 @@ Command:
 
 **Hint**: More information about the CLI command, please find the online documentation [here](https://docs.silabs.com/zigbee/latest/af/group-plugin-network-creator).  
 
-You will get the output similar as below on the serial console, The result: 0x00 means “EMBER_SUCCESS”. Find more status codes [here](https://docs.silabs.com/zigbee/latest/em35x/group-status-codes).  
+You will get the output similar as below on the serial console, The result: 0x00 means "EMBER_SUCCESS". Find more status codes [here](https://docs.silabs.com/zigbee/latest/em35x/group-status-codes).  
 
 Result:  
 ```
@@ -413,7 +416,7 @@ Index IEEE Address         In FC     TTL(s) Flag    Key
 ```
 
 ## 7.4. Add network key to Network Analyzer
-Copy the network key ```C0 1C 81 33 69 98 A3 21  D4 67 92 29 73 59 D0 8E``` and add it to the Network Analyzer’s key storage to be able to decode the messages. See Figure 7‑1.  
+Copy the network key ```C0 1C 81 33 69 98 A3 21  D4 67 92 29 73 59 D0 8E``` and add it to the Network Analyzer's key storage to be able to decode the messages. See Figure 7‑1.  
 
 1. Open Window-\>Preferences  
 
@@ -449,7 +452,7 @@ Right click on Adapter name of the Light-\> *Connect* (if not connected yet)-\>*
 </div>  
 </br>  
 
-It should change the perspective to *Network Analyzer* and immediately start capturing. See Figure 7‑4.  
+It should change the view to *Network Analyzer* and immediately start capturing. See Figure 7‑4.  
 <div align="center">
   <img src="./images/capturing_on_Light.png">  
 </div>  
@@ -475,7 +478,7 @@ Zigbee_Light_ZC>pJoin for 254 sec: 0x00
 NWK Creator Security: Open network: 0x00
 ```
 
-This command triggers the Light to send a “Permit Join Request” broadcast message.  
+This command triggers the Light to send a "Permit Join Request" broadcast message.  
 By default, the network will be opened for 300 seconds.  
 
 ## 7.7. Join the Switch
@@ -531,14 +534,13 @@ Have a look at the Network Analyzer how the joining process works. See Figure 7�
 </div>  
 </br>  
 
-**Note**: Probably a lot of “Many-to-One Route Discovery” appear in the log. The upper green filter box can be used to filter these messages out. Right click on this package and “Show only summary: Many…..”, then negate the condition from “==” to “!=”.  
+**Note**: Probably a lot of "Many-to-One Route Discovery" appear in the log. The upper green filter box can be used to filter these messages out. Right click on this package and "Show only summary: Many…..", then negate the condition from "==" to "!=".  
 
 ***
 
 # 8. Establish connection between Light and Switch with an installation code-derived link key
-As you are now experienced in establishing connection between light and switch by using the default link key, we will provides another approach for joining the Switch to the network formed by the Light by using a installation code.  
-
-An installation code is used to create a preconfigured, link key. The installation code is transformed into a link key by use on an AESMMO hash algorithm, and the derived Zigbee link key will be known only by the Trust Center and the joining device. So the Trust Center can use that key to securely transport the Zigbee network key to the device. Once the device has the network key, it can communicate at the network layer to the Zigbee network.  
+This chapter presents how to form a network and join to this. The communication between the devices will be captured by Network Analyzer tool. The installation code will be used in this part. 
+An installation code is used to create a preconfigured, link key. The installation code is transformed into a link key by using the AES-MMO hash algorithm, and the derived Zigbee link key will be known only by the Trust Center and the joining device. So the Trust Center can use that key to securely transport the Zigbee network key to the device. Once the device has the network key, it can communicate at the network layer to the Zigbee network.  
 
 ## 8.1 Programming the Installation Code on a Zigbee Device
 ### 8.1.1 Format of the Installation Code File
@@ -550,6 +552,7 @@ Install Code: <ascii-hex>
 ```
 
 Here is a sample installation code file. The CRC for that code is 0xB5C3 and is not included in the file.  
+**Note: Please don't use this example as your installation code directly if you are attending any training session, you can fill it with any hex.**
 ```
 Install Code: 83FED3407A939723A5C639B26916D505
 ```
@@ -561,7 +564,12 @@ To do this, make sure that only the Switch device is connected to your PC (other
 $ commander tokendump --tokengroup znet
 ```
 
-You should see the following output, where the code in highlighted area below reflects the significant fields related to the installation code:  
+You should see the following output if you didn't write the installation code before, where the code in highlighted area below reflects the significant fields related to the installation code:  
+**Note**: If the ```commander``` command is not available on your PowerShell console, please just jump to the directory firstly and then execute the command.
+```
+C:\SiliconLabs\SimplicityStudio\v4\developer\adapter_packs\commander
+```
+
 <div align="center">
   <img src="./images/check_install_code.png">  
 </div>  
@@ -615,7 +623,7 @@ network id
 ### 8.2.2 Derive a link key from the installation code
 To derive a link key from the installation code and store that into the link key table on the Light, which acts as the Trust Center for the centralized network, enter the command below:  
 ```
-option install-code <link key table index> {<Joining Node’s EUI64>} {<16-byte installation code + 2-byte CRC>}
+option install-code <link key table index> {<Joining Node's EUI64>} {<16-byte installation code + 2-byte CRC>}
 ```
 For example:  
 ```
@@ -654,7 +662,7 @@ As show above, the derived link key is:
 ```
 
 ### 8.2.3 Open the network with the derived link key
-Now set the transient link key (the same link key that you derived from the install code) on the Trust Center and open the network for joining with the joining device’s EUI64:  
+Now set the transient link key (the same link key that you derived from the install code) on the Trust Center and open the network for joining with the joining device's EUI64:  
 ```
 plugin network-creator-security open-with-key {eui64} {linkkey}
 ```
@@ -680,6 +688,104 @@ And the serial console will output similar as below to indicate that the Switch 
   <img src="./images/join_network_successfully.png">  
 </div>  
 </br>
+
+## 8.4 Capture the Network log
+This chapter presents how to capture the communication between the devices by Network Analyzer tool. 
+
+## 8.4.1 Find the Network key for capturing
+The network key is necessary for analyzing the network log, you can get the network key on the coordinator side with the command below. 
+
+Command:  
+```
+keys print
+```
+
+Result:  
+```
+EMBER_SECURITY_LEVEL: 05
+NWK Key out FC: 00000013
+NWK Key seq num: 0x00
+NWK Key: 3F B8 D4 09 4E AD 0A 83  89 A2 7F 1F C0 03 BF 87  
+Link Key out FC: 00000000
+TC Link Key
+Index IEEE Address         In FC     Type  Auth  Key
+-     (>)000B57FFFEDEA657  00000000  L     y     C0 1C 81 33 69 98 A3 21  D4 67 92 29 73 59 D0 8E  
+Link Key Table
+Index IEEE Address         In FC     Type  Auth  Key
+0/6 entries used.
+Transient Key Table
+Index IEEE Address         In FC     TTL(s) Flag    Key    
+0 entry consuming 0 packet buffer.
+```
+
+## 8.4.2 Add network key to Network Analyzer
+Copy the network key ```C0 1C 81 33 69 98 A3 21  D4 67 92 29 73 59 D0 8E``` and add it to the Network Analyzer's key storage to be able to decode the messages. See Figure 7‑1.  
+
+1. Open Window-\>Preferences  
+
+<div align="center">
+  <img src="./images/open_Security_Keys_tab.png">  
+</div>  
+<div align="center">
+  <b>Figure 7‑1 Open Security Keys tab</b>
+</div>  
+</br>  
+
+2. Make sure that Network Analyzer is set to decode the correct protocol. Select Window \> Preferences \> Network Analyzer \> Decoding \> Stack Versions, and verify it is set correctly. If you need to change it, click the correct stack, click Apply, and then OK.  
+<div align="center">
+  <img src="./images/stack_profile.png">  
+</div>  
+</br>  
+
+3. Navigate to Network Analyzer-\>Decoding-\> Security Keys and add the new key. See Figure 7‑2.  
+<div align="center">
+  <img src="./images/add_new_Network_Key.png">  
+</div>  
+<div align="center">
+  <b>Figure 7‑2 Add new Network Key</b>
+</div>  
+
+## 8.4.3 Start capturing on Light device
+Now the Switch should have joined the network created by the Light, please use the command on the Switch for leaving the network firstly.
+```
+network leave
+```
+
+Right click on Adapter name of the Light-\> *Connect* (if not connected yet)-\>*Start capture*. See Figure 7‑3.  
+<div align="center">
+  <img src="./images/start_capturing.png">  
+</div>  
+<div align="center">
+  <b>Figure 7‑3 Start capturing</b>
+</div>  
+</br>  
+
+It should change the view to *Network Analyzer* and immediately start capturing. See Figure 7‑4.  
+<div align="center">
+  <img src="./images/capturing_on_Light.png">  
+</div>  
+<div align="center">
+  <b>Figure 7‑4 Capturing on Light</b>
+</div>  
+</br>  
+
+And then repeat the step in [Open the network with the derived link key](#823-open-the-network-with-the-derived-link-key-1) to open the network, and step in [Join the network](#83-join-the-network-1) to join the network.
+The capture file (\*Live) should show the packets on the network.  
+
+## 8.4.4 Joining process in Network Analyzer
+Have a look at the Network Analyzer how the joining process works. See Figure 7‑5.  
+
+<div align="center">
+  <img src="./images/joining_process_in_Network_Analyzer_install_code.png">  
+</div>  
+<div align="center">
+  <b>Figure 7‑5 Joining process in Network Analyzer</b>
+</div>  
+</br>  
+
+**Note**: Probably a lot of "Many-to-One Route Discovery" appear in the log. The upper green filter box can be used to filter these messages out. Right click on this package and "Show only summary: Many…..", then negate the condition from "==" to "!=".  
+
+***
 
 # 8. Conclusion
 In this hands-on, you learned how to create your Zigbee application projects starting with ZigbeeMinimal example. And how to configure your application as different type of Zigbee node (coordinator, Router, etc.), how to enable/disable different plugins for different functionality to meet your needs, and how to form a centralized network and join this network.  

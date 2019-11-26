@@ -1,14 +1,10 @@
----
-title: "IoT Developer Boot-camp: Sending OnOff Commands"
----
-
 # 1. Introduction
 ## 1.1. Application features
 The boot camp series hands-on workshop will cover four functionalities below, and the application development is split into four steps respectively to show how an application should be built up from the beginning.
 
 The exercise is the 2nd part of series “Zigbee Boot Camp” course.  
--   In the 1st phase, a basic network forming by the Light-, and a joining process by the Switch will be realized.
--   **The 2nd part will prepare the devices to transmit-, receive-, and process the On-Off commands by using APIs.**
+-   In the 1st phase, a basic network forming by the Light, and a joining process by the Switch will be realized.
+-   **The 2nd part will prepare the devices to transmit, receive, and process the On-Off commands by using APIs.**
 -   At the 3rd step the Switch will have a periodic event to execute any custom code, which will be a LED blinking in our case.
 -   The 4th thing to do is to make the Switch to be able to store any custom data in its flash by using Non-volatile memory.
 
@@ -28,12 +24,12 @@ Regardless of the created application or device type, there are some general ste
 * 2 EFR32MG12 radio boards (BRD4162A)
 
 ## 2.2. Software Requirements
-Make sure you have installed the EmberZNet 6.6.3 SDK or later and GCC toolchain on your PC.
+Make sure you have installed the EmberZNet 6.6.4 SDK or later and GCC toolchain on your PC.
 
 ### 2.2.1. Check EmberZNet SDK
-1.  Launch Simplicity Studio v4.
-2.  *WindowPreferenceSimplicity StudioSDK*s, make sure “EmberZNet 6.6.4” is installed.
-It is part of the Gecko SDK Suite 2.6.4, therefore it doesn’t appear itself. See the Figure 2-1 below.
+1. Launch Simplicity Studio v4.
+2. Go to Window -> Preference -> Simplicity Studio -> SDKs, make sure "EmberZNet 6.6.4" is installed. 
+It is part of the Gecko SDK Suite 2.6.4, therefore it doesn’t appear itself. See the Figure 2-1 below.  
 
 <div align="center">
   <img src="./images/check_installed_EmberZNet_SDK.png">  
@@ -43,7 +39,7 @@ It is part of the Gecko SDK Suite 2.6.4, therefore it doesn’t appear itself. S
 </div>  
 
 ### 2.2.2. Check Toolchains
-1.  *WindowsPreferenceSimplicity StudioToolchains*, make sure GCC toolchain is installed.
+1. Go to Windows -> Preference -> Simplicity Studio -> Toolchains, make sure GCC toolchain is installed.  
 It is important to use the same toolchain version when building your project that was used to build the libraries supplied as part of the SDK. The list of the proper toolchain-SDK pairing can be found [here](https://www.silabs.com/community/software/simplicity-studio/knowledge-base.entry.html/2018/08/22/gecko_sdk_suite_tool-qlc4). See Figure 2‑2.
 
 <div align="center">
@@ -73,7 +69,7 @@ Our task is to prepare the devices for these features.
 ## 3.1. Command handling on Light device
 To become aware of any received command from the user application level, the Callback functions should be used.
 These functions can be enabled in the "Callbacks" tab of the AppBuilder.
-Open this tab, find and enable the “On” “Off” callbacks under “General/OnOff Cluster” menu. See Figure 8‑1.
+Open this tab, find and enable the “On” “Off” callbacks under “General/OnOff Cluster” menu. See Figure 3‑1.
 
 <div align="center">
   <img src="./images/onOff_Cluster_callbacks_enabling.png">  
@@ -95,9 +91,9 @@ Open Zigbee_Light_ZC_Callback.c from the project explorer as show below.
 </div> 
 </br>   
 
-Each step for this lab will have an associated comment in the primary [reference project](https://github.com/MarkDing/IoT-Developer-Boot-Camp/tree/master/zigbee) that starts off “Sending-OnOff-Commands: Step 1”, it will benefit the user for navigating to the right place for code implementation.
+Each step for this lab will have an associated comment in the primary [reference project](https://github.com/MarkDing/IoT-Developer-Boot-Camp/tree/master/zigbee) that starts off “Sending-OnOff-Commands: Step 1”, it will benefit the user for navigating to the right place for code implementation.  
 
-Locate the comment for step 1, and implement the application code as below.
+Locate the comment for step 1, and implement the application code as below.  
 
 ```
 // Sending-OnOff-Commands: Step 1
@@ -180,7 +176,7 @@ Build the applications and download the output files to the target devices. Plea
 If the programming doesn’t erase the full flash memory, the device can rejoin to the network right after the programming, because the “znet” tokes are not lost.
 Press Button1 for less than 200ms to send the ON command or between 200ms to 1000ms to send the OFF command, and you will notice that LED1 on the light toggle on and off.
 
-**Note**: The LED0 on the light node is used for indicating the activity by default, that why you will also observe the LED0 on the light node is blinky if send any command it.
+**Note**: The LED0 on the light node is used for indicating the network activity by default, that why you will also observe the LED0 on the light node is blinky if send any command it.
 
 In the meantime, have a look at the CLI of the devices and the Network Analyzer (you should re-start the capturing on either side).
 

@@ -1,14 +1,10 @@
----
-title: "IoT Developer Boot-camp: Using Event"
----
-
 # Introduction
 
 ## Application features
 The boot camp series hands-on workshop will cover four functionalities below, and the application development is split into four steps respectively to show how an application should be built up from the beginning.  
 The exercise in this documentation is the 3rd exercise in the “Zigbee Boot Camp” series.  
--   In the 1st phase, a basic network forming by the Light-, and a joining process by the Switch will be realized.  
--   The 2nd part will prepare the devices to transmit-, receive-, and process the On-Off commands by using APIs.  
+-   In the 1st phase, a basic network forming by the Light, and a joining process by the Switch will be realized.  
+-   The 2nd part will prepare the devices to transmit, receive, and process the On-Off commands by using APIs.  
 -   **At the 3rd step the Switch will have a periodic event to execute any custom code, which will be a LED blinking in our case.**  
 -   The 4th thing to do is to make the Switch to be able to store any custom data in its flash by using Non-volatile memory.  
 
@@ -22,7 +18,7 @@ Before all the individual steps would be performed, please make sure that both t
 # Using Event
 EmberZNet Stack has Event control mechanism that basically allows application to run a piece of code at desired time interval.  
 
-An event should be initialized somewhere in the code, hence a function should be used which is called at the begging of the application.  
+An event should be initialized somewhere in the code, hence a function should be used which is called at the beginning of the application.  
 
 The *Main Init* callback is called from the application’s main function. It gives the application a chance to do any initialization required at system startup. It can be imagined like a function at the top of the *“main()”* before the classical “*while(true)*”.  
 
@@ -43,7 +39,7 @@ Basically, two things need for this.
 -   Event Controller – structure of the task  
 -   Event Handler – function on the task  
 
-Open the *AppBuilder* -\> *Includes* tab. Add the custom event to the *Event Configuration* window. See figure below.  
+Open the *AppBuilder* -> *Includes* tab. Add the custom event to the *Event Configuration* window. See figure below.  
 <div align="center">
   <img src="./images/custom_event_adding_in_AppBuilder.png">  
 </div>  
