@@ -1,9 +1,9 @@
 ![Silicon Labs](images/logo.png)
 --------------------------------------------------------
-* [Platform](Platform)
-* [Bluetooth](Bluetooth)
-* [Proprietary](Proprietary)
 * [Zigbee](Zigbee)
+* [Bluetooth](Bluetooth)
+* [Hardware](Hardware)
 * [ZWave](ZWave)
+* [Proprietary](Proprietary)
 * [Tools](Tools)
 
