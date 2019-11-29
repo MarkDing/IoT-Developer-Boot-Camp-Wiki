@@ -2,6 +2,12 @@
 # Introduction
 This is a preparatory course that you should take if you are new to the Silicon Labs development environment and Zigbee solution. The document describes how to get started with Zigbee development using the EmberZNet PRO SDK and Simplicity Studio with a compatible wireless starter kit (WSTK), and also the fundamental Zigbee knowledge you should understand before beginning to study the Zigbee Boot Camp series courses.  
 And step-by-step instructions are provided to demonstrate how to create a basic Zigbee project for checking if the development environment is ready on your end.  
+The figure below illustrates the working flow for setting up the development environment.  
+
+<div align="center">
+  <img src="https://github.com/MarkDing/IoT-Developer-Boot-Camp-Wiki/blob/master/zigbee/images/preparatory_working_flow.png">  
+</div>  
+</br>  
 
 *** 
 
