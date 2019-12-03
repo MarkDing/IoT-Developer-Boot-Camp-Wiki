@@ -26,7 +26,9 @@
 | Time | Content |  
 |:---- |:----|    
 | 3 hour | [Sleepy End Device][Zigbee-Hands-on-Sleepy-End-Device] and [Hands-on][Zigbee-Hands-on-Sleepy-End-Device-Hands-on]|
-| 3 hour | Zigbee Gateway and Hands-on |
+| 3 hour | [Hands-on Introduction][Zigbee-Hands-on-Gateway-OTA]
+|        | [MQTT Interface][Zigbee-Hands-on-MQTT-Interface]
+|        | [OTA Upgrading][Zigbee-Hands-on-OTA-Upgrading] |
 | ------ | [Silicon Labs Zigbee Onboarding Roadmap][Zigbee Onboarding Roadmap] |
 *************
   
@@ -45,3 +47,6 @@
 [Zigbee Hands On UG]:https://github.com/MarkDing/IoT-Developer-Boot-Camp-Wiki/blob/master/zigbee/Zigbee-Hands-on-UsersGuide.docx
 [Zigbee-Hands-on-Sleepy-End-Device]:https://github.com/MarkDing/IoT-Developer-Boot-Camp-Wiki/blob/master/zigbee/Zigbee%20Sleepy%20End%20device.pptx
 [Zigbee-Hands-on-Sleepy-End-Device-Hands-on]:https://github.com/MarkDing/IoT-Developer-Boot-Camp-Wiki/blob/master/zigbee/Sleepy%20End%20Device%20Hands-on.pdf
+[Zigbee-Hands-on-Gateway-OTA]:https://github.com/MarkDing/IoT-Developer-Boot-Camp-Wiki/blob/master/zigbee/Gateway%20Basic%20and%20OTA.pptx
+[Zigbee-Hands-on-MQTT-Interface]:https://github.com/MarkDing/IoT-Developer-Boot-Camp-Wiki/blob/master/zigbee/Control%20Zigbee%20Device%20with%20MQTT%20Client.pdf
+[Zigbee-Hands-on-OTA-Upgrading]:https://github.com/MarkDing/IoT-Developer-Boot-Camp-Wiki/blob/master/zigbee/OTA%20Upgrading.pdf
