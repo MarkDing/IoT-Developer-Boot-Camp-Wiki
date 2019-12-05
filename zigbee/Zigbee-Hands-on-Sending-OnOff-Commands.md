@@ -1,3 +1,21 @@
+# Table of Content
+- [1. Introduction](#1-introduction)
+    - [1.1. Application features](#11-application-features)
+    - [1.2. Purpose](#12-purpose)
+- [2. Fundamental steps](#2-fundamental-steps)
+    - [2.1. Hardware Requirements](#21-hardware-requirements)
+    - [2.2. Software Requirements](#22-software-requirements)
+        - [2.2.1. Check EmberZNet SDK](#221-check-emberznet-sdk)
+        - [2.2.2. Check Toolchains](#222-check-toolchains)
+        - [2.2.3. Using Gecko Bootloader](#223-using-gecko-bootloader)
+- [3. Sending On/Off command](#3-sending-onoff-command)
+    - [3.1. Command handling on Light device](#31-command-handling-on-light-device)
+    - [3.2. Command sending from Switch device](#32-command-sending-from-switch-device)
+- [4. Testing your project](#4-testing-your-project)
+- [5. Conclusion](#5-conclusion)
+
+***
+
 # 1. Introduction
 ## 1.1. Application features
 The boot camp series hands-on workshop will cover four functionalities below, and the application development is split into four steps respectively to show how an application should be built up from the beginning.
@@ -9,8 +27,14 @@ The exercise is the 2nd part of series “Zigbee Boot Camp” course.
 -   The 4th thing to do is to make the Switch to be able to store any custom data in its flash by using Non-volatile memory.
 
 ## 1.2. Purpose
-In the previous hand-on “Forming and Joining”, we learned how to form a basic centralized Zigbee network and join the network. In this hands-on, we will demonstrate how to send on off command from the Switch node to the Light node for operating the LEDs there.
-Same as the previous hands-on, the network will consist of two devices by using board of BRD4162A (EFR32MG12).
+In the previous hand-on “Forming and Joining”, we learned how to form a basic centralized Zigbee network and join the network. In this hands-on, we will demonstrate how to send on off command from the Switch node to the Light node for operating the LEDs there.  
+Same as the previous hands-on, the network will consist of two devices by using board of BRD4162A (EFR32MG12).  
+The figure below illustrates the working flow of this hands-on.  
+
+<div align="center">
+  <img src="https://github.com/MarkDing/IoT-Developer-Boot-Camp-Wiki/blob/master/zigbee/images/sending_on_off_commands_working_flow.png">  
+</div>  
+</br>  
 
 Before all the individual steps would be performed, it’s necessary to check some basics to avoid unwanted issues during the development. We’d like to highlight it again as we have documented it in the previous hands-on.
 
@@ -50,8 +74,8 @@ It is important to use the same toolchain version when building your project tha
 </div>  
 
 ### 2.2.3. Using Gecko Bootloader
-A bootloader is a program stored in reserved flash memory that can initialize a device, update firmware images, and possibly perform some integrity checks. If the application seems to do not running, always check the bootloader, because lack of it causes program crash.
-For how to add Gecko Bootloader to your Zigbee project, please read the [preparatory course](https://github.com/MarkDing/IoT-Developer-Boot-Camp/wiki/Zigbee-Preparatory-Course#using-gecko-bootloader).
+A bootloader is a program stored in reserved flash memory that can initialize a device, update firmware images, and possibly perform some integrity checks. If the application seems to do not running, always check the bootloader, because lack of it causes program crash.  
+For how to add Gecko Bootloader to your Zigbee project, please read the [preparatory course](https://github.com/MarkDing/IoT-Developer-Boot-Camp/wiki/Zigbee-Preparatory-Course#using-gecko-bootloader).  
 
 **Hint**: More information about Gecko Bootloader, please find the documentations below.  
 [UG266: Silicon Labs Gecko Bootloader User’s Guide](https://www.silabs.com/documents/public/user-guides/ug266-gecko-bootloader-user-guide.pdf)  
@@ -64,12 +88,12 @@ For how to add Gecko Bootloader to your Zigbee project, please read the [prepara
 
 In the previous hands-on, we have created two projects, Zigbee_Light_ZC and Zigbee_Switch_ZR, and these two devices are now in the same network and ready to transmit and receive data on the network.  
 In this application, the Switch device should send one of the On/Off commands based on which button has been pressed, and the Light application should turn on/off the LED1 based on the received command.  
-Our task is to prepare the devices for these features.
+Our task is to prepare the devices for these features.  
 
 ## 3.1. Command handling on Light device
-To become aware of any received command from the user application level, the Callback functions should be used.
-These functions can be enabled in the "Callbacks" tab of the AppBuilder.
-Open this tab, find and enable the “On” “Off” callbacks under “General/OnOff Cluster” menu. See Figure 3‑1.
+To become aware of any received command from the user application level, the Callback functions should be used.  
+These functions can be enabled in the "Callbacks" tab of the AppBuilder.  
+Open this tab, find and enable the “On” “Off” callbacks under “General/OnOff Cluster” menu. See Figure 3‑1.  
 
 <div align="center">
   <img src="https://github.com/MarkDing/IoT-Developer-Boot-Camp-Wiki/blob/master/zigbee/images/onOff_Cluster_callbacks_enabling.png">  
@@ -82,9 +106,9 @@ Open this tab, find and enable the “On” “Off” callbacks under “General
 Save the modified .isc file and press *Generate*.  
 
 Maybe noticed that the *\<ProjectName\>_callbacks.c* is not overwritten at re-generating time, but the *callback-stub.c* is. The reason behind this is that all the callbacks which are defined by the ZCL or Plugins could be called by the stack. These should be placed somewhere to avoid compiler errors, even if these callbacks are not used by the user. The *callback-stub.c* serves this purpose.  
-When a callback is enabled, it should be taken off from the *callback-stub.c* and reside into the *\<ProjectName\>_callbacks.c*. It means for use that the enabled callbacks should be added manually to the *Zigbee_Light_ZC_callbacks.c* file and implement the desired functionality.
+When a callback is enabled, it should be taken off from the *callback-stub.c* and reside into the *\<ProjectName\>_callbacks.c*. It means for use that the enabled callbacks should be added manually to the *Zigbee_Light_ZC_callbacks.c* file and implement the desired functionality.  
 
-Open Zigbee_Light_ZC_Callback.c from the project explorer as show below.
+Open Zigbee_Light_ZC_Callback.c from the project explorer as show below.  
 
 <div align="center">
   <img src="https://github.com/MarkDing/IoT-Developer-Boot-Camp-Wiki/blob/master/zigbee/images/project_explorer.png">  
@@ -114,42 +138,42 @@ bool emberAfOnOffClusterToggleCallback(void){
 ```
 
 ## 3.2. Command sending from Switch device
-First, a place should be found to reside our code for sending the command. For this purpose, a callback is triggered by button press is used.
-The button operations are handled by the *Button Interface* plugin, so it should be enabled. 
+First, a place should be found to reside our code for sending the command. For this purpose, a callback is triggered by button press is used.  
+The button operations are handled by the **Button Interface** plugin, so it should be enabled.  
 
 <div align="center">
   <img src="https://github.com/MarkDing/IoT-Developer-Boot-Camp-Wiki/blob/master/zigbee/images/plugin_button_interface_enable.png">  
 </div> 
 </br>  
 
-The plugin defines some callbacks, so these can be found in the *Callbacks* tab. Move there and enable the “*Button1 Pressed Short”* callback function.
+The plugin defines some callbacks, so these can be found in the *Callbacks* tab. Move there and enable the **Button1 Pressed Short** callback function.  
 <div align="center">
   <img src="https://github.com/MarkDing/IoT-Developer-Boot-Camp-Wiki/blob/master/zigbee/images/callback_button_pressed.png">  
 </div> 
 </br>  
 
-Save and generate.
+Save and generate.  
 
-Similarly to chapter 3.1 Command handling on Light device, add the function “emberAfPluginButtonInterfaceButton1PressedShortCallback()” manually to the *Zigbee_Switch_ZR_callbacks.c* file.
-Save the modified .isc file and press *Generate*.
-Every command is stored in a buffer before it had been sent. The transmitted data buffer should be built up as below:
-The actual ZCL command is made by the macro. Replace \<\> to “On” or “Off”.
+Similarly to chapter 3.1 Command handling on Light device, add the function “emberAfPluginButtonInterfaceButton1PressedShortCallback()” manually to the *Zigbee_Switch_ZR_callbacks.c* file.  
+Save the modified .isc file and press *Generate*.  
+Every command is stored in a buffer before it had been sent. The transmitted data buffer should be built up as below:  
+The actual ZCL command is made by the function below. Replace \<\> to “On” or “Off”.  
 
 ```
 emberAfFillCommandOnOffCluster<>()
 ```
 
-It has to be set which endpoint send to which endpoint.
+It has to be set which endpoint send to which endpoint.  
 ```
 emberAfSetCommandEndpoints(emberAfPrimaryEndpoint(), 1);
 ```
 
-Send the message as unicast to the device 0x0000, so to the Coordinator.
+Send the message as unicast to the device 0x0000, so to the Coordinator.  
 ```
 emberAfSendCommandUnicast(EMBER_OUTGOING_DIRECT, 0x0000);
 ```
 
-Locate the comment for step 2, and implement the complete function code like the below.
+Locate the comment for step 2, and implement the complete function code like the below.  
 ```
 // Sending-OnOff-Commands: Step 2
 void emberAfPluginButtonInterfaceButton1PressedShortCallback(uint16_t timePressedMs){
@@ -158,7 +182,7 @@ void emberAfPluginButtonInterfaceButton1PressedShortCallback(uint16_t timePresse
 
   EmberStatus status;
 
-  if(timePressedMs < 200){
+  if(timePressedMs < 500){
     emberAfFillCommandOnOffClusterOn()
     emberAfCorePrintln("Command is zcl on-off ON");
   }else{
@@ -181,23 +205,24 @@ void emberAfPluginButtonInterfaceButton1PressedShortCallback(uint16_t timePresse
 ***
 
 # 4. Testing your project
-The previous 2 chapters presented how to make the devices to be able to send and receive commands through some APIs.
+The previous 2 chapters presented how to make the devices to be able to send and receive commands through some APIs.  
 
-Build the applications and download the output files to the target devices. Please exit from the network log capturing before programming the device, because the debugger has no access to the chip while the Network Analyzer (or Energy Profiler) is connected.
-If the programming doesn’t erase the full flash memory, the device can rejoin to the network right after the programming, because the “znet” tokes are not lost.
-Press Button1 for less than 200ms to send the ON command or between 200ms to 1000ms to send the OFF command, and you will notice that LED1 on the light toggle on and off.
+Build the applications and download the output files to the target devices. Please exit from the network log capturing before programming the device, because the debugger has no access to the chip while the Network Analyzer (or Energy Profiler) is connected.  
+**Note**: Please **do not** erase the device before programming, otherwise the “znet” tokes will be deleted, and the device cannot join the network except [Join the network](https://github.com/MarkDing/IoT-Developer-Boot-Camp/wiki/Zigbee-Hands-on-Forming-and-Joining#73-join-the-network-on-switch-router-device) again as instructed in last lab.  
 
-**Note**: The LED0 on the light node is used for indicating the network activity by default, that why you will also observe the LED0 on the light node is blinky if send any command it.
+Press Button1 for less than 500ms to send the ON command or between 500ms to 1000ms to send the OFF command, and you will notice that LED1 on the light toggle on and off.  
 
-In the meantime, have a look at the CLI of the devices and the Network Analyzer (you should re-start the capturing on either side).
+**Note**: The LED0 on the light node is used for indicating the network activity by default, that why you will also observe the LED0 on the light node is blinky if send any command it.  
 
-The Switch should print something like the followings on the serial console:
+In the meantime, have a look at the CLI of the devices and the Network Analyzer (you should re-start the capturing on either side).  
+
+The Switch should print something like the followings on the serial console:  
 ```
 Button1 is pressed for 119 milliseconds
 Command is zcl on-off ON
 Command is successfully sent
 
-Button1 is pressed for 392 milliseconds
+Button1 is pressed for 592 milliseconds
 Command is zcl on-off OFF
 Command is successfully sent
 ```
@@ -213,7 +238,7 @@ T00000000:RX len 3, ep 01, clus 0x0006 (On/off) FC 01 seq 18 cmd 00 payload[]
 Off command is received
 ```
 
-The above transactions can be observed in the Network Analyzer as well. See Figure 3‑2.
+The above transactions can be observed in the Network Analyzer as well. See Figure 3‑2.  
 
 <div align="center">
   <img src="https://github.com/MarkDing/IoT-Developer-Boot-Camp-Wiki/blob/master/zigbee/images/ZCL_OnOff_commands_in_Network_Analyzer.png">  

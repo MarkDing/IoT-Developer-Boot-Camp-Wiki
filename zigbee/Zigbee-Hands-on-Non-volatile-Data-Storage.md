@@ -1,43 +1,56 @@
-
 # Table of Content
-
 - [1. Introduction](#1-introduction)
-    - [What is Non-Volatile Memory?](#what-is-non-volatile-memory)
-    - [Why need Non-Volatile Storage in EmberZNet PRO?](#why-need-non-volatile-storage-in-emberznet-pro)
-    - [How does Silicon Labs implement the Non-Volatile Data Storage?](#how-does-silicon-labs-implement-the-non-volatile-data-storage)
-- [2. Access NVM3 objects with Token API](#2-access-nvm3-objects-with-token-api)
-    - [Types of Tokens: Dynamic Tokens and Manufacturing Tokens](#types-of-tokens-dynamic-tokens-and-manufacturing-tokens)
-        - [Dynamic Tokens](#dynamic-tokens)
-            - [Basic (Non-indexed) Tokens](#basic-non-indexed-tokens)
-            - [Indexed Tokens](#indexed-tokens)
-        - [Manufacturing Tokens](#manufacturing-tokens)
-    - [Usage of Tokens: Creating and Accessing](#usage-of-tokens-creating-and-accessing)
-        - [Dynamic Tokens](#dynamic-tokens-1)
-            - [Creating Dynamic Token](#creating-dynamic-token)
-                - [Define the Token Name](#define-the-token-name)
-                - [Define the Token Type](#define-the-token-type)
-                - [Define the Token Storage](#define-the-token-storage)
-            - [Accessing Dynamic Tokens](#accessing-dynamic-tokens)
-                - [Accessing Basic (Non-indexed) Tokens](#accessing-basic-non-indexed-tokens)
-                - [Accessing Indexed Tokens](#accessing-indexed-tokens)
-        - [Manufacturing Tokens](#manufacturing-tokens-1)
-            - [Accessing Manufacturing Tokens](#accessing-manufacturing-tokens)
-        - [Where to Find Default Token Definitions](#where-to-find-default-token-definitions)
-- [3. Lab](#3-lab)
-    - [Hardware Requirements](#hardware-requirements)
-    - [Software Requirements](#software-requirements)
-    - [Exercise](#exercise)
-        - [Import the projects to Simplicity Studio](#import-the-projects-to-simplicity-studio)
-        - [Create Custom Tokens](#create-custom-tokens)
-        - [Access the basic Token LED1_ON_OFF](#access-the-basic-token-led1_on_off)
-            - [Step 1: Retrieve the basic Token data](#step-1-retrieve-the-basic-token-data)
-            - [Step 2: Write the basic Token data](#step-2-write-the-basic-token-data)
-            - [Step 3: Testing your project](#step-3-testing-your-project)
-        - [Access the manufacturing Token](#access-the-manufacturing-token)
-            - [Step 4: Read the manufacturing Token MFG_STRING](#step-4-read-the-manufacturing-token-mfg_string)
-- [4. Conclusion](#4-conclusion)
+    - [1.1. Application features](#11-application-features)
+    - [1.2. Purpose](#12-purpose)
+- [2. Fundamentals of Non-Volatile Memory](#2-fundamentals-of-non-volatile-memory)
+    - [2.1. What is Non-Volatile Memory?](#21-what-is-non-volatile-memory)
+    - [2.2. Why need Non-Volatile Storage in EmberZNet PRO?](#22-why-need-non-volatile-storage-in-emberznet-pro)
+    - [2.3. How does Silicon Labs implement the Non-Volatile Data Storage?](#23-how-does-silicon-labs-implement-the-non-volatile-data-storage)
+- [3. Access NVM3 objects with Token API](#3-access-nvm3-objects-with-token-api)
+    - [3.1. Types of Tokens: Dynamic Tokens and Manufacturing Tokens](#31-types-of-tokens-dynamic-tokens-and-manufacturing-tokens)
+        - [3.1.1. Dynamic Tokens](#311-dynamic-tokens)
+            - [3.1.1.1. Basic (Non-indexed) Tokens](#3111-basic-non-indexed-tokens)
+            - [3.1.1.2. Indexed Tokens](#3112-indexed-tokens)
+        - [3.1.2. Manufacturing Tokens](#312-manufacturing-tokens)
+    - [3.2. Usage of Tokens: Creating and Accessing](#32-usage-of-tokens-creating-and-accessing)
+        - [3.2.1. Dynamic Tokens](#321-dynamic-tokens)
+            - [3.2.1.1. Creating Dynamic Token](#3211-creating-dynamic-token)
+                - [3.2.1.1.1. Define the Token Name](#32111-define-the-token-name)
+                - [3.2.1.1.2. Define the Token Type](#32112-define-the-token-type)
+                - [3.2.1.1.3. Define the Token Storage](#32113-define-the-token-storage)
+            - [3.2.1.2. Accessing Dynamic Tokens](#3212-accessing-dynamic-tokens)
+                - [3.2.1.2.1. Accessing Basic (Non-indexed) Tokens](#32121-accessing-basic-non-indexed-tokens)
+                - [3.2.1.2.2. Accessing Indexed Tokens](#32122-accessing-indexed-tokens)
+        - [3.2.2. Manufacturing Tokens](#322-manufacturing-tokens)
+            - [3.2.2.1. Accessing Manufacturing Tokens](#3221-accessing-manufacturing-tokens)
+        - [3.2.3. Where to Find Default Token Definitions](#323-where-to-find-default-token-definitions)
+- [4. Lab](#4-lab)
+    - [4.1. Hardware Requirements](#41-hardware-requirements)
+    - [4.2. Software Requirements](#42-software-requirements)
+    - [4.3. Exercise](#43-exercise)
+        - [4.3.1. Open the Switch projects](#431-open-the-switch-projects)
+        - [4.3.2. Create Custom Tokens](#432-create-custom-tokens)
+        - [4.3.3. Access the basic Token LED1_ON_OFF](#433-access-the-basic-token-led1_on_off)
+            - [4.3.3.1. Step 1: Retrieve the basic Token data](#4331-step-1-retrieve-the-basic-token-data)
+            - [4.3.3.2. Step 2: Write the basic Token data](#4332-step-2-write-the-basic-token-data)
+            - [4.3.3.3. Step 3: Testing your project](#4333-step-3-testing-your-project)
+        - [4.3.4. Access the manufacturing Token](#434-access-the-manufacturing-token)
+            - [4.3.4.1. Step 4: Read the manufacturing Token MFG_STRING](#4341-step-4-read-the-manufacturing-token-mfg_string)
+- [5. Conclusion](#5-conclusion)
 
-# Non-Volatile Data Storage in EmberZNet PRO
+***  
+
+# 1. Introduction
+## 1.1. Application features
+The boot camp series hands-on workshop will cover four functionalities below, and the application development is split into four steps respectively to show how an application should be built up from the beginning.  
+
+The exercise is the 4th part of series “Zigbee Boot Camp” course.  
+-   In the 1st phase, a basic network forming by the Light, and a joining process by the Switch will be realized.  
+-   The 2nd part will prepare the devices to transmit, receive, and process the On-Off commands by using APIs.  
+-   At the 3rd step the Switch will have a periodic event to execute any custom code, which will be a LED blinking in our case.  
+-   **The 4th thing to do is to make the Switch to be able to store any custom data in its flash by using Non-volatile memory.**  
+
+## 1.2. Purpose
 This training demonstrates the basic usage of Non-Volatile data storage on EmberZNet Stack. And also some of the basic knowledge are included in this documentation to help everyone to understand the hands-on well.  
 
 **You will learn**  
@@ -47,15 +60,23 @@ This training demonstrates the basic usage of Non-Volatile data storage on Ember
 * There is a problem we need to solve is that how to store the Light On/Off status locally over power cycle on our EFR32MG12 platform without EEPROM. In this hands-on, we provide the solution to do that with the token.  
 * And also you need to retrieve the manufacturing string that the manufacturer has programmed during production.  
 
-# 1. Introduction
-## What is Non-Volatile Memory?
+The figure below illustrates the working flow of this hands-on.  
+<div align="center">
+  <img src="https://github.com/MarkDing/IoT-Developer-Boot-Camp-Wiki/blob/master/zigbee/images/non_volatile_data_storage_working_flow.png">  
+</div>  
+</br>  
+
+***
+
+# 2. Fundamentals of Non-Volatile Memory  
+## 2.1. What is Non-Volatile Memory?
 Non-Volatile Memory (NVM) or Non-Volatile Storage is memory that can retrieve stored information even when the device is power-cycled. It typically refers to storage in semiconductor memory chips, including flash memory storage such as NAND flash and solid-state drives (SSD), and ROM chips such as EPROM (erasable programmable ROM) and EEPROM (electrically erasable programmable ROM).  
 On Silicon Labs microcontrollers and radio SoCs, it does not offer internal EEPROM, the NVM is implemented as flash memory.  
 
-## Why need Non-Volatile Storage in EmberZNet PRO?
+## 2.2. Why need Non-Volatile Storage in EmberZNet PRO?
 Usually, the EmberZNet stack and application need to store some data objects which should remain after power cycle. Some data is considered manufacturing data that is written only once at manufacturing time, on the other side, some data are written and read frequently over the life of the product which is referred to as dynamic data.  
 
-## How does Silicon Labs implement the Non-Volatile Data Storage?
+## 2.3. How does Silicon Labs implement the Non-Volatile Data Storage?
 Totally, Silicon Labs offers 3 different implementations for Non-Volatile data storage in **flash** memory. And also offer the Token mechanism for storing and retrieving data from the Non-Volatile Data Storage.  
 
 **Persistent Store (PS Store)**  
@@ -84,10 +105,10 @@ The diagram below illustrates the relationship between the Tokens and the Non-vo
 
 ***
 
-# 2. Access NVM3 objects with Token API
+# 3. Access NVM3 objects with Token API
 As NVM3 is the recommended implementation for Non-Volatile data storage, the section below will introduce how to access the NVM3 objects with Token API.  
 
-## Types of Tokens: Dynamic Tokens and Manufacturing Tokens  
+## 3.1. Types of Tokens: Dynamic Tokens and Manufacturing Tokens  
 Depending on how the tokens are going to be used, it can be distinguished as Dynamic Tokens or Manufacturing Tokens.  
 
 <div align="center">
@@ -95,36 +116,36 @@ Depending on how the tokens are going to be used, it can be distinguished as Dyn
 </div>
 </br>
 
-### Dynamic Tokens
+### 3.1.1. Dynamic Tokens
 The fundamental purpose of the Dynamic Token system is to allow it can be access (both read and written) frequently similar as generic RAM usage, but also allow the token data to persist across reboots and during power loss. They are stored in a dedicated area of the flash where we use a memory-rotation algorithm to prevent flash overuse.  
 There are two types of dynamic tokens that are distinguished by their format, Basic Tokens and Indexed Tokens.  
 
-#### Basic (Non-indexed) Tokens
+#### 3.1.1.1. Basic (Non-indexed) Tokens
 The basic token can be thought of as a simple char variable type that can only be accessed as a unit. For instance, the basic tokens can be used to store an array, and if any element of the array changes the entire array must be rewritten.  
 A counter token is a special type of non-indexed dynamic token meant to store a number that increments by 1 at a time.  
 <font color=red><b>Hint</b></font>: The counter token will not be covered in this hands-on, more information on counter token can be found in section [2.6 Counter Objects][UG103.7: Non-Volatile Data Storage Fundamentals] of UG103.7 and section [4.2 When to Define a Counter Token][AN703: Simulated EEPROM] of AN703.  
 
-#### Indexed Tokens
+#### 3.1.1.2. Indexed Tokens
 Indexed dynamic tokens can be considered as a linked array of char variables where each element is expected to change independently of the others and therefore is stored internally as an independent token and accessed explicitly through the token API.  
 <font color=red><b>Hint</b></font>: The indexed token will also not be covered in this hands-on, more information on indexed token can be found in section [2.7 Indexed Objects][UG103.7: Non-Volatile Data Storage Fundamentals] of UG103.7 and section [4.3 Array Tokens Versus Indexed Tokens][AN703: Simulated EEPROM] of AN703.  
 
-### Manufacturing Tokens
+### 3.1.2. Manufacturing Tokens
 Manufacturing Tokens are set at manufacturing time and they are stored at absolute addressed of the flash. The Manufacturing tokens are written either only once or very infrequently during the lifetime of the chip.  
 
-## Usage of Tokens: Creating and Accessing
+## 3.2. Usage of Tokens: Creating and Accessing
 Now, we are going to talk about how to use the tokens. This includes knowing how to create new tokens, how to read and potentially modify tokens, and where to find default tokens.  
 
-### Dynamic Tokens
+### 3.2.1. Dynamic Tokens
 For creating a custom dynamic token, you need to new a token header file which contains token definitions. In this hands-on, we will create a header file  ```custom-token.h``` contains the custom dynamic token definitions.  
 
-#### Creating Dynamic Token
-In general, creating a dynamic token involves three steps below:
-* Define the token name.
-* Add any typedef needed for the token, if it is using an application-defined type.
-* Define the token storage.
+#### 3.2.1.1. Creating Dynamic Token
+In general, creating a dynamic token involves three steps below:  
+* Define the token name.  
+* Add any typedef needed for the token, if it is using an application-defined type.  
+* Define the token storage.  
 
-##### Define the Token Name
-When defining the name, please do not prepend the word TOKEN. For NVM3 dynamic tokens, use the word NVM3KEY as the prefix.
+##### 3.2.1.1.1. Define the Token Name
+When defining the name, please do not prepend the word TOKEN. For NVM3 dynamic tokens, use the word NVM3KEY as the prefix.  
 ```
 /**
 * Custom Zigbee Application Tokens
@@ -140,7 +161,7 @@ For NVM3, custom application tokens should use the **NVM3KEY_DOMAIN_USER** range
 </div>  
 </br>  
 
-##### Define the Token Type
+##### 3.2.1.1.2. Define the Token Type
 The token type can be either a built-in C data type, or defined as a custom data structure using typedef.  
 ```
 #if defined(DEFINETYPES)
@@ -152,9 +173,9 @@ typedef struct {
 #endif //DEFINETYPES
 ```
 
-##### Define the Token Storage
+##### 3.2.1.1.3. Define the Token Storage
 After any custom types are defined, you should define the token storage to inform the token management software about the tokens being defined.  
-Each token, whether custom or default, gets its own entry in this part:
+Each token, whether custom or default, gets its own entry in this part:  
 
 ```
 #ifdef DEFINETOKENS
@@ -169,10 +190,10 @@ DEFINE_BASIC_TOKEN takes three arguments: the token name (LED1_ON_OFF, without t
 
 In this case, the first value (ledIndex) is initialized as ```1``` to indicates the LED1, and the next value (ledOnOff) is set to ```false``` to represent the default status of the LED1.  
 
-#### Accessing Dynamic Tokens
+#### 3.2.1.2. Accessing Dynamic Tokens
 The networking stack provides a simple set of APIs for accessing token data. The APIs differ slightly depending on the type of the tokens.  
 
-##### Accessing Basic (Non-indexed) Tokens
+##### 3.2.1.2.1. Accessing Basic (Non-indexed) Tokens
 The non-indexed/basic token API functions include:  
 ```
 void halCommonGetToken(data, token)  
@@ -181,7 +202,7 @@ void halCommonSetToken(token, data)
 In this case, 'token' is the token key, and 'data' is the token data. Note that ```halCommonGetToken()``` and ```halCommonSetToken()``` are general token APIs that can be used for both basic dynamic tokens, and manufacturing tokens.  
 
 Now let us use an example to explain the usage of these APIs.  
-As mentioned in the section [You need to do](#non-volatile-data-storage-in-emberznet-pro) at the beginning of this documentation, we needs to store the LED1's on/off status frequently, and restore the LED1 last on/off status after power up. As we have defined the token as above, then you can access it with the code snippet like this:
+As mentioned in the section [You need to do](#12-purpose) at the beginning of this documentation, we needs to store the LED1's on/off status frequently, and restore the LED1 last on/off status after power up. As we have defined the token as above, then you can access it with the code snippet like this:  
 
 ```
 ledOnOffStatus_t led1OnOffStatus;
@@ -197,34 +218,34 @@ halCommonSetToken(TOKEN_LED1_ON_OFF, &led1OnOffStatus);
 
 Since this hands-on is designed for new to the Silicon Labs EmberZNet stack, we will focus on the basic token usage, if you are interested about how to write the counter token, please read the section [3.3.1.1 Accessing Counter Tokens][AN1154: Using Tokens for Non-Volatile Data Storage] of AN1154.  
 
-##### Accessing Indexed Tokens
+##### 3.2.1.2.2. Accessing Indexed Tokens
 For accessing the Indexed Tokens, please use the APIs below. As explained above, we will not spend much space of this documentation to introduce Indexed Tokens, please refer to the section [3.3.2 Accessing Indexed Tokens][AN1154: Using Tokens for Non-Volatile Data Storage] of AN1154 for more information.  
 ```
 void halCommonGetIndexedToken(data, token, index)
 void halCommonSetIndexedToken(token, index, data)
 ```
 
-### Manufacturing Tokens
-Manufacturing tokens are defined in the same way as basic (non-indexed) dynamic tokens, therefore you can refer to section [Creating Dynamic Token](#creating-dynamic-token) on how to create them. The major difference between them is that on where the tokens are stored and how they are accessed.  
+### 3.2.2. Manufacturing Tokens
+Manufacturing tokens are defined in the same way as basic (non-indexed) dynamic tokens, therefore you can refer to section [Creating Dynamic Token](#3211-creating-dynamic-token) on how to create them. The major difference between them is that on where the tokens are stored and how they are accessed.  
 Manufacturing tokens reside in the dedicated flash page for manufacturing tokens (with fixed absolute addresses).  
 
-#### Accessing Manufacturing Tokens
+#### 3.2.2.1. Accessing Manufacturing Tokens
 As the name suggests, Manufacturing Tokens are usually written once at manufacturing time into fixed locations in a dedicated flash page. Since their addresses are fixed, they can be easily read from external programming tools if Read Protection for this flash area is disabled.  
 And since the same flash cell cannot be written repeatedly without erase operations in between. Writing a manufacturing token from on-chip code works only if the token is currently in an erased state. Overwriting the manufacturing token that has been already written before always requires erasing the flash page for the manufacturing token with external programming tools.  
 
-Manufacturing tokens should be accessed with their own dedicated API below.
+Manufacturing tokens should be accessed with their own dedicated API below.  
 ```
 halCommonGetMfgToken(data, token);
 halCommonSetMfgToken(token, data);
 ```
-They have the same parameters as the basic tokens APIs. The two primary purposes for using the dedicated manufacturing token access APIs are:
-* For slightly faster access;
+They have the same parameters as the basic tokens APIs. The two primary purposes for using the dedicated manufacturing token access APIs are:  
+* For slightly faster access;  
 * For access early in the boot process before emberInit() is called.  
 
 And the Manufacturing tokens can also be accessed through the basic token APIs ```halCommonGetToken()``` and ```halCommonSetToken()```.  
 
 Also let us use an example to explain the usage of these dedicated APIs for accessing manufacturing tokens.  
-As mentioned in the section [You need to do](#non-volatile-data-storage-in-emberznet-pro) at the beginning of this documentation, manufacturer will program the manufacturing string token during the production with programming tool, and we can use the on-chip code snippet below to retrieve the string data from the manufacturing token.  
+As mentioned in the section [You need to do](#12-purpose) at the beginning of this documentation, manufacturer will program the manufacturing string token during the production with programming tool, and we can use the on-chip code snippet below to retrieve the string data from the manufacturing token.  
 
 ```
 tokTypeMfgString mfgString;
@@ -232,26 +253,26 @@ tokTypeMfgString mfgString;
 halCommonGetMfgToken(mfgString, TOKEN_MFG_STRING);
 ```
 
-### Where to Find Default Token Definitions
-The EmberZNet PRO stack has defined lots of tokens for stack, Application Framework, manufacturing data storage.
+### 3.2.3. Where to Find Default Token Definitions
+The EmberZNet PRO stack has defined lots of tokens for stack, Application Framework, manufacturing data storage.  
 To view the stack tokens, refer to the file:  
 ```<install-dir>/stack/config/token-stack.h```
 
 To view the Application Framework tokens, please navigate to the project directory after the project has been generated in AppBuilder. The files ```<project_name>_tokens.h``` which contains the tokens for ZCL attributes, and the protocol-specific token file ```znet-token.h``` which includes plugin token headers and the custom application token header.  
 
-To view the manufacturing tokens for the EFR32 series of chips, refer to the following files:
+To view the manufacturing tokens for the EFR32 series of chips, refer to the following files:  
 ```<install-dir>/hal/micro/cortexm3/efm32/token-manufacturing.h```
 
 ***
 
-# 3. Lab
+# 4. Lab
 This section provides step-by-step instructions to demonstrate how to store and retrieve the LED1's status to/from the Non-Volatile data storage (it's NVM3 in this hands-on) objects with basic token. And also demonstrate how to access manufacturing token with the dedicated APIs.  
-That are the question we raised in the section [You need to do](#non-volatile-data-storage-in-emberznet-pro) at the beginning of this documentation.  
+That are the question we raised in the section [You need to do](#12-purpose) at the beginning of this documentation.  
 
 **Prerequisites**  
-Please make sure that you have finished the [preparatory course]() and make sure all of the SDKs software and Starter Kits are ready.  
+Please make sure that you have finished the [preparatory course](https://github.com/MarkDing/IoT-Developer-Boot-Camp/wiki/Zigbee-Preparatory-Course) and make sure all of the SDKs software and Starter Kits are ready.  
 
-## Hardware Requirements
+## 4.1. Hardware Requirements
 This hands-on requires either EFR32MG21/EFR32MG13/EFR32MG12 radio board, and EFR32MG12 radio board BRD4162A is recommended since we created the example project with that kit. Below is the layout of the starter kit.  
 <div align="center">
   <img src="https://github.com/MarkDing/IoT-Developer-Boot-Camp-Wiki/blob/master/zigbee/images/brd4162_kit.png">
@@ -264,32 +285,20 @@ Connect the starter kit to PC using the "J-Link USB" connector and the cable pro
 </div>
 </br>
 
-## Software Requirements
-This hands-on is building on top of the previous three hands-on [Forming and Joining](https://github.com/MarkDing/IoT-Developer-Boot-Camp/wiki/Zigbee-Hands-on-Forming-and-Joining), [Sending on/off commands](https://github.com/MarkDing/IoT-Developer-Boot-Camp/wiki/Zigbee-Hands-on-Sending-OnOff-Commands) and [Using Event](https://github.com/MarkDing/IoT-Developer-Boot-Camp/wiki/Zigbee-Hands-on-Using-Event), and it's supposed that you have installed the Simplicity Studio and necessary SDKs as documented in our [preparatory course]().  
-If you haven't get the source code, please read the [How to Get Code ?](https://github.com/MarkDing/IoT-Developer-Boot-Camp/blob/master/CONTRIBUTING.md#how-to-get-code-) for getting the primary example projects for this hands-on.  
+## 4.2. Software Requirements
+This hands-on is building on top of the previous three hands-on [Forming and Joining](https://github.com/MarkDing/IoT-Developer-Boot-Camp/wiki/Zigbee-Hands-on-Forming-and-Joining), [Sending on/off commands](https://github.com/MarkDing/IoT-Developer-Boot-Camp/wiki/Zigbee-Hands-on-Sending-OnOff-Commands) and [Using Event](https://github.com/MarkDing/IoT-Developer-Boot-Camp/wiki/Zigbee-Hands-on-Using-Event), and it's supposed that you have installed the Simplicity Studio and necessary SDKs as documented in our [preparatory course](https://github.com/MarkDing/IoT-Developer-Boot-Camp/wiki/Zigbee-Preparatory-Course).  
 
-## Exercise
-### Import the projects to Simplicity Studio
-We have provided two projects ```Zigbee_Light_ZC``` and ```Zigbee_Switch_ZR``` as the starting projects for the series of hands-on. Since the Non-volatile data storage mechanism does not depend on the mesh node type. We will only demonstrate how to access the NVM3 object via token API on the Zigbee router device side, it refers to the ```Zigbee_Switch_ZR``` project.  
-Import the ```Zigbee_Switch_ZR``` example project to your Simplicity Studio workspace with the steps below.  
+## 4.3. Exercise
+### 4.3.1. Open the Switch projects
+This hands-on is building on top of previous three hands-on. Since the Non-volatile data storage mechanism does not depend on the mesh node type, we will only demonstrate how to access the NVM3 object via token API on the Switch (router) device side, it refers to the ```Zigbee_Switch_ZR``` project.  
+Also the example projects are available in the [IoT-Developer-Boot-Camp](https://github.com/MarkDing/IoT-Developer-Boot-Camp/tree/master/zigbee) repository for your reference if any difficulty for finishing the series hands-on.  
 
-* In Simplicity studio, click on [File] > [Import]
-* Click on [More Import Options..] at the bottom of the pop-up window
-* Select [Existing Projects into Workspace] under General and click [Next>]
-* Then [Browse...] to select the directory that the project locates at, select [Copy projects into workspace]
-* Click [Finish] to start the importing.
-
-<div align="center">
-  <img src="https://github.com/MarkDing/IoT-Developer-Boot-Camp-Wiki/blob/master/zigbee/images/import_ssv4_project.gif">
-</div>
-</br>
-
-### Create Custom Tokens
+### 4.3.2. Create Custom Tokens
 We are going to create a header file ```custom-token.h```, and define the token name, token type and token storage in this header file.  
 
-* In Simplicity studio, click on [File] > [New] > [File]
-* Select the parent folder as the root path of your project, and set the file name as ```custom-token.h```, and click [Finish]
-* Edit the header file to define the tokens.
+* In Simplicity studio, click on [File] > [New] > [File]  
+* Select the parent folder as the root path of your project, and set the file name as ```custom-token.h```, and click [Finish]  
+* Edit the header file to define the tokens.  
 
 Below is content of the header file we used in this hands-on.  
 
@@ -322,25 +331,26 @@ DEFINE_BASIC_TOKEN(LED1_ON_OFF,
 #endif
 ```
 **Firstly**, we will define the Token name as ```NVM3KEY_LED1_ON_OFF```.  
-* <font color=red><b>Question</b></font>: Why need to define the token name with the prepended word ```NVM3KEY```? Can I define it as ```TOKEN_LED1_ON_OFF```?
-* <font color=red><b>Hint</b></font>: Please back to the section [Define the Token Name](#define-the-token-name) for getting the answer.
+* <font color=red><b>Question</b></font>: Why need to define the token name with the prepended word ```NVM3KEY```? Can I define it as ```TOKEN_LED1_ON_OFF```?  
+* <font color=red><b>Hint</b></font>: Please back to the section [Define the Token Name](#32111-define-the-token-name) for getting the answer.  
 
 **Then** define the Token type for recording the LED On/Off status, define a structure type ```ledOnOffStatus_t``` which includes two different data type to represent the LED index and LED status.  
 
 **Finally**, define the token storage with the macro ```DEFINE_BASIC_TOKEN```.  
 
 After creating the custom token header file, you need one more step: add the header file to the application, through the [Includes] tab in the .isc file in Simplicity Studio, under the “Token Configuration” section.  
+**Note**: You always need to generate the project again after adding the header file in the .isc file.  
 
 <div align="center">
   <img src="https://github.com/MarkDing/IoT-Developer-Boot-Camp-Wiki/blob/master/zigbee/images/add_custom_token_header_file.gif">
 </div>
-</br>
+</br>  
 
-### Access the basic Token LED1_ON_OFF
+### 4.3.3. Access the basic Token LED1_ON_OFF
 Let's moving on for how to access the defined token. Below are step-by-step instructions for adding code to store the LED status to Non-volatile data storage, and retrieve the data for restoring the LED status.  
 Each step for this lab will have an associated comment in the primary example project that starts off ```Non-volatile Data Storage: Step x```, it will benefit the user for navigating to the right place for code implementation.  
 
-#### Step 1: Retrieve the basic Token data
+#### 4.3.3.1. Step 1: Retrieve the basic Token data
 Open the ```Zigbee_Switch_ZR_callback.c``` and define a "ledOnOffStatus_t" type variable.  
 ```
 // Non-volatile Data Storage: Step 1
@@ -365,7 +375,7 @@ else{
 }
 ```
 
-#### Step 2: Write the basic Token data
+#### 4.3.3.2. Step 2: Write the basic Token data
 In the last hands-on, we defined a event handler ```ledBlinkingHandler()``` to toggle the LED1 periodically, we need to store the LED1 status after each toggling process.  
 Navigate to the function ```void ledBlinkingHandler(void)``` in the ```Zigbee_Switch_ZR_callback.c```. Also you can address the function with the comment ```Non-volatile Data Storage: Step 2```.  
 Write the basic token ```LED1_ON_OFF``` with the API ```halCommonSetToken()```. Please note that the LED1 toggle process of last hands-on is surrounded by the token retrieving and storing process.  
@@ -381,13 +391,13 @@ led1OnOffStatus.ledOnOff = !led1OnOffStatus.ledOnOff;
 halCommonSetToken(TOKEN_LED1_ON_OFF, &led1OnOffStatus);
 ```
 
-#### Step 3: Testing your project
+#### 4.3.3.3. Step 3: Testing your project
 Once you've added the necessary code to you project, Build and flash the ```Zigbee_Switch_ZR``` project to your BRD4162A radio board.  
 * Click on [Build] ![](https://github.com/MarkDing/IoT-Developer-Boot-Camp-Wiki/blob/master/zigbee/images/build_project.png) button to start building the project.  
-* When the build finishes, expand the "Binaries" folder and right click the *.hex file to select [Flash to Device...]
+* When the build finishes, expand the "Binaries" folder and right click the *.hex file to select [Flash to Device...]  
 * Select the connected hardware in the pop-up window. The "Flash Programmer" is now pre-filled with all needed data, and you
-are ready to click on "Program".
-* Click "Program", and wait for a short while for program finish.
+are ready to click on "Program".  
+* Click "Program", and wait for a short while for program finish.  
 
 <div align="center">
   <img src="https://github.com/MarkDing/IoT-Developer-Boot-Camp-Wiki/blob/master/zigbee/images/build_and_program.gif">
@@ -397,8 +407,8 @@ are ready to click on "Program".
 The LED1 on the starter kit will blinky periodically after few seconds delay after power up, reset the device, the application will restore the LED1 to the status before reset/power-off.  
 <font color=red><b>Hint</b></font>: You can modify the delay period of LED1 status after power up, as well as the LED1 toggle interval with the API ```emberEventControlSetDelayMS(ledBlinking, 2000);``` in the ```Zigbee_Switch_ZR_callback.c```.  
 
-### Access the manufacturing Token
-#### Step 4: Read the manufacturing Token MFG_STRING
+### 4.3.4. Access the manufacturing Token
+#### 4.3.4.1. Step 4: Read the manufacturing Token MFG_STRING
 Manufacturing token can be written from on-chip code only if the token is currently in an erased state. Generally, the manufacturer will write the manufacturing token with external programming tools, such as Simplicity Commander.  
 This part will involve reading the manufacturing Token ```MFG_STRING``` which hold the manufacturing string programmed by the manufacture during production.  
 Navigate to the function ```void emberAfMainInitCallback(void)``` of the ```Zigbee_Switch_ZR_callback.c```, and read the manufacturing Token MFG_STRING with the API ```halCommonGetMfgToken```.  
@@ -410,10 +420,12 @@ emberAfAppPrintln("MFG String: %s", mfgString);
 ```
 Please note that if the manufacturing string token is not programmed by external programming tool before, the debug output will be NULL which indicates the manufacturing string is NULL.  
 <font color=red><b>Question</b></font>: Can the Manufacturing tokens be accessed through the basic token APIs?  
-<font color=red><b>Hint</b></font>: Please back to the section [Accessing Manufacturing Tokens](#accessing-manufacturing-tokens) for getting the answer.  
+<font color=red><b>Hint</b></font>: Please back to the section [Access the manufacturing Token](#3221-accessing-manufacturing-tokens) for getting the answer.  
 
-# 4. Conclusion  
-We hope you enjoyed the Non-volatile data storage Lab, and understood the implementation provided by Silicon Labs, they are [NVM3, SimEEv1/SimEEv2 and PS Store](#how-does-silicon-labs-implement-the-non-volatile-data-storage). Also, you should have learned how to create and access the basic token, as well as how to access the manufacturing token.  
+***
+
+# 5. Conclusion  
+We hope you enjoyed the Non-volatile data storage Lab, and understood the implementation provided by Silicon Labs, they are [NVM3, SimEEv1/SimEEv2 and PS Store](#23-how-does-silicon-labs-implement-the-non-volatile-data-storage). Also, you should have learned how to create and access the basic token, as well as how to access the manufacturing token.  
 
 For more information on Non-volatile data storage and Tokens, please refer to the following documentations.  
 [UG103.7: Non-Volatile Data Storage Fundamentals](https://www.silabs.com/documents/public/user-guides/ug103-07-non-volatile-data-storage-fundamentals.pdf)  
