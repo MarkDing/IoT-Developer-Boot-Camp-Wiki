@@ -1,6 +1,47 @@
+# Table of Content
+- [1. Introduction](#1-introduction)
+    - [1.1. Application features](#11-application-features)
+    - [1.2. Purpose](#12-purpose)
+- [2. Fundamental steps](#2-fundamental-steps)
+    - [2.1. Hardware Requirements](#21-hardware-requirements)
+    - [2.2. Software Requirements](#22-software-requirements)
+        - [2.2.1. Check EmberZNet SDK](#221-check-emberznet-sdk)
+        - [2.2.2. Check Toolchains](#222-check-toolchains)
+        - [2.2.3. Using Gecko Bootloader](#223-using-gecko-bootloader)
+- [3. Create Light application](#3-create-light-application)
+- [4. Download and test the Light application](#4-download-and-test-the-light-application)
+- [5. Create Switch application](#5-create-switch-application)
+- [6. Download and test the Switch application](#6-download-and-test-the-switch-application)
+- [7. Establish connection between Light and Switch with an installation code-derived link key](#7-establish-connection-between-light-and-switch-with-an-installation-code-derived-link-key)
+    - [7.1. Programming the Installation Code to Switch (Router) Device](#71-programming-the-installation-code-to-switch-router-device)
+        - [7.1.1. Format of the Installation Code File](#711-format-of-the-installation-code-file)
+        - [7.1.2. Checking the Installation Code on an EFR32 Device](#712-checking-the-installation-code-on-an-efr32-device)
+        - [7.1.3. Writing the Installation Code into the Manufacturing Area on an EFR32 Device](#713-writing-the-installation-code-into-the-manufacturing-area-on-an-efr32-device)
+        - [7.1.4. Verifying the Stored Installation Code on an EFR32 Device](#714-verifying-the-stored-installation-code-on-an-efr32-device)
+        - [7.1.5. Erasing the Installation Code](#715-erasing-the-installation-code)
+    - [7.2. Form centralized network on Light (Coordinator) device](#72-form-centralized-network-on-light-coordinator-device)
+        - [7.2.1. Derive a link key from the installation code](#721-derive-a-link-key-from-the-installation-code)
+        - [7.2.2. Form centralized network](#722-form-centralized-network)
+        - [7.2.3. Open the network with the derived link key](#723-open-the-network-with-the-derived-link-key)
+    - [7.3. Join the network on Switch (Router) device](#73-join-the-network-on-switch-router-device)
+    - [7.4. Capture the Network log on Light (Coordinator) device](#74-capture-the-network-log-on-light-coordinator-device)
+        - [7.4.1. Find the Network key and Derived Link key for capturing](#741-find-the-network-key-and-derived-link-key-for-capturing)
+        - [7.4.2. Add network key and Derived link key to Network Analyzer](#742-add-network-key-and-derived-link-key-to-network-analyzer)
+        - [7.4.3. Start capturing on Light (Coordinator) device](#743-start-capturing-on-light-coordinator-device)
+        - [7.4.4. Joining process in Network Analyzer](#744-joining-process-in-network-analyzer)
+- [8. Conclusion](#8-conclusion)
+
+***
+
 # 1. Introduction
 In this worksheet we provide a step-by-step guide to create, build and run ZigBee 3.0 applications based on EmberZNet Stack 6.6.4. If you use a later release in the future, most of the instructions should be still applied, although there could be minor differences not foreseen at the time of this document.  
 These exercises help you get familiar with ZigBee 3.0 in the EmberZNet Stack, Simplicity Studio v4 development environment, and the Wireless Start Kit (WSTK) with EFR32MG12 SoC. We assume that you have a WSTK and the following software.  
+The figure below illustrates the working flow of this hands-on.  
+
+<div align="center">
+  <img src="https://github.com/MarkDing/IoT-Developer-Boot-Camp-Wiki/blob/master/zigbee/images/forming_and_joining_work_flow.png">  
+</div>  
+</br>  
 
 ## 1.1. Application features
 The boot camp series hands-on workshop will cover four functionalities below, and the application development is split into four steps respectively to show how an application should be built up from the beginning.  
@@ -139,6 +180,7 @@ One of the most important setting is the ZCL configurations. The type of the dev
 <div align="center">
   <b>Figure 3‑7 Select ZCL device type</b>
 </div>  
+</br>  
 
 After selecting the template, new enabled clusters and attributes are appeared in the list, moreover, the endpoint configuration is changed. These settings are applied based on the Zigbee Specification.  
 
@@ -153,6 +195,7 @@ This tab lets to change the device type in network aspect. Since the router devi
 <div align="center">
   <b>Figure 3‑8 Change device type to Coordinator</b>
 </div>  
+</br>  
 
 The rest of the settings should not be modified, because the device operates on Single network with basic clusters.  
 
@@ -164,6 +207,7 @@ Usually the default setting is enough in this Lab. The only thing to do is verif
 <div align="center">
   <b>Figure 3‑9 Debug printing</b>
 </div>  
+</br>
 
 **Note**: The "On off cluster" debug print also serves the later implemented features in the second hands-on.  
 
@@ -186,7 +230,7 @@ The **Serial** establishes the Command Line Interface (CLI). This interface lets
 </div>  
 </br>
 
-Summarized the above, the following table presents the affected plugins.  
+**Summarized the above, the following table presents the affected plugins on the Light (Coordinator) node.**  
 
 <div align="center">
   <img src="https://github.com/MarkDing/IoT-Developer-Boot-Camp-Wiki/blob/master/zigbee/images/plugins_to_check_light.png">  
@@ -205,6 +249,7 @@ These files are available from the AppBuilder as well, but some extra informatio
 <div align="center">
   <b>Figure 3‑10 Plugin details</b>
 </div>  
+</br>  
 
 **Callbacks**  
 The callbacks are a set of functions for the implementation of the application level functionalities. Some of them are related to plugins, while others can be used without any limitation. This tab is dynamically changing based on the previous *Plugins* and *ZCL Clusters* tab. It means some callbacks are visible/usable only if the appropriate plugin or cluster has been enabled.  
@@ -231,6 +276,7 @@ The "Generation successful" label signs all the required files are created. See 
 <div align="center">
   <b>Figure 3‑11 Generation result</b>
 </div>  
+</br>  
 
 **Hardware configurator**  
 The hardware configurator is NOT part of the AppBuilder. It's unique file in the project for generating the "hal-config/hal-config.h" file. This header file contains includes, which will be used by other source files.  
@@ -244,6 +290,7 @@ In our project, the VCOM enable pin must be enabled to make the UART-USB convert
 <div align="center">
   <b>Figure 3‑12 Hardware configurator</b>
 </div>  
+</br>  
 
 The saving of this file re-generates the "hal-config.h" file according to the settings.  
 Press the Build button (![](https://github.com/MarkDing/IoT-Developer-Boot-Camp-Wiki/blob/master/zigbee/images/build_project.png)). Upon a successful build, the binary files should be appeared in the "Binaries" directory.  
@@ -252,6 +299,7 @@ Press the Build button (![](https://github.com/MarkDing/IoT-Developer-Boot-Camp-
 
 # 4. Download and test the Light application
 Let's download the *Zigbee_Light_ZC.s37* file to the development kit as shown below. See Figure 4‑1 and Figure 4‑2.  
+**Note**: Please execute "Erase" process before the following steps to avoid any unintended effect by the existing network setting in the device.  
 <div align="center">
   <img src="https://github.com/MarkDing/IoT-Developer-Boot-Camp-Wiki/blob/master/zigbee/images/open_Flash_Programmer.png">  
 </div>  
@@ -316,6 +364,8 @@ The **Network Steering** plugin serves to discover the existing networks on the 
 The **Update TC Link Key** is used to request new APS Link Key from the Trust Center. It should be enabled since the Light (Trust Center) has the Security Link Keys Library.  
 The **Install code library** provides an initial link key based upon an install code manufacturering token in the device. The key is hashed according to the ZigBee spec.  
 
+**Summarized the above, the following table presents the affected plugins on the Switch (Router) node.**  
+
 <div align="center">
   <img src="https://github.com/MarkDing/IoT-Developer-Boot-Camp-Wiki/blob/master/zigbee/images/plugins_to_check_switch.png">  
 </div>  
@@ -341,209 +391,64 @@ Please repeat the steps from the chapter [Download and test the Light applicatio
 
 ***
 
-# 7. Establish connection between Light and Switch
-This chapter presents how to form a network and join to this. The communication between the devices will be captured by Network Analyzer tool.  
-At the beginning, open both Light and Switch serial console, and type the "echo 1" command. It helps to track the released command which makes the log more understandable.  
-Please perform the following operations:  
-
-## 7.1. Create a centralized network
-Command:  
-```plugin network-creator start 1```
-
-**Hint**: More information about the CLI command, please find the online documentation [here](https://docs.silabs.com/zigbee/latest/af/group-plugin-network-creator).  
-
-You will get the output similar as below on the serial console, The result: 0x00 means "EMBER_SUCCESS". Find more status codes [here](https://docs.silabs.com/zigbee/latest/em35x/group-status-codes).  
-
-Result:  
-```
-NWK Creator: Form: 0x00
-Zigbee_Light_ZC>NWK Creator Security: Start: 0x00
-EMBER_NETWORK_UP 0x0000
-NWK Creator: Form. Channel: 25. Status: 0x00
-NWK Creator: Stop. Status: 0x00. State: 0x00
-```
-
-## 7.2. Find network and device information
-Command:  
-```info```
-
-Result:  
-```
-MFG String: 
-AppBuilder MFG Code: 0x1002
-node [(>)000B57FFFEDEA657] chan [25] pwr [3]
-panID [0xD216] nodeID [0x0000] xpan [0x(>)FD7B0901B45A9C4E]
-parentID [0xFFFF] parentRssi [0]
-stack ver. [6.6.3 GA build 151]
-nodeType [0x01]
-Security level [05]
-network state [02] Buffs: 75 / 75
-Ep cnt: 1
-ep 1 [endpoint enabled, device enabled] nwk [0] profile [0x0104] devId [0x0100] ver [0x01]
-    in (server) cluster: 0x0000 (Basic)
-    in (server) cluster: 0x0003 (Identify)
-    in (server) cluster: 0x0004 (Groups)
-    in (server) cluster: 0x0005 (Scenes)
-    in (server) cluster: 0x0006 (On/off)
-Nwk cnt: 1
-nwk 0 [Primary (pro)]
-  nodeType [0x01]
-  securityProfile [0x05]
-```
-
-## 7.3. Find the Network key for capturing
-Command:  
-```
-keys print
-```
-
-Result:  
-```
-EMBER_SECURITY_LEVEL: 05
-NWK Key out FC: 00000013
-NWK Key seq num: 0x00
-NWK Key: 3F B8 D4 09 4E AD 0A 83  89 A2 7F 1F C0 03 BF 87  
-Link Key out FC: 00000000
-TC Link Key
-Index IEEE Address         In FC     Type  Auth  Key
--     (>)000B57FFFEDEA657  00000000  L     y     C0 1C 81 33 69 98 A3 21  D4 67 92 29 73 59 D0 8E  
-Link Key Table
-Index IEEE Address         In FC     Type  Auth  Key
-0/6 entries used.
-Transient Key Table
-Index IEEE Address         In FC     TTL(s) Flag    Key    
-0 entry consuming 0 packet buffer.
-```
-
-## 7.4. Add network key to Network Analyzer
-Copy the network key ```C0 1C 81 33 69 98 A3 21  D4 67 92 29 73 59 D0 8E``` and add it to the Network Analyzer's key storage to be able to decode the messages. See Figure 7‑1.  
-
-1. Open Window-\>Preferences  
-
-<div align="center">
-  <img src="https://github.com/MarkDing/IoT-Developer-Boot-Camp-Wiki/blob/master/zigbee/images/open_Security_Keys_tab.png">  
-</div>  
-<div align="center">
-  <b>Figure 7‑1 Open Security Keys tab</b>
-</div>  
-</br>  
-
-2. Make sure that Network Analyzer is set to decode the correct protocol. Select Window \> Preferences \> Network Analyzer \> Decoding \> Stack Versions, and verify it is set correctly. If you need to change it, click the correct stack, click Apply, and then OK.  
-<div align="center">
-  <img src="https://github.com/MarkDing/IoT-Developer-Boot-Camp-Wiki/blob/master/zigbee/images/stack_profile.png">  
-</div>  
-</br>  
-
-3. Navigate to Network Analyzer-\>Decoding-\> Security Keys and add the new key. See Figure 7‑2.  
-<div align="center">
-  <img src="https://github.com/MarkDing/IoT-Developer-Boot-Camp-Wiki/blob/master/zigbee/images/add_new_network_key.png">  
-</div>  
-<div align="center">
-  <b>Figure 7‑2 Add new Network Key</b>
-</div>  
-
-## 7.5. Start capturing on Light device
-Right click on Adapter name of the Light-\> *Connect* (if not connected yet)-\>*Start capture*. See Figure 7‑3.  
-<div align="center">
-  <img src="https://github.com/MarkDing/IoT-Developer-Boot-Camp-Wiki/blob/master/zigbee/images/start_capturing.png">  
-</div>  
-<div align="center">
-  <b>Figure 7‑3 Start capturing</b>
-</div>  
-</br>  
-
-It should change the view to *Network Analyzer* and immediately start capturing. See Figure 7‑4.  
-<div align="center">
-  <img src="https://github.com/MarkDing/IoT-Developer-Boot-Camp-Wiki/blob/master/zigbee/images/capturing_on_Light.png">  
-</div>  
-<div align="center">
-  <b>Figure 7‑4 Capturing on Light</b>
-</div>  
-</br>  
-
-The capture file (\*Live) should show the packets on the network.  
-
-## 7.6. Open the network
-Go back to the Serial console of the Light and permit devices to join.  
-
-Command:  
-```
-plugin network-creator-security open-network
-```
-
-Result:  
-```
-NWK Creator Security: Open network: 0x00
-Zigbee_Light_ZC>pJoin for 254 sec: 0x00
-NWK Creator Security: Open network: 0x00
-```
-
-This command triggers the Light to send a "Permit Join Request" broadcast message.  
-By default, the network will be opened for 300 seconds.  
-
-## 7.7. Join the Switch
-Join to this network with the Switch device with TC Link key update.  
-
-Command:
-```
-plugin network-steering start 0
-```
-
-Result:
-```
-NWK Steering State: Scan Primary Channels and use Install Code
-Error: NWK Steering could not setup security: 0xB5
-NWK Steering State: Scan Secondary Channels and use Install Code
-Error: NWK Steering could not setup security: 0xB5
-NWK Steering State: Scan Primary Channels and Use Centralized Key
-Starting scan on channel 19
-NWK Steering: Start: 0x00
-Zigbee_Switch_ZR>Starting scan on channel 20
-Starting scan on channel 24
-Starting scan on channel 25
-NWK Steering joining 0xD216
-EMBER_NETWORK_UP 0xDA42
-NWK Steering network joined.
-Processing message: len=12 profile=0000 cluster=0013
-RX: ZDO, command 0x0013, status: 0x00
-Device Announce: 0xDA42
-Update TC Link Key: Starting update trust center link key process: 0x00
-Processing message: len=17 profile=0000 cluster=8002
-RX: ZDO, command 0x8002, status: 0x00
-RX: Node Desc Resp, Matches: 0x0000
-Update TC Link Key: New key established: 0x03
-Partner: 57 A6 DE FE FF 57 0B 00 
-NWK Steering: Trust center link key update status: 0x03
-Update TC Link Key: New key established: 0x65
-Partner: 57 A6 DE FE FF 57 0B 00 
-NWK Steering: Trust center link key update status: 0x65
-pJoin for 180 sec: 0x00
-NWK Steering: Broadcasting permit join: 0x00
-NWK Steering Stop.  Cleaning up.
-Join network complete: 0x00
-```
-
-## 7.8. Joining process in Network Analyzer
-Have a look at the Network Analyzer how the joining process works. See Figure 7‑5.  
-
-<div align="center">
-  <img src="https://github.com/MarkDing/IoT-Developer-Boot-Camp-Wiki/blob/master/zigbee/images/joining_process_in_Network_Analyzer.png">  
-</div>  
-<div align="center">
-  <b>Figure 7‑5 Joining process in Network Analyzer</b>
-</div>  
-</br>  
-
-**Note**: Probably a lot of "Many-to-One Route Discovery" appear in the log. The upper green filter box can be used to filter these messages out. Right click on this package and "Show only summary: Many…..", then negate the condition from "==" to "!=".  
-
-***
-
-# 8. Establish connection between Light and Switch with an installation code-derived link key
+# 7. Establish connection between Light and Switch with an installation code-derived link key
 This chapter presents how to form a network and join to this. The communication between the devices will be captured by Network Analyzer tool. The installation code will be used in this part. 
 An installation code is used to create a preconfigured, link key. The installation code is transformed into a link key by using the AES-MMO hash algorithm, and the derived Zigbee link key will be known only by the Trust Center and the joining device. So the Trust Center can use that key to securely transport the Zigbee network key to the device. Once the device has the network key, it can communicate at the network layer to the Zigbee network.  
 
-## 8.1 Programming the Installation Code on a Zigbee Device
-### 8.1.1 Format of the Installation Code File
+## 7.1. Programming the Installation Code to Switch (Router) Device
+For programming the installation code into the Switch device, you need to create a text file with the value of the installation code, and then write the installation code into the manufacturing area of the Switch node by using the Simplicity Commander.  
+For saving your time on this hands-on, we have prepared a batch file as below that can finish the installation code programming automatically. Create a batch file (for e.g., [program_install_code.bat](https://github.com/MarkDing/IoT-Developer-Boot-Camp-Wiki/blob/master/zigbee/program_install_code.bat)), open it with any text editor, copy and paste the content below to it, save and execute it for programming the installation code.  
+
+```
+@echo off
+
+:: THIS FILE IS USED FOR PROGRAMMING INSTALLATION CODE AUTOMATICALLY.
+
+:: use PATH_SCMD env var to override default path for Simplicity Commander
+if "%PATH_SCMD%"=="" (
+  set COMMANDER="C:\SiliconLabs\SimplicityStudio\v4\developer\adapter_packs\commander\commander.exe"
+) else (
+  set COMMANDER=%PATH_SCMD%\commander.exe
+)
+
+:: default file extension of GCC and IAR
+set DEFAULT_INSTALL_CODE="83FED3407A939723A5C639B26916D505"
+
+:: change the working dir to the dir of the batch file, which should be in the project root
+cd %~dp0
+
+if not exist "%COMMANDER%" (
+  echo Error: Simplicity Commander not found at '%COMMANDER%'
+  echo Use PATH_SCMD env var to override default path for Simplicity Commander.
+  pause
+  goto:eof
+)
+
+echo **********************************************************************
+echo Program the default installation code to the specified device
+echo 1. Erase the Installation Code if existing
+echo 2. Program the Installation Code into the Manufacturing Area of the specified Device
+echo 3. Check the Stored Installation Code
+echo **********************************************************************
+echo.
+%COMMANDER% flash --tokengroup znet --token "Install Code: !ERASE!"
+echo.
+%COMMANDER% flash --tokengroup znet --token "Install Code:%DEFAULT_INSTALL_CODE%"
+echo.
+%COMMANDER% tokendump --tokengroup znet --token TOKEN_MFG_INSTALLATION_CODE
+
+pause
+```
+
+Below is the result of executing the batch file.
+<div align="center">
+  <img src="https://github.com/MarkDing/IoT-Developer-Boot-Camp-Wiki/blob/master/zigbee/images/programming_install_code_batch_result.png">  
+</div>  
+</br>  
+
+**Note**: The sections below describe in detail about how to programming the installation code, you can skip it and go to [7.2 Form centralized network on Light (Coordinator) device](#72-form-centralized-network-on-light-coordinator-device) if you don't want spend much time on that.
+
+### 7.1.1. Format of the Installation Code File
 To program the installation code, create a simple text file with the value of the installation code (without the CRC). In these instructions
 the file is named ```install-code-file.txt```.  
 The format of the file is as follows:  
@@ -552,20 +457,19 @@ Install Code: <ascii-hex>
 ```
 
 Here is a sample installation code file. The CRC for that code is 0xB5C3 and is not included in the file.  
-**Note: Please don't use this example as your installation code directly if you are attending any training session, you can fill it with any hex.**
 ```
 Install Code: 83FED3407A939723A5C639B26916D505
 ```
 
-### 8.1.2 Checking the Installation Code on an EFR32 Device
+### 7.1.2. Checking the Installation Code on an EFR32 Device
 To get started, it is best to verify there is connectivity with the device to be programmed, and what information is currently stored on the node.  
-To do this, make sure that only the Switch device is connected to your PC (otherwise a new dialog will pop-up for selecting the right device), and then execute the following command to print all manufacturing token data from an EFR32-based device. The ```tokendump``` command prints manufacturing token data as key-value pairs. Simplicity Commander supports more than one group of tokens. In this example, the token group named "znet" is used.  
+To do this, make sure that only the **Switch** device is connected to your PC (otherwise a new dialog will pop-up for selecting the right device), and then execute the following command to print all manufacturing token data from an EFR32-based device. The ```tokendump``` command prints manufacturing token data as key-value pairs. Simplicity Commander supports more than one group of tokens. In this example, the token group named "znet" is used.  
 ```
-$ commander tokendump --tokengroup znet
+$ C:\SiliconLabs\SimplicityStudio\v4\developer\adapter_packs\commander\commander.exe tokendump --tokengroup znet
 ```
 
 You should see the following output if you didn't write the installation code before, where the code in highlighted area below reflects the significant fields related to the installation code:  
-**Note**: If the ```commander``` command is not available on your PowerShell console, please just jump to the directory firstly and then execute the command.
+**Note**: If the ```commander``` command is not available on your PowerShell console, please check if you have installed the commander correctly, and make sure the commander.exe is included in the directory below.
 ```
 C:\SiliconLabs\SimplicityStudio\v4\developer\adapter_packs\commander
 ```
@@ -573,40 +477,75 @@ C:\SiliconLabs\SimplicityStudio\v4\developer\adapter_packs\commander
 <div align="center">
   <img src="https://github.com/MarkDing/IoT-Developer-Boot-Camp-Wiki/blob/master/zigbee/images/check_install_code.png">  
 </div>  
-<div align="center">
-  <b>Figure 8‑1 Check installation code</b>
-</div>  
+</br>  
 
-### 8.1.3 Writing the Installation Code into the Manufacturing Area on an EFR32 Device
+### 7.1.3. Writing the Installation Code into the Manufacturing Area on an EFR32 Device
 To write the installation code into the manufacturing area of the Switch node, execute the following command:  
 ```
-$ commander flash --tokengroup znet --tokenfile install-code-file.txt
+$ C:\SiliconLabs\SimplicityStudio\v4\developer\adapter_packs\commander\commander.exe flash --tokengroup znet --tokenfile install-code-file.txt
 ```
 You should see output similar to the following:  
 <div align="center">
   <img src="https://github.com/MarkDing/IoT-Developer-Boot-Camp-Wiki/blob/master/zigbee/images/write_the_installation_code.png">  
 </div>  
 
-### 8.1.4 Verifying the Stored Installation Code on an EFR32 Device
+### 7.1.4. Verifying the Stored Installation Code on an EFR32 Device
 After writing the installation code, it is best to verify the information by executing the following command again:  
 ```
-$ commander tokendump --tokengroup znet
+$ C:\SiliconLabs\SimplicityStudio\v4\developer\adapter_packs\commander\commander.exe tokendump --tokengroup znet
 ```
 <div align="center">
   <img src="https://github.com/MarkDing/IoT-Developer-Boot-Camp-Wiki/blob/master/zigbee/images/verify_the_installation_code.png">  
 </div>  
 
-### 8.1.5 Erasing the Installation Code
-**Note**: By default, you don't need to process this step in this hands-on, except you need to update the programmed installation code.  
+### 7.1.5. Erasing the Installation Code (not-necessary)
+**Note**: This is normally not necessary to execute this step in this hands-on, except you need to update the programmed installation code.  
 If you want to remove the install code from the device you just programmed, simply create an installation code file with the contents as below, and then execute the command to program this file into the target.  
 ```
 Install Code: !ERASE!
 ```
 
-## 8.2 Form centralized network
-### 8.2.1 Form centralized network
-Open the .isc file of the Light project, navigate to "Plugins" tab, and enable the "Security Link Keys library" plugin. Generate and build the project again.  
-After programming the new image to the Light node, use the command below as what we did before to form a centralized network with Zigbee 3.0 security.  
+## 7.2. Form centralized network on Light (Coordinator) device
+### 7.2.1. Derive a link key from the installation code 
+To derive a link key from the installation code and store that into the link key table on the Light, which acts as the Trust Center for the centralized network, enter the command below:  
+```
+option install-code <link key table index> {<Joining Node's EUI64>} {<16-byte installation code + 2-byte CRC>}
+```
+For example:  
+```
+option install-code 0 {00 0B 57 FF FE 64 8D D8} {83 FE D3 40 7A 93 97 23 A5 C6 39 B2 69 16 D5 05 C3 B5}
+```
+
+* The first argument is the link key table index.  
+* The next argument is the EUI64 of the joining node (in this example, its' the **Switch** node). You can find this information by running the CLI ```info``` command on the **Switch** node, and looking for the string similar to ```node [(>)000B57FFFE648DD8]```.  
+
+<div align="center">
+  <img src="https://github.com/MarkDing/IoT-Developer-Boot-Camp-Wiki/blob/master/zigbee/images/check_device_EUI.png">  
+</div>  
+</br>
+
+* The last argument is the installation code with the 2-byte CRC appended at the end. You can calculate the CRC yourself, or you can simply find out from the output of the batch file execution which has the command ```$ commander tokendump --tokengroup znet``` inside:  
+
+<div align="center">
+  <img src="https://github.com/MarkDing/IoT-Developer-Boot-Camp-Wiki/blob/master/zigbee/images/verify_the_installation_code.png">  
+</div>  
+</br>
+
+The CRC is displayed just below the install code and is printed in little endian format. **Reverse the bytes to big endian before using as an argument with the option install-code CLI**.  
+
+To see if the link key is added successfully, enter the ```keys print``` CLI on the **Light** node to see it in the Link Key Table. This shows both the link key derived from the installation code, and the network key.  
+<div align="center">
+  <img src="https://github.com/MarkDing/IoT-Developer-Boot-Camp-Wiki/blob/master/zigbee/images/check_link_key.png">  
+</div>  
+</br>
+
+As show above, the derived link key is:  
+```
+66 B6 90 09 81 E1 EE 3C  A4 20 6B 6B 86 1C 02 BB 
+```
+
+### 7.2.2. Form centralized network
+On Light node, use the command below to form a centralized network with Zigbee 3.0 security.  
 ```
 plugin network-creator start 1
 ```
@@ -619,49 +558,7 @@ network id
 </div>  
 </br>
 
-
-### 8.2.2 Derive a link key from the installation code
-To derive a link key from the installation code and store that into the link key table on the Light, which acts as the Trust Center for the centralized network, enter the command below:  
-```
-option install-code <link key table index> {<Joining Node's EUI64>} {<16-byte installation code + 2-byte CRC>}
-```
-For example:  
-```
-option install-code 0 {00 0B 57 FF FE 64 8D D8} {83 FE D3 40 7A 93 97 23 A5 C6 39 B2 69 16 D5 05 C3 B5}
-```
-
-* The first argument is the link key table index.  
-* The next argument is the EUI64 of the joining node (in this example, Switch). You can find this information by running the CLI ```info``` command on the Switch node, and looking for the string similar to ```node [(>)000B57FFFE648DD8]```.  
-
-<div align="center">
-  <img src="https://github.com/MarkDing/IoT-Developer-Boot-Camp-Wiki/blob/master/zigbee/images/check_device_EUI.png">  
-</div>  
-</br>
-
-* The last argument is the installation code with the 2-byte CRC appended at the end. You can calculate the CRC yourself, or you can simply find out from running the Simplicity Commander tokendump command:  
-
-```
-$ commander tokendump --tokengroup znet
-```
-<div align="center">
-  <img src="https://github.com/MarkDing/IoT-Developer-Boot-Camp-Wiki/blob/master/zigbee/images/verify_the_installation_code.png">  
-</div>  
-</br>
-
-The CRC is displayed just below the install code and is printed in little endian format. **Reverse the bytes to big endian before using as an argument with the option install-code CLI**.  
-
-To see if the link key is added successfully, enter the keys print CLI on the Light to see it in the Link Key Table. This shows both the link key derived from the installation code, and the network key.  
-<div align="center">
-  <img src="https://github.com/MarkDing/IoT-Developer-Boot-Camp-Wiki/blob/master/zigbee/images/check_link_key.png">  
-</div>  
-</br>
-
-As show above, the derived link key is:  
-```
-66 B6 90 09 81 E1 EE 3C  A4 20 6B 6B 86 1C 02 BB 
-```
-
-### 8.2.3 Open the network with the derived link key
+### 7.2.3. Open the network with the derived link key
 Now set the transient link key (the same link key that you derived from the install code) on the Trust Center and open the network for joining with the joining device's EUI64:  
 ```
 plugin network-creator-security open-with-key {eui64} {linkkey}
@@ -671,14 +568,8 @@ For example:
 plugin network-creator-security open-with-key {00 0B 57 FF FE 64 8D D8} {66 B6 90 09 81 E1 EE 3C A4 20 6B 6B 86 1C 02 BB}
 ```
 
-### 8.3 Join the network
-For using the install code on the Switch node, please make sure that the "Install Code Library" plugin is enabled on the joining device, Generate and build the project again.  
-<div align="center">
-  <img src="https://github.com/MarkDing/IoT-Developer-Boot-Camp-Wiki/blob/master/zigbee/images/enable_install_code_library.png">  
-</div>  
-</br>
-
-After programming the new image to the Switch node, enter this CLI to use the Network Steering plugin to join the network:  
+## 7.3. Join the network on Switch (Router) device
+On the Switch node, enter this CLI to use the Network Steering plugin to join the network:  
 ```
 plugin network-steering start 0
 ```
@@ -689,10 +580,10 @@ And the serial console will output similar as below to indicate that the Switch 
 </div>  
 </br>
 
-## 8.4 Capture the Network log
+## 7.4. Capture the Network log on Light (Coordinator) device
 This chapter presents how to capture the communication between the devices by Network Analyzer tool. 
 
-## 8.4.1 Find the Network key for capturing
+### 7.4.1. Find the Network key and Derived Link key for capturing
 The network key is necessary for analyzing the network log, you can get the network key on the coordinator side with the command below. 
 
 Command:  
@@ -703,31 +594,29 @@ keys print
 Result:  
 ```
 EMBER_SECURITY_LEVEL: 05
-NWK Key out FC: 00000013
+NWK Key out FC: 00000057
 NWK Key seq num: 0x00
-NWK Key: 3F B8 D4 09 4E AD 0A 83  89 A2 7F 1F C0 03 BF 87  
-Link Key out FC: 00000000
+NWK Key: C1 05 57 73 1A 09 83 71  77 C3 22 B7 E1 90 9A A1  
+Link Key out FC: 00000006
 TC Link Key
 Index IEEE Address         In FC     Type  Auth  Key
--     (>)000B57FFFEDEA657  00000000  L     y     C0 1C 81 33 69 98 A3 21  D4 67 92 29 73 59 D0 8E  
+-     (>)000B57FFFE648D95  00000000  L     y     A8 ED 49 FB C5 13 FA 64  E5 60 D1 76 13 FD B8 6A  
 Link Key Table
 Index IEEE Address         In FC     Type  Auth  Key
-0/6 entries used.
+0     (>)000B57FFFE648DD8  00001002  L     y     66 B6 90 09 81 E1 EE 3C  A4 20 6B 6B 86 1C 02 BB  
+1/6 entries used.
 Transient Key Table
 Index IEEE Address         In FC     TTL(s) Flag    Key    
 0 entry consuming 0 packet buffer.
 ```
 
-## 8.4.2 Add network key to Network Analyzer
-Copy the network key ```C0 1C 81 33 69 98 A3 21  D4 67 92 29 73 59 D0 8E``` and add it to the Network Analyzer's key storage to be able to decode the messages. See Figure 8‑1.  
+### 7.4.2. Add network key and Derived link key to Network Analyzer
+Add the network key ```C1 05 57 73 1A 09 83 71  77 C3 22 B7 E1 90 9A A1``` and derived link key ```66 B6 90 09 81 E1 EE 3C  A4 20 6B 6B 86 1C 02 BB``` to the Network Analyzer's key storage to be able to decode the messages.  
 
 1. Open Window-\>Preferences  
 
 <div align="center">
   <img src="https://github.com/MarkDing/IoT-Developer-Boot-Camp-Wiki/blob/master/zigbee/images/open_Security_Keys_tab.png">  
-</div>  
-<div align="center">
-  <b>Figure 8‑1 Open Security Keys tab</b>
 </div>  
 </br>  
 
@@ -737,49 +626,49 @@ Copy the network key ```C0 1C 81 33 69 98 A3 21  D4 67 92 29 73 59 D0 8E``` and 
 </div>  
 </br>  
 
-3. Navigate to Network Analyzer-\>Decoding-\> Security Keys and add the new key. See Figure 8‑2.  
+3. Navigate to Network Analyzer-\>Decoding-\> Security Keys and add the network keys. See the figure below.  
 <div align="center">
   <img src="https://github.com/MarkDing/IoT-Developer-Boot-Camp-Wiki/blob/master/zigbee/images/add_new_network_key.png">  
 </div>  
-<div align="center">
-  <b>Figure 8‑2 Add new Network Key</b>
-</div>  
+</br>  
 
-## 8.4.3 Start capturing on Light device
-Now the Switch should have joined the network created by the Light, please use the command on the Switch for leaving the network firstly.
+4. Repeat the last step for adding the derived link key to the list.  
+
+### 7.4.3. Start capturing on Light (Coordinator) device
+Now the Switch should have joined the network created by the Light, please use the command on the **Switch** for leaving the network firstly.
 ```
 network leave
 ```
 
-Right click on Adapter name of the Light-\> *Connect* (if not connected yet)-\>*Start capture*. See Figure 8‑3.  
+Right click on Adapter name of the Light-\> *Connect* (if not connected yet)-\>*Start capture*.  
 <div align="center">
   <img src="https://github.com/MarkDing/IoT-Developer-Boot-Camp-Wiki/blob/master/zigbee/images/start_capturing.png">  
 </div>  
 <div align="center">
-  <b>Figure 8‑3 Start capturing</b>
+  <b>Start capturing</b>
 </div>  
 </br>  
 
-It should change the view to *Network Analyzer* and immediately start capturing. See Figure 8‑4.  
+It should change the view to *Network Analyzer* and immediately start capturing.  
 <div align="center">
   <img src="https://github.com/MarkDing/IoT-Developer-Boot-Camp-Wiki/blob/master/zigbee/images/capturing_on_Light.png">  
 </div>  
 <div align="center">
-  <b>Figure 8‑4 Capturing on Light</b>
+  <b>Capturing on Light</b>
 </div>  
 </br>  
 
-And then repeat the step in [Open the network with the derived link key](#823-open-the-network-with-the-derived-link-key-1) to open the network, and step in [Join the network](#83-join-the-network-1) to join the network.
+And then repeat the step in [Open the network with the derived link key](#723-open-the-network-with-the-derived-link-key) to open the network, and step in [Join the network on Switch (Router) device](#73-join-the-network-on-switch-router-device) to join the network.  
 The capture file (\*Live) should show the packets on the network.  
 
-## 8.4.4 Joining process in Network Analyzer
-Have a look at the Network Analyzer how the joining process works. See Figure 8‑5.  
+### 7.4.4. Joining process in Network Analyzer
+Stop the network analyzer after the Switch finish joining the network, and have a look at the Network Analyzer how the joining process works. See the figure below.  
 
 <div align="center">
   <img src="https://github.com/MarkDing/IoT-Developer-Boot-Camp-Wiki/blob/master/zigbee/images/joining_process_in_Network_Analyzer_install_code.png">  
 </div>  
 <div align="center">
-  <b>Figure 8‑5 Joining process in Network Analyzer</b>
+  <b>Joining process in Network Analyzer</b>
 </div>  
 </br>  
 
