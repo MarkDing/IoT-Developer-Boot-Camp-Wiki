@@ -139,14 +139,14 @@ bool emberAfOnOffClusterToggleCallback(void){
 
 ## 3.2. Command sending from Switch device
 First, a place should be found to reside our code for sending the command. For this purpose, a callback is triggered by button press is used.  
-The button operations are handled by the *Button Interface* plugin, so it should be enabled.  
+The button operations are handled by the **Button Interface** plugin, so it should be enabled.  
 
 <div align="center">
   <img src="https://github.com/MarkDing/IoT-Developer-Boot-Camp-Wiki/blob/master/zigbee/images/plugin_button_interface_enable.png">  
 </div> 
 </br>  
 
-The plugin defines some callbacks, so these can be found in the *Callbacks* tab. Move there and enable the “*Button1 Pressed Short”* callback function.  
+The plugin defines some callbacks, so these can be found in the *Callbacks* tab. Move there and enable the **Button1 Pressed Short** callback function.  
 <div align="center">
   <img src="https://github.com/MarkDing/IoT-Developer-Boot-Camp-Wiki/blob/master/zigbee/images/callback_button_pressed.png">  
 </div> 
@@ -208,7 +208,7 @@ void emberAfPluginButtonInterfaceButton1PressedShortCallback(uint16_t timePresse
 The previous 2 chapters presented how to make the devices to be able to send and receive commands through some APIs.  
 
 Build the applications and download the output files to the target devices. Please exit from the network log capturing before programming the device, because the debugger has no access to the chip while the Network Analyzer (or Energy Profiler) is connected.  
-**Note**: Please **do not** erase the device before programming, otherwise the “znet” tokes will be deleted, and the device cannot join the network except [Join the network](https://github.com/ChengYuan-CY/IoT-Developer-Boot-Camp-Wiki-1/blob/master/zigbee/Zigbee-Hands-on-Forming-and-Joining.md#73-join-the-network-on-switch-router-device) again as instructed in last lab.  
+**Note**: Please **do not** erase the device before programming, otherwise the “znet” tokes will be deleted, and the device cannot join the network except [Join the network](https://github.com/MarkDing/IoT-Developer-Boot-Camp/wiki/Zigbee-Hands-on-Forming-and-Joining#73-join-the-network-on-switch-router-device) again as instructed in last lab.  
 
 Press Button1 for less than 500ms to send the ON command or between 500ms to 1000ms to send the OFF command, and you will notice that LED1 on the light toggle on and off.  
 
@@ -222,7 +222,7 @@ Button1 is pressed for 119 milliseconds
 Command is zcl on-off ON
 Command is successfully sent
 
-Button1 is pressed for 392 milliseconds
+Button1 is pressed for 592 milliseconds
 Command is zcl on-off OFF
 Command is successfully sent
 ```

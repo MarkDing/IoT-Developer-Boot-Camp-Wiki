@@ -420,7 +420,7 @@ emberAfAppPrintln("MFG String: %s", mfgString);
 ```
 Please note that if the manufacturing string token is not programmed by external programming tool before, the debug output will be NULL which indicates the manufacturing string is NULL.  
 <font color=red><b>Question</b></font>: Can the Manufacturing tokens be accessed through the basic token APIs?  
-<font color=red><b>Hint</b></font>: Please back to the section [Access the manufacturing Token](#434-access-the-manufacturing-token) for getting the answer.  
+<font color=red><b>Hint</b></font>: Please back to the section [Access the manufacturing Token](#3221-accessing-manufacturing-tokens) for getting the answer.  
 
 ***
 

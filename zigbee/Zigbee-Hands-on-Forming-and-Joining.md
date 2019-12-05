@@ -36,12 +36,6 @@
 # 1. Introduction
 In this worksheet we provide a step-by-step guide to create, build and run ZigBee 3.0 applications based on EmberZNet Stack 6.6.4. If you use a later release in the future, most of the instructions should be still applied, although there could be minor differences not foreseen at the time of this document.  
 These exercises help you get familiar with ZigBee 3.0 in the EmberZNet Stack, Simplicity Studio v4 development environment, and the Wireless Start Kit (WSTK) with EFR32MG12 SoC. We assume that you have a WSTK and the following software.  
-The figure below illustrates the working flow of this hands-on.  
-
-<div align="center">
-  <img src="https://github.com/MarkDing/IoT-Developer-Boot-Camp-Wiki/blob/master/zigbee/images/forming_and_joining_work_flow.png">  
-</div>  
-</br>  
 
 ## 1.1. Application features
 The boot camp series hands-on workshop will cover four functionalities below, and the application development is split into four steps respectively to show how an application should be built up from the beginning.  
@@ -58,6 +52,13 @@ This tutorial will give an overall knowledge about how to build a Light and Swit
 The network will consist of two devices by using board of BRD4162A (EFR32MG12).  
 * One of them is the Light. Since the realized network is centralized, it will work as the Coordinator and Trust Center of the network. This device forms and opens the network, permits other devices to join, and manages the security keys.  
 * The other device is the Switch. It joins to the opened network and send On-Off commands to the Light.  
+
+The figure below illustrates the working flow of this hands-on.  
+
+<div align="center">
+  <img src="https://github.com/MarkDing/IoT-Developer-Boot-Camp-Wiki/blob/master/zigbee/images/forming_and_joining_work_flow.png">  
+</div>  
+</br>  
 
 *** 
 
@@ -278,21 +279,6 @@ The "Generation successful" label signs all the required files are created. See 
 </div>  
 </br>  
 
-**Hardware configurator**  
-The hardware configurator is NOT part of the AppBuilder. It's unique file in the project for generating the "hal-config/hal-config.h" file. This header file contains includes, which will be used by other source files.  
-It's important to understand that the here applied settings don't directly mean that the peripheral is initialized, it just provides macros for the proper pin and clock settings. It could happen that the UART peripheral is enabled in this configurator, but not in the Serial plugin. In this case the initializer functions will not be called, thus the UART won't work. However, the other way around, if a plugin refers to a macro which is not defined by the hardware configurator, it causes compiler errors.  
-
-In our project, the VCOM enable pin must be enabled to make the UART-USB converter works. The serial port initializer sets the PA5 to high state. If the board was selected correctly at the beginning, this already has been set. See Figure 3‑12.  
-
-<div align="center">
-  <img src="https://github.com/MarkDing/IoT-Developer-Boot-Camp-Wiki/blob/master/zigbee/images/hardware_configurator.png">  
-</div>  
-<div align="center">
-  <b>Figure 3‑12 Hardware configurator</b>
-</div>  
-</br>  
-
-The saving of this file re-generates the "hal-config.h" file according to the settings.  
 Press the Build button (![](https://github.com/MarkDing/IoT-Developer-Boot-Camp-Wiki/blob/master/zigbee/images/build_project.png)). Upon a successful build, the binary files should be appeared in the "Binaries" directory.  
 
 *** 
