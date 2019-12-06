@@ -1,18 +1,16 @@
-![](images/home.png)[Home](Home)
 ********
 ![zigbee](images/zigbee.png)
 ********
-  
 
 
-## Zigbee Boot Camp Schedule
-### Preparatory Course
+# Zigbee Boot Camp Schedule
+## Preparatory Course
 | Time | Content |  
 |:---- |:----|    
 | 2 hour | [Preparatory Course](Zigbee-Preparatory-Course) |
 
 
-### Day One
+## Day One
 | Time | Content |  
 |:---- |:----|    
 | 1 hour | [Introduction of Zigbee][Zigbee Introduction] |
@@ -22,7 +20,7 @@
 | 1 hour | [Hands on : Using Event](Zigbee-Hands-on-Using-Event) |
 | 1 hour | [Hands on : Non-volatile Data Storage](Zigbee-Hands-on-Non-volatile-Data-Storage) |
 *************
-### Day Two
+## Day Two
 | Time | Content |  
 |:---- |:----|    
 | 3 hour | [Sleepy End Device][Zigbee-Hands-on-Sleepy-End-Device] and [Hands-on][Zigbee-Hands-on-Sleepy-End-Device-Hands-on]|
@@ -31,7 +29,7 @@
 *************
   
 
-## Reference
+# Reference
 - [UG103-02-Fundamentals-Zigbee](https://www.silabs.com/documents/public/user-guides/ug103-02-fundamentals-zigbee.pdf)
 - [UG103-05-AppDevFundamentals-Security](https://www.silabs.com/documents/public/user-guides/ug103-05-fundamentals-security.pdf)
 - [UG103-07-Non-Volatile-Data-Storage-Fundamentals](https://www.silabs.com/documents/public/user-guides/ug103-07-non-volatile-data-storage-fundamentals.pdf)

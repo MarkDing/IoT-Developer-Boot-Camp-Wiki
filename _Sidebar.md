@@ -2,8 +2,8 @@
 --------------------------------------------------------
 * [Zigbee](Zigbee)
 * [Bluetooth](Bluetooth)
-* [Hardware](Hardware)
 * [ZWave](ZWave)
 * [Proprietary](Proprietary)
-* [Tools](Tools)
+* [Hardware](Hardware)
+* [Common](Common)
 
