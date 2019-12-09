@@ -22,6 +22,9 @@ On top of this page, you will find several small icons following with text of wi
 * __Hardware__ introduce the wireless hardware knowledge
 * __Common__ introduce the common IoT knowledge that not limited with specific wireless protocol. 
 
-Click on the protocol you are interested to start the exploration. 
+Click on the topic you are interested to start our adventure. 
 
 ********
+
+### Want to contribute to this Wiki?
+[Fork it and send a pull request](https://github.com/MarkDing/IoT-Developer-Boot-Camp-Wiki)
