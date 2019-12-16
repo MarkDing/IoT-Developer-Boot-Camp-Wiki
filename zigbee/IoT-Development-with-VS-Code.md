@@ -1,5 +1,3 @@
-# IoT Project Development in VS Code
-
 ## 1. Introduction
 This article we will introduce how to develop Silicon Labs IoT project in VS Code. Silicon Labs provides [Simplicity Studio](https://www.silabs.com/products/development-tools/software/simplicity-studio.) as IoT development platform. It is highly integrated IDE based on Eclipse. It can easily setup the project and generate source codes according to the configuration you made within the IDE. However, it is monster in size and speed. Once the user finish the all common configurations it is unnecessary to stick on the Simplicity Studio to develop the project. A better choice is to use a light weight IDE to do the IoT development. Here we will introduce how to use Microsoft [Virtual Studio Code](https://code.visualstudio.com/) as our default IDE to develop a Zigbee project.
 
