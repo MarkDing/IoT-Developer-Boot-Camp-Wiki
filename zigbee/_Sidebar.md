@@ -8,3 +8,4 @@
     * [Hands on : Sending on/off commands](Zigbee-Hands-on-Sending-onoff-commands)
     * [Hands on : Using Event](Zigbee-Hands-on-Using-Event)
     * [Hands on : Non-volatile Data Storage](Zigbee-Hands-on-Non-volatile-Data-Storage)
+* [IoT Development with VS Code](IoT-Development-with-VS-Code)
