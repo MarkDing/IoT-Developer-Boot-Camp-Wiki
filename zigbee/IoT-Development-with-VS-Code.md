@@ -33,7 +33,7 @@ Install [Git](https://git-scm.com/download/win) from official website. Open VS c
 By default, the Simplicity Studio doesn't support command line build although it supports GNU compilers. The next generation Simplicity Studio is considering to add the command line support but we cannot wait for it. There is a makefile template file which can help to generate makefile of a project, but the makefile doesn't work with a lot of errors. Jim Lin did some works recently and made modification on the template file to make the command line build working. That is a very nice job since the command line build is an important part of this project. I just made a minor modifications to match the requirement of the VS Code.
 
 ### 4.1. Replace the makefile template.
-The makefile template is located at **C:\SiliconLabs\SimplicityStudio\v4\developer\sdks\gecko_sdk_suite\v2.6\app\esf_common\template\efr32\efr32-afv2.mak**, make a backup of the file and replace it with attached modified the [template file](https://github.com/MarkDing/IoT-Development-with-VS-Code/blob/master/files/efr32-afv2.mak).
+The makefile template is located at **C:\SiliconLabs\SimplicityStudio\v4\developer\sdks\gecko_sdk_suite\v2.6\app\esf_common\template\efr32\efr32-afv2.mak**, make a backup of the file and replace it with attached modified the [template file](files/IoT-Development-with-VS-Code/efr32-afv2.mak).
 
 Here is the modification of the makefile template
 
@@ -88,7 +88,7 @@ Press **Ctrl+Shift+P** to open the Command Palette, type "C/C++" and choose **Ed
 
 This open **c_cpp_properties.json** in **.vscode** folder. The detailed introduction on this file can be found at VS Code [docs web site](https://code.visualstudio.com/docs/cpp/c-cpp-properties-schema-reference).
 
-Please refer to the attached [c_cpp_properties.json](https://github.com/MarkDing/IoT-Development-with-VS-Code/blob/master/files/c_cpp_properties.json) in details.
+Please refer to the attached [c_cpp_properties.json](files/IoT-Development-with-VS-Code/c_cpp_properties.json) in details.
 
 
 We add env SDK_PATH, COMPILER_PATH,  browse. Set the name as VS-Z3Light, intelliSenseMode as gcc-x86, cStandard as C99.
@@ -180,7 +180,7 @@ Next, create a tasks.json file to tell VS Code how to build the project.
 #### 5.3.1. Create build task
 Press **Ctrl+Shift+P**, type "task" and choose **Tasks: Configure Default Build Task**. In the drop-down, select Create tasks.json file from template, then choose Others. VS Code creates a minimal tasks.json file and opens it in the editor.
 
-Please refer to the attached [tasks.json](https://github.com/MarkDing/IoT-Development-with-VS-Code/blob/master/files/tasks.json) in details.
+Please refer to the attached [tasks.json](files/IoT-Development-with-VS-Code/tasks.json) in details.
 
 
 #### 5.3.2. Configure build task
