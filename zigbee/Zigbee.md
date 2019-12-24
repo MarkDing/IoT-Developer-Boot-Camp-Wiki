@@ -39,12 +39,12 @@
 - [Zigbee Specification R22 (Need membership of Zigbee Alliance)](https://zigbee.org/)
 - [Zigbee Cluster Library Rev.7 (Need membership of Zigbee Alliance)](https://zigbee.org/)
 
-[Zigbee Introduction]: https://github.com/MarkDing/IoT-Developer-Boot-Camp-Wiki/blob/master/zigbee/Zigbee%20Basic.pptx
-[EmberZnet and WSTK]: https://github.com/MarkDing/IoT-Developer-Boot-Camp-Wiki/blob/master/zigbee/EmberZnet%20and%20WSTK.pptx
-[Zigbee Onboarding Roadmap]: https://github.com/MarkDing/IoT-Developer-Boot-Camp-Wiki/blob/master/zigbee/Silicon%20Labs%20ZigBee%20Onboarding%20Roadmap.pdf
-[Zigbee Hands On UG]:https://github.com/MarkDing/IoT-Developer-Boot-Camp-Wiki/blob/master/zigbee/Zigbee-Hands-on-UsersGuide.docx
-[Zigbee-Hands-on-Sleepy-End-Device]:https://github.com/MarkDing/IoT-Developer-Boot-Camp-Wiki/blob/master/zigbee/Zigbee%20Sleepy%20End%20device.pptx
-[Zigbee-Hands-on-Sleepy-End-Device-Hands-on]:https://github.com/MarkDing/IoT-Developer-Boot-Camp-Wiki/blob/master/zigbee/Sleepy%20End%20Device%20Hands-on.pdf
-[Zigbee-Hands-on-Gateway-OTA]:https://github.com/MarkDing/IoT-Developer-Boot-Camp-Wiki/blob/master/zigbee/Gateway%20Basic%20and%20OTA.pptx
-[Zigbee-Hands-on-MQTT-Interface]:https://github.com/MarkDing/IoT-Developer-Boot-Camp-Wiki/blob/master/zigbee/Control%20Zigbee%20Device%20with%20MQTT%20Client.pdf
-[Zigbee-Hands-on-OTA-Upgrading]:https://github.com/MarkDing/IoT-Developer-Boot-Camp-Wiki/blob/master/zigbee/OTA%20Upgrading.pdf
+[Zigbee Introduction]: files/ZB-2019Q4-ZMGC-Training/Zigbee%20Basic.pptx
+[EmberZnet and WSTK]: files/ZB-2019Q4-ZMGC-Training/EmberZnet%20and%20WSTK.pptx
+[Zigbee Onboarding Roadmap]: files/ZB-2019Q4-ZMGC-Training/Silicon%20Labs%20ZigBee%20Onboarding%20Roadmap.pdf
+[Zigbee Hands On UG]:files/ZB-2019Q4-ZMGC-Training/Zigbee-Hands-on-UsersGuide.docx
+[Zigbee-Hands-on-Sleepy-End-Device]:files/ZB-2019Q4-ZMGC-Training/Zigbee%20Sleepy%20End%20device.pptx
+[Zigbee-Hands-on-Sleepy-End-Device-Hands-on]:files/ZB-2019Q4-ZMGC-Training/Sleepy%20End%20Device%20Hands-on.pdf
+[Zigbee-Hands-on-Gateway-OTA]:files/ZB-2019Q4-ZMGC-Training/Gateway%20Basic%20and%20OTA.pptx
+[Zigbee-Hands-on-MQTT-Interface]:files/ZB-2019Q4-ZMGC-Training/Control%20Zigbee%20Device%20with%20MQTT%20Client.pdf
+[Zigbee-Hands-on-OTA-Upgrading]:files/ZB-2019Q4-ZMGC-Training/OTA%20Upgrading.pdf
