@@ -1,0 +1,13 @@
+Windows Registry Editor Version 5.00
+
+[HKEY_CLASSES_ROOT\Folder\shell\open_cygwin]
+@="Open Cygwin Here"
+
+[HKEY_CLASSES_ROOT\Folder\shell\open_cygwin\command]
+@="C:\\cygwinx86\\bin\\mintty.exe /bin/sh -lc 'cd \"`cygpath \"%V\"`\"; bash'"
+
+[HKEY_CLASSES_ROOT\Directory\Background\shell\open_cygwin]
+@="Open Cygwin Here"
+
+[HKEY_CLASSES_ROOT\Directory\Background\shell\open_cygwin\command]
+@="C:\\cygwinx86\\bin\\mintty.exe /bin/sh -lc 'cd \"`cygpath \"%V\"`\"; bash'"
