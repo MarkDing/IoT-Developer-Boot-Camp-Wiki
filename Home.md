@@ -24,6 +24,8 @@ On top of this page, you will find several small icons following with text of wi
 
 Click on the topic you are interested to start our adventure. 
 
+If you are complete new to IoT, It is recommended to start with IoT [IoT Introduction](IoT-Introduction). 
+
 ********
 
 ### Want to contribute to this Wiki?
