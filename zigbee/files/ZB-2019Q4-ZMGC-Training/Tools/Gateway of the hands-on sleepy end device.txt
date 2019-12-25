@@ -1,3 +1,0 @@
-1. Install Silicon Labs Zigbee Gateway Reference Design according to Chap2 of UG129.
-2. Get the source code in https://github.com/Jim-tech/gateway-management-ui , then sync the nodeserver code to /opt/siliconlabs/zigbeegateway/gateway-management-ui/nodeserver/
-3. Run build.sh in reactui, then copy the dist directory to /opt/siliconlabs/zigbeegateway/gateway-management-ui/reactui/

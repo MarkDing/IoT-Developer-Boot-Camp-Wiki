@@ -48,4 +48,4 @@
 [Zigbee-Hands-on-Gateway-OTA]:files/ZB-2019Q4-ZMGC-Training/Gateway-Basic-and-OTA.pdf
 [Zigbee-Hands-on-MQTT-Interface]:files/ZB-2019Q4-ZMGC-Training/Control-Zigbee-Device-with-MQTT-Client-Hands-on.pdf
 [Zigbee-Hands-on-OTA-Upgrading]:files/ZB-2019Q4-ZMGC-Training/OTA-Upgrading-Hands-on.pdf
-[Zigbee-Hands-on-Gateway-Tools]:files/ZB-2019Q4-ZMGC-Training/Tools
+[Zigbee-Hands-on-Gateway-Tools]:files/ZB-2019Q4-ZMGC-Training/Tools/Tools.rar
