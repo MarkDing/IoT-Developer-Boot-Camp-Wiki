@@ -1,5 +1,10 @@
-# Schematic Design
+# Schematic Design Guide
 The customer want to design its own schematic of project. First of all the customer should find a reference from Silabs' web source. Then study the schematic with hardware design consideration and RF circuits matching guide if interest. And make its own schematic based on the reference design and actual applications.
+
+  * [Find the relative reference design from Silabs' website](#find-the-relative-reference-design-from-silabs-website)
+  * [Hardware design considerations](#hardware-design-considerations)
+  * [RF circuits matching guide](#rf-circuits-matching-guide)
+  * [Customize the schematic design to fit the application](#customize-the-schematic-design-to-fit-the-application)
 ## Find the relative reference design from Silabs' website
 There are relative reference designs for all of the solutions in the website. Basically the reference designs differ from frequency bands, output power levels, DC-DC regulator configurations, and chip packages. 
 - Frequency bands: 
@@ -30,12 +35,12 @@ You can find the generations of proprietary products as listed in the bottom tab
 ![](../images/HW-Schematic-Design/Proprietary-S1.png)
 In this page, you can find the brief introduction of the proprietary series 1 chips and the parameter list of each chips. Ignore the chips list, you can click the View Document in this page and acess the documents list pages directly:
 ![](../images/HW-Schematic-Design/Proprietary-Reference.png)
-For example, If you want to look for 434MHz +10dBm output power reference design, you can click item EFR32FG1 BRD4251B 2400/433 MHz 10dBm Radio Board Full Design Package and down load the reference design package to your local address.
+For example, If you want to look for 434MHz +10dBm output power reference design, you can click item EFR32FG1 BRD4251B 2400/433 MHz 10dBm Radio Board Full Design Package and download the reference design package to your local address.
 The schematic likes:[BRD4251B](https://www.silabs.com/documents/public/schematic-files/EFR32FG1-BRD4251B-B00-schematic.pdf)
 
 But keep in mind that this reference design can be applied to a cluster of chips that have difference packages and frequency band configurations. So you can just replace the chips to your interest chip with different package and frequency band.
 ## Hardware design considerations
-After you get the reference design, you may have the concern why the reference is designed like this. Therefor Silabs provides a lot of application notes or reference manue for customer reference. For basical hardware considerations, you can refer to the following application note for detail descriptions:[AN0002.1](https://www.silabs.com/documents/public/application-notes/an0002.1-efr32-efm32-series-1-hardware-design-considerations.pdf). And there are several hardware considerations in different divisions as following:
+After you get the reference design, you may have the concern why the reference is designed like this. Therefore Silabs provides a lot of application notes or reference manual for customer reference. For basical hardware considerations, Customer can refer to the following application note for detail descriptions:[AN0002.1](https://www.silabs.com/documents/public/application-notes/an0002.1-efr32-efm32-series-1-hardware-design-considerations.pdf). And there are several hardware considerations in different divisions as following:
 - Power supply configurations: 
   - General requirements: VREGVDD = AVDD, must be the highest voltage on  EFR32; DVDD,IOVDD,RFVDD,PAVDD =< AVDD; DECOUPLE < DVDD
   - If internal DC-DC is not used, typically tie all the power pins to the main power supply.
@@ -59,24 +64,24 @@ After you get the reference design, you may have the concern why the reference i
   For more information for debug connecors, please refer to [AN0958](https://www.silabs.com/documents/public/application-notes/an958-mcu-stk-wstk-guide.pdf)
   - Reset pin
 
-    There are a weak pull-up resistor and a low pass filter at reset pin inside the chip. It will allow reset pin floated and prevent noise glitches from outside interfer. It recommends not pull-up reset pin outside the chip.
+    There are a weak pull-up resistor and a low pass filter at reset pin inside the chip. It will allow reset pin floated and prevent noise glitches from outside interfer. The RESETn must not be connected through an external pull-up to an active supply, otherwise driven high as this could damage the device.
 
 - External clock source:
 
-  EFR32 Wireless Gecko Series devices support different external clock sources to generate the high and low frequency clocks in addition to the internal LF and HF RC oscillators. The possible external clock sources for both the LF and HF domains areexter nal oscillators (square or sine wave) or crystals/ceramic resonators.
+  EFR32 Wireless Gecko Series devices support different external clock sources to generate the high and low frequency clocks in addition to the internal LF and HF RC oscillators. The possible external clock sources for both the LF and HF domains are external oscillators (square or sine wave) or crystals/ceramic resonators.
 
   - Low Frequency Clock Sources
 
-    An external low frequency clock can be supplied from a crystal/ceramic resonator or from an external clock source.It can source a low-frequency clock from an external source such as a TCXO or VCXO.
+    An external low frequency clock can be supplied from a crystal/ceramic resonator or from an external clock source. It can source a low-frequency clock from an external source such as a TCXO or VCXO.
   ![](../images/HW-Schematic-Design/LF-Connection.png)
-  - Low Frequency Clock Sources
+  - High Frequency Clock Sources
 
     The high frequency clock can be sourced from a crystal or ceramic resonator or from an external square or sine wave source. It can source a high-frequency clock from an external source such as a TCXO or VCXO.
    ![](../images/HW-Schematic-Design/HF-Connection.png) 
-For additional information on the external oscillators, refer to the application note, [AN0016.2](https://www.silabs.com/documents/public/application-notes/an0016.2-efr32-series-2-oscillator-design-considerations.pdf)
+For additional information on the external oscillators, refer to the application note, [AN0016.1](https://www.silabs.com/documents/public/application-notes/an0016.2-efr32-series-2-oscillator-design-considerations.pdf)
 
 ## RF circuits matching guide 
-The EFR32 Wireless Gecko Series devices include chip variants that provide 2.4 GHz-only operation, sub-GHz-only operation, or dual-band (2.4GHz and sub-GHz)operation.For RF matching circuits design of these bands, there are 2 application notes described the methods. One is for sub-GHz band, and the other is for 2.4GHz band.
+The EFR32 Wireless Gecko Series devices include chip variants that provide 2.4 GHz-only operation, sub-GHz-only operation, or dual-band (2.4GHz and sub-GHz)operation.For RF matching circuits design of these bands, there are 2 application notes described the methods. One is for sub-GHz band [AN923](https://www.silabs.com/documents/public/application-notes/AN923-subGHz-Matching.pdf), and the other is for 2.4GHz band [AN930](https://www.silabs.com/documents/public/application-notes/an930-efr32-matching-guide.pdf).
 
 The matching effort strives to simultaneously achieve several goals:
 - Provide for tying together the TX and RX signal paths, external to the RFIC.
@@ -88,7 +93,7 @@ The matching effort strives to simultaneously achieve several goals:
 
 - Matching circuits design for sub-GHz band 
   The sub-GHz LNA and PA circuits in EFR32 RFICs are fully differential and are not tied together inside the chip. As a result, a total of four pins are required on the RFIC to provide access to the LNA and PA circuits: SUBGRF_OP/ON for the TX output, and SUBGRF_IP/IN for the RX input.
-  [AN923](https://www.silabs.com/documents/public/application-notes/AN923-subGHz-Matching.pdf) describes the matching method in detail.
+  AN923 describes the matching method in detail.
 
    The matching circuits consist of impedance transformation block, Balun, and Low Pass Filter as following picture shows:
   ![](../images/HW-Schematic-Design/Sub-G-Match-Topology.png)
@@ -104,7 +109,7 @@ The matching effort strives to simultaneously achieve several goals:
   ![](../images/HW-Schematic-Design/Sub-G-Tested-Performance.png)
 
 - Matching circuits design for 2.4GHz band
-  The 2.4 GHz front end has a unified, single-ended TX and RX pin (2G4RF_IOP), so the TX and RX paths are tied together internally. The 2G4RF_ION TX pin has to be grounded at the pin. Externally, a single-ended matching network and harmonic filtering are required.
+  AN930 describes the 2.4GHz matching method in detail.The 2.4 GHz front end has a unified, single-ended TX and RX pin (2G4RF_IOP), so the TX and RX paths are tied together internally. The 2G4RF_ION TX pin has to be grounded at the pin. Externally, a single-ended matching network and harmonic filtering are required.
 
   2 main 2.4 GHz matching topologies are presented here:
 

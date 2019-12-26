@@ -1,9 +1,11 @@
 # Wireless Products, Protocols and Applications
 ## General Topics Outline
-- Proprietary products and applications
-- Zigbee/Thread products and applications
-- BLE products and applications
-- Z-Wave products and applications
+
+  * [Proprietary products and applications](#proprietary-products-and-applications)
+  * [Zigbee/Thread products and applications](#zigbeethread-products-and-applications)
+  * [BLE products and applications](#ble-products-and-applications)
+  * [Z-Wave products and applications](#z-wave-products-and-applications)
+
 ## Proprietary products and applications
 - Introduction: 
 
@@ -12,7 +14,7 @@
 
   For proprietary products, there are many FG type chips which are classified with generations, packages, flash size, temperature grades, output power levels, and frequency bands. The general name convention likes:
 
-![](../images/HW-Wireless-Products/NameConvention-1.png)
+  ![](../images/HW-Wireless-Products/NameConvention-1.png)
 
   As you can see from the name convention, the proprietary chips include four series such as FG1,FG12,FG13,and FG14. The chips are classified with  P (Performance), B (Basic), and V (Value) performance grades. The chips are Tx/Rx type which include sub-G band, 2.4GHz band, and sub-G& 2.4GHz bands. The chips are classified with 2 temperature range as -40°-+85° and -40°-+125°. And there are many packages(QFN32, QFN48, QFN68, and BGA125) to select. 
 - Applications:
@@ -42,7 +44,7 @@
   As you can see from the name convention, the BLE chips include 3 series such as FG1,FG12, and FG13. The BLE chips are classified with  P (Performance), B (Basic), and V (Value) performance grades. The BLE chips are Tx/Rx type which include sub-G band, 2.4GHz band, and sub-G& 2.4GHz bands. The BLE chips are classified with 2 temperature range as -40°-+85° and -40°-+125°. And there are many packages(QFN32, QFN48, QFN68, and BGA125) to select. 
 - Applications:
 
-  Home Automation, Beaconing, Sport and Fitness, Asset Tracking, Classic Audio Stream, AoA/AoD, etc.
+  Home Automation, Beaconing, Sport and Fitness, Asset Tracking, AoA/AoD, etc.
 
 ## Z-Wave products and applications
 - Introduction: 
