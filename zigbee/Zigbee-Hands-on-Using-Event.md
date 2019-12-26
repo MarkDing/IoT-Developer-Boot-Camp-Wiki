@@ -22,7 +22,7 @@ In this hands-on, we provide step-by-step instructions to demonstrate how to use
 The figure below illustrates the working flow of this hands-on.  
 
 <div align="center">
-  <img src="https://github.com/MarkDing/IoT-Developer-Boot-Camp-Wiki/blob/master/zigbee/images/using_event_working_flow.png">  
+  <img src="images/ZB-Hands-on-Using-Event/using_event_working_flow.png">  
 </div>  
 </br>  
 
@@ -30,24 +30,13 @@ The figure below illustrates the working flow of this hands-on.
 Before all the individual steps would be performed, please make sure that both the hardware and software are ready for the development. Read the chapter “2 Fundamental steps” of the previous 2 hands-on for more detail about it.  
 
 # 2. Using Event
-EmberZNet Stack has Event control mechanism that basically allows application to run a piece of code at desired time interval.  
+The Zigbee application framework and its associated cluster code use the Zigbee Stack event mechanism to schedule events to run a piece of code at desired time interval. At a high level, the event mechanism provides a central location where all periodic actions taken by the device can be activated and deactivated based on either some user input, an over-the-air command or device initialization. And it allows the Zigbee application framework to know precisely when the next action is going to occur on the device. This is extremely important for sleeping devices that need to know exactly when they must wake up to take some action or more importantly that they cannot go to sleep because some event is in progress. And use of the Zigbee event mechanism saves code and RAM, and works better with sleepy devices.  
 
-An event should be initialized somewhere in the code, hence a function should be used which is called at the beginning of the application.  
+The Zigbee application framework has two types of events: custom events and cluster events. Custom events are created by the Zigbee application framework user and can be used for any purpose within the application. Cluster events are specifically related to the cluster implementations in the Zigbee application framework's plugins.  
 
-The *Main Init* callback is called from the application’s main function. It gives the application a chance to do any initialization required at system startup. It can be imagined like a function at the top of the *“main()”* before the classical “*while(true)*”.  
+A custom event consists of two parts: The event function, called when the event fires, and the EmberEventControl struct, which is used to schedule the event. And the Zigbee application framework and AppBuilder provide a helpful interface for creating and adding custom events to your application.  
 
-**Step 1**:
-Double click the Zigbee_Switch_ZR.isc file to open it with the AppBuilder, and then enable this callback in the AppBuilder’s Callbacks tab. See the figure below.  
-
-<div align="center">
-  <img src="https://github.com/MarkDing/IoT-Developer-Boot-Camp-Wiki/blob/master/zigbee/images/main_init_enableing.png">  
-</div>  
-<div align="center">
-  <b>Main Init callback enabling</b>
-</div>  
-</br>  
-
-**Step 2**:
+**Step 1: Create a custom event**
 The AppBuilder provides manner to add any custom event to the application.  
 Basically, two things need for this.  
 -   Event Controller – structure of the task  
@@ -55,17 +44,29 @@ Basically, two things need for this.
 
 Open the *AppBuilder* -> *Includes* tab. Add the custom event command ```ledBlinkingEventControl``` and callback ```ledBlinkingEventHandler``` to the *Event Configuration* window respectively. See figure below.  
 <div align="center">
-  <img src="https://github.com/MarkDing/IoT-Developer-Boot-Camp-Wiki/blob/master/zigbee/images/custom_event_adding_in_AppBuilder.png">  
+  <img src="images/ZB-Hands-on-Using-Event/custom_event_adding_in_AppBuilder.png">  
 </div>  
 <div align="center">
   <b>Custom event adding in AppBuilder</b>
 </div>  
 </br>  
 
+**Step 2: Enable the MainInit callback**:
+An event should be scheduled somewhere in the code, hence a function should be used which is called at the beginning of the application. The *Main Init* callback is called from the application’s main function. It gives the application a chance to do any initialization required at system startup. It can be imagined like a function at the top of the *“main()”* before the classical “*while(true)*”.  
+Double click the Zigbee_Switch_ZR.isc file to open it with the AppBuilder, and then enable this callback in the AppBuilder’s Callbacks tab. See the figure below.  
+
+<div align="center">
+  <img src="images/ZB-Hands-on-Using-Event/main_init_enabling.png">  
+</div>  
+<div align="center">
+  <b>Main Init callback enabling</b>
+</div>  
+</br>  
+
 Save and Generate the project.  
 
-**Step 3**:
-As earlier, the callback function ```emberAfMainInitCallback()``` should be added to the *Zigbee_Switch_ZR_callbacks.c* file and initialize the event.  
+**Step 3: Schedule the event**
+As earlier, the callback function ```emberAfMainInitCallback()``` should be added to the *Zigbee_Switch_ZR_callbacks.c* file and schedule the event.  
 The related code snippet should be like the followings:  
 
 ```
