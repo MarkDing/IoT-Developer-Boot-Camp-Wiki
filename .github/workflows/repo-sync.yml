@@ -9,9 +9,9 @@ jobs:
     - name: repo-sync
       uses: wei/git-sync@v1
       env:
-        SOURCE_REPO: "https://Jim-tech:8c066983307bca7f735cc3c212f2438634cabb1d@github.com/MarkDing/IoT-Developer-Boot-Camp-Wiki"
+        SOURCE_REPO: "https://${{secrets.AUTO_USER}}:${{secrets.AUTO_PASSWD}}@github.com/MarkDing/IoT-Developer-Boot-Camp-Wiki"
         SOURCE_BRANCH: "master"
-        DESTINATION_REPO: "https://Jim-tech:8c066983307bca7f735cc3c212f2438634cabb1d@github.com/MarkDing/IoT-Developer-Boot-Camp.wiki"
+        DESTINATION_REPO: "https://${{secrets.AUTO_USER}}:${{secrets.AUTO_PASSWD}}@github.com/MarkDing/IoT-Developer-Boot-Camp.wiki"
         DESTINATION_BRANCH: "master"
       with:
         args: $SOURCE_REPO $SOURCE_BRANCH $DESTINATION_REPO $DESTINATION_BRANCH
