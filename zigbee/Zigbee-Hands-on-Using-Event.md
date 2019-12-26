@@ -36,7 +36,7 @@ The Zigbee application framework has two types of events: custom events and clus
 
 A custom event consists of two parts: The event function, called when the event fires, and the EmberEventControl struct, which is used to schedule the event. And the Zigbee application framework and AppBuilder provide a helpful interface for creating and adding custom events to your application.  
 
-**Step 1: Create a custom event**
+**Step 1: Create a custom event**  
 The AppBuilder provides manner to add any custom event to the application.  
 Basically, two things need for this.  
 -   Event Controller – structure of the task  
@@ -51,7 +51,7 @@ Open the *AppBuilder* -> *Includes* tab. Add the custom event command ```ledBlin
 </div>  
 </br>  
 
-**Step 2: Enable the MainInit callback**:
+**Step 2: Enable the MainInit callback**  
 An event should be scheduled somewhere in the code, hence a function should be used which is called at the beginning of the application. The *Main Init* callback is called from the application’s main function. It gives the application a chance to do any initialization required at system startup. It can be imagined like a function at the top of the *“main()”* before the classical “*while(true)*”.  
 Double click the Zigbee_Switch_ZR.isc file to open it with the AppBuilder, and then enable this callback in the AppBuilder’s Callbacks tab. See the figure below.  
 
@@ -65,7 +65,7 @@ Double click the Zigbee_Switch_ZR.isc file to open it with the AppBuilder, and t
 
 Save and Generate the project.  
 
-**Step 3: Schedule the event**
+**Step 3: Schedule the event**  
 As earlier, the callback function ```emberAfMainInitCallback()``` should be added to the *Zigbee_Switch_ZR_callbacks.c* file and schedule the event.  
 The related code snippet should be like the followings:  
 
