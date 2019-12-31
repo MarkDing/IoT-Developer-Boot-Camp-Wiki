@@ -3,7 +3,7 @@
 The Internet of Things or IoT is a giant network of “Things”. “Things” can refer to a wide variety of devices. physical devices, vehicles, home appliances. IoT enables these objects to connect and exchange data. IoT is influencing our lifestyle. From droids you control with the smartphone to fire alarm sensor in your room, or your smartwatch which is tracking your body status. It is almost everything that you came across in daily life. 
 
 <div align="center">
-<img src="images/CM-IoT-Introduction/Internet-of-things.png">
+<img src="files/CM-IoT-Introduction/Internet-of-things.png">
 </div>
 
 The extensive set of applications for IoT devices is often divided into smart home, consumer, commercial and industrial. The smart home is an excellent start point to understand IoT. 
@@ -14,7 +14,7 @@ IoT devices are a part of the larger concept of home automation, which can inclu
 A smart home or automated home could be based on a platform or hub that controls smart devices and appliances. For instance, using Amazon Echo Plus to control the light, air conditioners, or sensing the room temperature. And the same way you can do with your smartphone app.  
 
 <div align="center">
-<img src="images/CM-IoT-Introduction/smart-home.png">
+<img src="files/CM-IoT-Introduction/smart-home.png">
 </div>
 
 In the smart home applications, the IoT environment consists of three parts:
@@ -36,7 +36,7 @@ __WiFi__ is the most popular wireless protocol we are using in daily life. It is
 WiFi's high data rate is matched by high power consumption, making it a poor fit for battery power devices. And it is a star network. Each device interacts with the router, cannot directly talk with other end devices. Some end devices might have a problem to connect with the router at the corner of the network. That how we are seeking the WiFi signal in our daily life. WiFi can be used in smart speaker (Hub/Gateway) to connect with cloud service for interpreting natural voice, or accessing data and sending command from mobile device. 
 
 <div align="center">
-<img src="images/CM-IoT-Introduction/star-network.png">
+<img src="files/CM-IoT-Introduction/star-network.png">
 </div>
 
 __Zigbee__ is very popular in IoT applications. It is based on the IEEE 802.15.4 standard defined in 2003. Zigbee enables mesh networking, low power consumption, lower data rate, allowing sensors and other end devices to connect to each other over longer distance.  Because of the protocol’s technological limitations about data rate, range, and power consumption, Zigbee is more appropriate for small-scale powered wireless networks.
@@ -44,7 +44,7 @@ __Zigbee__ is very popular in IoT applications. It is based on the IEEE 802.15.4
 __Bluetooth Mesh__ is a mesh network released in July 2017. 
 
 <div align="center">
-<img src="images/CM-IoT-Introduction/mesh-network.png">
+<img src="files/CM-IoT-Introduction/mesh-network.png">
 </div>
 
 ISM(Industrial Scientific Medical) Band 2.4G is reserved internationally for the use of radio frequency (RF) energy. It supports WiFi (IEEE 802.11b/g/n), Zigbee/Thread (IEEE 802.15.4), Bluetooth®, and Bluetooth low energy. 
@@ -56,7 +56,7 @@ __ZigBee__ contains 16 channels (11-26) with center frequencies from 2.405GHz to
 __Bluetooth Mesh__ Bluetooth low energy (BLE) specification defines 40 channels with 2 MHz channel spacing. Three of the 40 channels are advertising channels (shown in red) used for device discovery, connection establishment, and broadcast. Bluetooth Mesh is a specification on top of Bluetooth 4.0 which use only 3 advertising channels.
 
 <div align="center">
-<img src="images/CM-IoT-Introduction/wireless-channels.png">
+<img src="files/CM-IoT-Introduction/wireless-channels.png">
 </div>
 
 # 4. Network management
@@ -72,7 +72,7 @@ The Zigbee network contains three types for basic node types: Zigbee Coordinator
 * End Device does not relay packets. An end device relies on its parent for communication with the network. The parent means there is some router node, potentially the coordinator.
 
 <div align="center">
-<img src="images/CM-IoT-Introduction/zigbee-network.png">
+<img src="files/CM-IoT-Introduction/zigbee-network.png">
 </div>
 
 __Bluetooth Mesh__  
@@ -92,14 +92,14 @@ On the right side of the figure, the Echo Plus with built-in Zigbee hub forms th
 The Amazon smart speaker supports the Zigbee protocol. How to communicate with other protocol enabled end devices? For example, Bluetooth Mesh. It provides a cloud to cloud service to make it possible. From the left side of the figure. We can see Smart Speaker directives were sent to Alexa Cloud and then goes to Device Cloud. The Hub that supports Bluetooth Mesh protocol receives the directives from Device Cloud and interacts with the end devices via Bluetooth mesh protocol. Of course, the mobile app also can control those Bluetooth Mesh end devices via the cloud. 
 
 <div align="center">
-<img src="images/CM-IoT-Introduction/alexa-eco-system.png">
+<img src="files/CM-IoT-Introduction/alexa-eco-system.png">
 </div>
 
 __Big Data Analysis__  
 All data of Smart Home or Smart Building were sent to the cloud. We can build a dashboard to show the data in an easily understandable way. Here is a dashboard of a smart building created by Grafana which the open-source analytics & monitoring solution for every database is. 
 
 <div align="center">
-<img src="images/CM-IoT-Introduction/grafana-building.png">
+<img src="files/CM-IoT-Introduction/grafana-building.png">
 </div>
 
 # 6. How IoT will change our life?
@@ -108,13 +108,13 @@ IoT is one of the most emerging technologies nowadays and it is starting to be c
 In the smart home applications. People can control lights on/off by voice command. The smart lock with fingerprint and password lets you are free from keeping a key in the pocket. The sensor of temperature and humidity turn on/off the air conditioner at the predefined value. The connected video camera helps you to know what happens in your home online.  Also, IoT devices can be used to enable remote health monitoring and emergency notification systems. Like smartwatch used in the sport.  
 
 <div align="center">
-<img src="images/CM-IoT-Introduction/comfortable-life.png">
+<img src="files/CM-IoT-Introduction/comfortable-life.png">
 </div>
 
 The IoT enables these and makes life more comfortable and better than before. We are on the way to the great changes that IoT brings to us. There is no idea how the world will be changed in the future. Many different possible world lines can be. Take part in it and contribute your passion to change the world. 
 
 <div align="center">
-<img src="images/CM-IoT-Introduction/Divergence-Meter.gif">
+<img src="files/CM-IoT-Introduction/Divergence-Meter.gif">
 </div>
 
 ********
