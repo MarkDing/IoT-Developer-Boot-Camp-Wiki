@@ -1,5 +1,5 @@
 ********
-![zigbee](images/zigbee.png)
+![zigbee](files/zigbee.png)
 ********
 
 
