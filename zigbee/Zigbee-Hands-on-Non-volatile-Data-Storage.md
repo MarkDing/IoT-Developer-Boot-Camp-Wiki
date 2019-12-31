@@ -1,4 +1,6 @@
-# Table of Content
+<details>
+<summary><font size=5>Table of Contents</font> </summary>
+
 - [1. Introduction](#1-introduction)
     - [1.1. Application features](#11-application-features)
     - [1.2. Purpose](#12-purpose)
@@ -37,6 +39,8 @@
         - [4.3.4. Access the manufacturing Token](#434-access-the-manufacturing-token)
             - [4.3.4.1. Step 4: Read the manufacturing Token MFG_STRING](#4341-step-4-read-the-manufacturing-token-mfg_string)
 - [5. Conclusion](#5-conclusion)
+
+</details>
 
 ***  
 
