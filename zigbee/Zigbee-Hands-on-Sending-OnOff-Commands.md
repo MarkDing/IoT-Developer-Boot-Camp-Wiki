@@ -1,4 +1,6 @@
-# Table of Content
+<details>
+<summary><font size=5>Table of Contents</font> </summary>
+
 - [1. Introduction](#1-introduction)
     - [1.1. Application features](#11-application-features)
     - [1.2. Purpose](#12-purpose)
@@ -13,6 +15,8 @@
     - [3.2. Command sending from Switch device](#32-command-sending-from-switch-device)
 - [4. Testing your project](#4-testing-your-project)
 - [5. Conclusion](#5-conclusion)
+
+</details>
 
 ***
 

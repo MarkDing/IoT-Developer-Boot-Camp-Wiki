@@ -1,10 +1,16 @@
-# Table of Content
+<details>
+<summary><font size=5>Table of Contents</font> </summary>
+
 - [1. Introduction](#1-introduction)
     - [1.1. Application features](#11-application-features)
     - [1.2. Purpose](#12-purpose)
 - [2. Using Event](#2-using-event)
 - [3. Testing your project](#3-testing-your-project)
 - [4. Conclusion](#4-conclusion)
+
+</details>
+
+***
 
 # 1. Introduction
 

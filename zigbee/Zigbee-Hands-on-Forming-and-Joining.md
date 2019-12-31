@@ -1,4 +1,6 @@
-# Table of Content
+<details>
+<summary><font size=5>Table of Contents</font> </summary>
+
 - [1. Introduction](#1-introduction)
     - [1.1. Application features](#11-application-features)
     - [1.2. Purpose](#12-purpose)
@@ -30,6 +32,8 @@
         - [7.4.3. Start capturing on Light (Coordinator) device](#743-start-capturing-on-light-coordinator-device)
         - [7.4.4. Joining process in Network Analyzer](#744-joining-process-in-network-analyzer)
 - [8. Conclusion](#8-conclusion)
+
+</details>
 
 ***
 
