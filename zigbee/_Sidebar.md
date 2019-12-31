@@ -1,11 +1,12 @@
 ![Silicon Labs](files/logo.png)
 --------------------------------------------------------
-[Home](Home) > [Zigbee](Zigbee)
+[Home](Home) > [Zigbee](Zigbee-BootCamp)
 
-* [Zigbee Boot Camp](Zigbee)
+* [Zigbee Boot Camp](Zigbee-BootCamp)
     * [Preparatory Course](Zigbee-Preparatory-Course)
     * [Hands on : Forming and Joining](Zigbee-Hands-on-Forming-and-Joining)
     * [Hands on : Sending on/off commands](Zigbee-Hands-on-Sending-onoff-commands)
     * [Hands on : Using Event](Zigbee-Hands-on-Using-Event)
     * [Hands on : Non-volatile Data Storage](Zigbee-Hands-on-Non-volatile-Data-Storage)
 * [IoT Development with VS Code](IoT-Development-with-VS-Code)
+* [2019 ZMGC Zigbee Training](Zigbee-2019Q4-ZMGC-Training)
