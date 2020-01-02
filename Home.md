@@ -1,4 +1,4 @@
-![](files/home.png)Home | ![](files/zigbee-icon-30x30.png)[Zigbee](Zigbee) | ![](files/bluetooth-icon-30x30.png)[Bluetooth](Bluetooth) | ![](files/z-wave-icon-30x30.png)[ZWave](ZWave) | ![](files/proprietary-icon-grey-30x30.png)[Proprietary](Proprietary) | ![](files/hardware-icon-grey-30x30.png)[Hardware](Hardware) | ![](files/common-icon-30x30.png)[Common](Common)
+![](files/home.png)Home | ![](files/zigbee-icon-30x30.png)[Zigbee](ZB-Boot-Camp) | ![](files/bluetooth-icon-30x30.png)[Bluetooth](BL-Boot-Camp) | ![](files/z-wave-icon-30x30.png)[ZWave](ZW-Boot-Camp) | ![](files/proprietary-icon-grey-30x30.png)[Proprietary](PR-Boot-Camp) | ![](files/hardware-icon-grey-30x30.png)[Hardware](HW-Boot-Camp) | ![](files/common-icon-30x30.png)[Common](Common)
 
 ********
 # Welcome
@@ -24,7 +24,7 @@ On top of this page, you will find several small icons following with text of wi
 
 Click on the topic you are interested to start our adventure. 
 
-If you are complete new to IoT, It is recommended to start with IoT [IoT Introduction](IoT-Introduction). 
+If you are complete new to IoT, It is recommended to start with IoT [IoT Introduction](CM-IoT-Introduction). 
 
 ********
 
