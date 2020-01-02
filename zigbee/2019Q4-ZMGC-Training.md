@@ -37,12 +37,12 @@
 - [Silicon Labs Zigbee Onboarding Roadmap][Zigbee Onboarding Roadmap]
 *************
 
-[Zigbee Introduction]: files/2019Q4-ZMGC-Training/Zigbee-Basic.pdf
-[EmberZnet and WSTK]: files/2019Q4-ZMGC-Training/EmberZnet-and-WSTK.pdf
-[Zigbee Onboarding Roadmap]: files/2019Q4-ZMGC-Training/Silicon-Labs-ZigBee-Onboarding-Roadmap.pdf
-[Zigbee-Hands-on-Sleepy-End-Device]:files/2019Q4-ZMGC-Training/Zigbee-Sleepy-End-device.pdf
-[Zigbee-Hands-on-Sleepy-End-Device-Hands-on]:files/2019Q4-ZMGC-Training/Sleepy-End-Device-Hands-on.pdf
-[Zigbee-Hands-on-Gateway-OTA]:files/2019Q4-ZMGC-Training/Gateway-Basic-and-OTA.pdf
-[Zigbee-Hands-on-MQTT-Interface]:files/2019Q4-ZMGC-Training/Control-Zigbee-Device-with-MQTT-Client-Hands-on.pdf
-[Zigbee-Hands-on-OTA-Upgrading]:files/2019Q4-ZMGC-Training/OTA-Upgrading-Hands-on.pdf
-[Zigbee-Hands-on-Gateway-Tools]:files/2019Q4-ZMGC-Training/Tools/Tools.rar
+[Zigbee Introduction]: files/ZB-2019Q4-ZMGC-Training/Zigbee-Basic.pdf
+[EmberZnet and WSTK]: files/ZB-2019Q4-ZMGC-Training/EmberZnet-and-WSTK.pdf
+[Zigbee Onboarding Roadmap]: files/ZB-2019Q4-ZMGC-Training/Silicon-Labs-ZigBee-Onboarding-Roadmap.pdf
+[Zigbee-Hands-on-Sleepy-End-Device]:files/ZB-2019Q4-ZMGC-Training/Zigbee-Sleepy-End-device.pdf
+[Zigbee-Hands-on-Sleepy-End-Device-Hands-on]:files/ZB-2019Q4-ZMGC-Training/Sleepy-End-Device-Hands-on.pdf
+[Zigbee-Hands-on-Gateway-OTA]:files/ZB-2019Q4-ZMGC-Training/Gateway-Basic-and-OTA.pdf
+[Zigbee-Hands-on-MQTT-Interface]:files/ZB-2019Q4-ZMGC-Training/Control-Zigbee-Device-with-MQTT-Client-Hands-on.pdf
+[Zigbee-Hands-on-OTA-Upgrading]:files/ZB-2019Q4-ZMGC-Training/OTA-Upgrading-Hands-on.pdf
+[Zigbee-Hands-on-Gateway-Tools]:files/ZB-2019Q4-ZMGC-Training/Tools/Tools.rar
