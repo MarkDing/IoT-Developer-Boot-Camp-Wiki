@@ -2,4 +2,4 @@
 --------------------------------------------------------
 [Home](Home) > [Common](Common)
 
-* [IoT Introduction](CM-IoT-Introduction)
+* [IoT Introduction](IoT-Introduction)

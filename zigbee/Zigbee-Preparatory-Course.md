@@ -5,7 +5,7 @@ And step-by-step instructions are provided to demonstrate how to create a basic 
 The figure below illustrates the working flow for setting up the development environment.  
 
 <div align="center">
-  <img src="files/ZB-Preparatory-Course/preparatory_working_flow.png">  
+  <img src="files/ZB-Zigbee-Preparatory-Course/preparatory_working_flow.png">  
 </div>  
 </br>  
 
@@ -35,7 +35,7 @@ If you do not have Simplicity Studio V4 installed, please connect to [Simplicity
 When Simplicity Studio first launches, it presents a License Agreement dialog. Accept the terms of the agreement and click [Next].  
 
 <div align="center">
-  <img src="files/ZB-Preparatory-Course/preparatory_ss_license_agreement.png">  
+  <img src="files/ZB-Zigbee-Preparatory-Course/preparatory_ss_license_agreement.png">  
 </div>  
 </br>  
 
@@ -44,7 +44,7 @@ Choose a destination location, click [Next] > and then click [Install].
 When the application launches, you are invited to log in. Please Log in using your support account that created above (or the temporary account provided by the training event organizer). Although you can skip log in here, you must be logged in to access some protected content, such as EmberZNet PRO SDK.  
 
 <div align="center">
-  <img src="files/ZB-Preparatory-Course/preparatory_ss_login.png">  
+  <img src="files/ZB-Zigbee-Preparatory-Course/preparatory_ss_login.png">  
 </div>  
 </br>  
 
@@ -52,14 +52,14 @@ When the application launches, you are invited to log in. Please Log in using yo
 After login, the Simplicity Studio will check for connected hardware. If you have the WSTK connected by USB cable, Simplicity Studio will detect the USB cable and prompt you to download a Device Inspector. Click [Yes].  
 
 <div align="center">
-  <img src="files/ZB-Preparatory-Course/preparatory_ss_install_required.png">  
+  <img src="files/ZB-Zigbee-Preparatory-Course/preparatory_ss_install_required.png">  
 </div>  
 </br>  
 
 The Launcher perspective opens as below if have the WSTK connected. The connected device will be identified as J-Link devices and listed in the "Debug Adapters" tab as shown.  
 
 <div align="center">
-  <img src="files/ZB-Preparatory-Course/preparatory_ss_launcher.png">  
+  <img src="files/ZB-Zigbee-Preparatory-Course/preparatory_ss_launcher.png">  
 </div>  
 </br>  
 
@@ -73,7 +73,7 @@ Supposed that you have purchased the mesh networking development kits, and also 
 
 If you do not have EmberZNet SDK installed, please run the Package Manager as below for installing the latest EmberZNet SDKs.  
 <div align="center">
-  <img src="files/ZB-Preparatory-Course/preparatory_install_EmberZNet_SDK.gif">  
+  <img src="files/ZB-Zigbee-Preparatory-Course/preparatory_install_EmberZNet_SDK.gif">  
 </div>  
 </br>
 
@@ -83,13 +83,13 @@ And if you have an old version EmberZNet SDK installed, it's highly recommended 
 If have the WSTK connected, click the device in the [Debug Adapters] tab on the left side of the launcher, then the Launcher perspective will be populated with the software components and functionality associated with your hardware and stack.  
 
 <div align="center">
-  <img src="files/ZB-Preparatory-Course/preparatory_ss_launcher_withEmberZnet.png">  
+  <img src="files/ZB-Zigbee-Preparatory-Course/preparatory_ss_launcher_withEmberZnet.png">  
 </div>  
 </br>
 
 **Note**: If you don't have WSTK yet, you can just type the WSTK name "BRD4162A" in the "My Products" tab on the lower-left of the launcher perspective. And select "Rev A01" if multi boards information be listed then.  
 <div align="center">
-  <img src="files/ZB-Preparatory-Course/preparatory_ss_launcher_no_hw.png">  
+  <img src="files/ZB-Zigbee-Preparatory-Course/preparatory_ss_launcher_no_hw.png">  
 </div>  
 </br>  
 
@@ -109,7 +109,7 @@ GCC (The GNU Compiler Collection) is provided with Simplicity Studio, and it wil
 You can check the installed GCC toolchain (as well as SDKs) version information by clicking [Help] > [About Simplicity Studio] > [Toochains and SDKs] from the launcher perspective.  
 
 <div align="center">
-  <img src="files/ZB-Preparatory-Course/preparatory_ss_sdks_toolchain.png">  
+  <img src="files/ZB-Zigbee-Preparatory-Course/preparatory_ss_sdks_toolchain.png">  
 </div>  
 
 #### IAR (non-required)
@@ -142,7 +142,7 @@ As a preparatory course, the purpose of this section is providing a step-by-step
 Connect your WSTK using a USB cable to the PC on which has Simplicity Studio installed. For best performance in Simplicity Studio, please be sure that the power switch on the lower left of the WSTK is in the "AEM" (Advanced Energy Monitoring) position.  
 
 <div align="center">
-  <img src="files/ZB-Preparatory-Course/preparatory_efr32mg12.png" height="420">  
+  <img src="files/ZB-Zigbee-Preparatory-Course/preparatory_efr32mg12.png" height="420">  
 </div>
 
 ## Using Gecko Bootloader
@@ -156,13 +156,13 @@ It can be found at ```c:\SiliconLabs\SimplicityStudio\v4\developer\sdks\gecko_sd
 
 Open the Simplicity Commander for programming the pre-built bootloader image to the device.  
 <div align="center">
-  <img src="files/ZB-Preparatory-Course/preparatory_ss_open_commander.png">  
+  <img src="files/ZB-Zigbee-Preparatory-Course/preparatory_ss_open_commander.png">  
 </div>
 </br>
 
 Click the [Connect] button to connect to the J-Link Adapter, then click [Connect] to connect to the Target device, after that the Simplicity Commander will detect the part number of the device as EFR32MG12xxx. Browse the pre-built image, and click the [Flash] button to start the flashing process.
 <div align="center">
-  <img src="files/ZB-Preparatory-Course/preparatory_ss_commander_program.png">  
+  <img src="files/ZB-Zigbee-Preparatory-Course/preparatory_ss_commander_program.png">  
 </div>
 </br>  
 
@@ -179,10 +179,10 @@ The 2nd way is to use the AppBuilder to create-, generate-, and build your own a
 9.	Click “Generate”. Notice the project files appearing in Project Explorer. A window saying Generation successful will appear. See the figure below.  
 
 <div align="center">
-  <img src="files/ZB-Preparatory-Course/preparatory_ss_geckobootloader.png">  
+  <img src="files/ZB-Zigbee-Preparatory-Course/preparatory_ss_geckobootloader.png">  
 </div>
 
-10.	Select the project in Project Explorer window and compile your project by clicking on the [Build] ![](files/ZB-Preparatory-Course/build_project.png). Ensure that the build completes without any errors.  
+10.	Select the project in Project Explorer window and compile your project by clicking on the [Build] ![](files/ZB-Zigbee-Preparatory-Course/build_project.png). Ensure that the build completes without any errors.  
 
 The output ```bootloader-storage-internal-single-combined.s37``` file should be downloaded to the target device. I recommend to use the .s37 or .hex, since these files already contain the address where to flash.  
 Use the Simplicity Commander as what you did above to download the output file.  
@@ -205,7 +205,7 @@ Below is the step-by-step instructions.
 10. Right-click the generated hex file, go to [Flash to Device...] and select the device for programming.  
 
 <div align="center">
-  <img src="files/ZB-Preparatory-Course/preparatory_new_a_zigbee_project.gif">  
+  <img src="files/ZB-Zigbee-Preparatory-Course/preparatory_new_a_zigbee_project.gif">  
 </div>  
 </br>  
 
@@ -223,20 +223,20 @@ cmd //c 'C:\Users\xxxxxx\SIMPLI~1\V4B9FD~1\ZIGBEE~1/ZigbeeMinimalSoc-postbuild.b
 
 ```
 <div align="center">
-  <img src="files/ZB-Preparatory-Course/preparatory_ss_build_console.png">  
+  <img src="files/ZB-Zigbee-Preparatory-Course/preparatory_ss_build_console.png">  
 </div>  
 </br>  
 
 ## Test your project
 After the image has been downloaded to your development kit, it's possible to communicate with the device. For this purpose, open the Launch console, which is a built-in serial port terminal in the Studio.  
 <div align="center">
-  <img src="files/ZB-Preparatory-Course/preparatory_ss_launch_console.png">  
+  <img src="files/ZB-Zigbee-Preparatory-Course/preparatory_ss_launch_console.png">  
 </div>
 </br>  
 
 If the serial console is opened, switch to "Serial 1" and press "Enter", the console should output the project name similar as "ZigbeeMinimalSoc".  
 <div align="center">
-  <img src="files/ZB-Preparatory-Course/preparatory_ss_console_output.png">  
+  <img src="files/ZB-Zigbee-Preparatory-Course/preparatory_ss_console_output.png">  
 </div>
 
 *** 

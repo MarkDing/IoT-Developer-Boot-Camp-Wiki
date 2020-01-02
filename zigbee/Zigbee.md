@@ -7,7 +7,7 @@
 ## Preparatory Course
 | Time | Content |  
 |:---- |:----|    
-| 2 hour | [Preparatory Course](ZB-Preparatory-Course) |
+| 2 hour | [Preparatory Course](Zigbee-Preparatory-Course) |
 
 
 ## 2019-12-09
@@ -15,10 +15,10 @@
 |:---- |:----|    
 | 09:30 ~ 11:00 | [Introduction of Zigbee][Zigbee Introduction] |
 | 11:15 ~ 12:00 | [Introduction of EmberZnet and AppBuilder][EmberZnet and WSTK] |
-| 13:30 ~ 15:00 | [Hands on : Forming and Joining](ZB-Hands-on-Forming-and-Joining) |
-| 15:00 ~ 15:45 | [Hands on : Sending on/off commands](ZB-Hands-on-Sending-onoff-commands) |
-| 15:45 ~ 16:30 | [Hands on : Using Event](ZB-Hands-on-Using-Event) |
-| 16:30 ~ 17:30 | [Hands on : Non-volatile Data Storage](ZB-Hands-on-Non-volatile-Data-Storage) |
+| 13:30 ~ 15:00 | [Hands on : Forming and Joining](Zigbee-Hands-on-Forming-and-Joining) |
+| 15:00 ~ 15:45 | [Hands on : Sending on/off commands](Zigbee-Hands-on-Sending-OnOff-Commands) |
+| 15:45 ~ 16:30 | [Hands on : Using Event](Zigbee-Hands-on-Using-Event) |
+| 16:30 ~ 17:30 | [Hands on : Non-volatile Data Storage](Zigbee-Hands-on-Non-volatile-Data-Storage) |
 | 17:30 ~ 18:00 | Summary and [Survey](https://forms.office.com/Pages/ResponsePage.aspx?id=ItjbVDFSIEuUTW9KvNVB-_gYgvSbceFAppvKGwjVr_1UOTdNMkFBTzBWS0xHQVJGV1NBQlA3VFpSWi4u) |
 *************
 ## 2019-12-10
@@ -37,12 +37,12 @@
 - [Silicon Labs Zigbee Onboarding Roadmap][Zigbee Onboarding Roadmap]
 *************
 
-[Zigbee Introduction]: files/ZB-2019Q4-ZMGC-Training/Zigbee-Basic.pdf
-[EmberZnet and WSTK]: files/ZB-2019Q4-ZMGC-Training/EmberZnet-and-WSTK.pdf
-[Zigbee Onboarding Roadmap]: files/ZB-2019Q4-ZMGC-Training/Silicon-Labs-ZigBee-Onboarding-Roadmap.pdf
-[Zigbee-Hands-on-Sleepy-End-Device]:files/ZB-2019Q4-ZMGC-Training/Zigbee-Sleepy-End-device.pdf
-[Zigbee-Hands-on-Sleepy-End-Device-Hands-on]:files/ZB-2019Q4-ZMGC-Training/Sleepy-End-Device-Hands-on.pdf
-[Zigbee-Hands-on-Gateway-OTA]:files/ZB-2019Q4-ZMGC-Training/Gateway-Basic-and-OTA.pdf
-[Zigbee-Hands-on-MQTT-Interface]:files/ZB-2019Q4-ZMGC-Training/Control-Zigbee-Device-with-MQTT-Client-Hands-on.pdf
-[Zigbee-Hands-on-OTA-Upgrading]:files/ZB-2019Q4-ZMGC-Training/OTA-Upgrading-Hands-on.pdf
-[Zigbee-Hands-on-Gateway-Tools]:files/ZB-2019Q4-ZMGC-Training/Tools/Tools.rar
+[Zigbee Introduction]: files/2019Q4-ZMGC-Training/Zigbee-Basic.pdf
+[EmberZnet and WSTK]: files/2019Q4-ZMGC-Training/EmberZnet-and-WSTK.pdf
+[Zigbee Onboarding Roadmap]: files/2019Q4-ZMGC-Training/Silicon-Labs-ZigBee-Onboarding-Roadmap.pdf
+[Zigbee-Hands-on-Sleepy-End-Device]:files/2019Q4-ZMGC-Training/Zigbee-Sleepy-End-device.pdf
+[Zigbee-Hands-on-Sleepy-End-Device-Hands-on]:files/2019Q4-ZMGC-Training/Sleepy-End-Device-Hands-on.pdf
+[Zigbee-Hands-on-Gateway-OTA]:files/2019Q4-ZMGC-Training/Gateway-Basic-and-OTA.pdf
+[Zigbee-Hands-on-MQTT-Interface]:files/2019Q4-ZMGC-Training/Control-Zigbee-Device-with-MQTT-Client-Hands-on.pdf
+[Zigbee-Hands-on-OTA-Upgrading]:files/2019Q4-ZMGC-Training/OTA-Upgrading-Hands-on.pdf
+[Zigbee-Hands-on-Gateway-Tools]:files/2019Q4-ZMGC-Training/Tools/Tools.rar
