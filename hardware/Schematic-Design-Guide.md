@@ -28,13 +28,13 @@ There are relative reference designs for all of the solutions in the website. Ba
 
 For example, you want to search the reference schematic of proprietary chip, you can go to the following web page:
 
-![](../files/HW-Schematic-Design-Guide/Proprietary-Page.png)
+![](files/HW-Schematic-Design-Guide/Proprietary-Page.png)
 In this page, you can move mouse to Products tab, then the pop-down menu will appear with Wireless products which include the Proprietary item, then click left button of your mouse. And it will enter the Proprietary product list page as following:
-![](../files/HW-Schematic-Design-Guide/Proprietary-Product.png)
+![](files/HW-Schematic-Design-Guide/Proprietary-Product.png)
 You can find the generations of proprietary products as listed in the bottom table. You can select EFR32FG1 series 1 sub-GHz and 2.4GHz SoCs for more details:
-![](../files/HW-Schematic-Design-Guide/Proprietary-S1.png)
+![](files/HW-Schematic-Design-Guide/Proprietary-S1.png)
 In this page, you can find the brief introduction of the proprietary series 1 chips and the parameter list of each chips. Ignore the chips list, you can click the View Document in this page and acess the documents list pages directly:
-![](../files/HW-Schematic-Design-Guide/Proprietary-Reference.png)
+![](files/HW-Schematic-Design-Guide/Proprietary-Reference.png)
 For example, If you want to look for 434MHz +10dBm output power reference design, you can click item EFR32FG1 BRD4251B 2400/433 MHz 10dBm Radio Board Full Design Package and download the reference design package to your local address.
 The schematic likes:[BRD4251B](https://www.silabs.com/documents/public/schematic-files/EFR32FG1-BRD4251B-B00-schematic.pdf)
 
@@ -52,14 +52,14 @@ After you get the reference design, you may have the concern why the reference i
 
     The Serial Wire Debug (SWD) interface is supported by all EFR32 Wireless Gecko Series devices and consists of the SWCLK (clock input) and SWDIO (data in/out) lines, in addition to the optional SWO (serial wire output). The SWO line is used for instrumentation trace and program counter sampling, and is not needed for flash programming and normal debugging. However, it can be valuable in advanced debugging scenarios, and designers are strongly encouraged to include this along with the other SWD signals.And more there are VCOM port and PTI trace port in the mini simplicity studio debug port. This allow the debug port to do powerful program, control, and trace functions.
   The debug port map and description is as following:
-  ![](../files/HW-Schematic-Design-Guide/SWD-Debug-Port.png)
+  ![](files/HW-Schematic-Design-Guide/SWD-Debug-Port.png)
   Most commonly it recommends to reserve this debug port in custom boards to facilitate the debug and test purpose.
 
   - JTAG debug
 
     EFR32 Wireless Gecko Series devices optionally support JTAG debug using the TCLK (clock), TDI (data input), TDO (data output), and TMS (input mode select) lines. TCLK is the JTAG interface clock. TDI carries input data, and is sampled on the rising edge of TCLK. TDO carries output data and is shifted out on the falling edge of TCLK. Finally, TMS is the input mode select signal, and is used to navigate through the Test Access Port (TAP) state machine.
     The 10-pin Cortex debug port is defined as following:
-    ![](../files/HW-Schematic-Design-Guide/Cortex-Debug-Port.png)
+    ![](files/HW-Schematic-Design-Guide/Cortex-Debug-Port.png)
 
   For more information for debug connecors, please refer to [AN0958](https://www.silabs.com/documents/public/application-notes/an958-mcu-stk-wstk-guide.pdf)
   - Reset pin
@@ -73,12 +73,12 @@ After you get the reference design, you may have the concern why the reference i
   - Low Frequency Clock Sources
 
     An external low frequency clock can be supplied from a crystal/ceramic resonator or from an external clock source. It can source a low-frequency clock from an external source such as a TCXO or VCXO.
-  ![](../files/HW-Schematic-Design-Guide/LF-Connection.png)
+  ![](files/HW-Schematic-Design-Guide/LF-Connection.png)
   - High Frequency Clock Sources
 
     The high frequency clock can be sourced from a crystal or ceramic resonator or from an external square or sine wave source. It can source a high-frequency clock from an external source such as a TCXO or VCXO.
-   ![](../files/HW-Schematic-Design-Guide/HF-Connection.png) 
-For additional information on the external oscillators, refer to the application note, [AN0016.1](https://www.silabs.com/documents/public/application-notes/an0016.2-efr32-series-2-oscillator-design-considerations.pdf)
+   ![](files/HW-Schematic-Design-Guide/HF-Connection.png) 
+For additional information on the external oscillators, refer to the application note, [AN0016.1](https://www.silabs.com/documents/public/application-notes/an0016.1-efm32-series-1-oscillator-design-considerations.pdf)
 
 ## RF circuits matching guide 
 The EFR32 Wireless Gecko Series devices include chip variants that provide 2.4 GHz-only operation, sub-GHz-only operation, or dual-band (2.4GHz and sub-GHz)operation.For RF matching circuits design of these bands, there are 2 application notes described the methods. One is for sub-GHz band [AN923](https://www.silabs.com/documents/public/application-notes/AN923-subGHz-Matching.pdf), and the other is for 2.4GHz band [AN930](https://www.silabs.com/documents/public/application-notes/an930-efr32-matching-guide.pdf).
@@ -96,17 +96,17 @@ The matching effort strives to simultaneously achieve several goals:
   AN923 describes the matching method in detail.
 
    The matching circuits consist of impedance transformation block, Balun, and Low Pass Filter as following picture shows:
-  ![](../files/HW-Schematic-Design-Guide/Sub-G-Match-Topology.png)
+  ![](files/HW-Schematic-Design-Guide/Sub-G-Match-Topology.png)
   The matching circuits are classified into 2 types due to the balun difference. One is for low frequency band(<500MHz), and another is for high frequency band(>500MHz)
-  ![](../files/HW-Schematic-Design-Guide/Sub-G-Match-LT-500MHz.png)
-  ![](../files/HW-Schematic-Design-Guide/Sub-G-Match-MT-500MHz.png)
+  ![](files/HW-Schematic-Design-Guide/Sub-G-Match-LT-500MHz.png)
+  ![](files/HW-Schematic-Design-Guide/Sub-G-Match-MT-500MHz.png)
 
   And more the matching circuits are different from components values which classified with output power levels and sub frequency bands:
 
   Matching components value table:
-  ![](../files/HW-Schematic-Design-Guide/Sub-G-Match-Circuits.png)
+  ![](files/HW-Schematic-Design-Guide/Sub-G-Match-Circuits.png)
   Performance table:
-  ![](../files/HW-Schematic-Design-Guide/Sub-G-Tested-Performance.png)
+  ![](files/HW-Schematic-Design-Guide/Sub-G-Tested-Performance.png)
 
 - Matching circuits design for 2.4GHz band
   AN930 describes the 2.4GHz matching method in detail.The 2.4 GHz front end has a unified, single-ended TX and RX pin (2G4RF_IOP), so the TX and RX paths are tied together internally. The 2G4RF_ION TX pin has to be grounded at the pin. Externally, a single-ended matching network and harmonic filtering are required.
@@ -115,19 +115,19 @@ The matching effort strives to simultaneously achieve several goals:
 
   A ladder 2-element LC match for up to 10 dBm power levels:
 
-  ![](../files/HW-Schematic-Design-Guide/2.4G-2element.png)
+  ![](files/HW-Schematic-Design-Guide/2.4G-2element.png)
   
   A ladder 4-element LCLC match for up to 20 dBm power levels:
 
-  ![](../files/HW-Schematic-Design-Guide/2.4G-4element.png)
+  ![](files/HW-Schematic-Design-Guide/2.4G-4element.png)
 
 The performances:
    Tx output power and harmonics:
 
-  ![](../files/HW-Schematic-Design-Guide/2.4G-Tx-TestResults.png) 
+  ![](files/HW-Schematic-Design-Guide/2.4G-Tx-TestResults.png) 
   
    Rx sensitivity:
-   ![](../files/HW-Schematic-Design-Guide/2.4G-Rx-TestResults.png) 
+   ![](files/HW-Schematic-Design-Guide/2.4G-Rx-TestResults.png) 
   
 
 ## Customize the schematic design to fit the application
