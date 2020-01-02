@@ -1,8 +1,8 @@
 ![Silicon Labs](files/logo.png)
 --------------------------------------------------------
-[Home](Home) > [Zigbee](ZB-BootCamp)
+[Home](Home) > [Zigbee](ZB-Boot-Camp)
 
-* [Zigbee Boot Camp](ZB-BootCamp)
+* [Zigbee Boot Camp](ZB-Boot-Camp)
     * [Preparatory Course](ZB-Preparatory-Course)
     * [Hands on : Forming and Joining](ZB-Hands-on-Forming-and-Joining)
     * [Hands on : Sending on/off commands](ZB-Hands-on-Sending-onoff-commands)

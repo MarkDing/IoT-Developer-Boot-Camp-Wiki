@@ -31,6 +31,6 @@
 ## Reference
 - [Zigbee Onboarding Roadmap][Zigbee Onboarding Roadmap]
 
-[Zigbee Introduction]: files/ZB-BootCamp/Zigbee-Basic.pptx
-[EmberZnet and WSTK]: files/ZB-BootCamp/EmberZnet-and-WSTK.pptx
-[Zigbee Onboarding Roadmap]: files/ZB-BootCamp/Silicon-Labs-ZigBee-Onboarding-Roadmap.pdf
+[Zigbee Introduction]: files/ZB-Boot-Camp/Zigbee-Basic.pptx
+[EmberZnet and WSTK]: files/ZB-Boot-Camp/EmberZnet-and-WSTK.pptx
+[Zigbee Onboarding Roadmap]: files/ZB-Boot-Camp/Silicon-Labs-ZigBee-Onboarding-Roadmap.pdf
