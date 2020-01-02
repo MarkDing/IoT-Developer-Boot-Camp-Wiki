@@ -1,4 +1,4 @@
-![](files/home.png)Home | ![](files/zigbee-icon-30x30.png)[Zigbee](ZB-Boot-Camp) | ![](files/bluetooth-icon-30x30.png)[Bluetooth](Bluetooth) | ![](files/z-wave-icon-30x30.png)[ZWave](ZWave) | ![](files/proprietary-icon-grey-30x30.png)[Proprietary](Proprietary) | ![](files/hardware-icon-grey-30x30.png)[Hardware](Hardware) | ![](files/common-icon-30x30.png)[Common](Common)
+![](files/home.png)Home | ![](files/zigbee-icon-30x30.png)[Zigbee](ZB-Boot-Camp) | ![](files/bluetooth-icon-30x30.png)[Bluetooth](BL-Boot-Camp) | ![](files/z-wave-icon-30x30.png)[ZWave](ZW-Boot-Camp) | ![](files/proprietary-icon-grey-30x30.png)[Proprietary](PR-Boot-Camp) | ![](files/hardware-icon-grey-30x30.png)[Hardware](HW-Boot-Camp) | ![](files/common-icon-30x30.png)[Common](Common)
 
 ********
 # Welcome
@@ -29,4 +29,4 @@ If you are complete new to IoT, It is recommended to start with IoT [IoT Introdu
 ********
 
 ### Want to contribute to this Wiki?
-[Fork it and send a pull request](https://github.com/MarkDing/IoT-Developer-Boot-Camp-Wiki)
+[Fork it and send a pull request](https://github.com/MarkDing/CM-IoT-Developer-Boot-Camp-Wiki)
