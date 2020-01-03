@@ -28,7 +28,7 @@ In this hands-on, we provide step-by-step instructions to demonstrate how to use
 The figure below illustrates the working flow of this hands-on.  
 
 <div align="center">
-  <img src="files/ZB-Hands-on-Using-Event/using_event_working_flow.png">  
+  <img src="files/ZB-Zigbee-Hands-on-Using-Event/using_event_working_flow.png">  
 </div>  
 </br>  
 
@@ -50,7 +50,7 @@ Basically, two things need for this.
 
 Open the *AppBuilder* -> *Includes* tab. Add the custom event command ```ledBlinkingEventControl``` and callback ```ledBlinkingEventHandler``` to the *Event Configuration* window respectively. See figure below.  
 <div align="center">
-  <img src="files/ZB-Hands-on-Using-Event/custom_event_adding_in_AppBuilder.png">  
+  <img src="files/ZB-Zigbee-Hands-on-Using-Event/custom_event_adding_in_AppBuilder.png">  
 </div>  
 <div align="center">
   <b>Custom event adding in AppBuilder</b>
@@ -62,7 +62,7 @@ An event should be scheduled somewhere in the code, hence a function should be u
 Double click the Zigbee_Switch_ZR.isc file to open it with the AppBuilder, and then enable this callback in the AppBuilder’s Callbacks tab. See the figure below.  
 
 <div align="center">
-  <img src="files/ZB-Hands-on-Using-Event/main_init_enabling.png">  
+  <img src="files/ZB-Zigbee-Hands-on-Using-Event/main_init_enabling.png">  
 </div>  
 <div align="center">
   <b>Main Init callback enabling</b>
