@@ -21,6 +21,11 @@
 | 30 min | [Hands on : Understand FLiRS devices][Lab_4_Understand_FLiRS_devices] |
 *************
 
+## Quiz and Feedback
+- [Quiz](https://forms.office.com/Pages/ResponsePage.aspx?id=ItjbVDFSIEuUTW9KvNVB-3KN9_A0SWNHplwnAwyAZcxUOVlERFJFUTJFQ0Y2SlpQUVRQVVI5SkQzUS4u)
+- [Feedback](https://forms.office.com/Pages/ResponsePage.aspx?id=ItjbVDFSIEuUTW9KvNVB-3KN9_A0SWNHplwnAwyAZcxUNkhBSFBCQTlaWkdUSFQ2WUpPSllFWjdaVC4u)
+
+
 
 [Lesson0_Z-Wave_Welcome]: files/ZW-ZWave-Boot-Camp/Lesson0_Z-Wave_Welcome.pptx
 [Lesson1_Interoperability]: files/ZW-ZWave-Boot-Camp/Lesson1_Interoperability.pptx
