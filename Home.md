@@ -1,4 +1,4 @@
-![](files/home.png)Home | ![](files/zigbee-icon-30x30.png)[Zigbee](ZB-BootCamp) | ![](files/bluetooth-icon-30x30.png)[Bluetooth](Bluetooth) | ![](files/z-wave-icon-30x30.png)[ZWave](ZWave) | ![](files/proprietary-icon-grey-30x30.png)[Proprietary](Proprietary) | ![](files/hardware-icon-grey-30x30.png)[Hardware](Hardware) | ![](files/common-icon-30x30.png)[Common](Common)
+![](files/home.png)Home | ![](files/zigbee-icon-30x30.png)[Zigbee](Zigbee-Boot-Camp) | ![](files/bluetooth-icon-30x30.png)[Bluetooth](Bluetooth-Boot-Camp) | ![](files/z-wave-icon-30x30.png)[ZWave](ZWave-Boot-Camp) | ![](files/proprietary-icon-grey-30x30.png)[Proprietary](Proprietary-Boot-Camp) | ![](files/hardware-icon-grey-30x30.png)[Hardware](Hardware-Boot-Camp) | ![](files/common-icon-30x30.png)[Common](Common)
 
 ********
 # Welcome

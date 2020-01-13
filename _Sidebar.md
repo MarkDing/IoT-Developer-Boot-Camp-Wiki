@@ -1,9 +1,9 @@
 ![Silicon Labs](files/logo.png)
 --------------------------------------------------------
-* [Zigbee](ZB-BootCamp)
-* [Bluetooth](Bluetooth)
-* [ZWave](ZWave)
-* [Proprietary](Proprietary)
-* [Hardware](Hardware)
+* [Zigbee](Zigbee-Boot-Camp)
+* [Bluetooth](Bluetooth-Boot-Camp)
+* [ZWave](ZWave-Boot-Camp)
+* [Proprietary](Proprietary-Boot-Camp)
+* [Hardware](Hardware-Boot-Camp)
 * [Common](Common)
 
