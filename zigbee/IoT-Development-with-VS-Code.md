@@ -261,7 +261,10 @@ Press **Alt+Shift+B**, choose Flash from the drop-down menu.
 
 ![flash-dropdown](files/ZB-IoT-Development-with-VS-Code/flash-dropdown.png)
 
-It flashes the hex file into the WSTK board
+It flashes the hex file into the WSTK board. 
+As the new SDK V2.7 have update on commander, if there is more than one WSTK connect to PC, it won't pop out a board selection menu.
+So please keep only one board connection when use this method. 
+Or just use the GUI tool which introduce in below.
 
 ```bash
 > Executing task in folder Z3LightSoc: C:\Users\username\SimplicityStudio\v4_workspace\Z3LightSoc\flash.bat  <
