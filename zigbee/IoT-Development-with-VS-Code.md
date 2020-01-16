@@ -1,3 +1,42 @@
+<details>
+<summary><font size=5>Table of Contents</font> </summary>
+
+- [1. Introduction](#1-introduction)
+- [2. Install Simplicity Studio and setup system environment variables](#2-install-simplicity-studio-and-setup-system-environment-variables)
+- [3. Install VS Code and recommended extensions](#3-install-vs-code-and-recommended-extensions)
+  - [3.1. Download and install VS Code from official web site.](#31-download-and-install-vs-code-from-official-web-site)
+  - [3.2. Set Git bash as default shell](#32-set-git-bash-as-default-shell)
+- [4. Command-line build support for Zigbee project](#4-command-line-build-support-for-zigbee-project)
+  - [4.1. Replace the makefile template.](#41-replace-the-makefile-template)
+  - [4.2. Generate Z3Light Soc project](#42-generate-z3light-soc-project)
+    - [4.2.1.  Connect board](#421-connect-board)
+    - [4.2.2. Create Z3Light example code](#422-create-z3light-example-code)
+    - [4.2.1 Generate source code](#421-generate-source-code)
+  - [4.3. Command-line build in VS Code terminal](#43-command-line-build-in-vs-code-terminal)
+  - [4.4. Verify building result](#44-verify-building-result)
+- [5. Develop Zigbee project in VS Code with configuration setup](#5-develop-zigbee-project-in-vs-code-with-configuration-setup)
+  - [5.1. Create a workspace](#51-create-a-workspace)
+  - [5.2. Configure include and browse path](#52-configure-include-and-browse-path)
+    - [5.2.1. Configure include path](#521-configure-include-path)
+    - [5.2.2. Configure macro definition](#522-configure-macro-definition)
+    - [5.2.3. Configure browse directory](#523-configure-browse-directory)
+    - [5.2.4. Verify the configuration](#524-verify-the-configuration)
+    - [5.2.5. Check go to definition](#525-check-go-to-definition)
+  - [5.3. Create a build task](#53-create-a-build-task)
+    - [5.3.1. Create a build task](#531-create-a-build-task)
+    - [5.3.2. Configure build task](#532-configure-build-task)
+    - [5.3.3. Run build task](#533-run-build-task)
+    - [5.3.4. Adding an external programmer tool](#534-adding-an-external-programmer-tool)
+- [6. Source control by Git](#6-source-control-by-git)
+  - [6.1. Create Git repo for SDK](#61-create-git-repo-for-sdk)
+  - [6.2. Create Git repo for Z3LightSoc](#62-create-git-repo-for-z3lightsoc)
+  - [6.3. Verify the Git function](#63-verify-the-git-function)
+- [7. Have fun with VS Code](#7-have-fun-with-vs-code)
+
+</details>
+
+*****
+
 ## 1. Introduction
 This article will introduce how to develop Silicon Labs IoT project with VS Code. Silicon Labs provides [Simplicity Studio](https://www.silabs.com/products/development-tools/software/simplicity-studio.) as IoT development platform. It is a highly integrated IDE based on Eclipse. It can easily setup the project and generate source codes according to the configuration you made within the IDE. However, it is a monster in size and speed. Once the user finishes the all common configurations it is unnecessary to stick on the Simplicity Studio to develop the project. A better choice is to use a lightweight IDE to do IoT development. Here we will introduce how to use Microsoft [Virtual Studio Code](https://code.visualstudio.com/) as our default IDE to develop a Zigbee project.
 
