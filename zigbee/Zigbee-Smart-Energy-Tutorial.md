@@ -1,30 +1,60 @@
 ********
-![zigbee](files/ZB-Zigbee-SmartEnergy-Tutorial/SmartEnergy.png)
+![zigbee](files/ZB-Zigbee-Smart-Energy-Tutorial/SmartEnergy.png)
 ********
+
+<details>
+<summary><font size=5>Table of Contents</font> </summary>
 &nbsp;  
 
-# Zigbee Smart Energy Tutorial
-
-- [Zigbee Smart Energy Tutorial](#zigbee-smart-energy-tutorial)
-  - [1. Prerequisites](#1-prerequisites)
-    - [1.1. Install Side-package for ECC Library](#11-install-side-package-for-ecc-library)
-    - [1.2. Apply for Smart Energy Certificates](#12-apply-for-smart-energy-certificates)
-    - [1.3. IAR Toolchain](#13-iar-toolchain)
-  - [2. Smart Energy Project](#2-smart-energy-project)
-    - [2.1. SoC Mode](#21-soc-mode)
-    - [2.2. NCP Mode](#22-ncp-mode)
-    - [2.3. Host](#23-host)
-  - [3. Run and Test](#3-run-and-test)
-    - [3.1. Flash Certificates](#31-flash-certificates)
-    - [3.2. Flash SoC image and NCP image](#32-flash-soc-image-and-ncp-image)
-    - [3.3. Check Certificate State](#33-check-certificate-state)
-    - [3.4. Form network and join](#34-form-network-and-join)
-    - [3.5. Establish Link Key](#35-establish-link-key)
-  - [4. Reference](#4-reference)
-
+- [1. Introduction](#1-introduction)
+- [2. Prerequisites](#2-prerequisites)
+  - [2.1. Install Side-package for ECC Library](#21-install-side-package-for-ecc-library)
+  - [2.2. Apply for Smart Energy Certificates](#22-apply-for-smart-energy-certificates)
+  - [2.3. IAR Toolchain](#23-iar-toolchain)
+- [3. Smart Energy Project](#3-smart-energy-project)
+  - [3.1. SoC Mode](#31-soc-mode)
+  - [3.2. NCP Mode](#32-ncp-mode)
+  - [3.3. Host](#33-host)
+- [4. Run and Test](#4-run-and-test)
+  - [4.1. Flash Certificates](#41-flash-certificates)
+  - [4.2. Flash SoC image and NCP image](#42-flash-soc-image-and-ncp-image)
+  - [4.3. Check Certificate State](#43-check-certificate-state)
+  - [4.4. Form network and join](#44-form-network-and-join)
+  - [4.5. Establish Link Key](#45-establish-link-key)
+- [5. Reference](#5-reference)
+</details>
 &nbsp; 
 
-## 1. Prerequisites
+## 1. Introduction
+Smart Energy by the Zigbee Alliance is a secure, wireless protocol designed to enable utilities to improve energy availability and reliability, and empower consumers to better understand their energy consumption habits. With over 100 million Smart Energy Certified electric and gas meters installed across the Great Britain and the United States, Smart Energy by the Zigbee Alliance has become the most important smart grid energy management protocol on the market today.  
+
+Smart Energy by the Zigbee Alliance allows utilities and energy services providers to easily deploy residential and commercial sensors, controls, and consumer engagement devices at the point of delivery, and connect them to the millions of smart meters that have been deployed over the last decade. This infrastructure enables energy providers to:
+- Communicate dynamic pricing for electricity, gas, and water
+- Schedule control activity for thermostats
+- Manage load control relays and building automation systems
+- Give customers real-time access to electricity, gas and water metering data
+- And more.  
+
+The application will use link keys which are optional in the ZigBee and ZigBee Pro stack profiles but are required within a Smart Energy network. The Trust Center and all devices on the Smart Energy network must support the installation and use of these keys. 
+
+Zigbee uses public/private key technology to authenticate a device joining a Smart Energy network and provides a means to securely
+establish encryption keys for future transactions. The Smart Energy specification uses Elliptical Curve Cryptography (ECC) for cryptographic
+authentication and key generation.
+Zigbee uses ECC with the key establishment cluster to derive a link key. It also uses ECC for creating digital signatures for software
+upgrade images sent through the Zigbee Over-the-Air (OTA) Upgrade cluster.   
+
+Certicom (www.certicom.com) provides both the certificates
+and the ECC technology for use in Zigbee Smart Energy networks.
+Smart Energy 1.0 used an ECC curve 163k1 with a 48-byte certificate. Smart Energy 1.2 introduced use of the ECC curve 283k1 with a
+74-byte certificate. The certificates are separate and unique and are not interoperable. However when both are present on the same
+device, they must contain the same 64-bit Extended Unique Identifier (EUI64). Devices may have one or both sets of security data installed.
+The rules for what devices must have both certificates or what devices only need one certificate is governed by the Smart Energy
+specification.  
+
+In this tutorial, we will introduce how to finish the certificate based key exchange (CBKE) procedure with EmberZnet SDK.
+&nbsp; 
+
+## 2. Prerequisites
 Zigbee Smart Energy network has higher security requirements. The APS layer security is now mandatory in Smart Energy specification whereas it's just optional in Zigbee 3.0 specification. The Smart Energy specification uses Elliptical Curve Cryptography (ECC) for cryptographic authentication and key generation. Therefore, each Smart Energy device must support Elliptical Curve Cryptography (ECC) algorithm and must be programed with a certificate.
 
 To develop a Zigbee Smart Energy application with EmberZnet SDK, you have to install Simplicity Studio and then download EmberZnet SDK. This can be done following the steps in [Zigbee-Preparatory-Course](Zigbee-Preparatory-Course). Besides, you need to prepare the following resources before you start:
@@ -32,7 +62,7 @@ To develop a Zigbee Smart Energy application with EmberZnet SDK, you have to ins
 - Smart Energy Certificates
 - IAR Toolchain
 
-### 1.1. Install Side-package for ECC Library
+### 2.1. Install Side-package for ECC Library
 The ECC libraries is provided as a side-package to customer of EmberZnet. It's not released together with EmberZnet SDK. Instead, you need to apply for it through Silicon Labs' [Support Portal](https://siliconlabs.force.com/s/contactsupport). You just need to create a ticket to ask for it. Once you are granted an access permit, you will be able to see the side-package under the "SOFTWARE RELEASES" tab of your home page.  
 
 Once you get the package, please refer to the [guide](https://www.silabs.com/community/wireless/zigbee-and-thread/knowledge-base.entry.html/2017/06/05/how_to_add_ecc_libra-IQL1) to extract the package.  
@@ -40,7 +70,7 @@ Once you get the package, please refer to the [guide](https://www.silabs.com/com
 If you need to support OTA, you should copy the file "image-builder-ecc-windows.exe"(Windows) or "image-builder-ecc-linux"(Linux) to directory "protocol\zigbee\tool\image-builder" under your SDK.
 &nbsp; 
 
-### 1.2. Apply for Smart Energy Certificates
+### 2.2. Apply for Smart Energy Certificates
 Smart Energy 1.0 utilized an ECC 163k1 curve with a 48-byte certificate format. All certified devices are required to support this.   
 
 Smart Energy 1.2 introduces a new curve ECC 283k1, and a 74-byte certificate format. Smart Energy 1.2 devices must support the existing 163k1 ECC curve and may also support the new 283k1 curve. (The requirements for what devices must support the 238k1 ECC curve is spelled out in the ZigBee Smart Energy specification.)  
@@ -58,14 +88,14 @@ Each certificate is associated with a particular EUI64 and must be used on the d
 In this tutorial, we are going to use these two test certificates.
 &nbsp; 
 
-### 1.3. IAR Toolchain
+### 2.3. IAR Toolchain
 For the time being, the ECC libraries are built with IAR. Therefore, we have to use IAR in all Smart Energy applications.
 &nbsp; 
 
 &nbsp; 
 
-## 2. Smart Energy Project
-### 2.1. SoC Mode
+## 3. Smart Energy Project
+### 3.1. SoC Mode
 1. Go to File -> New -> Project. This will bring up the New Project Wizard.
 2. Select “Silicon Labs AppBuilder Project”. Click Next.
 3. Select “Silicon Labs Zigbee”. Click Next.
@@ -73,10 +103,10 @@ For the time being, the ECC libraries are built with IAR. Therefore, we have to 
 5. On the bottom, select “ZigbeeMinimal”. Click Next.
 6. Name your project, such as “ZSEClient”. Click Next.
 7. In next window (Project Setup), select board, and compiler to “IAR ARM”. Click Finish.  
-![zigbee](files/ZB-Zigbee-SmartEnergy-Tutorial/Create-Project-Compiler.png)
+![zigbee](files/ZB-Zigbee-Smart-Energy-Tutorial/Create-Project-Compiler.png)
 8. The new project should have been created now, with the project configuration file (an .isc file) open.
 9. Click “Zigbee Stack” tab, select “Security Type” to “Smart Energy Security Test (development only)”. **Note: If you use production certificate, please select "Smart Energy Security Full(compliant)".**
-![zigbee](files/ZB-Zigbee-SmartEnergy-Tutorial/Security.png)
+![zigbee](files/ZB-Zigbee-Smart-Energy-Tutorial/Security.png)
 10. Click “ZCL clusters” tab, in “ZCL device type” field, set “ZCL device type” to “SE devices --> SE Metering Device”.
 11. Click “Plugins” tab, enable the following plugins:  
 
@@ -87,8 +117,8 @@ For the time being, the ECC libraries are built with IAR. Therefore, we have to 
 |CBKE 283k Library||
 |CBKE 283k1 DSA Verify Library||
 |CBKE Core Library||
-|ECC 163k1 Library|Select the library file: **C:\SiliconLabs\SimplicityStudio\v4\developer\sdks\gecko_sdk_suite\v2.7\protocol\zigbee\ECC\SoC-Libraries\ecc-library-efr32mg12p433f1024gl125.a**|
-|ECC 283k1 Library|Select the library file: **C:\SiliconLabs\SimplicityStudio\v4\developer\sdks\gecko_sdk_suite\v2.7\protocol\zigbee\ECC\SoC-Libraries\ecc-library-283k1-efr32mg12p433f1024gl125.a**|
+|ECC 163k1 Library|Select the library file:<br>**The absolute path of ecc-library-efr32mg12p433f1024gl125.a**|
+|ECC 283k1 Library|Select the library file:<br>**The absolute path of ecc-library-283k1-efr32mg12p433f1024gl125.a**|
 
 12. Click “Printing and CLI” tab, enable the debug print of the following items:  
 - Security
@@ -103,7 +133,7 @@ For the time being, the ECC libraries are built with IAR. Therefore, we have to 
 14. Build.
 &nbsp; 
 
-### 2.2. NCP Mode
+### 3.2. NCP Mode
 1. Go to File -> New -> Project. This will bring up the New Project Wizard.
 2. Select “Silicon Labs AppBuilder Project”. Click Next.
 3. Select “Customizable network coprocessor (NCP) Applications”. Click Next.
@@ -125,11 +155,11 @@ For the time being, the ECC libraries are built with IAR. Therefore, we have to 
 |CBKE Core Stub Library||Yes||
 |CBKE DSA Sign Library|Yes|||
 |CBKE DSA Sign Stub Library||Yes||
-|ECC 163k1 Library|Yes||Select the library file: **C:\SiliconLabs\SimplicityStudio\v4\developer\sdks\gecko_sdk_suite\v2.7\protocol\zigbee\ECC\SoC-Libraries\ecc-library-efr32mg12p433f1024gl125.a**|
-|ECC 283k1 Library|Yes||Select the library file: **C:\SiliconLabs\SimplicityStudio\v4\developer\sdks\gecko_sdk_suite\v2.7\protocol\zigbee\ECC\SoC-Libraries\ecc-library-283k1-efr32mg12p433f1024gl125.a**|
+|ECC 163k1 Library|Yes||Select the library file:<br>**The absolute path of ecc-library-efr32mg12p433f1024gl125.a**|
+|ECC 283k1 Library|Yes||Select the library file:<br>**The absolute path of ecc-library-283k1-efr32mg12p433f1024gl125.a**|
 9. Save, generate and build.
 
-### 2.3. Host
+### 3.3. Host
 1. Go to File -> New -> Project. This will bring up the New Project Wizard.
 2. Select “Silicon Labs AppBuilder Project”. Click Next.
 3. Select “Silicon Labs Zigbee”. Click Next.
@@ -137,19 +167,19 @@ For the time being, the ECC libraries are built with IAR. Therefore, we have to 
 5. Select “Z3Gateway”. Click Next.
 6. Name your project, such as ZSE_Host. Click Next.
 7. In next window (Project Setup), leave the “Boards” and “Parts” field empty, then finish.
-![zigbee](files/ZB-Zigbee-SmartEnergy-Tutorial/Create-Host.png)
+![zigbee](files/ZB-Zigbee-Smart-Energy-Tutorial/Create-Host.png)
 8. Click “Zigbee Stack” tab, select “Security Type” to “Smart Energy Security Test (development only)”. **Note: If you use production certificate, please select "Smart Energy Security Full(compliant)".**
-![zigbee](files/ZB-Zigbee-SmartEnergy-Tutorial/Host-Security.png)
+![zigbee](files/ZB-Zigbee-Smart-Energy-Tutorial/Host-Security.png)
 9. Click “ZCL clusters” tab, add a new endpoint.
-![zigbee](files/ZB-Zigbee-SmartEnergy-Tutorial/Add-Endpoint.png)  
+![zigbee](files/ZB-Zigbee-Smart-Energy-Tutorial/Add-Endpoint.png)  
 
 The new endpoint ID should be 2. Select the new endpoint, and edit the configuration, change its type to SE.  
 
-![zigbee](files/ZB-Zigbee-SmartEnergy-Tutorial/Edit-Endpoint-Type.png)  
+![zigbee](files/ZB-Zigbee-Smart-Energy-Tutorial/Edit-Endpoint-Type.png)  
 
 Keep the new endpoint selected, change the "ZCL device type" to "SE devices  --> SE Smart Appliance".  
 
-![zigbee](files/ZB-Zigbee-SmartEnergy-Tutorial/ZCL-Device-Type.png)  
+![zigbee](files/ZB-Zigbee-Smart-Energy-Tutorial/ZCL-Device-Type.png)  
 
 10.  Click “Plugins” tab, enable the following plugins:  
 
@@ -164,8 +194,8 @@ Keep the new endpoint selected, change the "ZCL device type" to "SE devices  -->
 13.  Build.  
 &nbsp; 
 
-## 3. Run and Test
-### 3.1. Flash Certificates
+## 4. Run and Test
+### 4.1. Flash Certificates
 We will use Simplicity Commander flash the certificates into the devices.  
 
 First, as the certificate certicom-test-cert-1.txt is associated with EUI64 **0022080000000001**, we have to flash this EUI64 into the device as well.   
@@ -185,10 +215,10 @@ After that, flash the certificate file "certicom-test-cert-2.txt" with the same 
 
 &nbsp; 
 
-### 3.2. Flash SoC image and NCP image
+### 4.2. Flash SoC image and NCP image
 Flash the SoC image and NCP image according to the steps in [Flashing Image](Flashing-Image).
 
-### 3.3. Check Certificate State
+### 4.3. Check Certificate State
 Run "**info**" command to check the certificate state.  
 
 ```
@@ -241,11 +271,11 @@ Run "**info**" command to check the certificate state.
    securityProfile [0x03]   
 ```
 
-### 3.4. Form network and join
+### 4.4. Form network and join
 Please refer to [Forming and Joining Hands-on Course](Zigbee-Hands-on-Forming-and-Joining#7-establish-connection-between-light-and-switch-with-an-installation-code-derived-link-key) to form network and join.
 
 
-### 3.5. Establish Link Key
+### 4.5. Establish Link Key
 Run command "plugin key-establishment start 0 2" (This command means to establish link key between current node and node 0x0000 on endpoint 2) on ZSEClient and then check the log.  
 
 ```
@@ -315,12 +345,12 @@ T00000000:TX (resp) Ucast 0x00
 TX buffer: [00 06 0B 02 00 ]
 ```
 
-There is also a [sniffer](files/ZB-Zigbee-SmartEnergy-Tutorial/cbke.isd) about the CBKE procedure.
+There is also a [sniffer](files/ZB-Zigbee-Smart-Energy-Tutorial/cbke.isd) about the CBKE procedure.
 *************
 
-## 4. Reference
+## 5. Reference
 - [AN708 Setting Manufacturing Certificates](https://www.silabs.com/documents/public/application-notes/an708-setting-manufacturing-certificates.pdf)
-- [AN714 Smart Energy ECC Enabled Device Setup](https://www.silabs.com/documents/public/application-notes/AN714-SmartEnergyECCEnabledDeviceSetupProcess.pdf)
+- [AN714 Smart Energy ECC Enabled Device Setup](https://www.silabs.com/documents/public/application-notes/AN714-Smart-EnergyECCEnabledDeviceSetupProcess.pdf)
 - [KBA - How to add ECC Libraries to EmberZNet](https://www.silabs.com/community/wireless/zigbee-and-thread/knowledge-base.entry.html/2017/06/05/how_to_add_ecc_libra-IQL1)
 - [UG162 Simplicity Commander Reference Guide](https://www.silabs.com/documents/public/user-guides/ug162-simplicity-commander-reference-guide.pdf)
 *************

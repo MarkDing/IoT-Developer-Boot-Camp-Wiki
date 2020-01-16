@@ -1,11 +1,13 @@
-# Flashing Image to Device
-&nbsp;
 
-- [Flashing Image to Device](#flashing-image-to-device)
-  - [1. Flash Programmer](#1-flash-programmer)
-  - [2. Simplicity Commander](#2-simplicity-commander)
-********
+<details>
+<summary><font size=5>Table of Contents</font> </summary>
 &nbsp;  
+
+- [1. Flash Programmer](#1-flash-programmer)
+- [2. Simplicity Commander](#2-simplicity-commander)
+</details>  
+
+********
 
 Currently we have two common approaches to flash a image into a device:  
 - Use Flash Programmer
@@ -27,7 +29,7 @@ Then you can see the main window of "Flash Programmer". By default, the file is 
 ![common](files/CM-Flashing-Image/Flash-Programer.png)  
 
 Just click "Program" button to start the programming.  
-If you click "Erase" button, it will erase the main flash (Starting from address 0).
+If you click "Erase" button, it will erase the main flash (Starting from address 0). **All data saved in the main flash such as network info, security key, etc, will be lost.**
 
 ## 2. Simplicity Commander
 You can also use "Simplicity Commander" to flash program.  
