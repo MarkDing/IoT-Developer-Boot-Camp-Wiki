@@ -373,6 +373,6 @@ In VS Code, add a comment in Z3LightSoc_callbacks.c, then we can see on the side
 ![git-diff](files/ZB-IoT-Development-with-VS-Code/git-diff.png)
 
 ## 7. Have fun with VS Code
-Now, we have finished all setup on IoT development in VS Code, enjoy your time!
+Now, we have finished all setup on IoT development with VS Code, enjoy your time!
 
 ![vs-code](files/ZB-IoT-Development-with-VS-Code/vs-code.png)
