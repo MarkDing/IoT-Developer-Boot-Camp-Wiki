@@ -1,4 +1,17 @@
+<details>
+<summary><font size=5>Table of Contents</font> </summary>
+
+- [1. Introduction](#1-introduction)
+- [2. Smart Home](#2-smart-home)
+- [3. Choose wireless protocol](#3-choose-wireless-protocol)
+- [4. Network management](#4-network-management)
+- [5. Cloud Service](#5-cloud-service)
+- [6. How IoT will change our life?](#6-how-iot-will-change-our-life)
+
+</details>
+
 ********
+
 # 1. Introduction
 The Internet of Things or IoT is a giant network of “Things”. “Things” can refer to a wide variety of devices. physical devices, vehicles, home appliances. IoT enables these objects to connect and exchange data. IoT is influencing our lifestyle. From droids you control with the smartphone to fire alarm sensor in your room, or your smartwatch which is tracking your body status. It is almost everything that you came across in daily life. 
 
