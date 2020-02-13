@@ -79,7 +79,8 @@ It is important to use the same toolchain version when building your project tha
 
 ### 2.2.3. Using Gecko Bootloader
 A bootloader is a program stored in reserved flash memory that can initialize a device, update firmware images, and possibly perform some integrity checks. If the application seems to do not running, always check the bootloader, because lack of it causes program crash.  
-**Note**: It's highly recommended to program the pre-built bootloader images below comes with the Gecko SDK at the beginning of this series hands-on, the image can be found at ```c:\SiliconLabs\SimplicityStudio\v4\developer\sdks\gecko_sdk_suite\v2.6\platform\bootloader\sample-apps\bootloader-storage-internal-single\efr32mg12p332f1024gl125-brd4162a\```  
+**Note**: At the beginning of this series hands-on, it's highly recommended to program the pre-built bootloader images which comes with the Gecko SDK to the devices. The image that ends with "-combined" (e.g. bootloader-storage-internal-single-combined.s37) should be flashed, it contains the first+second stage of the Gecko Bootloader. The image can be found at  
+```c:\SiliconLabs\SimplicityStudio\v4\developer\sdks\gecko_sdk_suite\v2.6\platform\bootloader\sample-apps\bootloader-storage-internal-single\efr32mg12p332f1024gl125-brd4162a\```  
 
 For more information about how to add Gecko Bootloader to your Zigbee project, please read the [preparatory course](https://github.com/MarkDing/IoT-Developer-Boot-Camp/wiki/Zigbee-Preparatory-Course#using-gecko-bootloader).  
 **Hint**: More information about Gecko Bootloader, please find the documentations below.  
@@ -264,6 +265,57 @@ The above transactions can be observed in the Network Analyzer as well. See Figu
 <div align="center">
   <b>Figure 3‑2 ZCL On/Off commands in Network Analyzer</b>
 </div>  
+</br>  
+
+Take the on/off command as a example to specifies the format of the General ZCL Frame, the ZCL frame format is composed of a ZCL header and a ZCL payload. The general ZCL frame SHALL be formatted as illustrated in the figure below.  
+
+<div align="center">
+  <img src="files/ZB-Zigbee-Hands-on-Sending-OnOff-Commands/format_of_the_general_ZCL_frame.png">  
+</div>  
+<div align="center">
+  <b>Figure 3‑3 Format of the General ZCL Frame</b>
+</div> 
+</br>  
+
+With the network analyzer, you can capture the network trace of the On/Off commands similar as below.  
+<div align="center">
+  <img src="files/ZB-Zigbee-Hands-on-Sending-OnOff-Commands/onoff_command_format.png">  
+</div>  
+
+**Frame Control**  
+The frame control field is 8 bits in length and contains information defining the command type and other control flags. The frame control field SHALL be formatted as shown in the figure below.  
+
+<div align="center">
+  <img src="files/ZB-Zigbee-Hands-on-Sending-OnOff-Commands/format_of_the_frame_control_field.png">  
+</div>  
+<div align="center">
+  <b>Figure 3‑4 Format of the Frame Control Field</b>
+</div> 
+</br>  
+
+The **Frame type** in the On/Off command is 0b1 indicates the command is specific or local to a cluster (On/Off cluster).  
+The value of **Manufacturer Specific** sub-field is set to false in the On/Off command, and the manufacturer code field will not be included in the ZCL frame.  
+The **Direction** sub-field in the On/Off command is 0b0 indicates the command is being sent from the client side (Switch) of a cluster to the server side (Light) of a cluster.  
+The **Disable Default Response** sub-field in the On/Off command is 0b1. It means the Default Response command will only be returned if there is an error, also under the specified conditions documented by Zigbee Cluster Library Specification.   
+
+**Manufacturer Code**
+The manufacturer code field is 16 bits in length and specifies the assigned manufacturer code for proprietary extensions. This field SHALL only be included in the ZCL frame if the **Manufacturer Specific** sub-field of the frame control field is set to 1 that indicates this command refers to a manufacturer specific extension.  
+Because the **Manufacturer Specific** sub-field of the On/Off command frame control field is set to 0, so the **Manufacturer Code** will not be included.  
+
+**Transaction Sequence Number**
+The Transaction Sequence Number field is 8 bits in length and specifies an identification number for a single transaction.  
+
+**Command Identifier**
+The Command Identifier field is 8 bits in length and specifies the cluster command being used. And part of the command IDs for the On/Off cluster are listed below.  
+
+ID | Description
+-|-
+0x00 | Off |
+0x01 | On |
+0x02 | Toggle |
+
+**Frame Payload**
+The frame payload field has a variable length and contains information specific to individual command types. Both the On and Off commands have no payload.  
 
 ***
 
