@@ -45,7 +45,7 @@ These exercises help you get familiar with ZigBee 3.0 in the EmberZNet Stack, Si
 The boot camp series hands-on workshop will cover four functionalities below, and the application development is split into four steps respectively to show how an application should be built up from the beginning.  
 
 The exercise in this documentation is the first exercise in the "Zigbee Boot Camp" series.  
--   **In the 1st phase, a basic network forming by the Light, and a joining process by the Switch will be realized.**
+-   **In the 1st phase, a basic network forming by the Light, and a joining process on the Switch will be realized by using install code.**
 -   The 2nd part will prepare the devices to transmit, receive, and process the On-Off commands by using APIs.  
 -   At the 3rd step the Switch will have a periodic event to execute any custom code, which will be a LED blinking in our case.  
 -   The 4th thing to do is to make the Switch to be able to store any custom data in its flash by using Non-volatile memory.  
@@ -101,7 +101,8 @@ It is important to use the same toolchain version when building your project tha
 
 ### 2.2.3. Using Gecko Bootloader
 A bootloader is a program stored in reserved flash memory that can initialize a device, update firmware images, and possibly perform some integrity checks. If the application seems to do not running, always check the bootloader, because lack of it causes program crash.  
-**Note**: It's highly recommended to program the pre-built bootloader images below comes with the Gecko SDK at the beginning of this series hands-on, the image can be found at ```c:\SiliconLabs\SimplicityStudio\v4\developer\sdks\gecko_sdk_suite\v2.6\platform\bootloader\sample-apps\bootloader-storage-internal-single\efr32mg12p332f1024gl125-brd4162a\```  
+**Note**: At the beginning of this series hands-on, it's highly recommended to program the pre-built bootloader images which comes with the Gecko SDK to the devices. The image that ends with "-combined" (e.g. bootloader-storage-internal-single-combined.s37) should be flashed, it contains the first+second stage of the Gecko Bootloader. The image can be found at  
+```c:\SiliconLabs\SimplicityStudio\v4\developer\sdks\gecko_sdk_suite\v2.6\platform\bootloader\sample-apps\bootloader-storage-internal-single\efr32mg12p332f1024gl125-brd4162a\```  
 
 For more information about how to add Gecko Bootloader to your Zigbee project, please read the [preparatory course](https://github.com/MarkDing/IoT-Developer-Boot-Camp/wiki/Zigbee-Preparatory-Course#using-gecko-bootloader).  
 **Hint**: More information about Gecko Bootloader, please find the documentations below.  
@@ -171,6 +172,7 @@ Before the builder would be opened, I recommend to select the target board on th
 </div>  
 </br>  
 
+7. Configure the "Zigbee_Light_ZC" project.  
 At this point the project is placed into the default workspace directory, but most of the source files are missing. These files will be later linked or generated according to the AppBuilder settings.  
 To open the AppBuilder, click double to the "Zigbee_Light_ZC.isc" file. There are multiple tabs in the file, let's have a closer look at each tab.  
 
@@ -221,15 +223,15 @@ Usually the default setting is enough in this Lab. The only thing to do is verif
 **HAL**  
 This tab is modified quite rarely. It would be possible to use external hardware configurator and change bootloader type, but it's rather exists for legacy purposes. In this lab, there is no need to do anything on this tab.  
 
-**Plugin**  
+**Plugins**  
 The plugins are individual software packages which implement a functionality. A plugin can consist of libraries and source files as well. These are collected on this tab, and the selection of device type doesn't filter out the plugins that the device cannot use, thus it must be done manually. For example, this sample application doesn't enable the necessary plugins for network forming/opening, we need to do that manually.  
-The below plugins must be added or removed to get a device which can operate as a Coordinator. See the Figure below for how to enable the plugins in Appbuilder.
+The below plugins must be added or removed to get a device which can operate as a Coordinator. See the Figure below for how to enable the plugins in Appbuilder.  
+Please note that the plugins mentioned below are the minimal requirements to finish the Forming and Joining hands-on, however, it's not enough for making the "Coordinator/Router" and "Router" device to pass the Z3 certification. For Z3 certification, please refer to the Z3LightSoc and Z3SwitchSoc examples for the necessary plugins.  
 
 The **Network Creator** and **Network Creator Security** plugins implement the network forming and opening functionality, therefore these are required to have.  
-The **Security Link Keys Library** provides the APS security key management which is key feature in Zigbee 3.0. This plugin serves the Trust Center functionality.  
 The **Network Steering** and **Update TC Link Key** can be removed, since the device doesn't intend to joint to any network.  
 The **ZigBee PRO Stack Library** includes one of the most complex stack libraries. It contains the routing, networking, scanning, neighbor, child-handler and other functionalities. It's mandatory for Coordinator and Router. The sample application uses this plugin by default.  
-The **Security Link Keys library** provides management of APS link keys in the key table. It is used by a trust center (coordinator) to manage link keys of devices in the network, or by non trust center devices wishing to manage partner link keys. Therefore it is required to have.
+The **Security Link Keys library** provides management of APS link keys in the key table. It is used by a trust center (coordinator) to manage link keys of devices in the network, or by non trust center devices wishing to manage partner link keys. Therefore it is required to have.  
 The **Serial** establishes the Command Line Interface (CLI). This interface lets the user to communicate with the SoC. In case of selecting the correct board at project creation phase, the plugin settings should fit to the pinout of the device, but it is also important to double check the values. This application uses UART0 via USB Mini-B Connector. The WSTK Main board has a Board Controller which does the UART-USB conversion. This is the Virtual COM port, which must be enabled separately out of the plugin. It will be detailed later.  
 
 <div align="center">
@@ -269,11 +271,10 @@ Project specific macros and include paths are defined here. It should not be mod
 Advance settings in case of using dual band functionalities. It's not used in this project.  
 
 **Bluetooth GATT**  
-The Zigbee-BLE Dynamic Multiprotocol bluetooth side configurator is resided into the AppBuilder. It's not used in this project.  
-Note: Some BLE related plugin make it editable.  
+The Zigbee-BLE Dynamic Multiprotocol bluetooth side configurator is resided into the AppBuilder.  
+Note: This tab is not used in this project. Some BLE related plugin make it editable.  
 
-After saving the modifications the .isc file ready to generate the project files and link the necessary SDK sources and libraries.  
-
+8. Save the modification of the .isc file, and it's ready for generating the project files and link the necessary SDK sources and libraries now.  
 Press the Generate button on the upper-right of the Appbuilder.  
 
 The "Generation successful" label signs all the required files are created. See Figure 3‑11.  
@@ -289,7 +290,7 @@ Press the Build button (![](files/build_project.png)). Upon a successful build, 
 
 *** 
 
-# 4. Download and test the Light application
+# 4. Download and test the Light application  
 Let's download the *Zigbee_Light_ZC.s37* file to the development kit as shown below. See Figure 4‑1 and Figure 4‑2.  
 **Note**: Please execute "Erase" process before the following steps to avoid any unintended effect by the existing network setting in the device.  
 <div align="center">
@@ -351,6 +352,8 @@ The project also based on the "ZigBeeMinimal" sample application, so please
       -   Install code library
 
 The major difference between the Light application and Switch application is the selection of the network related plugins. Let's have a closer look at the enabled plugins.  
+Please note that the plugins mentioned below are the minimal requirements to finish the Forming and Joining hands-on, however, it's not enough for making the "Coordinator/Router" and "Router" device to pass the Z3 certification. For Z3 certification, please refer to the Z3LightSoc and Z3SwitchSoc examples for the necessary plugins.  
+
 The **Serial** has already been discussed at the Light. It' required for the CLI.  
 The **Network Steering** plugin serves to discover the existing networks on the enabled channels. The device issues a Beacon Request message and listens the responses. If the Beacon response (from ZC or ZR) is received with set "permit association" flag, the device starts the joining process for the network, otherwise continue the scanning. Please see the Table 5.1 below for the recommended and required plugins.  
 The **Update TC Link Key** is used to request new APS Link Key from the Trust Center. It should be enabled since the Light (Trust Center) has the Security Link Keys Library.  
@@ -530,7 +533,7 @@ option install-code 0 {00 0B 57 FF FE 64 8D D8} {83 FE D3 40 7A 93 97 23 A5 C6 3
 
 The CRC is displayed just below the install code and is printed in little endian format. **Reverse the bytes to big endian before using as an argument with the option install-code CLI**.  
 
-To see if the link key is added successfully, enter the ```keys print``` CLI on the **Light** node to see it in the Link Key Table. This shows both the link key derived from the installation code, and the network key.  
+To see if the link key is added successfully, enter the ```keys print``` CLI on the **Light** node to see it in the Link Key Table (or Transient Key Table after v6.7.0 EmberZNet SDK). This shows both the link key derived from the installation code, and the network key.  
 <div align="center">
   <img src="files/ZB-Zigbee-Hands-on-Forming-and-Joining/check_link_key.png">  
 </div>  
