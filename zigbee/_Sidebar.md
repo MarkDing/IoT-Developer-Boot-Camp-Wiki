@@ -4,6 +4,7 @@
 
 * [Zigbee Boot Camp](Zigbee-Boot-Camp)
     * [Preparatory Course](Zigbee-Preparatory-Course)
+    * [Introduction : Zigbee Basic](Zigbee-Introduction-of-Zigbee-Basic)
     * [Introduction : EmberZnet and AppBuilder](Zigbee-Introduction-of-EmberZnet-and-AppBuilder)
     * [Hands on : Forming and Joining](Zigbee-Hands-on-Forming-and-Joining)
     * [Hands on : Sending on/off commands](Zigbee-Hands-on-Sending-OnOff-Commands)

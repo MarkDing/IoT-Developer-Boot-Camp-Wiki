@@ -4,6 +4,6 @@
 
 * [IoT Introduction](IoT-Introduction)
 * [Flashing Image](Flashing-Image)
-* [Capturing with Network Analyzer](Network-Analyzer)
-* [Opening Console](Opening-Console)
 * [Debugging Custom Board](Debugging-Custom-Board)
+* [Opening Console](Opening-Console)
+* [Network Analyzer](Network-Analyzer)

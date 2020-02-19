@@ -15,7 +15,7 @@
 ## 2019-12-09
 | Time | Content |  
 |:---- |:----|    
-| 09:30 ~ 11:00 | [Introduction of Zigbee][Zigbee Introduction] |
+| 09:30 ~ 11:00 | [Introduction of Zigbee](Zigbee-Introduction-of-Zigbee-Basic) |
 | 11:15 ~ 12:00 | [Introduction of EmberZnet and AppBuilder](Zigbee-Introduction-of-EmberZnet-and-AppBuilder) |
 | 13:30 ~ 15:00 | [Hands on : Forming and Joining](Zigbee-Hands-on-Forming-and-Joining) |
 | 15:00 ~ 15:45 | [Hands on : Sending on/off commands](Zigbee-Hands-on-Sending-OnOff-Commands) |
@@ -39,7 +39,6 @@
 - [Silicon Labs Zigbee Onboarding Roadmap][Zigbee Onboarding Roadmap]
 *************
 
-[Zigbee Introduction]: files/ZB-2019Q4-ZMGC-Training/Zigbee-Basic.pdf
 [Zigbee Onboarding Roadmap]: files/ZB-2019Q4-ZMGC-Training/Silicon-Labs-ZigBee-Onboarding-Roadmap.pdf
 [Zigbee-Hands-on-Sleepy-End-Device]:files/ZB-2019Q4-ZMGC-Training/Zigbee-Sleepy-End-device.pdf
 [Zigbee-Hands-on-Sleepy-End-Device-Hands-on]:files/ZB-2019Q4-ZMGC-Training/Sleepy-End-Device-Hands-on.pdf
