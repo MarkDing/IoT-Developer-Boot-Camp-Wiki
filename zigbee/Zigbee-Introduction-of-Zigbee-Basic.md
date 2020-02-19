@@ -47,21 +47,29 @@
 
 ## 1. Overview
 ### 1.1. What's Zigbee
-As the Internet of Things (ToT) industry develops, more and more wireless technologies come out.   
+As the Internet of Things (IoT) industry develops, more and more wireless technologies come out.   
 
 ![zigbee](files/ZB-Zigbee-Introduction-of-Zigbee-Basic/IoT-Wireless-Technologies.png)
 
-We can group them into two categories:
-- Wide Area Network (WAN)  
-- Personal Area Network (PAN)  
+As we know, in the mainstream IoT technologies, there are two typical types. One is for WAN (Wide Area Network), the other is for PAN(Personal Area Network).
 
-WAN technologies have longer range and faster data rate. They mostly work on licensed spectrum. PAN have shorter range and slower data rate. They mostly work on ISM (Industry, Science and Medical) spectrum.  
+For the wireless technologies of WAN, we have LoRa, NB-IoT, 2G/3G/4G, etc.  The common characteristics of these technologies are:
+- The radio can cover wider range, normally more than 1Km.
+- They work on licensed spectrum.
 
-Zigbee is a low data-rate and short range wireless technology. It has the following characteristics:  
-- Short Range, 10 ~ 100m
-- Low Data Rate, maximum 250kbps
-- Low Power, the current of sleepy end device can be low to uA.
-- Mesh Topology, self-organizing
+For the wireless technologies of PAN, we have WiFi, Bluetooth, BLE, Zigbee and Zwave. They are all short-ranged technologies.
+
+For Zigbee, it started from 2003. Its characteristics includes:
+- Short range. – Normally the radio can conver from 10 to 100 meters;
+- Low data rate – the maximum data rate is 250 Kbps;
+- Low Power – a sleepy end device can use less than 5uA at sleep mode;
+- It’s a mesh technology – the network can be easily extended to very large. Theoretically maximum nodes number is 65535
+- Zigbee is also an open standard. The standard is maintained and published by Zigbee Alliance, which is an open organization. Any company can join the alliance.  
+
+The main specification of Zigbee includes:
+- Zigbee specification
+- Zigbee BDB (Basic Device Behavior) specification
+- Zigbee Cluster Library
 
 ### 1.2. History of Zigbee
 Zigbee is an open standard published and revisioned by [Zigbee Alliance](https://zigbeealliance.org/). It has a very long history.
@@ -123,7 +131,7 @@ Functions of Physical layer includes:
 - Energy Detection
 
 ## 3. Medium Access Control (MAC) Layer
-The main function of the MAC layer is to ensure reliable one-hop message delivery by verifying the checksum and sending one-hop acknowledgements. The MAC PDU is shown in the picture. Here are some more details on these functions. 
+The main function of the MAC layer is to ensure reliable one-hop message delivery. Here are some more details on these functions. 
 
 ### 3.1. CSMA-CA
 802.15.4 allows for multiple networks to be on the same channel. Therefore there needs to be some way to avoid having packets from different networks collide over the air and cause errors in communication. MAC sub-layer controls access to the radio using CSMA-CA (Carrier sense multiple access with Collision avoidance). Collision avoidance is done by CCA (Clear Channel Assessment). Before transmitting, every node shall check to see if the airwaves are clear (RSSI below CCA threshold). If they are, the node shall go ahead and transmit after a small random backoff. If the CCA does not pass, then the node shall wait a number of back off periods before trying the process again.  The random backoff allows multiple nodes to stagger transmissions so at some point they can find clear air to transmit. Although the bit rate is low, since packets are small (128 bytes), each node completes its transmission successfully even if the channel is fairly busy. 
@@ -168,7 +176,7 @@ IEEE-802.15.4 defined two device types which are Full Functional Device (FFD) an
 |:-|:-|:-|:-|:-|
 |Coordinator|Yes|Main Power|Yes|There could be only one in a network.<br>Node ID is always 0.|
 |Router|Yes|Main Power|Yes||
-|End Device|No|Main Power or Battery|Yes|Must have a parent.|
+|End Device|No|Main Power or Battery|No|Must have a parent.|
 
 ### 4.2. Network Address
 Zigbee use PAN ID and extended PAN ID to indentify a network.
@@ -183,7 +191,7 @@ The PAN, or Personal Area Network, is separated from other networks through its 
   </tr>
 </table>
 
-The PAN ID is chosen by the coordinator upon network formation. Because the PAN ID is the distinguishing factor between one network and another, it should be random to unsure its uniqueness. It’s recommended that you select a random 16-bit value for your PAN ID that keeps your network from coinciding with any other network that happens to exist in the area. 
+The PAN ID is chosen by the coordinator upon network formation. Because the PAN ID is the distinguishing factor between one network and another, it should be random to ensure its uniqueness. It’s recommended that you select a random 16-bit value for your PAN ID that keeps your network from coinciding with any other network that happens to exist in the area. 
 
 Now, what if you happened to pick a PAN ID that’s already used by another network? Or what if you did pick a random PAN ID that wasn’t in conflict with any other network, but later another network grew to overlap with yours? If the PAN ID conflict ever happens, the stack can in fact detect such a conflict and can update its PAN ID automatically and inform all the nodes in its network to move to the new PAN ID, so that each node can continue communicating with nodes in its original network and exclude anyone on the conflicting network. You may be wondering how the stack does this.
 
@@ -208,8 +216,6 @@ A node has a short address and a long address. The long address is the IEEE-assi
 Most of the time the much shorter, 16-bit address is used over the air. This is known as the node ID and unique within a network, similar to an IP address in Ethernet world. It is assigned as the node enters the network, and it’s supposed to be unique within that network. There may be two networks each of which has a node with the same node ID, but because they in different PANs, it doesn’t matter.
 
 Note that it’s possible for two nodes to have chosen the same random node ID when they enter the network. If that happens, much like the PAN ID scheme, there is a method for conflict resolution. When the nodes notice the conflict, based on the EUI-64 information as a fallback, they can agree upon new addresses. So the nodes can change addresses at run-time if required, based on a conflict.
-
-In addition to addresses of the node, there are also concepts of addresses within the node these are Endpoints and Clusters and they are explained in the “Clusters Endpoints Devices” training module. 
 
 ### 4.4. Basic Forming and Joining Procedure
 
