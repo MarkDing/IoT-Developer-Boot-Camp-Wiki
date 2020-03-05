@@ -143,7 +143,7 @@ Now, we are going to talk about how to use the tokens. This includes knowing how
 For creating a custom dynamic token, you need to new a token header file which contains token definitions. In this hands-on, we will create a header file  ```custom-token.h``` contains the custom dynamic token definitions.  
 
 #### 3.2.1.1. Creating Dynamic Token
-In general, creating a dynamic token involves three steps below:  
+In general, creating a dynamic token involves three steps below. A example will be included in section [4.3.2. Create Custom Tokens](#432-create-custom-tokens) to demonstrate how to create custom dynamic token in detail.  
 * Define the token name.  
 * Add any typedef needed for the token, if it is using an application-defined type.  
 * Define the token storage.  
@@ -304,7 +304,15 @@ We are going to create a header file ```custom-token.h```, and define the token 
 * Select the parent folder as the root path of your project, and set the file name as ```custom-token.h```, and click [Finish]  
 * Edit the header file to define the tokens.  
 
-Below is content of the header file we used in this hands-on.  
+**Firstly**, we will define the Token name as ```NVM3KEY_LED1_ON_OFF```. For more information about the rule of token name definition, see section [3.2.1.1.1. Define the Token Name](#32111-define-the-token-name).  
+* <font color=red><b>Question</b></font>: Why need to define the token name with the prepended word ```NVM3KEY```? Can I define it as ```TOKEN_LED1_ON_OFF```?  
+* <font color=red><b>Hint</b></font>: Please back to the section [Define the Token Name](#32111-define-the-token-name) for getting the answer.  
+
+**Then** define the Token type for recording the LED On/Off status, define a structure type ```ledOnOffStatus_t``` which includes two different data type to represent the LED index and LED status. For more information, see section [3.2.1.1.2. Define the Token Type](#32112-define-the-token-type).  
+
+**Finally**, define the token storage with the macro ```DEFINE_BASIC_TOKEN```. For more information, see section [3.2.1.1.3. Define the Token Storage](#32113-define-the-token-storage).  
+
+Below is content of the header file we used in this hands-on for your reference.  
 
 ```
 // File: custom-token.h
@@ -334,13 +342,6 @@ DEFINE_BASIC_TOKEN(LED1_ON_OFF,
                   {1, false})
 #endif
 ```
-**Firstly**, we will define the Token name as ```NVM3KEY_LED1_ON_OFF```.  
-* <font color=red><b>Question</b></font>: Why need to define the token name with the prepended word ```NVM3KEY```? Can I define it as ```TOKEN_LED1_ON_OFF```?  
-* <font color=red><b>Hint</b></font>: Please back to the section [Define the Token Name](#32111-define-the-token-name) for getting the answer.  
-
-**Then** define the Token type for recording the LED On/Off status, define a structure type ```ledOnOffStatus_t``` which includes two different data type to represent the LED index and LED status.  
-
-**Finally**, define the token storage with the macro ```DEFINE_BASIC_TOKEN```.  
 
 After creating the custom token header file, you need one more step: add the header file to the application, through the [Includes] tab in the .isc file in Simplicity Studio, under the “Token Configuration” section.  
 **Note**: You always need to generate the project again after adding the header file in the .isc file.  
@@ -423,6 +424,15 @@ halCommonGetMfgToken(mfgString, TOKEN_MFG_STRING);
 emberAfAppPrintln("MFG String: %s", mfgString);
 ```
 Please note that if the manufacturing string token is not programmed by external programming tool before, the debug output will be NULL which indicates the manufacturing string is NULL.  
+
+And also you can use the Simplicity Commander to dump the manufacturing tokens as below.  
+```$ commander tokendump --tokengroup znet```  
+
+<div align="center">
+  <img src="files/ZB-Zigbee-Hands-on-Non-volatile-Data-Storage/dump_manufacturing_tokens.png">
+</div>
+</br>
+
 <font color=red><b>Question</b></font>: Can the Manufacturing tokens be accessed through the basic token APIs?  
 <font color=red><b>Hint</b></font>: Please back to the section [Access the manufacturing Token](#3221-accessing-manufacturing-tokens) for getting the answer.  
 
