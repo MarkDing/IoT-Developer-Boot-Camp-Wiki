@@ -51,13 +51,13 @@ As the Internet of Things (IoT) industry develops, more and more wireless techno
 
 ![zigbee](files/ZB-Zigbee-Introduction-of-Zigbee-Basic/IoT-Wireless-Technologies.png)
 
-As we know, in IoT inducstry, we have two typical networks. One is WAN (Wide Area Network), the other is PAN(Personal Area Network).
+As we know, in IoT industry, we have two typical networks. One is WAN (Wide Area Network), the other is PAN(Personal Area Network).
 
 - For the wireless technologies like LoRa, NB-IoT, 2G/3G/4G, etc, normally the transmit distance more than 1 km, so they are mainly used in wide area network (WAN). 
 - For the wireless technologies like WiFi, Bluetooth, BLE, Zigbee and Zwave, normally the transmit distance is less than 1 km, so they are mainly used in personal area network (PAN).
 
 Zigbee is one of the most popular wireless technologies used in IoT networks, especially in home automation industry. Its characteristics includes:
-- Short range. – Normally the radio can conver from 10 to 100 meters.
+- Short range – Normally the radio can conver from 10 to 100 meters.
 - Low data rate – the maximum data rate is 250 Kbps.
 - Low Power – a sleepy end device can use less than 5uA at sleep mode;
 - It’s a mesh technology – the network can be easily extended to very large. Theoretically maximum nodes number is 65535.
@@ -275,7 +275,7 @@ Look at the picture below.
 It shows how an unsecured network frame is secured in network layer.  
 First, the network payload will be encrypted. After that, an security header will be added before the encrypted payload. Then calculate a hash value from the network header, security header and the encrypted payload. Finally appended the 32-bit hash value to the end of the frame. If any byte of the network header, security header and encrypted payload is changed, the hash value will be different. We call this value MIC, short for message integrity check.
 
-The network encryption uses a symmetric encrypting algorithm (AES128), which means the same key is used for encryption and decryption. This is key is called network key.
+The network encryption uses a symmetric encrypting algorithm (AES128), which means the same key is used for encryption and decryption. This key is called network key.
 As it's a symmetric encrypting algorithm, all devices in the same Zigbee network will use the same network key.
 
 In the network security header, a field named “frame counter” and the source Eui64 of the node who encrypt the message are added to protect replay attack.
@@ -377,7 +377,7 @@ If you don’t specify a channel, the coordinator will scan and pick a relativel
 After the network formed, new devices can start to join. 
 1. The new device will start to find the joinable network. In this phase, the new device will send beacon requests on each channel. 
 2. Routers and coordinators will respond a beacon with the network info carried in the beacon frame. These info includes the PAN ID, the extend PAN ID and also some other properties of the router or coordinator, like if the device permit join, if the device has the capacity to let the new device join.
-3. The new device may receive multiple beacons from different devices. It will pick up one with the best signal quality and start to send association request. In this associaton request, the PAN ID is set to the chosen PAN and the destination node id is set to the node ID of the chosen device. In this frame, the capability of the new device will be carried on.
+3. The new device may receive multiple beacons from different devices. It will pick up one with the best signal quality and start to send association request. In this association request, the PAN ID is set to the chosen PAN and the destination node id is set to the node ID of the chosen device. In this frame, the capability of the new device will be carried on.
 4. When the router or coordinator received this association request, it would pick up a node ID for the new device and respond with an association response. Then the new device got its node ID and but it can’t communicate with other nodes as it hasn’t gotten the security key.
 5. The coordinator will transport the current NWK key to the new device. **This transporting message is encrypted in application layer with the well-known link key.**.
 6. When the new device receives this message, **it uses the well-known link key to decrypt the message and gets the network key**. After that, the device is really joined the network and is able to communicate with all other nodes in the network.
