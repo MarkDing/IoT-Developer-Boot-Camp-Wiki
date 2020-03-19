@@ -43,6 +43,7 @@
 </details>
 
 ***  
+[English](Zigbee-Hands-on-Non-volatile-Data-Storage.md) | Chinese
 
 # 1. 简介
 ## 1.1. 应用功能
