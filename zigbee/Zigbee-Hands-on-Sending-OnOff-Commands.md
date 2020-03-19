@@ -19,6 +19,7 @@
 </details>
 
 ***
+English | [Chinese](Zigbee-Hands-on-Sending-OnOff-Commands-CN.md)
 
 # 1. Introduction
 ## 1.1. Application features
