@@ -526,4 +526,157 @@ option install-code 0 {00 0B 57 FF FE 64 8D D8} {83 FE D3 40 7A 93 97 23 A5 C6 3
 </div>  
 </br>
 
-* •	最后一个参数是在末尾附加2字节CRC的安装代码。您可以自
+* 最后一个参数是在末尾附加2字节CRC的安装代码。您可以自己计算CRC，也可以简单地从批处理文件执行的输出中找出，其中的命令 ```$ commander tokendump --tokengroup znet```
+
+<div align="center">
+  <img src="files/ZB-Zigbee-Hands-on-Forming-and-Joining/verify_the_installation_code.png">  
+</div>  
+</br>
+
+CRC显示在安装代码的正下方，并以小端格式打印。 **在将其用作选项install-code CLI的参数之前，将字节反转为big endian**.  
+
+要查看是否成功添加了链接密钥，请在**Light**节点的CLI上输入```keys print```，以在“链接密钥表”（或v6.7.0 EmberZNet SDK之后的“Transient Key Table”）中查看它。这显示了从安装代码派生的链接密钥和网络密钥。
+<div align="center">
+  <img src="files/ZB-Zigbee-Hands-on-Forming-and-Joining/check_link_key.png">  
+</div>  
+</br>
+
+如上所示，派生的链接密钥为： 
+```
+66 B6 90 09 81 E1 EE 3C  A4 20 6B 6B 86 1C 02 BB 
+```
+
+### 7.2.2. 构建集中网络
+在Light节点上，使用以下命令构建具有Zigbee 3.0安全性的集中式网络。  
+```
+plugin network-creator start 1
+```
+之后，请检查网络的Pan ID，它将用于识别网络。
+```
+network id
+```
+<div align="center">
+  <img src="files/ZB-Zigbee-Hands-on-Forming-and-Joining/check_the_network_id.png">  
+</div>  
+</br>
+
+### 7.2.3. 使用派生的链接密钥打开网络
+现在，在信任中心上设置临时链接密钥（与从安装代码获得的链接相同），并打开网络来加入设备的EUI64：
+```
+plugin network-creator-security open-with-key {eui64} {linkkey}
+```
+例如： 
+```
+plugin network-creator-security open-with-key {00 0B 57 FF FE 64 8D D8} {66 B6 90 09 81 E1 EE 3C A4 20 6B 6B 86 1C 02 BB}
+```
+
+## 7.3. 在Switch（路由器）设备上加入网络
+在Switch节点上，输入以下CLI以使用“网络指引”插件加入网络：
+```
+plugin network-steering start 0
+```
+并且串行控制台将输出类似以下内容，以指示Switch节点已成功加入网络0xD31F。 
+
+<div align="center">
+  <img src="files/ZB-Zigbee-Hands-on-Forming-and-Joining/join_network_successfully.png">  
+</div>  
+</br>
+
+## 7.4. 捕获灯（协调器）设备的网络日志
+本章介绍如何通过网络分析器工具捕获设备之间的通信。 
+
+### 7.4.1. 查找网络密钥和派生链接密钥以进行捕获
+网络密钥是分析网络日志所必需的，您可以使用以下命令在协调器端获取网络密钥。 
+
+命令:  
+```
+keys print
+```
+
+结果:  
+```
+EMBER_SECURITY_LEVEL: 05
+NWK Key out FC: 00000057
+NWK Key seq num: 0x00
+NWK Key: C1 05 57 73 1A 09 83 71  77 C3 22 B7 E1 90 9A A1  
+Link Key out FC: 00000006
+TC Link Key
+Index IEEE Address         In FC     Type  Auth  Key
+-     (>)000B57FFFE648D95  00000000  L     y     A8 ED 49 FB C5 13 FA 64  E5 60 D1 76 13 FD B8 6A  
+Link Key Table
+Index IEEE Address         In FC     Type  Auth  Key
+0     (>)000B57FFFE648DD8  00001002  L     y     66 B6 90 09 81 E1 EE 3C  A4 20 6B 6B 86 1C 02 BB  
+1/6 entries used.
+Transient Key Table
+Index IEEE Address         In FC     TTL(s) Flag    Key    
+0 entry consuming 0 packet buffer.
+```
+
+### 7.4.2. 将网络密钥和派生链接密钥添加到网络分析器
+将网络密钥```C1 05 57 73 1A 09 83 71 77 C3 22 B7 E1 90 9A A1```和派生的链接密钥添加```66 B6 90 09 81 E1 EE 3C A4 20 6B 6B 86 1C 02 BB```到网络分析仪的密钥存储中，以便能够解码消息。  
+
+1.	打开Window->Preferences
+<div align="center">
+  <img src="files/ZB-Zigbee-Hands-on-Forming-and-Joining/open_Security_Keys_tab.png">  
+</div>  
+</br>  
+
+2.	确保将网络分析仪设置为解码正确的协议。选择Window >Preferences>Network Analyzer >Decoding > Stack Versions，并验证其设置是否正确。如果需要更改它，请单击正确的堆栈，单击“应用”，然后单击“确定”。
+<div align="center">
+  <img src="files/ZB-Zigbee-Hands-on-Forming-and-Joining/stack_profile.png">  
+</div>  
+</br>  
+
+3.	导航到Network Analyzer->Decoding->安全Security Keys，然后添加网络密钥。参见下图。
+
+<div align="center">
+  <img src="files/ZB-Zigbee-Hands-on-Forming-and-Joining/add_new_network_key.png">  
+</div>  
+</br>  
+
+4.	重复最后一步，将派生的链接密钥添加到列表中。 
+
+### 7.4.3. 开始在Light（协调器）设备上捕获
+现在，Switch应该已经加入了Light创建的网络，请首先使用**Switch**上的命令退出网络。
+```
+network leave
+```
+右键单击Light-\> *Connect*（如果尚未连接）-\> *Start capture*的适配器名称。
+<div align="center">
+  <img src="files/ZB-Zigbee-Hands-on-Forming-and-Joining/start_capturing.png">  
+</div>  
+<div align="center">
+  <b>开始捕捉</b>
+</div>  
+</br>  
+
+它应该将视图更改为*Network Analyzer*，然后立即开始捕获。
+<div align="center">
+  <img src="files/ZB-Zigbee-Hands-on-Forming-and-Joining/capturing_on_Light.png">  
+</div>  
+<div align="center">
+  <b>对Light捕捉</b>
+</div>  
+</br>  
+
+然后重复步骤[打开网络与派生链接键](#723-open-the-network-with-the-derived-link-key)打开网络，并一步[加入网络上的Switch（路由器）设备](#73-join-the-network-on-switch-router-device)加入网络。
+捕获文件（* Live）应该显示网络上的数据包。
+
+### 7.4.4. 网络分析仪中的加入过程
+Switch完成加入网络后，请停止网络分析仪，然后查看网络分析仪的加入过程。参见下图。 
+
+<div align="center">
+  <img src="files/ZB-Zigbee-Hands-on-Forming-and-Joining/joining_process_in_Network_Analyzer_install_code.png">  
+</div>  
+<div align="center">
+  <b>网络分析仪中的加入过程</b>
+</div>  
+</br>  
+
+**注意**: 日志中可能会出现很多“多对一路由发现”。上方的绿色过滤器框可用于过滤掉这些消息。右键单击该程序包，然后单击“仅显示摘要：很多…..”，然后将条件从“ ==“改为“！=”。
+
+***
+
+# 8. 结论
+在本动手实践中，您学习了如何从ZigbeeMinimal示例开始创建Zigbee应用程序项目。以及如何将您的应用程序配置为不同类型的Zigbee节点（协调器，路由器等），如何为不同的功能启用/禁用不同的插件以满足您的需求，以及如何构建集中式网络并加入该网络。
+还演示了如何使用网络分析器工具评估在Zigbee网络中传输的数据。
