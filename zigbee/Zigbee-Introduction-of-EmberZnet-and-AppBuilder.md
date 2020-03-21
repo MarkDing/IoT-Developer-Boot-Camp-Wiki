@@ -1,3 +1,5 @@
+English | [Chinese](Zigbee-Introduction-of-EmberZnet-and-AppBuilder-CN.md)
+
 <details>
 <summary><font size=5>Table of Contents</font> </summary>  
 &nbsp;
