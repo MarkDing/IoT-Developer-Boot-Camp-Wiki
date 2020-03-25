@@ -7,6 +7,8 @@
   - [1.2. Clusters in EmberZnet SDK](#12-clusters-in-emberznet-sdk)
 - [2. Extend the Standard Clusters](#2-extend-the-standard-clusters)
   - [2.1. Define the Extended Attributes and Commands](#21-define-the-extended-attributes-and-commands)
+    - [2.1.1. Understanding the XML file](#211-understanding-the-xml-file)
+    - [2.1.2. Create XML File to Extend Standard Clusters](#212-create-xml-file-to-extend-standard-clusters)
   - [2.2. Add the xml of the Extended Cluster into the Project](#22-add-the-xml-of-the-extended-cluster-into-the-project)
   - [2.3. Test](#23-test)
 - [3. Add a Custom Cluster](#3-add-a-custom-cluster)
@@ -23,7 +25,7 @@ Zigbee Alliance has defined a lot a standard clusters. It also allow manufacture
 - Extend the attributes or commands on a standard cluster
 - Create a completely new custom cluster
 
-**Please keep in mind that in either scenario, the functionalities based on the custom clusters can only inter-operate with products with these custom clusters, which means your products can only inter-operate with your own products. We recommend you use custom clusters only wen you have to.**
+**Please keep in mind that in either scenario, the functionalities based on the custom clusters can only inter-operate with products with these custom clusters, which means your products can only inter-operate with your own products. We recommend you use custom clusters only when you have to.**
 
 &nbsp;
 
@@ -50,7 +52,10 @@ You may take one of them as an example. e.g, the xml file **general.xml** define
 Extending standard clusters means we are going to add custom attributes or commands to the standard clusters.  
 
 ### 2.1. Define the Extended Attributes and Commands
-First, you need to create a xml file. Edit this file to define the attributes and commands which you are going to customize. We already have an example which is **sample-extensions.xml** in the **app\zcl** directory. 
+First, you need to create a xml file. Edit this file to define the attributes and commands which you are going to customize. 
+
+#### 2.1.1. Understanding the XML file
+We already have an example which is **sample-extensions.xml** in the **app\zcl** directory. 
 ```
   <!-- Use the cluster extension Extend the on/off cluster -->
   <clusterExtension code="0x0006"> 
@@ -116,6 +121,7 @@ The commands below is customized:
 - The extended attribute ID and command ID from different manufactures can be the same.
 - All extended attributes and commands must be optional.
 
+#### 2.1.2. Create XML File to Extend Standard Clusters
 As a test, we extend an attribute and a command of the "level" control cluster. Below is the content of the xml:  
 ```
 <configurator>
@@ -133,6 +139,11 @@ As a test, we extend an attribute and a command of the "level" control cluster. 
       name="SampleMfgSpecificCmd" optional="true" manufacturerCode="0x1002">
       <description>Extend command for testing.</description>
     </command>
+    <command source="client" code="0x01" 
+      name="SampleMfgSpecificCmdWithArgs" optional="true" manufacturerCode="0x1002">
+      <description>Extend command with args for testing.</description>
+	  <arg name="argOne" type="INT8U" />
+    </command>	
   </clusterExtension>
   
 </configurator>
@@ -169,6 +180,8 @@ boolean emberAfLevelControlClusterSampleMfgSpecificCmdWithArgsCallback(int8u arg
 	return true;
 }
 ```
+
+**Note:** Pay attention that the name of callback function of the extended clusters might not be exactly the same with the command name. This depends on the Simplicity Studio version you are using now. It's recommended to read the source code of the generated file "call-command-handler.c", then in function "emberAfClusterSpecificCommandParse", find the cluster you extended, and the command you added, then you will find the callback function name here. The callbacks will be called here. 
 
 In this test, we use the coordinator as the server side. We add a custom command to send the two extended commands of "level control" cluster. (You can refer to [Customizing CLI Command](Zigbee-Custom-CLI-Commands) if you don't know how to add custom commands.)  
 ```
@@ -315,7 +328,7 @@ boolean emberAfSampleMfgSpecificHelloworldClusterCommandOneCallback(int8u* argOn
 }
 ```
 
-In this test, we use the coordinator as the server side. We add a custom command to send the command of customized cluster. (You can refer to [Customizing CLI Command](Zigbee-Custom-CLI-Commands) if you don't know how to add custom commands.)  
+In this test, we use the coordinator as the server side. We add a custom command on the client side to send the command of customized cluster. (You can refer to [Customizing CLI Command](Zigbee-Custom-CLI-Commands) if you don't know how to add custom commands.)  
 ```
 static void custom_helloworld_cmd()
 {

@@ -6,6 +6,7 @@
 - [2. Add Custom CLI Command](#2-add-custom-cli-command)
   - [2.1. Define Custom CLI Command](#21-define-custom-cli-command)
   - [2.2. Implement the CLI Command Handler](#22-implement-the-cli-command-handler)
+- [3. Test](#3-test)
 </details>
 &nbsp; 
 
@@ -24,13 +25,30 @@ In this page, we will introduce how we add a new custom command.
 ### 2.1. Define Custom CLI Command
 To add custom CLI command, you need to enable the option **"Add Custom CLI sub-menu"** in tab "Printing and CLI". Then generate your project.  
 
-Then you need to source code like below to define your custom CLI command:  
+There is another option in the picture above which is the option "Include command and argument descriptions in the embeded code". With this option enabled, the description info of the command line will be compiled into the image, then you can get the description of the command on the console. It's more user friendly but costs more flash space. Below is a picture to illustrate the effects of this opetion. On the left side, this option is not enabled and you can't see any description about the command key words. On the right side, you can see the usage of the command key word.
+
+![zigbee](files/ZB-Zigbee-Custom-CLI-Commands/Command-Description-Option.png)
+
+Then you need to source code like below to define your custom CLI command. It's recommended to add your own code in **\<projectname\>_callbacks.c**:  
 ```
 EmberCommandEntry emberAfCustomCommands[] = {
   emberCommandEntryAction("test", customtestcmd, "", ""),
   emberCommandEntryTerminator()
 };
 ```
+
+The macro "emberCommandEntryAction" is defined as below:
+```
+#if defined(EMBER_COMMAND_INTEPRETER_HAS_DESCRIPTION_FIELD)
+/* @brief Macro to define a CLI action */
+  #define emberCommandEntryAction(name, action, argumentTypes, description) \
+  { (name), (action), (argumentTypes), (description), NULL }
+#else  // Don't include description data in struct
+  #define emberCommandEntryAction(name, action, argumentTypes, description) \
+  { (name), (action), (argumentTypes) }
+#endif
+```
+
 There are four parameters in the macro "emberCommandEntryAction":  
 - Command Key word. In the example above, we've added a command **"custom test"**.
 - Command handler. When the input command matches this key word, this handler will be called. The prototype is like:  typedef void (*CommandAction)(void).
@@ -65,7 +83,7 @@ The prototype of the CLI command handler is like:
 ```
 static void customtestcmd(void)
 {
-    //do something
+    emberAfCorePrintln("This is a test");
 }
 ```
 
@@ -73,4 +91,9 @@ There are some APIs you might need to use in order to handle the arguments.
 - int32_t emberSignedCommandArgument(uint8_t argNum)  - get value of a signed integer
 - uint32_t emberUnsignedCommandArgument(uint8_t argNum)  - get value of an unsigned integer
 - uint8_t *emberStringCommandArgument(int8_t argNum, uint8_t *length)  - get the pointer of a string argument
+
+## 3. Test
+Build the project and flash it to a kit, then you will see the command key word "test" under the sub menu "custom". 
+
+![zigbee](files/ZB-Zigbee-Custom-CLI-Commands/Custom-Command-Test.png)
 
