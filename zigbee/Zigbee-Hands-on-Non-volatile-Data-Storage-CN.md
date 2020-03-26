@@ -125,7 +125,7 @@ Token有两个部分：Token标识和Token数据。Token标识是用于存储和
 Dynamic Tokens系统的基本目的是允许它可以像普通RAM一样频繁地访问（读取和写入），而且Token数据在系统重新启动和断电期间得以保存。它们存储在闪存的专用区域中，在该区域中，我们使用存储旋转算法来防止闪存过度使用。
 有两种类型的Dynamic Tokens，它们的格式有所不同：Basic Tokens和Indexed Tokens。
 
-#### 3.1.1.1. 基本（非索引）Token
+#### 3.1.1.1. Basic (Non-indexed) Tokens
 Basic Tokens可以被视为简单的char变量类型，只能作为一个单元进行访问。例如，基本标记可用于存储数组，并且如果该数组的任何元素发生更改，则必须重写整个数组。
 计数器Token是一种特殊类型的非索引Dynamic Tokens，用于存储一次递增1的数字。
 <font color=red><b>提示</b></font>：本动手操作中将不涉及计数器Token，有关计数器Token的更多信息，请参考UG103.7的[2.6计数器对象][UG103.7: Non-Volatile Data Storage Fundamentals]一节和AN703的4.2[何时定义计数器Token][AN703: Simulated EEPROM]。
@@ -378,7 +378,7 @@ else{
 }
 ```
 
-#### 4.3.3.2. 步骤2：写入基本的Token数据
+#### 4.3.3.2. 步骤2：写入基本的Tokens数据
 在上一个实验中，我们定义了一个事件处理函数```ledBlinkingHandler()```来定期切换LED1状态，本实验中，我们需要在每次切换完成之后将LED1的状态保存。
 导航到```Zigbee_Switch_ZR_callback.c```的函数```void ledBlinkingHandler(void)```中。您也可以使用注释```Non-volatile Data Storage: Step 2```来定位所需要修改的代码的位置。  
 使用```API halCommonSetToken()```来写Token LED1_ON_OFF。
