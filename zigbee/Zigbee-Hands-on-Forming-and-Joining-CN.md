@@ -14,21 +14,21 @@
 - [4. 下载并测试Light应用程序](#4-下载并测试Light应用程序)
 - [5. 创建Switch应用程序](#5-创建Switch应用程序)
 - [6. 下载并测试Switch应用程序](#6-下载并测试Switch应用程序)
-- [7. 使用从安装代码派生的链接密钥在Light和Switch之间建立连接](#7-使用从安装代码派生的链接密钥在Light和Switch之间建立连接)
-    - [7.1. 对安装代码编程以切换（路由器）设备](#71-对安装代码编程以切换（路由器）设备)
-        - [7.1.1. 安装代码文件的格式](#711-安装代码文件的格式)
-        - [7.1.2. 检查EFR32设备上的安装代码](#712-检查EFR32设备上的安装代码)
-        - [7.1.3. 将安装代码写入EFR32设备上的制造区域](#713-将安装代码写入EFR32设备上的制造区域)
-        - [7.1.4. 验证在EFR32设备上存储的安装代码](#714-验证在EFR32设备上存储的安装代码)
-        - [7.1.5. 删除安装代码](#715-删除安装代码)
+- [7. 使用从install code派生的链接密钥在Light和Switch之间建立连接](#7-使用从installation code派生的链接密钥在Light和Switch之间建立连接)
+    - [7.1. 对installation code编程以切换（路由器）设备](#71-对installation-code编程以切换（路由器）设备)
+        - [7.1.1. installation code文件的格式](#711-installation-code文件的格式)
+        - [7.1.2. 检查EFR32设备上的install code](#712-检查EFR32设备上的i)
+        - [7.1.3. 将installation code写入EFR32设备上的制造区域](#713-将installation-code写入EFR32设备上的制造区域)
+        - [7.1.4. 验证在EFR32设备上存储的installation code](#714-验证在EFR32设备上存储的installation-code)
+        - [7.1.5. 删除installation code](#715-删除installation-code)
     - [7.2. 在Light（协调器）设备上构建集中式网络](#72-在Light（协调器）设备上构建集中式网络)
-        - [7.2.1. 从安装代码中获取链接密钥](#721-从安装代码中获取链接密钥)
+        - [7.2.1. 从installation code中获取链接密钥](#721-从installation-code中获取链接密钥)
         - [7.2.2. 构建集中网络](#722-构建集中网络)
         - [7.2.3. 使用派生的链接密钥打开网络](#723-使用派生的链接密钥打开网络)
     - [7.3. 在Switch（路由器）设备上加入网络](#73-在Switch（路由器）设备上加入网络)
     - [7.4. 捕获Light(协调器)设备的网络日志](#74-捕获Light(协调器)设备的网络日志)
         - [7.4.1. 查找网络密钥和派生链接密钥以进行捕获](#741-查找网络密钥和派生链接密钥以进行捕获)
-        - [7.4.2. 将网络密钥和派生链接密钥添加到网络分析器](#742-将网络密钥和派生链接密钥添加到网络分析器)
+        - [7.4.2. 将网络密钥和派生链接密钥添加到Network Analyzer](#742-将网络密钥和派生链接密钥添加到Network Analyzer)
         - [7.4.3. 开始在Light（协调器）设备上捕获](#743-开始在Light（协调器）设备上捕获)
         - [7.4.4. 网络分析仪中的加入过程](#744-网络分析仪中的加入过程)
 - [8. 结论](#8-结论)
@@ -36,26 +36,26 @@
 </details>
 
 ***
-[English](Zigbee-Hands-on-Forming-and-Joining.md) | Chinese
+[English](Zigbee-Hands-on-Forming-and-Joining.md) | 中文
 
 # 1. 简介
-在此工作表中，我们提供了分步指南，基于EmberZNet Stack 6.6.4创建，用于构建和运行ZigBee 3.0应用程序。如果将来使用的是更高版本，则尽管此处可能有没有预料到的细微差别，但大多数说明仍适用。
-这些练习可帮助您熟悉EmberZNet Stack中的ZigBee 3.0，Simplicity Studio v4开发环境以及带有EFR32MG12 SoC的无线入门套件（WSTK）。我们假定您具有WSTK和以下软件。 
+我们提供了基于EmberZnet Stack 6.6.4来创建、编译和运行Zigbee 3.0应用程序的分步操作指南。如果将来使用的是更高版本，则尽管此处可能有未预料到的细微差别，但大多数说明仍适用。
+这些实验可帮助您熟悉EmberZNet Stack中的ZigBee 3.0的实现、Simplicity Studio v4开发环境以及带有EFR32MG12 SoC的无线入门套件（WSTK）。我们假定您有WSTK和这些软件(Simplicity Studio and EmberZnet SDK)。 
 
 ## 1.1. 应用功能
-新手训练营系列动手研讨会将涵盖以下四个功能，应用程序开发分别分为四个步骤，以展示应如何从一开始就构建应用程序。
+Zigbee快速入门 - 新兵训练营培训的实验环节将涵盖以下四个部分。我们通过这四个部分来向大家逐步展示，如何从零开始构建一个Zigbee应用。
 
-本文档中的练习是“ Zigbee新手训练营”系列中的第一个练习。 
--   **	在第一阶段，将通过使用安装代码来实现由light构成的基本网络以及加入switch的过程。**
--  	第二部分将使用API准备设备以发送，接收和处理On-Off命令。  
--   在第三步，Switch将有一个定期事件来执行任何自定义代码，在我们的案例中，这将是一个LED闪烁。
--   要做的第四件事是使Switch能够使用非易失性存储器在其闪存中存储任何自定义数据。  
+本文档中的实验是“Zigbee快速入门 - 新兵训练营”系列中的第一部分。 
+-   **第一部分，由light创建网络，并使用install code把switch加入到这个网络**
+-  	第二部分，将实现设备使用API发送，接收和处理On-Off命令。
+-   第三部分，将实现Switch用一个周期事件来执行自定义代码，在我们的案例中是执行LED闪烁。
+-   第四部分，在Switch端使用非易失性存储器来存储自定义数据。
 
 ## 1.2. 目的
-本教程将全面介绍如何从头开始构建Light和Switch设备。在实验结束时，用户将熟悉Simplicity Studio，SoC正常工作的基本需求，SDK源体系结构。
+本教程将全面介绍如何从头开始构建Light和Switch设备。在实验结束时，用户将熟悉Simplicity Studio，SoC正常工作的基本需求，SDK 源码框架。
 
 通过使用BRD4162A（EFR32MG12）板，网络将由两个设备组成。 
-* 其中之一是Light。由于已实现的网络是集中式的，因此它将充当网络的协调器和信任中心。该设备构建并打开网络，允许其他设备加入并管理安全密钥。
+* 其中之一是Light。由于已实现的网络是集中式的，因此它将充当网络的coordinator和trust center。该设备构建并打开网络，允许其他设备加入并管理安全密钥。
 * 另一个设备是switch。它加入到打开的网络，并向Light发送开-关命令。 
 
 下图说明了该动手操作的流程。
@@ -72,7 +72,7 @@
 实际上，Zigbee新手训练营系列培训的预备知识已在[Zigbee预备课程](https://github.com/MarkDing/IoT-Developer-Boot-Camp/wiki/Zigbee-Preparatory-Course)中进行了记录，我们仅在此处再次强调一些内容以确保开发环境已经准备就绪。
 
 ## 2.1. 硬体需求
-* 2 个WSTK主要开发板 
+* 2个无线入门套件 (WSTK) 主板
 * 2个EFR32MG12无线板（BRD4162A）  
 
 ## 2.2. 软件需求
@@ -101,15 +101,14 @@
 </div>  
 
 ### 2.2.3. 使用Gecko Bootloader
-引导加载程序是存储在保留的闪存中的程序，可以初始化设备，更新固件镜像并可能执行某些完整性检查。如果应用程序似乎没有运行，请始终检查引导加载程序，因为缺少引导加载程序会导致程序崩溃。
-**注意**: 在本系列动手练习的开始，强烈建议对Gecko SDK随附的预构建引导加载程序镜像进行编程。以“ -combined”结尾的镜像（例如，bootloader-storage-internal-single-combined.s37）应该闪烁，其中包含Gecko Bootloader的第一和第二阶段。该镜像可以在如下位置找到
+Bootloader是存储在预留的闪存中的一段程序，可以初始化设备，更新固件映像并可能执行某些完整性检查。如果怀疑应用程序没有运行，请始终检查Bootloader，因为缺少Bootloader会导致程序无法运行。
+**注意**: 在本系列动手实验的开始，强烈建议对Gecko SDK随附的预构建Bootloader映像进行编程。以“ -combined”结尾的映像（例如，bootloader-storage-internal-single-combined.s37）应该闪烁，其中包含Gecko Bootloader的第一和第二阶段。该映像可以在如下位置找到
 ```c:\SiliconLabs\SimplicityStudio\v4\developer\sdks\gecko_sdk_suite\v2.6\platform\bootloader\sample-apps\bootloader-storage-internal-single\efr32mg12p332f1024gl125-brd4162a\```  
 
 有关如何将Gecko Bootloader添加到Zigbee项目的更多信息，请阅读[预备课程](https://github.com/MarkDing/IoT-Developer-Boot-Camp/wiki/Zigbee-Preparatory-Course#using-gecko-bootloader)。 
 **提示**: 有关Gecko Bootloader的更多信息，请参见下面的文档。  
-[UG266: Silicon Labs Gecko引导程序用户指南](https://www.silabs.com/documents/public/user-guides/ug266-gecko-bootloader-user-guide.pdf)  
-[UG103.6: 引导程序基础知识](https://www.silabs.com/documents/public/user-guides/ug103-06-fundamentals-bootloading.pdf)  
-[AN1084: 将Gecko引导程序与EmberZNet和Silicon Labs线程一起使用](https://www.silabs.com/documents/public/application-notes/an1084-gecko-bootloader-emberznet-silicon-labs-thread.pdf)  
+[UG266: Silicon Labs Gecko Bootloader用户指南](https://www.silabs.com/documents/public/user-guides/ug266-gecko-bootloader-user-guide.pdf) [UG103.6: Bootloader基础知识](https://www.silabs.com/documents/public/user-guides/ug103-06-fundamentals-bootloading.pdf)  
+[AN1084: 将Gecko Bootloader与EmberZNet和Silicon Labs线程一起使用](https://www.silabs.com/documents/public/application-notes/an1084-gecko-bootloader-emberznet-silicon-labs-thread.pdf)  
 
 *** 
 
@@ -146,7 +145,7 @@ AppBuilder将用于创建应用程序。Appbuilder是一个交互式GUI工具，
 </br>  
 
 4.	选择“ ZigbeeMinimal”示例应用程序。点击下一步。请参阅图3-4。  
-    **ZigbeeMinimal**: 这是一个Zigbee最小网络层应用程序，适合作为新应用程序开发的起点。
+    **ZigbeeMinimal**: 这是一个Zigbee最小应用程序，适合作为新应用程序开发的起点。
 <div align="center">
   <img src="files/ZB-Zigbee-Hands-on-Forming-and-Joining/select_ZigbeeMinimal_sample_application.png">  
 </div>  
@@ -182,7 +181,7 @@ AppBuilder将用于创建应用程序。Appbuilder是一个交互式GUI工具，
 **注意**: 值得一提的是，如果更改工具链或电路板，请始终创建一个新项目，而不要修改项目设置。 
 
 **ZCL Clusters**  
-ZCL配置是最重要的设置之一。设备的类型基于其群集和属性。Silicon Labs预定义了大多数可用的设备类型。在我们的教程中，它是一种“ HA Light On / Off Light”类型的设备。要为Light启用所有必需的群集和属性，请单击“ ZCL设备类型”下拉菜单，然后选择“ HA Light On / Off Light”模板。请参阅图3-7。
+ZCL配置是最重要的设置之一。设备的类型基于其Cluster和属性。Silicon Labs预定义了大多数可用的设备类型。在我们的教程中，它是一种“ HA Light On / Off Light”类型的设备。要为Light启用所有必需的Cluster和属性，请单击“ ZCL设备类型”下拉菜单，然后选择“ HA Light On / Off Light”模板。请参阅图3-7。
 
 <div align="center">
   <img src="files/ZB-Zigbee-Hands-on-Forming-and-Joining/select_ZCL_device_type.png">  
@@ -195,7 +194,7 @@ ZCL配置是最重要的设置之一。设备的类型基于其群集和属性�
 选择模板后，新启用的集群和属性将显示在列表中，此外，端点配置也会更改。这些设置是基于Zigbee规范应用的。 
 
 **注意**: 值得一提的是，对于网络创建和开放，ZCL选择不是严格强制的。此步骤准备使设备能够在第二步中接收和处理On-Off命令。
-**注意**: 用户无法修改这些模板，因此，如果需要添加任何其他群集，则应使用“ ZigBee Custom ..”。 
+**注意**: 用户无法修改这些模板，因此，如果需要添加任何其他Cluster，则应使用“ ZigBee Custom ..”。 
 
 **Zigbee Stack**  
 此选项卡可用于更改网络方面的设备类型。由于路由器设备无法构建集中式网络，因此必须选择“协调器或路由器”类型。默认的“ Zigbee 3.0安全性”是合适的。请参阅图3-8。 
@@ -207,10 +206,10 @@ ZCL配置是最重要的设置之一。设备的类型基于其群集和属性�
 </div>  
 </br>  
 
-其余设置不应修改，因为该设备在具有基本群集的单一网络上运行。
+其余设置不应修改，因为该设备在具有基本Cluster的单一网络上运行。
 
 **Printing and CLI**  
-通常在此练习中，默认设置就足够了。唯一要做的就是确认“启用调试打印”框已启用，然后签入“On off集群”调试打印以获取更多信息。参见图3-9。
+通常在此实验中，默认设置就足够了。唯一要做的就是确认“启用调试打印”框已启用，然后签入“On off集群”调试打印以获取更多信息。参见图3-9。
 <div align="center">
   <img src="files/ZB-Zigbee-Hands-on-Forming-and-Joining/debug_printing.png">  
 </div>  
@@ -219,10 +218,10 @@ ZCL配置是最重要的设置之一。设备的类型基于其群集和属性�
 </div>  
 </br>
 
-**注意**: “On off cluster”调试打印还将在第二次动手实践中提供稍后实现的功能。
+**注意**: “On off cluster”调试打印还将在第二次实验中提供稍后实现的功能。
 
 **HAL**  
-此选项卡很少修改。可以使用外部硬件配置器并更改引导加载程序类型，但是出于传统目的而存在。在本实验中，无需在此选项卡上执行任何操作。 
+此选项卡很少修改。可以使用外部硬件配置器并更改Bootloader类型，但是出于传统目的而存在。在本实验中，无需在此选项卡上执行任何操作。 
 
 **Plugins**  
 插件是实现功能的单独软件包。插件也可以包含库和源文件。这些文件被收集在此选项卡上，设备类型的选择不会过滤掉设备无法使用的插件，因此必须手动完成。例如，此示例应用程序未启用用于网络构建/打开的必要插件，我们需要手动进行。
@@ -231,7 +230,7 @@ ZCL配置是最重要的设置之一。设备的类型基于其群集和属性�
 
 该**Network Creator**和 **Network Creator Security** 插件实现网络构建开放的功能，因此，这些都要求有。
 该**Network Steering**和**Update TC Link Key**可以被移除，因为设备不打算联合到任何网络。
-该**ZigBee PRO Stack Library**包括最复杂的堆栈库之一。它包含路由，联网，扫描，邻居，子处理程序和其他功能。这对于协调器和路由器是必需的。默认情况下，示例应用程序使用此插件。
+该**ZigBee PRO Stack Library**包括最复杂的协议栈Library之一。它包含路由，联网，扫描，邻居，子处理程序和其他功能。这对于协调器和路由器是必需的。默认情况下，示例应用程序使用此插件。
 该**Security Link Keys library**提供密钥表中APS链接密钥的管理。信任中心（协调器）使用它来管理网络中设备的链接密钥，或者希望管理伙伴链接密钥的非信任中心设备使用它。因此，需要具备。
 该**Serial**建立了命令行界面（CLI）。该接口使用户可以与SoC通信。如果在项目创建阶段选择正确的电路板，则插件设置应适合设备的引脚排列，但是再次检查值也很重要。该应用程序通过USB Mini-B连接器使用UART0。WSTK主板具有一个板卡控制器，可进行UART-USB转换。这是虚拟COM端口，必须从插件中单独启用。稍后将详细介绍。
 
@@ -262,7 +261,7 @@ ZCL配置是最重要的设置之一。设备的类型基于其群集和属性�
 </br>  
 
 **Callbacks**  
-回调是用于实现应用程序级功能的一组函数。其中一些与插件相关，而其他可以不受限制地使用。该选项卡是根据先前的“ 插件和ZCL群集”选项卡动态更改的。这意味着仅当启用了适当的插件或集群时，某些回调才可见/可用。
+回调是用于实现应用程序级功能的一组函数。其中一些与插件相关，而其他可以不受限制地使用。该选项卡是根据先前的“ 插件和ZCL Cluster”选项卡动态更改的。这意味着仅当启用了适当的插件或集群时，某些回调才可见/可用。
 基本的网络构建和开放功能无需使用任何回调。稍后将使用。
 
 **Includes**  
@@ -292,7 +291,7 @@ Zigbee-BLE动态多协议蓝牙支持的配置器位于AppBuilder中。
 *** 
 
 # 4. 下载并测试Light应用程序  
-让我们将Zigbee_Light_ZC.s37文件下载到开发工具包，如下所示。请参阅图4-1和图4-2。  
+让我们将Zigbee_Light_ZC.s37文件下载到开发板，如下所示。请参阅图4-1和图4-2。  
 **注意**: 请在执行以下步骤之前执行“Erase擦除”过程，以避免设备中现有网络设置造成任何意外影响。 
 <div align="center">
   <img src="files/ZB-Zigbee-Hands-on-Forming-and-Joining/open_Flash_Programmer.png">  
@@ -306,13 +305,13 @@ Zigbee-BLE动态多协议蓝牙支持的配置器位于AppBuilder中。
   <img src="files/ZB-Zigbee-Hands-on-Forming-and-Joining/download_the_image.png">  
 </div>  
 <div align="center">
-  <b>图4-2下载镜像</b>
+  <b>图4-2下载映像</b>
 </div> 
 </br>  
 
-高亮显示的“ Advanced Settings ..”提供了决定如何刷新芯片的可能性。在下载文件之前，可以在此处将闪存与新镜像合并（合并内容），部分擦除（页面擦除）或完全擦除（完全擦除）。
-请记住，这两种擦除类型都不会清除EFR32MG12部分的bootloader部分，但是完全擦除会删除令牌区域。
-下载镜像后，就可以与设备进行通讯了。为此，请打开启动控制台，该控制台是Studio中的内置串行端口终端。请参阅图4-3。
+高亮显示的“ Advanced Settings ..”提供了决定如何刷新芯片的可能性。在下载文件之前，可以在此处将闪存与新映像合并（合并内容），部分擦除（页面擦除）或完全擦除（完全擦除）。
+请记住，这两种擦除类型都不会清除EFR32MG12部分的bootloader部分，但是完全擦除会删除token区域。
+下载映像后，就可以与设备进行通讯了。为此，请打开启动控制台，该控制台是Studio中的内置串行控制台。请参阅图4-3。
 
 <div align="center">
   <img src="files/ZB-Zigbee-Hands-on-Forming-and-Joining/open_Serial_console.png">  
@@ -339,12 +338,12 @@ Zigbee-BLE动态多协议蓝牙支持的配置器位于AppBuilder中。
 # 5. 创建Switch应用程序
 In this hands-on, the Switch is the device that be able to join to the network what is created and opened by the Light.  
 
-在本动手实践中，Switch是能够将Light创建和打开的内容加入网络的设备。
+在本实验中，Switch是能够将Light创建和打开的内容加入网络的设备。
 AppBuilder的项目创建和配置方式与Light应用程序相同，因此本章所包含的图形要比Light少一些。
 该项目还基于“ ZigBeeMinimal”示例应用程序，因此请
 1.	重复[创建Light应用程序](#3-create-light-application)一章的步骤1-6 ，除了将项目命名为“ Zigbee_Switch_ZR”。 
 2.	打开项目的.isc文件。
-   *    转到*ZCL群集*选项卡，然后选择**HA开/关Switch设备模板**。 
+   *    转到*ZCL Cluster*选项卡，然后选择**HA开/关Switch设备模板**。 
    *    转到*Zigbee堆栈*选项卡，然后从下拉菜单中选择**路由器**设备类型。
    *    转到*打印和CLI*选项卡，然后仔细检查“启用调试打印”是否已打开。 
    *    转到*插件*标签，然后仔细检查以下插件是否已启用
@@ -359,7 +358,7 @@ Light应用程序和Switch应用程序之间的主要区别是选择了与网络
 该**Serial** 已经在Light中讨论。对CLI必需的。
 该**Network Steering**插件，用来发现启用通道中的现有网络。设备发出“信标请求”消息并监听响应。如果收到带有设置的“许可关联”标志的信标响应（来自ZC或ZR），则设备将开始网络的加入过程，否则继续扫描。有关推荐和必需的插件，请参见下面的表5.1。
 该**Update TC Link Key**用于从信任中心请求新的APS链接密钥。由于Light（信任中心）具有安全链接密钥库，因此应启用它。
-在**Install code library**根据设备中的安装代码制造商令牌提供初始链接密钥。根据ZigBee规范对密钥进行哈希处理。
+在**Install code library**根据设备中的installation code制造商token提供初始链接密钥。根据ZigBee规范对密钥进行哈希处理。
 
 
 **综上所述，下表列出了Switch（路由器）节点上受影响的插件。**  
@@ -389,12 +388,12 @@ Light应用程序和Switch应用程序之间的主要区别是选择了与网络
 
 ***
 
-# 7.使用从安装代码派生的链接密钥在Light和Switch之间建立连接
-本章介绍如何构建网络并加入其中。设备之间的通信将由网络分析器工具捕获。本部分将使用安装代码。安装代码用于创建预配置的链接密钥。安装代码通过使用AES-MMO哈希算法转换为链接密钥，派生的Zigbee链接密钥仅被信任中心和加入设备知道。因此，信任中心可以使用该密钥将Zigbee网络密钥安全地传输到设备。设备拥有网络密钥后，就可以在网络层与Zigbee网络通信。
+# 7.使用从installation code派生的链接密钥在Light和Switch之间建立连接
+本章介绍如何构建网络并加入其中。设备之间的通信将由Network Analyzer工具捕获。本部分将使用installation code。installation code用于创建预配置的链接密钥。installation code通过使用AES-MMO哈希算法转换为链接密钥，派生的Zigbee链接密钥仅被信任中心和加入设备知道。因此，信任中心可以使用该密钥将Zigbee网络密钥安全地传输到设备。设备拥有网络密钥后，就可以在网络层与Zigbee网络通信。
 
-## 7.1. 对安装代码编程以切换（路由器）设备
-要将安装代码编程到Switch设备中，您需要使用安装代码的值创建一个文本文件，然后使用Simplicity Commander将安装代码写入Switch节点的制造区域。
-为了节省您的时间，我们准备了如下的批处理文件，该文件可以自动完成安装代码的编程。创建一个批处理文件（例如，[program_install_code.bat](files/ZB-Zigbee-Hands-on-Forming-and-Joining/program_install_code.bat)），使用任何文本编辑器打开它，将下面的内容复制并粘贴到该文件中，保存并执行以对安装代码进行编程。
+## 7.1. 对installation code编程以切换（路由器）设备
+要将installation code编程到Switch设备中，您需要使用installation code的值创建一个文本文件，然后使用Simplicity Commander将installation code写入Switch节点的MFG token区域。
+为了节省您的时间，我们准备了如下的批处理文件，该文件可以自动完成installation code的编程。创建一个批处理文件（例如，[program_install_code.bat](files/ZB-Zigbee-Hands-on-Forming-and-Joining/program_install_code.bat)），使用任何文本编辑器打开它，将下面的内容复制并粘贴到该文件中，保存并执行以对installation code进行编程。
 
 ```
 @echo off
@@ -443,32 +442,32 @@ pause
 </div>  
 </br>  
 
-**注意**: 以下各节（默认情况下不可见，单击标题以查看详细信息）详细描述了如何对安装代码进行编程，如果您不想花很多时间在那上面，则可以跳过它并转到 [7.2在Light（协调器）设备上构建集中式网络](#72-form-centralized-network-on-light-coordinator-device)。
+**注意**: 以下各节（默认情况下不可见，单击标题以查看详细信息）详细描述了如何对installation code进行编程，如果您不想花很多时间在那上面，则可以跳过它并转到 [7.2在Light（协调器）设备上构建集中式网络](#72-form-centralized-network-on-light-coordinator-device)。
 
 <details>
 <summary><font size=5>Show/Hide detail about how to program the installation code (non-required)</font> </summary>
 
 
-### 7.1.1. 安装代码文件的格式
-要对安装代码进行编程，请创建一个带有安装代码值的简单文本文件（不带CRC）。在这些说明中，文件名为```install-code-file.txt```.  
+### 7.1.1. installation code文件的格式
+要对installation code进行编程，请创建一个带有installation code值的简单文本文件（不带CRC）。在这些说明中，文件名为```install-code-file.txt```.  
 该文件的格式如下：
 ```
 Install Code: <ascii-hex>
 ```
 
-这是示例安装代码文件。该代码的CRC为0xB5C3，不包含在文件中。 
+这是示例installation code文件。该代码的CRC为0xB5C3，不包含在文件中。 
 ```
 Install Code: 83FED3407A939723A5C639B26916D505
 ```
 
-### 7.1.2. 检查EFR32设备上的安装代码
+### 7.1.2. 检查EFR32设备上的installation code
 首先，最好验证与要编程的设备之间的连接，以及当前在节点上存储了哪些信息。
-为此，请确保仅将**Switch**设备连接到PC（否则将弹出一个新对话框，以选择正确的设备），然后执行以下命令以从基于EFR32的设备打印所有制造令牌数据。该```tokendump```命令将制造令牌数据打印为键值对。Simplicity Commander支持不止一组令牌。在此示例中，使用了名为“ znet”的令牌组。  
+为此，请确保仅将**Switch**设备连接到PC（否则将弹出一个新对话框，以选择正确的设备），然后执行以下命令以从基于EFR32的设备打印所有制造token数据。该```tokendump```命令将制造token数据打印为键值对。Simplicity Commander支持不止一组token。在此示例中，使用了名为“ znet”的token组。  
 ```
 $ C:\SiliconLabs\SimplicityStudio\v4\developer\adapter_packs\commander\commander.exe tokendump --tokengroup znet
 ```
 
-如果您之前没有编写安装代码，则应该看到以下输出，其中下面突出显示区域中的代码反映了与安装代码相关的重要字段：
+如果您之前没有编写installation code，则应该看到以下输出，其中下面突出显示区域中的代码反映了与installation code相关的重要字段：
 注意：如果该```commander```命令在PowerShell控制台上不可用，请检查是否您已经正确安装了Commander，并确保commander.exe包含在以下目录中。  
 **注意**:如果该```commander```命令在PowerShell控制台上不可用，请检查是否您已经正确安装了Commander，并确保commander.exe包含在以下目录中
 ```
@@ -480,8 +479,8 @@ C:\SiliconLabs\SimplicityStudio\v4\developer\adapter_packs\commander
 </div>  
 </br>  
 
-### 7.1.3. 将安装代码写入EFR32设备上的制造区域
-要将安装代码写入Switch节点的制造区域，请执行以下命令：
+### 7.1.3. 将installation code写入EFR32设备上的制造区域
+要将installation code写入Switch节点的制造区域，请执行以下命令：
 ```
 $ C:\SiliconLabs\SimplicityStudio\v4\developer\adapter_packs\commander\commander.exe flash --tokengroup znet --tokenfile install-code-file.txt
 ```
@@ -490,8 +489,8 @@ $ C:\SiliconLabs\SimplicityStudio\v4\developer\adapter_packs\commander\commander
   <img src="files/ZB-Zigbee-Hands-on-Forming-and-Joining/write_the_installation_code.png">  
 </div>  
 
-### 7.1.4. 验证在EFR32设备上存储的安装代码
-编写安装代码后，最好再次执行以下命令来验证信息：
+### 7.1.4. 验证在EFR32设备上存储的installation code
+编写installation code后，最好再次执行以下命令来验证信息：
 ```
 $ C:\SiliconLabs\SimplicityStudio\v4\developer\adapter_packs\commander\commander.exe tokendump --tokengroup znet
 ```
@@ -499,17 +498,17 @@ $ C:\SiliconLabs\SimplicityStudio\v4\developer\adapter_packs\commander\commander
   <img src="files/ZB-Zigbee-Hands-on-Forming-and-Joining/verify_the_installation_code.png">  
 </div>  
 
-### 7.1.5. 删除安装代码（不必要）
-**注意**: 在本动手操作中，通常无需执行此步骤，除非您需要更新编程的安装代码。
-如果要从刚编程的设备中删除安装代码，只需创建具有以下内容的安装代码文件，然后执行命令以将该文件编程到目标中。
+### 7.1.5. 删除installation code（不必要）
+**注意**: 在本动手操作中，通常无需执行此步骤，除非您需要更新编程的installation code。
+如果要从刚编程的设备中删除installation code，只需创建具有以下内容的installation code文件，然后执行命令以将该文件编程到目标中。
 ```
 Install Code: !ERASE!
 ```
 </details>
 
 ## 7.2. 在Light（协调器）设备上构建集中式网络
-### 7.2.1. 从安装代码中获取链接密钥
-要从安装代码中获取链接密钥，并将其存储到Light（作为集中式网络的信任中心）上的链接密钥表中，请输入以下命令：
+### 7.2.1. 从installation code中获取链接密钥
+要从installation code中获取链接密钥，并将其存储到Light（作为集中式网络的信任中心）上的链接密钥表中，请输入以下命令：
 ```
 option install-code <link key table index> {<Joining Node's EUI64>} {<16-byte installation code + 2-byte CRC>}
 ```
@@ -526,16 +525,16 @@ option install-code 0 {00 0B 57 FF FE 64 8D D8} {83 FE D3 40 7A 93 97 23 A5 C6 3
 </div>  
 </br>
 
-* 最后一个参数是在末尾附加2字节CRC的安装代码。您可以自己计算CRC，也可以简单地从批处理文件执行的输出中找出，其中的命令 ```$ commander tokendump --tokengroup znet```
+* 最后一个参数是在末尾附加2字节CRC的installation code。您可以自己计算CRC，也可以简单地从批处理文件执行的输出中找出，其中的命令 ```$ commander tokendump --tokengroup znet```
 
 <div align="center">
   <img src="files/ZB-Zigbee-Hands-on-Forming-and-Joining/verify_the_installation_code.png">  
 </div>  
 </br>
 
-CRC显示在安装代码的正下方，并以小端格式打印。 **在将其用作选项install-code CLI的参数之前，将字节反转为big endian**.  
+CRC显示在installation code的正下方，并以小端格式打印。 **在将其用作选项install-code CLI的参数之前，将字节反转为big endian**.  
 
-要查看是否成功添加了链接密钥，请在**Light**节点的CLI上输入```keys print```，以在“链接密钥表”（或v6.7.0 EmberZNet SDK之后的“Transient Key Table”）中查看它。这显示了从安装代码派生的链接密钥和网络密钥。
+要查看是否成功添加了链接密钥，请在**Light**节点的CLI上输入```keys print```，以在“链接密钥表”（或v6.7.0 EmberZNet SDK之后的“Transient Key Table”）中查看它。这显示了从installation code派生的链接密钥和网络密钥。
 <div align="center">
   <img src="files/ZB-Zigbee-Hands-on-Forming-and-Joining/check_link_key.png">  
 </div>  
@@ -561,7 +560,7 @@ network id
 </br>
 
 ### 7.2.3. 使用派生的链接密钥打开网络
-现在，在信任中心上设置临时链接密钥（与从安装代码获得的链接相同），并打开网络来加入设备的EUI64：
+现在，在信任中心上设置临时链接密钥（与从installation code获得的链接相同），并打开网络来加入设备的EUI64：
 ```
 plugin network-creator-security open-with-key {eui64} {linkkey}
 ```
@@ -583,7 +582,7 @@ plugin network-steering start 0
 </br>
 
 ## 7.4. 捕获灯（协调器）设备的网络日志
-本章介绍如何通过网络分析器工具捕获设备之间的通信。 
+本章介绍如何通过Network Analyzer工具捕获设备之间的通信。 
 
 ### 7.4.1. 查找网络密钥和派生链接密钥以进行捕获
 网络密钥是分析网络日志所必需的，您可以使用以下命令在协调器端获取网络密钥。 
@@ -612,7 +611,7 @@ Index IEEE Address         In FC     TTL(s) Flag    Key
 0 entry consuming 0 packet buffer.
 ```
 
-### 7.4.2. 将网络密钥和派生链接密钥添加到网络分析器
+### 7.4.2. 将网络密钥和派生链接密钥添加到Network Analyzer
 将网络密钥```C1 05 57 73 1A 09 83 71 77 C3 22 B7 E1 90 9A A1```和派生的链接密钥添加```66 B6 90 09 81 E1 EE 3C A4 20 6B 6B 86 1C 02 BB```到网络分析仪的密钥存储中，以便能够解码消息。  
 
 1.	打开Window->Preferences
@@ -678,5 +677,5 @@ Switch完成加入网络后，请停止网络分析仪，然后查看网络分�
 ***
 
 # 8. 结论
-在本动手实践中，您学习了如何从ZigbeeMinimal示例开始创建Zigbee应用程序项目。以及如何将您的应用程序配置为不同类型的Zigbee节点（协调器，路由器等），如何为不同的功能启用/禁用不同的插件以满足您的需求，以及如何构建集中式网络并加入该网络。
-还演示了如何使用网络分析器工具评估在Zigbee网络中传输的数据。
+在实验中，您学习了如何从ZigbeeMinimal示例开始创建Zigbee应用程序项目。以及如何将您的应用程序配置为不同类型的Zigbee节点（协调器，路由器等），如何为不同的功能启用/禁用不同的插件以满足您的需求，以及如何构建集中式网络并加入该网络。
+还演示了如何使用Network Analyzer工具评估在Zigbee网络中传输的数据。
