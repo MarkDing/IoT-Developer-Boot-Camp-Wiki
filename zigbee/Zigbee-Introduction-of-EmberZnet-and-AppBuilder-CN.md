@@ -1,4 +1,4 @@
-[English](Zigbee-Introduction-of-EmberZnet-and-AppBuilder.md) | Chinese
+[English](Zigbee-Introduction-of-EmberZnet-and-AppBuilder.md) | 中文
 
 <details>
 <summary><font size=5>目录</font> </summary>  
@@ -19,12 +19,12 @@
     - [4.2.1. 总览](#421-总览)
     - [4.2.2. 创建一个Zigbee项目](#422-创建一个Zigbee项目)
     - [4.2.3. 配置项目](#423-配置项目)
-      - [4.2.3.1. "常规" 选项卡](#4231-%22常规%22-选项卡)
-      - [4.2.3.2. "Zigbee 堆栈" 选项卡](#4232-%22zigbee-堆栈%22-选项卡)
-      - [4.2.3.3. "ZCL 群集" 选项卡](#4233-%22zcl-群集%22-选项卡)
-      - [4.2.3.4. "插件" 选项卡](#4234-%22插件%22-选项卡)
-      - [4.2.3.5. "回调" 选项卡](#4235-%22回调%22-选项卡)
-      - [4.2.3.6. "包含" 选项卡](#4236-%22包含%22-选项卡)
+      - [4.2.3.1. "General" 选项卡](#4231-%22General%22-选项卡)
+      - [4.2.3.2. "Zigbee Stack" 选项卡](#4232-%22zigbee-Stack%22-选项卡)
+      - [4.2.3.3. "ZCL Clusters" 选项卡](#4233-%22zcl-Clusters%22-选项卡)
+      - [4.2.3.4. "Plugins" 选项卡](#4234-%22Plugins%22-选项卡)
+      - [4.2.3.5. "Callbacks" 选项卡](#4235-%22Callbacks%22-选项卡)
+      - [4.2.3.6. "Includes" 选项卡](#4236-%22Includes%22-选项卡)
       - [4.2.3.7. 硬件配置](#4237-硬件配置)
     - [4.2.4. 生成项目](#424-生成项目)
     - [4.2.5. 建立项目](#425-建立项目)
@@ -40,12 +40,12 @@
 
 ## 1. 总览
 Silicon Labs的Zigbee解决方案包括三个部分： 
-- SOC和模块
+- SoC和模块
 - 软件开发套件
 - 开发工具
 
 ## 2. SoC和模块
-从[Silicon Labs的官方网站](https://www.silabs.com/wireless/zigbee)上可以找到，Mighty Gecko系列的SoC和模块用于Zigbee应用。Mighty Gecko是壁虎家族中最强大的芯片。它支持Zigbee，蓝牙，线程，专有技术。
+从[Silicon Labs的官方网站](https://www.silabs.com/wireless/zigbee)上可以找到，Mighty Gecko系列的SoC和模块用于Zigbee应用。Mighty Gecko是Gecko家族中最强大的芯片。它支持Zigbee，蓝牙，Thread，私有技术。
 
 ### 2.1. SoCs
 
@@ -57,7 +57,7 @@ Silicon Labs的Zigbee解决方案包括三个部分：
 
 ### 2.2. 模块
 
-使用模块的好处在于，您可以节省大量时间来获得标准认证，例如FCC，CE，ISED等。
+使用模块的好处在于，无需再进行认证，可以节省大量的时间，例如FCC，CE，ISED等。
 
 |模块 系列|MCU 内核|频段|闪存大小（KB）|内存大小（KB）|  
 |:-|:-|:-|:-|:-|
@@ -71,17 +71,17 @@ Silicon Labs的Zigbee解决方案包括三个部分：
 
 SoC可以在6种不同的能量模式下工作。从最大功耗到最低功耗：
 
-- EM0-有效
-- EM1-睡眠
-- EM2-深度睡眠
-- EM3-停止
-- EM4-休眠
-- EM4-关机  
+- EM0 - Active
+- EM1 - Sleep
+- EM2 - Deep Sleep
+- EM3 - Stop
+- EM4 - Hibernate
+- EM4 - Shutoff  
 
 **注意:**
 1. 在该图中，每个功能块都用一个颜色标记，该颜色表示该功能块能工作的最低能量模式。在EmberZnet中，Zigbee协调器和路由器始终在EM0下工作，因为它们始终由主电源供电。Zigbee睡眠终端设备在EM2或EM4（休眠）模式下工作。
-2. SoC中集成了高频RCO（HFRCO）和低频RCO（LFRCO）。对于Zigbee应用，必须连接一个HFXO时钟，因为无线电需要更准确的高频才能正常工作，但它们仍可以将LFRCO用于外围设备。 
-3. 内部集成了DCDC。使用者可以选择使用内部DCDC或绕过DCDC。建议将内部DCDC用于睡眠终端设备，以降低功耗。 
+2. SoC中集成了高频RCO（HFRCO）和低频RCO（LFRCO）。对于Zigbee应用，必须连接一个HFXO时钟，因为无线电需要高精度的高频时钟才能工作，但它们仍可以将LFRCO用于外围设备。 
+3. 内部集成了DCDC。使用者可以选择使用内部DCDC或绕过DCDC。 建议在睡眠节点上使用内部DCDC，从而更好的控制功耗。 
 4. 无线电收发器已经集成，并且已经集成了PA。用户可以选择使用DCDC或主电源为PA供电。如果发射功率大于13dbm，建议使用主电源为PA供电。否则，请改用DCDC。
 5. 集成的数据包跟踪接口（PTI）可用于空中捕获数据包。这对于调试非常有用。
 6. 集成的数据包流量仲裁（PTA）接口可用于改善Zigbee和WiFi之间的干扰。这对于Zigbee网关非常有帮助。
@@ -94,17 +94,17 @@ EmberZnet为Zigbee应用程序提供了两种设计模型：
 
 ![zigbee](files/ZB-Zigbee-Introduction-of-EmberZnet-and-AppBuilder/Design-Models.png)
 
-1. 在SoC模型中，所有堆栈层以及应用程序都在单个芯片上实现，较低级别的堆栈功能通常在硬件中作为微控制器的外围设备来实现。
+1. 在SoC模型中，所有协议层以及应用程序都在单个芯片上实现，较低级别的协议栈功能通常在硬件中作为微控制器的外围设备来实现。
 
-   通常以库API调用的形式提供对堆栈功能的访问。
-   在堆栈和应用程序之间可能有一定数量的对微控制器的外围设备或资源的共享访问。
+   通常以库API调用的形式提供对协议栈功能的访问。
+   在协议栈和应用程序之间可能有一定数量的对微控制器的外围设备或资源的共享访问。
    尽管共享可能会给应用程序开发人员带来更多限制，但最终会带来更低的材料成本和更紧凑的硬件设计。
 
-2. 提供的替代实现是网络协处理器或NCP模型。在此模型中，堆栈和低级无线电功能都驻留在一个芯片上，以实现有关堆栈功能的最佳集成和效率。但是，堆栈的应用程序接口是通过诸如SPI或UART之类的串行接口，而不是函数调用库。通过在这些接口之一上使用专有的串行协议，主机微控制器可以与堆栈交互，从而有可能将串行处理抽象到库或操作系统模块中，从而更好地满足主机上运行的应用程序的需求。
+2. 另一种实现是网络协处理器或NCP模型。在此模型中，协议栈和低级无线电功能都驻留在一个芯片上，以实现有关协议栈功能的最佳集成和效率。但是，协议栈的应用程序接口是通过诸如SPI或UART之类的串行接口，而不是函数调用库。通过在这些接口之一上使用专有的串行协议，主机微控制器可以与协议栈交互，从而有可能将串行处理抽象到库或操作系统模块中，从而更好地满足主机上运行的应用程序的需求。
 
    该模型为应用程序设计和主机处理器体系结构提供了极大的灵活性。
-   它允许应用程序设计者忽略有关堆栈本身的许多实现细节。
-   根据NCP的实现，NCP固件还可能会公开其他功能或堆栈行为的抽象，以完成针对正在运行的应用程序类型定制的更高级别的应用程序任务。
+   它允许应用程序设计者忽略有关协议栈本身的许多实现细节。
+   根据NCP的实现，NCP固件还可能会公开其他功能或协议栈行为的抽象，以完成针对正在运行的应用程序类型定制的更高级别的应用程序任务。
    我们提供了一个应用程序框架来为那些只需要标准或流行功能集的用户构建可定制的NCP和NCP示例应用程序。
    
    有关这些选项的更多详细检查，请参阅应用笔记和有关可定制NCP，EZSP-SPI和EZSP-UART（例如AN1010，AN711，AN706）的培训资源。
@@ -131,7 +131,7 @@ Silicon Labs提供了三种类型的引导程序。
 |:-|:-|
 |Bootloader Xmodem UART|也称为独立引导程序。主要用于基于UART的NCP。主机可以通过UART将映像传输到NCP，以升级NCP映像。|
 |EZSP SPI Bootloader|另一种独立的引导程序。主要用于基于SPI的NCP。主机可以通过SPI将映像传输到NCP，以升级NCP映像。|
-|Internal Storage Bootloader|用于Soc。将新图像存储在内部闪存中。|
+|Internal Storage Bootloader|用于Soc。将新软件映像存储在内部闪存中。|
 |SPI Storage Bootloader|用于Soc。将新图像存储在SPI闪存中。|
 
 还有一些用于DEV-Kit的预构建的引导加载程序映像。可以在Gecko SDK Suite目录下的platform \ bootloader \ sample-apps目录中找到它们。
@@ -186,10 +186,10 @@ Silicon Labs的无线入门套件（WSTK）由主板和无线电板组成。就�
 #### 4.2.1. 总览
 简单性IDE是功能强大的IDE。集成了许多工具，包括：
 - AppBuilder
-- 硬件配置器
-- 网络分析仪
-- 能量分析仪
-- 简易命令器
+- Hardware Configurator
+- Network Analyzer
+- Energy Profiler
+- Simplicity Commander
 
 这些工具将在Zigbee开发过程中频繁使用。我们将演示如何创建Zigbee项目，配置项目，调试项目。所有这些工具将在演示期间进行介绍。
 
@@ -198,7 +198,7 @@ Silicon Labs的无线入门套件（WSTK）由主板和无线电板组成。就�
 1. 转到文件->新建->项目。 这将显示 "New Project Wizard";
 2. 选择“ Silicon Labs AppBuilder项目”，单击“下一步”；
 3. 选择“ Silicon Labs Zigbee”，单击“下一步”；
-4. 选择我们用于SoC的最新EmberZNet堆栈，单击“下一步”；
+4. 选择我们用于SoC的最新EmberZNet协议栈，单击“下一步”；
 5. 这里将列出示例项目。您可以选择其中之一，单击“下一步”；
 6. 命名您的项目，例如“ ZigbeeMinimal_Demo”，单击“下一步”；
 7. 在下一个窗口（项目设置）中，选择板（如果要开发自定义板，请将“板”字段留空，然后选择零件号。）和编译器，单击“完成”。
@@ -211,22 +211,22 @@ Silicon Labs的无线入门套件（WSTK）由主板和无线电板组成。就�
 #### 4.2.3. 配置项目
 在配置Zigbee项目之前，建议先阅读[UG391](https://www.silabs.com/documents/public/user-guides/ug391-zigbee-app-framework-dev-guide.pdf) first before you configuring a Zigbee project.
 
-##### 4.2.3.1. "常规" 选项卡
+##### 4.2.3.1. "General" 选项卡
 打开isc文件时，默认选项卡是“常规”选项卡。在这里，您可以看到项目的板/零件和工具链。您还可以看到项目的绝对路径。您可以在此处更改为其他零件或不同的工具链。
 
 ![zigbee](files/ZB-Zigbee-Introduction-of-EmberZnet-and-AppBuilder/General-Tab.png)  
 
-##### 4.2.3.2. "Zigbee堆栈" 选项卡
-在“ Zigbee堆栈”选项卡下，您可以设置设备类型和安全性类型。对于Zigbee设备类型，我们有四个选项：
+##### 4.2.3.2. "Zigbee Stack" 选项卡
+在“ Zigbee Stack”选项卡下，您可以设置设备类型和安全性类型。对于Zigbee设备类型，我们有四个选项：
 - 协调器或路由器
 - 路由器
 - 终端设备
 - 睡眠终端设备
 
-##### 4.2.3.3. "ZCL群集" 选项卡
+##### 4.2.3.3. "ZCL CLuster" 选项卡
 确定Zigbee设备类型后，您可以设置端点和每个端点所在的群集。这些功能在“ ZCL群集”选项卡下。
 
-1. 首先，您需要设置制造代码。这是Zigbee联盟在您公司的第一个产品通过联盟认证时提供的代码。如果您的公司已经获得了制造代码，则可以从列表中选择。
+1. 首先，您需要设置制造商代码。这是Zigbee联盟在您公司的第一个产品通过联盟认证时提供的代码。如果您的公司已经获得了制造代码，则可以从列表中选择。
 
 ![zigbee](files/ZB-Zigbee-Introduction-of-EmberZnet-and-AppBuilder/Manufacture-Code.png)  
 
@@ -236,7 +236,7 @@ Silicon Labs的无线入门套件（WSTK）由主板和无线电板组成。就�
 
 3. 群集的属性和命令在Zigbee群集库（ZCL）中定义。选择属性和命令时，需要参考ZCL规范。
 
-##### 4.2.3.4. “插件”标签
+##### 4.2.3.4. “Plugin”标签
 1. 插件的属性
 
 ![zigbee](files/ZB-Zigbee-Introduction-of-EmberZnet-and-AppBuilder/Plugin-Properties.png)  
@@ -250,7 +250,7 @@ Silicon Labs的无线入门套件（WSTK）由主板和无线电板组成。就�
 |位置|插件目录|
 |源文件|插件的源文件|
 |已定义回调|此插件定义的回调|
-|已实现回调|在堆栈或其他插件中定义的回调，用此插件实现|  
+|已实现回调|在协议栈或其他插件中定义的回调，用此插件实现|  
 大多数插件都是开源的。您可以检查源代码以了解其实现方式。
 &nbsp;
 
@@ -263,62 +263,62 @@ Silicon Labs的无线入门套件（WSTK）由主板和无线电板组成。就�
         <th>注释</th>
     </tr>
     <tr>
-        <td rowspan="6">核心堆栈</td>
-        <td>Zigbee PRO 堆栈库</td>
-        <td>具有路由支持的核心堆栈，由路由和协调器使用</td>
+        <td rowspan="6">核心协议栈</td>
+        <td>Zigbee PRO Stack Library</td>
+        <td>具有路由支持的核心协议栈，由路由和协调器使用</td>
     </tr>
     <tr>
-        <td>Zigbee PRO 叶子库</td>
-        <td>不支持路由的核心堆栈，由终端设备使用</td>
+        <td>Zigbee PRO Leaf Library</td>
+        <td>不支持路由的核心协议栈，由终端设备使用</td>
     </tr>   
     <tr>
-        <td>终端设备支持</td>
+        <td>End Device Support</td>
         <td>一个支持终端设备的插件</td>
     </tr>       
     <tr>
-        <td>网络创建者</td>
+        <td>Network Creator</td>
         <td>创建网络，由协调器使用</td>
     </tr>  
     <tr>
-        <td>网络创建者安全性</td>
+        <td>Network Creator Security</td>
         <td>协调器的安全设置，例如为新设备配置链接密钥</td>
     </tr>  
     <tr>
-        <td>网络指导</td>
+        <td>Network Steering</td>
         <td>扫描可加入的网络并加入</td>
     </tr>  
     <tr>
         <td rowspan="2">睡眠</td>
-        <td>空闲/睡眠</td>
-        <td>由可睡眠终端设备使用。空闲时设备将进入EM2。</td>
+        <td>Idle/Sleep</td>
+        <td>由睡眠终端设备使用。空闲时设备将进入EM2。</td>
     </tr>     
     <tr>
         <td>EM4</td>
-        <td>插件可帮助可睡眠终端设备进入EM4</td>
+        <td>插件可帮助睡眠终端设备进入EM4</td>
     </tr>       
     <tr>
         <td>主条目</td>
-        <td>简单主文件</td>
+        <td>Simple Main</td>
         <td>项目的主要入口</td>
     </tr>      
     <tr>
         <td rowspan="6">非易失性数据</td>
-        <td>模拟EEPROM版本1库</td>
+        <td>Simulate EEPROM Version 1 Library</td>
         <td>模拟EEPROM版本1的库，用于存储非易失性数据</td>
     </tr>       
     <tr>
-        <td>模拟EEPROM版本2库</td>
+        <td>Simulate EEPROM Version 2 Library</td>
         <td>模拟EEPROM版本2的库，用于存储非易失性数据</td>
     </tr>  
     <tr>
-        <td>NVM3 库</td>
+        <td>NVM3 Library</td>
         <td>NVM3库，用于存储非易失性数据</td>
     </tr>                 
 </table>
 
 3. 插件可能依赖于其他插件。在生成项目时，AppBuilder将检查依赖性。如果不满足依赖关系，则会出现警告。
 
-##### 4.2.3.5. “回调”标签
+##### 4.2.3.5. “Callbacks”标签
 Silicons Labs建议客户在回调中添加其自定义源代码。好处是，当您从旧的SDK迁移到新的SDK时，这将非常容易。
 
 建议在生成的文件&lt;projectname&gt;_callbacks.c 中定义和实现选定的回调。您也可以将它们添加到新的源文件中。
@@ -326,7 +326,7 @@ Silicons Labs建议客户在回调中添加其自定义源代码。好处是，�
 使用它们之前，请确保已阅读回调的注释。
 
 ![zigbee](files/ZB-Zigbee-Introduction-of-EmberZnet-and-AppBuilder/Callbacks-Tab.png)  
-##### 4.2.3.6. “包含”标签
+##### 4.2.3.6. “Includes”标签
 在“包含”选项卡下，您可以包含自定义头文件，包含自定义标记头文件，定义自定义宏以及定义自定义事件和处理程序对。
 
 ![zigbee](files/ZB-Zigbee-Introduction-of-EmberZnet-and-AppBuilder/Includes-Tab.png)
@@ -378,7 +378,7 @@ Silicons Labs建议客户在回调中添加其自定义源代码。好处是，�
 ##### 4.2.6.1. 发送应用镜像
 请参阅[镜像发送](Flashing-Image)，以将应用的镜像快速发送到装置。
 
-##### 4.2.6.2. 开放控制台
+##### 4.2.6.2. 打开控制台
 请参考[开放控制台](Opening-Console)以启动控制台。您可以获取串行端口的输出，也可以在此处运行命令。
 
 ##### 4.2.6.3. 有用的命令
