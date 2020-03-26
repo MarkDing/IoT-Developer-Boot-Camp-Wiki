@@ -1,4 +1,4 @@
-English | [Chinese](Zigbee-Introduction-of-Zigbee-Basic-CN.md)
+English | [中文](Zigbee-Introduction-of-Zigbee-Basic-CN.md)
 
 <details>
 <summary><font size=5>Table of Contents</font> </summary>  
