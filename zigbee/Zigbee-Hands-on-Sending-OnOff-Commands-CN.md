@@ -20,17 +20,17 @@
 </details>
 
 ***
-[English](Zigbee-Hands-on-Sending-OnOff-Commands.md) | Chinese
+[English](Zigbee-Hands-on-Sending-OnOff-Commands.md) | 中文
 
 # 1. 简介
 ## 1.1. 应用功能
-新兵训练营系列动手实验将涵盖以下四个功能，应用程序开发分别分为四个步骤，以展示应如何从一开始就构建应用程序。
+Zigbee快速入门 - 新兵训练营培训的实验环节将涵盖以下四个部分。我们通过这四个部分来向大家逐步展示，如何从零开始构建一个Zigbee应用。
 
 本文档中的实验是“Zigbee快速入门 - 新兵训练营”系列中的第二部分。 
 -   第一部分，将实现由Light建网及Switch加入的过程。。
 -  	**第二部分，将实现设备使用API发送，接收和处理On-Off命令**。  
 -   第三部分，将实现Switch用一个周期事件来执行自定义代码，在我们的案例中是执行LED闪烁。。
--   第四部分，将实现Switch用NVM存储任何自定义数据。 
+-   第四部分，在Switch端使用非易失性存储器来存储自定义数据。 
 
 ## 1.2. 目的
 在之前的动手实验“建网入网”中，我们学习了如何构建基本的集中式Zigbee网络并加入该网络。在本动手实验中，我们将演示如何从Switch节点向Light节点发送开关命令，以操控Light节点的LED。 
@@ -50,7 +50,7 @@
 无论是创建应用程序或是设备类型，在开始开发之前都要以下检查准备工作。
 
 ## 2.1. 硬体需求
-* 2 个WSTK主要开发板 
+* 2个无线入门套件 (WSTK) 主板
 * 2个EFR32MG12无线板（BRD4162A）  
 
 ## 2.2. 软件需求
@@ -60,8 +60,6 @@
 1. 启动Simplicity Studio v4。 
 2.	转到Windows ->Preference -> Simplicity Studio-> SDK，确保已安装“ EmberZNet 6.6.4”。
 它是Gecko SDK Suite 2.6.4的一部分，因此并不单独出现。请参见下面的图2-1。
-
-
 <div align="center">
   <img src="files/ZB-Zigbee-Hands-on-Sending-OnOff-Commands/check_installed_EmberZNet_SDK.png">  
 </div>  
@@ -81,8 +79,8 @@
 </div>  
 
 ### 2.2.3. 使用Gecko Bootloader
-引导加载程序是存储在预留的闪存中的程序，可以初始化设备，更新固件映像并可能执行某些完整性检查。如果怀疑应用程序没有运行，请始终检查引导加载程序，因为缺少引导加载程序会导致程序无法运行。
-**注意**: 在本系列动手练习的开始，强烈建议对设备用Gecko SDK随附的预编译的引导加载程序映像进行烧录。应当用以“ -combined”结尾的映像（例如，bootloader-storage-internal-single-combined.s37）烧录，这个映像包含Gecko Bootloader的第一和第二阶段。该镜像可以在如下位置找到
+Bootloader是存储在预留的闪存中的一段程序，可以初始化设备，更新固件映像并可能执行某些完整性检查。如果怀疑应用程序没有运行，请始终检查Bootloader，因为缺少Bootloader会导致程序无法运行。
+**注意**: 在本系列实验的开始，强烈建议对设备用Gecko SDK随附的预编译的Bootloader映像进行烧录。应当用以“ -combined”结尾的映像（例如，bootloader-storage-internal-single-combined.s37）烧录，这个映像包含Gecko Bootloader的第一和第二阶段。该映像可以在如下位置找到
 ```c:\SiliconLabs\SimplicityStudio\v4\developer\sdks\gecko_sdk_suite\v2.6\platform\bootloader\sample-apps\bootloader-storage-internal-single\efr32mg12p332f1024gl125-brd4162a\```  
 
 想知道有关如何将Gecko Bootloader添加到Zigbee项目的更多信息，请阅读[预备课程](https://github.com/MarkDing/IoT-Developer-Boot-Camp/wiki/Zigbee-Preparatory-Course#using-gecko-bootloader)。 
@@ -316,5 +314,5 @@ ID | Description
 ***
 
 # 5. 结论
-在本动手实践中，学习了如何发送不同的ZCL命令以及如何从用户应用层处理收到的命令。以及如何使能/禁用不同功能的插件来满足不同的需求。
-还练习了如何使用Network Analyzer评估在Zigbee网络中传输的数据。
+在本实验中，学习了如何发送不同的ZCL命令以及如何从用户应用层处理收到的命令。以及如何使能/禁用不同功能的插件来满足不同的需求。
+还学习了如何使用Network Analyzer评估在Zigbee网络中传输的数据。
