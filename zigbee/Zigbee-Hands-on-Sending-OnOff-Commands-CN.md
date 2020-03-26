@@ -66,7 +66,7 @@
   <img src="files/ZB-Zigbee-Hands-on-Sending-OnOff-Commands/check_installed_EmberZNet_SDK.png">  
 </div>  
 <div align="center">
-  <b>Figure 2-1 Check installed EmberZNet SDK</b>
+  <b>图2-1 检查已安装的EmberZNet SDK</b>
 </div>  
 
 ### 2.2.2. 检查工具链
@@ -77,7 +77,7 @@
   <img src="files/ZB-Zigbee-Hands-on-Sending-OnOff-Commands/check_toolchain.png">  
 </div>  
 <div align="center">
-  <b>Figure 2‑2 Check the Toolchain</b>
+  <b>图2‑2 检查工具链</b>
 </div>  
 
 ### 2.2.3. 使用Gecko Bootloader
@@ -107,7 +107,7 @@
   <img src="files/ZB-Zigbee-Hands-on-Sending-OnOff-Commands/onOff_Cluster_callbacks_enabling.png">  
 </div>  
 <div align="center">
-  <b>图3-1 On/Off Cluster callbacks enabling</b>
+  <b>图3-1 使能On/Off Cluster回调函数</b>
 </div>  
 </br>  
 
