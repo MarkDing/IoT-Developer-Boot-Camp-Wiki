@@ -36,11 +36,11 @@
 </details>
 
 ***
-English | [Chinese](Zigbee-Hands-on-Forming-and-Joining-CN.md) 
+English | [中文](Zigbee-Hands-on-Forming-and-Joining-CN.md) 
 
 # 1. Introduction
 In this worksheet we provide a step-by-step guide to create, build and run ZigBee 3.0 applications based on EmberZNet Stack 6.6.4. If you use a later release in the future, most of the instructions should be still applied, although there could be minor differences not foreseen at the time of this document.  
-These exercises help you get familiar with ZigBee 3.0 in the EmberZNet Stack, Simplicity Studio v4 development environment, and the Wireless Start Kit (WSTK) with EFR32MG12 SoC. We assume that you have a WSTK and the following software.  
+These exercises help you get familiar with ZigBee 3.0 in the EmberZNet Stack, Simplicity Studio v4 development environment, and the Wireless Start Kit (WSTK) with EFR32MG12 SoC. We assume that you have a WSTK and the following software(Simplicity Studio and EmberZnet SDK).  
 
 ## 1.1. Application features
 The boot camp series hands-on workshop will cover four functionalities below, and the application development is split into four steps respectively to show how an application should be built up from the beginning.  
@@ -146,7 +146,7 @@ Before the builder would be opened, I recommend to select the target board on th
 </br>  
 
 4. Choose the "ZigbeeMinimal" sample application. Click Next. See Figure 3‑4.  
-    **ZigbeeMinimal**: This is a Zigbee minimal network-layer application suitable as a starting point for new application development.  
+    **ZigbeeMinimal**: This is a Zigbee minimal application suitable as a starting point for new application development.  
 <div align="center">
   <img src="files/ZB-Zigbee-Hands-on-Forming-and-Joining/select_ZigbeeMinimal_sample_application.png">  
 </div>  
