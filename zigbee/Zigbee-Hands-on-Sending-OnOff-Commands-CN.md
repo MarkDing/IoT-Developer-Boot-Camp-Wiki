@@ -8,10 +8,10 @@
 - [2. 基本步骤](#2-基本步骤)
     - [2.1. 硬体需求](#21-硬体需求)
     - [2.2. 软件需求](#22-软件需求)
-        - [2.2.1. 检查EmberZNet SDK](#221-检查EmberZNet SDK)
+        - [2.2.1. 检查EmberZNet SDK](#221-检查EmberZNet-SDK)
         - [2.2.2. 检查工具链](#222-检查工具链)
-        - [2.2.3. 使用Gecko Bootloader](#223-使用Gecko Bootloader)
-- [3. 发送开/关命令](#3-发送开/关命令)
+        - [2.2.3. 使用Gecko Bootloader](#223-使用Gecko-Bootloader)
+- [3. 发送On/Off命令](#3-发送On/Off命令)
     - [3.1. Light上的命令处理](#31-Light上的命令处理)
     - [3.2. 从Switch发送命令](#32-从Switch发送命令)
 - [4. 测试您的项目](#4-测试您的项目)
@@ -24,17 +24,17 @@
 
 # 1. 简介
 ## 1.1. 应用功能
-新手训练营系列动手研讨会将涵盖以下四个功能，应用程序开发分别分为四个步骤，以展示应如何从一开始就构建应用程序。
+新兵训练营系列动手实验将涵盖以下四个功能，应用程序开发分别分为四个步骤，以展示应如何从一开始就构建应用程序。
 
-本文档中的练习是“ Zigbee新手训练营”系列中的第一个练习。 
--   在第一阶段，将实现由Light构建的基本网络以及Switch的加入过程。
--  	**第二部分将使用API准备设备以发送，接收和处理On-Off命令**。  
--   在第三步，Switch将有一个定期事件来执行任何自定义代码，在我们的案例中，这将是一个LED闪烁。
--   要做的第四件事是使Switch能够使用非易失性存储器在其闪存中存储任何自定义数据。 
+本文档中的实验是“Zigbee快速入门 - 新兵训练营”系列中的第二部分。 
+-   第一部分，将实现由Light建网及Switch加入的过程。。
+-  	**第二部分，将实现设备使用API发送，接收和处理On-Off命令**。  
+-   第三部分，将实现Switch用一个周期事件来执行自定义代码，在我们的案例中是执行LED闪烁。。
+-   第四部分，将实现Switch用NVM存储任何自定义数据。 
 
 ## 1.2. 目的
-在之前的动手“构建和加入”中，我们学习了如何构建基本的集中式Zigbee网络并加入该网络。在本动手操作中，我们将演示如何从Switch节点向Light节点发送关闭命令，以操作那里的LED。
-与以前的动手实验相同，该网络将使用两个设备，即两个BRD4162A（EFR32MG12）开发板。
+在之前的动手实验“建网入网”中，我们学习了如何构建基本的集中式Zigbee网络并加入该网络。在本动手实验中，我们将演示如何从Switch节点向Light节点发送开关命令，以操控Light节点的LED。 
+与以前的动手实验相同，该网络将使用两个设备，即两个BRD4162A（EFR32MG12）开发板。 
 下图说明了该动手操作的流程。
 
 <div align="center">
@@ -42,12 +42,12 @@
 </div>  
 </br>  
 
-在执行所有单个步骤之前，有必要检查一些基础知识，以避免在开发过程中出现不必要的问题。我们希望再次突出显示它，因为我们在上一个动手实践中已对其进行了记录。
+在执行所有单个步骤之前，有必要检查一些基础知识，以避免在开发过程中出现不必要的问题。我们再次强调我们有文档记录上一个动手实验。
 
 *** 
 
 # 2. 基本步骤
-无论是创建应用程序或是设备类型，在开始开发之前都必须执行一些常规步骤。
+无论是创建应用程序或是设备类型，在开始开发之前都要以下检查准备工作。
 
 ## 2.1. 硬体需求
 * 2 个WSTK主要开发板 
@@ -81,11 +81,11 @@
 </div>  
 
 ### 2.2.3. 使用Gecko Bootloader
-引导加载程序是存储在保留的闪存中的程序，可以初始化设备，更新固件镜像并可能执行某些完整性检查。如果应用程序似乎没有运行，请始终检查引导加载程序，因为缺少引导加载程序会导致程序崩溃。
-**注意**: 在本系列动手练习的开始，强烈建议对Gecko SDK随附的预构建引导加载程序镜像进行编程。以“ -combined”结尾的镜像（例如，bootloader-storage-internal-single-combined.s37）应该闪烁，其中包含Gecko Bootloader的第一和第二阶段。该镜像可以在如下位置找到
+引导加载程序是存储在预留的闪存中的程序，可以初始化设备，更新固件映像并可能执行某些完整性检查。如果怀疑应用程序没有运行，请始终检查引导加载程序，因为缺少引导加载程序会导致程序无法运行。
+**注意**: 在本系列动手练习的开始，强烈建议对设备用Gecko SDK随附的预编译的引导加载程序映像进行烧录。应当用以“ -combined”结尾的映像（例如，bootloader-storage-internal-single-combined.s37）烧录，这个映像包含Gecko Bootloader的第一和第二阶段。该镜像可以在如下位置找到
 ```c:\SiliconLabs\SimplicityStudio\v4\developer\sdks\gecko_sdk_suite\v2.6\platform\bootloader\sample-apps\bootloader-storage-internal-single\efr32mg12p332f1024gl125-brd4162a\```  
 
-有关如何将Gecko Bootloader添加到Zigbee项目的更多信息，请阅读[预备课程](https://github.com/MarkDing/IoT-Developer-Boot-Camp/wiki/Zigbee-Preparatory-Course#using-gecko-bootloader)。 
+想知道有关如何将Gecko Bootloader添加到Zigbee项目的更多信息，请阅读[预备课程](https://github.com/MarkDing/IoT-Developer-Boot-Camp/wiki/Zigbee-Preparatory-Course#using-gecko-bootloader)。 
 **提示**: 有关Gecko Bootloader的更多信息，请参见下面的文档。  
 [UG266: Silicon Labs Gecko引导程序用户指南](https://www.silabs.com/documents/public/user-guides/ug266-gecko-bootloader-user-guide.pdf)  
 [UG103.6: 引导程序基础知识](https://www.silabs.com/documents/public/user-guides/ug103-06-fundamentals-bootloading.pdf)  
@@ -95,26 +95,26 @@
 
 # 3. 发送开/关命令
 
-在之前的动手实验中，我们创建了两个项目Zigbee_Light_ZC和Zigbee_Switch_ZR，这两个设备现在位于同一网络中，并准备在网络上发送和接收数据。
-在此应用程序中，Switch设备应基于已按下的按钮来发送“打开/关闭”命令，而Light应用程序应根据接收到的命令打开/关闭LED1。
-我们的任务是为这些功能准备设备。
+在之前的动手实验中，我们创建了两个项目Zigbee_Light_ZC和Zigbee_Switch_ZR，这两个设备现在位于同一网络中，并准备好可以在网络上发送和接收数据。
+在此应用程序中，Switch设备应基于所按下的按钮来发送“打开/关闭”命令，而Light应用程序应根据接收到的命令打开/关闭LED1。
+我们的任务是让设备实现这些功能
 
 ## 3.1. Light上的命令处理
-为了了解从用户应用级接收到的任何命令，应使用回调函数。
-可以在AppBuilder的“回调”选项卡中启用这些功能。
-打开此选项卡，在“常规/ OnOff群集”菜单下找到并启用“打开”“关闭”回调。请参阅图3-1。
+为了能从用户应用层接收到命令，应使用回调函数。
+可以在AppBuilder的“Callbacks”选项卡中启用这些功能。
+打开此选项卡，在“General/ OnOff Cluster”菜单下找到并启用“On”“Off”回调。请参阅图3-1。
 <div align="center">
   <img src="files/ZB-Zigbee-Hands-on-Sending-OnOff-Commands/onOff_Cluster_callbacks_enabling.png">  
 </div>  
 <div align="center">
-  <b>图3-1开/关集群回调启用</b>
+  <b>图3-1 On/Off Cluster callbacks enabling</b>
 </div>  
 </br>  
 
-保存修改后的.isc文件，然后按*Generate*。
+然后按*Generate*按钮。
 
-也许注意到*<ProjectName> _callbacks.c*在重新生成时未被覆盖，但是*callback-stub.c*被覆盖。其背后的原因是ZCL或插件定义的所有回调都可以由堆栈调用。即使用户未使用这些回调，也应将它们放在避免编译器错误的位置。该*callback-stub.c*服务于这个目的。
-启用回调后，应将其从*callback-stub.c*中删除，并留在*<ProjectName> _callbacks.c*中。这意味着，应该将启用的回调手动添加到*Zigbee_Light_ZC_callbacks.c*文件并实现所需的功能。
+也许注意到 *\<ProjectName\>_callbacks.c* 在重新生成时未被覆盖，但是 *callback-stub.c* 被覆盖。其背后的原因是ZCL或插件定义的所有回调都可以由堆栈调用。即使用户未使用这些回调，也应将它们放在避免编译器错误的位置。该*callback-stub.c*就是为了这个目的。
+启用回调后，应将其从 *callback-stub.c* 中删除，并留在 *\<ProjectName\>_callbacks.c* 中。这意味着，应该将启用的回调手动添加到*Zigbee_Light_ZC_callbacks.c*文件并实现所需的功能。
 
 从项目资源管理器中打开*Zigbee_Light_ZC_Callback.c*，如下所示。
 
@@ -123,7 +123,7 @@
 </div> 
 </br>   
 
-该实验的每个步骤在主[参考项目](https://github.com/MarkDing/IoT-Developer-Boot-Camp/tree/master/zigbee)中都会有一个关联的注释，该注释从“ Send-OnOff-Commands：步骤1”开始，这将使用户受益于导航到正确的代码实现位置。
+该实验的每个步骤在基本[参考项目](https://github.com/MarkDing/IoT-Developer-Boot-Camp/tree/master/zigbee)中都会有一个关联的注释，该注释从“ Send-OnOff-Commands：Step 1”开始，这将使用户更容易找到正确的代码实现位置。
 
 找到步骤1的注释，并按如下所示实现应用程序代码。
 
@@ -146,8 +146,8 @@ bool emberAfOnOffClusterToggleCallback(void){
 ```
 
 ## 3.2. 从Switch设备发送命令
-首先，应该找到一个地方来存放我们的代码以发送命令。为此，使用按钮触发回调。
-按钮操作由**按钮接口**插件处理，因此应将其启用。
+首先，应该找到一个地方来存放我们发送命令的代码。为此，我们使用按钮触发回调。
+按钮操作由**按钮接口**插件处理，因此应将其使能。
 
 
 <div align="center">
@@ -281,28 +281,28 @@ Off command is received
   <img src="files/ZB-Zigbee-Hands-on-Sending-OnOff-Commands/onoff_command_format.png">  
 </div>  
 
-**帧控制**  
-帧控制字段的长度为8位，并包含定义命令类型和其他控制标志的信息。帧控制字段的格式如下图所示。
+**Frame Control**  
+Frame Control字段的长度为8位，并包含定义命令类型和其他控制标志的信息。Frame Control字段的格式如下图所示。
 
 <div align="center">
   <img src="files/ZB-Zigbee-Hands-on-Sending-OnOff-Commands/format_of_the_frame_control_field.png">  
 </div>  
 <div align="center">
-  <b>图3-4帧控制字段的格式</b>
+  <b>图3-4Frame Control字段的格式</b>
 </div> 
 </br>  
 
-“开/关”命令中的**帧类型**为0b1，表示该命令是特定或本地群集的（“开/关”群集）。
-**特定制造商**子字段的值在开/关命令中被设置为false，制造商代码字段将不被包括在所述帧ZCL。
-“ 开/关”命令中的**方向**子字段为0b0，表示该命令正在从群集的客户端（Switch）发送到群集的服务器端（Light）。
-“ 打开/关闭”命令中的**禁用默认响应**子字段为0b1。这意味着仅在存在错误的情况下（以及在Zigbee群集库规范记录的指定条件下），才会返回“默认响应”命令。
+“On/Off”命令中的**Frame type**为0b1，表示该命令是特定或本地cluster的（On/Off cluster）。
+**Manufacturer Specific**子字段的值在On/Off命令中被设置为false，制造商代码字段将不被包括在所述帧ZCL。
+“On/Off”命令中的**Direction**子字段为0b0，表示该命令正在从cluster的客户端（Switch）发送到群集的服务器端（Light）。
+“On/Off”命令中的**Disable Default Response**子字段为0b1。这意味着仅在存在错误的情况下（以及在Zigbee cluster库规范记录的指定条件下），才会返回“默认响应”命令。
 
-**制造商代码** 制造商代码字段的长度为16位，并为专有扩展指定了分配的制造商代码。如果将帧控制字段的“ 制造商特定”子字段设置为1（指示此命令引用了制造商特定扩展名），则该字段仅应包含在ZCL框架中。
-由于“ 开/关”命令框控制字段的“ 制造商特定”子字段设置为0，因此将不包括“ 制造商代码”。
+**Manufacturer Code** 制造商代码字段的长度为16位，并为专有扩展指定了分配的制造商代码。如果将帧控制字段的“ Manufacturer Specific”子字段设置为1（指示此命令引用了制造商特定扩展名），则该字段仅应包含在ZCL框架中。
+由于“ On/Off”命令框控制字段的“ Manufacturer Specific”子字段设置为0，因此将不包括“Manufacturer Code”。
 
-**事务序列号** 事务序列号字段的长度为8位，并指定单个事务的标识号。
+**Transaction Sequence Number** 事务序列号字段的长度为8位，标识单个transaction。
 
-**命令标识符** “命令标识符”字段的长度为8位，用于指定要使用的集群命令。下面列出了On / Off群集的部分命令ID。
+**Command Identifier** “命令标识符”字段的长度为8位，用于指定要使用的cluster命令。下面列出了On / Off群集的部分命令ID。
 
 ID | Description
 -|-
@@ -310,11 +310,11 @@ ID | Description
 0x01 | On |
 0x02 | Toggle |
 
-**帧有效数据包**
-帧有效数据包字段的长度可变，并且包含特定于各个命令类型的信息。“打开”和“关闭”命令都没有有效数据位。
+**Frame Payload**
+帧有效数据包字段的长度可变，并且包含特定于各个命令类型的信息。“On”和“Off”命令都没有payload。
 
 ***
 
 # 5. 结论
-在本动手实践中，您学习了如何发送不同的ZCL命令以及如何从用户应用级处理收到的命令。以及如何启用/禁用不同功能的插件来满足您的需求。
-还演示了如何使用网络分析器工具评估在Zigbee网络中传输的数据。
+在本动手实践中，学习了如何发送不同的ZCL命令以及如何从用户应用层处理收到的命令。以及如何使能/禁用不同功能的插件来满足不同的需求。
+还练习了如何使用Network Analyzer评估在Zigbee网络中传输的数据。
