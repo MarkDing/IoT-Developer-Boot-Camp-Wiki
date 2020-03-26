@@ -226,10 +226,10 @@ void emberAfPluginButtonInterfaceButton1PressedShortCallback(uint16_t timePresse
 
 ***
 
-# 4. 测试您的项目
+# 4. 测试项目
 前2章介绍了如何使设备能够通过某些API发送和接收命令。
 生成应用程序并将输出文件下载到目标设备。在对设备进行编程之前，请退出网络日志捕获，因为在连接网络分析器（或Energy Profiler）时调试器无法访问芯片。
-**注意**：请**不要**在编程之前擦除设备，否则“ znet”令牌将被删除，并且设备将无法加入网络，只能按照上一个实验中的说明再次[加入网络](https://github.com/MarkDing/IoT-Developer-Boot-Camp/wiki/Zigbee-Hands-on-Forming-and-Joining#73-join-the-network-on-switch-router-device)。
+**注意**：请**不要**在编程之前擦除设备，否则“ znet”token将被删除，并且设备将无法加入网络，只能按照上一个实验中的说明再次[加入网络](https://github.com/MarkDing/IoT-Developer-Boot-Camp/wiki/Zigbee-Hands-on-Forming-and-Joining#73-join-the-network-on-switch-router-device)。
 按Button0发送ON命令，您将注意到Light上的LED1打开。
 按下Button1发送OFF命令，您会注意到Light 1的LED1熄灭。
 **注意**：默认情况下，Light节点上的LED0用于指示网络活动，因此，如果发送任何命令，为什么还会观察light节点上的LED0闪烁。
