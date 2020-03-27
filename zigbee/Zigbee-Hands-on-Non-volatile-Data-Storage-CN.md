@@ -1,7 +1,6 @@
 <details>
 <summary><font size=5>目录</font> </summary>
 
-
 - [1. 简介](#1-简介)
     - [1.1. 实验内容](#11-实验内容)
     - [1.2. 目的](#12-目的)
@@ -47,13 +46,13 @@
 
 # 1. 简介
 ## 1.1. 实验内容
-Zigbee快速入门 - 新兵训练营培训的实验环节将涵盖以下四个部分。我们通过这四个部分来向大家逐步展示，如何从零开始构建一个Zigbee应用。
+Zigbee快速入门——新兵训练营培训的实验环节将涵盖以下四个部分。我们通过这四个部分来向大家逐步展示，如何从零开始构建一个Zigbee应用。
 
-本文档中的实验是“Zigbee快速入门——新兵训练营”系列中的第四部分。 
--   第一部分，由Light构建网络，并使用install code将Switch加入到这个网络。  
--   第二部分，在设备上使用API发送，接收和处理On-Off命令。  
+本文档中的实验是“Zigbee快速入门——新兵训练营”系列中的第二部分。 
+-   第一部分，由Light构建网络，并使用install code将Switch加入到这个网络。
+-   第二部分，在设备上使用API发送，接收和处理On-Off命令。
 -   第三部分，在Switch端用一个周期事件来执行自定义代码，在我们的实验中是控制LED闪烁。
--   **第四部分，在Switch端使用非易失性存储器来存储自定义数据。**  
+-   **第四部分，在Switch端使用非易失性存储器来存储自定义数据。**
 
 ## 1.2. 目的
 本实验演示了EmberZNet Stack上非易失性数据存储的基本用法。此外，本文档中还包含了一些有关NVM, Token的基本知识，以帮助所有人更好地理解该实验。
@@ -63,7 +62,7 @@ Zigbee快速入门 - 新兵训练营培训的实验环节将涵盖以下四个�
 
 **你需要做**  
 * 在本实验中，我们需要解决的一个问题是，在没有EEPROM的EFR32MG12平台上，如何在系统掉电或复位时来保存当前灯的开/关状态。在本实验中，我们提供了使用Tokens来实现此目的的解决方案。
-* 而且，您还需要检索制造商在生产过程中所烧录的制造商字符串。
+* 而且，您还需要检索制造商在生产过程中所烧录的制造字符串。
 
 下图说明了该实验的基本流程。
 <div align="center">
@@ -75,7 +74,7 @@ Zigbee快速入门 - 新兵训练营培训的实验环节将涵盖以下四个�
 
 # 2. 非易失性存储器的基础  
 ## 2.1. 什么是非易失性存储？
-非易失性存储器（NVM）是指当设备掉电后，所存储的数据不会消失的存储器。它通常是指半导体存储芯片中的存储，包括NAND闪存和固态硬盘（SSD）之类的闪存存储，以及EPROM（可擦除可编程ROM）和EEPROM（电可擦除可编程ROM）之类的ROM芯片。
+非易失性存储器（NVM）是指当设备掉电后，所存储的数据不会消失的存储器。它通常是指半导体存储芯片中的存储，包括NAND闪存和固态硬盘（SSD）之类的闪存存储，以及EPROM（可擦除可编程ROM）和EEPROM（电可擦除可编程ROM）之类的ROM芯片。  
 在Silicon Labs的微处理器和无线射频芯片上，其内部都没有包含EEPROM，NVM的功能是通过闪存来实现的。
 
 ## 2.2. 为什么在EmberZNet PRO中需要非易失性存储？
@@ -85,21 +84,21 @@ Zigbee快速入门 - 新兵训练营培训的实验环节将涵盖以下四个�
 总体而言，Silicon Labs为**闪存**中的非易失性数据存储提供3种不同的实现方案。并且还提供Tokens机制，用于从非易失性数据存储中存储和检索数据。
 
 **Persistent Store (PS Store)**  
-PS Store仅可用于除EFR32 2系列以外的所有的蓝牙设备。PS Store的大小为2048字节，并使用两个闪存页进行存储。蓝牙协议栈和应用程序都可以在该区域中存储数据。
+PS Store仅可用于除EFR32 2系列以外的所有的蓝牙设备。PS Store的大小为2048字节，并使用两个闪存页进行存储。蓝牙协议栈和应用程序都可以在该区域中存储数据。  
 由于本文档重点介绍EmberZNet PRO，因此在本文档中我们不会过多介绍PS Store。
 
 **SimEEv1和SimEEv2**  
 SimEEv1（模拟EEPROM版本1）或SimEEv2（模拟EEPROM版本2）与EmberZNet PRO，Silicon Labs Thread，Silicon Labs Connect在EM35x和EFR32系列1平台上配合使用。SimEEv1使用两个虚拟页，每个虚拟页包含两个闪存页，而SimEEv2使用三个虚拟页，其中每个虚拟页包含6个闪存页。
 
 **NVM3**  
-第三代非易失性存储器（NVM3）数据存储是SimEEv1 / v2和PS Store的替代产品，旨在与EFR32上运行的EmberZNet，Silicon Labs Thread，Connect和Bluetooth应用程序，以及EFM32上运行的MCU应用程序一起使用。  
-由于NVM3具有更高的可配置性，可以更好地平衡Tokens容量与所需的闪存，并且与DMP（动态多协议）应用程序兼容，因此推荐在EFR32上进行开发时，使用该方案。
-在本实验中，我们将使用NVM3进行数据存储。
+第三代非易失性存储器（NVM3）数据存储是SimEEv1 / v2和PS Store的替代产品，旨在与EFR32上运行的EmberZNet，Silicon Labs Thread，Connect和Bluetooth应用程序，以及EFM32上运行的MCU应用程序一起使用。    
+由于NVM3具有更高的可配置性，可以更好地平衡Tokens容量与所需的闪存，并且与DMP（动态多协议）应用程序兼容，因此推荐在EFR32上进行开发时，使用该方案。  
+在本实验中，我们将使用NVM3进行数据存储。  
 
 **Token**  
-Token的机制使应用程序可以将定义的数据类型存储在非易失性存储中，并且SimEEv1 / v2和NVM3都可以在Token机制下运行。
-Token有两个部分：Token标识和Token数据。Token标识是用于存储和检索Token数据的唯一标识符。通过使用Token标识，应用程序无需知道数据在非易失性存储中的确切位置即可进行检索。
-下图说明了Token与非易失性数据存储机制之间的关系。Silicon Labs提供了三种不同的Dynamic Tokens实现：SimEEv1（模拟EEPROM版本1），SimEEv2（模拟EEPROM版本2）和NVM3（第三代非易失性存储）。
+Token的机制使应用程序可以将定义的数据类型存储在非易失性存储中，并且SimEEv1 / v2和NVM3都可以在Token机制下运行。  
+Token有两个部分：Token标识和Token数据。Token标识是用于存储和检索Token数据的唯一标识符。通过使用Token标识，应用程序无需知道数据在非易失性存储中的确切位置即可进行检索。  
+下图说明了Token与非易失性数据存储机制之间的关系。Silicon Labs提供了三种不同的Dynamic Tokens实现：SimEEv1（模拟EEPROM版本1），SimEEv2（模拟EEPROM版本2）和NVM3（第三代非易失性存储）。  
 
 <div align="center">
   <img src="files/ZB-Zigbee-Hands-on-Non-volatile-Data-Storage/Non-volatile_Data_Storage_and_Tokens.png">  
@@ -122,16 +121,16 @@ Token有两个部分：Token标识和Token数据。Token标识是用于存储和
 </br>
 
 ### 3.1.1. Dynamic Tokens
-Dynamic Tokens系统的基本目的是允许它可以像普通RAM一样频繁地访问（读取和写入），而且Token数据在系统重新启动和断电期间得以保存。它们存储在闪存的专用区域中，在该区域中，我们使用存储旋转算法来防止闪存过度使用。
+Dynamic Tokens系统的基本目的是允许它可以像普通RAM一样频繁地访问（读取和写入），而且Token数据在系统重新启动和断电期间得以保存。它们存储在闪存的专用区域中，在该区域中，我们使用存储旋转算法来防止闪存过度使用。  
 有两种类型的Dynamic Tokens，它们的格式有所不同：Basic Tokens和Indexed Tokens。
 
 #### 3.1.1.1. Basic (Non-indexed) Tokens
-Basic Tokens可以被视为简单的char变量类型，只能作为一个单元进行访问。例如，基本标记可用于存储数组，并且如果该数组的任何元素发生更改，则必须重写整个数组。
-计数器Token是一种特殊类型的非索引Dynamic Tokens，用于存储一次递增1的数字。
-<font color=red><b>提示</b></font>：本动手操作中将不涉及计数器Token，有关计数器Token的更多信息，请参考UG103.7的[2.6计数器对象][UG103.7: Non-Volatile Data Storage Fundamentals]一节和AN703的4.2[何时定义计数器Token][AN703: Simulated EEPROM]。
+Basic Tokens可以被视为简单的char变量类型，只能作为一个单元进行访问。例如，基本标记可用于存储数组，并且如果该 数组的任何元素发生更改，则必须重写整个数组。  
+计数器Token是一种特殊类型的非索引Dynamic Tokens，用于存储一次递增1的数字。  
+<font color=red><b>提示</b></font>：本实验中将不涉及计数器Token，有关计数器Token的更多信息，请参考UG103.7的[2.6计数器对象][UG103.7: Non-Volatile Data Storage Fundamentals]一节和AN703的4.2[何时定义计数器Token][AN703: Simulated EEPROM]。
 
 #### 3.1.1.2. Indexed Tokens
-索引Dynamic Tokens可以看作是char变量的链接数组，其中每个元素都希望独立于其他元素进行更改，因此每个元素在内部被存储为独立的Token，并可以通过Token API进行访问。
+索引Dynamic Tokens可以看作是char变量的链接数组，其中每个元素都希望独立于其他元素进行更改，因此每个元素在内部被存储为独立的Token，并可以通过Token API进行访问。  
 <font color=red><b>提示</b></font>: 在本实验中也将不包括Indexed Tokens，有关Indexed Tokens的更多信息，请参考UG103.7的[2.6 Counter Objects][UG103.7: Non-Volatile Data Storage Fundamentals]和AN703的[4.2 When to Define a Counter Token][AN703: Simulated EEPROM]。 
 
 ### 3.1.2. Manufacturing Tokens
@@ -158,7 +157,7 @@ Manufacturing Tokens是制造商在产品制造时设置，并且存储在闪存
 // Define token names here
 #define NVM3KEY_LED1_ON_OFF			(NVM3KEY_DOMAIN_USER | 0x0001)
 ```
-请注意，Token名称在此设备内必须唯一。
+请注意，Token名称在此设备内必须唯一。  
 对于NVM3，自定义应用程序Token应使用**NVM3KEY_DOMAIN_USER**范围，以免与协议栈中的Token（例如**NVM3KEY_DOMAIN_ZIGBEE**）冲突。有关NVM3默认范围的信息，请参考下表。
 
 <div align="center">
@@ -179,7 +178,7 @@ typedef struct {
 ```
 
 ##### 3.2.1.1.3. 定义Token存储
-定义任何自定义类型之后，您应该定义Token存储，以将所定义的Token通知给Token管理系统。  
+定义任何自定义类型之后，您应该定义Token存储，以将所定义的Token通知给Token管理系统。    
 每个Token（无论是自定义Token还是默认Token）在此部分都有其自己的定义：
 ```
 #ifdef DEFINETOKENS
@@ -190,7 +189,7 @@ DEFINE_BASIC_TOKEN(LED1_ON_OFF,
 #endif
 ```
 
-DEFINE_BASIC_TOKEN带有三个参数：Token名称（LED1_ON_OFF，不带前缀“ NVM3KEY”），Token类型（ledOnOffStatus_t），如上所定义，以及Token的默认值。如果应用程序从未写入过该Token，则其值为默认值。
+DEFINE_BASIC_TOKEN带有三个参数：Token名称（LED1_ON_OFF，不带前缀“ NVM3KEY”），Token类型（ledOnOffStatus_t），如上所定义，以及Token的默认值。如果应用程序从未写入过该Token，则其值为默认值。  
 在上面的例子中，第一个值（ledIndex）被初始化为```1```表示LED1，而下一个值（ledOnOff）被设置```false```代表LED1的默认状态。
 
 #### 3.2.1.2. 访问Dynamic Tokens
@@ -202,9 +201,9 @@ DEFINE_BASIC_TOKEN带有三个参数：Token名称（LED1_ON_OFF，不带前缀�
 void halCommonGetToken(data, token)  
 void halCommonSetToken(token, data)  
 ```
-在这种情况下，“token”变量是Token名称，“data”变量是Token数据。请注意，```halCommonGetToken()```和```halCommonSetToken()```是通用TokenAPI，可用于基本Dynamic Tokens和Manufacturing Tokens的访问。
-现在，让我们使用一个示例来说明这些API的用法。
-正如文章一开始的[你需要做的](#12-目的)章节所提及，我们需要频繁地存储LED1的开/关状态，并且在系统上电之后恢复LED1的状态。 在定义了Token之后，您可以使用如下代码片段访问它：
+在这种情况下，“token”变量是Token名称，“data”变量是Token数据。请注意，```halCommonGetToken()```和```halCommonSetToken()```是通用TokenAPI，可用于基本Dynamic Tokens和Manufacturing Tokens的访问。  
+现在，让我们使用一个示例来说明这些API的用法。  
+正如文章一开始的[你需要做的](#12-目的)章节所提及，我们需要频繁地存储LED1的开/关状态，并且在系统上电之后恢复LED1的状态。 在定义了Token之后，您可以使用如下代码片段访问它：  
 
 ```
 ledOnOffStatus_t led1OnOffStatus;
@@ -227,11 +226,11 @@ void halCommonSetIndexedToken(token, index, data)
 ```
 
 ### 3.2.2. Manufacturing Tokens
-Manufacturing Tokens的定义方式与基本（非索引）Dynamic Tokens的定义方式相同，因此，有关如何创建Token的信息，请参考[创建Dynamic Tokens](#3211-创建Dynamic Tokens)部分。它们之间的主要区别在于Token的存储位置和访问方式。
+Manufacturing Tokens的定义方式与基本（非索引）Dynamic Tokens的定义方式相同，因此，有关如何创建Token的信息，请参考[创建Dynamic Tokens](#3211-创建Dynamic Tokens)部分。它们之间的主要区别在于Token的存储位置和访问方式。  
 Manufacturing Tokens位于Manufacturing Tokens的专用闪存页面中（具有固定的绝对地址）。
 
 #### 3.2.2.1. 访问Manufacturing Tokens
-顾名思义，Manufacturing Tokens通常在制造时一次写入专用闪存页面中的固定位置。由于它们的地址是固定的，因此如果禁用了此闪存区域的读保护，则可以轻松地从外部编程工具读取它们。
+顾名思义，Manufacturing Tokens通常在制造时一次写入专用闪存页面中的固定位置。由于它们的地址是固定的，因此如果禁用了此闪存区域的读保护，则可以轻松地从外部编程工具读取它们。  
 并且由于同一闪存单元，如果没有作擦除操作就无法重复写入。仅当Token当前处于已擦除状态时，才能通过代码来写入Manufacturing Tokens。覆盖之前已经写入的Manufacturing Tokens，总是需要先使用外部编程工具擦除Manufacturing Tokens所在的闪存页面。
 
 Manufacturing Tokens应通过下面的专用API来访问。
@@ -245,7 +244,7 @@ halCommonSetMfgToken(token, data);
 
 而且Manufacturing Tokens也可以通过Basic Tokens API ```halCommonGetToken()```和```halCommonSetToken()```进行访问。
 
-还让我们使用一个示例来说明这些专用API如何访问Manufacturing Tokens。
+还让我们使用一个示例来说明这些专用API如何访问Manufacturing Tokens。  
 正如文章前面的章节[你需要做](#12-目的)中所提及，制造商将在生产过程中通过编程工具对“制造字符串”Token进行编程，我们可以运行如下代码段来从Manufacturing Tokens中检索该字符串。
 
 ```
@@ -267,14 +266,14 @@ EmberZNet PRO协议栈已经为协议栈本身，应用程序框架，制造数�
 ***
 
 # 4. 实验
-本节提供分步说明，以演示如何使用Basic Tokens向非易失性数据存储（在本实验中为NVM3）对象存储和从其检索LED1的状态。并演示如何使用专用API访问Manufacturing Tokens。
+本节提供分步说明，以演示如何使用Basic Tokens向非易失性数据存储（在本实验中为NVM3）对象存储和从其检索LED1的状态。并演示如何使用专用API访问Manufacturing Tokens。  
 这也正是我们在本文章开始时[你需要做](#12-目的)的部分中提出的问题。
 
 **前提条件**  
 请确保您已完成[准备课程](https://github.com/MarkDing/IoT-Developer-Boot-Camp/wiki/Zigbee-Preparatory-Course)，并确保所有SDK软件和开发套件都已准备就绪。
 
 ## 4.1. 硬体需求
-该动手操作需要EFR32MG21 / EFR32MG13 / EFR32MG12开发板中的任何一款，我们推荐使用EFR32MG12无线开发板BRD4162A，我们的示例项目也是基于该套件创建的。以下是该开发板的布局。
+该实验需要EFR32MG21 / EFR32MG13 / EFR32MG12开发板中的任何一款，我们推荐使用EFR32MG12无线开发板BRD4162A，我们的示例项目也是基于该套件创建的。以下是该开发板的布局。
 <div align="center">
   <img src="files/ZB-Zigbee-Hands-on-Non-volatile-Data-Storage/brd4162_kit.png">
 </div>  
@@ -292,7 +291,7 @@ EmberZNet PRO协议栈已经为协议栈本身，应用程序框架，制造数�
 
 ## 4.3. 实践
 ### 4.3.1. 打开Switch项目
-该实验是在前三个实验基础之上。由于非易失性数据存储机制不依赖于网络节点类型，因此我们仅仅演示如何在Switch（路由节点）设备端通过TokenAPI访问NVM3对象，即Zigbee_Switch_ZR项目。  
+该实验是在前三个实验基础之上。由于非易失性数据存储机制不依赖于网络节点类型，因此我们仅仅演示如何在Switch（路由节点）设备端通过TokenAPI访问NVM3对象，即Zigbee_Switch_ZR项目。    
 如果在完成该实验过程中遇到任何困难，你可以在[IoT-Developer-Boot-Camp](https://github.com/MarkDing/IoT-Developer-Boot-Camp/tree/master/zigbee)中找到示例项目，以供参考。
 
 ### 4.3.2. 创建自定义Token
@@ -341,7 +340,7 @@ DEFINE_BASIC_TOKEN(LED1_ON_OFF,
 #endif
 ```
 
-创建自定义Token头文件后，您还需要执行一个步骤：通过Simplicity Studio中“ .isc”文件中“Token Configuration”部分下的[包含]选项卡，将头文件添加到应用程序中。
+创建自定义Token头文件后，您还需要执行一个步骤：通过Simplicity Studio中“ .isc”文件中“Token Configuration”部分下的[Includes]选项卡，将头文件添加到应用程序中。  
 **注意**：在.isc文件中添加头文件后，您需要再次生成项目。
 
 <div align="center">
@@ -350,7 +349,7 @@ DEFINE_BASIC_TOKEN(LED1_ON_OFF,
 </br>  
 
 ### 4.3.3. 访问Basic Tokens LED1_ON_OFF
-让我们继续介绍如何访问已定义的Token。以下分步说明如何存储LED的状态，以及如何检索并恢复LED的状态值。
+让我们继续介绍如何访问已定义的Token。以下分步说明如何存储LED的状态，以及如何检索并恢复LED的状态值。  
 该实验的每个步骤在参考示例项目中都会有一个相应的注释```Non-volatile Data Storage: Step x```，以方便用户定位到正确的位置来编写代码。
 
 #### 4.3.3.1. 步骤1：检索Basic Tokens数据
@@ -379,9 +378,9 @@ else{
 ```
 
 #### 4.3.3.2. 步骤2：写入基本的Tokens数据
-在上一个实验中，我们定义了一个事件处理函数```ledBlinkingHandler()```来定期切换LED1状态，本实验中，我们需要在每次切换完成之后将LED1的状态保存。
-导航到```Zigbee_Switch_ZR_callback.c```的函数```void ledBlinkingHandler(void)```中。您也可以使用注释```Non-volatile Data Storage: Step 2```来定位所需要修改的代码的位置。  
-使用```API halCommonSetToken()```来写Token LED1_ON_OFF。
+在上一个实验中，我们定义了一个事件处理函数```ledBlinkingHandler()```来定期切换LED1状态，本实验中，我们需要在每次切换完成之后将LED1的状态保存。  
+导航到```Zigbee_Switch_ZR_callback.c```的函数```void ledBlinkingHandler(void)```中。您也可以使用注释```Non-volatile Data Storage: Step 2```来定位所需要修改的代码的位置。    
+使用```API halCommonSetToken()```来写Token LED1_ON_OFF。  
 ```
 // Non-volatile Data Storage: Step 2
 // Retrieve the previous status of LED1
@@ -395,7 +394,7 @@ halCommonSetToken(TOKEN_LED1_ON_OFF, &led1OnOffStatus);
 ```
 
 #### 4.3.3.3. 步骤3：测试
-将必要的代码添加到项目后，请编译```Zigbee_Switch_ZR```项目，并将其烧录到BRD4162A开发板上。
+将必要的代码添加到项目后，请编译```Zigbee_Switch_ZR```项目，并将其烧录到BRD4162A开发板上。  
 * 点击[Build]  按钮开始编译项目。
 * 编译完成后，展开“ Binaries”文件夹，然后右键单击* .hex文件并选择[Flash to Device ...]
 * 在弹出窗口中选择所连接的开发板。现在，“Flash Programmer”已预先填充了所有需要的数据，您可以单击“烧录”。
@@ -406,12 +405,12 @@ halCommonSetToken(TOKEN_LED1_ON_OFF, &led1OnOffStatus);
 </div>
 </br>
 
-在上电延迟几秒钟后，开发板上的LED1将定期闪烁，按复位键复位该设备，复位完成后，应用程序会将LED1恢复到复位/关闭电源之前的状态。
+在上电延迟几秒钟后，开发板上的LED1将定期闪烁，按复位键复位该设备，复位完成后，应用程序会将LED1恢复到复位/关闭电源之前的状态。  
 <font color=red><b>提示</b></font>：您可以修改系统上电后LED1延迟闪烁的时间，以及在```Zigbee_Switch_ZR_callback.c```中使用API ```emberEventControlSetDelayMS(ledBlinking, 2000)```; 来更改LED1的闪烁间隔。
 
 ### 4.3.4. 访问Manufacturing Tokens
 #### 4.3.4.1. 步骤4：读取Manufacturing Tokens MFG_STRING
-仅当Token当前处于已擦除状态时，才能通过代码写入Manufacturing Tokens。通常，制造商将使用外部编程工具（例如Simplicity Commander）烧录Manufacturing Tokens。 这部分将涉及读取Manufacturing Tokens```MFG_STRING```，该Token保存了制造商在生产过程中所烧录的制造字符串。  
+仅当Token当前处于已擦除状态时，才能通过代码写入Manufacturing Tokens。通常，制造商将使用外部编程工具（例如Simplicity Commander）烧录Manufacturing Tokens。 这部分将涉及读取Manufacturing Tokens```MFG_STRING```，该Token保存了制造商在生产过程中所烧录的制造字符串。    
 导航到```Zigbee_Switch_ZR_callback.c```的函数```void emberAfMainInitCallback(void)```，然后通过API ```halCommonGetMfgToken```读取Manufacturing TokensMFG_STRING。
 
 ```
@@ -436,14 +435,9 @@ emberAfAppPrintln("MFG String: %s", mfgString);
 ***
 
 # 5. 结论  
-我们希望您通过非易失性数据存储的实验，理解Silicon Labs所提供的实现方案，它们是NVM3，SimEEv1 / SimEEv2和PS Store。 另外，通过本实验，您也学习了如何创建和访问Basic Tokens以及如何访问Manufacturing Tokens。
-
+我们希望您通过非易失性数据存储的实验，理解Silicon Labs所提供的实现方案，它们是NVM3，SimEEv1 / SimEEv2和PS Store。 另外，通过本实验，您也学习了如何创建和访问Basic Tokens以及如何访问Manufacturing Tokens。   
 有关非易失性数据存储和Token的更多信息，请参考以下文档。
-
-[UG103.7: Non-Volatile Data Storage Fundamentals](https://www.silabs.com/documents/public/user-guides/ug103-07-non-volatile-data-storage-fundamentals.pdf)
-
-[AN1154: Using Tokens for Non-Volatile Data Storage](https://www.silabs.com/documents/public/application-notes/an1154-tokens-for-non-volatile-storage.pdf)
-
-[AN1135: Using Third Generation NonVolatile Memory (NVM3) Data Storage](https://www.silabs.com/documents/public/application-notes/an1135-using-third-generation-nonvolatile-memory.pdf)  
-
-[AN703: Simulated EEPROM](https://www.silabs.com/documents/public/application-notes/an703-simulated-eeprom.pdf)  
+[UG103.7: Non-Volatile Data Storage Fundamentals](https://www.silabs.com/documents/public/user-guides/ug103-07-non-volatile-data-storage-fundamentals.pdf)  
+[AN1154: Using Tokens for Non-Volatile Data Storage](https://www.silabs.com/documents/public/application-notes/an1154-tokens-for-non-volatile-storage.pdf)  
+[AN1135: Using Third Generation NonVolatile Memory (NVM3) Data Storage](https://www.silabs.com/documents/public/application-notes/an1135-using-third-generation-nonvolatile-memory.pdf)    
+[AN703: Simulated EEPROM](https://www.silabs.com/documents/public/application-notes/an703-simulated-eeprom.pdf)   

@@ -371,8 +371,7 @@ The **Install code library** provides an initial link key based upon an install 
 </br>  
 
 3. Press *Generate* button  
-4. Verify the VCOM enable is enabled in the Hardware Configurator (likewise to **3.12 Hardware configurator**)  
-5. Build the project  
+4. Build the project  
 
 *** 
 

@@ -33,15 +33,15 @@
   - [6.1. 网络层安全](#61-网络层安全)
     - [6.1.1. 总览](#611-总览)
     - [6.1.2. 逐跳安全](#612-逐跳安全)
-    - [6.1.3. 网络密钥](#613-网络密钥)
+    - [6.1.3. Network Key](#613-Network Key)
     - [6.1.4. 帧计数器](#614-帧计数器)
   - [6.2. APS层安全性](#62-aps层安全性)
     - [6.2.1. 总览](#621-总览)
-    - [6.2.2. 安装代码](#622-安装代码)
+    - [6.2.2. Installation Code](#622-Installation-Code)
 - [7. 加入过程](#7-加入过程)
   - [7.1. 形成网络](#71-形成网络)
   - [7.2. 使用“已知链接”密钥加入](#72-使用“已知链接”密钥加入)
-  - [7.3. 使用安装代码派生的链接密钥加入](#73-使用安装代码派生的链接密钥加入)
+  - [7.3. 使用Installation Code派生的Link key加入](#73-使用Installation Code派生的Link key加入)
 - [8. 参考](#8-参考)
 </details>
 
@@ -271,12 +271,12 @@ PAN ID由协调器在网络形成时选择。因为PAN ID是一个网络与另�
   </tr>
 </table>
 
-它显示了如何在网络层中保护不安全的网络帧。
+它显示了如何在网络层中保护不安全的网络帧。  
 首先，网络有效负载将被加密。之后，将在加密的有效负载之前添加安全标头。然后根据网络标头，安全标头和加密的有效负载来计算哈希值。最后，将32位哈希值附加到帧的末尾。如果更改了网络标头，安全标头和加密的有效负载中的任何字节，则哈希值将不同。我们将此值称为MIC，是消息完整性检查的缩写。
 
-网络加密使用对称加密算法（AES128），这意味着使用相同的密钥进行加密和解密。该密钥称为网络密钥。由于它是一种对称加密算法，因此同一Zigbee网络中的所有设备都将使用相同的网络密钥。
+网络加密使用对称加密算法（AES128），这意味着使用相同的密钥进行加密和解密。该密钥称为Network Key。由于它是一种对称加密算法，因此同一Zigbee网络中的所有设备都将使用相同的Network Key。
 
-在网络安全标头中，添加了“帧计数器”的字段和加密信息节点的源Eui64，以保护重播攻击。还添加了密钥序列号以支持网络密钥更新。
+在网络安全标头中，添加了“帧计数器”的字段和加密信息节点的源Eui64，以保护重播攻击。还添加了密钥序列号以支持Network Key更新。
 
 #### 6.1.2. 逐跳安全
 网络层安全性是逐跳安全性。
@@ -287,17 +287,17 @@ PAN ID由协调器在网络形成时选择。因为PAN ID是一个网络与另�
 
 这样的好处是可以尽快删除攻击消息。
 
-#### 6.1.3. 网络密钥
-网络密钥是一个16字节的八位位组。通常，它是在网络形成时由协调器随机生成的。当新设备加入网络时，它们必须获得网络密钥的副本。
+#### 6.1.3. Network Key
+Network Key是一个16字节的八位位组。通常，它是在网络形成时由协调器随机生成的。当新设备加入网络时，它们必须获得Network Key的副本。
 
-在Zigbee网络中，将网络密钥分发给新设备的角色称为信任中心。有两种典型的安全模型，即集中式安全网络和分布式安全网络。
+在Zigbee网络中，将Network Key分发给新设备的角色称为Trust Center。有两种典型的安全模型，即集中式安全网络和分布式安全网络。
 
 ![zigbee](files/ZB-Zigbee-Introduction-of-Zigbee-Basic/Security-Model.png)
 
-在集中式安全网络中，只有一个信任中心，通常是协调器。所有新设备将从协调器获取网络密钥。
-在分布式安全网络中，每个路由器都是一个信任中心。新设备可以从每个路由器获取网络密钥。
+在集中式安全网络中，只有一个Trust Center，通常是协调器。所有新设备将从协调器获取Network Key。  
+在分布式安全网络中，每个路由器都是一个Trust Center。新设备可以从每个路由器获取Network Key。
 
-由于需要将网络密钥从一个设备传输到另一台设备，因此在传输过程中需要对密钥值进行加密。此加密在应用程序层中完成。我们稍后再讨论。
+由于需要将Network Key从一个设备传输到另一台设备，因此在传输过程中需要对密钥值进行加密。此加密在应用程序层中完成。我们稍后再讨论。
 
 #### 6.1.4. 帧计数器
 添加了帧计数器以防止重放攻击。让我们看看它是如何工作的。
@@ -308,39 +308,39 @@ PAN ID由协调器在网络形成时选择。因为PAN ID是一个网络与另�
 
 为此，在发送方，每个节点将保存其传出帧计数器。在接收端，节点需要保存所有邻居的帧计数器。
 
-由于帧计数器是一个32位值，因此如果设备长时间保持运行状态，它可能会自动换行。显然，如果帧计数器被覆盖，可能会出现问题。为防止这种情况发生，必须在换行之前更新网络密钥。如果更新了网络密钥，帧计数器则可以再次从零开始。
+由于帧计数器是一个32位值，因此如果设备长时间保持运行状态，它可能会自动换行。显然，如果帧计数器被覆盖，可能会出现问题。为防止这种情况发生，必须在换行之前更新Network Key。如果更新了Network Key，帧计数器则可以再次从零开始。
 
 ### 6.2. APS层安全性
 #### 6.2.1. 总览
-应用中对传输网络密钥的消息进行了加密。让我们看看应用程序层的安全性。
+应用中对传输Network Key的消息进行了加密。让我们看看应用程序层的安全性。
 
 ![zigbee](files/ZB-Zigbee-Introduction-of-Zigbee-Basic/APS-Security.png)
 
-它与网络安全性非常相似。还使用对称加密算法（AES128）。该密钥称为链接密钥。在大多数情况下，仅只有传输网络密钥消息需要在应用层被加密，并且这仅在信任中心和新设备之间发生。因此，在这种情况下，我们也将其称为信任中心链接密钥。
+它与网络安全性非常相似。还使用对称加密算法（AES128）。该密钥称为Link key。在大多数情况下，仅只有传输Network Key消息需要在应用层被加密，并且这仅在Trust Center和新设备之间发生。因此，在这种情况下，我们也将其称为Trust Center Link key。
 
-APS层安全性是端到端安全性，因为只有参与通信的两个对等方才知道链接密钥。
+APS层安全性是**端到端**安全性，因为只有参与通信的两个对等方才知道Link key。
 
-网络中的设备可以使用相同的链接密钥或不同的链接密钥。如果设备使用相同的链接密钥，则此密钥是全局链接密钥。
+网络中的设备可以使用相同的Link key或不同的Link key。如果设备使用相同的Link key，则此密钥是Global Link key。
 
-在分布式模型中，由于每个路由器都可能是信任中心，因此将使用全局链接密钥。在集中式模型中，还使用了特殊的全局链接密钥，即已知的链接密钥。这是字符串“ ZigbeeAlliance09 ”。Zigbee 3.0之前的标准中使用了此功能，并保持了向后兼容性。
+在分布式模型中，由于每个路由器都可能是Trust Center，因此将使用Global Link key。在集中式模型中，还使用了特殊的Global Link key，即已知的Link key。这是字符串“ **ZigbeeAlliance09** ”。Zigbee 3.0之前的标准中使用了此功能，并保持了向后兼容性。
 
-信任中心链接密钥必须在设备上预先配置，以便它们可以加入并工作。如果他们使用已知的链接密钥，那将很容易。但是，如果他们需要使用其他链接密钥怎么办？
+Trust Center Link key必须在设备上预先配置，以便它们可以加入并工作。如果他们使用已知的Link key，那将很容易。但是，如果他们需要使用其他Link key怎么办？
 
-Zigbee定义了一种带外配置链接密钥的方法。这是安装代码。
+Zigbee定义了一种带外配置Link key的方法。这是Installation Code。
 
-#### 6.2.2. 安装代码
+#### 6.2.2. Installation Code
 
 ![zigbee](files/ZB-Zigbee-Introduction-of-Zigbee-Basic/Install-Code.png)
 
-安装代码是16字节多项式+ 2字节CRC。
+Installation Code是16字节多项式+ 2字节CRC。
 
-在设备出厂时，将在设备中编写安装代码。之后，在设备标签上还将记录设备的安装代码和Eui64。
+在设备出厂时，将在设备中编写Installation Code。之后，在设备标签上还将记录设备的Installation Code和Eui64。
 
-当将要安装设备时，用户会从标签上获得安装代码和Eui64。然后将它们配置为协调器。协调器再从安装代码中获取链接密钥，并设置一个表以使用该特定设备的链接密钥。
+当将要安装设备时，用户会从标签上获得Installation Code和Eui64。然后将它们配置为协调器。协调器再从Installation Code中获取Link key，并设置一个表以使用该特定设备的Link key。
 
-之后，此链接密钥将用于在应用程序层中加密消息。
+之后，此Link key将用于在应用程序层中加密消息。
 
-在设备方面，它从闪存读取安装代码，然后使用相同的算法导出链接密钥。此链接密钥应与协调器端的派生链接密钥相同。这样，即使消息已加密，他们也可以在应用程序层进行通信。
+在设备方面，它从闪存读取Installation Code，然后使用相同的算法导出Link key。此Link key应与协调器端的派生Link key相同。这样，即使消息已加密，他们也可以在应用程序层进行通信。
 
 ## 7. 加入过程
 我们将讨论Zigbee网络的形成方式以及设备如何加入网络。
@@ -363,24 +363,24 @@ Zigbee定义了一种带外配置链接密钥的方法。这是安装代码。
 2. 路由器和协调器将使用信标帧中携带的网络信息来响应信标。这些信息包括PAN ID，扩展PAN ID以及路由器或协调器的其他一些属性，例如设备是否允许连接，设备是否具有允许新设备连接的能力。
 3. 新设备可以从不同设备接收多个信标。它将选择信号质量最好的一个，并开始发送关联请求。在该关联请求中，将PAN ID设置为所选的PAN，并将目标节点ID设置为所选设备的节点ID。在此框架中，将继续使用新设备的功能。
 4. 当路由器或协调器收到此关联请求时，它将为新设备选择一个节点ID，并以关联响应进行响应。然后，新设备获得了其节点ID，但由于未获得安全密钥而无法与其他节点通信。
-5. 协调器会将当前的NWK密钥传输到新设备。**该传输消息在应用程序层中使用已知的链接密钥加密**。
-6. 当新设备收到此消息时，**它将使用已知的链接密钥对消息解密并获取网络密钥**。之后，该设备实际上已加入网络，并能够与网络中的所有其他节点通信。
+5. 协调器会将当前的NWK密钥传输到新设备。**该传输消息在应用程序层中使用已知的Link key加密**。
+6. 当新设备收到此消息时，**它将使用已知的Link key对消息解密并获取Network Key**。之后，该设备实际上已加入网络，并能够与网络中的所有其他节点通信。
 7. 设备将发送一条通知消息，以通知网络的其他节点，以通知他们我已加入。
 
-### 7.3. 使用安装代码派生的链接密钥加入
+### 7.3. 使用Installation Code派生的Link key加入
 
 ![zigbee](files/ZB-Zigbee-Introduction-of-Zigbee-Basic/Joining-with-Install-Code.png)
 
-1. 在出厂之前，应该已经使用安装代码对新设备进行了编程。
-2. 在加入之前，用户需要获取新设备的安装代码和Eui64，然后在协调器上对其进行配置。
-3. 然后，协调器从安装代码中获取链接密钥，并将协调器设置为使用此链接密钥来加密此新设备的传输NWK密钥消息。
+1. 在出厂之前，应该已经使用Installation Code码对新设备进行了编程。
+2. 在加入之前，用户需要获取新设备的Installation Code和Eui64，然后在协调器上对其进行配置。
+3. 然后，协调器从Installation Code中获取Link key，并将协调器设置为使用此Link key来加密此新设备的传输NWK密钥消息。
 
-其余过程类似于使用众所周知的链接密钥进行连接的过程。**当协调器开始将网络传输到新设备时，它将对消息进行加密并将其传输到新设备**。当新设备收到此消息时，**它将从闪存中读取安装代码并从中获取链接密钥，然后使用此密钥对消息进行解密并获取网络密钥。**
+其余过程类似于使用众所周知的Link key进行连接的过程。**当协调器开始将网络传输到新设备时，它将对消息进行加密并将其传输到新设备**。当新设备收到此消息时，**它将从闪存中读取Installation Code并从中获取Link key，然后使用此密钥对消息进行解密并获取Network Key。**
 
 ## 8. 参考
-- [UG103-01 基础知识：无线网络](https://www.silabs.com/documents/public/user-guides/ug103-01-fundamentals-wireless-network.pdf)
-- [UG103-02 基础知识：Zigbee](https://www.silabs.com/documents/public/user-guides/ug103-02-fundamentals-zigbee.pdf)
-- [UG103-03 基础：设计选择](https://www.silabs.com/documents/public/user-guides/ug103-03-fundamentals-design-choices.pdf)
-- [AN1233 Zigbee安全性](https://www.silabs.com/documents/public/application-notes/an1233-zigbee-security.pdf)
-- [Zigbee 在线培训资源](https://www.silabs.com/support/training/mesh)
+- [UG103-01 Fundamentals: Wireless Network](https://www.silabs.com/documents/public/user-guides/ug103-01-fundamentals-wireless-network.pdf)
+- [UG103-02 Fundamentals: Zigbee](https://www.silabs.com/documents/public/user-guides/ug103-02-fundamentals-zigbee.pdf)
+- [UG103-03 Fundamentals: Design Choices](https://www.silabs.com/documents/public/user-guides/ug103-03-fundamentals-design-choices.pdf)
+- [AN1233 Zigbee Security](https://www.silabs.com/documents/public/application-notes/an1233-zigbee-security.pdf)
+- [Zigbee Online Training Resources](https://www.silabs.com/support/training/mesh)
 ********

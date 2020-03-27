@@ -5,8 +5,8 @@
 &nbsp;
 
 - [1. 总览](#1-总览)
-- [2. SoC和模块](#2-soc和模块)
-  - [2.1. SoCs](#21-socs)
+- [2. SoC和模块](#2-SoC和模块)
+  - [2.1. SoCs](#21-SoCs)
   - [2.2. 模块](#22-modules)
   - [2.3. 框图](#23-框图)
 - [3. 软件开发组件](#3-软件开发组件)
@@ -29,10 +29,10 @@
     - [4.2.4. 生成项目](#424-生成项目)
     - [4.2.5. 建立项目](#425-建立项目)
     - [4.2.6. 测试和调试](#426-测试和调试)
-      - [4.2.6.1. 发送应用镜像](#4261-发送应用镜像)
+      - [4.2.6.1. 发送应用image](#4261-发送应用image)
       - [4.2.6.2. 开发控制台](#4262-开发控制台)
       - [4.2.6.3. 有用的命令](#4263-有用的命令)
-      - [4.2.6.4. 网络分析仪](#4264-网络分析仪)
+      - [4.2.6.4. Network Analyzer](#4264-Network-Analyzer)
 - [5. Reference](#5-reference)
 </details>
 
@@ -45,7 +45,7 @@ Silicon Labs的Zigbee解决方案包括三个部分：
 - 开发工具
 
 ## 2. SoC和模块
-从[Silicon Labs的官方网站](https://www.silabs.com/wireless/zigbee)上可以找到，Mighty Gecko系列的SoC和模块用于Zigbee应用。Mighty Gecko是Gecko家族中最强大的芯片。它支持Zigbee，蓝牙，Thread，私有技术。
+你可以从[Silicon Labs的官方网站](https://www.silabs.com/wireless/zigbee)了解到，Mighty Gecko系列的SoC和模块用于Zigbee应用。Mighty Gecko是Gecko家族中最强大的芯片。它支持Zigbee，蓝牙，Thread，私有技术。
 
 ### 2.1. SoCs
 
@@ -69,7 +69,7 @@ Silicon Labs的Zigbee解决方案包括三个部分：
 下面是EFR32MG12系列SoC的框图。
 ![zigbee](files/ZB-Zigbee-Introduction-of-EmberZnet-and-AppBuilder/SoC-Block-Diagram.png)  
 
-SoC可以在6种不同的能量模式下工作。从最大功耗到最低功耗：
+SoC可以在6种不同的功耗模式下工作。从最大功耗到最低功耗：
 
 - EM0 - Active
 - EM1 - Sleep
@@ -94,47 +94,47 @@ EmberZnet为Zigbee应用程序提供了两种设计模型：
 
 ![zigbee](files/ZB-Zigbee-Introduction-of-EmberZnet-and-AppBuilder/Design-Models.png)
 
-1. 在SoC模型中，所有协议层以及应用程序都在单个芯片上实现，较低级别的协议栈功能通常在硬件中作为微控制器的外围设备来实现。
+1. 在SoC模型中，所有协议层以及应用程序都在单个芯片上实现，较底层的协议栈功能通过专用的硬件外围模块来实现。
 
-   通常以库API调用的形式提供对协议栈功能的访问。
-   在协议栈和应用程序之间可能有一定数量的对微控制器的外围设备或资源的共享访问。
-   尽管共享可能会给应用程序开发人员带来更多限制，但最终会带来更低的材料成本和更紧凑的硬件设计。
+   通常以库API调用的形式提供对协议栈功能的访问。  
+   在协议栈和应用程序之间可能有一定数量的对微控制器的外围设备或资源的共享访问。  
+   尽管共享可能会给应用程序开发人员带来更多限制，但最终会带来更低的材料成本和更紧凑的硬件设计。  
 
-2. 另一种实现是网络协处理器或NCP模型。在此模型中，协议栈和低级无线电功能都驻留在一个芯片上，以实现有关协议栈功能的最佳集成和效率。但是，协议栈的应用程序接口是通过诸如SPI或UART之类的串行接口，而不是函数调用库。通过在这些接口之一上使用专有的串行协议，主机微控制器可以与协议栈交互，从而有可能将串行处理抽象到库或操作系统模块中，从而更好地满足主机上运行的应用程序的需求。
+2. 另一种实现是网络协处理器或NCP模型。在此模型中，协议栈和底层的无线电功能都驻留在一个芯片上，以实现有关协议栈功能的最佳集成和效率。但是，协议栈与应用程序接口是通过诸如SPI或UART之类的串行接口，而不是函数调用库。通过在这些接口之上使用专有的串行协议，主机微控制器可以与协议栈交互，从而有可能将串行处理抽象成库或系统模块的操作，从而更好地满足主机上运行的应用程序的需求。
 
-   该模型为应用程序设计和主机处理器体系结构提供了极大的灵活性。
-   它允许应用程序设计者忽略有关协议栈本身的许多实现细节。
-   根据NCP的实现，NCP固件还可能会公开其他功能或协议栈行为的抽象，以完成针对正在运行的应用程序类型定制的更高级别的应用程序任务。
-   我们提供了一个应用程序框架来为那些只需要标准或流行功能集的用户构建可定制的NCP和NCP示例应用程序。
+   该模型为应用程序设计和主机处理器体系结构提供了极大的灵活性。  
+   它允许应用程序设计者忽略有关协议栈本身的许多实现细节。  
+   根据NCP的实现，NCP固件还可能会公开其他功能或协议栈行为的抽象，以完成针对正在运行的应用程序类型定制的更高级别的应用程序任务。  
+   我们提供了一个应用程序框架来为那些只需要标准或常用功能集的用户编译可定制的NCP和NCP示例应用程序。  
    
-   有关这些选项的更多详细检查，请参阅应用笔记和有关可定制NCP，EZSP-SPI和EZSP-UART（例如AN1010，AN711，AN706）的培训资源。
+   有关这些选项的更多详细检查，请参阅应用笔记和有关可定制NCP，EZSP-SPI和EZSP-UART（例如[AN1010](https://www.silabs.com/documents/public/application-notes/an1010-customized-ncp.pdf), [AN711](https://www.silabs.com/documents/public/application-notes/an711-ezsp-spi-host-interfacing-guide.pdf), [AN706](https://www.silabs.com/documents/public/application-notes/an706-ezsp-uart-host-interfacing-guide.pdf)）的培训资源。
    
 您可能想参考[UG103.3](https://www.silabs.com/documents/public/user-guides/ug103-03-fundamentals-design-choices.pdf)的设计选择以及何时选择SoC和NCP模型。
 
 ### 3.2. Gecko Bootloader
-为了支持固件升级，我们需要一个引导程序。
+为了支持固件升级，我们需要一个Bootloader。
 
 1. 对于SoC模型，升级方案为：
 - 设备启动并运行应用程序
-- 应用程序通过空中接收新映像并将新映像存储到存储单元中
-- 设备重置，并且引导程序引导程序加载新映像
+- 应用程序通过空中接收新image并将新image存储到存储单元中
+- 设备重置，并且通过Bootloader加载新image
 
 2. 对于NCP模型，升级方案为：
-- 主机通过互联网接收新的NCP映像
-- 主机重置NCP并让NCP停留在引导加载程序阶段
-- 主机通过UART / SPI将新的NCP映像传输到NCP并覆盖当前映像
-- 主机重置NCP并运行新映像
+- 主机通过互联网接收新的NCP image
+- 主机重置NCP并让NCP停留在Bootloader阶段
+- 主机通过UART / SPI将新的NCP image传输到NCP并覆盖当前image
+- 主机重置NCP并运行新image
 
-Silicon Labs提供了三种类型的引导程序。  
+Silicon Labs提供了三种类型的Bootloader。  
 
 |类型|注释|  
 |:-|:-|
-|Bootloader Xmodem UART|也称为独立引导程序。主要用于基于UART的NCP。主机可以通过UART将映像传输到NCP，以升级NCP映像。|
-|EZSP SPI Bootloader|另一种独立的引导程序。主要用于基于SPI的NCP。主机可以通过SPI将映像传输到NCP，以升级NCP映像。|
-|Internal Storage Bootloader|用于Soc。将新软件映像存储在内部闪存中。|
+|Bootloader Xmodem UART|也称为独立Bootloader。主要用于基于UART的NCP。主机可以通过UART将image传输到NCP，以升级NCP image。|
+|EZSP SPI Bootloader|另一种独立的Bootloader。主要用于基于SPI的NCP。主机可以通过SPI将image传输到NCP，以升级NCP image。|
+|Internal Storage Bootloader|用于Soc。将新软件image存储在内部闪存中。|
 |SPI Storage Bootloader|用于Soc。将新图像存储在SPI闪存中。|
 
-还有一些用于DEV-Kit的预构建的引导加载程序映像。可以在Gecko SDK Suite目录下的platform \ bootloader \ sample-apps目录中找到它们。
+还有一些用于DEV-Kit的预编译的Bootloader image。可以在Gecko SDK Suite目录下的platform \ bootloader \ sample-apps目录中找到它们。   
 例如  
 ```
 The default path for Gecko SDK Suite V2.7:
@@ -172,19 +172,20 @@ Silicon Labs的无线入门套件（WSTK）由主板和无线电板组成。就�
 - 2个LED
 - 液晶屏
 - J-Link
-- 空中捕获网络流量
+- 捕获空中网络包
 - 测量电流
 - UART转USB转换器
 
-母板还可以用作独立的闪存编程器和J-Link调试器，以调试定制板。如[AN958第4.1节所述](https://www.silabs.com/documents/public/application-notes/an958-mcu-stk-wstk-guide.pdf)，建议在自定义板上设计10管脚的Simplicity微型调试连接器。开始编程或调试时，只需将主板的微型连接器连接到自定义板上，然后将主板的“调试模式”设置为“输出”即可。（有关详细信息，请参阅[调试定制板](Debugging-Custom-Board)）。
+母板还可以用作独立的闪存编程器和J-Link调试器，以调试定制板。如[AN958第4.1节所述](https://www.silabs.com/documents/public/application-notes/an958-mcu-stk-wstk-guide.pdf)，建议在自定义板上设计10管脚的Simplicity微型调试连接器。  
+开始编程或调试时，只需将主板的微型连接器连接到自定义板上，然后将主板的“调试模式”设置为“输出”即可。（有关详细信息，请参阅[调试定制板](Debugging-Custom-Board)）。
 
-2. 开发板是可交换的。用户可以交换不同的开发板来评估不同的SoC或模块 
+2. 开发板是可更换的。用户可以交换不同的开发板来评估不同的SoC或模块 
 
 ![zigbee](files/ZB-Zigbee-Introduction-of-EmberZnet-and-AppBuilder/Swap-Radio-Board.png)  
 
 ### 4.2. Simplicity IDE
 #### 4.2.1. 总览
-简单性IDE是功能强大的IDE。集成了许多工具，包括：
+Simplicity IDE是一个功能强大的IDE。集成了许多工具，包括：
 - AppBuilder
 - Hardware Configurator
 - Network Analyzer
@@ -231,8 +232,8 @@ Silicon Labs的无线入门套件（WSTK）由主板和无线电板组成。就�
 ![zigbee](files/ZB-Zigbee-Introduction-of-EmberZnet-and-AppBuilder/Manufacture-Code.png)  
 
 2. 其次，您可以在此处添加/删除端点，还可以选择要在端点上使用的设备配置文件。您还可以根据配置文件选择其他群集。在这种情况下，设置“ ZCL设备类型”时，请勿直接选择Zigbee设备配置文件。而是选择“ Zigbee Custom”，然后选择一个设备配置文件。
-![zigbee](files/ZB-Zigbee-Introduction-of-EmberZnet-and-AppBuilder/ZCL-Clusters.gif)  
-您可以选择集群，然后选择集群定义的属性和命令。
+![zigbee](files/ZB-Zigbee-Introduction-of-EmberZnet-and-AppBuilder/ZCL-Clusters.gif)    
+您可以选择Cluster，然后选择Cluster定义的属性和命令。
 
 3. 群集的属性和命令在Zigbee群集库（ZCL）中定义。选择属性和命令时，需要参考ZCL规范。
 
@@ -281,7 +282,7 @@ Silicon Labs的无线入门套件（WSTK）由主板和无线电板组成。就�
     </tr>  
     <tr>
         <td>Network Creator Security</td>
-        <td>协调器的安全设置，例如为新设备配置链接密钥</td>
+        <td>协调器的安全设置，例如为新设备配置Link key</td>
     </tr>  
     <tr>
         <td>Network Steering</td>
@@ -357,26 +358,26 @@ Silicons Labs建议客户在回调中添加其自定义源代码。好处是，�
 |&lt;projectname&gt;_endpoint_config.h|定义端点，属性和命令|
 |znet-cli.c/znet-cli.h|CLI命令列表|
 |client-command-macro.h|定义大量宏指令用于填充消息|
-|call-command-handler.c|集群命令处理|
+|call-command-handler.c|Cluster命令处理|
 |attribute-id.h/attribute-size.h/attribute-type.h/att-storage.h|相关属性|
 |af-structs.h|数据结构|
 |af-gen-event.h|事件/处理程序对|
 
 #### 4.2.5. 建立项目
-有两种启动构建的方法：
+有两种启动编译的方法：
 - 在"Project Explorer"窗口中选择项目, 右键单击并选择"Build".
 - 在"Project Explorer"窗口中选择项目, 然后按工具栏中的图标 ![zigbee](files/ZB-Zigbee-Introduction-of-EmberZnet-and-AppBuilder/Icon-Build.png)。
 
-构建完成后，生成的应用程序映像位于：
+编译完成后，生成的应用程序image位于：
 
 - 如果使用的是IAR，则为“ IAR ARM-默认”目录
 - 如果使用的是GCC，则为“ GNU ARM v7.2.1-默认”目录
 
-生成的应用程序映像是.s37 / .hex文件。您可以将它们闪存到设备中进行测试。
+生成的应用程序image是.s37 / .hex文件。您可以将它们闪存到设备中进行测试。
 
 #### 4.2.6. 测试和调试
-##### 4.2.6.1. 发送应用镜像
-请参阅[镜像发送](Flashing-Image)，以将应用的镜像快速发送到装置。
+##### 4.2.6.1. 发送应用image
+请参阅[image发送](Flashing-Image)，以将应用的image快速发送到装置。
 
 ##### 4.2.6.2. 打开控制台
 请参考[开放控制台](Opening-Console)以启动控制台。您可以获取串行端口的输出，也可以在此处运行命令。
@@ -395,9 +396,9 @@ Silicons Labs建议客户在回调中添加其自定义源代码。好处是，�
   - 打开网络并加入
 
 - **plugin network-creator-security open-with-key [eui64:8] [joiningLinkKey:-1]**
-    - 打开网络且仅允许具有指定EUI和链接密钥对的节点加入。
+    - 打开网络且仅允许具有指定EUI和Link key对的节点加入。
         - eui64 - IEEE_ADDRESS - 加入设备的EUI64。
-        - joiningLinkKey - OCTET_STRING - 加入设备的链接密钥将用于进入网络。
+        - joiningLinkKey - OCTET_STRING - 加入设备的Link key将用于进入网络。
 
 - **plugin network-steering start [options:1]**
     - 开始网络控制过程。
@@ -412,15 +413,15 @@ Silicons Labs建议客户在回调中添加其自定义源代码。好处是，�
         - src-endpoint - INT8U - 发送消息的源端点
         - dst-endpoint - INT8U - 发送消息的目的端点
 
-##### 4.2.6.4. 网络分析仪
-请参考[网络分析仪](Network-Analyzer)开始捕获。您还可以学习如何设置用于解码数据包的安全密钥。
+##### 4.2.6.4. Network-Analyzer
+请参考[Network Analyzer](Network-Analyzer)开始捕获。您还可以学习如何设置用于解码数据包的安全密钥。
 
 ## 5. 参考
-- [AN1211 Simplicity Studio V4 安装方法](https://www.silabs.com/documents/public/application-notes/an1121-headless-builds.pdf)
-- [AN1160 Project与Simplicity Studio的项目协作](https://www.silabs.com/documents/public/application-notes/an1160-project-collaboration-with-simplicity-studio.pdf)
-- [AN0822 Simplicity Studio 用户指南](https://www.silabs.com/documents/public/application-notes/AN0822-simplicity-studio-user-guide.pdf)
-- [Simplicity Studio中的AN1115 32位设备外围设备配置](https://www.silabs.com/documents/public/application-notes/an1115-32-bit-device-peripheral-configuration-in-simplicity-studio.pdf)
-- [UG391 Zigbee App Framework 开发指南](https://www.silabs.com/documents/public/user-guides/ug391-zigbee-app-framework-dev-guide.pdf)
-- [Silicon Labs: Zigbee - 应用程序框架API参考文档](https://docs.silabs.com/zigbee/latest/)
-- [EFR32MG基于EmberZNet Stack的外设使用](https://www.silabs.com/community/wireless/zigbee-and-thread/knowledge-base.entry.html/2016/07/08/peripheral_utilizati-n9VT)
+- [AN1211 Simplicity Studio V4 Installation Methods](https://www.silabs.com/documents/public/application-notes/an1121-headless-builds.pdf)
+- [AN1160 Project Collaboration with Simplicity Studio](https://www.silabs.com/documents/public/application-notes/an1160-project-collaboration-with-simplicity-studio.pdf)
+- [AN0822 Simplicity Studio User Guide](https://www.silabs.com/documents/public/application-notes/AN0822-simplicity-studio-user-guide.pdf)
+- [AN1115 32-bit Device Peripheral Configuration in Simplicity Studio](https://www.silabs.com/documents/public/application-notes/an1115-32-bit-device-peripheral-configuration-in-simplicity-studio.pdf)
+- [UG391 Zigbee App Framework Dev Guide](https://www.silabs.com/documents/public/user-guides/ug391-zigbee-app-framework-dev-guide.pdf)
+- [Silicon Labs: Zigbee - Application Framework API Reference Documentation](https://docs.silabs.com/zigbee/latest/)
+- [Peripheral Utilization on EFR32MG by EmberZNet Stack](https://www.silabs.com/community/wireless/zigbee-and-thread/knowledge-base.entry.html/2016/07/08/peripheral_utilizati-n9VT)
 ********

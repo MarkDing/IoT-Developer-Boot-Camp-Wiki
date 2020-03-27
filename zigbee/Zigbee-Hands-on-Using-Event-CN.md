@@ -2,7 +2,7 @@
 <summary><font size=5>目录</font> </summary>
 
 - [1. 简介](#1-简介)
-    - [1.1. 应用功能](#11-应用功能)
+    - [1.1. 实验内容](#11-实验内容)
     - [1.2. 目的](#12-目的)
 - [2. 使用事件](#2-使用事件)
 - [3. 测试项目](#3-测试项目)
@@ -15,42 +15,41 @@
 
 # 1. 简介
 
-## 1.1. 应用功能
-Zigbee快速入门 - 新兵训练营培训的实验环节将涵盖以下四个部分。我们通过这四个部分来向大家逐步展示，如何从零开始构建一个Zigbee应用。
+## 1.1. 实验内容
+Zigbee快速入门——新兵训练营培训的实验环节将涵盖以下四个部分。我们通过这四个部分来向大家逐步展示，如何从零开始构建一个Zigbee应用。
 
-本文档中的实验是“Zigbee快速入门 - 新兵训练营”系列中的第二部分。 
--   第一部分，将实现由Light建网及Switch加入的过程。
--  	第二部分，将实现设备使用API发送，接收和处理On-Off命令。  
--   **第三部分，将实现Switch用一个周期事件来执行自定义代码，在我们的案例中是执行LED闪烁**。
+本文档中的实验是“Zigbee快速入门——新兵训练营”系列中的第二部分。 
+-   第一部分，由Light构建网络，并使用install code将Switch加入到这个网络。
+-   第二部分，在设备上使用API发送，接收和处理On-Off命令。
+-   **第三部分，在Switch端用一个周期事件来执行自定义代码，在我们的实验中是控制LED闪烁。**
 -   第四部分，在Switch端使用非易失性存储器来存储自定义数据。 
 
 ## 1.2. 目的
-在之前的动手实验“建网入网”和“发送On/Off命令”中，我们学习了如何组建基本的集中式Zigbee网络和入网，以及如何控制网络中的Switch节点向Light节点发送on-off命令。 
-在本动手实验中，我们将提供详细的步骤，以演示如何利用Zigbee协议栈的事件机制在Switch节点上设定事件。
-下图列出了该动手实验的流程。
+在之前的实验“建网入网”和“发送On/Off命令”中，我们学习了如何组建基本的集中式Zigbee网络和入网，以及如何控制网络中的Switch节点向Light节点发送on-off命令。   
+在本实验中，我们将提供详细的步骤，以演示如何利用Zigbee协议栈的事件机制在Switch节点上设定事件。  
+下图列出了该动手实验的流程。  
 
 <div align="center">
   <img src="files/ZB-Zigbee-Hands-on-Using-Event/using_event_working_flow.png">  
 </div>  
 </br>  
 
-**注意**:
-实验前，请确保硬件和软件均已准备就绪，可以进行开发。请参阅前两个实验的第二章“基本步骤”，以获取更多详细信息。
+**注意**:实验前，请确保硬件和软件均已准备就绪，可以进行开发。请参阅前两个实验的第二章“基本步骤”，以获取更多详细信息。
 
-# 2.使用事件
-Zigbee应用程序框架及其关联的Cluster代码使用Zigbee协议栈事件机制来安排事件，以在所需的时间间隔运行一段代码。在较高的级别上，事件机制提供了一个中心位置，可以基于一些用户输入，空中命令或设备初始化来激活和停用设备采取的所有定期动作。它使Zigbee应用程序框架能够准确知道何时下一个动作将在设备上发生。对于需要准确知道何时必须醒来以执行某些操作的睡眠设备，或者更重要的是由于某些事件正在进行而无法入睡的睡眠设备，这非常重要。使用Zigbee事件机制的另一个好处是减少了RAM和Flash占用空间。
+# 2.事件的使用
+Zigbee应用框架及其关联的cluster 代码通过利用Zigbee协议栈事件机制来设定事件，从而可以在指定的时间间隔运行某段代码。对于更上层，事件机制提供了一个集中入口，所有周期性的动作都可以被用户输入、无线指令或者设备初始化来触发或者取消。这个机制使得Zigbee应用框架能够准确的知道下一个周期性动作将在何时触发。对于需要准确知道何时必须醒来以执行某些操作的睡眠设备，或者由于某些事件正在进行而无法休眠的睡眠终端设备，尤为重要。使用Zigbee事件机制的另一个好处是减少了RAM和Flash占用空间。
 
-Zigbee应用程序框架具有两种类型的事件：自定义事件和群集事件。自定义事件由Zigbee应用程序框架用户创建，并且可以在应用程序中用于任何目的。群集事件与Zigbee应用程序框架的插件中的群集实现特别相关。
+Zigbee应用框架的事件有两种类型：自定义事件和cluster事件。自定义事件由用户创建，并且可以在应用程序中随意使用。cluster事件由Zigbee应用框架插件中的cluster实现方式决定。
 
-定制事件包括两部分：事件函数（在事件触发时调用）和EmberEventControl结构（用于安排事件）。Zigbee应用程序框架和AppBuilder提供了一个有用的界面，用于创建自定义事件并将其添加到您的应用程序。
+自定义事件包括两部分：事件处理函数（在事件触发时调用）和EmberEventControl结构体（用于设定事件）。Zigbee应用程序框架和AppBuilder提供了一个图形化界面，用于创建自定义事件并将其添加到应用程序中。
 
 **步骤1：创建自定义事件**  
-AppBuilder提供了一种向应用程序添加任何自定义事件的方法。
+AppBuilder提供了一种向应用程序添加任何自定义事件的方法。  
 基本来说，需要两点： 
--   事件控制器–事件的结构 
--   事件处理程序–事件上的功能  
+-   事件控制器–事件的结构体 
+-   事件处理程序–事件触发函数  
 
-打开*AppBuilder* - > *Includes* 标签。将定制事件命令```ledBlinkingEventControl```和回调分别添加```ledBlinkingEventHandler```到 *Event Configuration*窗口。参见下图。
+打开*AppBuilder* - > *Includes* 标签。将自定义事件命令```ledBlinkingEventControl```和回调函数```ledBlinkingEventHandler```分别添加到 *Event Configuration*窗口。参见下图。
 <div align="center">
   <img src="files/ZB-Zigbee-Hands-on-Using-Event/custom_event_adding_in_AppBuilder.png">  
 </div>  
@@ -59,21 +58,22 @@ AppBuilder提供了一种向应用程序添加任何自定义事件的方法。
 </div>  
 </br>  
 
-**第2步：启用MainInit回调**  
-事件应在代码中的某个位置开始，因此应使用在应用程序开头调用的函数。该主初始化回调从应用程序的主函数调用。它使应用程序有机会进行系统启动时所需的任何初始化。可以想象它就像经典“ *while（true）* ” 之前的*“ main（）”*顶部的函数。 双击Zigbee_Switch_ZR.isc文件以使用AppBuilder打开它，然后在AppBuilder的“回调”选项卡中启用此回调。参见下图。
+**第2步：启用MainInit回调** 
+事件应当在代码中的某个位置被启用，我们可以在应用程序开始的位置调用相应的函数将其启用。*Main Init*回调函数将被应用程序的*main()*函数调用，它使应用程序有机会在系统启动时进行所需的任何初始化。可以把它理解为 “ main（）”函数里面在while（true） ” 前面的函数。   
+双击Zigbee_Switch_ZR.isc文件以使用AppBuilder打开它，然后在AppBuilder的“Callbacks”选项卡中启用此回调。参见下图。
 
 <div align="center">
   <img src="files/ZB-Zigbee-Hands-on-Using-Event/main_init_enabling.png">  
 </div>  
 <div align="center">
-  <b>主初始化回调启用</b>
+  <b>启用Main Init回调函数</b>
 </div>  
 </br>  
 
 保存并点击”Generate”生成项目。
 
-**步骤3：安排事件**  
-如前所述，回调函数```emberAfMainInitCallback()```应被添加到*Zigbee_Switch_ZR_callbacks.c*文件中并安排事件。
+**步骤3：设定事件**  
+如前所述，回调函数```emberAfMainInitCallback()```应被添加到*Zigbee_Switch_ZR_callbacks.c*文件中并设定事件。  
 相关代码段应类似于以下内容。有关如何使用API设定事件的更多信息，请参阅[API文档](https://docs.silabs.com/zigbee/latest/em35x/group-event)。
 
 ```
@@ -100,7 +100,7 @@ void ledBlinkingEventHandler(void)
 需要注意的一点是，应在事件触发函数开始执行后立即将其设置为非活动状态，并在执行完成后重新设定事件。
 
 # 3. 测试项目
-编译应用程序，然后将映像下载到Switch设备。按下WSTK上的Reset（复位）按钮，将会看到板上的LED1在延迟几秒钟后打开，然后以2s的间隔闪烁。
+编译应用程序，然后将image烧录到Switch设备。按下WSTK上的Reset（复位）按钮，将会看到板上的LED1在延迟几秒钟后打开，然后以2s的间隔闪烁。
 
 # 4. 结论
 在本实验中，学习了如何创建自定义事件，定义事件函数和事件控制结构体，实现了设定LED闪烁事件的事件函数。
