@@ -16,8 +16,8 @@
 ## One Day Workshop
 | Time | Content |  
 |:---- |:----|    
-| 1 hour | [Introduction of Zigbee][Zigbee Introduction] |
-| 1 hour | [Introduction of EmberZnet and AppBuilder][EmberZnet and WSTK] |
+| 1 hour | [Introduction of Zigbee](Zigbee-Introduction-of-Zigbee-Basic) |
+| 1 hour | [Introduction of EmberZnet and AppBuilder](Zigbee-Introduction-of-EmberZnet-and-AppBuilder) |
 | 1 hour | [Hands on : Forming and Joining](Zigbee-Hands-on-Forming-and-Joining) |
 | 1 hour | [Hands on : Sending on/off commands](Zigbee-Hands-on-Sending-OnOff-Commands) |
 | 1 hour | [Hands on : Using Event](Zigbee-Hands-on-Using-Event) |
@@ -31,6 +31,4 @@
 ## Reference
 - [Zigbee Onboarding Roadmap][Zigbee Onboarding Roadmap]
 
-[Zigbee Introduction]: files/ZB-Zigbee-Boot-Camp/Zigbee-Basic.pptx
-[EmberZnet and WSTK]: files/ZB-Zigbee-Boot-Camp/EmberZnet-and-WSTK.pptx
 [Zigbee Onboarding Roadmap]: files/ZB-Zigbee-Boot-Camp/Silicon-Labs-ZigBee-Onboarding-Roadmap.pdf
