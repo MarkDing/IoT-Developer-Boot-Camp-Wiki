@@ -1,7 +1,7 @@
 [English](Zigbee-Preparatory-Course.md) | 中文
 
 # 介绍
-如果您是Silicon Labs开发环境和Zigbee解决方案的新手，您应该参加的此预备课程。该文档描述了如何使用EmberZNet PRO SDK和Simplicity Studio以及兼容的无线入门工具包（WSTK）来进行Zigbee开发，以及在开始学习Zigbee Boot Camp系列课程之前应该了解的Zigbee基本知识。  
+如果您是Silicon Labs开发环境和Zigbee解决方案的新手，那么我们建议您仔细阅读并完成此预备课程。该文档描述了如何使用EmberZNet PRO SDK和Simplicity Studio以及兼容的无线入门套件（WSTK）来进行Zigbee开发，以及在开始学习Zigbee Boot Camp系列课程之前应该了解的Zigbee基本知识。  
 并且提供了分步说明来演示如何创建基本的Zigbee项目，以检查开发环境是否已准备就绪。  
 下图说明了设置开发环境的工作流程。
 
@@ -16,22 +16,22 @@
 # 先决条件
 
 ## 硬件要求
-在按照本指南中的步骤进行操作之前，您应该已经购买了一个网状网络开发套件，新兵训练营系列实验使用的套件是[EFR32 Mighty Gecko无线入门套件](https://www.silabs.com/products/development-tools/wireless/mesh-networking/mighty-gecko-starter-kit)。然后，您需要在[支持门户](https://siliconlabs.force.com/)上创建一个帐户，并在[KitRegistration](https://siliconlabs.force.com/KitRegistration)上注册开发套件的序列号，以授予Zigbee SDK访问权限。有关更多信息，请参考[KBA关于访问Silicon Labs无线网状网络协议栈](https://www.silabs.com/community/wireless/zigbee-and-thread/knowledge-base.entry.html/2017/11/22/access_to_siliconla-jk1S)。  
+在按照本指南中的步骤进行操作之前，您需要购买一套Zigbee开发套件，在Zigbee快速入门——新兵训练营系列实验中使用的套件是[EFR32 Mighty Gecko无线入门套件](https://www.silabs.com/products/development-tools/wireless/mesh-networking/mighty-gecko-starter-kit)。然后，您需要在[客户支持平台](https://siliconlabs.force.com/)上创建一个帐户，并在[KitRegistration](https://siliconlabs.force.com/KitRegistration)上注册开发套件的序列号，以获取Zigbee SDK访问权限。有关更多信息，请参考[KBA关于访问Silicon Labs无线网状网络协议栈](https://www.silabs.com/community/wireless/zigbee-and-thread/knowledge-base.entry.html/2017/11/22/access_to_siliconla-jk1S)。  
 以下是EFR32 Mighty Gecko无线入门套件的套件器件。   
 　3 x无线入门套件 (WSTK) 主板  
 　3 x EFR32MG12 2.4 GHz 19 dBm无线板  
 　3 x EFR32MG12 2.4 GHz 10 dBm无线板  
 　AA电池板（支持电池运行+19）  
-　电缆  
+　USB线缆  
 　EFR32MG入门卡  
 
-注意：如果您要参加Zigbee培训，则所有硬件将由组织者提供。请直接与培训活动的组织者联系，他们将为您提供一个授予Zigbee SDK访问权限的临时帐户。
+注意：如果您要参加Zigbee培训，所有硬件将由组织者提供。请直接与培训活动的组织者联系，他们将为您提供一个授予Zigbee SDK访问权限的临时帐户。
 
 ## 软件需求
 要开发Zigbee应用程序，您将需要通过安装Simplicity Studio，EmberZNet PRO协议栈软件和兼容的工具链来配置软件开发环境。
 
 ### Simplicity Studio
-Simplicity Studio是一个免费的基于Eclipse的集成开发环境（IDE），Silicon Labs提供了一组增值工具。开发人员可以使用Simplicity Studio来开发，调试并分析其应用程序。  
+Simplicity Studio是一个免费的基于Eclipse的集成开发环境（IDE），Silicon Labs在此基础提供了一系统的非常有用的工具。开发人员可以使用Simplicity Studio来开发，调试并分析其应用程序。  
 如果尚未安装Simplicity Studio V4，请连接到[Simplicity Studio 4](http://www.silabs.com/products/mcu/Pages/simplicity-studio-v4.aspx) 以下载安装包，并运行Simplicity Studio安装程序。  
 **注意**：为获得更好的无线协议开发体验，请确保您的PC具有8 GB或更多的RAM内存以及超过7 GB的可用磁盘空间。如果使用Windows（建议使用Windows 10），则强烈建议将Simplicity Studio安装到C：驱动器。  
 首次启动Simplicity Studio时，它将显示一个许可协议对话框。接受协议的条款，然后单击[下一步]。  
@@ -50,7 +50,7 @@ Simplicity Studio是一个免费的基于Eclipse的集成开发环境（IDE）�
 </br>  
 
 **注意**：如果您还没有任何WSTK，请忽略下面的两段。  
-登录后，Simplicity Studio将检查连接的硬件。如果您通过USB电缆连接了WSTK，Simplicity Studio将检测USB电缆并提示您下载设备检查器。点击[是]。
+登录后，Simplicity Studio将检查连接的硬件。如果您通过USB线缆连接了WSTK，Simplicity Studio将检测USB线缆并提示您下载设备检查器。点击[是]。
 
 <div align="center">
   <img src="files/ZB-Zigbee-Preparatory-Course/preparatory_ss_install_required.png">  
@@ -64,11 +64,11 @@ Simplicity Studio是一个免费的基于Eclipse的集成开发环境（IDE）�
 </br>  
 
 ### EmberZNet PRO Stack
-Zigbee解决方案需要实现Zigbee无线和相关的微处理器（一起在单个芯片中或分开地），以及在Zigbee堆栈之上实现应用程序。EmberZNet PRO是Silicon Labs对Zigbee PRO协议栈的实现。借助Zigbee PRO堆栈，Silicon Labs既提供了基于Zigbee规范的标准网络API，同时也提供了应用程序框架，从而为客户提供了一种基于Zigbee应用程序配置文件和Zigbee群集库（ZCL）来快速开发其应用程序的方法。  
-为了加快客户产品的上市速度，Silicon Labs提供了许多内置的演示和示例，涵盖了EmberZNet SDK中最常见的用例。  
+Zigbee解决方案的实现，需要Zigbee无线收发和相关的微处理器（同时包含在单个芯片中或分开地），以及在Zigbee协议栈之上所开发的应用程序。EmberZNet PRO是Silicon Labs对Zigbee PRO协议栈的实现。借助Zigbee PRO协议栈，Silicon Labs既提供了基于Zigbee规范的标准网络API，同时也提供了应用程序框架，从而为客户提供了一种基于Zigbee应用协议和Zigbee cluster library（ZCL）来快速开发其应用程序的方法。  
+为了加快客户产品的上市速度，Silicon Labs在SDK中提供了许多演示和示例，涵盖了EmberZNet SDK中最常见的用例。  
 
 假设您已经购买了网状网络开发套件，并且还使用您自己的帐户注册了序列号。使用相同的帐户登录Simplicity Studio，然后即可通过Simplicity Studio下载EmberZNet PRO 协议栈。  
-**注意**：如果您还没有开发工具包，也没有注册自己的帐户，请使用培训活动组织者提供的临时帐户登录Simplicity Studio。  
+**注意**：如果您还没有开发套件，也没有注册自己的帐户，请使用培训活动组织者提供的临时帐户登录Simplicity Studio。  
 
 如果您尚未安装EmberZNet SDK，请运行以下程序包管理器以安装最新的EmberZNet SDK。  
 <div align="center">
@@ -79,7 +79,7 @@ Zigbee解决方案需要实现Zigbee无线和相关的微处理器（一起在�
 成功安装SDK后，单击[是]以重新启动Simplicity Studio，以使更改生效。  
 而且，如果您安装了旧版本的EmberZNet SDK，则强烈建议将其更新为最新版本。其方法与上述类似。  
 
-如果已连接WSTK，请在launcher左侧的[Debug Adapters]选项卡中单击设备，然后Launcher视图将展示您的硬件和与堆栈相关的软件组件和功能。  
+如果已连接WSTK，请在launcher左侧的[Debug Adapters]选项卡中单击设备，然后Launcher视图将展示与你所选择硬件及协议栈相关的软件组件和功能。  
 
 <div align="center">
   <img src="files/ZB-Zigbee-Preparatory-Course/preparatory_ss_launcher_withEmberZnet.png">  
@@ -93,19 +93,19 @@ Zigbee解决方案需要实现Zigbee无线和相关的微处理器（一起在�
 </br>  
 
 * Demos  
-Demos是预编译的应用程序示例，可以直接下载到您的设备。  
+Demos是预编译的应用程序示例，可以直接烧录到您的设备。  
 
 * Software Examples  
 软件示例提供了协议栈所需的默认配置以及基本应用程序框架。Silicon Labs建议您以基于用例的示例开始自己的开发，并根据需要对其进行修改。  
-如果没有一个基于用例的示例满足您的需求，则可以从**ZigbeeMinimal**示例开始。我们还将使用**ZigbeeMinimal**作为Zigbee新兵训练营系列实验的起点。
+如果没有一个基于用例的示例满足您的需求，则可以从**ZigbeeMinimal**示例开始。我们还将使用**ZigbeeMinimal**作为Zigbee快速入门——新兵训练营系列实验的起点。
 
 * SDK Documentation  
-SDK文档列出了有关堆栈的文档，其中包括SDK版本说明，API参考等。
+SDK文档列出了有关协议栈的文档，其中包括SDK版本说明，API参考等。
 
 ### 编译器工具链：
 #### GCC
 Simplicity Studio提供了GCC（GNU编译器集合），它将在首次安装EmberZNet SDK时自动安装。  
-您可以通过从Launcher视图单击[帮助]> [关于Simplicity Studio]> [工具链和SDK]，检查已安装的GCC工具链（以及SDK）的版本信息。
+您可以通过从Launcher视图单击[Help]> [关于Simplicity Studio]> [Toochains and SDKs]，检查已安装的GCC工具链（以及SDK）的版本信息。
 
 <div align="center">
   <img src="files/ZB-Zigbee-Preparatory-Course/preparatory_ss_sdks_toolchain.png">  
@@ -128,7 +128,7 @@ Simplicity Studio提供了GCC（GNU编译器集合），它将在首次安装Emb
 由于[IoT-Developer-Boot-Camp](https://github.com/MarkDing/IoT-Developer-Boot-Camp)是一个开源项目，因此我们使用github维护所有源代码和文档，参与其中的每个人都可以提供你自己对于它的评论（意见），提交你的bug修复，新的功能需求或改进文档请求。  
 有效的github帐户是加入此项目的前提，如果没有，请[创建您的github帐户](https://github.com/join?source=header-home)。然后```Fork```[IoT-Developer-Boot-Camp](https://github.com/MarkDing/IoT-Developer-Boot-Camp)仓库并将其添加到您的监视列表中。
 
-[Gitter](https://gitter.im/)是面向GitHub仓库的开发人员和使用者开源的即时消息和聊天室系统。我们创建了一个公共聊天室[ZMGC-Training](https://gitter.im/Silabs-IoT/ZMGC-Training#) ，用于共享和讨论有关Zigbee新手训练营的一切。请使用您的GitHub帐户登录Gitter，然后加入此聊天室。
+[Gitter](https://gitter.im/)是面向GitHub仓库的开发人员和使用者开源的即时消息和聊天室系统。我们创建了一个公共聊天室[ZMGC-Training](https://gitter.im/Silabs-IoT/ZMGC-Training#) ，用于共享和讨论有关Zigbee快速入门——新兵训练营的一切。请使用您的GitHub帐户登录Gitter，然后加入此聊天室。
 
 *** 
 
@@ -136,7 +136,7 @@ Simplicity Studio提供了GCC（GNU编译器集合），它将在首次安装Emb
 作为准备课程，本节的目的是提供逐步说明，以演示如何开始使用**ZigbeeMinimal**示例项目，以验证您的开发环境是否已搭建完成。。
 
 ## 连接您的硬件
-**注意**: 如果您还没有开发套件，请在Launcher视图左下角的“My Products”选项卡中键入板名“ BRD4162A”。并跳至“ [创建并编译Zigbee项目](#create-and-build-the-zigbee-project)”部分。
+**注意**: 如果您还没有开发套件，请在Launcher视图左下角的“My Products”选项卡中键入开发板名“ BRD4162A”。并跳至“ [创建并编译Zigbee项目](#create-and-build-the-zigbee-project)”部分。
 
 使用USB线将WSTK连接到已安装Simplicity Studio的PC。为了在Simplicity Studio中获得最佳性能，请确保WSTK左下方的电源开关位于“ AEM”（高级能量监控）位置。
 
@@ -150,7 +150,7 @@ Bootloader是存储在保留的闪存中的一段程序，可以初始化设备�
 *	使用Silicon Labs的预制image（不适用于所有电路板）。 
 *	创建自己的Bootloader项目。 
 
-第一种选择是最简单的解决方案。每个Gecko SDK都包含用于不同板的预编译的Bootloader image。最适合Zigbee应用程序的是“内部存储启动加载程序（1MB设备上的单个image）”。它适合设备的闪存大小，此外还可以促进OTA固件更新。如果对Bootloader没有其他特殊要求，我建议您使用它。  
+第一种选择是最简单的解决方案。每个Gecko SDK都包含用于不同开发板的预编译的Bootloader image。在本系统实验中，最适合Zigbee应用程序的是“Internal Storage Bootloader (single image on 1MB devices)”。它适合我们所选设备的闪存大小，此外还可以用于OTA固件更新。如果对Bootloader没有其他特殊要求，我建议您使用它。  
 该image可以在类似如下目录找到
 ```c:\SiliconLabs\SimplicityStudio\v4\developer\sdks\gecko_sdk_suite\v2.6\platform\bootloader\sample-apps\bootloader-storage-internal-single\efr32mg12p332f1024gl125-brd4162a\ ```
 
@@ -160,48 +160,48 @@ Bootloader是存储在保留的闪存中的一段程序，可以初始化设备�
 </div>
 </br>
 
-单击‘adaptor’ 旁边的[connect]按钮连接到J-Link适配器，然后单击target旁边的[connect]连接到目标设备，然后Simplicity Commander将检测到该设备的部件号为EFR32MG12xxx。浏览预编译的镜像，然后单击[Flash]按钮开始烧录过程。
+单击‘adaptor’ 旁边的[connect]按钮连接到J-Link适配器，然后单击target旁边的[connect]连接到目标设备，然后Simplicity Commander将检测到该设备的部件号为EFR32MG12xxx。浏览预编译的image，然后单击[Flash]按钮开始烧录过程。
 <div align="center">
   <img src="files/ZB-Zigbee-Preparatory-Course/preparatory_ss_commander_program.png">  
 </div>
 </br>  
 
-**注意**: 如果已成功将预编译的Bootloader image编程到radio board，则**不需要**以下第二种方法。您可以直接跳至“ [创建和编译Zigbee项目](#create-and-build-the-zigbee-project)”部分。  
+**注意**: 如果已成功将预编译的Bootloader image烧录到radio board，则**不需要**以下第二种方法。您可以直接跳至“ [创建和编译Zigbee项目](#create-and-build-the-zigbee-project)”部分。  
 第二种方法是使用AppBuilder创建，生成和编译自己的应用程序。可以自定义和添加新功能，当前实验没有详细介绍这种方法。
-1.	转到文件->新建->项目。这将显示“新建项目向导”
-2.	选择“ Silicon Labs AppBuilder项目”。点击下一步。
+1.	转到File-> New ->Project。这将显示“New Project Wizard”
+2.	选择“ Silicon Labs AppBuilder Project”。点击下一步。
 3.	选择“ Gecko Bootloader”。点击下一步。 
 4.	选择最新版本。（Gecko Bootloader 1.9.2）。点击下一步。
-5.	选择“内部存储引导程序（1MB设备上的单个image）”。点击下一步。 
+5.	选择“Internal Storage Bootloader（single image on 1MB devices）”。点击下一步。 
 6.	为您的项目命名（任意名称）。点击下一步。
 7.	选择开发板和编译器。然后完成。
 8.	现在应该已经创建了新项目，并且已打开项目配置文件（.isc文件）。
-9.	点击“生成”。注意项目文件出现在Project Explorer中。将会出现一个窗口，显示“生成成功”。参见下图。
+9.	点击“Generate”。注意项目文件出现在Project Explorer中。将会出现一个窗口，显示“Generation successful”。参见下图。
 
 <div align="center">
   <img src="files/ZB-Zigbee-Preparatory-Course/preparatory_ss_geckobootloader.png">  
 </div>
 
-10.	在“项目资源管理器”窗口中选择项目，然后单击[Build] ![](files/ZB-Zigbee-Preparatory-Course/build_project.png)编译项目。确保编译完成没有任何错误。  
-输出```bootloader-storage-internal-single-combined.s37```文件应烧录到目标设备。我建议使用.s37或.hex，因为这些文件已经包含要刷新的地址。  
+10.	在“Project Explorer”窗口中选择您的项目，然后单击[Build] ![](files/ZB-Zigbee-Preparatory-Course/build_project.png)编译项目。确保编译完成没有任何错误。  
+输出```bootloader-storage-internal-single-combined.s37```文件应烧录到目标设备。我建议使用.s37或.hex，因为这些文件已经包含要烧录的地址。  
 像上面一样使用Simplicity Commander烧录输出文件到目标板。  
 
 ## 创建和编译Zigbee项目
-通过连接WSTK，Simplicity Studio将在Launcher视图中自动列出可用的示例应用程序，单击一个示例项目，Simplicity Studio将基于所选示例新建一个项目。
+通过连接WSTK，Simplicity Studio也将在Launcher视图中自动列出可用的示例应用程序，单击一个示例项目，Simplicity Studio将基于所选示例新建一个项目。
 
 **注意**: 如果还没有WSTK，也可以只在Launcher视图左下角的“My Products”选项卡中键入WSTK名称“ BRD4162A”。Simplicity Studio还将在Launcher视图中自动列出可用的示例应用程序。
 
 以下是分步说明。
-1. 在左侧的“调试适配器”或“My Products”选项卡中选择设备。 
+1. 在左侧的“Debug Adapters”或“My Products”选项卡中选择设备。 
 2. 展开软件示例，找到并单击“ EmberZNet 6.6.xx GA SoC示例” 组下的 “ZigbeeMinimal”。
 3. 询问您是否要切换到Simplicity IDE，单击[是]。 
 4. Simplicity IDE随即在AppBuilder视图中打开新项目。 
 5. 在Simplicity IDE中，单击视图右上方的[Generate]。 
-6. 如果收到任何警告“ AppBuilder已确定...，所有选定文件将被覆盖”，请单击[确定]。
+6. 如果收到任何警告“AppBuilder has determined..., All selected files will be overwritten”，请单击[确定]。
 7. 生成成功后，单击[确定]。
 8. 通过单击顶部工具栏中的[Build]来编译项目。
 9. 编译应该没有错误地完成。
-10. 右键单击生成的十六进制文件，转到[Flash to Device ...]，然后选择要烧录的目标设备。
+10. 右键单击生成的hex文件，转到[Flash to Device ...]，然后选择要烧录的目标设备。
 
 <div align="center">
   <img src="files/ZB-Zigbee-Preparatory-Course/preparatory_new_a_zigbee_project.gif">  
@@ -227,7 +227,7 @@ cmd //c 'C:\Users\xxxxxx\SIMPLI~1\V4B9FD~1\ZIGBEE~1/ZigbeeMinimalSoc-postbuild.b
 </br>  
 
 ## 测试你的项目
-将image下载到开发工具包后，就可以与设备进行通讯了。为此，请打开Launch console，该控制台是Studio中的内置串行端口终端。
+将image烧录到开发组件后，就可以与设备进行通讯了。为此，请打开Launch console，该控制台是Studio中的内置串行端口终端。
 <div align="center">
   <img src="files/ZB-Zigbee-Preparatory-Course/preparatory_ss_launch_console.png">  
 </div>
@@ -248,4 +248,4 @@ Zigbee新手训练营系列培训将涵盖Zigbee基本知识，EmberZNet SDK和W
 ***
 
 # 结论
-我们希望您已经顺利完成了预备课程，并设置了开发环境为即将到来的新兵训练营系列培训课程做准备。完成本课程后，请填写[Zigbee预备课程的反馈意见](https://forms.office.com/Pages/ResponsePage.aspx?id=ItjbVDFSIEuUTW9KvNVB-xO90oXNwwFJgomf3rxz4l1URjE3UzdSWFRFQlRZS05aMlBYWUNTTUJEUy4u)，我们将对您的反馈意见表示感谢，同时我们将根据调查结果采取改进措施。
+我们希望您已经顺利完成了预备课程，并设置了开发环境为即将到来的Zigbee快速入门——新兵训练营系列培训课程做准备。完成本课程后，请填写[Zigbee预备课程的反馈意见](https://forms.office.com/Pages/ResponsePage.aspx?id=ItjbVDFSIEuUTW9KvNVB-xO90oXNwwFJgomf3rxz4l1URjE3UzdSWFRFQlRZS05aMlBYWUNTTUJEUy4u)，我们将对您的反馈意见表示感谢，同时我们将根据调查结果采取改进措施。
