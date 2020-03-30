@@ -33,7 +33,7 @@
       - [4.2.6.2. 开发控制台](#4262-开发控制台)
       - [4.2.6.3. 有用的命令](#4263-有用的命令)
       - [4.2.6.4. Network Analyzer](#4264-Network-Analyzer)
-- [5. Reference](#5-reference)
+- [5. 参考](#5-参考)
 </details>
 
 ********
@@ -67,7 +67,10 @@ Silicon Labs的Zigbee解决方案包括三个部分：
 
 ### 2.3. 框图
 下面是EFR32MG12系列SoC的框图。
-![zigbee](files/ZB-Zigbee-Introduction-of-EmberZnet-and-AppBuilder/SoC-Block-Diagram.png)  
+  
+<div align="center">
+  <img src="files/ZB-Zigbee-Introduction-of-EmberZnet-and-AppBuilder/SoC-Block-Diagram.png">  
+</div>
 
 SoC可以在6种不同的功耗模式下工作。从最大功耗到最低功耗：
 
@@ -92,7 +95,9 @@ EmberZnet为Zigbee应用程序提供了两种设计模型：
 - 网络协处理器（NCP）模型
 - 片上系统（Soc）模型
 
-![zigbee](files/ZB-Zigbee-Introduction-of-EmberZnet-and-AppBuilder/Design-Models.png)
+<div align="center">
+  <img src="files/ZB-Zigbee-Introduction-of-EmberZnet-and-AppBuilder/Design-Models.png">  
+</div>
 
 1. 在SoC模型中，所有协议层以及应用程序都在单个芯片上实现，较底层的协议栈功能通过专用的硬件外围模块来实现。
 
@@ -165,7 +170,9 @@ EmberZnet SDK是Gecko SDK套件的一部分。可以在Gecko SDK Suite目录下�
 ### 4.1. 无线入门套件
 Silicon Labs的无线入门套件（WSTK）由主板和无线电板组成。就像下面这样：
 
-![zigbee](files/ZB-Zigbee-Introduction-of-EmberZnet-and-AppBuilder/WSTK.png)  
+<div align="center">
+  <img src="files/ZB-Zigbee-Introduction-of-EmberZnet-and-AppBuilder/WSTK.png">  
+</div> 
 
 1. 母板是多功能J-Link调试器。在大多数情况下，我们将使用：
 - 2个按钮
@@ -181,7 +188,9 @@ Silicon Labs的无线入门套件（WSTK）由主板和无线电板组成。就�
 
 2. 开发板是可更换的。用户可以交换不同的开发板来评估不同的SoC或模块 
 
-![zigbee](files/ZB-Zigbee-Introduction-of-EmberZnet-and-AppBuilder/Swap-Radio-Board.png)  
+<div align="center">
+  <img src="files/ZB-Zigbee-Introduction-of-EmberZnet-and-AppBuilder/Swap-Radio-Board.png">  
+</div>
 
 ### 4.2. Simplicity IDE
 #### 4.2.1. 总览
@@ -205,17 +214,21 @@ Simplicity IDE是一个功能强大的IDE。集成了许多工具，包括：
 7. 在下一个窗口（项目设置）中，选择板（如果要开发自定义板，请将“板”字段留空，然后选择零件号。）和编译器，单击“完成”。
 8. 之后，创建项目。项目的isc文件将自动打开。
 
-![zigbee](files/ZB-Zigbee-Introduction-of-EmberZnet-and-AppBuilder/Create-Project.gif)  
+<div align="center">
+  <img src="files/ZB-Zigbee-Introduction-of-EmberZnet-and-AppBuilder/Create-Project.gif">  
+</div>
 
 &nbsp;
 
 #### 4.2.3. 配置项目
-在配置Zigbee项目之前，建议先阅读[UG391](https://www.silabs.com/documents/public/user-guides/ug391-zigbee-app-framework-dev-guide.pdf) first before you configuring a Zigbee project.
+在配置Zigbee项目之前，建议先阅读[UG391](https://www.silabs.com/documents/public/user-guides/ug391-zigbee-app-framework-dev-guide.pdf)。
 
 ##### 4.2.3.1. "General" 选项卡
-打开isc文件时，默认选项卡是“常规”选项卡。在这里，您可以看到项目的板/零件和工具链。您还可以看到项目的绝对路径。您可以在此处更改为其他零件或不同的工具链。
+打开isc文件时，默认选项卡是“General”选项卡。在这里，您可以看到项目的板/零件和工具链。您还可以看到项目的绝对路径。您可以在此处更改为其他零件或不同的工具链。
 
-![zigbee](files/ZB-Zigbee-Introduction-of-EmberZnet-and-AppBuilder/General-Tab.png)  
+<div align="center">
+  <img src="files/ZB-Zigbee-Introduction-of-EmberZnet-and-AppBuilder/General-Tab.png">  
+</div>
 
 ##### 4.2.3.2. "Zigbee Stack" 选项卡
 在“ Zigbee Stack”选项卡下，您可以设置设备类型和安全性类型。对于Zigbee设备类型，我们有四个选项：
@@ -225,22 +238,28 @@ Simplicity IDE是一个功能强大的IDE。集成了许多工具，包括：
 - 睡眠终端设备
 
 ##### 4.2.3.3. "ZCL CLuster" 选项卡
-确定Zigbee设备类型后，您可以设置端点和每个端点所在的群集。这些功能在“ ZCL群集”选项卡下。
+确定Zigbee设备类型后，您可以设置endpoint和每个endpoint所在的cluster。这些功能在“ ZCL Clusters”选项卡下。
 
 1. 首先，您需要设置制造商代码。这是Zigbee联盟在您公司的第一个产品通过联盟认证时提供的代码。如果您的公司已经获得了制造代码，则可以从列表中选择。
+ 
+<div align="center">
+  <img src="files/ZB-Zigbee-Introduction-of-EmberZnet-and-AppBuilder/Manufacture-Code.png">  
+</div>
 
-![zigbee](files/ZB-Zigbee-Introduction-of-EmberZnet-and-AppBuilder/Manufacture-Code.png)  
-
-2. 其次，您可以在此处添加/删除端点，还可以选择要在端点上使用的设备配置文件。您还可以根据配置文件选择其他群集。在这种情况下，设置“ ZCL设备类型”时，请勿直接选择Zigbee设备配置文件。而是选择“ Zigbee Custom”，然后选择一个设备配置文件。
-![zigbee](files/ZB-Zigbee-Introduction-of-EmberZnet-and-AppBuilder/ZCL-Clusters.gif)    
+1. 其次，您可以在此处添加/删除端点，还可以选择要在端点上使用的设备配置文件。您还可以根据配置文件选择其他Clusters。在这种情况下，设置“ ZCL设备类型”时，请勿直接选择Zigbee设备配置文件。而是选择“ Zigbee Custom”，然后选择一个设备配置文件。
+<div align="center">
+  <img src="files/ZB-Zigbee-Introduction-of-EmberZnet-and-AppBuilder/ZCL-Clusters.gif">  
+</div>  
 您可以选择Cluster，然后选择Cluster定义的属性和命令。
 
-3. 群集的属性和命令在Zigbee群集库（ZCL）中定义。选择属性和命令时，需要参考ZCL规范。
+1. Cluster的属性和命令在Zigbee Cluster Library（ZCL）中定义。选择属性和命令时，需要参考ZCL规范。
 
 ##### 4.2.3.4. “Plugin”标签
 1. 插件的属性
 
-![zigbee](files/ZB-Zigbee-Introduction-of-EmberZnet-and-AppBuilder/Plugin-Properties.png)  
+<div align="center">
+  <img src="files/ZB-Zigbee-Introduction-of-EmberZnet-and-AppBuilder/Plugin-Properties.png">  
+</div> 
 
 插件具有以下属性：
 |属性|注释|
@@ -255,7 +274,7 @@ Simplicity IDE是一个功能强大的IDE。集成了许多工具，包括：
 大多数插件都是开源的。您可以检查源代码以了解其实现方式。
 &nbsp;
 
-2. 常用插件
+1. 常用插件
 
 <table>
     <tr>
@@ -325,17 +344,23 @@ Silicons Labs建议客户在回调中添加其自定义源代码。好处是，�
 建议在生成的文件&lt;projectname&gt;_callbacks.c 中定义和实现选定的回调。您也可以将它们添加到新的源文件中。
 
 使用它们之前，请确保已阅读回调的注释。
-
-![zigbee](files/ZB-Zigbee-Introduction-of-EmberZnet-and-AppBuilder/Callbacks-Tab.png)  
+  
+<div align="center">
+  <img src="files/ZB-Zigbee-Introduction-of-EmberZnet-and-AppBuilder/Callbacks-Tab.png">  
+</div>
 ##### 4.2.3.6. “Includes”标签
-在“包含”选项卡下，您可以包含自定义头文件，包含自定义标记头文件，定义自定义宏以及定义自定义事件和处理程序对。
+在“Includes”选项卡下，您可以包含自定义头文件，包含自定义标记头文件，定义自定义宏以及定义自定义事件和处理程序对。
 
-![zigbee](files/ZB-Zigbee-Introduction-of-EmberZnet-and-AppBuilder/Includes-Tab.png)
+<div align="center">
+  <img src="files/ZB-Zigbee-Introduction-of-EmberZnet-and-AppBuilder/Includes-Tab.png">  
+</div>
 
 ##### 4.2.3.7. 硬件配置
 在“ HAL”选项卡下，有一个按钮“ Open Hardware Configurator”。点击此按钮，您将打开“硬件配置器”。
 
-![zigbee](files/ZB-Zigbee-Introduction-of-EmberZnet-and-AppBuilder/Hardware-Configurator.png)
+<div align="center">
+  <img src="files/ZB-Zigbee-Introduction-of-EmberZnet-and-AppBuilder/Hardware-Configurator.png">  
+</div>
 
 有很多硬件组件。您可以选择所需的引脚并配置它们的引脚。
 
@@ -346,7 +371,9 @@ Silicons Labs建议客户在回调中添加其自定义源代码。好处是，�
 
 在生成的项目中，大多数源文件都链接到SDK。它们在项目文件夹中不存在。当您尝试编辑链接的源文件时，会出现一条警告，让您选择是否进行复制。
 
-![zigbee](files/ZB-Zigbee-Introduction-of-EmberZnet-and-AppBuilder/Make-A-Copy.png)
+<div align="center">
+  <img src="files/ZB-Zigbee-Introduction-of-EmberZnet-and-AppBuilder/Make-A-Copy.png">  
+</div>
 
 如果确实需要编辑这些文件之一，请始终选择进行复制。
 
@@ -366,7 +393,11 @@ Silicons Labs建议客户在回调中添加其自定义源代码。好处是，�
 #### 4.2.5. 建立项目
 有两种启动编译的方法：
 - 在"Project Explorer"窗口中选择项目, 右键单击并选择"Build".
-- 在"Project Explorer"窗口中选择项目, 然后按工具栏中的图标 ![zigbee](files/ZB-Zigbee-Introduction-of-EmberZnet-and-AppBuilder/Icon-Build.png)。
+- 在"Project Explorer"窗口中选择项目, 然后按工具栏中的图标。
+
+<div align="center">
+  <img src="files/ZB-Zigbee-Introduction-of-EmberZnet-and-AppBuilder/Icon-Build.png">  
+</div>
 
 编译完成后，生成的应用程序image位于：
 
@@ -376,13 +407,13 @@ Silicons Labs建议客户在回调中添加其自定义源代码。好处是，�
 生成的应用程序image是.s37 / .hex文件。您可以将它们闪存到设备中进行测试。
 
 #### 4.2.6. 测试和调试
-##### 4.2.6.1. 发送应用image
-请参阅[image发送](Flashing-Image)，以将应用的image快速发送到装置。
+##### 4.2.6.1. 烧录应用image
+请参阅[image发送](Flashing-Image)，以将应用的image烧录到装置。
 
 ##### 4.2.6.2. 打开控制台
 请参考[开放控制台](Opening-Console)以启动控制台。您可以获取串行端口的输出，也可以在此处运行命令。
 
-##### 4.2.6.3. 有用的命令
+##### 4.2.6.3. 常用的命令
 以下是一些在测试和调试期间经常使用的命令
 
 - **plugin network-creator form [useCentralizedSecurity:1] [panId:2] [radioTxPower:1] [channel:1]**
