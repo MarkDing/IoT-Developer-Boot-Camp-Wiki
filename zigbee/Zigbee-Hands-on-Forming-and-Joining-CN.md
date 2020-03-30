@@ -14,7 +14,7 @@
 - [4. 烧录并测试Light应用程序](#4-烧录并测试Light应用程序)
 - [5. 创建Switch应用程序](#5-创建Switch应用程序)
 - [6. 烧录并测试Switch应用程序](#6-烧录并测试Switch应用程序)
-- [7. 使用从install code派生的Link key在Light和Switch之间建立连接](#7-使用从installation-code派生的Link key在Light和Switch之间建立连接)
+- [7. 使用从installation code派生的Link key在Light和Switch之间建立连接](#7-使用从installation-code派生的Link-key在Light和Switch之间建立连接)
     - [7.1. 对installation code编程以切换（路由器）设备](#71-对installation-code编程以切换（路由器）设备)
         - [7.1.1. installation code文件的格式](#711-installation-code文件的格式)
         - [7.1.2. 检查EFR32设备上的install code](#712-检查EFR32设备上的install-code)
