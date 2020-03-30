@@ -33,7 +33,7 @@
   - [6.1. 网络层安全](#61-网络层安全)
     - [6.1.1. 总览](#611-总览)
     - [6.1.2. 逐跳安全](#612-逐跳安全)
-    - [6.1.3. Network Key](#613-Network Key)
+    - [6.1.3. Network Key](#613-Network-Key)
     - [6.1.4. 帧计数器](#614-帧计数器)
   - [6.2. APS层安全性](#62-aps层安全性)
     - [6.2.1. 总览](#621-总览)
@@ -41,7 +41,7 @@
 - [7. 加入过程](#7-加入过程)
   - [7.1. 形成网络](#71-形成网络)
   - [7.2. 使用“已知链接”密钥加入](#72-使用“已知链接”密钥加入)
-  - [7.3. 使用Installation Code派生的Link key加入](#73-使用Installation Code派生的Link key加入)
+  - [7.3. 使用Installation Code派生的Link key加入](#73-使用Installation-Code派生的Link-key加入)
 - [8. 参考](#8-参考)
 </details>
 
@@ -51,7 +51,10 @@
 ### 1.1. 什么是Zigbee
 随着物联网（IoT）行业的发展，越来越多的无线技术应运而生。  
 
-![zigbee](files/ZB-Zigbee-Introduction-of-Zigbee-Basic/IoT-Wireless-Technologies.png)
+<div align="center">
+  <img src="files/ZB-Zigbee-Introduction-of-Zigbee-Basic/IoT-Wireless-Technologies.png">  
+</div>  
+</br>  
 
 众所周知，在物联网行业中，我们有两种典型的网络。一个是WAN（广域网），另一个是PAN（个人区域网）。
 
@@ -68,14 +71,21 @@ Zigbee是IoT网络（尤其是家庭自动化行业）中最流行的无线技�
 ### 1.2. Zigbee的历史
 Zigbee是[Zigbee联盟](https://zigbeealliance.org/)发布和修订的开放标准。历史悠久。
 
-![zigbee](files/ZB-Zigbee-Introduction-of-Zigbee-Basic/Zigbee-History.png)
+<div align="center">
+  <img src="files/ZB-Zigbee-Introduction-of-Zigbee-Basic/Zigbee-History.png">  
+</div>  
+</br>  
+
 
 从一(很早)开始，Silicon Labs就致力于Zigbee技术。Silicon Labs的Zigbee技术来自Ember，Ember是一家自成立以来就开始研究Zigbee的公司。2012年，Silicon Labs收购了Ember，并继续提供Zigbee产品和解决方案。
 
 ### 1.3. Zigbee联盟
 Zigbee联盟是推广Zigbee技术的主要力量。这是一个开放的组织。任何公司都可以加入Zigbee联盟作为成员。Silicon Labs是Zigbee联盟的董事会成员。
 
-![zigbee](files/ZB-Zigbee-Introduction-of-Zigbee-Basic/Zigbee-Alliance.png)
+<div align="center">
+  <img src="files/ZB-Zigbee-Introduction-of-Zigbee-Basic/Zigbee-Alliance.png">  
+</div>  
+</br>  
 
 Zigbee联盟的主要三个工作是：
 - 为IoT（物联网）的无线设备端到设备端的通信**制定**开放的全球标准
@@ -83,7 +93,10 @@ Zigbee联盟的主要三个工作是：
 - 在全球范围内**推广**我们的标准
 2016年，Zigbee联盟发布了最新的Zigbee标准，即Zigbee 3.0。之前使用的配置文件（如Zigbee家庭自动化配置文件（ZHA），Zigbee Light Link（ZLL）等）已统一在一起。
 
-![zigbee](files/ZB-Zigbee-Introduction-of-Zigbee-Basic/Zigbee-Profiles.png)
+<div align="center">
+  <img src="files/ZB-Zigbee-Introduction-of-Zigbee-Basic/Zigbee-Profiles.png">  
+</div>  
+</br>  
 
 此外，随着安全性变得越来越重要，安全性得到了增强。
 
@@ -92,7 +105,10 @@ Zigbee联盟的主要三个工作是：
 ### 1.4. 协议概述
 下图演示了协议体系结构。
 
-![zigbee](files/ZB-Zigbee-Introduction-of-Zigbee-Basic/Protocol-Overview.png)
+<div align="center">
+  <img src="files/ZB-Zigbee-Introduction-of-Zigbee-Basic/Protocol-Overview.png">  
+</div>  
+</br>  
 
 1. 物理层和MAC层由IEEE-802.15.4定义。物理层负责无线电管理，包括诸如调制/解调，信号强度检测等功能。MAC层负责单跳通信。
 2. 网络层负责消息的发送和接收，设备维护，路由等。
@@ -103,7 +119,10 @@ Zigbee联盟的主要三个工作是：
 ## 2. 物理层
 Zigbee在ISM频率上工作。通信信道定义如下：
 
-![zigbee](files/ZB-Zigbee-Introduction-of-Zigbee-Basic/Physical-Layer.png)
+<div align="center">
+  <img src="files/ZB-Zigbee-Introduction-of-Zigbee-Basic/Physical-Layer.png">  
+</div>  
+</br>  
 
 Zigbee最常见的工作频率是2.4GHz。
 
@@ -137,12 +156,15 @@ MAC层的主要功能是确保可靠的单跳消息传递。以下是有关这�
 ### 3.2. 确认
 MAC层还为节点提供了一种方法，该方法可通过确认得知节点已成功接收到1跳单播传输，并且已通过验证CRC保留了所传输消息的完整性。
 
-多跳传输应在每个跳上进行确认。节点执行CCA检查并发送消息后，它会等待MAC确认。如果未收到消息，则该节点应尝试多次重发该消息，直到其最终成功或最大的重试次数已用尽。Silabs Ember ZNet堆栈提供了额外的mac重试，为失败的消息传输提供了更早的纠正措施，而不必等到端重试才开始，这可能需要几秒钟。
+多跳传输应在每个跳上进行确认。节点执行CCA检查并发送消息后，它会等待MAC确认。如果未收到消息，则该节点应尝试多次重发该消息，直到其最终成功或最大的重试次数已用尽。Silabs Ember ZNet Stack提供了额外的mac重试，为失败的消息传输提供了更早的纠正措施，而不必等到端重试才开始，这可能需要几秒钟。
 
 ### 3.3. MAC帧
 下图演示了MAC帧格式：
 
-![zigbee](files/ZB-Zigbee-Introduction-of-Zigbee-Basic/MAC-Frame.png)
+<div align="center">
+  <img src="files/ZB-Zigbee-Introduction-of-Zigbee-Basic/MAC-Frame.png">  
+</div>  
+</br>  
 
 在每个MAC帧的末尾，有两个字节的CRC用于验证数据包的完整性。在MAC标头中，有一个2个字节的“帧控制”字段。字段“帧控制”的0〜2位指示帧类型。有四种框架类型：
 
@@ -174,7 +196,10 @@ IEEE-802.15.4定义了两种设备类型：
 - 路由设备
 - 终端设备，包括常眠终端设备和非常眠终端设备。
 
-![zigbee](files/ZB-Zigbee-Introduction-of-Zigbee-Basic/Device-Type.png)
+<div align="center">
+  <img src="files/ZB-Zigbee-Introduction-of-Zigbee-Basic/Device-Type.png">  
+</div>  
+</br>  
 
 |设备类型|形成网络|路由|供电方式|作父节点||
 |:-|:-|:-|:-|:-|:-|
@@ -197,14 +222,17 @@ PAN，又称个人区域网络通过其PAN ID与其他网络分开。这是同�
 
 PAN ID由协调器在网络形成时选择。因为PAN ID是一个网络与另一个网络之间的区别因素，所以它应该是随机的以确保其唯一性。建议您为PAN ID选择一个随机的16位值，以防止您的网络与该区域中碰巧存在的任何其他网络重合。
 
-现在，如果您碰巧选择了另一个网络已经使用的PAN ID，该怎么办？或者，如果您确实选择了一个与任何其他网络都没有冲突的随机PAN ID，但后来又有另一个网络与您的网络重叠，该怎么办？如果曾经发生过PAN ID冲突，则堆栈实际上可以检测到这种冲突并可以自动更新其PAN ID，并通知其网络中的所有节点都移至新的PAN ID，以便每个节点可以继续与原始网络中的节点进行通信，并排除冲突网络上的任何节点。如果PAN ID冲突，我们需要使用扩展的PAN ID来区分网络。
+现在，如果您碰巧选择了另一个网络已经使用的PAN ID，该怎么办？或者，如果您确实选择了一个与任何其他网络都没有冲突的随机PAN ID，但后来又有另一个网络与您的网络重叠，该怎么办？如果曾经发生过PAN ID冲突，则协议栈实际上可以检测到这种冲突并可以自动更新其PAN ID，并通知其网络中的所有节点都移至新的PAN ID，以便每个节点可以继续与原始网络中的节点进行通信，并排除冲突网络上的任何节点。如果PAN ID冲突，我们需要使用扩展的PAN ID来区分网络。
 
 #### 4.2.2. 扩展 PAN ID
 扩展PAN ID是PAN中所有节点都知道的另一个网络标识符。
 
 正常的短16位PAN ID由于简短通过空中传输所有数据包中，但64位扩展PAN ID很少通过空中传输。扩展的PAN ID对于每个PAN也是唯一的，当16位PAN ID不足以始终将一个网络与另一个网络区分开时，它基本上用作备份标准。例如，当发生PAN ID冲突并且您要通知网络中的所有设备移动时，将网络与冲突的网络区分开的方式是，网络中的这些设备都共享相同的扩展PAN ID。扩展PAN ID极不可能发生冲突，因为与短PAN ID中的16位相比，它具有64位。
 
-![zigbee](files/ZB-Zigbee-Introduction-of-Zigbee-Basic/Ext-PAN-ID.png)
+<div align="center">
+  <img src="files/ZB-Zigbee-Introduction-of-Zigbee-Basic/Ext-PAN-ID.png">  
+</div>  
+</br>
 
 扩展的PAN ID也由协调器在网络形成期间选择。仅在节点请求网络或进行PAN ID更新时，才通过无线发送以响应活动扫描。
 
@@ -215,7 +243,10 @@ PAN ID由协调器在网络形成时选择。因为PAN ID是一个网络与另�
 
 节点具有短地址和长地址。长地址是IEEE分配的MAC地址或EUI-64。它是一个全球唯一的64位地址，这意味着世界上没有两个基于IEEE的无线电设备具有相同的EUI-64。通常在制造时分配。当芯片到达您的工厂之前从我们的制造工厂出来时，它们会被分配，并且它们永远不会改变。这就是您告诉另一台收音机的方式。但是因为64位是大量数据，所以这个长地址不是经常通过空中发送的。
 
-![zigbee](files/ZB-Zigbee-Introduction-of-Zigbee-Basic/Node-Address.png)
+<div align="center">
+  <img src="files/ZB-Zigbee-Introduction-of-Zigbee-Basic/Node-Address.png">  
+</div>  
+</br>
 
 在大多数情况下，更短的16位地址是通过无线方式使用的。这被称为节点ID，在网络中是唯一的，类似于以太网世界中的IP地址。它是在节点进入网络时分配的，并且在该网络内应该是唯一的。可能有两个网络，每个网络都有一个具有相同节点ID的节点，但是因为它们位于不同的PAN中，所以没有关系。
 
@@ -227,7 +258,10 @@ PAN ID由协调器在网络形成时选择。因为PAN ID是一个网络与另�
 ### 5.1. 终端
 每个终端代表一个逻辑设备。例如，如果我们有一个带有6个插座的智能插座适配器。我们可以使用6个终端来实现它，以便我们可以分别打开/关闭每个插座。
 
-![zigbee](files/ZB-Zigbee-Introduction-of-Zigbee-Basic/Endpoint.png)
+<div align="center">
+  <img src="files/ZB-Zigbee-Introduction-of-Zigbee-Basic/Endpoint.png">  
+</div>  
+</br>
 
 端点ID是一个8位的值，范围从0到255。
 
@@ -239,21 +273,27 @@ PAN ID由协调器在网络形成时选择。因为PAN ID是一个网络与另�
 ### 5.2. Clusters
 在每个终端中，我们可以配置几个Clusters。Zigbee Cluster实际上是一种通信模型。
 
-![zigbee](files/ZB-Zigbee-Introduction-of-Zigbee-Basic/Cluster.png)
+<div align="center">
+  <img src="files/ZB-Zigbee-Introduction-of-Zigbee-Basic/Cluster.png">  
+</div>  
+</br>
 
-它基于客户端/服务器模式，用于描述两个设备之间的应用协议。每个群集都有一个群集ID，该ID在Zigbee群集库（ZCL）中定义。Cluster中可以定义多个属性和命令。
+它基于客户端/服务器模式，用于描述两个设备之间的应用协议。每个Cluster都有一个Cluster ID，该ID在Zigbee CLuster Library（ZCL）中定义。Cluster中可以定义多个属性和命令。
 
 ### 5.3. 例子
 让我们看一个Cluster的示例，以便我们可以更好地理解它。
 例如，我们需要实现一个带有两个灯泡的灯。
 
-![zigbee](files/ZB-Zigbee-Introduction-of-Zigbee-Basic/Cluster-Example.png)
+<div align="center">
+  <img src="files/ZB-Zigbee-Introduction-of-Zigbee-Basic/Cluster-Example.png">  
+</div>  
+</br>
 
 我们可以在其中定义两个终端。每个终端代表一个灯泡。
 
-对于基本功能，例如打开/关闭，我们可以使用打开/关闭群集。指示灯是服务器端，而交换机是客户端。服务器端定义了一个属性“ on / off”，指示指示灯是打开还是关闭。还定义了诸如“打开”，“关闭”，“切换”之类的命令，这些命令应从客户端发送到服务器端。
+对于基本功能，例如打开/关闭，我们可以使用打开/关闭 Cluster。指示灯是服务器端，而交换机是客户端。服务器端定义了一个属性“ on / off”，指示指示灯是打开还是关闭。还定义了诸如“打开”，“关闭”，“切换”之类的命令，这些命令应从客户端发送到服务器端。
 
-如果我们需要更多功能，例如我们需要支持亮度级别控制。我们可以使用亮度级别控制Cluster。在此群集中，服务器端定义了一个属性“级别”，指示灯泡的亮度。还定义了诸如“逐渐变化亮度级别”之类的命令，这些命令应从客户端发送到服务器端。
+如果我们需要更多功能，例如我们需要支持亮度级别控制。我们可以使用亮度级别控制Cluster。在此Cluster中，服务器端定义了一个属性“Level”，指示灯泡的亮度。还定义了诸如“逐渐变化亮度级别”之类的命令，这些命令应从客户端发送到服务器端。
 
 而且，如果我们需要更多功能，例如需要支持颜色控制，则可以使用颜色控制Cluster。
 
@@ -281,7 +321,10 @@ PAN ID由协调器在网络形成时选择。因为PAN ID是一个网络与另�
 #### 6.1.2. 逐跳安全
 网络层安全性是逐跳安全性。
 
-![zigbee](files/ZB-Zigbee-Introduction-of-Zigbee-Basic/Hop-by-Hop-Security.png)
+<div align="center">
+  <img src="files/ZB-Zigbee-Introduction-of-Zigbee-Basic/Hop-by-Hop-Security.png">  
+</div>  
+</br>
 
 路由器节点需要解密该消息，然后对其进行加密，然后将其替换为安全标头中的信息，再将其发送出去。如果解密失败，该消息将立即被丢弃。
 
@@ -292,7 +335,10 @@ Network Key是一个16字节的八位位组。通常，它是在网络形成时�
 
 在Zigbee网络中，将Network Key分发给新设备的角色称为Trust Center。有两种典型的安全模型，即集中式安全网络和分布式安全网络。
 
-![zigbee](files/ZB-Zigbee-Introduction-of-Zigbee-Basic/Security-Model.png)
+<div align="center">
+  <img src="files/ZB-Zigbee-Introduction-of-Zigbee-Basic/Security-Model.png">  
+</div>  
+</br>
 
 在集中式安全网络中，只有一个Trust Center，通常是协调器。所有新设备将从协调器获取Network Key。  
 在分布式安全网络中，每个路由器都是一个Trust Center。新设备可以从每个路由器获取Network Key。
@@ -302,7 +348,10 @@ Network Key是一个16字节的八位位组。通常，它是在网络形成时�
 #### 6.1.4. 帧计数器
 添加了帧计数器以防止重放攻击。让我们看看它是如何工作的。
 
-![zigbee](files/ZB-Zigbee-Introduction-of-Zigbee-Basic/Frame-Counter.png)
+<div align="center">
+  <img src="files/ZB-Zigbee-Introduction-of-Zigbee-Basic/Frame-Counter.png">  
+</div>  
+</br>
 
 首先，一个节点将记录接收到的帧的帧计数器和该节点的Eui64。来自同一节点的下一条消息的帧计数器必须大于记录的帧计数器。否则，该消息将被视为重播并将被丢弃。
 
@@ -314,7 +363,10 @@ Network Key是一个16字节的八位位组。通常，它是在网络形成时�
 #### 6.2.1. 总览
 应用中对传输Network Key的消息进行了加密。让我们看看应用程序层的安全性。
 
-![zigbee](files/ZB-Zigbee-Introduction-of-Zigbee-Basic/APS-Security.png)
+<div align="center">
+  <img src="files/ZB-Zigbee-Introduction-of-Zigbee-Basic/APS-Security.png">  
+</div>  
+</br>
 
 它与网络安全性非常相似。还使用对称加密算法（AES128）。该密钥称为Link key。在大多数情况下，仅只有传输Network Key消息需要在应用层被加密，并且这仅在Trust Center和新设备之间发生。因此，在这种情况下，我们也将其称为Trust Center Link key。
 
@@ -330,7 +382,10 @@ Zigbee定义了一种带外配置Link key的方法。这是Installation Code。
 
 #### 6.2.2. Installation Code
 
-![zigbee](files/ZB-Zigbee-Introduction-of-Zigbee-Basic/Install-Code.png)
+<div align="center">
+  <img src="files/ZB-Zigbee-Introduction-of-Zigbee-Basic/Install-Code.png">  
+</div>  
+</br>
 
 Installation Code是16字节多项式+ 2字节CRC。
 
@@ -356,7 +411,10 @@ Installation Code是16字节多项式+ 2字节CRC。
 
 ### 7.2. 使用“已知链接”密钥加入
 
-![zigbee](files/ZB-Zigbee-Introduction-of-Zigbee-Basic/Joining-with-Well-Known-Link-Key.png)
+<div align="center">
+  <img src="files/ZB-Zigbee-Introduction-of-Zigbee-Basic/Joining-with-Well-Known-Link-Key.png">  
+</div>  
+</br>
 
 网络形成后，新设备可以开始加入。
 1. 新设备将开始查找可连接的网络。在此阶段，新设备将在每个通道上发送信标请求。
@@ -369,7 +427,11 @@ Installation Code是16字节多项式+ 2字节CRC。
 
 ### 7.3. 使用Installation Code派生的Link key加入
 
-![zigbee](files/ZB-Zigbee-Introduction-of-Zigbee-Basic/Joining-with-Install-Code.png)
+![zigbee]()
+<div align="center">
+  <img src="files/ZB-Zigbee-Introduction-of-Zigbee-Basic/Joining-with-Install-Code.png">  
+</div>  
+</br>
 
 1. 在出厂之前，应该已经使用Installation Code码对新设备进行了编程。
 2. 在加入之前，用户需要获取新设备的Installation Code和Eui64，然后在协调器上对其进行配置。
