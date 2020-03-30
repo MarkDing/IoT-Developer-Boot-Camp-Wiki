@@ -38,6 +38,7 @@ We would talk in details for different protocol OTA optimization at following se
 
 # 2. Prerequisite 
 <details> <summary>Click on me to learn details</summary>
+
 ## 2.1 Hardware requirement
 * 2 WSTK main development boards
 * 2 EFR32MG12 radio boards (BRD4162A)
