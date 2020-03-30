@@ -110,7 +110,7 @@ Bootloader是存储在预留的闪存中的一段程序，可以初始化设备�
 
 然后按*Generate*按钮。
 
-也许注意到 *\<ProjectName\>_callbacks.c* 在重新生成时未被覆盖，但是 *callback-stub.c* 被覆盖。其背后的原因是ZCL或插件定义的所有回调都可以由堆栈调用。即使用户未使用这些回调，也应将它们放在避免编译器错误的位置。该*callback-stub.c*就是为了这个目的。  
+也许注意到 *\<ProjectName\>_callbacks.c* 在重新生成时未被覆盖，但是 *callback-stub.c* 被覆盖。其背后的原因是ZCL或插件定义的所有回调都可以由协议栈调用。即使用户未使用这些回调，也应将它们放在避免编译器错误的位置。该*callback-stub.c*就是为了这个目的。  
 启用回调后，应将其从 *callback-stub.c* 中删除，并留在 *\<ProjectName\>_callbacks.c* 中。这意味着，用户需要将所启用的回调函数手动添加到*Zigbee_Light_ZC_callbacks.c*文件，并实现所需的功能。
 
 <div align="center">
@@ -161,7 +161,7 @@ bool emberAfOnOffClusterToggleCallback(void){
 与第3.1章在Light设备上的命令处理类似，将功能“ emberAfPluginButtonInterfaceButton0PressedShortCallback（）”和“ emberAfPluginButtonInterfaceButton1PressedShortCallback（）”手动添加到Zigbee_Switch_ZR_callbacks.c文件中。  
 保存修改后的.isc文件，然后按*Generate*。  
 每个命令在发送之前都存储在缓冲区中。传输的数据缓冲区应按以下方式构建：  
-实际的ZCL命令由以下功能发出。将\<\>替换为“打开”或“关闭”。
+实际的ZCL命令由以下功能发出。将\<\>替换为“On”或“Off”。
 
 ```
 emberAfFillCommandOnOffCluster<>()
@@ -225,8 +225,8 @@ void emberAfPluginButtonInterfaceButton1PressedShortCallback(uint16_t timePresse
 
 # 4. 测试项目
 前2章介绍了如何使设备能够通过某些API发送和接收命令。  
-生成应用程序并将输出文件烧录到目标设备。在对设备进行编程之前，请退出网络日志捕获，因为在连接网络分析器（或Energy Profiler）时调试器无法访问芯片。  
-**注意**：请**不要**在编程之前擦除设备，否则“ znet”token将被删除，并且设备将无法加入网络，只能按照上一个实验中的说明再次[加入网络](https://github.com/MarkDing/IoT-Developer-Boot-Camp/wiki/Zigbee-Hands-on-Forming-and-Joining#73-join-the-network-on-switch-router-device)。  
+生成应用程序并将输出文件烧录到目标设备。在对设备进行烧录之前，请退出网络日志捕获，因为在连接网络分析器（或Energy Profiler）时调试器无法访问芯片。  
+**注意**：请**不要**在烧录之前擦除设备，否则“znet” token将被删除，并且设备将无法加入网络，只能按照上一个实验中的说明再次[加入网络](https://github.com/MarkDing/IoT-Developer-Boot-Camp/wiki/Zigbee-Hands-on-Forming-and-Joining#73-join-the-network-on-switch-router-device)。  
 按Button0发送ON命令，您将注意到Light上的LED1打开。  
 按下Button1发送OFF命令，您会注意到Light 1的LED1熄灭。  
 **注意**：默认情况下，Light节点上的LED0用于指示网络活动，因此，如果发送任何命令，为什么还会观察light节点上的LED0闪烁。  
@@ -289,7 +289,7 @@ Frame Control字段的长度为8位，并包含定义命令类型和其他控制
 
 “On/Off”命令中的**Frame type**为0b1，表示该命令是特定或本地cluster的（On/Off cluster）。  
 **Manufacturer Specific**子字段的值在On/Off命令中被设置为false，制造商代码字段将不被包括在所述帧ZCL。  
-“On/Off”命令中的**Direction**子字段为0b0，表示该命令正在从cluster的客户端（Switch）发送到群集的服务器端（Light）。  
+“On/Off”命令中的**Direction**子字段为0b0，表示该命令正在从cluster的客户端（Switch）发送到Cluster的服务器端（Light）。  
 “On/Off”命令中的**Disable Default Response**子字段为0b1。这意味着仅在存在错误的情况下（以及在Zigbee cluster库规范记录的指定条件下），才会返回“默认响应”命令。  
 
 **Manufacturer Code** 制造商代码字段的长度为16位，并为专有扩展指定了分配的制造商代码。如果将帧控制字段的“ Manufacturer Specific”子字段设置为1（指示此命令引用了制造商特定扩展名），则该字段仅应包含在ZCL框架中。  
@@ -297,7 +297,7 @@ Frame Control字段的长度为8位，并包含定义命令类型和其他控制
 
 **Transaction Sequence Number** 事务序列号字段的长度为8位，标识单个transaction。
 
-**Command Identifier** “命令标识符”字段的长度为8位，用于指定要使用的cluster命令。下面列出了On / Off群集的部分命令ID。
+**Command Identifier** “命令标识符”字段的长度为8位，用于指定要使用的cluster命令。下面列出了On / Off Cluster的部分命令ID。
 
 ID | Description
 -|-
