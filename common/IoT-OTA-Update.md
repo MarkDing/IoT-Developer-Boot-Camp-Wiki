@@ -33,7 +33,7 @@ Here is current design of a OTA update implementation. The OTA server includes a
   <img src="files/CM-IoT-OTA-Update/ota-diagram.png">
 </div> 
 
-We would talk in details for different protocol OTA optimization at following sections. We will show how it works right now, and what we are gonna to do to optimize the OTA procedure. As a final result, user should experience the same feeling on the OTA procedure no matter Bluetooth LE/Mess, Zigbee or Proprietary. 
+We would talk in details for different protocol OTA optimization at following sections. We will show how it works right now, and what we are gonna to do to optimize the OTA procedure. As a final result, user should experience the same feeling on the OTA procedure no matter Bluetooth LE/Mesh, Zigbee or Proprietary. 
 
 
 # 2. Prerequisite 
@@ -319,9 +319,9 @@ The Z3GatewayHost.exe has been generated at ./build/exe/ folder
 * Run Z3GatewayHost.exe from PC, make sure new OTA image has been put under ./ota-files folder. 
   * ./build/exe/Z3GatewayHost.exe -p COM5
 * Press any button on Client SoC WSTK start joining network and begin OTA update
-* The LED1 is ON while joined network. The LED0 keep rapidly blinking during OTA update procedure
-* The LEDs are OFF while OTA upgrade end response and reboot 
-* Wait one minute for client to complete the image update to application area. 
+  * The LED1 is ON while joined network. The LED0 keep rapidly blinking during OTA update procedure
+  * The LEDs are OFF while OTA upgrade end response and reboot 
+  * Wait one minute for client to complete the image update to application area. 
 
 The below GIF shows the OTA update procedure
 
