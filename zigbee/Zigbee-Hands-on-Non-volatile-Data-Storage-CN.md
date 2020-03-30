@@ -341,7 +341,7 @@ DEFINE_BASIC_TOKEN(LED1_ON_OFF,
 ```
 
 创建自定义Token头文件后，您还需要执行一个步骤：通过Simplicity Studio中“ .isc”文件中“Token Configuration”部分下的[Includes]选项卡，将头文件添加到应用程序中。  
-**注意**：在.isc文件中添加头文件后，您需要再次生成项目。
+**注意**：在.isc文件中添加头文件后，您需要再次点击“Generate”生成项目。
 
 <div align="center">
   <img src="files/ZB-Zigbee-Hands-on-Non-volatile-Data-Storage/add_custom_token_header_file.gif">
