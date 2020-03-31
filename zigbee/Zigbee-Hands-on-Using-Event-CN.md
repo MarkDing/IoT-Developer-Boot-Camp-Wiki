@@ -1,13 +1,17 @@
 <details>
 <summary><font size=5>目录</font> </summary>
 
+
+<!-- TOC -->
+
 - [1. 简介](#1-简介)
     - [1.1. 实验内容](#11-实验内容)
     - [1.2. 目的](#12-目的)
-- [2. 使用事件](#2-使用事件)
+- [2. 事件的使用](#2-事件的使用)
 - [3. 测试项目](#3-测试项目)
 - [4. 结论](#4-结论)
 
+<!-- /TOC -->
 </details>
 
 ***
@@ -36,7 +40,7 @@ Zigbee快速入门——新兵训练营培训的实验环节将涵盖以下四�
 
 **注意**:实验前，请确保硬件和软件均已准备就绪，可以进行开发。请参阅前两个实验的第二章“基本步骤”，以获取更多详细信息。
 
-# 2.事件的使用
+# 2. 事件的使用
 Zigbee应用框架及其关联的cluster 代码通过利用Zigbee协议栈事件机制来设定事件，从而可以在指定的时间间隔运行某段代码。对于更上层，事件机制提供了一个集中入口，所有周期性的动作都可以被用户输入、无线指令或者设备初始化来触发或者取消。这个机制使得Zigbee应用框架能够准确的知道下一个周期性动作将在何时触发。对于需要准确知道何时必须醒来以执行某些操作的睡眠设备，或者由于某些事件正在进行而无法休眠的睡眠终端设备，尤为重要。使用Zigbee事件机制的另一个好处是减少了RAM和Flash占用空间。
 
 Zigbee应用框架的事件有两种类型：自定义事件和cluster事件。自定义事件由用户创建，并且可以在应用程序中随意使用。cluster事件由Zigbee应用框架插件中的cluster实现方式决定。
@@ -49,7 +53,7 @@ AppBuilder提供了一种向应用程序添加任何自定义事件的方法。
 -   事件控制器–事件的结构体 
 -   事件处理程序–事件触发函数  
 
-打开*AppBuilder* - > *Includes* 标签。将自定义事件命令```ledBlinkingEventControl```和回调函数```ledBlinkingEventHandler```分别添加到 *Event Configuration*窗口。参见下图。
+打开*AppBuilder* - > *Includes* 选项卡。将自定义事件命令```ledBlinkingEventControl```和回调函数```ledBlinkingEventHandler```分别添加到 *Event Configuration*窗口。参见下图。
 <div align="center">
   <img src="files/ZB-Zigbee-Hands-on-Using-Event/custom_event_adding_in_AppBuilder.png">  
 </div>  
@@ -59,7 +63,7 @@ AppBuilder提供了一种向应用程序添加任何自定义事件的方法。
 </br>  
 
 **第2步：启用MainInit回调** 
-事件应当在代码中的某个位置被启用，我们可以在应用程序开始的位置调用相应的函数将其启用。*Main Init*回调函数将被应用程序的*main()*函数调用，它使应用程序有机会在系统启动时进行所需的任何初始化。可以把它理解为 “ main（）”函数里面在while（true） ” 前面的函数。   
+事件应当在代码中的某个位置被启用，我们可以在应用程序开始的位置调用相应的函数将其启用。*Main Init*回调函数将被应用程序的*main()*函数调用，它使应用程序有机会在系统启动时进行所需的任何初始化。可以把它理解为 “ main()”函数里面在while(true) ” 前面的函数。   
 双击Zigbee_Switch_ZR.isc文件以使用AppBuilder打开它，然后在AppBuilder的“Callbacks”选项卡中启用此回调。参见下图。
 
 <div align="center">
