@@ -1,22 +1,29 @@
-# Comply to the Regulations
-After the customer finishes the product design, it should consider how to test the product and let it comply to the RF regulations. RF conducted or Radiated measurements should pass the regulation limits or requirements for product intended to be sold in regions. It is called complying to the regulations or certifications. The regulations depend on different regions or countries. There are chips/modules, Sub-GHz/2.4GHz solutions in Silabs' production catalog, and there are many protocols related product such as proprietary,Zigbee/thread,BLE, and Z-Wave should be classified. Thus the detail regulatory certifications maybe different from application to application and from country to country. In this section, the following topics will be introduced:
+<details>
+<summary><font size=5>Table of Contents</font> </summary>
 
-  * [Typical regulatory certification regions](#Typical-regulatory-certification-regions)
-  * [Key region regulatories introduction](#Key-region-regulatories-introduction)
-     * [FCC Regulation](##FCC-Regulation)
-     * [CE Regulation](##CE-Regulation)
-  * [Basic RF test items and limits for complying the regulations](#Basic-RF-test-items-and-limits-for-complying-the-regulations)
-     * [FCC requirements in Sub-GHz bands](##FCC-requirements-in-Sub-GHz-bands)
-     * [FCC requirements in 2.4GHz band](##FCC-requirements-in-2.4GHz-band)
-     * [CE requirements in Sub-GHz bands](##CE-requirements-in-Sub-GHz-bands)
-     * [CE requirements in 2.4GHz band](##CE-requirements-in-2.4GHz-band)
-  * [Customer regulatory cerfitication flow](#Customer-regulatory-cerfitication-flow)
-    * [Silabs provides documents for certification](##Silabs-provides-documents-for-certification)
-    * [Process flow in certifications](##Process-flow-in-certifications)
-    * [Engineering flow](##Engineering-flow)
-    * [Paperwork flow](##Paperwork-flow)
+- [1. Introduction](#1-introduction)
+- [2. Typical regulatory certification regions](#2-Typical-regulatory-certification-regions)
+- [3. Key region regulatories introduction](#3-Key-region-regulatories-introduction)
+  - [3.1 FCC Regulation](#31-FCC-Regulation)
+  - [3.2 CE Regulation](#32-CE-Regulation)
+- [4. Basic RF test items and limits for complying the regulations](#4-Basic-RF-test-items-and-limits-for-complying-the-regulations)
+  - [4.1 FCC requirements in Sub-GHz bands](#41-FCC-requirements-in-Sub-GHz-bands)
+  - [4.2 FCC requirements in 2.4GHz band](#42-FCC-requirements-in-2.4GHz-band)
+  - [4.3 CE requirements in Sub-GHz bands](#43-CE-requirements-in-Sub-GHz-bands)
+  - [4.4 CE requirements in 2.4GHz band](#44-CE-requirements-in-2.4GHz-band)
+- [5. Customer regulatory cerfitication flow](#5-Customer-regulatory-cerfitication-flow)
+  - [5.1 Silabs provides documents for certification](#51-Silabs-provides-documents-for-certification)
+  - [5.2 Process flow in certifications](#52-Process-flow-in-certifications)
+  - [5.3 Engineering flow](#53-Engineering-flow)
+  - [5.4 Paperwork flow](#54-Paperwork-flow)
 
-## Typical regulatory certification regions
+</details>
+
+
+# 1. Introduction
+After the customer finishes the product design, it should consider how to test the product and let it comply to the RF regulations. RF conducted or Radiated measurements should pass the regulation limits or requirements for product intended to be sold in regions. It is called complying to the regulations or certifications. The regulations depend on different regions or countries. There are chips/modules, Sub-GHz/2.4GHz solutions in Silabs' production catalog, and there are many protocols related product such as proprietary,Zigbee/thread,BLE, and Z-Wave should be classified. Thus the detail regulatory certifications maybe different from application to application and from country to country. 
+
+# 2. Typical regulatory certification regions
 Silabs has many products such as chips, SiP modules, and PCB modules. And the products support main sub-GHz bands(169MHz,434MHz,868MHz and 915MHz) and 2.4GHz frequenc band. These different products and frequency bands almost comply to regulations from any region in the world. There are many region regulations such as [CE](http://ec.europa.eu/growth/sectors/electrical-engineering/red-directive_fi) (Europe), [FCC](https://www.fcc.gov/)(USA), [ISED](https://www.canada.ca/en/innovation-science-economic-development.html)(Canada), [MIC](http://www.soumu.go.jp/english/)(Japan), [KC](http://eng.kcc.go.kr/user/ehpMain.do)(South Korea) and other regions. 
 
 And there are some test houses provide certification service for the regions as following:
@@ -28,10 +35,10 @@ For the certification activeties, you can directly contact the region Authoritie
 In the following introduction, it will mainly focus on EC and FCC regulations. For Other region regulatory certifications, please check [AN1048](https://www.silabs.com/documents/public/application-notes/an1048-regulatory-certifications.pdf) for more details.
 Though there are RF, EMC and Safety separate categories to be certified.  RF certification is mainly introduced here.
 
-## Key region regulatories introduction
+# 3. Key region regulatories introduction
 In this chapter, it will introduces FCC and CE regulations for both sub-GHz and 2.4GHz frequency bands. 
   
-  ### FCC Regulation 
+  ## 3.1. FCC Regulation 
 
    FCC radio certification includes the standards such as intentional radiators 47 CFR FCC Part 15C and Unintentional radiators 47 CFR FCC Part 15B. And it can certificates an end product or radio module. For certificating modules, it includes limit modular approval(LMA) and full modular approval(FMA).
    - FMA
@@ -86,7 +93,7 @@ In this chapter, it will introduces FCC and CE regulations for both sub-GHz and 
      - Depopulated versions of a transmitter require authorization under separate FCC IDs for each version;
      - Minor circuitry for non-transmitter portions (such as receiver or peripheral circuits) can be depopulated, and may be ap-proved under one FCC ID.
 
- ### CE Regulation
+ ## 3.2 CE Regulation
  Unlike FCC, CE is a “self-declaration” and not a certification. Since there is no certification, there is no modular approval / certification either. CE requires a declaration from the manufacturer that the products meet the requirements of the R&TTE or [RED](https://ec.europa.eu/docsroom/documents/23321/attachments/1/translations/en/renditions/native) directive. 
  - A module manufacturer is responsible that the module is compliant and the end product manufacturer is responsible that the end product is compliant.Test reports of Silicon Labs modules are available and show compliance, but any end product needs its own evidence;
  - The manufacturer of the end product (OEM) is responsible for the product being compliant.Silicon Labs strongly recommends to the OEM to perform radiated testing on the end product. The conducted test results can be inherited from Silicon Labs modules’ test reports. Typically, test evidence (reports) must be presented Optionally, NB (Notified Body) opinion can be asked as a formal “certificate”; 
@@ -100,9 +107,9 @@ In this chapter, it will introduces FCC and CE regulations for both sub-GHz and 
    - DoC
    - NB opinion letter (if applied)
  
-## Basic RF test items and limits for complying the regulations 
+# 4. Basic RF test items and limits for complying the regulations 
 Allthough there are RF, EMC and Safety categories need to be certified for regional regulations. It only cares about the RF category in this chapter. And Silabs has SoCs,SiP,and PCB module products, the certification procedure or items are different among them. In this chapter, it only describes the test items and limits base on the end product with SoCs. For end products with SiP/PCB-Module, the finnal test items maybe reduced due to pre-certificated SiP/PCB-Module as described in previous section. As Silabs' products contain sub-G frequency bands and 2.4GHz bands, it will introduce the test items and limits seperately in frequency bands due to the difference regulation requirements.
-### FCC requirements in Sub-GHz bands
+## 4.1. FCC requirements in Sub-GHz bands
 Silabs' products can be mainly applied to FCC-Part-15.231 and FCC-Part-15.247 regulations for sub-G bands. It regulates 260~470MHz frequency band in Part-15.231, and 902~928MHz frequency band in Part-15.247.
 - Part-15.231
   Typical applications are Door openers, Alarm systems, Remote Switches, and Control links in this regulation. There are severy typical frequency bands as 315MHz, 433MHz, and 470MHz.
@@ -155,7 +162,7 @@ Silabs' products can be mainly applied to FCC-Part-15.231 and FCC-Part-15.247 re
     - Spurious falls below 960 MHz = -49.2 dBm EIRP (max) (15.209.a);
     - Spurious falls above 960 MHz = -41.2 dBm EIRP (max) (15.209.a).
 
-### FCC requirements in 2.4GHz band
+## 4.2. FCC requirements in 2.4GHz band
 For 2.4GHz band regulation, it is defined in the FCC-Part-15.247 and FCC-Part-15.249. FCC-Part-15.247 defined high power application, and FCC-Part-15.249 defined low power application. 
 - Part-15.247
   Typical applications are Weather station reporting, Automatic meter reading, and long range communication in this regulation. It covers wide bandwidth applications in 2.4GHz band:
@@ -202,7 +209,7 @@ For 2.4GHz band regulation, it is defined in the FCC-Part-15.247 and FCC-Part-15
     - Spurious falls below 960 MHz = -49.2 dBm EIRP (max) (15.209.a);
     - Spurious falls above 960 MHz = -41.2 dBm EIRP (max) (15.209.a).
 
-### CE requirements in Sub-GHz bands
+## 4.3. CE requirements in Sub-GHz bands
   ETSI(European Telecommunications Standards Institute) [EN300220-01](https://www.etsi.org/deliver/etsi_en/300200_300299/30022001/03.01.01_60/en_30022001v030101p.pdf) mainly defines the sub-GHz regulation for CE certification. And it regulates the 25 MHz to 1000 MHz Frequency Range with Power Levels up to 500mW. Silabs' product mainly focus in 169MHz, 434MHz, and 868MHz operating bands. The typical applications are Control links, Alarms, and Metering in these sub-GHz bands. 
  - Tx power limits
    Tx power can be conducted measurement for devices with antenna connectors, and radiated measurement for devices with integral antennas. The power limits are listed in radiation ERP. 
@@ -249,7 +256,7 @@ For 2.4GHz band regulation, it is defined in the FCC-Part-15.247 and FCC-Part-15
    In the Rx and other operation modes, The power of any unwanted emission in spurious domain should not exceed the values given in following table:
    ![](files/HW-Comply-to-the-regulations/Spurous-Values.png)
 
-### CE requirements in 2.4GHz band
+## 4.4. CE requirements in 2.4GHz band
 ETSI [EN300328](https://ec.europa.eu/growth/single-market/european-standards/harmonised-standards/red_en) mainly defines the 2.4GHz ISM band and using wide band modulation regulation for CE certification. It applies to wide band data transmission equipment in 2400MHz to 2483.5MHz band.
 
  - Tx power limits
@@ -295,9 +302,9 @@ ETSI [EN300328](https://ec.europa.eu/growth/single-market/european-standards/har
    - 30-1000 MHz, -57 dBm ERP, BW=100kHz (Section 4.3.1.10.2)
    - 1-12.75 GHz, -47 dBm EIRP, BW=1MHz (Section 4.3.1.10.2)
 
-## Customer regulatory cerfitication flow
+# 5. Customer regulatory cerfitication flow
 Since there are SoCs, SiP modules, and PCB modules in Silabs product catalog. The cerfification work may different among them. It only lists the basical certification flows in this chapter.
-### Silabs provides documents for certification
+## 5.1. Silabs provides documents for certification
 Before the certification process, Silabs can provides a very exclusive documents for customer adoption. The documents are:
 - Datasheet
   - Minimal regulatory information except that which is required by regulatory bodies
@@ -314,7 +321,7 @@ Before the certification process, Silabs can provides a very exclusive documents
   - It would also greatly aid in Apps reviews of customer designs
 - Design Files for Modules: Module design files are Silicon Labs IP so cannot be shared with customers in general. But if it is required for certification purposes, Silicon Labs can share the design files with the certification test house under NDA in-placed with. 
 
-### Process flow in certifications
+## 5.2. Process flow in certifications
 - For FCC:
   1. Prepare samples and book a test slot from an accredited test lab
   2. Test lab will test according to the test instructions given by the module manufacturer
@@ -337,11 +344,11 @@ Before the certification process, Silabs can provides a very exclusive documents
      - Manufacture files the NB letter, test evidence and all technical material to Technical Construction File (TCF).
      - Manufacturer will sign a Declaration of Conformity in which the manufacturer states all the standards that the product is found to be compliant with.
 
-### Engineering flow
+## 5.3. Engineering flow
 The following flow-chart is designed for customer to certificate its design that can pass emissions requirements. It is a typical engineer flow for whatever the regulation region cared about. Customer will need to design its own system and test it according to this flow even when using a fully certified module.
 ![](files/HW-Comply-to-the-regulations/Engineer-Flow.png)
 
-### Paperwork flow
+## 5.4. Paperwork flow
 The flowing flow chart is only provided as a guideline.Customers should consult a TCB(Telecommunication Certification Body) to get answers of questions specific to their situations.  
 
 ![](files/HW-Comply-to-the-regulations/Paper-Flow.png)
