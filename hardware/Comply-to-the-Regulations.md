@@ -27,10 +27,10 @@ After the customer finishes the product design, it should consider how to test t
 Silabs has many products such as chips, SiP modules, and PCB modules. And the products support main sub-GHz bands(169MHz,434MHz,868MHz and 915MHz) and 2.4GHz frequenc band. These different products and frequency bands almost comply to regulations from any region in the world. There are many region regulations such as [CE](http://ec.europa.eu/growth/sectors/electrical-engineering/red-directive_fi) (Europe), [FCC](https://www.fcc.gov/)(USA), [ISED](https://www.canada.ca/en/innovation-science-economic-development.html)(Canada), [MIC](http://www.soumu.go.jp/english/)(Japan), [KC](http://eng.kcc.go.kr/user/ehpMain.do)(South Korea) and other regions. 
 
 And there are some test houses provide certification service for the regions as following:
-![](files/HW-Comply-to-the-Regulations/Test-House.png)
+![](files\HW-Comply-to-the-Regulations\Test-House.png)
 
 For the certification activeties, you can directly contact the region Authorities:
-![](files/HW-Comply-to-the-Regulations/Authorities-Contacts.png)
+![](files\HW-Comply-to-the-Regulations\Authorities-Contacts.png)
 
 In the following introduction, it will mainly focus on EC and FCC regulations. For Other region regulatory certifications, please check [AN1048](https://www.silabs.com/documents/public/application-notes/an1048-regulatory-certifications.pdf) for more details.
 Though there are RF, EMC and Safety separate categories to be certified.  RF certification is mainly introduced here.
@@ -219,26 +219,26 @@ For 2.4GHz band regulation, it is defined in the FCC-Part-15.247 and FCC-Part-15
 
  - Frequency error
   Frequency error is the frequency difference between the measured unmodulated carrier frequency and the manufacturer stated normal frequency. The frequency error shall not exceed the following table under normal and extreme conditions:
-  ![](files/HW-Comply-to-the-Regulations/Frequency-Error.png)
+  ![](files\HW-Comply-to-the-Regulations\Frequency-Error.png)
 
  - Tx out of band emissions
    Two out of band(OOB) domains are defined, one for operating channel(OC) and one for operational frequency band(OFB):
-   ![](files/HW-Comply-to-the-Regulations/OOB-OC.png)
+   ![](files\HW-Comply-to-the-Regulations\OOB-OC.png)
    Unwanted emissions limit in OC in out of band domain is shown in above picture.
 
-   ![](files/HW-Comply-to-the-Regulations/OOB-OFB.png)
+   ![](files\HW-Comply-to-the-Regulations\OOB-OFB.png)
 
    Unwanted emissions limit in OFB in out of band domain is shown in above picture. flow_OFB is the lower edge of operational frequency band, and  fhigh_OFB is the upper edge of operational frequency band.
 
  - Unwanted emissions in spurious domain
    Spurious emissions are unwanted emission in spurious domain at frequencies other than those of operating channel and its out of band domain. The following picture and table show the spurs limits:
-   ![](files/HW-Comply-to-the-Regulations/Spurous-OC.png)
+   ![](files\HW-Comply-to-the-Regulations\Spurous-OC.png)
    The power of any unwanted emission in spurious domain should not exceed the values given in following table:
-   ![](files/HW-Comply-to-the-Regulations/Spurous-Values.png)
+   ![](files\HW-Comply-to-the-Regulations\Spurous-Values.png)
 
  - Adjacent channel power 
    Adjacent channel power is power incidental to proper operation of a transmitter falling into the neighbouring channels. It only defines the limits for narrow band which is less than or equal to 25KHz. The power in adjacent channel should not exceed the values given in following table:
-   ![](files/HW-Comply-to-the-Regulations/Adjacent-Channel-Power.png)
+   ![](files\HW-Comply-to-the-Regulations\Adjacent-Channel-Power.png)
 
  - Rx sensitivity level
    The receiver sensitivity is minimum signal power input to the receiver which produces the general performance criterion. 
@@ -251,10 +251,10 @@ For 2.4GHz band regulation, it is defined in the FCC-Part-15.247 and FCC-Part-15
  - Blocking
    Blocking is a measurement of the capability of the receiver to receive a wanted modulated signal without exceeding a given degradation due to the presence of an unwanted input signal at any frequencies other than those of the spurious responses or the adjacent channels or bands. Usually EN300220 divides the receiver into 4 categories as category 1, category 1.5, category 2, category 3. The most tough requirement is in category 1. Silabs' sub-GHz products can comply category 1.5 regulation.
    The blocking requirement for category 1.5 is shown in following table:
-   ![](files/HW-Comply-to-the-Regulations/Blocking-Limits.png) 
+   ![](files\HW-Comply-to-the-Regulations\Blocking-Limits.png) 
  - RX Spurious Emissions
    In the Rx and other operation modes, The power of any unwanted emission in spurious domain should not exceed the values given in following table:
-   ![](files/HW-Comply-to-the-Regulations/Spurous-Values.png)
+   ![](files\HW-Comply-to-the-Regulations\Spurous-Values.png)
 
 ## 4.4. CE requirements in 2.4GHz band
 ETSI [EN300328](https://ec.europa.eu/growth/single-market/european-standards/harmonised-standards/red_en) mainly defines the 2.4GHz ISM band and using wide band modulation regulation for CE certification. It applies to wide band data transmission equipment in 2400MHz to 2483.5MHz band.
@@ -346,14 +346,14 @@ Before the certification process, Silabs can provides a very exclusive documents
 
 ## 5.3. Engineering flow
 The following flow-chart is designed for customer to certificate its design that can pass emissions requirements. It is a typical engineer flow for whatever the regulation region cared about. Customer will need to design its own system and test it according to this flow even when using a fully certified module.
-![](files/HW-Comply-to-the-Regulations/Engineer-Flow.png)
+![](files\HW-Comply-to-the-Regulations\Engineer-Flow.png)
 
 ## 5.4. Paperwork flow
 The flowing flow chart is only provided as a guideline.Customers should consult a TCB(Telecommunication Certification Body) to get answers of questions specific to their situations.  
 
-![](files/HW-Comply-to-the-Regulations/Paper-Flow.png)
+![](files\HW-Comply-to-the-Regulations\Paper-Flow.png)
 
-![](files/HW-Comply-to-the-Regulations/Flow-Sum.png)
+![](files\HW-Comply-to-the-Regulations\Flow-Sum.png)
 
 Remarks: 
 
