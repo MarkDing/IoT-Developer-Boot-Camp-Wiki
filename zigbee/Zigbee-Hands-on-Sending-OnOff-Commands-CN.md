@@ -12,8 +12,8 @@
         - [2.2.2. 检查工具链](#222-检查工具链)
         - [2.2.3. 使用Gecko Bootloader](#223-使用Gecko-Bootloader)
 - [3. 发送On/Off命令](#3-发送On/Off命令)
-    - [3.1. Light上的命令处理](#31-Light上的命令处理)
-    - [3.2. 从Switch发送命令](#32-从Switch发送命令)
+    - [3.1. Light设备上的命令处理](#31-Light设备上的命令处理)
+    - [3.2. 从Switch设备发送命令](#32-从Switch设备发送命令)
 - [4. 测试项目](#4-测试项目)
 - [5. 结论](#5-结论)
 
@@ -68,7 +68,7 @@ Zigbee快速入门——新兵训练营系列培训的实验环节将涵盖以�
 </div>  
 
 ### 2.2.2. 检查工具链
-1.	转到Windows->Preference -> Simplicity Studio->工具链，确保已安装GCC工具链。
+1.	转到Windows->Preference -> Simplicity Studio->Toolchains，确保已安装GCC工具链。
 在构建项目时所使用的工具链版本应当与构建SDK附带的库文件的工具链版本相同。用户可以在[此处](https://www.silabs.com/community/software/simplicity-studio/knowledge-base.entry.html/2018/08/22/gecko_sdk_suite_tool-qlc4)找到正确的工具链-SDK对应关系。请参见下面的图2-2。
 
 <div align="center">
@@ -85,18 +85,17 @@ Bootloader是存储在预留的闪存中的一段程序，可以初始化设备�
 
 想知道有关如何将Gecko Bootloader添加到Zigbee项目的更多信息，请阅读[预备课程](https://github.com/MarkDing/IoT-Developer-Boot-Camp/wiki/Zigbee-Preparatory-Course#using-gecko-bootloader)。   
 **提示**: 有关Gecko Bootloader的更多信息，请参见下面的文档。    
-[UG266: Silicon Labs Gecko引导程序用户指南](https://www.silabs.com/documents/public/user-guides/ug266-gecko-bootloader-user-guide.pdf)    
-[UG103.6: 引导程序基础知识](https://www.silabs.com/documents/public/user-guides/ug103-06-fundamentals-bootloading.pdf)  
-[AN1084: 将Gecko引导程序与EmberZNet和Silicon Labs线程一起使用](https://www.silabs.com/documents/public/application-notes/an1084-gecko-bootloader-emberznet-silicon-labs-thread.pdf)  
+[UG266: Silicon Labs Gecko Bootloader User’s Guide](https://www.silabs.com/documents/public/user-guides/ug266-gecko-bootloader-user-guide.pdf)    
+[UG103.6: Bootloader Fundamentals](https://www.silabs.com/documents/public/user-guides/ug103-06-fundamentals-bootloading.pdf)  
+[AN1084: Using the Gecko Bootloader with EmberZNet and Silicon Labs Thread](https://www.silabs.com/documents/public/application-notes/an1084-gecko-bootloader-emberznet-silicon-labs-thread.pdf)  
 
 *** 
 
-# 3. 发送开/关命令
-
+# 3. 发送On/Off命令
 在之前的动手实验中，我们创建了两个项目，Zigbee_Light_ZC和Zigbee_Switch_ZR，这两个设备现在处于同一网络中，并准备好可以在网络上发送和接收数据。  
 在本实验中，Switch设备应基于所按下的按钮来发送“打开/关闭”命令，而Light应用程序应根据接收到的命令打开/关闭LED1。
 
-## 3.1. Light上的命令处理
+## 3.1. Light设备上的命令处理
 为了能从用户应用层接收到命令，应使用回调函数。  
 可以在AppBuilder的“Callbacks”选项卡中启用这些功能。  
 打开此选项卡，在“General/ OnOff Cluster”菜单下找到并启用“On”“Off”回调。请参阅图3-1。
@@ -150,7 +149,7 @@ bool emberAfOnOffClusterToggleCallback(void){
 </div> 
 </br>  
 
-该插件定义了一些回调函数，因此可以在*Callbacks*回调选项卡中找到这些回调。移动到此处并同时启用**Button0 Pressed Short**和**Button1 Pressed Short**回调函数，分别发送On和Off命令。
+该插件定义了一些回调函数，因此可以在*Callbacks*选项卡中找到这些回调。移动到此处并同时启用**Button0 Pressed Short**和**Button1 Pressed Short**回调函数，分别发送On和Off命令。
 <div align="center">
   <img src="files/ZB-Zigbee-Hands-on-Sending-OnOff-Commands/callback_button_pressed.png">  
 </div> 
@@ -158,7 +157,7 @@ bool emberAfOnOffClusterToggleCallback(void){
 
 保存并点击“Generate”生成。 
 
-与第3.1章在Light设备上的命令处理类似，将功能“ emberAfPluginButtonInterfaceButton0PressedShortCallback（）”和“ emberAfPluginButtonInterfaceButton1PressedShortCallback（）”手动添加到Zigbee_Switch_ZR_callbacks.c文件中。  
+与[第3.1章在Light设备上的命令处理](#31-Light上的命令处理)类似，将功能“ emberAfPluginButtonInterfaceButton0PressedShortCallback（）”和“ emberAfPluginButtonInterfaceButton1PressedShortCallback（）”手动添加到Zigbee_Switch_ZR_callbacks.c文件中。  
 保存修改后的.isc文件，然后按*Generate*。  
 每个命令在发送之前都存储在缓冲区中。传输的数据缓冲区应按以下方式构建：  
 实际的ZCL命令由以下功能发出。将\<\>替换为“On”或“Off”。
@@ -167,7 +166,7 @@ bool emberAfOnOffClusterToggleCallback(void){
 emberAfFillCommandOnOffCluster<>()
 ```
 
-必须设置由哪个端点发送到哪个端点。 
+必须设置由哪个endpoint发送到哪个endpoint。 
 ```
 emberAfSetCommandEndpoints(emberAfPrimaryEndpoint(), 1);
 ```
@@ -225,11 +224,11 @@ void emberAfPluginButtonInterfaceButton1PressedShortCallback(uint16_t timePresse
 
 # 4. 测试项目
 前2章介绍了如何使设备能够通过某些API发送和接收命令。  
-生成应用程序并将输出文件烧录到目标设备。在对设备进行烧录之前，请退出网络日志捕获，因为在连接网络分析器（或Energy Profiler）时调试器无法访问芯片。  
+生成应用程序并将输出文件烧录到目标设备。在对设备进行烧录之前，请退出网络数据捕获状态，因为在连接Network Analyzer（或Energy Profiler）时调试器无法访问芯片。  
 **注意**：请**不要**在烧录之前擦除设备，否则“znet” token将被删除，并且设备将无法加入网络，只能按照上一个实验中的说明再次[加入网络](https://github.com/MarkDing/IoT-Developer-Boot-Camp/wiki/Zigbee-Hands-on-Forming-and-Joining#73-join-the-network-on-switch-router-device)。  
-按Button0发送ON命令，您将注意到Light上的LED1打开。  
+按下Button0发送ON命令，您将注意到Light上的LED1打开。  
 按下Button1发送OFF命令，您会注意到Light 1的LED1熄灭。  
-**注意**：默认情况下，Light节点上的LED0用于指示网络活动，因此，如果发送任何命令，为什么还会观察light节点上的LED0闪烁。  
+**注意**：默认情况下，Light节点上的LED0用于指示网络活动，因此，发送命令时还能观察light节点上的LED0闪烁。  
 同时，请查看设备的CLI。Switch应在串行控制台上打印如下内容：  
 ```
 Button0 is pressed for 161 milliseconds
@@ -252,7 +251,7 @@ T00000000:RX len 3, ep 01, clus 0x0006 (On/off) FC 01 seq 18 cmd 00 payload[]
 Off command is received
 ```
 
-在网络分析器中也可以观察到以上事务。请参阅图3-2。
+在Network Analyzer中也可以观察到以上事务。请参阅图3-2。
 
 <div align="center">
   <img src="files/ZB-Zigbee-Hands-on-Sending-OnOff-Commands/ZCL_OnOff_commands_in_Network_Analyzer.png">  
