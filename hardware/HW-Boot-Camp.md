@@ -7,11 +7,11 @@
 ## One Day Workshop
 | Time | Content |  
 |:---- |:----|    
-| 1 hour | [Wireless-Products-Protocols-and-Applications](HW-Wireless-Products-Protocols-and-Applications) |
-| 2 hour | [Schematic-Design-Guide](HW-Schematic-Design-Guide) |
-| 3 hour | [PCB-Layout-Guide](HW-PCB-Layout-Guide) |
-| 1.5 hour | [Comply-to-the-Regulations(Cerfifications)](HW-Comply-to-the-Regulations-Cerfifications )|
-| 0.5 hour | [RF-Test](HW-RF-Test) |
+| 1 hour | [Wireless-Products-Protocols-and-Applications](Wireless-Products-Protocols-and-Applications) |
+| 2 hour | [Schematic-Design-Guide](Schematic-Design-Guide) |
+| 2.5 hour | [PCB-Layout-Guide](PCB-Layout-Guide) |
+| 1.5 hour | [Comply-to-the-Regulations](Comply-to-the-Regulations)|
+| 1 hour | [RF-Test](RF-Test) |
 
 *************
 

@@ -27,10 +27,14 @@ After the customer finishes the product design, it should consider how to test t
 Silabs has many products such as chips, SiP modules, and PCB modules. And the products support main sub-GHz bands(169MHz,434MHz,868MHz and 915MHz) and 2.4GHz frequenc band. These different products and frequency bands almost comply to regulations from any region in the world. There are many region regulations such as [CE](http://ec.europa.eu/growth/sectors/electrical-engineering/red-directive_fi) (Europe), [FCC](https://www.fcc.gov/)(USA), [ISED](https://www.canada.ca/en/innovation-science-economic-development.html)(Canada), [MIC](http://www.soumu.go.jp/english/)(Japan), [KC](http://eng.kcc.go.kr/user/ehpMain.do)(South Korea) and other regions. 
 
 And there are some test houses provide certification service for the regions as following:
-![hardware](files/HW-Comply-to-the-Regulations/Test-House.png)
+<div align="center">
+  <img src="files/HW-Comply-to-the-Regulations/Test-House.png">  
+</div> 
 
 For the certification activeties, you can directly contact the region Authorities:
-![hardware](files/HW-Comply-to-the-Regulations/Authorities-Contacts.png)
+<div align="center">
+  <img src="files/HW-Comply-to-the-Regulations/Authorities-Contacts.png">  
+</div>
 
 In the following introduction, it will mainly focus on EC and FCC regulations. For Other region regulatory certifications, please check [AN1048](https://www.silabs.com/documents/public/application-notes/an1048-regulatory-certifications.pdf) for more details.
 Though there are RF, EMC and Safety separate categories to be certified.  RF certification is mainly introduced here.
@@ -110,7 +114,7 @@ In this chapter, it will introduces FCC and CE regulations for both sub-GHz and 
 # 4. Basic RF test items and limits for complying the regulations 
 Allthough there are RF, EMC and Safety categories need to be certified for regional regulations. It only cares about the RF category in this chapter. And Silabs has SoCs,SiP,and PCB module products, the certification procedure or items are different among them. In this chapter, it only describes the test items and limits base on the end product with SoCs. For end products with SiP/PCB-Module, the finnal test items maybe reduced due to pre-certificated SiP/PCB-Module as described in previous section. As Silabs' products contain sub-G frequency bands and 2.4GHz bands, it will introduce the test items and limits seperately in frequency bands due to the difference regulation requirements.
 ## 4.1. FCC requirements in Sub-GHz bands
-Silabs' products can be mainly applied to FCC-Part-15.231 and FCC-Part-15.247 regulations for sub-G bands. It regulates 260~470MHz frequency band in Part-15.231, and 902~928MHz frequency band in Part-15.247.
+Silabs' products can be mainly applied to FCC-Part-15.231 and FCC-Part-15.247 regulations for sub-G bands. It regulates 260 to 470MHz frequency band in Part-15.231, and 902 to 928MHz frequency band in Part-15.247.
 - Part-15.231
   Typical applications are Door openers, Alarm systems, Remote Switches, and Control links in this regulation. There are severy typical frequency bands as 315MHz, 433MHz, and 470MHz.
   - Tx power limits
@@ -219,27 +223,40 @@ For 2.4GHz band regulation, it is defined in the FCC-Part-15.247 and FCC-Part-15
 
  - Frequency error
   Frequency error is the frequency difference between the measured unmodulated carrier frequency and the manufacturer stated normal frequency. The frequency error shall not exceed the following table under normal and extreme conditions:
-  ![hardware](files/HW-Comply-to-the-Regulations/Frequency-Error.png)
+  <div align="center">
+  <img src="files/HW-Comply-to-the-Regulations/Frequency-Error.png">  
+  </div>
 
  - Tx out of band emissions
    Two out of band(OOB) domains are defined, one for operating channel(OC) and one for operational frequency band(OFB):
-   ![hardware](files/HW-Comply-to-the-Regulations/OOB-OC.png)
+  <div align="center">
+  <img src="files/HW-Comply-to-the-Regulations/OOB-OC.png">  
+  </div>
+   
    Unwanted emissions limit in OC in out of band domain is shown in above picture.
-
-   ![hardware](files/HW-Comply-to-the-Regulations/OOB-OFB.png)
+  <div align="center">
+  <img src="files/HW-Comply-to-the-Regulations/OOB-OFB.png">  
+  </div>
 
    Unwanted emissions limit in OFB in out of band domain is shown in above picture. flow_OFB is the lower edge of operational frequency band, and  fhigh_OFB is the upper edge of operational frequency band.
 
  - Unwanted emissions in spurious domain
    Spurious emissions are unwanted emission in spurious domain at frequencies other than those of operating channel and its out of band domain. The following picture and table show the spurs limits:
-   ![hardware](files/HW-Comply-to-the-Regulations/Spurous-OC.png)
+   <div align="center">
+   <img src="files/HW-Comply-to-the-Regulations/Spurous-OC.png">  
+   </div>
+   
    The power of any unwanted emission in spurious domain should not exceed the values given in following table:
-   ![hardware](files/HW-Comply-to-the-Regulations/Spurous-Values.png)
-
+   <div align="center">
+   <img src="files/HW-Comply-to-the-Regulations/Spurous-Values.png">  
+   </div>
+   
  - Adjacent channel power 
    Adjacent channel power is power incidental to proper operation of a transmitter falling into the neighbouring channels. It only defines the limits for narrow band which is less than or equal to 25KHz. The power in adjacent channel should not exceed the values given in following table:
-   ![hardware](files/HW-Comply-to-the-Regulations/Adjacent-Channel-Power.png)
-
+   <div align="center">
+   <img src="files/HW-Comply-to-the-Regulations/Adjacent-Channel-Power.png">  
+   </div>
+   
  - Rx sensitivity level
    The receiver sensitivity is minimum signal power input to the receiver which produces the general performance criterion. 
    The sensitivity should be below or equal to:
@@ -251,11 +268,16 @@ For 2.4GHz band regulation, it is defined in the FCC-Part-15.247 and FCC-Part-15
  - Blocking
    Blocking is a measurement of the capability of the receiver to receive a wanted modulated signal without exceeding a given degradation due to the presence of an unwanted input signal at any frequencies other than those of the spurious responses or the adjacent channels or bands. Usually EN300220 divides the receiver into 4 categories as category 1, category 1.5, category 2, category 3. The most tough requirement is in category 1. Silabs' sub-GHz products can comply category 1.5 regulation.
    The blocking requirement for category 1.5 is shown in following table:
-   ![hardware](files/HW-Comply-to-the-Regulations/Blocking-Limits.png) 
+   <div align="center">
+   <img src="files/HW-Comply-to-the-Regulations/Blocking-Limits.png">  
+   </div>
+   
  - RX Spurious Emissions
    In the Rx and other operation modes, The power of any unwanted emission in spurious domain should not exceed the values given in following table:
-   ![hardware](files/HW-Comply-to-the-Regulations/Spurous-Values.png)
-
+   <div align="center">
+   <img src="files/HW-Comply-to-the-Regulations/Spurous-Values.png">  
+   </div>
+   
 ## 4.4. CE requirements in 2.4GHz band
 ETSI [EN300328](https://ec.europa.eu/growth/single-market/european-standards/harmonised-standards/red_en) mainly defines the 2.4GHz ISM band and using wide band modulation regulation for CE certification. It applies to wide band data transmission equipment in 2400MHz to 2483.5MHz band.
 
@@ -346,15 +368,20 @@ Before the certification process, Silabs can provides a very exclusive documents
 
 ## 5.3. Engineering flow
 The following flow-chart is designed for customer to certificate its design that can pass emissions requirements. It is a typical engineer flow for whatever the regulation region cared about. Customer will need to design its own system and test it according to this flow even when using a fully certified module.
-![hardware](files/HW-Comply-to-the-regulations/Engineer-Flow.png)
+<div align="center">
+<img src="files/HW-Comply-to-the-Regulations/Engineer-Flow.png">  
+</div>
 
 ## 5.4. Paperwork flow
 The flowing flow chart is only provided as a guideline.Customers should consult a TCB(Telecommunication Certification Body) to get answers of questions specific to their situations.  
+<div align="center">
+<img src="files/HW-Comply-to-the-Regulations/Paper-Flow.png">  
+</div>
 
-![hardware](files/HW-Comply-to-the-regulations/Paper-Flow.png)
 
-![hardware](files/HW-Comply-to-the-regulations/Flow-Sum.png)
-
+<div align="center">
+<img src="files/HW-Comply-to-the-Regulations/Flow-Sum.png">  
+</div>
 Remarks: 
 
 1, A new certification is more work for a customer, but they are allowed to reuse applicable materials from us such as block diagrams, schematics and test reports. 
