@@ -346,14 +346,14 @@ Before the certification process, Silabs can provides a very exclusive documents
 
 ## 5.3. Engineering flow
 The following flow-chart is designed for customer to certificate its design that can pass emissions requirements. It is a typical engineer flow for whatever the regulation region cared about. Customer will need to design its own system and test it according to this flow even when using a fully certified module.
-![hardware](files/HW-Comply-to-the-Regulations/Engineer-Flow.png)
+![hardware](files/HW-Comply-to-the-regulations/Engineer-Flow.png)
 
 ## 5.4. Paperwork flow
 The flowing flow chart is only provided as a guideline.Customers should consult a TCB(Telecommunication Certification Body) to get answers of questions specific to their situations.  
 
-![hardware](files/HW-Comply-to-the-Regulations/Paper-Flow.png)
+![hardware](files/HW-Comply-to-the-regulations/Paper-Flow.png)
 
-![hardware](files/HW-Comply-to-the-Regulations/Flow-Sum.png)
+![hardware](files/HW-Comply-to-the-regulations/Flow-Sum.png)
 
 Remarks: 
 
