@@ -160,10 +160,13 @@ void steeringEventHandler(void)
   emberAfCorePrintln("steeringEventHandler\n\r");
   emberEventControlSetInactive(steeringEventControl);
 
-  if (emberAfNetworkState() == EMBER_JOINED_NETWORK) {
+  if (emberAfNetworkState() == EMBER_JOINED_NETWORK) 
+  {
     halSetLed(BOARDLED1);
     otaStartStopClientCommand(true);
-  }else{
+  }
+  else
+  {
     EmberStatus status = emberAfPluginNetworkSteeringStart();
     emberAfCorePrintln("%p network %p: 0x%X", "Join", "start", status);
   }
@@ -176,11 +179,11 @@ void steeringEventHandler(void)
 void emberAfHalButtonIsrCallback(int8u button, int8u state)
 {
 	halSetLed(BOARDLED1);
-	if (state == BUTTON_RELEASED)
+  if (state == BUTTON_RELEASED)
   {
     halClearLed(BOARDLED1);
     emberEventControlSetActive(steeringEventControl);
-	}
+  }
 }
 
 /*
@@ -196,8 +199,8 @@ void emberAfPluginNetworkSteeringCompleteCallback(EmberStatus status,
   emberAfCorePrintln("%p network %p: 0x%X", "Join", "complete", status);
   if (status == EMBER_SUCCESS)
   {
-	  halSetLed(BOARDLED1);
-	  emberEventControlSetDelayMS(steeringEventControl, 1000);
+    halSetLed(BOARDLED1);
+    emberEventControlSetDelayMS(steeringEventControl, 1000);
   }
 }
 ```
