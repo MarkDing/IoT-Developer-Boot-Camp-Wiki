@@ -4,36 +4,40 @@
 <summary><font size=5>目录</font> </summary>  
 &nbsp;
 
+<!-- TOC -->
+
 - [1. 总览](#1-总览)
-- [2. SoC和模块](#2-SoC和模块)
-  - [2.1. SoCs](#21-SoCs)
-  - [2.2. 模块](#22-modules)
-  - [2.3. 框图](#23-框图)
-- [3. 软件开发组件](#3-软件开发组件)
-  - [3.1. 设计模型](#31-设计模型)
-  - [3.2. Gecko Bootloader](#32-gecko-bootloader)
-  - [3.3. EmberZnet SDK](#33-emberznet-sdk)
+- [2. SoC和模块](#2-soc和模块)
+    - [2.1. SoCs](#21-socs)
+    - [2.2. 模块](#22-模块)
+    - [2.3. 框图](#23-框图)
+- [3. 软件开发套件](#3-软件开发套件)
+    - [3.1. 设计模型](#31-设计模型)
+    - [3.2. Gecko Bootloader](#32-gecko-bootloader)
+    - [3.3. EmberZnet SDK](#33-emberznet-sdk)
 - [4. 开发工具](#4-开发工具)
-  - [4.1. 无线入门套件](#41-无线入门套件)
-  - [4.2. Simplicity IDE](#42-simplicity-ide)
-    - [4.2.1. 总览](#421-总览)
-    - [4.2.2. 创建一个Zigbee项目](#422-创建一个Zigbee项目)
-    - [4.2.3. 配置项目](#423-配置项目)
-      - [4.2.3.1. "General" 选项卡](#4231-%22General%22-选项卡)
-      - [4.2.3.2. "Zigbee Stack" 选项卡](#4232-%22zigbee-Stack%22-选项卡)
-      - [4.2.3.3. "ZCL Clusters" 选项卡](#4233-%22zcl-Clusters%22-选项卡)
-      - [4.2.3.4. "Plugins" 选项卡](#4234-%22Plugins%22-选项卡)
-      - [4.2.3.5. "Callbacks" 选项卡](#4235-%22Callbacks%22-选项卡)
-      - [4.2.3.6. "Includes" 选项卡](#4236-%22Includes%22-选项卡)
-      - [4.2.3.7. 硬件配置](#4237-硬件配置)
-    - [4.2.4. 生成项目](#424-生成项目)
-    - [4.2.5. 建立项目](#425-建立项目)
-    - [4.2.6. 测试和调试](#426-测试和调试)
-      - [4.2.6.1. 发送应用image](#4261-发送应用image)
-      - [4.2.6.2. 开发控制台](#4262-开发控制台)
-      - [4.2.6.3. 有用的命令](#4263-有用的命令)
-      - [4.2.6.4. Network Analyzer](#4264-Network-Analyzer)
+    - [4.1. 无线入门套件](#41-无线入门套件)
+    - [4.2. Simplicity IDE](#42-simplicity-ide)
+        - [4.2.1. 总览](#421-总览)
+        - [4.2.2. 创建一个Zigbee项目](#422-创建一个zigbee项目)
+        - [4.2.3. 配置项目](#423-配置项目)
+            - [4.2.3.1. "General" 选项卡](#4231-general-选项卡)
+            - [4.2.3.2. "Zigbee Stack" 选项卡](#4232-zigbee-stack-选项卡)
+            - [4.2.3.3. "ZCL CLuster" 选项卡](#4233-zcl-cluster-选项卡)
+            - [4.2.3.4. “Plugins”选项卡](#4234-plugins选项卡)
+            - [4.2.3.5. “Callbacks”选项卡](#4235-callbacks选项卡)
+            - [4.2.3.6.“Includes”选项卡](#4236includes选项卡)
+            - [4.2.3.7. 硬件配置](#4237-硬件配置)
+        - [4.2.4. 生成项目](#424-生成项目)
+        - [4.2.5. 建立项目](#425-建立项目)
+        - [4.2.6. 测试和调试](#426-测试和调试)
+            - [4.2.6.1. 烧录应用image](#4261-烧录应用image)
+            - [4.2.6.2. 打开控制台](#4262-打开控制台)
+            - [4.2.6.3. 常用的命令](#4263-常用的命令)
+            - [4.2.6.4. Network-Analyzer](#4264-network-analyzer)
 - [5. 参考](#5-参考)
+
+<!-- /TOC -->
 </details>
 
 ********
@@ -83,7 +87,7 @@ SoC可以在6种不同的功耗模式下工作。从最大功耗到最低功耗�
 
 **注意:**
 1. 在该图中，每个功能块都用一个颜色标记，该颜色表示该功能块能工作的最低能量模式。在EmberZnet中，Zigbee协调器和路由器始终在EM0下工作，因为它们始终由主电源供电。Zigbee睡眠终端设备在EM2或EM4（休眠）模式下工作。
-2. SoC中集成了高频RCO（HFRCO）和低频RCO（LFRCO）。对于Zigbee应用，必须连接一个HFXO时钟，因为无线电需要高精度的高频时钟才能工作，但它们仍可以将LFRCO用于外围设备。 
+2. SoC中集成了高频RC振荡器（HFRCO）和低频RC振荡器（LFRCO）。对于Zigbee应用，必须连接一个HFXO时钟，因为无线电需要高精度的高频时钟才能工作，但它们仍可以将LFRCO用于外围设备。 
 3. 内部集成了DCDC。使用者可以选择使用内部DCDC或绕过DCDC。 建议在睡眠节点上使用内部DCDC，从而更好的控制功耗。 
 4. 无线电收发器已经集成，并且已经集成了PA。用户可以选择使用DCDC或主电源为PA供电。如果发射功率大于13dbm，建议使用主电源为PA供电。否则，请改用DCDC。
 5. 集成的数据包跟踪接口（PTI）可用于空中捕获数据包。这对于调试非常有用。
@@ -93,7 +97,7 @@ SoC可以在6种不同的功耗模式下工作。从最大功耗到最低功耗�
 ### 3.1. 设计模型
 EmberZnet为Zigbee应用程序提供了两种设计模型：
 - 网络协处理器（NCP）模型
-- 片上系统（Soc）模型
+- 片上系统（SoC）模型
 
 <div align="center">
   <img src="files/ZB-Zigbee-Introduction-of-EmberZnet-and-AppBuilder/Design-Models.png">  
@@ -136,8 +140,8 @@ Silicon Labs提供了三种类型的Bootloader。
 |:-|:-|
 |Bootloader Xmodem UART|也称为独立Bootloader。主要用于基于UART的NCP。主机可以通过UART将image传输到NCP，以升级NCP image。|
 |EZSP SPI Bootloader|另一种独立的Bootloader。主要用于基于SPI的NCP。主机可以通过SPI将image传输到NCP，以升级NCP image。|
-|Internal Storage Bootloader|用于Soc。将新软件image存储在内部闪存中。|
-|SPI Storage Bootloader|用于Soc。将新图像存储在SPI闪存中。|
+|Internal Storage Bootloader|用于SoC。将新软件image存储在内部闪存中。|
+|SPI Storage Bootloader|用于SoC。将新图像存储在SPI闪存中。|
 
 还有一些用于DEV-Kit的预编译的Bootloader image。可以在Gecko SDK Suite目录下的platform \ bootloader \ sample-apps目录中找到它们。   
 例如  
@@ -150,7 +154,7 @@ C:\SiliconLabs\SimplicityStudio\v4\developer\sdks\gecko_sdk_suite\v2.7\platform\
 ```
 
 ### 3.3. EmberZnet SDK
-EmberZnet SDK是Gecko SDK套件的一部分。可以在Gecko SDK Suite目录下的protocol \ zigbee中找到它。EmberZnet SDK的目录层次结构如下（仅列出了一些重要目录）：
+EmberZnet SDK是Gecko SDK套件的一部分。可以在Gecko SDK Suite目录下的protocol\zigbee中找到它。EmberZnet SDK的目录层次结构如下（仅列出了一些重要目录）：
 
 ```
 +---app
@@ -183,7 +187,7 @@ Silicon Labs的无线入门套件（WSTK）由主板和无线电板组成。就�
 - 测量电流
 - UART转USB转换器
 
-母板还可以用作独立的闪存编程器和J-Link调试器，以调试定制板。如[AN958第4.1节所述](https://www.silabs.com/documents/public/application-notes/an958-mcu-stk-wstk-guide.pdf)，建议在自定义板上设计10管脚的Simplicity微型调试连接器。  
+母板还可以用作独立的闪存编程器和J-Link调试器，以调试定制板。如[AN958](https://www.silabs.com/documents/public/application-notes/an958-mcu-stk-wstk-guide.pdf)第4.1节所述，建议在自定义板上设计10管脚的Simplicity微型调试连接器。  
 开始编程或调试时，只需将主板的微型连接器连接到自定义板上，然后将主板的“调试模式”设置为“输出”即可。（有关详细信息，请参阅[调试定制板](Debugging-Custom-Board)）。
 
 2. 开发板是可更换的。用户可以交换不同的开发板来评估不同的SoC或模块 
@@ -205,13 +209,13 @@ Simplicity IDE是一个功能强大的IDE。集成了许多工具，包括：
 
 #### 4.2.2. 创建一个Zigbee项目
 您可以按照以下步骤创建Zigbee项目： 
-1. 转到文件->新建->项目。 这将显示 "New Project Wizard";
-2. 选择“ Silicon Labs AppBuilder项目”，单击“下一步”；
-3. 选择“ Silicon Labs Zigbee”，单击“下一步”；
-4. 选择我们用于SoC的最新EmberZNet协议栈，单击“下一步”；
-5. 这里将列出示例项目。您可以选择其中之一，单击“下一步”；
-6. 命名您的项目，例如“ ZigbeeMinimal_Demo”，单击“下一步”；
-7. 在下一个窗口（项目设置）中，选择板（如果要开发自定义板，请将“板”字段留空，然后选择零件号。）和编译器，单击“完成”。
+1. 转到File->New->Project。 这将显示 "New Project Wizard";
+2. 选择“ Silicon Labs AppBuilder项目”，单击“Next”；
+3. 选择“ Silicon Labs Zigbee”，单击“Next”；
+4. 选择我们用于SoC的最新EmberZNet协议栈，单击“Next”；
+5. 这里将列出示例项目。您可以选择其中之一，单击“Next”；
+6. 命名您的项目，例如“ ZigbeeMinimal_Demo”，单击“Next”；
+7. 在下一个窗口（项目设置）中，选择板（如果要开发自定义板，请将“板”字段留空，然后选择零件号。）和编译器，单击“Finish”。
 8. 之后，创建项目。项目的isc文件将自动打开。
 
 <div align="center">
@@ -232,10 +236,10 @@ Simplicity IDE是一个功能强大的IDE。集成了许多工具，包括：
 
 ##### 4.2.3.2. "Zigbee Stack" 选项卡
 在“ Zigbee Stack”选项卡下，您可以设置设备类型和安全性类型。对于Zigbee设备类型，我们有四个选项：
-- 协调器或路由器
-- 路由器
-- 终端设备
-- 睡眠终端设备
+- Cooridnator or Router
+- Router
+- End Device
+- Sleepy End Device
 
 ##### 4.2.3.3. "ZCL CLuster" 选项卡
 确定Zigbee设备类型后，您可以设置endpoint和每个endpoint所在的cluster。这些功能在“ ZCL Clusters”选项卡下。
@@ -246,7 +250,7 @@ Simplicity IDE是一个功能强大的IDE。集成了许多工具，包括：
   <img src="files/ZB-Zigbee-Introduction-of-EmberZnet-and-AppBuilder/Manufacture-Code.png">  
 </div>
 
-1. 其次，您可以在此处添加/删除端点，还可以选择要在端点上使用的设备配置文件。您还可以根据配置文件选择其他Clusters。在这种情况下，设置“ ZCL设备类型”时，请勿直接选择Zigbee设备配置文件。而是选择“ Zigbee Custom”，然后选择一个设备配置文件。
+1. 其次，您可以在此处添加/删除endpoint，还可以选择要在endpoint上使用的设备配置文件。您还可以根据配置文件选择其他Clusters。在这种情况下，设置“ ZCL设备类型”时，请勿直接选择Zigbee设备配置文件。而是选择“ Zigbee Custom”，然后选择一个设备配置文件。
 <div align="center">
   <img src="files/ZB-Zigbee-Introduction-of-EmberZnet-and-AppBuilder/ZCL-Clusters.gif">  
 </div>  
@@ -254,7 +258,7 @@ Simplicity IDE是一个功能强大的IDE。集成了许多工具，包括：
 
 1. Cluster的属性和命令在Zigbee Cluster Library（ZCL）中定义。选择属性和命令时，需要参考ZCL规范。
 
-##### 4.2.3.4. “Plugin”标签
+##### 4.2.3.4. “Plugins”选项卡
 1. 插件的属性
 
 <div align="center">
@@ -264,17 +268,17 @@ Simplicity IDE是一个功能强大的IDE。集成了许多工具，包括：
 插件具有以下属性：
 |属性|注释|
 |:-|:-|
-|插件名称|插件名称|
-|质量|插件的质量可能是：:<br><li>制作准备</li><li>测试工具</li><li>扩展需求</li><li>示例代码</li><li>内部测试</li><li>公开测试</li><li>调试工具</li>|
-|选项|插件选项|
-|位置|插件目录|
-|源文件|插件的源文件|
-|已定义回调|此插件定义的回调|
-|已实现回调|在协议栈或其他插件中定义的回调，用此插件实现|  
+|Plugin Name|插件名称|
+|Quality|插件的质量可能是：:<br><li>制作准备</li><li>测试工具</li><li>扩展需求</li><li>示例代码</li><li>内部测试</li><li>公开测试</li><li>调试工具</li>|
+|Option|插件选项|
+|Located|插件目录|
+|Source files|插件的源文件|
+|Defined callbacks|此插件定义的回调|
+|Implemented callbacks|在协议栈或其他插件中定义的回调，用此插件实现|  
 大多数插件都是开源的。您可以检查源代码以了解其实现方式。
 &nbsp;
 
-1. 常用插件
+2. 常用插件
 
 <table>
     <tr>
@@ -338,7 +342,7 @@ Simplicity IDE是一个功能强大的IDE。集成了许多工具，包括：
 
 3. 插件可能依赖于其他插件。在生成项目时，AppBuilder将检查依赖性。如果不满足依赖关系，则会出现警告。
 
-##### 4.2.3.5. “Callbacks”标签
+##### 4.2.3.5. “Callbacks”选项卡
 Silicons Labs建议客户在回调中添加其自定义源代码。好处是，当您从旧的SDK迁移到新的SDK时，这将非常容易。
 
 建议在生成的文件&lt;projectname&gt;_callbacks.c 中定义和实现选定的回调。您也可以将它们添加到新的源文件中。
@@ -348,7 +352,8 @@ Silicons Labs建议客户在回调中添加其自定义源代码。好处是，�
 <div align="center">
   <img src="files/ZB-Zigbee-Introduction-of-EmberZnet-and-AppBuilder/Callbacks-Tab.png">  
 </div>
-##### 4.2.3.6. “Includes”标签
+
+##### 4.2.3.6.“Includes”选项卡
 在“Includes”选项卡下，您可以包含自定义头文件，包含自定义标记头文件，定义自定义宏以及定义自定义事件和处理程序对。
 
 <div align="center">
@@ -356,7 +361,7 @@ Silicons Labs建议客户在回调中添加其自定义源代码。好处是，�
 </div>
 
 ##### 4.2.3.7. 硬件配置
-在“ HAL”选项卡下，有一个按钮“ Open Hardware Configurator”。点击此按钮，您将打开“硬件配置器”。
+在“ HAL”选项卡下，有一个按钮“ Open Hardware Configurator”。点击此按钮，您将打开“Hardware Configurator”。
 
 <div align="center">
   <img src="files/ZB-Zigbee-Introduction-of-EmberZnet-and-AppBuilder/Hardware-Configurator.png">  
@@ -382,7 +387,7 @@ Silicons Labs建议客户在回调中添加其自定义源代码。好处是，�
 |:-|:-|
 |&lt;projectname&gt;.h|主头文件。此处列出了所有插件设置，回调设置|
 |&lt;projectname&gt;_callbacks.c|生成的源文件。自定义回调和事件处理应在此文件中实现。|
-|&lt;projectname&gt;_endpoint_config.h|定义端点，属性和命令|
+|&lt;projectname&gt;_endpoint_config.h|定义endpoint，属性和命令|
 |znet-cli.c/znet-cli.h|CLI命令列表|
 |client-command-macro.h|定义大量宏指令用于填充消息|
 |call-command-handler.c|Cluster命令处理|
@@ -393,11 +398,7 @@ Silicons Labs建议客户在回调中添加其自定义源代码。好处是，�
 #### 4.2.5. 建立项目
 有两种启动编译的方法：
 - 在"Project Explorer"窗口中选择项目, 右键单击并选择"Build".
-- 在"Project Explorer"窗口中选择项目, 然后按工具栏中的图标。
-
-<div align="center">
-  <img src="files/ZB-Zigbee-Introduction-of-EmberZnet-and-AppBuilder/Icon-Build.png">  
-</div>
+- 在"Project Explorer"窗口中选择项目, 然后按工具栏中的![zigbee](files/ZB-Zigbee-Introduction-of-EmberZnet-and-AppBuilder/Icon-Build.png)图标。
 
 编译完成后，生成的应用程序image位于：
 
@@ -408,7 +409,7 @@ Silicons Labs建议客户在回调中添加其自定义源代码。好处是，�
 
 #### 4.2.6. 测试和调试
 ##### 4.2.6.1. 烧录应用image
-请参阅[image发送](Flashing-Image)，以将应用的image烧录到装置。
+请参阅[烧录image](Flashing-Image)，以将应用的image烧录到装置。
 
 ##### 4.2.6.2. 打开控制台
 请参考[开放控制台](Opening-Console)以启动控制台。您可以获取串行端口的输出，也可以在此处运行命令。
@@ -418,31 +419,31 @@ Silicons Labs建议客户在回调中添加其自定义源代码。好处是，�
 
 - **plugin network-creator form [useCentralizedSecurity:1] [panId:2] [radioTxPower:1] [channel:1]**
   - 建立具有指定参数的网络。
-      - useCentralizedSecurity-BOOLEAN-是否形成集中式网络。如果该值为false，则设备将尝试加入分布式网络。
+      - useCentralizedSecurity-BOOLEAN-是否创建集中式网络。如果该值为false，则设备将尝试加入分布式网络。
       - panId-INT16U-要形成的网络的PanID
       - radioTxPower-INT8S-要形成的网络的Tx功率
-      - channel-INT8U-要形成的网络的通道
+      - channel-INT8U-要形成的网络所在的通道
 
 - **plugin network-creator-security open-network**
-  - 打开网络并加入
+  - 打开网络并允许入网
 
 - **plugin network-creator-security open-with-key [eui64:8] [joiningLinkKey:-1]**
     - 打开网络且仅允许具有指定EUI和Link key对的节点加入。
         - eui64 - IEEE_ADDRESS - 加入设备的EUI64。
-        - joiningLinkKey - OCTET_STRING - 加入设备的Link key将用于进入网络。
+        - joiningLinkKey - OCTET_STRING - 入网设备将使用该link key来加入网络。
 
 - **plugin network-steering start [options:1]**
-    - 开始网络控制过程。
-        - options - INT8U - 选项的掩码，用于指示网络控制过程中的特定行为。
+    - 开始设备入网过程。
+        - options - INT8U - 选项的掩码，用于指示设备入网过程中的特定行为。
         
 - **zcl on-off toggle**
     - 在消息缓冲区中填充开/关切换命令
 
 - **send [id:2] [src-endpoint:1] [dst-endpoint:1]**
-    - 从给定端点向具有给定短地址的设备上的端点发送预缓冲消息。
+    - 从给定endpoint向具有给定短地址的设备上的endpoint发送预缓冲消息。
         - id - INT16U - 将消息发送到的设备的短ID
-        - src-endpoint - INT8U - 发送消息的源端点
-        - dst-endpoint - INT8U - 发送消息的目的端点
+        - src-endpoint - INT8U - 发送消息的源endpoint
+        - dst-endpoint - INT8U - 发送消息的目的endpoint
 
 ##### 4.2.6.4. Network-Analyzer
 请参考[Network Analyzer](Network-Analyzer)开始捕获。您还可以学习如何设置用于解码数据包的安全密钥。
