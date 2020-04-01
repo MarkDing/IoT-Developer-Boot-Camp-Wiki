@@ -1,6 +1,7 @@
 <details>   
 <summary><font size=5>目录</font> </summary>
 
+<!-- TOC -->
 
 - [1. 简介](#1-简介)
     - [1.1. 实验内容](#11-实验内容)
@@ -8,33 +9,36 @@
 - [2. 基本步骤](#2-基本步骤)
     - [2.1. 硬体需求](#21-硬体需求)
     - [2.2. 软件需求](#22-软件需求)
-        - [2.2.1. 检查EmberZNet SDK](#221-检查EmberZNet-SDK)
+        - [2.2.1. 检查EmberZNet SDK](#221-检查emberznet-sdk)
         - [2.2.2. 检查工具链](#222-检查工具链)
-        - [2.2.3. 使用Gecko Bootloader](#223-使用Gecko-Bootloader)
-- [3. 创建Light应用程序](#3-创建Light应用程序)
-- [4. 烧录并测试Light应用程序](#4-烧录并测试Light应用程序)
-- [5. 创建Switch应用程序](#5-创建Switch应用程序)
-- [6. 烧录并测试Switch应用程序](#6-烧录并测试Switch应用程序)
-- [7. 使用从install code派生的Link key在Light和Switch之间建立连接](#7-使用从install-code派生的Link-key在Light和Switch之间建立连接)
-    - [7.1. 将install code烧录至Switch（路由器）设备](#71-将install-code烧录至Switch（路由器）设备)
+        - [2.2.3. 使用Gecko Bootloader](#223-使用gecko-bootloader)
+- [3. 创建Light应用程序](#3-创建light应用程序)
+- [4. 烧录并测试Light应用程序](#4-烧录并测试light应用程序)
+- [5. 创建Switch应用程序](#5-创建switch应用程序)
+- [6. 烧录并测试Switch应用程序](#6-烧录并测试switch应用程序)
+- [7.使用从install code派生的Link key在Light和Switch之间建立连接](#7使用从install-code派生的link-key在light和switch之间建立连接)
+    - [7.1. 将install code烧录至Switch(路由器)设备](#71-将install-code烧录至switch路由器设备)
         - [7.1.1. install code文件的格式](#711-install-code文件的格式)
-        - [7.1.2. 检查EFR32设备上的install code](#712-检查EFR32设备上的install-code)
-        - [7.1.3. 将install code写入EFR32设备上的制造区域](#713-将install-code写入EFR32设备上的制造区域)
-        - [7.1.4. 验证在EFR32设备上存储的install code](#714-验证在EFR32设备上存储的install-code)
-        - [7.1.5. 删除install code](#715-删除install-code)
-    - [7.2. 在Light（协调器）设备上构建集中式网络](#72-在Light（协调器）设备上构建集中式网络)
-        - [7.2.1. 从install code中获取Link key](#721-从install-code中获取Link-key)
+        - [7.1.2. 检查EFR32设备上的install code](#712-检查efr32设备上的install-code)
+        - [7.1.3. 将install code写入EFR32设备上的制造区域](#713-将install-code写入efr32设备上的制造区域)
+        - [7.1.4. 验证在EFR32设备上存储的install code](#714-验证在efr32设备上存储的install-code)
+        - [7.1.5. 删除install code（不必要）](#715-删除install-code不必要)
+    - [7.2. 在Light(协调器)设备上构建集中式网络](#72-在light协调器设备上构建集中式网络)
+        - [7.2.1. 从install code中获取Link key](#721-从install-code中获取link-key)
         - [7.2.2. 构建集中网络](#722-构建集中网络)
-        - [7.2.3. 使用派生的Link key打开网络](#723-使用派生的Link-key打开网络)
-    - [7.3. 将Switch(路由器)设备上加入网络](#73-将Switch（路由器）设备上加入网络)
-    - [7.4. 捕获Light(协调器)设备的网络日志](#74-捕获Light(协调器)设备的网络日志)
-        - [7.4.1. 查找Network Key和派生Link key以进行捕获](#741-查找Network-Key和派生Link-key以进行捕获)
-        - [7.4.2. 将Network Key和派生Link key添加到Network Analyzer](#742-将Network-Key和派生Link-key添加到Network-Analyzer)
-        - [7.4.3. 开始在Light（协调器）设备上捕获](#743-开始在Light（协调器）设备上捕获)
-        - [7.4.4. Network Analyzer捕捉的入网过程](#744-Network-Analyzer捕捉的入网过程)
+        - [7.2.3. 使用派生的Link key打开网络](#723-使用派生的link-key打开网络)
+    - [7.3. 将Switch(路由器)设备上加入网络](#73-将switch路由器设备上加入网络)
+    - [7.4. 捕获Light(协调器)设备的网络日志](#74-捕获light协调器设备的网络日志)
+        - [7.4.1. 查找Network Key和派生Link key以进行捕获](#741-查找network-key和派生link-key以进行捕获)
+        - [7.4.2. 将Network Key和派生Link key添加到Network Analyzer](#742-将network-key和派生link-key添加到network-analyzer)
+        - [7.4.3. 开始在Light(协调器)设备上捕获](#743-开始在light协调器设备上捕获)
+        - [7.4.4. Network Analyzer捕捉的入网过程](#744-network-analyzer捕捉的入网过程)
 - [8. 结论](#8-结论)
 
+<!-- /TOC -->
+
 </details>
+
 
 ***
 [English](Zigbee-Hands-on-Forming-and-Joining.md) | 中文
@@ -103,10 +107,9 @@ Zigbee快速入门——新兵训练营系列培训的实验环节将涵盖以�
 
 ### 2.2.3. 使用Gecko Bootloader
 Bootloader是存储在预留的闪存中的一段程序，可以初始化设备，更新固件image并可能执行某些完整性检查。如果发现应用程序没有运行，请检查是否有正确烧录Bootloader，因为缺少Bootloader会导致程序无法运行。  
-**注意**: 在本系列实验的开始，强烈建议对设备用Gecko SDK随附的预编译的Bootloader image进行烧录。应当用“ -combined”结尾的image（例如，bootloader-storage-internal-single-combined.s37）烧录，这个image包含Gecko Bootloader的第一和第二阶段。该image可以在如下位置找到  
-```c:\SiliconLabs\SimplicityStudio\v4\developer\sdks\gecko_sdk_suite\v2.6\platform\bootloader\sample-apps\bootloader-storage-internal-single\efr32mg12p332f1024gl125-brd4162a\```    
+**注意**: 在本系列实验的开始，强烈建议对设备用Gecko SDK随附的预编译的Bootloader image进行烧录。应当用“ -combined”结尾的image（例如，bootloader-storage-internal-single-combined.s37）烧录，这个image包含Gecko Bootloader的第一和第二阶段。该image可以在如下位置找到```c:\SiliconLabs\SimplicityStudio\v4\developer\sdks\gecko_sdk_suite\v2.6\platform\bootloader\sample-apps\bootloader-storage-internal-single\efr32mg12p332f1024gl125-brd4162a\```    
 
-想知道有关如何将Gecko Bootloader添加到Zigbee项目的更多信息，请阅读[预备课程](https://github.com/MarkDing/IoT-Developer-Boot-Camp/wiki/Zigbee-Preparatory-Course-CN#使用-Gecko-Bootloader)。   
+想知道有关如何将Gecko Bootloader添加到Zigbee项目的更多信息，请阅读[Zigbee预备课程](https://github.com/MarkDing/IoT-Developer-Boot-Camp/wiki/Zigbee-Preparatory-Course-CN#使用-Gecko-Bootloader)。   
 **提示**: 有关Gecko Bootloader的更多信息，请参见下面的文档。    
 [UG266: Silicon Labs Gecko Bootloader User's Guide](https://www.silabs.com/documents/public/user-guides/ug266-gecko-bootloader-user-guide.pdf)      
 [UG103.6: Bootloader Fundamentals](https://www.silabs.com/documents/public/user-guides/ug103-06-fundamentals-bootloading.pdf)      
@@ -239,7 +242,7 @@ ZCL配置是最重要的设置之一。设备的类型基于其Cluster和属性�
 </div>  
 </br>
 
-**综上所述，下表列出了Light（协调器）节点上所涉及到的插件。**  
+**综上所述，下表列出了Light(协调器)节点上所涉及到的插件。**  
 
 <div align="center">
   <img src="files/ZB-Zigbee-Hands-on-Forming-and-Joining/plugins_to_check_light.png">  
@@ -357,7 +360,7 @@ Light应用程序和Switch应用程序之间的主要区别是网络相关插件
 在**Install code library**根据设备中的install code制造token提供初始链接密钥。它根据ZigBee规范，通过哈希算法得到该密钥。 
 
 
-**综上所述，下表列出了Switch（路由器）节点上所涉及的插件。**  
+**综上所述，下表列出了Switch(路由器)节点上所涉及的插件。**  
 
 <div align="center">
   <img src="files/ZB-Zigbee-Hands-on-Forming-and-Joining/plugins_to_check_switch.png">  
@@ -381,12 +384,12 @@ Light应用程序和Switch应用程序之间的主要区别是网络相关插件
   <b>图6-1 CLI测试</b>
 </div>  
 
-***
+*** 
 
 # 7.使用从install code派生的Link key在Light和Switch之间建立连接
 本章介绍如何构建网络并加入其中。设备之间的通信将由Network Analyzer工具捕获。本部分将使用install code。install code用于创建预配置的Link key。install code通过使用AES-MMO哈希算法转换为Link key，派生的Zigbee Link key仅被Trust Center和加入网络的设备知道。因此，Trust Center可以使用该密钥将ZigbeeNetwork Key安全地传输到设备。设备拥有Network Key后，就可以在网络层与Zigbee网络通信。
 
-## 7.1. 将install code烧录至Switch（路由器）设备
+## 7.1. 将install code烧录至Switch(路由器)设备
 要将install code烧录到Switch设备中，您需要先创建一个文本文件，并将install code的值保存在其中，然后使用Simplicity Commander将install code写入Switch节点的MFG token区域。  
 为了节省您的时间，我们准备了如下的批处理文件，该文件可以自动完成install code的烧录。创建一个批处理文件（例如，[program_install_code.bat](files/ZB-Zigbee-Hands-on-Forming-and-Joining/program_install_code.bat)），使用任何文本编辑器打开它，将下面的内容复制并粘贴到该文件中，保存并执行以烧录install code。
 
@@ -437,10 +440,10 @@ pause
 </div>  
 </br>  
 
-**注意**: 以下各节（默认情况下不可见，单击标题以查看详细信息）详细描述了如何对install code进行编程，如果您不想花很多时间在那上面，则可以跳过它并转到 [7.2在Light（协调器）设备上构建集中式网络](#72-在Light（协调器）设备上构建集中式网络)。
+**注意**: 以下各节（默认情况下不可见，单击标题以查看详细信息）详细描述了如何对install code进行编程，如果您不想花很多时间在那上面，则可以跳过它并转到 [7.2在Light(协调器)设备上构建集中式网络](#72-在Light(协调器)设备上构建集中式网络)。
 
 <details>
-<summary><font size=5>Show/Hide detail about how to program the install code (non-required)</font> </summary>
+<summary><font size=5>显示/隐藏 关于如何烧录installation code的更多细节（不作要求）</font> </summary>
 
 
 ### 7.1.1. install code文件的格式
@@ -499,7 +502,7 @@ Install Code: !ERASE!
 ```
 </details>
 
-## 7.2. 在Light（协调器）设备上构建集中式网络
+## 7.2. 在Light(协调器)设备上构建集中式网络
 ### 7.2.1. 从install code中获取Link key
 要从install code中获取Link key，并将其存储到Light（作为集中式网络的Trust Center）上的Link key表中，请输入以下命令：
 ```
@@ -562,7 +565,7 @@ plugin network-creator-security open-with-key {eui64} {linkkey}
 plugin network-creator-security open-with-key {00 0B 57 FF FE 64 8D D8} {66 B6 90 09 81 E1 EE 3C A4 20 6B 6B 86 1C 02 BB}
 ```
 
-## 7.3. 将Switch（路由器）设备上加入网络
+## 7.3. 将Switch(路由器)设备上加入网络
 在Switch节点上，输入以下CLI以使用“Network Steering”插件加入网络：
 ```
 plugin network-steering start 0
@@ -573,7 +576,7 @@ plugin network-steering start 0
 </div>  
 </br>
 
-## 7.4. 捕获Light（协调器）设备的网络日志
+## 7.4. 捕获Light(协调器)设备的网络日志
 本章介绍如何通过Network Analyzer工具捕获设备之间的通信。 
 
 ### 7.4.1. 查找Network Key和派生Link key以进行捕获
@@ -627,7 +630,7 @@ Index IEEE Address         In FC     TTL(s) Flag    Key
 
 4.	重复最后一步，将派生的Link key添加到列表中。 
 
-### 7.4.3. 开始在Light（协调器）设备上捕获
+### 7.4.3. 开始在Light(协调器)设备上捕获
 现在，Switch应该已经加入了Light创建的网络，请首先使用**Switch**上的命令退出网络。
 ```
 network leave
