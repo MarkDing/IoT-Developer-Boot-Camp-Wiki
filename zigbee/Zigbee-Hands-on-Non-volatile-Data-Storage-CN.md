@@ -200,12 +200,12 @@ DEFINE_BASIC_TOKEN带有三个参数：Token名称（LED1_ON_OFF，不带前缀�
 协议栈提供了一组简单的API，用于访问Token数据。根据Token的类型，API略有不同。
 
 ##### 3.2.1.2.1. 访问Basic (Non-indexed) Tokens
-访问Basic (Non-indexed) TokensAPI函数包括：
+访问Basic (Non-indexed) Tokens API函数包括：
 ```
 void halCommonGetToken(data, token)  
 void halCommonSetToken(token, data)  
 ```
-在这种情况下，"token"/参数“token”是Token名称，"data"/参数“data”是Token数据。请注意，```halCommonGetToken()```和```halCommonSetToken()```是通用TokenAPI，可用于基本Dynamic Tokens和Manufacturing Tokens的访问。  
+在这种情况下，"token"参数是Token名称，"data"参数是Token数据。请注意，```halCommonGetToken()```和```halCommonSetToken()```是通用TokenAPI，可用于基本Dynamic Tokens和Manufacturing Tokens的访问。  
 现在，让我们使用一个示例来说明这些API的用法。  
 正如文章一开始的[你需要做的](#12-目的)章节所提及，我们需要频繁地存储LED1的开/关状态，并且在系统上电之后恢复LED1的状态。 在定义了Token之后，您可以使用如下代码片段访问它：  
 
@@ -259,7 +259,7 @@ halCommonGetMfgToken(mfgString, TOKEN_MFG_STRING);
 
 ### 3.2.3. 在哪里可以找到默认Token定义
 EmberZNet PRO协议栈已经为协议栈本身，应用程序框架，制造数据等定义了许多Token。
-要查看Token协议栈，请参考文件：  
+要查看协议栈所定义的Token，请参考文件：  
 ```<install-dir>/stack/config/token-stack.h```
 
 要查看Token应用程序框架，请在AppBuilder中生成项目后，导航至该项目的目录。文件```<project_name>_tokens.h```含有ZCL属性的Token，协议栈专用的Token文件```znet-token.h```中包括有Token插件头文件和Token自定义应用程序头文件。
@@ -274,7 +274,7 @@ EmberZNet PRO协议栈已经为协议栈本身，应用程序框架，制造数�
 这也正是我们在本文章开始时[你需要做](#12-目的)的部分中提出的问题。
 
 **前提条件**  
-请确保您已完成[准备课程](https://github.com/MarkDing/IoT-Developer-Boot-Camp/wiki/Zigbee-Preparatory-Course)，并确保所有SDK软件和开发套件都已准备就绪。
+请确保您已完成[Zigbee预备课程](https://github.com/MarkDing/IoT-Developer-Boot-Camp/wiki/Zigbee-Preparatory-Course-CN)，并确保所有SDK软件和开发套件都已准备就绪。
 
 ## 4.1. 硬体需求
 该实验需要EFR32MG21 / EFR32MG13 / EFR32MG12开发板中的任何一款，我们推荐使用EFR32MG12无线开发板BRD4162A，我们的示例项目也是基于该套件创建的。以下是该开发板的布局。
@@ -290,7 +290,7 @@ EmberZNet PRO协议栈已经为协议栈本身，应用程序框架，制造数�
 </br>
 
 ## 4.2. 软件需求
-该实验是在之前的三个实验“ [构建和连接](https://github.com/MarkDing/IoT-Developer-Boot-Camp/wiki/Zigbee-Hands-on-Forming-and-Joining)”，“ [发送/关闭命令](https://github.com/MarkDing/IoT-Developer-Boot-Camp/wiki/Zigbee-Hands-on-Sending-OnOff-Commands)”和“ [使用事件](https://github.com/MarkDing/IoT-Developer-Boot-Camp/wiki/Zigbee-Hands-on-Using-Event)”的基础上进行的，并且假设您已经按照我们的[预备课程](https://github.com/MarkDing/IoT-Developer-Boot-Camp/wiki/Zigbee-Preparatory-Course)中的说明安装了Simplicity Studio和必需的SDK 。
+该实验是在之前的三个实验“ [构建和连接](https://github.com/MarkDing/IoT-Developer-Boot-Camp/wiki/Zigbee-Hands-on-Forming-and-Joining-CN)”，“ [发送/关闭命令](https://github.com/MarkDing/IoT-Developer-Boot-Camp/wiki/Zigbee-Hands-on-Sending-OnOff-Commands-CN)”和“ [使用事件](https://github.com/MarkDing/IoT-Developer-Boot-Camp/wiki/Zigbee-Hands-on-Using-Event-CN)”的基础上进行的，并且假设您已经按照我们的[Zigbee预备课程](https://github.com/MarkDing/IoT-Developer-Boot-Camp/wiki/Zigbee-Preparatory-Course-CN)中的说明安装了Simplicity Studio和必需的SDK 。
 
 
 ## 4.3. 实践
