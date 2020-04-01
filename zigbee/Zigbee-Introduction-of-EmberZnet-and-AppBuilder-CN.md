@@ -409,10 +409,10 @@ Silicons Labs建议客户在回调中添加其自定义源代码。好处是，�
 
 #### 4.2.6. 测试和调试
 ##### 4.2.6.1. 烧录应用image
-请参阅[烧录image](Flashing-Image)，以将应用的image烧录到装置。
+请参阅[Flashing-Image](https://github.com/MarkDing/IoT-Developer-Boot-Camp/wiki/Flashing-Image)，以将应用的image烧录到装置。
 
 ##### 4.2.6.2. 打开控制台
-请参考[开放控制台](Opening-Console)以启动控制台。您可以获取串行端口的输出，也可以在此处运行命令。
+请参考[Opening-Console](https://github.com/MarkDing/IoT-Developer-Boot-Camp/wiki/Opening-Console)以启动控制台。您可以获取串行端口的输出，也可以在此处运行命令。
 
 ##### 4.2.6.3. 常用的命令
 以下是一些在测试和调试期间经常使用的命令
@@ -446,7 +446,7 @@ Silicons Labs建议客户在回调中添加其自定义源代码。好处是，�
         - dst-endpoint - INT8U - 发送消息的目的endpoint
 
 ##### 4.2.6.4. Network-Analyzer
-请参考[Network Analyzer](Network-Analyzer)开始捕获。您还可以学习如何设置用于解码数据包的安全密钥。
+请参考[Network Analyzer](https://github.com/MarkDing/IoT-Developer-Boot-Camp/wiki/Network-Analyzer)开始捕获。您还可以学习如何设置用于解码数据包的安全密钥。
 
 ## 5. 参考
 - [AN1211 Simplicity Studio V4 Installation Methods](https://www.silabs.com/documents/public/application-notes/an1121-headless-builds.pdf)
@@ -456,4 +456,4 @@ Silicons Labs建议客户在回调中添加其自定义源代码。好处是，�
 - [UG391 Zigbee App Framework Dev Guide](https://www.silabs.com/documents/public/user-guides/ug391-zigbee-app-framework-dev-guide.pdf)
 - [Silicon Labs: Zigbee - Application Framework API Reference Documentation](https://docs.silabs.com/zigbee/latest/)
 - [Peripheral Utilization on EFR32MG by EmberZNet Stack](https://www.silabs.com/community/wireless/zigbee-and-thread/knowledge-base.entry.html/2016/07/08/peripheral_utilizati-n9VT)
-********
+******** 
