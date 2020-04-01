@@ -253,7 +253,7 @@ After Zigbee device type is determined, you can set the endpoints and the cluste
 </div>  
 </br> 
 
-1. Secondly, you can add/remove endpoints here, and you can also choose a device profile to use on the endpoint. You can also select extra clusters based on the profile. In that case, when you set "ZCL Device Type", don't select a Zigbee device profile directly. Instead, choose "Zigbee Custom", and then select one device profile.  
+2. Secondly, you can add/remove endpoints here, and you can also choose a device profile to use on the endpoint. You can also select extra clusters based on the profile. In that case, when you set "ZCL Device Type", don't select a Zigbee device profile directly. Instead, choose "Zigbee Custom", and then select one device profile.  
 
 <div align="center">
   <img src="files/ZB-Zigbee-Introduction-of-EmberZnet-and-AppBuilder/ZCL-Clusters.gif">  
@@ -262,7 +262,7 @@ After Zigbee device type is determined, you can set the endpoints and the cluste
 
 You can select clusters, and select the attributes and commands defined by the cluster.
 
-1. The attributes and commands of the clusters are defined in Zigbee Cluster Library (ZCL). We need to refer to ZCL spec when we are selecting attirbutes and commands.
+3. The attributes and commands of the clusters are defined in Zigbee Cluster Library (ZCL). We need to refer to ZCL spec when we are selecting attirbutes and commands.
 
 ##### 4.2.3.4. "Plugins" Tab
 1. Properties of a plugin
@@ -285,7 +285,7 @@ A plugin has the following properties:
 Most of the plugins are open-sourced. You can check the source code to learn how it is implemented.
 &nbsp;
 
-1. Frequently used plugins  
+2. Frequently used plugins  
 
 <table>
     <tr>
