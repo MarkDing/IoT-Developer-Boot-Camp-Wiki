@@ -453,7 +453,7 @@ After the network formed, new devices can start to join.
 2. Before it joins, users need to get the install code and Eui64 of the new device, and then configure them on the coordinator.  
 3. The coordinator then derive a link key from the install code and set the coordinator to use this link key to encrypt the transport NWK key message for this new device.
 
-The rest procedure is similar to the procedure of joining with the well-known link key. **When coordinator starts to transport network to the new device, it encrypt the message and transport it to the new device.** When the new device receives this message, **it reads the install code from flash and derive a link key from it, then use this key to decrypt the message and get the network key**.
+The rest procedure is similar to the procedure of joining with the well-known link key. **When coordinator starts to transport network key to the new device, it encrypt the message and transport it to the new device.** When the new device receives this message, **it reads the install code from flash and derive a link key from it, then use this key to decrypt the message and get the network key**.
 
 ## 8. Reference
 - [UG103-01 Fundamentals: Wireless Network](https://www.silabs.com/documents/public/user-guides/ug103-01-fundamentals-wireless-network.pdf)
