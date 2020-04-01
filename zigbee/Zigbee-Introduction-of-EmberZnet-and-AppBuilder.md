@@ -419,10 +419,10 @@ The generated application image is .s37/.hex file. You can flash them into the d
 
 #### 4.2.6. Test and Debug
 ##### 4.2.6.1. Flash Application Image
-Please refer to [Flashing Image](Flashing-Image) to flash the application image to device.
+Please refer to [Flashing Image](https://github.com/MarkDing/IoT-Developer-Boot-Camp/wiki/Flashing-Image) to flash the application image to device.
 
 ##### 4.2.6.2. Open Console
-Please refer to [Opening Console](Opening-Console) to start the console. You can get the output of the serial port and also run commands here.
+Please refer to [Opening Console](https://github.com/MarkDing/IoT-Developer-Boot-Camp/wiki/Opening-Console) to start the console. You can get the output of the serial port and also run commands here.
 
 ##### 4.2.6.3. Useful Commands
 Below are some commands which are frequently used during testing and debugging.
@@ -456,7 +456,7 @@ Below are some commands which are frequently used during testing and debugging.
         - dst-endpoint - INT8U - The endpoint to send the message to
 
 ##### 4.2.6.4. Network Analyzer
-Please refer to [Network Analyzer](Network-Analyzer) to start the capture. You can also learn how to set the security keys for decoding the packets.
+Please refer to [Network Analyzer](https://github.com/MarkDing/IoT-Developer-Boot-Camp/wiki/Network-Analyzer) to start the capture. You can also learn how to set the security keys for decoding the packets.
 
 ## 5. Reference
 - [AN1211 Simplicity Studio V4 Installation Methods](https://www.silabs.com/documents/public/application-notes/an1121-headless-builds.pdf)
