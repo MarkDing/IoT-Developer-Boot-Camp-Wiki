@@ -248,4 +248,4 @@ Zigbee新手训练营系列培训将涵盖Zigbee基本知识，EmberZNet SDK和W
 ***
 
 # 结论
-我们希望您已经顺利完成了预备课程，并设置了开发环境为即将到来的Zigbee快速入门——新兵训练营系列培训课程做准备。完成本课程后，请填写[Zigbee预备课程的反馈意见](https://forms.office.com/Pages/ResponsePage.aspx?id=ItjbVDFSIEuUTW9KvNVB-xO90oXNwwFJgomf3rxz4l1URjE3UzdSWFRFQlRZS05aMlBYWUNTTUJEUy4u)，我们将对您的反馈意见表示感谢，同时我们将根据调查结果采取改进措施。
+我们希望您已经顺利完成了预备课程，并设置了开发环境为即将到来的Zigbee快速入门——新兵训练营系列培训课程做准备。完成本课程后，请填写[Zigbee预备课程反馈](https://forms.office.com/Pages/ResponsePage.aspx?id=ItjbVDFSIEuUTW9KvNVB-xO90oXNwwFJgomf3rxz4l1URjE3UzdSWFRFQlRZS05aMlBYWUNTTUJEUy4u)，我们将对您的反馈意见表示感谢，同时我们将根据调查结果采取改进措施。
