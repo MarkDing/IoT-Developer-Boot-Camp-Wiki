@@ -2,20 +2,24 @@
 <details>
 <summary><font size=5>目录</font> </summary>
 
+<!-- TOC -->
+
 - [1. 简介](#1-简介)
     - [1.1. 实验内容](#11-实验内容)
     - [1.2. 目的](#12-目的)
 - [2. 基本步骤](#2-基本步骤)
     - [2.1. 硬体需求](#21-硬体需求)
     - [2.2. 软件需求](#22-软件需求)
-        - [2.2.1. 检查EmberZNet SDK](#221-检查EmberZNet-SDK)
+        - [2.2.1. 检查EmberZNet SDK](#221-检查emberznet-sdk)
         - [2.2.2. 检查工具链](#222-检查工具链)
-        - [2.2.3. 使用Gecko Bootloader](#223-使用Gecko-Bootloader)
-- [3. 发送On/Off命令](#3-发送On/Off命令)
-    - [3.1. Light设备上的命令处理](#31-Light设备上的命令处理)
-    - [3.2. 从Switch设备发送命令](#32-从Switch设备发送命令)
+        - [2.2.3. 使用Gecko Bootloader](#223-使用gecko-bootloader)
+- [3. 发送On/Off命令](#3-发送onoff命令)
+    - [3.1. Light设备上的命令处理](#31-light设备上的命令处理)
+    - [3.2. 从Switch设备发送命令](#32-从switch设备发送命令)
 - [4. 测试项目](#4-测试项目)
 - [5. 结论](#5-结论)
+
+<!-- /TOC -->
 
 </details>
 
@@ -80,10 +84,9 @@ Zigbee快速入门——新兵训练营系列培训的实验环节将涵盖以�
 
 ### 2.2.3. 使用Gecko Bootloader
 Bootloader是存储在预留的闪存中的一段程序，可以初始化设备，更新固件image并可能执行某些完整性检查。如果怀疑应用程序没有运行，请始终检查Bootloader，因为缺少Bootloader会导致程序无法运行。  
-**注意**: 在本系列实验的开始，强烈建议对设备用Gecko SDK随附的预编译的Bootloader image进行烧录。应当用以“ -combined”结尾的image（例如，bootloader-storage-internal-single-combined.s37）烧录，这个image包含Gecko Bootloader的第一和第二阶段。该image可以在如下位置找到
-```c:\SiliconLabs\SimplicityStudio\v4\developer\sdks\gecko_sdk_suite\v2.6\platform\bootloader\sample-apps\bootloader-storage-internal-single\efr32mg12p332f1024gl125-brd4162a\```  
+**注意**: 在本系列实验的开始，强烈建议对设备用Gecko SDK随附的预编译的Bootloader image进行烧录。应当用以“ -combined”结尾的image（例如，bootloader-storage-internal-single-combined.s37）烧录，这个image包含Gecko Bootloader的第一和第二阶段。该image可以在如下位置找到```c:\SiliconLabs\SimplicityStudio\v4\developer\sdks\gecko_sdk_suite\v2.6\platform\bootloader\sample-apps\bootloader-storage-internal-single\efr32mg12p332f1024gl125-brd4162a\```  
 
-想知道有关如何将Gecko Bootloader添加到Zigbee项目的更多信息，请阅读[预备课程](https://github.com/MarkDing/IoT-Developer-Boot-Camp/wiki/Zigbee-Preparatory-Course#using-gecko-bootloader)。   
+想知道有关如何将Gecko Bootloader添加到Zigbee项目的更多信息，请阅读[Zigbee预备课程](https://github.com/MarkDing/IoT-Developer-Boot-Camp/wiki/Zigbee-Preparatory-Course-CN#使用-gecko-bootloader)。   
 **提示**: 有关Gecko Bootloader的更多信息，请参见下面的文档。    
 [UG266: Silicon Labs Gecko Bootloader User’s Guide](https://www.silabs.com/documents/public/user-guides/ug266-gecko-bootloader-user-guide.pdf)    
 [UG103.6: Bootloader Fundamentals](https://www.silabs.com/documents/public/user-guides/ug103-06-fundamentals-bootloading.pdf)  
@@ -157,7 +160,7 @@ bool emberAfOnOffClusterToggleCallback(void){
 
 保存并点击“Generate”生成。 
 
-与[第3.1章在Light设备上的命令处理](#31-Light上的命令处理)类似，将功能“ emberAfPluginButtonInterfaceButton0PressedShortCallback（）”和“ emberAfPluginButtonInterfaceButton1PressedShortCallback（）”手动添加到Zigbee_Switch_ZR_callbacks.c文件中。  
+与[第3.1章在Light设备上的命令处理](#31-Light设备上的命令处理)类似，将功能“ emberAfPluginButtonInterfaceButton0PressedShortCallback（）”和“ emberAfPluginButtonInterfaceButton1PressedShortCallback（）”手动添加到Zigbee_Switch_ZR_callbacks.c文件中。  
 保存修改后的.isc文件，然后按*Generate*。  
 每个命令在发送之前都存储在缓冲区中。传输的数据缓冲区应按以下方式构建：  
 实际的ZCL命令由以下功能发出。将\<\>替换为“On”或“Off”。
@@ -225,7 +228,7 @@ void emberAfPluginButtonInterfaceButton1PressedShortCallback(uint16_t timePresse
 # 4. 测试项目
 前2章介绍了如何使设备能够通过某些API发送和接收命令。  
 生成应用程序并将输出文件烧录到目标设备。在对设备进行烧录之前，请退出网络数据捕获状态，因为在连接Network Analyzer（或Energy Profiler）时调试器无法访问芯片。  
-**注意**：请**不要**在烧录之前擦除设备，否则“znet” token将被删除，并且设备将无法加入网络，只能按照上一个实验中的说明再次[加入网络](https://github.com/MarkDing/IoT-Developer-Boot-Camp/wiki/Zigbee-Hands-on-Forming-and-Joining#73-join-the-network-on-switch-router-device)。  
+**注意**：请**不要**在烧录之前擦除设备，否则“znet” token将被删除，并且设备将无法加入网络，只能按照上一个实验中的说明再次[加入网络](https://github.com/MarkDing/IoT-Developer-Boot-Camp/wiki/Zigbee-Hands-on-Forming-and-Joining-CN#73-将Switch(路由器)设备上加入网络)。  
 按下Button0发送ON命令，您将注意到Light上的LED1打开。  
 按下Button1发送OFF命令，您会注意到Light 1的LED1熄灭。  
 **注意**：默认情况下，Light节点上的LED0用于指示网络活动，因此，发送命令时还能观察light节点上的LED0闪烁。  
@@ -261,7 +264,7 @@ Off command is received
 </div>  
 </br>  
 
-以on / off命令为例，指定通用ZCL帧的格式，ZCL帧格式由ZCL头和ZCL有效数据包。常规ZCL帧的格式应如下图所示。
+以on / off命令为例，来详细说明General ZCL Frame的格式，ZCL Frame格式由ZCL头和ZCL有效数据包组成。General ZCL Frame的格式应如下图所示。
 <div align="center">
   <img src="files/ZB-Zigbee-Hands-on-Sending-OnOff-Commands/format_of_the_general_ZCL_frame.png">  
 </div>  
