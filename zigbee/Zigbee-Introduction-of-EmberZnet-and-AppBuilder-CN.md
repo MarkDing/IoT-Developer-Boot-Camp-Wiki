@@ -141,7 +141,7 @@ Silicon Labs提供了三种类型的Bootloader。
 |Bootloader Xmodem UART|也称为独立Bootloader。主要用于基于UART的NCP。主机可以通过UART将image传输到NCP，以升级NCP image。|
 |EZSP SPI Bootloader|另一种独立的Bootloader。主要用于基于SPI的NCP。主机可以通过SPI将image传输到NCP，以升级NCP image。|
 |Internal Storage Bootloader|用于SoC。将新软件image存储在内部闪存中。|
-|SPI Storage Bootloader|用于SoC。将新图像存储在SPI闪存中。|
+|SPI Storage Bootloader|用于SoC。将新image存储在SPI闪存中。|
 
 还有一些用于DEV-Kit的预编译的Bootloader image。可以在Gecko SDK Suite目录下的platform \ bootloader \ sample-apps目录中找到它们。   
 例如  
@@ -215,7 +215,7 @@ Simplicity IDE是一个功能强大的IDE。集成了许多工具，包括：
 4. 选择我们用于SoC的最新EmberZNet协议栈，单击“Next”；
 5. 这里将列出示例项目。您可以选择其中之一，单击“Next”；
 6. 命名您的项目，例如“ ZigbeeMinimal_Demo”，单击“Next”；
-7. 在下一个窗口（项目设置）中，选择板（如果要开发自定义板，请将“板”字段留空，然后选择零件号。）和编译器，单击“Finish”。
+7. 在下一个窗口（项目设置）中，选择板（如果要开发自定义板，请将“board”字段留空，然后选择芯片型号。）和编译器，单击“Finish”。
 8. 之后，创建项目。项目的isc文件将自动打开。
 
 <div align="center">
@@ -228,7 +228,7 @@ Simplicity IDE是一个功能强大的IDE。集成了许多工具，包括：
 在配置Zigbee项目之前，建议先阅读[UG391](https://www.silabs.com/documents/public/user-guides/ug391-zigbee-app-framework-dev-guide.pdf)。
 
 ##### 4.2.3.1. "General" 选项卡
-打开isc文件时，默认选项卡是“General”选项卡。在这里，您可以看到项目的板/零件和工具链。您还可以看到项目的绝对路径。您可以在此处更改为其他零件或不同的工具链。
+打开isc文件时，默认选项卡是“General”选项卡。在这里，您可以看到项目的板/芯片型号和工具链。您还可以看到项目的绝对路径。您可以在此处更改为其他芯片或不同的工具链。
 
 <div align="center">
   <img src="files/ZB-Zigbee-Introduction-of-EmberZnet-and-AppBuilder/General-Tab.png">  
@@ -354,7 +354,7 @@ Silicons Labs建议客户在回调中添加其自定义源代码。好处是，�
 </div>
 
 ##### 4.2.3.6.“Includes”选项卡
-在“Includes”选项卡下，您可以包含自定义头文件，包含自定义标记头文件，定义自定义宏以及定义自定义事件和处理程序对。
+在“Includes”选项卡下，您可以包含自定义头文件，包含自定义Token头文件，定义自定义宏以及定义自定义事件和处理程序对。
 
 <div align="center">
   <img src="files/ZB-Zigbee-Introduction-of-EmberZnet-and-AppBuilder/Includes-Tab.png">  
@@ -405,7 +405,7 @@ Silicons Labs建议客户在回调中添加其自定义源代码。好处是，�
 - 如果使用的是IAR，则为“ IAR ARM-默认”目录
 - 如果使用的是GCC，则为“ GNU ARM v7.2.1-默认”目录
 
-生成的应用程序image是.s37 / .hex文件。您可以将它们闪存到设备中进行测试。
+生成的应用程序image是.s37 / .hex文件。您可以将它们烧录到设备中进行测试。
 
 #### 4.2.6. 测试和调试
 ##### 4.2.6.1. 烧录应用image
@@ -420,9 +420,9 @@ Silicons Labs建议客户在回调中添加其自定义源代码。好处是，�
 - **plugin network-creator form [useCentralizedSecurity:1] [panId:2] [radioTxPower:1] [channel:1]**
   - 建立具有指定参数的网络。
       - useCentralizedSecurity-BOOLEAN-是否创建集中式网络。如果该值为false，则设备将尝试加入分布式网络。
-      - panId-INT16U-要形成的网络的PanID
-      - radioTxPower-INT8S-要形成的网络的Tx功率
-      - channel-INT8U-要形成的网络所在的通道
+      - panId-INT16U-要创建的网络的PanID
+      - radioTxPower-INT8S-要创建的网络的Tx功率
+      - channel-INT8U-要创建的网络所在的信道
 
 - **plugin network-creator-security open-network**
   - 打开网络并允许入网
