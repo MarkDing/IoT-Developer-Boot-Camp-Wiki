@@ -1,459 +1,453 @@
-[English](Zigbee-Introduction-of-EmberZnet-and-AppBuilder.md) | 中文
-
 <details>
-<summary><font size=5>目录</font> </summary>  
-&nbsp;
+<summary><font size=5>目录</font> </summary>
 
 <!-- TOC -->
 
-- [1. 总览](#1-总览)
-- [2. SoC和模块](#2-soc和模块)
-    - [2.1. SoCs](#21-socs)
-    - [2.2. 模块](#22-模块)
-    - [2.3. 框图](#23-框图)
-- [3. 软件开发套件](#3-软件开发套件)
-    - [3.1. 设计模型](#31-设计模型)
-    - [3.2. Gecko Bootloader](#32-gecko-bootloader)
-    - [3.3. EmberZnet SDK](#33-emberznet-sdk)
-- [4. 开发工具](#4-开发工具)
-    - [4.1. 无线入门套件](#41-无线入门套件)
-    - [4.2. Simplicity IDE](#42-simplicity-ide)
-        - [4.2.1. 总览](#421-总览)
-        - [4.2.2. 创建一个Zigbee项目](#422-创建一个zigbee项目)
-        - [4.2.3. 配置项目](#423-配置项目)
-            - [4.2.3.1. "General" 选项卡](#4231-general-选项卡)
-            - [4.2.3.2. "Zigbee Stack" 选项卡](#4232-zigbee-stack-选项卡)
-            - [4.2.3.3. "ZCL CLuster" 选项卡](#4233-zcl-cluster-选项卡)
-            - [4.2.3.4. “Plugins”选项卡](#4234-plugins选项卡)
-            - [4.2.3.5. “Callbacks”选项卡](#4235-callbacks选项卡)
-            - [4.2.3.6.“Includes”选项卡](#4236includes选项卡)
-            - [4.2.3.7. 硬件配置](#4237-硬件配置)
-        - [4.2.4. 生成项目](#424-生成项目)
-        - [4.2.5. 建立项目](#425-建立项目)
-        - [4.2.6. 测试和调试](#426-测试和调试)
-            - [4.2.6.1. 烧录应用image](#4261-烧录应用image)
-            - [4.2.6.2. 打开控制台](#4262-打开控制台)
-            - [4.2.6.3. 常用的命令](#4263-常用的命令)
-            - [4.2.6.4. Network-Analyzer](#4264-network-analyzer)
-- [5. 参考](#5-参考)
+- [1. 简介](#1-简介)
+    - [1.1. 实验内容](#11-实验内容)
+    - [1.2. 目的](#12-目的)
+- [2. 非易失性存储器的基础知识](#2-非易失性存储器的基础知识)
+    - [2.1. 什么是非易失性存储？](#21-什么是非易失性存储)
+    - [2.2. 为什么在EmberZNet PRO中需要非易失性存储？](#22-为什么在emberznet-pro中需要非易失性存储)
+    - [2.3. Silicon Labs如何实现非易失性数据存储？](#23-silicon-labs如何实现非易失性数据存储)
+- [3. 使用Token API访问NVM3对象](#3-使用token-api访问nvm3对象)
+    - [3.1. Token类型：Dynamic Tokens和Manufacturing Tokens](#31-token类型dynamic-tokens和manufacturing-tokens)
+        - [3.1.1. Dynamic Tokens](#311-dynamic-tokens)
+            - [3.1.1.1. Basic (Non-indexed) Tokens](#3111-basic-non-indexed-tokens)
+            - [3.1.1.2. Indexed Tokens](#3112-indexed-tokens)
+        - [3.1.2. Manufacturing Tokens](#312-manufacturing-tokens)
+    - [3.2. Token的用法：创建和访问](#32-token的用法创建和访问)
+        - [3.2.1. Dynamic Tokens](#321-dynamic-tokens)
+            - [3.2.1.1. 创建Dynamic Tokens](#3211-创建dynamic-tokens)
+                - [3.2.1.1.1. 定义Token名称](#32111-定义token名称)
+                - [3.2.1.1.2. 定义Token类型](#32112-定义token类型)
+                - [3.2.1.1.3. 定义Token存储](#32113-定义token存储)
+            - [3.2.1.2. 访问Dynamic Tokens](#3212-访问dynamic-tokens)
+                - [3.2.1.2.1. 访问Basic (Non-indexed) Tokens](#32121-访问basic-non-indexed-tokens)
+                - [3.2.1.2.2. 访问Indexed Tokens](#32122-访问indexed-tokens)
+        - [3.2.2. Manufacturing Tokens](#322-manufacturing-tokens)
+            - [3.2.2.1. 访问Manufacturing Tokens](#3221-访问manufacturing-tokens)
+        - [3.2.3. 在哪里可以找到默认Token定义](#323-在哪里可以找到默认token定义)
+- [4. 实验](#4-实验)
+    - [4.1. 硬体需求](#41-硬体需求)
+    - [4.2. 软件需求](#42-软件需求)
+    - [4.3. 实践](#43-实践)
+        - [4.3.1. 打开Switch项目](#431-打开switch项目)
+        - [4.3.2. 创建自定义Token](#432-创建自定义token)
+        - [4.3.3. 访问Basic Tokens LED1_ON_OFF](#433-访问basic-tokens-led1_on_off)
+            - [4.3.3.1. 步骤1：检索Basic Tokens数据](#4331-步骤1检索basic-tokens数据)
+            - [4.3.3.2. 步骤2：写入基本的Tokens数据](#4332-步骤2写入基本的tokens数据)
+            - [4.3.3.3. 步骤3：测试](#4333-步骤3测试)
+        - [4.3.4. 访问Manufacturing Tokens](#434-访问manufacturing-tokens)
+            - [4.3.4.1. 步骤4：读取Manufacturing Tokens MFG_STRING](#4341-步骤4读取manufacturing-tokens-mfg_string)
 
 <!-- /TOC -->
+
 </details>
 
-********
+***  
+[English](Zigbee-Hands-on-Non-volatile-Data-Storage.md) | 中文
 
-## 1. 总览
-Silicon Labs的Zigbee解决方案包括三个部分： 
-- SoC和模块
-- 软件开发套件
-- 开发工具
+# 1. 简介
+## 1.1. 实验内容
+Zigbee快速入门——新兵训练营培训的实验环节将涵盖以下四个部分。我们通过这四个部分来向大家逐步展示，如何从零开始构建一个Zigbee应用。
 
-## 2. SoC和模块
-你可以从[Silicon Labs的官方网站](https://www.silabs.com/wireless/zigbee)了解到，Mighty Gecko系列的SoC和模块用于Zigbee应用。Mighty Gecko是Gecko家族中最强大的芯片。它支持Zigbee，蓝牙，Thread，私有技术。
+本文档中的实验是“Zigbee快速入门——新兵训练营”系列中的第二部分。 
+-   第一部分，由Light构建网络，并使用install code将Switch加入到这个网络。
+-   第二部分，在设备上使用API发送，接收和处理On-Off命令。
+-   第三部分，在Switch端用一个周期事件来执行自定义代码，在我们的实验中是控制LED闪烁。
+-   **第四部分，在Switch端使用非易失性存储器来存储自定义数据。**
 
-### 2.1. SoCs
+## 1.2. 目的
+本实验演示了EmberZNet Stack上非易失性数据存储的基本用法。此外，本文档中还包含了一些有关NVM, Token的基本知识，以帮助所有人更好地理解该实验。
 
-|SoC 系列|MCU 内核|频段|闪存大小（KB）|内存大小（KB）|  
-|:-|:-|:-|:-|:-|
-|[EFR32MG21](https://www.silabs.com/wireless/zigbee/efr32mg21-series-2-socs)|ARM Cortex-M33|2.4GHz|512/768/1024|64/96|
-|[EFR32MG12](https://www.silabs.com/wireless/zigbee/efr32mg12-series-1-socs)|ARM Cortex-M4|2.4GHZ/Sub-GHz|1024|128/256|
-|[EFR32MG13](https://www.silabs.com/wireless/zigbee/efr32mg13-series-1-socs)|ARM Cortex-M4|2.4GHZ/Sub-GHz|512|64|
+**你将学习**  
+* 通过本实验课程，您将学习非易失性数据存储的基础知识，Silicon Labs提供的数据存储方案，以及如何使用Tokens来访问非易失性数据存储对象。
 
-### 2.2. 模块
+**你需要做**  
+* 在本实验中，我们需要解决的一个问题是，在没有EEPROM的EFR32MG12平台上，如何在系统掉电或复位时来保存当前灯的开/关状态。在本实验中，我们提供了使用Tokens来实现此目的的解决方案。
+* 而且，您还需要检索制造商在生产过程中所烧录的制造字符串。
 
-使用模块的好处在于，无需再进行认证，可以节省大量的时间，例如FCC，CE，ISED等。
-
-|模块 系列|MCU 内核|频段|闪存大小（KB）|内存大小（KB）|  
-|:-|:-|:-|:-|:-|
-|[MGM210 Series](https://www.silabs.com/wireless/zigbee/efr32mg21-series-2-modules)|ARM Cortex-M33|2.4GHz|1024|96|
-|[MGM12  Series](https://www.silabs.com/wireless/zigbee/efr32mg12-series-1-modules)|ARM Cortex-M4|2.4GHz|1024|256|
-|[MGM13  Series](https://www.silabs.com/wireless/zigbee/efr32mg13-series-1-modules)|ARM Cortex-M4|2.4GHz|1024|256|  
-
-### 2.3. 框图
-下面是EFR32MG12系列SoC的框图。
-  
+下图说明了该实验的基本流程。
 <div align="center">
-  <img src="files/ZB-Zigbee-Introduction-of-EmberZnet-and-AppBuilder/SoC-Block-Diagram.png">  
-</div>
-
-SoC可以在6种不同的功耗模式下工作。从最大功耗到最低功耗：
-
-- EM0 - Active
-- EM1 - Sleep
-- EM2 - Deep Sleep
-- EM3 - Stop
-- EM4 - Hibernate
-- EM4 - Shutoff  
-
-**注意:**
-1. 在该图中，每个功能块都用一个颜色标记，该颜色表示该功能块能工作的最低能量模式。在EmberZnet中，Zigbee协调器和路由器始终在EM0下工作，因为它们始终由主电源供电。Zigbee睡眠终端设备在EM2或EM4（休眠）模式下工作。
-2. SoC中集成了高频RC振荡器（HFRCO）和低频RC振荡器（LFRCO）。对于Zigbee应用，必须连接一个HFXO时钟，因为无线电需要高精度的高频时钟才能工作，但它们仍可以将LFRCO用于外围设备。 
-3. 内部集成了DCDC。使用者可以选择使用内部DCDC或绕过DCDC。 建议在睡眠节点上使用内部DCDC，从而更好的控制功耗。 
-4. 无线电收发器已经集成，并且已经集成了PA。用户可以选择使用DCDC或主电源为PA供电。如果发射功率大于13dbm，建议使用主电源为PA供电。否则，请改用DCDC。
-5. 集成的数据包跟踪接口（PTI）可用于空中捕获数据包。这对于调试非常有用。
-6. 集成的数据包流量仲裁（PTA）接口可用于改善Zigbee和WiFi之间的干扰。这对于Zigbee网关非常有帮助。
-
-## 3. 软件开发套件
-### 3.1. 设计模型
-EmberZnet为Zigbee应用程序提供了两种设计模型：
-- 网络协处理器（NCP）模型
-- 片上系统（SoC）模型
-
-<div align="center">
-  <img src="files/ZB-Zigbee-Introduction-of-EmberZnet-and-AppBuilder/Design-Models.png">  
-</div>
-
-1. 在SoC模型中，所有协议层以及应用程序都在单个芯片上实现，较底层的协议栈功能通过专用的硬件外围模块来实现。
-
-   通常以库API调用的形式提供对协议栈功能的访问。  
-   在协议栈和应用程序之间可能有一定数量的对微控制器的外围设备或资源的共享访问。  
-   尽管共享可能会给应用程序开发人员带来更多限制，但最终会带来更低的材料成本和更紧凑的硬件设计。  
-
-2. 另一种实现是网络协处理器或NCP模型。在此模型中，协议栈和底层的无线电功能都驻留在一个芯片上，以实现有关协议栈功能的最佳集成和效率。但是，协议栈与应用程序接口是通过诸如SPI或UART之类的串行接口，而不是函数调用库。通过在这些接口之上使用专有的串行协议，主机微控制器可以与协议栈交互，从而有可能将串行处理抽象成库或系统模块的操作，从而更好地满足主机上运行的应用程序的需求。
-
-   该模型为应用程序设计和主机处理器体系结构提供了极大的灵活性。  
-   它允许应用程序设计者忽略有关协议栈本身的许多实现细节。  
-   根据NCP的实现，NCP固件还可能会公开其他功能或协议栈行为的抽象，以完成针对正在运行的应用程序类型定制的更高级别的应用程序任务。  
-   我们提供了一个应用程序框架来为那些只需要标准或常用功能集的用户编译可定制的NCP和NCP示例应用程序。  
-   
-   有关这些选项的更多详细检查，请参阅应用笔记和有关可定制NCP，EZSP-SPI和EZSP-UART（例如[AN1010](https://www.silabs.com/documents/public/application-notes/an1010-customized-ncp.pdf), [AN711](https://www.silabs.com/documents/public/application-notes/an711-ezsp-spi-host-interfacing-guide.pdf), [AN706](https://www.silabs.com/documents/public/application-notes/an706-ezsp-uart-host-interfacing-guide.pdf)）的培训资源。
-   
-您可能想参考[UG103.3](https://www.silabs.com/documents/public/user-guides/ug103-03-fundamentals-design-choices.pdf)的设计选择以及何时选择SoC和NCP模型。
-
-### 3.2. Gecko Bootloader
-为了支持固件升级，我们需要一个Bootloader。
-
-1. 对于SoC模型，升级方案为：
-- 设备启动并运行应用程序
-- 应用程序通过空中接收新image并将新image存储到存储单元中
-- 设备重置，并且通过Bootloader加载新image
-
-2. 对于NCP模型，升级方案为：
-- 主机通过互联网接收新的NCP image
-- 主机重置NCP并让NCP停留在Bootloader阶段
-- 主机通过UART / SPI将新的NCP image传输到NCP并覆盖当前image
-- 主机重置NCP并运行新image
-
-Silicon Labs提供了三种类型的Bootloader。  
-
-|类型|注释|  
-|:-|:-|
-|Bootloader Xmodem UART|也称为独立Bootloader。主要用于基于UART的NCP。主机可以通过UART将image传输到NCP，以升级NCP image。|
-|EZSP SPI Bootloader|另一种独立的Bootloader。主要用于基于SPI的NCP。主机可以通过SPI将image传输到NCP，以升级NCP image。|
-|Internal Storage Bootloader|用于SoC。将新软件image存储在内部闪存中。|
-|SPI Storage Bootloader|用于SoC。将新图像存储在SPI闪存中。|
-
-还有一些用于DEV-Kit的预编译的Bootloader image。可以在Gecko SDK Suite目录下的platform \ bootloader \ sample-apps目录中找到它们。   
-例如  
-```
-The default path for Gecko SDK Suite V2.7:
-C:\SiliconLabs\SimplicityStudio\v4\developer\sdks\gecko_sdk_suite\v2.7  
-
-The path for pre-built bootloader:  
-C:\SiliconLabs\SimplicityStudio\v4\developer\sdks\gecko_sdk_suite\v2.7\platform\bootloader\sample-apps
-```
-
-### 3.3. EmberZnet SDK
-EmberZnet SDK是Gecko SDK套件的一部分。可以在Gecko SDK Suite目录下的protocol\zigbee中找到它。EmberZnet SDK的目录层次结构如下（仅列出了一些重要目录）：
-
-```
-+---app
-|   +---framework  -- Source code of the framework, consist of many plugins
-|   |   +---plugin          -- plugins applicable for host and SoC
-|   |   +---plugin-host     -- plugins applicable for host
-|   |   +---plugin-soc      -- plugins applicable for SoC
-|   +---gpd        -- Source code of Green Power Device SDK
-+---build          -- Libraries of some component
-+---documentation  -- All documents about EmberZnet SDK
-+---ncp-images     -- Pre-built NCP images for DEV-Kits
-\---tool
-    +---image-builder  -- Tools for build Zigbee OTA files
-```
-
-## 4. 开发工具
-### 4.1. 无线入门套件
-Silicon Labs的无线入门套件（WSTK）由主板和无线电板组成。就像下面这样：
-
-<div align="center">
-  <img src="files/ZB-Zigbee-Introduction-of-EmberZnet-and-AppBuilder/WSTK.png">  
-</div> 
-
-1. 母板是多功能J-Link调试器。在大多数情况下，我们将使用：
-- 2个按钮
-- 2个LED
-- 液晶屏
-- J-Link
-- 捕获空中网络包
-- 测量电流
-- UART转USB转换器
-
-母板还可以用作独立的闪存编程器和J-Link调试器，以调试定制板。如[AN958](https://www.silabs.com/documents/public/application-notes/an958-mcu-stk-wstk-guide.pdf)第4.1节所述，建议在自定义板上设计10管脚的Simplicity微型调试连接器。  
-开始编程或调试时，只需将主板的微型连接器连接到自定义板上，然后将主板的“调试模式”设置为“输出”即可。（有关详细信息，请参阅[调试定制板](Debugging-Custom-Board)）。
-
-2. 开发板是可更换的。用户可以交换不同的开发板来评估不同的SoC或模块 
-
-<div align="center">
-  <img src="files/ZB-Zigbee-Introduction-of-EmberZnet-and-AppBuilder/Swap-Radio-Board.png">  
-</div>
-
-### 4.2. Simplicity IDE
-#### 4.2.1. 总览
-Simplicity IDE是一个功能强大的IDE。集成了许多工具，包括：
-- AppBuilder
-- Hardware Configurator
-- Network Analyzer
-- Energy Profiler
-- Simplicity Commander
-
-这些工具将在Zigbee开发过程中频繁使用。我们将演示如何创建Zigbee项目，配置项目，调试项目。所有这些工具将在演示期间进行介绍。
-
-#### 4.2.2. 创建一个Zigbee项目
-您可以按照以下步骤创建Zigbee项目： 
-1. 转到File->New->Project。 这将显示 "New Project Wizard";
-2. 选择“ Silicon Labs AppBuilder项目”，单击“Next”；
-3. 选择“ Silicon Labs Zigbee”，单击“Next”；
-4. 选择我们用于SoC的最新EmberZNet协议栈，单击“Next”；
-5. 这里将列出示例项目。您可以选择其中之一，单击“Next”；
-6. 命名您的项目，例如“ ZigbeeMinimal_Demo”，单击“Next”；
-7. 在下一个窗口（项目设置）中，选择板（如果要开发自定义板，请将“板”字段留空，然后选择零件号。）和编译器，单击“Finish”。
-8. 之后，创建项目。项目的isc文件将自动打开。
-
-<div align="center">
-  <img src="files/ZB-Zigbee-Introduction-of-EmberZnet-and-AppBuilder/Create-Project.gif">  
-</div>
-
-&nbsp;
-
-#### 4.2.3. 配置项目
-在配置Zigbee项目之前，建议先阅读[UG391](https://www.silabs.com/documents/public/user-guides/ug391-zigbee-app-framework-dev-guide.pdf)。
-
-##### 4.2.3.1. "General" 选项卡
-打开isc文件时，默认选项卡是“General”选项卡。在这里，您可以看到项目的板/零件和工具链。您还可以看到项目的绝对路径。您可以在此处更改为其他零件或不同的工具链。
-
-<div align="center">
-  <img src="files/ZB-Zigbee-Introduction-of-EmberZnet-and-AppBuilder/General-Tab.png">  
-</div>
-
-##### 4.2.3.2. "Zigbee Stack" 选项卡
-在“ Zigbee Stack”选项卡下，您可以设置设备类型和安全性类型。对于Zigbee设备类型，我们有四个选项：
-- Cooridnator or Router
-- Router
-- End Device
-- Sleepy End Device
-
-##### 4.2.3.3. "ZCL CLuster" 选项卡
-确定Zigbee设备类型后，您可以设置endpoint和每个endpoint所在的cluster。这些功能在“ ZCL Clusters”选项卡下。
-
-1. 首先，您需要设置制造商代码。这是Zigbee联盟在您公司的第一个产品通过联盟认证时提供的代码。如果您的公司已经获得了制造代码，则可以从列表中选择。
- 
-<div align="center">
-  <img src="files/ZB-Zigbee-Introduction-of-EmberZnet-and-AppBuilder/Manufacture-Code.png">  
-</div>
-
-1. 其次，您可以在此处添加/删除endpoint，还可以选择要在endpoint上使用的设备配置文件。您还可以根据配置文件选择其他Clusters。在这种情况下，设置“ ZCL设备类型”时，请勿直接选择Zigbee设备配置文件。而是选择“ Zigbee Custom”，然后选择一个设备配置文件。
-<div align="center">
-  <img src="files/ZB-Zigbee-Introduction-of-EmberZnet-and-AppBuilder/ZCL-Clusters.gif">  
+  <img src="files/ZB-Zigbee-Hands-on-Non-volatile-Data-Storage/non_volatile_data_storage_working_flow.png">  
 </div>  
-您可以选择Cluster，然后选择Cluster定义的属性和命令。
+</br>  
 
-1. Cluster的属性和命令在Zigbee Cluster Library（ZCL）中定义。选择属性和命令时，需要参考ZCL规范。
+***
 
-##### 4.2.3.4. “Plugins”选项卡
-1. 插件的属性
+# 2. 非易失性存储器的基础知识  
+## 2.1. 什么是非易失性存储？
+非易失性存储器（NVM）是指当设备掉电后，所存储的数据不会消失的存储器。它通常是指半导体存储芯片中的存储器，包括NAND闪存和固态硬盘（SSD）之类的闪存存储，以及EPROM（可擦除可编程ROM）和EEPROM（电可擦除可编程ROM）之类的ROM芯片。  
+在Silicon Labs的微处理器和无线射频芯片上，其内部都没有包含EEPROM，NVM的功能是通过闪存来实现的。
+
+## 2.2. 为什么在EmberZNet PRO中需要非易失性存储？
+通常，EmberZNet协议栈和应用程序需要存储一些数据对象，这些对象在电源掉电之后仍需要保留。其中一部分数据是制造数据，只能写入一次，它由生产商在生产过程中写入。另一部分数据，在产品的整个生命周期内都会被频繁地写入和读取，这被称为动态数据。
+
+## 2.3. Silicon Labs如何实现非易失性数据存储？
+总体而言，Silicon Labs为**闪存**中的非易失性数据存储提供3种不同的实现方案。并且还提供Tokens机制，用于从非易失性数据存储中存储和检索数据。
+
+**Persistent Store (PS Store)**  
+PS Store仅可用于除EFR32 2系列以外的所有的蓝牙设备。PS Store的大小为2048字节，并使用两个闪存页进行存储。蓝牙协议栈和应用程序都可以在该区域中存储数据。  
+由于本文档重点介绍EmberZNet PRO，因此在本文档中我们不会过多介绍PS Store。
+
+**SimEEv1和SimEEv2**  
+SimEEv1（模拟EEPROM版本1）或SimEEv2（模拟EEPROM版本2）与EmberZNet PRO，Silicon Labs Thread，Silicon Labs Connect在EM35x和EFR32系列1平台上配合使用。SimEEv1使用两个虚拟页，每个虚拟页包含两个闪存页，而SimEEv2使用三个虚拟页，其中每个虚拟页包含6个闪存页。
+
+**NVM3**  
+第三代非易失性存储器（NVM3）数据存储是SimEEv1 / v2和PS Store的替代产品，旨在与EFR32上运行的EmberZNet，Silicon Labs Thread，Connect和Bluetooth应用程序，以及EFM32上运行的MCU应用程序一起使用。    
+由于NVM3具有更高的可配置性，可以更好地平衡Tokens容量与所需的闪存，并且与DMP（动态多协议）应用程序兼容，因此推荐在EFR32上进行开发时，使用该方案。  
+在本实验中，我们将使用NVM3进行数据存储。  
+
+**Token**  
+Token的机制使应用程序可以将定义的数据类型存储在非易失性存储中，并且SimEEv1 / v2和NVM3都可以在Token机制下运行。  
+Token有两个部分：Token标识和Token数据。Token标识是用于存储和检索Token数据的唯一标识符。通过使用Token标识，应用程序无需知道数据在非易失性存储中的确切位置即可进行检索。  
+下图说明了Token与非易失性数据存储机制之间的关系。Silicon Labs提供了三种不同的Dynamic Tokens实现：SimEEv1（模拟EEPROM版本1），SimEEv2（模拟EEPROM版本2）和NVM3（第三代非易失性存储）。  
 
 <div align="center">
-  <img src="files/ZB-Zigbee-Introduction-of-EmberZnet-and-AppBuilder/Plugin-Properties.png">  
-</div> 
-
-插件具有以下属性：
-|属性|注释|
-|:-|:-|
-|Plugin Name|插件名称|
-|Quality|插件的质量可能是：:<br><li>制作准备</li><li>测试工具</li><li>扩展需求</li><li>示例代码</li><li>内部测试</li><li>公开测试</li><li>调试工具</li>|
-|Option|插件选项|
-|Located|插件目录|
-|Source files|插件的源文件|
-|Defined callbacks|此插件定义的回调|
-|Implemented callbacks|在协议栈或其他插件中定义的回调，用此插件实现|  
-大多数插件都是开源的。您可以检查源代码以了解其实现方式。
-&nbsp;
-
-2. 常用插件
-
-<table>
-    <tr>
-        <th>类别</th>
-        <th>插件</th>
-        <th>注释</th>
-    </tr>
-    <tr>
-        <td rowspan="6">核心协议栈</td>
-        <td>Zigbee PRO Stack Library</td>
-        <td>具有路由支持的核心协议栈，由路由和协调器使用</td>
-    </tr>
-    <tr>
-        <td>Zigbee PRO Leaf Library</td>
-        <td>不支持路由的核心协议栈，由终端设备使用</td>
-    </tr>   
-    <tr>
-        <td>End Device Support</td>
-        <td>一个支持终端设备的插件</td>
-    </tr>       
-    <tr>
-        <td>Network Creator</td>
-        <td>创建网络，由协调器使用</td>
-    </tr>  
-    <tr>
-        <td>Network Creator Security</td>
-        <td>协调器的安全设置，例如为新设备配置Link key</td>
-    </tr>  
-    <tr>
-        <td>Network Steering</td>
-        <td>扫描可加入的网络并加入</td>
-    </tr>  
-    <tr>
-        <td rowspan="2">睡眠</td>
-        <td>Idle/Sleep</td>
-        <td>由睡眠终端设备使用。空闲时设备将进入EM2。</td>
-    </tr>     
-    <tr>
-        <td>EM4</td>
-        <td>插件可帮助睡眠终端设备进入EM4</td>
-    </tr>       
-    <tr>
-        <td>主条目</td>
-        <td>Simple Main</td>
-        <td>项目的主要入口</td>
-    </tr>      
-    <tr>
-        <td rowspan="6">非易失性数据</td>
-        <td>Simulate EEPROM Version 1 Library</td>
-        <td>模拟EEPROM版本1的库，用于存储非易失性数据</td>
-    </tr>       
-    <tr>
-        <td>Simulate EEPROM Version 2 Library</td>
-        <td>模拟EEPROM版本2的库，用于存储非易失性数据</td>
-    </tr>  
-    <tr>
-        <td>NVM3 Library</td>
-        <td>NVM3库，用于存储非易失性数据</td>
-    </tr>                 
-</table>
-
-3. 插件可能依赖于其他插件。在生成项目时，AppBuilder将检查依赖性。如果不满足依赖关系，则会出现警告。
-
-##### 4.2.3.5. “Callbacks”选项卡
-Silicons Labs建议客户在回调中添加其自定义源代码。好处是，当您从旧的SDK迁移到新的SDK时，这将非常容易。
-
-建议在生成的文件&lt;projectname&gt;_callbacks.c 中定义和实现选定的回调。您也可以将它们添加到新的源文件中。
-
-使用它们之前，请确保已阅读回调的注释。
-  
+  <img src="files/ZB-Zigbee-Hands-on-Non-volatile-Data-Storage/Non-volatile_Data_Storage_and_Tokens.png">  
+</div>  
 <div align="center">
-  <img src="files/ZB-Zigbee-Introduction-of-EmberZnet-and-AppBuilder/Callbacks-Tab.png">  
+  <b>非易失性存储和Token</b>
+</div>  
+
+***
+
+# 3. 使用Token API访问NVM3对象
+在EFR32上进行开发时，我们推荐使用NVM3进行数据存储，因此以下部分将介绍如何使用Token API访问NVM3对象。
+
+## 3.1. Token类型：Dynamic Tokens和Manufacturing Tokens
+根据Token的使用方式，可以将其区分为Dynamic Tokens或Manufacturing Tokens。
+
+<div align="center">
+  <img src="files/ZB-Zigbee-Hands-on-Non-volatile-Data-Storage/types_of_tokens_1.png">
 </div>
+</br>
 
-##### 4.2.3.6.“Includes”选项卡
-在“Includes”选项卡下，您可以包含自定义头文件，包含自定义标记头文件，定义自定义宏以及定义自定义事件和处理程序对。
+### 3.1.1. Dynamic Tokens
+Dynamic Tokens系统的基本目的是允许它可以像普通RAM一样频繁地访问（读取和写入），而且Token数据在系统重新启动和断电期间得以保存。它们存储在闪存的专用区域中，在该区域中，我们使用memory-rotation algorithm来防止闪存过度使用。  
+有两种类型的Dynamic Tokens，它们的格式有所不同：Basic Tokens和Indexed Tokens。
+
+#### 3.1.1.1. Basic (Non-indexed) Tokens
+Basic Tokens可以被视为简单的char变量类型，只能作为一个单元进行访问。例如，Basic Tokens可用于存储数组，并且如果该 数组的任何元素发生更改，则必须重写整个数组。  
+Counter Token是一种特殊类型的Non-indexed Dynamic Tokens，用于存储一次递增1的数字。  
+<font color=red><b>提示</b></font>：本实验中将不涉及Counter Token，有关Counter Token的更多信息，请参考UG103.7的[2.6计数器对象][UG103.7: Non-Volatile Data Storage Fundamentals]一节和AN703的[4.2何时定义Counter Token][AN703: Simulated EEPROM]。
+
+#### 3.1.1.2. Indexed Tokens
+Indexed Dynamic Tokens可以看作是char变量的链接数组，其中每个元素都希望独立于其他元素进行更改，因此每个元素在内部被存储为独立的Token，并可以通过Token API进行访问。  
+<font color=red><b>提示</b></font>: 在本实验中也将不包括Indexed Tokens，有关Indexed Tokens的更多信息，请参考UG103.7的 [2.7 索引对象][UG103.7: Non-Volatile Data Storage Fundamentals]和AN703的[4.3 Array Tokens 和Indexed Tokens][AN703: Simulated EEPROM]。 
+
+### 3.1.2. Manufacturing Tokens
+Manufacturing Tokens是制造商在产品制造时设置，并且存储在闪存的绝对地址中。在芯片的生命周期内，Manufacturing Tokens只被写入一次或很少被写入。
+
+## 3.2. Token的用法：创建和访问
+现在，我们将讨论如何使用Token。这包括了解如何创建新Token，如何读取和修改Token数据，以及在哪里可以找到系统的默认Token。
+
+### 3.2.1. Dynamic Tokens
+要创建自定义Dynamic Tokens，您需要新建一个Token头文件并包含Token的定义。在本实验中，我们将创建一个```custom-token.h```的头文件，并包含自定义Dynamic Tokens的定义。
+
+#### 3.2.1.1. 创建Dynamic Tokens
+通常，创建Dynamic Tokens涉及以下三个步骤。本文的[4.3.2 创建自定义Token](#432-创建自定义Token)中包含一个示例以详细演示如何创建自定义Dynamic Tokens。
+*  定义Token名称。
+*  如果需要使用自定义的Token，则使用typedef定义该Token类型  
+*  定义Token存储。
+
+##### 3.2.1.1.1. 定义Token名称
+在定义名称时，请不要在名称中加TOKEN前缀。对于NVM3 Dynamic Tokens，请使用单词NVM3KEY作为前缀。
+```
+/**
+* Custom Zigbee Application Tokens
+*/
+// Define token names here
+#define NVM3KEY_LED1_ON_OFF			(NVM3KEY_DOMAIN_USER | 0x0001)
+```
+请注意，Token名称在此设备内必须唯一。  
+对于NVM3，自定义应用程序Token应使用**NVM3KEY_DOMAIN_USER**范围，以免与协议栈中的Token（例如**NVM3KEY_DOMAIN_ZIGBEE**）冲突。有关NVM3默认范围的信息，请参考下表。
 
 <div align="center">
-  <img src="files/ZB-Zigbee-Introduction-of-EmberZnet-and-AppBuilder/Includes-Tab.png">  
-</div>
+  <img src="files/ZB-Zigbee-Hands-on-Non-volatile-Data-Storage/NVM3_default_instance_key_space.png">
+</div>  
+</br>  
 
-##### 4.2.3.7. 硬件配置
-在“ HAL”选项卡下，有一个按钮“ Open Hardware Configurator”。点击此按钮，您将打开“Hardware Configurator”。
+##### 3.2.1.1.2. 定义Token类型
+Token类型可以是内置的C数据类型，也可以使用typedef定义为自定义数据结构。
+```
+#if defined(DEFINETYPES)
+// Include or define any typedef for tokens here
+typedef struct {
+  uint8_t ledIndex;    // LED index
+  bool ledOnOff;       // LED ON OFF status
+} ledOnOffStatus_t;
+#endif //DEFINETYPES
+```
+
+##### 3.2.1.1.3. 定义Token存储
+定义任何自定义类型之后，您应该定义Token存储，以将所定义的Token通知给Token管理系统。    
+每个Token（无论是自定义Token还是默认Token）在此部分都有其自己的定义：
+```
+#ifdef DEFINETOKENS
+// Define the actual token storage information here
+DEFINE_BASIC_TOKEN(LED1_ON_OFF,
+                  ledOnOffStatus_t,
+                  {1, false})
+#endif
+```
+
+DEFINE_BASIC_TOKEN带有三个参数：Token名称（LED1_ON_OFF，不带前缀“ NVM3KEY”），Token类型（ledOnOffStatus_t），如上所定义，以及Token的默认值。如果应用程序从未写入过该Token，则其值为默认值。  
+在上面的例子中，第一个值（ledIndex）被初始化为```1```表示LED1，而下一个值（ledOnOff）被设置```false```代表LED1的默认状态。
+
+#### 3.2.1.2. 访问Dynamic Tokens
+协议栈提供了一组简单的API，用于访问Token数据。根据Token的类型，API略有不同。
+
+##### 3.2.1.2.1. 访问Basic (Non-indexed) Tokens
+访问Basic (Non-indexed) TokensAPI函数包括：
+```
+void halCommonGetToken(data, token)  
+void halCommonSetToken(token, data)  
+```
+在这种情况下，"token"/参数“token”是Token名称，"data"/参数“data”是Token数据。请注意，```halCommonGetToken()```和```halCommonSetToken()```是通用TokenAPI，可用于基本Dynamic Tokens和Manufacturing Tokens的访问。  
+现在，让我们使用一个示例来说明这些API的用法。  
+正如文章一开始的[你需要做的](#12-目的)章节所提及，我们需要频繁地存储LED1的开/关状态，并且在系统上电之后恢复LED1的状态。 在定义了Token之后，您可以使用如下代码片段访问它：  
+
+```
+ledOnOffStatus_t led1OnOffStatus;
+
+// Retrieve the previous status of LED1
+halCommonGetToken(&led1OnOffStatus, TOKEN_LED1_ON_OFF);
+
+led1OnOffStatus.ledOnOff = <current status>;
+
+// Store the current status of LED1
+halCommonSetToken(TOKEN_LED1_ON_OFF, &led1OnOffStatus);
+```
+由于本实验是针对Silicon Labs EmberZNet协议栈入门介绍而设计的，因此我们将重点介绍Basic Tokens的用法，如果您对如何访问Counter Token感兴趣，请阅读AN1154[3.3.1.1 Accessing Counter Tokens][AN1154: Using Tokens for Non-Volatile Data Storage]。
+
+##### 3.2.1.2.2. 访问Indexed Tokens
+要访问Indexed Tokens，请使用下面的API。如上所述，我们将不会在本文档中花费大量篇幅来介绍Indexed Tokens，更多信息请参考AN1154的[3.3.2 Accessing Indexed Tokens][AN1154: Using Tokens for Non-Volatile Data Storage]。
+```
+void halCommonGetIndexedToken(data, token, index)
+void halCommonSetIndexedToken(token, index, data)
+```
+
+### 3.2.2. Manufacturing Tokens
+Manufacturing Tokens的定义方式与Basic (Non-indexed)Dynamic Tokens的定义方式相同，因此，有关如何创建Token的信息，请参考[创建Dynamic Tokens](#3211-创建Dynamic-Tokens)部分。它们之间的主要区别在于Token的存储位置和访问方式。  
+Manufacturing Tokens位于Manufacturing Tokens的专用闪存页面中（具有固定的绝对地址）。
+
+#### 3.2.2.1. 访问Manufacturing Tokens
+顾名思义，Manufacturing Tokens通常在制造时一次写入专用闪存页面中的固定位置。由于它们的地址是固定的，因此如果禁用了此闪存区域的读保护，则可以轻松地从外部编程工具读取它们。  
+并且由于同一闪存单元，如果没有作擦除操作就无法重复写入。仅当Token当前处于已擦除状态时，才能通过代码来写入Manufacturing Tokens。覆盖之前已经写入的Manufacturing Tokens，总是需要先使用外部编程工具擦除Manufacturing Tokens所在的闪存页面。
+
+Manufacturing Tokens应通过下面的专用API来访问。
+```
+halCommonGetMfgToken(data, token);
+halCommonSetMfgToken(token, data);
+```
+它们具有与Basic Tokens API相同的参数。使用专用Manufacturing Tokens访问API的两个主要目的是：
+* 为了更快地访问；
+* 为了在系统启动过程中，调用emberInit()初始化协议栈之前进行访问。
+
+而且Manufacturing Tokens也可以通过Basic Tokens API ```halCommonGetToken()```和```halCommonSetToken()```进行访问。
+
+还让我们使用一个示例来说明这些专用API如何访问Manufacturing Tokens。  
+正如文章前面的章节[你需要做](#12-目的)中所提及，制造商将在生产过程中通过编程工具对“制造字符串”Token进行编程，我们可以运行如下代码段来从Manufacturing Tokens中检索该字符串。
+
+```
+tokTypeMfgString mfgString;
+// Retrieve the manufacturing string from the manufacturing token
+halCommonGetMfgToken(mfgString, TOKEN_MFG_STRING);
+```
+
+### 3.2.3. 在哪里可以找到默认Token定义
+EmberZNet PRO协议栈已经为协议栈本身，应用程序框架，制造数据等定义了许多Token。
+要查看Token协议栈，请参考文件：  
+```<install-dir>/stack/config/token-stack.h```
+
+要查看Token应用程序框架，请在AppBuilder中生成项目后，导航至该项目的目录。文件```<project_name>_tokens.h```含有ZCL属性的Token，协议栈专用的Token文件```znet-token.h```中包括有Token插件头文件和Token自定义应用程序头文件。
+
+要查看EFR32系列芯片的Manufacturing Tokens，请参阅以下文件：  
+```<install-dir>/hal/micro/cortexm3/efm32/token-manufacturing.h```
+
+***
+
+# 4. 实验
+本节提供分步说明，以演示如何使用Basic Tokens向非易失性数据存储（在本实验中为NVM3）对象存储和从其检索LED1的状态。并演示如何使用专用API访问Manufacturing Tokens。  
+这也正是我们在本文章开始时[你需要做](#12-目的)的部分中提出的问题。
+
+**前提条件**  
+请确保您已完成[准备课程](https://github.com/MarkDing/IoT-Developer-Boot-Camp/wiki/Zigbee-Preparatory-Course)，并确保所有SDK软件和开发套件都已准备就绪。
+
+## 4.1. 硬体需求
+该实验需要EFR32MG21 / EFR32MG13 / EFR32MG12开发板中的任何一款，我们推荐使用EFR32MG12无线开发板BRD4162A，我们的示例项目也是基于该套件创建的。以下是该开发板的布局。
+<div align="center">
+  <img src="files/ZB-Zigbee-Hands-on-Non-volatile-Data-Storage/brd4162_kit.png">
+</div>  
+</br>  
+
+使用“ J-Link USB”连接器和开发套件中随附的USB电缆将开发板连接到PC。并将电源开关切换到“ AEM”位置。启动Simplicity Studio V4，它能识别所连接的设备，并将其列出在如下所示区域中。
+<div align="center">
+  <img src="files/ZB-Zigbee-Hands-on-Non-volatile-Data-Storage/detect_wstk.png">
+</div>
+</br>
+
+## 4.2. 软件需求
+该实验是在之前的三个实验“ [构建和连接](https://github.com/MarkDing/IoT-Developer-Boot-Camp/wiki/Zigbee-Hands-on-Forming-and-Joining)”，“ [发送/关闭命令](https://github.com/MarkDing/IoT-Developer-Boot-Camp/wiki/Zigbee-Hands-on-Sending-OnOff-Commands)”和“ [使用事件](https://github.com/MarkDing/IoT-Developer-Boot-Camp/wiki/Zigbee-Hands-on-Using-Event)”的基础上进行的，并且假设您已经按照我们的[预备课程](https://github.com/MarkDing/IoT-Developer-Boot-Camp/wiki/Zigbee-Preparatory-Course)中的说明安装了Simplicity Studio和必需的SDK 。
+
+
+## 4.3. 实践
+### 4.3.1. 打开Switch项目
+该实验是在前三个实验基础之上。由于非易失性数据存储机制不依赖于网络节点类型，因此我们仅仅演示如何在Switch（路由节点）设备端通过TokenAPI访问NVM3对象，即Zigbee_Switch_ZR项目。    
+如果在完成该实验过程中遇到任何困难，你可以在[IoT-Developer-Boot-Camp](https://github.com/MarkDing/IoT-Developer-Boot-Camp/tree/master/zigbee)中找到示例项目，以供参考。
+
+### 4.3.2. 创建自定义Token
+我们将创建一个头文件```custom-token.h```，并在此头文件中定义Token名称，Token类型和Token存储。
+
+* 在Simplicity studio中，单击[File]> [New]> [Project]
+* 选择父文件夹作为项目的根路径，并将文件名设置为```custom-token.h```，然后单击[Finish]。
+* 编辑头文件以定义Token。  
+
+**首先**,我们将Token名称定义为NVM3KEY_LED1_ON_OFF。有关Token名称定义规则的更多信息，请参考[3.2.1.1.1. 定义Token名称](#32111-定义Token名称)。 
+* <font color=red><b>问题</b></font>:为什么需要用前置词NVM3KEY来定义Token名称？可以定义为TOKEN_LED1_ON_OFF吗？ 
+* <font color=red><b>提示</b></font>: 请返回[3.2.1.1.1. 定义Token名称](#32111-定义Token名称)部分以获取答案。
+
+**然后** 定义用于记录LED开/关状态的Token类型，定义一个结构类型```ledOnOffStatus_t```，该结构类型包括两种不同的数据类型来表示LED索引和LED状态。有关更多信息，请参阅[3.2.1.1.2. 定义Token类型](#32112-定义Token类型)。
+
+**最后**, 使用宏定义DEFINE_BASIC_TOKEN来定义Token存储。有关更多信息，请参阅[3.2.1.1.3. 定义Token存储](#32113-定义Token存储)。
+
+以下是本实验环节中使用的头文件的内容，供您参考。
+
+```
+// File: custom-token.h
+//
+// Description: Custom token definitions used by the application.
+//
+// Copyright 2019 by Silicon Labs Corporation.  All rights reserved.
+
+/**
+* Custom Zigbee Application Tokens
+*/
+// Define token names here
+#define NVM3KEY_LED1_ON_OFF			(NVM3KEY_DOMAIN_USER | 0x0001)
+
+#if defined(DEFINETYPES)
+// Include or define any typedef for tokens here
+typedef struct {
+  uint8_t ledIndex;     // LED index
+  bool ledOnOff;        // LED ON OFF status
+} ledOnOffStatus_t;
+#endif //DEFINETYPES
+
+#ifdef DEFINETOKENS
+// Define the actual token storage information here
+DEFINE_BASIC_TOKEN(LED1_ON_OFF,
+                  ledOnOffStatus_t,
+                  {1, false})
+#endif
+```
+
+创建自定义Token头文件后，您还需要执行一个步骤：通过Simplicity Studio中“ .isc”文件中“Token Configuration”部分下的[Includes]选项卡，将头文件添加到应用程序中。  
+**注意**：在.isc文件中添加头文件后，您需要再次点击“Generate”生成项目。
 
 <div align="center">
-  <img src="files/ZB-Zigbee-Introduction-of-EmberZnet-and-AppBuilder/Hardware-Configurator.png">  
+  <img src="files/ZB-Zigbee-Hands-on-Non-volatile-Data-Storage/add_custom_token_header_file.gif">
 </div>
+</br>  
 
-有很多硬件组件。您可以选择所需的引脚并配置它们的引脚。
+### 4.3.3. 访问Basic Tokens LED1_ON_OFF
+让我们继续介绍如何访问已定义的Token。以下分步说明如何存储LED的状态，以及如何检索并恢复LED的状态值。  
+该实验的每个步骤在参考示例项目中都会有一个相应的注释```Non-volatile Data Storage: Step x```，以方便用户定位到正确的位置来编写代码。
 
-完成后，按“ CTRL + S”进行保存。硬件设置将作为头文件hal-config.h生成。
+#### 4.3.3.1. 步骤1：检索Basic Tokens数据
+打开```Zigbee_Switch_ZR_callback.c```，然后定义“ ledOnOffStatus_t”类型变量。
+```
+// Non-volatile Data Storage: Step 1
+ledOnOffStatus_t led1OnOffStatus;
+```
+导航找到```Zigbee_Switch_ZR_callback.c```中的函数```void emberAfMainInitCallback(void)```，这将在初始化过程中被应用程序的主函数调用，用API ```halCommonGetToken()```读取Basic Tokens “LED1_ON_OFF”。
 
-#### 4.2.4. 生成项目
-完成项目设置后，保存并按下按钮“ Generate”，AppBuilder将生成项目。
+```
+// Non-volatile Data Storage: Step 1
+// Retrieve the LED1 status before reset/power-off from the token
+halCommonGetToken(&led1OnOffStatus, TOKEN_LED1_ON_OFF);
+```
+然后根据所读取到的状态值，使用```API halSetLed()```或 ```halClearLed()```对LED1进行相应的设置。 
 
-在生成的项目中，大多数源文件都链接到SDK。它们在项目文件夹中不存在。当您尝试编辑链接的源文件时，会出现一条警告，让您选择是否进行复制。
+```
+// Restore the LED1 status during initialization
+if(led1OnOffStatus.ledOnOff){
+  halSetLed(led1OnOffStatus.ledIndex);
+}
+else{
+  halClearLed(led1OnOffStatus.ledIndex);
+}
+```
+
+#### 4.3.3.2. 步骤2：写入基本的Tokens数据
+在上一个实验中，我们定义了一个事件处理函数```ledBlinkingHandler()```来定期切换LED1状态，本实验中，我们需要在每次切换完成之后将LED1的状态保存。  
+导航到```Zigbee_Switch_ZR_callback.c```的函数```void ledBlinkingHandler(void)```中。您也可以使用注释```Non-volatile Data Storage: Step 2```来定位所需要修改的代码的位置。    
+使用```API halCommonSetToken()```来写Token LED1_ON_OFF。  
+```
+// Non-volatile Data Storage: Step 2
+// Retrieve the previous status of LED1
+halCommonGetToken(&led1OnOffStatus, TOKEN_LED1_ON_OFF);
+
+halToggleLed(led1OnOffStatus.ledIndex);
+led1OnOffStatus.ledOnOff = !led1OnOffStatus.ledOnOff;
+
+// Store the current status of LED1
+halCommonSetToken(TOKEN_LED1_ON_OFF, &led1OnOffStatus);
+```
+
+#### 4.3.3.3. 步骤3：测试
+将必要的代码添加到项目后，请编译```Zigbee_Switch_ZR```项目，并将其烧录到BRD4162A开发板上。  
+* 点击[Build]  按钮开始编译项目。
+* 编译完成后，展开“ Binaries”文件夹，然后右键单击* .hex文件并选择[Flash to Device ...]
+* 在弹出窗口中选择所连接的开发板。现在，“Flash Programmer”已预先填充了所有需要的数据，您可以单击“program”。
+* 单击“program”，然后等待一会儿以完成烧录。
 
 <div align="center">
-  <img src="files/ZB-Zigbee-Introduction-of-EmberZnet-and-AppBuilder/Make-A-Copy.png">  
+  <img src="files/ZB-Zigbee-Hands-on-Non-volatile-Data-Storage/build_and_program.gif">
 </div>
+</br>
 
-如果确实需要编辑这些文件之一，请始终选择进行复制。
+在上电延迟几秒钟后，开发板上的LED1将定期闪烁，按复位键复位该设备，复位完成后，应用程序会将LED1恢复到复位/关闭电源之前的状态。  
+<font color=red><b>提示</b></font>：您可以修改系统上电后LED1延迟闪烁的时间，以及在```Zigbee_Switch_ZR_callback.c```中使用API ```emberEventControlSetDelayMS(ledBlinking, 2000)```; 来更改LED1的闪烁间隔。
 
-一些文件在项目文件夹下生成。
-|文件|描述|
-|:-|:-|
-|&lt;projectname&gt;.h|主头文件。此处列出了所有插件设置，回调设置|
-|&lt;projectname&gt;_callbacks.c|生成的源文件。自定义回调和事件处理应在此文件中实现。|
-|&lt;projectname&gt;_endpoint_config.h|定义endpoint，属性和命令|
-|znet-cli.c/znet-cli.h|CLI命令列表|
-|client-command-macro.h|定义大量宏指令用于填充消息|
-|call-command-handler.c|Cluster命令处理|
-|attribute-id.h/attribute-size.h/attribute-type.h/att-storage.h|相关属性|
-|af-structs.h|数据结构|
-|af-gen-event.h|事件/处理程序对|
+### 4.3.4. 访问Manufacturing Tokens
+#### 4.3.4.1. 步骤4：读取Manufacturing Tokens MFG_STRING
+仅当Token当前处于已擦除状态时，才能通过代码写入Manufacturing Tokens。通常，制造商将使用外部编程工具（例如Simplicity Commander）烧录Manufacturing Tokens。 这部分将涉及读取Manufacturing Tokens```MFG_STRING```，该Token保存了制造商在生产过程中所烧录的制造字符串。    
+导航到```Zigbee_Switch_ZR_callback.c```的函数```void emberAfMainInitCallback(void)```，然后通过API ```halCommonGetMfgToken```读取Manufacturing TokensMFG_STRING。
 
-#### 4.2.5. 建立项目
-有两种启动编译的方法：
-- 在"Project Explorer"窗口中选择项目, 右键单击并选择"Build".
-- 在"Project Explorer"窗口中选择项目, 然后按工具栏中的![zigbee](files/ZB-Zigbee-Introduction-of-EmberZnet-and-AppBuilder/Icon-Build.png)图标。
+```
+// Non-volatile Data Storage: Step 4
+tokTypeMfgString mfgString;
+halCommonGetMfgToken(mfgString, TOKEN_MFG_STRING);
+emberAfAppPrintln("MFG String: %s", mfgString);
+```
+请注意，如果之前未通过外部编程工具对制造字符串Token进行编程，则调试输出将为NULL，这表示制造字符串为NULL。
 
-编译完成后，生成的应用程序image位于：
+同样，您也可以使用Simplicity Commander来查看Manufacturing Tokens，如下所示。
+```$ commander tokendump --tokengroup znet```  
 
-- 如果使用的是IAR，则为“ IAR ARM-默认”目录
-- 如果使用的是GCC，则为“ GNU ARM v7.2.1-默认”目录
+<div align="center">
+  <img src="files/ZB-Zigbee-Hands-on-Non-volatile-Data-Storage/dump_manufacturing_tokens.png">
+</div>
+</br>
 
-生成的应用程序image是.s37 / .hex文件。您可以将它们闪存到设备中进行测试。
+<font color=red><b>Question</b></font>: Manufacturing Tokens可以通过Basic Tokens APIs来访问吗？   
+<font color=red><b>Hint</b></font>: 请返回到[3.2.2.1. 访问Manufacturing Tokens](#3221-访问Manufacturing-Tokens)以获取答案。  
 
-#### 4.2.6. 测试和调试
-##### 4.2.6.1. 烧录应用image
-请参阅[烧录image](Flashing-Image)，以将应用的image烧录到装置。
+***
 
-##### 4.2.6.2. 打开控制台
-请参考[开放控制台](Opening-Console)以启动控制台。您可以获取串行端口的输出，也可以在此处运行命令。
+# 5. 结论  
+我们希望您通过非易失性数据存储的实验，理解Silicon Labs所提供的实现方案，它们是[NVM3，SimEEv1 / SimEEv2和PS Store](#23-silicon-labs如何实现非易失性数据存储)。 另外，通过本实验，您也学习了如何创建和访问Basic Tokens以及如何访问Manufacturing Tokens。   
 
-##### 4.2.6.3. 常用的命令
-以下是一些在测试和调试期间经常使用的命令
+有关非易失性数据存储和Token的更多信息，请参考以下文档。  
+[UG103.7: Non-Volatile Data Storage Fundamentals](https://www.silabs.com/documents/public/user-guides/ug103-07-non-volatile-data-storage-fundamentals.pdf)  
+[AN1154: Using Tokens for Non-Volatile Data Storage](https://www.silabs.com/documents/public/application-notes/an1154-tokens-for-non-volatile-storage.pdf)  
+[AN1135: Using Third Generation NonVolatile Memory (NVM3) Data Storage](https://www.silabs.com/documents/public/application-notes/an1135-using-third-generation-nonvolatile-memory.pdf)    
+[AN703: Simulated EEPROM](https://www.silabs.com/documents/public/application-notes/an703-simulated-eeprom.pdf)   
 
-- **plugin network-creator form [useCentralizedSecurity:1] [panId:2] [radioTxPower:1] [channel:1]**
-  - 建立具有指定参数的网络。
-      - useCentralizedSecurity-BOOLEAN-是否创建集中式网络。如果该值为false，则设备将尝试加入分布式网络。
-      - panId-INT16U-要形成的网络的PanID
-      - radioTxPower-INT8S-要形成的网络的Tx功率
-      - channel-INT8U-要形成的网络所在的通道
-
-- **plugin network-creator-security open-network**
-  - 打开网络并允许入网
-
-- **plugin network-creator-security open-with-key [eui64:8] [joiningLinkKey:-1]**
-    - 打开网络且仅允许具有指定EUI和Link key对的节点加入。
-        - eui64 - IEEE_ADDRESS - 加入设备的EUI64。
-        - joiningLinkKey - OCTET_STRING - 入网设备将使用该link key来加入网络。
-
-- **plugin network-steering start [options:1]**
-    - 开始设备入网过程。
-        - options - INT8U - 选项的掩码，用于指示设备入网过程中的特定行为。
-        
-- **zcl on-off toggle**
-    - 在消息缓冲区中填充开/关切换命令
-
-- **send [id:2] [src-endpoint:1] [dst-endpoint:1]**
-    - 从给定endpoint向具有给定短地址的设备上的endpoint发送预缓冲消息。
-        - id - INT16U - 将消息发送到的设备的短ID
-        - src-endpoint - INT8U - 发送消息的源endpoint
-        - dst-endpoint - INT8U - 发送消息的目的endpoint
-
-##### 4.2.6.4. Network-Analyzer
-请参考[Network Analyzer](Network-Analyzer)开始捕获。您还可以学习如何设置用于解码数据包的安全密钥。
-
-## 5. 参考
-- [AN1211 Simplicity Studio V4 Installation Methods](https://www.silabs.com/documents/public/application-notes/an1121-headless-builds.pdf)
-- [AN1160 Project Collaboration with Simplicity Studio](https://www.silabs.com/documents/public/application-notes/an1160-project-collaboration-with-simplicity-studio.pdf)
-- [AN0822 Simplicity Studio User Guide](https://www.silabs.com/documents/public/application-notes/AN0822-simplicity-studio-user-guide.pdf)
-- [AN1115 32-bit Device Peripheral Configuration in Simplicity Studio](https://www.silabs.com/documents/public/application-notes/an1115-32-bit-device-peripheral-configuration-in-simplicity-studio.pdf)
-- [UG391 Zigbee App Framework Dev Guide](https://www.silabs.com/documents/public/user-guides/ug391-zigbee-app-framework-dev-guide.pdf)
-- [Silicon Labs: Zigbee - Application Framework API Reference Documentation](https://docs.silabs.com/zigbee/latest/)
-- [Peripheral Utilization on EFR32MG by EmberZNet Stack](https://www.silabs.com/community/wireless/zigbee-and-thread/knowledge-base.entry.html/2016/07/08/peripheral_utilizati-n9VT)
-********
+[UG103.7: Non-Volatile Data Storage Fundamentals]: https://www.silabs.com/documents/public/user-guides/ug103-07-non-volatile-data-storage-fundamentals.pdf  
+[AN1154: Using Tokens for Non-Volatile Data Storage]: https://www.silabs.com/documents/public/application-notes/an1154-tokens-for-non-volatile-storage.pdf  
+[AN1135: Using Third Generation NonVolatile Memory (NVM3) Data Storage]: https://www.silabs.com/documents/public/application-notes/an1135-using-third-generation-nonvolatile-memory.pdf  
+[AN703: Simulated EEPROM]: https://www.silabs.com/documents/public/application-notes/an703-simulated-eeprom.pdf  
