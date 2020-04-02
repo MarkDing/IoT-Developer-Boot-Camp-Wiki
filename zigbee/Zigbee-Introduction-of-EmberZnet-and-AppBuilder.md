@@ -1,3 +1,5 @@
+English | [中文](Zigbee-Introduction-of-EmberZnet-and-AppBuilder-CN.md)
+
 <details>
 <summary><font size=5>Table of Contents</font> </summary>  
 &nbsp;
@@ -65,7 +67,11 @@ The benefits of using a module is that you can save a lot of time to get the reg
 
 ### 2.3. Block Diagram
 Below is the block diagram of EFR32MG12 series SoC.  
-![zigbee](files/ZB-Zigbee-Introduction-of-EmberZnet-and-AppBuilder/SoC-Block-Diagram.png)  
+ 
+<div align="center">
+  <img src="files/ZB-Zigbee-Introduction-of-EmberZnet-and-AppBuilder/SoC-Block-Diagram.png">  
+</div>  
+</br> 
 
 The SoC can work at 6 different energy modes. From largest power consumption to lowest:  
 - EM0 - Active
@@ -90,7 +96,10 @@ EmberZnet provides two design models for Zigbee applications :
 - Network Co-Processor (NCP) model
 - System on Chip (Soc) model
 
-![zigbee](files/ZB-Zigbee-Introduction-of-EmberZnet-and-AppBuilder/Design-Models.png)
+<div align="center">
+  <img src="files/ZB-Zigbee-Introduction-of-EmberZnet-and-AppBuilder/Design-Models.png">  
+</div>  
+</br> 
 
 1. In the SoC model, all stack layers as well as the application are implemented on a single chip, with lower level stack functions often implemented in hardware as peripherals of the microcontroller.   
    
@@ -164,7 +173,10 @@ EmberZnet SDK is part of the Gecko SDK Suite. It can be found at **protocol\zigb
 ### 4.1. Wireless Starter Kits
 Silicon Labs' Wireless Starter Kit (WSTK) is consis of a mother board and a radio board. Just like below :  
 
-![zigbee](files/ZB-Zigbee-Introduction-of-EmberZnet-and-AppBuilder/WSTK.png)  
+<div align="center">
+  <img src="files/ZB-Zigbee-Introduction-of-EmberZnet-and-AppBuilder/WSTK.png">  
+</div>  
+</br> 
 
 1. The mother board is a multi-function J-Link debugger. For most case, we will use :  
 - 2 buttons
@@ -179,7 +191,10 @@ The mother board can also used as a standalone flash-programmer and J-Link debug
 
 2. The radio board is swappable. Users can swap different radio boards to evaluate different SoC or modules.  
 
-![zigbee](files/ZB-Zigbee-Introduction-of-EmberZnet-and-AppBuilder/Swap-Radio-Board.png)  
+<div align="center">
+  <img src="files/ZB-Zigbee-Introduction-of-EmberZnet-and-AppBuilder/Swap-Radio-Board.png">  
+</div>  
+</br> 
 
 ### 4.2. Simplicity IDE
 #### 4.2.1. Overview
@@ -203,7 +218,10 @@ You can create a Zigbee project following the steps below:
 7. In next window (Project Setup), select the board (If you're developing a custom board, leave the "board" field empty and just select the part number.) and compiler, Click "Finish". 
 8. After that, the project is created. The isc file of the project will be opened automatically.
 
-![zigbee](files/ZB-Zigbee-Introduction-of-EmberZnet-and-AppBuilder/Create-Project.gif)  
+<div align="center">
+  <img src="files/ZB-Zigbee-Introduction-of-EmberZnet-and-AppBuilder/Create-Project.gif">  
+</div>  
+</br> 
 
 &nbsp;
 
@@ -213,7 +231,10 @@ It's recommended to read [UG391](https://www.silabs.com/documents/public/user-gu
 ##### 4.2.3.1. "General" Tab
 When the isc file is opened, the default tab is the "General" tab. Here you can see the board/parts and toolchain of the project. You can also see the absolute path of the project. You can change to a different part or different toolchain here.  
 
-![zigbee](files/ZB-Zigbee-Introduction-of-EmberZnet-and-AppBuilder/General-Tab.png)  
+<div align="center">
+  <img src="files/ZB-Zigbee-Introduction-of-EmberZnet-and-AppBuilder/General-Tab.png">  
+</div>  
+</br> 
 
 ##### 4.2.3.2. "Zigbee Stack" Tab
 Under "Zigbee Stack" tab, you can set the device type and security type. For Zigbee device type, we have four options:  
@@ -226,12 +247,19 @@ Under "Zigbee Stack" tab, you can set the device type and security type. For Zig
 After Zigbee device type is determined, you can set the endpoints and the clusters in each endpoints. These functions are under "ZCL Clusters" tab.  
 
 1. Firstly, you need to set the manufacture code. This is code is provided by Zigbee Alliance when the first product of your company is certified by the Alliance. If your company has already gotten the manufacture code, you can choose it from the list.  
-
-![zigbee](files/ZB-Zigbee-Introduction-of-EmberZnet-and-AppBuilder/Manufacture-Code.png)  
+ 
+<div align="center">
+  <img src="files/ZB-Zigbee-Introduction-of-EmberZnet-and-AppBuilder/Manufacture-Code.png">  
+</div>  
+</br> 
 
 2. Secondly, you can add/remove endpoints here, and you can also choose a device profile to use on the endpoint. You can also select extra clusters based on the profile. In that case, when you set "ZCL Device Type", don't select a Zigbee device profile directly. Instead, choose "Zigbee Custom", and then select one device profile.  
 
-![zigbee](files/ZB-Zigbee-Introduction-of-EmberZnet-and-AppBuilder/ZCL-Clusters.gif)  
+<div align="center">
+  <img src="files/ZB-Zigbee-Introduction-of-EmberZnet-and-AppBuilder/ZCL-Clusters.gif">  
+</div>  
+</br> 
+
 You can select clusters, and select the attributes and commands defined by the cluster.
 
 3. The attributes and commands of the clusters are defined in Zigbee Cluster Library (ZCL). We need to refer to ZCL spec when we are selecting attirbutes and commands.
@@ -239,7 +267,10 @@ You can select clusters, and select the attributes and commands defined by the c
 ##### 4.2.3.4. "Plugins" Tab
 1. Properties of a plugin
 
-![zigbee](files/ZB-Zigbee-Introduction-of-EmberZnet-and-AppBuilder/Plugin-Properties.png)  
+<div align="center">
+  <img src="files/ZB-Zigbee-Introduction-of-EmberZnet-and-AppBuilder/Plugin-Properties.png">  
+</div>  
+</br> 
 
 A plugin has the following properties:  
 |Properties|Comment|
@@ -325,16 +356,26 @@ It's recommended to define and implement the selected callbacks in the generated
 
 Please make sure you have read the comments of the callbacks before you use them.  
 
-![zigbee](files/ZB-Zigbee-Introduction-of-EmberZnet-and-AppBuilder/Callbacks-Tab.png)  
+<div align="center">
+  <img src="files/ZB-Zigbee-Introduction-of-EmberZnet-and-AppBuilder/Callbacks-Tab.png">  
+</div>  
+</br> 
+
 ##### 4.2.3.6. "Includes" Tab
 Under "Includes" tab, you can include your custom header files, include custom token header files, define custom macros and define custom event and handler pair.
 
-![zigbee](files/ZB-Zigbee-Introduction-of-EmberZnet-and-AppBuilder/Includes-Tab.png)
+<div align="center">
+  <img src="files/ZB-Zigbee-Introduction-of-EmberZnet-and-AppBuilder/Includes-Tab.png">  
+</div>  
+</br> 
 
 ##### 4.2.3.7. Hardware Configuration
 Under "HAL" tab, there is a button "Open Hardware Configurator". Hit this button, you will open "Hardware Configurator".  
 
-![zigbee](files/ZB-Zigbee-Introduction-of-EmberZnet-and-AppBuilder/Hardware-Configurator.png)
+<div align="center">
+  <img src="files/ZB-Zigbee-Introduction-of-EmberZnet-and-AppBuilder/Hardware-Configurator.png">  
+</div>  
+</br> 
 
 There are a bunch of hardware components. You can choose those you need and configure the pins of them.
 
@@ -345,7 +386,10 @@ After completing the project settings, save and press the button "Generate", App
 
 In the generated project, most source files are linked to the SDK. They don't exist in the project folder. When you try to edit the linked source files, there would be a warning to let you choose whether to make a copy.  
 
-![zigbee](files/ZB-Zigbee-Introduction-of-EmberZnet-and-AppBuilder/Make-A-Copy.png)
+<div align="center">
+  <img src="files/ZB-Zigbee-Introduction-of-EmberZnet-and-AppBuilder/Make-A-Copy.png">  
+</div>  
+</br> 
 
 If you do need to edit one of these files, please always choose to make a copy.  
 
@@ -375,10 +419,10 @@ The generated application image is .s37/.hex file. You can flash them into the d
 
 #### 4.2.6. Test and Debug
 ##### 4.2.6.1. Flash Application Image
-Please refer to [Flashing Image](Flashing-Image) to flash the application image to device.
+Please refer to [Flashing Image](https://github.com/MarkDing/IoT-Developer-Boot-Camp/wiki/Flashing-Image) to flash the application image to device.
 
 ##### 4.2.6.2. Open Console
-Please refer to [Opening Console](Opening-Console) to start the console. You can get the output of the serial port and also run commands here.
+Please refer to [Opening Console](https://github.com/MarkDing/IoT-Developer-Boot-Camp/wiki/Opening-Console) to start the console. You can get the output of the serial port and also run commands here.
 
 ##### 4.2.6.3. Useful Commands
 Below are some commands which are frequently used during testing and debugging.
@@ -412,7 +456,7 @@ Below are some commands which are frequently used during testing and debugging.
         - dst-endpoint - INT8U - The endpoint to send the message to
 
 ##### 4.2.6.4. Network Analyzer
-Please refer to [Network Analyzer](Network-Analyzer) to start the capture. You can also learn how to set the security keys for decoding the packets.
+Please refer to [Network Analyzer](https://github.com/MarkDing/IoT-Developer-Boot-Camp/wiki/Network-Analyzer) to start the capture. You can also learn how to set the security keys for decoding the packets.
 
 ## 5. Reference
 - [AN1211 Simplicity Studio V4 Installation Methods](https://www.silabs.com/documents/public/application-notes/an1121-headless-builds.pdf)

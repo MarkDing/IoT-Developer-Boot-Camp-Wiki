@@ -11,6 +11,7 @@
 </details>
 
 ***
+English | [中文](Zigbee-Hands-on-Using-Event-CN.md)
 
 # 1. Introduction
 

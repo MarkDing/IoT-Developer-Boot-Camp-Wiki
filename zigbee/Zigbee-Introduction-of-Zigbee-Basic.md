@@ -1,3 +1,5 @@
+English | [中文](Zigbee-Introduction-of-Zigbee-Basic-CN.md)
+
 <details>
 <summary><font size=5>Table of Contents</font> </summary>  
 &nbsp;
@@ -38,7 +40,7 @@
     - [6.2.2. Install Code](#622-install-code)
 - [7. Joining Procedure](#7-joining-procedure)
   - [7.1. Form Network](#71-form-network)
-  - [7.2. Joining with the Well-Know Link Key](#72-joining-with-the-well-know-link-key)
+  - [7.2. Joining with the Well-Known Link Key](#72-joining-with-the-well-known-link-key)
   - [7.3. Joining with Install-Code Derived Link Key](#73-joining-with-install-code-derived-link-key)
 - [8. Reference](#8-reference)
 </details>
@@ -49,7 +51,10 @@
 ### 1.1. What's Zigbee
 As the Internet of Things (IoT) industry develops, more and more wireless technologies come out.   
 
-![zigbee](files/ZB-Zigbee-Introduction-of-Zigbee-Basic/IoT-Wireless-Technologies.png)
+<div align="center">
+  <img src="files/ZB-Zigbee-Introduction-of-Zigbee-Basic/IoT-Wireless-Technologies.png">  
+</div>  
+</br> 
 
 As we know, in IoT industry, we have two typical networks. One is WAN (Wide Area Network), the other is PAN(Personal Area Network).
 
@@ -65,14 +70,20 @@ Zigbee is one of the most popular wireless technologies used in IoT networks, es
 ### 1.2. History of Zigbee
 Zigbee is an open standard published and revisioned by [Zigbee Alliance](https://zigbeealliance.org/). It has a very long history.
 
-![zigbee](files/ZB-Zigbee-Introduction-of-Zigbee-Basic/Zigbee-History.png)
+<div align="center">
+  <img src="files/ZB-Zigbee-Introduction-of-Zigbee-Basic/Zigbee-History.png">  
+</div>  
+</br> 
 
 Silicon Labs has been devoted to Zigbee technology since the very beginning. The Silicon Labs' Zigbee technology comes from Ember who began zigbee research and develop since it's born. In 2012, Silicon Labs acquired Ember and continue to provide Zigbee products and solutions. 
 
 ### 1.3. Zigbee Alliance
 Zigbee Alliance is the main strength of promoting Zigbee technology. It's an open organization. Any company can join Zigbee Alliance as a member. Silicon Labs is the member of the board of Zigbee Alliance.  
 
-![zigbee](files/ZB-Zigbee-Introduction-of-Zigbee-Basic/Zigbee-Alliance.png)
+<div align="center">
+  <img src="files/ZB-Zigbee-Introduction-of-Zigbee-Basic/Zigbee-Alliance.png">  
+</div>  
+</br> 
 
 The main three jobs of Zigbee Alliance are:
 - **Develop** open, global standards for wireless device-to-device communication for the IoT (Internet of Things)
@@ -81,7 +92,10 @@ The main three jobs of Zigbee Alliance are:
 
 In 2016, Zigbee Alliance published the latest Zigbee standard which is Zigbee 3.0. The profiles like Zigbee Home Automation Profile (ZHA), Zigbee Light Link (ZLL), etc, which are used before are unified together.  
 
-![zigbee](files/ZB-Zigbee-Introduction-of-Zigbee-Basic/Zigbee-Profiles.png)
+<div align="center">
+  <img src="files/ZB-Zigbee-Introduction-of-Zigbee-Basic/Zigbee-Profiles.png">  
+</div>  
+</br> 
 
 Further more, security has been enhanced as it's getting more and more important.  
 
@@ -90,7 +104,10 @@ Zigbee 3.0 is mandated since 2017 as products which are compliant to the previou
 ### 1.4. Protocol Overview
 The picture below demostrates the protocol architecture.  
 
-![zigbee](files/ZB-Zigbee-Introduction-of-Zigbee-Basic/Protocol-Overview.png)
+<div align="center">
+  <img src="files/ZB-Zigbee-Introduction-of-Zigbee-Basic/Protocol-Overview.png">  
+</div>  
+</br> 
 
 1. Physical layer and MAC layer are defined by [IEEE-802.15.4](https://standards.ieee.org/content/ieee-standards/en/standard/802_15_4-2015.html). Physical layer is responsible for radio management, including functions like modulating/demodulating, signal strength detecting, etc. MAC layer is in charges of one-hop communication. 
 2. Network layer is responsible for message transmitting and receiving, device mantainance, routing , etc.
@@ -101,7 +118,10 @@ The picture below demostrates the protocol architecture.
 ## 2. Physical Layer
 Zigbee works on ISM frequency. The channels are defined as below:
 
-![zigbee](files/ZB-Zigbee-Introduction-of-Zigbee-Basic/Physical-Layer.png)
+<div align="center">
+  <img src="files/ZB-Zigbee-Introduction-of-Zigbee-Basic/Physical-Layer.png">  
+</div>  
+</br> 
 
 Most commonly, Zigbee works on 2.4GHz.
 
@@ -140,7 +160,10 @@ Multi hop transmissions shall be acknowledged on every hop. After the node perfo
 ### 3.3. MAC Frame
 The picture below demostrate MAC frame format:
 
-![zigbee](files/ZB-Zigbee-Introduction-of-Zigbee-Basic/MAC-Frame.png)
+<div align="center">
+  <img src="files/ZB-Zigbee-Introduction-of-Zigbee-Basic/MAC-Frame.png">  
+</div>  
+</br> 
 
 At the end of each MAC frame, there are two bytes CRC used to verify the integrity of the packet. In MAC header, there is a 2-bytes field "Frame Control". Bit0~2 of field "Frame Control" indicates the frame type. There are four frame types:  
 - Beacon, used to scan networks
@@ -170,7 +193,10 @@ In Zigbee, there are three device types:
 - Router
 - End Device, including non-sleepy end device and sleepy end device.
 
-![zigbee](files/ZB-Zigbee-Introduction-of-Zigbee-Basic/Device-Type.png)
+<div align="center">
+  <img src="files/ZB-Zigbee-Introduction-of-Zigbee-Basic/Device-Type.png">  
+</div>  
+</br> 
 
 |Device Type|Form Network|Routing|Power|As Parent||
 |:-|:-|:-|:-|:-|:-|
@@ -200,7 +226,10 @@ Extended PAN ID is another network identifier known by all nodes in the PAN.
 
 While the normal short 16-bit PAN ID is transmitted over the air in all the packets because it’s short and simple, the 64-bit extended PAN ID is rarely transmitted over the air. The extended PAN ID is also unique for every PAN, and it’s basically used as a backup criteria when the 16-bit PAN ID is not enough to always distinguish one network from another. For instance, when a PAN ID conflict occurs and you want to notify all devices in your network to move, the way that you distinguish your network from the conflicting network is, those devices in your network all share the same extended PAN ID. The extended PAN ID is highly unlikely to ever conflict because it has 64 bits compared to the 16 bits in the short PAN ID.
 
-![zigbee](files/ZB-Zigbee-Introduction-of-Zigbee-Basic/Ext-PAN-ID.png)
+<div align="center">
+  <img src="files/ZB-Zigbee-Introduction-of-Zigbee-Basic/Ext-PAN-ID.png">  
+</div>  
+</br> 
 
 The extended PAN ID is also chosen by the coordinator during network formation. **It’s only sent over the air in response to an Active Scan when nodes are soliciting the network, or when a PAN ID update is occurring.**
 
@@ -211,7 +240,10 @@ Besides their network-wide criteria, one node is distinguished from another by i
 
 A node has a short address and a long address. The long address is the IEEE-assigned MAC address, or EUI-64. It is a 64-bit address that is globally unique, meaning no two IEEE-based radios in the world should ever have the same EUI-64. This is generally assigned at manufacturing time. They are assigned when the chips come out of our manufacturing facility before they arrive to you, and they will never change. That’s how you tell one radio from another. But because 64 bits are a lot of data, this long address is not sent over the air very often.
 
-![zigbee](files/ZB-Zigbee-Introduction-of-Zigbee-Basic/Node-Address.png)
+<div align="center">
+  <img src="files/ZB-Zigbee-Introduction-of-Zigbee-Basic/Node-Address.png">  
+</div>  
+</br> 
 
 Most of the time the much shorter, 16-bit address is used over the air. This is known as the node ID and unique within a network, similar to an IP address in Ethernet world. It is assigned as the node enters the network, and it’s supposed to be unique within that network. There may be two networks each of which has a node with the same node ID, but because they in different PANs, it doesn’t matter.
 
@@ -223,7 +255,10 @@ In application layer, a physical device can be split to several logic devices by
 ### 5.1. Endpoint
 Each endpoint represents a logic device. For example, if we have a smart outlet adapter with 6 outlets on it. We can implement it with 6 endpoints so that  we can switch on/off each outlet respectively.
 
-![zigbee](files/ZB-Zigbee-Introduction-of-Zigbee-Basic/Endpoint.png)
+<div align="center">
+  <img src="files/ZB-Zigbee-Introduction-of-Zigbee-Basic/Endpoint.png">  
+</div>  
+</br> 
 
 The endpoint ID is a 8bit value, ranging from 0 to 255. 
 - Endpoint 0 is reserved for Zigbee Device Object, mainly used for management purpose.
@@ -234,7 +269,10 @@ The endpoint ID is a 8bit value, ranging from 0 to 255.
 ### 5.2. Cluster
 In each endpoint, we can configure several clusters. Zigbee cluster is actually a communication model. 
 
-![zigbee](files/ZB-Zigbee-Introduction-of-Zigbee-Basic/Cluster.png)
+<div align="center">
+  <img src="files/ZB-Zigbee-Introduction-of-Zigbee-Basic/Cluster.png">  
+</div>  
+</br> 
 
 It’s based on client/server mode and used to describe the application protocol between the two devices.
 Each cluster has a cluster ID which is defined in Zigbee Cluster Library (ZCL).
@@ -244,7 +282,10 @@ A cluster may define several attributes and commands.
 Let’s see an example of the cluster, so that we can understand it better.  
 For example we need to implement a Light with two bulbs.
 
-![zigbee](files/ZB-Zigbee-Introduction-of-Zigbee-Basic/Cluster-Example.png)
+<div align="center">
+  <img src="files/ZB-Zigbee-Introduction-of-Zigbee-Basic/Cluster-Example.png">  
+</div>  
+</br> 
 
 We can define two endpoints in it. Each endpoint represents a bulb.
 
@@ -284,7 +325,10 @@ A key sequence number is added to support network key updating.
 #### 6.1.2. Hop-by-Hop Security
 Network layer security is a hop-by-hop security.  
 
-![zigbee](files/ZB-Zigbee-Introduction-of-Zigbee-Basic/Hop-by-Hop-Security.png)
+<div align="center">
+  <img src="files/ZB-Zigbee-Introduction-of-Zigbee-Basic/Hop-by-Hop-Security.png">  
+</div>  
+</br> 
 
 The router node needs to decrypt the message, then encrypt it and replace the info in security header, after that send it out.
 If the decrypting fails, the message will be dropped immediately.
@@ -298,7 +342,10 @@ When new devices join network, they must get a copy of the network key.
 
 In Zigbee network, the role who distribute network key to new devices is called trust center. There are two typical security models, centralized security network and distributed security network.  
 
-![zigbee](files/ZB-Zigbee-Introduction-of-Zigbee-Basic/Security-Model.png)
+<div align="center">
+  <img src="files/ZB-Zigbee-Introduction-of-Zigbee-Basic/Security-Model.png">  
+</div>  
+</br> 
 
 In a centralized security network, there is only one trust center, normally it’s the coordinator. All new devices will get network key from coordinator.  
 In a distributed security network, every router is a trust center. New devices can get network key from every router.
@@ -309,7 +356,10 @@ This encryption is done in application layer. We will talk about it later.
 #### 6.1.4. Frame Counter
 Frame counter is added to prevent replay attacks. Let’s see how it works.
 
-![zigbee](files/ZB-Zigbee-Introduction-of-Zigbee-Basic/Frame-Counter.png)
+<div align="center">
+  <img src="files/ZB-Zigbee-Introduction-of-Zigbee-Basic/Frame-Counter.png">  
+</div>  
+</br> 
 
 First, a node will record the frame counter of the received frame and the Eui64 of the node. The frame counter of the next message from the same node must be bigger than the recorded. Otherwise, the message will be considered to be a replay and will be dropped.
 
@@ -321,7 +371,10 @@ As frame counter is a 32-bit value, it could wrap if the device keep running for
 #### 6.2.1. Overview
 The message of transporting network key is encrypted in application. Let’s see application layer security.  
 
-![zigbee](files/ZB-Zigbee-Introduction-of-Zigbee-Basic/APS-Security.png)
+<div align="center">
+  <img src="files/ZB-Zigbee-Introduction-of-Zigbee-Basic/APS-Security.png">  
+</div>  
+</br> 
 
 It’s quite similar to network security. 
 Also symmetric encrypting algorithm (AES128) is used. The key is called link key. For most case, only the transporting network key message needs to be encrypted in application layer, and this only happens between trust center and the new device. So in this case, we also call it as trust center link key.
@@ -336,14 +389,17 @@ In centralized model, there is also a special global link key being used, which 
 This is used in the standards before Zigbee 3.0 and is kept to keep backward compatibility.
 
 The trust center link key must be preconfigured on the devices so that they can join and work.
-It would be easy if they are using the well-know link key.
+It would be easy if they are using the well-known link key.
 But what if they need to use different link key?
 
 Zigbee defines an approach to configure the link key out of band. It’s the install code.
 
 #### 6.2.2. Install Code
 
-![zigbee](files/ZB-Zigbee-Introduction-of-Zigbee-Basic/Install-Code.png)
+<div align="center">
+  <img src="files/ZB-Zigbee-Introduction-of-Zigbee-Basic/Install-Code.png">  
+</div>  
+</br> 
 
 Install code is a 16 bytes polynomial + 2 bytes CRC.   
 
@@ -370,9 +426,12 @@ You need to specify these four parameters.
 If you don’t, the coordinator will randomly choose a PAN ID and an extended PAN ID.
 If you don’t specify a channel, the coordinator will scan and pick a relatively quiet channel to work on.
 
-### 7.2. Joining with the Well-Know Link Key
+### 7.2. Joining with the Well-Known Link Key
 
-![zigbee](files/ZB-Zigbee-Introduction-of-Zigbee-Basic/Joining-with-Well-Known-Link-Key.png)
+<div align="center">
+  <img src="files/ZB-Zigbee-Introduction-of-Zigbee-Basic/Joining-with-Well-Known-Link-Key.png">  
+</div>  
+</br> 
 
 After the network formed, new devices can start to join. 
 1. The new device will start to find the joinable network. In this phase, the new device will send beacon requests on each channel. 
@@ -385,13 +444,16 @@ After the network formed, new devices can start to join.
 
 ### 7.3. Joining with Install-Code Derived Link Key
 
-![zigbee](files/ZB-Zigbee-Introduction-of-Zigbee-Basic/Joining-with-Install-Code.png)
+<div align="center">
+  <img src="files/ZB-Zigbee-Introduction-of-Zigbee-Basic/Joining-with-Install-Code.png">  
+</div>  
+</br> 
 
 1. The new device should have been programmed with the install code before shipped out from the factory.  
 2. Before it joins, users need to get the install code and Eui64 of the new device, and then configure them on the coordinator.  
 3. The coordinator then derive a link key from the install code and set the coordinator to use this link key to encrypt the transport NWK key message for this new device.
 
-The rest procedure is similar to the procedure of joining with the well-known link key. **When coordinator starts to transport network to the new device, it encrypt the message and transport it to the new device.** When the new device receives this message, **it reads the install code from flash and derive a link key from it, then use this key to decrypt the message and get the network key**.
+The rest procedure is similar to the procedure of joining with the well-known link key. **When coordinator starts to transport network key to the new device, it encrypt the message and transport it to the new device.** When the new device receives this message, **it reads the install code from flash and derive a link key from it, then use this key to decrypt the message and get the network key**.
 
 ## 8. Reference
 - [UG103-01 Fundamentals: Wireless Network](https://www.silabs.com/documents/public/user-guides/ug103-01-fundamentals-wireless-network.pdf)

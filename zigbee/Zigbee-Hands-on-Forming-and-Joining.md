@@ -14,15 +14,15 @@
 - [4. Download and test the Light application](#4-download-and-test-the-light-application)
 - [5. Create Switch application](#5-create-switch-application)
 - [6. Download and test the Switch application](#6-download-and-test-the-switch-application)
-- [7. Establish connection between Light and Switch with an installation code-derived link key](#7-establish-connection-between-light-and-switch-with-an-installation-code-derived-link-key)
-    - [7.1. Programming the Installation Code to Switch (Router) Device](#71-programming-the-installation-code-to-switch-router-device)
-        - [7.1.1. Format of the Installation Code File](#711-format-of-the-installation-code-file)
-        - [7.1.2. Checking the Installation Code on an EFR32 Device](#712-checking-the-installation-code-on-an-efr32-device)
-        - [7.1.3. Writing the Installation Code into the Manufacturing Area on an EFR32 Device](#713-writing-the-installation-code-into-the-manufacturing-area-on-an-efr32-device)
-        - [7.1.4. Verifying the Stored Installation Code on an EFR32 Device](#714-verifying-the-stored-installation-code-on-an-efr32-device)
-        - [7.1.5. Erasing the Installation Code](#715-erasing-the-installation-code)
+- [7. Establish connection between Light and Switch with an install code-derived link key](#7-establish-connection-between-light-and-switch-with-an-install-code-derived-link-key)
+    - [7.1. Programming the Install Code to Switch (Router) Device](#71-programming-the-install-code-to-switch-router-device)
+        - [7.1.1. Format of the Install Code File](#711-format-of-the-install-code-file)
+        - [7.1.2. Checking the Install Code on an EFR32 Device](#712-checking-the-install-code-on-an-efr32-device)
+        - [7.1.3. Writing the Install Code into the Manufacturing Area on an EFR32 Device](#713-writing-the-install-code-into-the-manufacturing-area-on-an-efr32-device)
+        - [7.1.4. Verifying the Stored Install Code on an EFR32 Device](#714-verifying-the-stored-install-code-on-an-efr32-device)
+        - [7.1.5. Erasing the Install Code](#715-erasing-the-install-code)
     - [7.2. Form centralized network on Light (Coordinator) device](#72-form-centralized-network-on-light-coordinator-device)
-        - [7.2.1. Derive a link key from the installation code](#721-derive-a-link-key-from-the-installation-code)
+        - [7.2.1. Derive a link key from the install code](#721-derive-a-link-key-from-the-install-code)
         - [7.2.2. Form centralized network](#722-form-centralized-network)
         - [7.2.3. Open the network with the derived link key](#723-open-the-network-with-the-derived-link-key)
     - [7.3. Join the network on Switch (Router) device](#73-join-the-network-on-switch-router-device)
@@ -36,10 +36,11 @@
 </details>
 
 ***
+English | [中文](Zigbee-Hands-on-Forming-and-Joining-CN.md) 
 
 # 1. Introduction
 In this worksheet we provide a step-by-step guide to create, build and run ZigBee 3.0 applications based on EmberZNet Stack 6.6.4. If you use a later release in the future, most of the instructions should be still applied, although there could be minor differences not foreseen at the time of this document.  
-These exercises help you get familiar with ZigBee 3.0 in the EmberZNet Stack, Simplicity Studio v4 development environment, and the Wireless Start Kit (WSTK) with EFR32MG12 SoC. We assume that you have a WSTK and the following software.  
+These exercises help you get familiar with ZigBee 3.0 in the EmberZNet Stack, Simplicity Studio v4 development environment, and the Wireless Start Kit (WSTK) with EFR32MG12 SoC. We assume that you have a WSTK and the following software(Simplicity Studio and EmberZnet SDK).  
 
 ## 1.1. Application features
 The boot camp series hands-on workshop will cover four functionalities below, and the application development is split into four steps respectively to show how an application should be built up from the beginning.  
@@ -145,7 +146,7 @@ Before the builder would be opened, I recommend to select the target board on th
 </br>  
 
 4. Choose the "ZigbeeMinimal" sample application. Click Next. See Figure 3‑4.  
-    **ZigbeeMinimal**: This is a Zigbee minimal network-layer application suitable as a starting point for new application development.  
+    **ZigbeeMinimal**: This is a Zigbee minimal application suitable as a starting point for new application development.  
 <div align="center">
   <img src="files/ZB-Zigbee-Hands-on-Forming-and-Joining/select_ZigbeeMinimal_sample_application.png">  
 </div>  
@@ -232,7 +233,7 @@ The **Network Creator** and **Network Creator Security** plugins implement the n
 The **Network Steering** and **Update TC Link Key** can be removed, since the device doesn't intend to joint to any network.  
 The **ZigBee PRO Stack Library** includes one of the most complex stack libraries. It contains the routing, networking, scanning, neighbor, child-handler and other functionalities. It's mandatory for Coordinator and Router. The sample application uses this plugin by default.  
 The **Security Link Keys library** provides management of APS link keys in the key table. It is used by a trust center (coordinator) to manage link keys of devices in the network, or by non trust center devices wishing to manage partner link keys. Therefore it is required to have.  
-The **Serial** establishes the Command Line Interface (CLI). This interface lets the user to communicate with the SoC. In case of selecting the correct board at project creation phase, the plugin settings should fit to the pinout of the device, but it is also important to double check the values. This application uses UART0 via USB Mini-B Connector. The WSTK Main board has a Board Controller which does the UART-USB conversion. This is the Virtual COM port, which must be enabled separately out of the plugin. It will be detailed later.  
+The **Serial** establishes the Command Line Interface (CLI). This interface lets the user to communicate with the SoC. In case of selecting the correct board at project creation phase, the plugin settings should fit to the pinout of the device, but it is also important to double check the values. This application uses UART0 via USB Mini-B Connector. The WSTK Main board has a Board Controller which does the UART-USB conversion. This is the Virtual COM port, which must be enabled separately out of the plugin. It will be detailed later.   
 
 <div align="center">
   <img src="files/ZB-Zigbee-Hands-on-Forming-and-Joining/plugins_enable.png">  
@@ -370,8 +371,7 @@ The **Install code library** provides an initial link key based upon an install 
 </br>  
 
 3. Press *Generate* button  
-4. Verify the VCOM enable is enabled in the Hardware Configurator (likewise to **3.12 Hardware configurator**)  
-5. Build the project  
+4. Build the project  
 
 *** 
 
@@ -386,13 +386,13 @@ Please repeat the steps from the chapter [Download and test the Light applicatio
 
 ***
 
-# 7. Establish connection between Light and Switch with an installation code-derived link key
-This chapter presents how to form a network and join to this. The communication between the devices will be captured by Network Analyzer tool. The installation code will be used in this part. 
-An installation code is used to create a preconfigured, link key. The installation code is transformed into a link key by using the AES-MMO hash algorithm, and the derived Zigbee link key will be known only by the Trust Center and the joining device. So the Trust Center can use that key to securely transport the Zigbee network key to the device. Once the device has the network key, it can communicate at the network layer to the Zigbee network.  
+# 7. Establish connection between Light and Switch with an install code-derived link key
+This chapter presents how to form a network and join to this. The communication between the devices will be captured by Network Analyzer tool. The install code will be used in this part. 
+An install code is used to create a preconfigured, link key. The install code is transformed into a link key by using the AES-MMO hash algorithm, and the derived Zigbee link key will be known only by the Trust Center and the joining device. So the Trust Center can use that key to securely transport the Zigbee network key to the device. Once the device has the network key, it can communicate at the network layer to the Zigbee network.  
 
-## 7.1. Programming the Installation Code to Switch (Router) Device
-For programming the installation code into the Switch device, you need to create a text file with the value of the installation code, and then write the installation code into the manufacturing area of the Switch node by using the Simplicity Commander.  
-For saving your time on this hands-on, we have prepared a batch file as below that can finish the installation code programming automatically. Create a batch file (for e.g., [program_install_code.bat](files/ZB-Zigbee-Hands-on-Forming-and-Joining/program_install_code.bat)), open it with any text editor, copy and paste the content below to it, save and execute it for programming the installation code.  
+## 7.1. Programming the Install Code to Switch (Router) Device
+For programming the install code into the Switch device, you need to create a text file with the value of the install code, and then write the install code into the manufacturing area of the Switch node by using the Simplicity Commander.  
+For saving your time on this hands-on, we have prepared a batch file as below that can finish the install code programming automatically. Create a batch file (for e.g., [program_install_code.bat](files/ZB-Zigbee-Hands-on-Forming-and-Joining/program_install_code.bat)), open it with any text editor, copy and paste the content below to it, save and execute it for programming the install code.  
 
 ```
 @echo off
@@ -441,33 +441,33 @@ Below is the result of executing the batch file.
 </div>  
 </br>  
 
-**Note**: The sections below (invisible by default, click the heading to view the details) describe in detail about how to programming the installation code, you can skip it and go to [7.2 Form centralized network on Light (Coordinator) device](#72-form-centralized-network-on-light-coordinator-device) if you don't want spend much time on that.
+**Note**: The sections below (invisible by default, click the heading to view the details) describe in detail about how to programming the install code, you can skip it and go to [7.2 Form centralized network on Light (Coordinator) device](#72-form-centralized-network-on-light-coordinator-device) if you don't want spend much time on that.
 
 <details>
-<summary><font size=5>Show/Hide detail about how to program the installation code (non-required)</font> </summary>
+<summary><font size=5>Show/Hide detail about how to program the install code (non-required)</font> </summary>
 
 
-### 7.1.1. Format of the Installation Code File
-To program the installation code, create a simple text file with the value of the installation code (without the CRC). In these instructions
+### 7.1.1. Format of the Install Code File
+To program the install code, create a simple text file with the value of the install code (without the CRC). In these instructions
 the file is named ```install-code-file.txt```.  
 The format of the file is as follows:  
 ```
 Install Code: <ascii-hex>
 ```
 
-Here is a sample installation code file. The CRC for that code is 0xB5C3 and is not included in the file.  
+Here is a sample install code file. The CRC for that code is 0xB5C3 and is not included in the file.  
 ```
 Install Code: 83FED3407A939723A5C639B26916D505
 ```
 
-### 7.1.2. Checking the Installation Code on an EFR32 Device
+### 7.1.2. Checking the Install Code on an EFR32 Device
 To get started, it is best to verify there is connectivity with the device to be programmed, and what information is currently stored on the node.  
 To do this, make sure that only the **Switch** device is connected to your PC (otherwise a new dialog will pop-up for selecting the right device), and then execute the following command to print all manufacturing token data from an EFR32-based device. The ```tokendump``` command prints manufacturing token data as key-value pairs. Simplicity Commander supports more than one group of tokens. In this example, the token group named "znet" is used.  
 ```
 $ C:\SiliconLabs\SimplicityStudio\v4\developer\adapter_packs\commander\commander.exe tokendump --tokengroup znet
 ```
 
-You should see the following output if you didn't write the installation code before, where the code in highlighted area below reflects the significant fields related to the installation code:  
+You should see the following output if you didn't write the install code before, where the code in highlighted area below reflects the significant fields related to the install code:  
 **Note**: If the ```commander``` command is not available on your PowerShell console, please check if you have installed the commander correctly, and make sure the commander.exe is included in the directory below.
 ```
 C:\SiliconLabs\SimplicityStudio\v4\developer\adapter_packs\commander
@@ -478,8 +478,8 @@ C:\SiliconLabs\SimplicityStudio\v4\developer\adapter_packs\commander
 </div>  
 </br>  
 
-### 7.1.3. Writing the Installation Code into the Manufacturing Area on an EFR32 Device
-To write the installation code into the manufacturing area of the Switch node, execute the following command:  
+### 7.1.3. Writing the Install Code into the Manufacturing Area on an EFR32 Device
+To write the install code into the manufacturing area of the Switch node, execute the following command:  
 ```
 $ C:\SiliconLabs\SimplicityStudio\v4\developer\adapter_packs\commander\commander.exe flash --tokengroup znet --tokenfile install-code-file.txt
 ```
@@ -488,8 +488,8 @@ You should see output similar to the following:
   <img src="files/ZB-Zigbee-Hands-on-Forming-and-Joining/write_the_installation_code.png">  
 </div>  
 
-### 7.1.4. Verifying the Stored Installation Code on an EFR32 Device
-After writing the installation code, it is best to verify the information by executing the following command again:  
+### 7.1.4. Verifying the Stored Install Code on an EFR32 Device
+After writing the install code, it is best to verify the information by executing the following command again:  
 ```
 $ C:\SiliconLabs\SimplicityStudio\v4\developer\adapter_packs\commander\commander.exe tokendump --tokengroup znet
 ```
@@ -497,19 +497,19 @@ $ C:\SiliconLabs\SimplicityStudio\v4\developer\adapter_packs\commander\commander
   <img src="files/ZB-Zigbee-Hands-on-Forming-and-Joining/verify_the_installation_code.png">  
 </div>  
 
-### 7.1.5. Erasing the Installation Code (not-necessary)
-**Note**: This is normally not necessary to execute this step in this hands-on, except you need to update the programmed installation code.  
-If you want to remove the install code from the device you just programmed, simply create an installation code file with the contents as below, and then execute the command to program this file into the target.  
+### 7.1.5. Erasing the Install Code (not-necessary)
+**Note**: This is normally not necessary to execute this step in this hands-on, except you need to update the programmed install code.  
+If you want to remove the install code from the device you just programmed, simply create an install code file with the contents as below, and then execute the command to program this file into the target.  
 ```
 Install Code: !ERASE!
 ```
 </details>
 
 ## 7.2. Form centralized network on Light (Coordinator) device
-### 7.2.1. Derive a link key from the installation code 
-To derive a link key from the installation code and store that into the link key table on the Light, which acts as the Trust Center for the centralized network, enter the command below:  
+### 7.2.1. Derive a link key from the install code 
+To derive a link key from the install code and store that into the link key table on the Light, which acts as the Trust Center for the centralized network, enter the command below:  
 ```
-option install-code <link key table index> {<Joining Node's EUI64>} {<16-byte installation code + 2-byte CRC>}
+option install-code <link key table index> {<Joining Node's EUI64>} {<16-byte install code + 2-byte CRC>}
 ```
 For example:  
 ```
@@ -524,7 +524,7 @@ option install-code 0 {00 0B 57 FF FE 64 8D D8} {83 FE D3 40 7A 93 97 23 A5 C6 3
 </div>  
 </br>
 
-* The last argument is the installation code with the 2-byte CRC appended at the end. You can calculate the CRC yourself, or you can simply find out from the output of the batch file execution which has the command ```$ commander tokendump --tokengroup znet``` inside:  
+* The last argument is the install code with the 2-byte CRC appended at the end. You can calculate the CRC yourself, or you can simply find out from the output of the batch file execution which has the command ```$ commander tokendump --tokengroup znet``` inside:  
 
 <div align="center">
   <img src="files/ZB-Zigbee-Hands-on-Forming-and-Joining/verify_the_installation_code.png">  
@@ -533,7 +533,7 @@ option install-code 0 {00 0B 57 FF FE 64 8D D8} {83 FE D3 40 7A 93 97 23 A5 C6 3
 
 The CRC is displayed just below the install code and is printed in little endian format. **Reverse the bytes to big endian before using as an argument with the option install-code CLI**.  
 
-To see if the link key is added successfully, enter the ```keys print``` CLI on the **Light** node to see it in the Link Key Table (or Transient Key Table after v6.7.0 EmberZNet SDK). This shows both the link key derived from the installation code, and the network key.  
+To see if the link key is added successfully, enter the ```keys print``` CLI on the **Light** node to see it in the Link Key Table (or Transient Key Table after v6.7.0 EmberZNet SDK). This shows both the link key derived from the install code, and the network key.  
 <div align="center">
   <img src="files/ZB-Zigbee-Hands-on-Forming-and-Joining/check_link_key.png">  
 </div>  
@@ -573,7 +573,7 @@ On the Switch node, enter this CLI to use the Network Steering plugin to join th
 ```
 plugin network-steering start 0
 ```
-And the serial console will output similar as below to indicate that the Switch node has joined the network 0xD31F successfully.  
+And the serial console will output similar as below to indicate that the Switch node has joined the network 0x220E successfully.  
 
 <div align="center">
   <img src="files/ZB-Zigbee-Hands-on-Forming-and-Joining/join_network_successfully.png">  

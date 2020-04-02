@@ -1,3 +1,4 @@
+English | [中文](Zigbee-Preparatory-Course-CN.md)
 
 # Introduction
 This is a preparatory course that you should take if you are new to the Silicon Labs development environment and Zigbee solution. The document describes how to get started with Zigbee development using the EmberZNet PRO SDK and Simplicity Studio with a compatible wireless starter kit (WSTK), and also the fundamental Zigbee knowledge you should understand before beginning to study the Zigbee Boot Camp series courses.  
@@ -129,7 +130,7 @@ For Silicon Labs customer, you can get a 30-day evaluation license for IAR:
 As the [IoT-Developer-Boot-Camp](https://github.com/MarkDing/IoT-Developer-Boot-Camp) is a open source project, we use the github to maintain all of the source code and documentations, every participating in it can provide your comments on it, submit your pull request for bug fix, new feature implementation or documentation improvement.  
 A valid github account is the prerequisite for joining this project, please [Create your github account](https://github.com/join?source=header-home) if you do not have that. And then Fork the [IoT-Developer-Boot-Camp](https://github.com/MarkDing/IoT-Developer-Boot-Camp) repository and add it to your watching list.  
 
-[Gitter](https://gitter.im/) is an open-source instant messaging and chat room system for developers and users of GitHub repositories. We have created a public chat room [ZMGC-Training](https://gitter.im/Silabs-IoT/ZMGC-Training#) for sharing and discussing everything about the Zigbee boot camp. Please sign in the Gitter with your GitHub account, and join this chat room.  
+[Gitter](https://gitter.im/) is an open-source instant messaging and chat room system for developers and users of GitHub repositories. We have created a public chat room [Zigbee Boot Camp](https://gitter.im/Silabs-IoT/Zigbee-Boot-Camp) for sharing and discussing everything about the Zigbee boot camp. Please sign in the Gitter with your GitHub account, and join this chat room.  
 
 *** 
 

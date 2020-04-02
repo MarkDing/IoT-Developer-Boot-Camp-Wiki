@@ -19,6 +19,7 @@
 </details>
 
 ***
+English | [中文](Zigbee-Hands-on-Sending-OnOff-Commands-CN.md)
 
 # 1. Introduction
 ## 1.1. Application features
@@ -160,7 +161,7 @@ The plugin defines some callbacks, so these can be found in the *Callbacks* tab.
 
 Save and generate.  
 
-Similarly to chapter 3.1 Command handling on Light device, add the function "emberAfPluginButtonInterfaceButton0PressedShortCallback()" and "emberAfPluginButtonInterfaceButton1PressedShortCallback()" manually to the *Zigbee_Switch_ZR_callbacks.c* file.  
+Similarly to [chapter 3.1 Command handling on Light device](#31-command-handling-on-light-device), add the function "emberAfPluginButtonInterfaceButton0PressedShortCallback()" and "emberAfPluginButtonInterfaceButton1PressedShortCallback()" manually to the *Zigbee_Switch_ZR_callbacks.c* file.  
 Save the modified .isc file and press *Generate*.  
 Every command is stored in a buffer before it had been sent. The transmitted data buffer should be built up as below:  
 The actual ZCL command is made by the function below. Replace \<\> to “On” or “Off”.  
