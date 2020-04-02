@@ -1,8 +1,6 @@
 <details>
 <summary><font size=5>目录</font> </summary>
 
-<!-- TOC -->
-
 - [1. 简介](#1-简介)
     - [1.1. 实验内容](#11-实验内容)
     - [1.2. 目的](#12-目的)
@@ -40,8 +38,6 @@
             - [4.3.3.3. 步骤3：测试](#4333-步骤3测试)
         - [4.3.4. 访问Manufacturing Tokens](#434-访问manufacturing-tokens)
             - [4.3.4.1. 步骤4：读取Manufacturing Tokens MFG_STRING](#4341-步骤4读取manufacturing-tokens-mfg_string)
-
-<!-- /TOC -->
 
 </details>
 
@@ -108,7 +104,7 @@ Token有两个部分：Token标识和Token数据。Token标识是用于存储和
   <img src="files/ZB-Zigbee-Hands-on-Non-volatile-Data-Storage/Non-volatile_Data_Storage_and_Tokens.png">  
 </div>  
 <div align="center">
-  <b>非易失性存储和Token</b>
+  <b>图2-1 非易失性存储和Token</b>
 </div>  
 
 ***
@@ -122,6 +118,9 @@ Token有两个部分：Token标识和Token数据。Token标识是用于存储和
 <div align="center">
   <img src="files/ZB-Zigbee-Hands-on-Non-volatile-Data-Storage/types_of_tokens_1.png">
 </div>
+<div align="center">
+  <b>图3-1 Token类型</b>
+</div>  
 </br>
 
 ### 3.1.1. Dynamic Tokens
@@ -166,7 +165,10 @@ Manufacturing Tokens是制造商在产品制造时设置，并且存储在闪存
 
 <div align="center">
   <img src="files/ZB-Zigbee-Hands-on-Non-volatile-Data-Storage/NVM3_default_instance_key_space.png">
-</div>  
+</div> 
+<div align="center">
+  <b>图3-2 NVM3默认的范围</b>
+</div>   
 </br>  
 
 ##### 3.2.1.1.2. 定义Token类型
@@ -281,12 +283,18 @@ EmberZNet PRO协议栈已经为协议栈本身，应用程序框架，制造数�
 <div align="center">
   <img src="files/ZB-Zigbee-Hands-on-Non-volatile-Data-Storage/brd4162_kit.png">
 </div>  
+<div align="center">
+  <b>图 4-1 无线入门套件</b>
+</div>  
 </br>  
 
 使用“ J-Link USB”连接器和开发套件中随附的USB电缆将开发板连接到PC。并将电源开关切换到“ AEM”位置。启动Simplicity Studio V4，它能识别所连接的设备，并将其列出在如下所示区域中。
 <div align="center">
   <img src="files/ZB-Zigbee-Hands-on-Non-volatile-Data-Storage/detect_wstk.png">
 </div>
+<div align="center">
+  <b>图 4-2 Simplicity Studio检测到无线入门套件</b>
+</div>  
 </br>
 
 ## 4.2. 软件需求
@@ -350,6 +358,9 @@ DEFINE_BASIC_TOKEN(LED1_ON_OFF,
 <div align="center">
   <img src="files/ZB-Zigbee-Hands-on-Non-volatile-Data-Storage/add_custom_token_header_file.gif">
 </div>
+<div align="center">
+  <b>图4-3 添加自定义Token头文件</b>
+</div>  
 </br>  
 
 ### 4.3.3. 访问Basic Tokens LED1_ON_OFF
@@ -407,6 +418,9 @@ halCommonSetToken(TOKEN_LED1_ON_OFF, &led1OnOffStatus);
 <div align="center">
   <img src="files/ZB-Zigbee-Hands-on-Non-volatile-Data-Storage/build_and_program.gif">
 </div>
+<div align="center">
+  <b>图4-4 编译项目并烧录</b>
+</div>  
 </br>
 
 在上电延迟几秒钟后，开发板上的LED1将定期闪烁，按复位键复位该设备，复位完成后，应用程序会将LED1恢复到复位/关闭电源之前的状态。  
@@ -431,6 +445,9 @@ emberAfAppPrintln("MFG String: %s", mfgString);
 <div align="center">
   <img src="files/ZB-Zigbee-Hands-on-Non-volatile-Data-Storage/dump_manufacturing_tokens.png">
 </div>
+<div align="center">
+  <b>图4-5 查看Manufacturing Tokens</b>
+</div>  
 </br>
 
 <font color=red><b>Question</b></font>: Manufacturing Tokens可以通过Basic Tokens APIs来访问吗？   

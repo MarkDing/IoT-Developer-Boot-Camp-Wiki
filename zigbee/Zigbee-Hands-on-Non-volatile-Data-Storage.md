@@ -105,7 +105,7 @@ The diagram below illustrates the relationship between the Tokens and the Non-vo
   <img src="files/ZB-Zigbee-Hands-on-Non-volatile-Data-Storage/Non-volatile_Data_Storage_and_Tokens.png">  
 </div>  
 <div align="center">
-  <b>Non-Volatile Storage and Tokens</b>
+  <b>Figure 2-1 Non-Volatile Storage and Tokens</b>
 </div>  
 
 ***
@@ -119,6 +119,9 @@ Depending on how the tokens are going to be used, it can be distinguished as Dyn
 <div align="center">
   <img src="files/ZB-Zigbee-Hands-on-Non-volatile-Data-Storage/types_of_tokens_1.png">
 </div>
+<div align="center">
+  <b>Figure 3-1 Types of Tokens</b>
+</div>  
 </br>
 
 ### 3.1.1. Dynamic Tokens
@@ -163,6 +166,9 @@ For NVM3, custom application tokens should use the **NVM3KEY_DOMAIN_USER** range
 
 <div align="center">
   <img src="files/ZB-Zigbee-Hands-on-Non-volatile-Data-Storage/NVM3_default_instance_key_space.png">
+</div>  
+<div align="center">
+  <b>Figure 3-2 NVM3 default instance key space</b>
 </div>  
 </br>  
 
@@ -282,12 +288,18 @@ This hands-on requires either EFR32MG21/EFR32MG13/EFR32MG12 radio board, and EFR
 <div align="center">
   <img src="files/ZB-Zigbee-Hands-on-Non-volatile-Data-Storage/brd4162_kit.png">
 </div>  
+<div align="center">
+  <b>Figure 4-1 Starter Kit layout</b>
+</div>  
 </br>  
 
 Connect the starter kit to PC using the "J-Link USB" connector and the cable provided with the starter kit. And turn the power switch to "AEM" position. Start the Simplicity Studio V4, and it should able to find the attached device, and list it in the "Debug Adapter" area of the launcher console.  
 <div align="center">
   <img src="files/ZB-Zigbee-Hands-on-Non-volatile-Data-Storage/detect_wstk.png">
 </div>
+<div align="center">
+  <b>Figure 4-2 Simplicity Studio detects the WSTK</b>
+</div>  
 </br>
 
 ## 4.2. Software Requirements
@@ -350,6 +362,9 @@ After creating the custom token header file, you need one more step: add the hea
 <div align="center">
   <img src="files/ZB-Zigbee-Hands-on-Non-volatile-Data-Storage/add_custom_token_header_file.gif">
 </div>
+<div align="center">
+  <b>Figure 4-3 Add custom token header file</b>
+</div>  
 </br>  
 
 ### 4.3.3. Access the basic Token LED1_ON_OFF
@@ -408,6 +423,9 @@ are ready to click on "Program".
 <div align="center">
   <img src="files/ZB-Zigbee-Hands-on-Non-volatile-Data-Storage/build_and_program.gif">
 </div>
+<div align="center">
+  <b>Figure 4-4 Build and Program</b>
+</div>  
 </br>
 
 The LED1 on the starter kit will blinky periodically after few seconds delay after power up, reset the device, the application will restore the LED1 to the status before reset/power-off.  
@@ -432,6 +450,9 @@ And also you can use the Simplicity Commander to dump the manufacturing tokens a
 <div align="center">
   <img src="files/ZB-Zigbee-Hands-on-Non-volatile-Data-Storage/dump_manufacturing_tokens.png">
 </div>
+<div align="center">
+  <b>Figure 4-5 Dump manufacturing tokens</b>
+</div>  
 </br>
 
 <font color=red><b>Question</b></font>: Can the Manufacturing tokens be accessed through the basic token APIs?  

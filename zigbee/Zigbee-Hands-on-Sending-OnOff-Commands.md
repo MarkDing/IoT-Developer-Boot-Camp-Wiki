@@ -120,6 +120,9 @@ Open Zigbee_Light_ZC_Callback.c from the project explorer as show below.
 <div align="center">
   <img src="files/ZB-Zigbee-Hands-on-Sending-OnOff-Commands/project_explorer.png">  
 </div> 
+<div align="center">
+  <b>Figure 3‑2 Implement callback function</b>
+</div>  
 </br>   
 
 Each step for this lab will have an associated comment in the primary [reference project](https://github.com/MarkDing/IoT-Developer-Boot-Camp/tree/master/zigbee) that starts off “Sending-OnOff-Commands: Step 1”, it will benefit the user for navigating to the right place for code implementation.  
@@ -151,12 +154,18 @@ The button operations are handled by the **Button Interface** plugin, so it shou
 <div align="center">
   <img src="files/ZB-Zigbee-Hands-on-Sending-OnOff-Commands/plugin_button_interface_enable.png">  
 </div> 
+<div align="center">
+  <b>Figure 3‑3 Enable the Button Interface plugin</b>
+</div>  
 </br>  
 
 The plugin defines some callbacks, so these can be found in the *Callbacks* tab. Move there and enable both the **Button0 Pressed Short** and **Button1 Pressed Short** callback function for sending On and Off command respectively.  
 <div align="center">
   <img src="files/ZB-Zigbee-Hands-on-Sending-OnOff-Commands/callback_button_pressed.png">  
 </div> 
+<div align="center">
+  <b>Figure 3‑4 Enable the callback functions</b>
+</div>  
 </br>  
 
 Save and generate.  
@@ -258,13 +267,13 @@ T00000000:RX len 3, ep 01, clus 0x0006 (On/off) FC 01 seq 18 cmd 00 payload[]
 Off command is received
 ```
 
-The above transactions can be observed in the Network Analyzer as well. See Figure 3‑2.  
+The above transactions can be observed in the Network Analyzer as well. See Figure 4‑1.  
 
 <div align="center">
   <img src="files/ZB-Zigbee-Hands-on-Sending-OnOff-Commands/ZCL_OnOff_commands_in_Network_Analyzer.png">  
 </div>  
 <div align="center">
-  <b>Figure 3‑2 ZCL On/Off commands in Network Analyzer</b>
+  <b>Figure 4‑1 ZCL On/Off commands in Network Analyzer</b>
 </div>  
 </br>  
 
@@ -274,7 +283,7 @@ Take the on/off command as a example to specifies the format of the General ZCL 
   <img src="files/ZB-Zigbee-Hands-on-Sending-OnOff-Commands/format_of_the_general_ZCL_frame.png">  
 </div>  
 <div align="center">
-  <b>Figure 3‑3 Format of the General ZCL Frame</b>
+  <b>Figure 4‑2 Format of the General ZCL Frame</b>
 </div> 
 </br>  
 
@@ -282,6 +291,9 @@ With the network analyzer, you can capture the network trace of the On/Off comma
 <div align="center">
   <img src="files/ZB-Zigbee-Hands-on-Sending-OnOff-Commands/onoff_command_format.png">  
 </div>  
+<div align="center">
+  <b>Figure 4‑3 Captured onoff command</b>
+</div> 
 
 **Frame Control**  
 The frame control field is 8 bits in length and contains information defining the command type and other control flags. The frame control field SHALL be formatted as shown in the figure below.  
@@ -290,7 +302,7 @@ The frame control field is 8 bits in length and contains information defining th
   <img src="files/ZB-Zigbee-Hands-on-Sending-OnOff-Commands/format_of_the_frame_control_field.png">  
 </div>  
 <div align="center">
-  <b>Figure 3‑4 Format of the Frame Control Field</b>
+  <b>Figure 4‑4 Format of the Frame Control Field</b>
 </div> 
 </br>  
 

@@ -54,7 +54,7 @@ Open the *AppBuilder* -> *Includes* tab. Add the custom event command ```ledBlin
   <img src="files/ZB-Zigbee-Hands-on-Using-Event/custom_event_adding_in_AppBuilder.png">  
 </div>  
 <div align="center">
-  <b>Custom event adding in AppBuilder</b>
+  <b>Figure 2-1 Custom event adding in AppBuilder</b>
 </div>  
 </br>  
 
@@ -66,7 +66,7 @@ Double click the Zigbee_Switch_ZR.isc file to open it with the AppBuilder, and t
   <img src="files/ZB-Zigbee-Hands-on-Using-Event/main_init_enabling.png">  
 </div>  
 <div align="center">
-  <b>Main Init callback enabling</b>
+  <b>Figure 2-2 Main Init callback enabling</b>
 </div>  
 </br>  
 

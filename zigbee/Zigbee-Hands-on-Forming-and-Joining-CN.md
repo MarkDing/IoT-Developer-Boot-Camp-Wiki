@@ -1,8 +1,6 @@
 <details>   
 <summary><font size=5>目录</font> </summary>
 
-<!-- TOC -->
-
 - [1. 简介](#1-简介)
     - [1.1. 实验内容](#11-实验内容)
     - [1.2. 目的](#12-目的)
@@ -22,7 +20,7 @@
         - [7.1.2. 检查EFR32设备上的install code](#712-检查efr32设备上的install-code)
         - [7.1.3. 将install code写入EFR32设备上的制造区域](#713-将install-code写入efr32设备上的制造区域)
         - [7.1.4. 验证在EFR32设备上存储的install code](#714-验证在efr32设备上存储的install-code)
-        - [7.1.5. 删除install code（不必要）](#715-删除install-code不必要)
+        - [7.1.5. 删除install code(不必要)](#715-删除install-code不必要)
     - [7.2. 在Light(协调器)设备上构建集中式网络](#72-在light协调器设备上构建集中式网络)
         - [7.2.1. 从install code中获取Link key](#721-从install-code中获取link-key)
         - [7.2.2. 构建集中网络](#722-构建集中网络)
@@ -34,8 +32,6 @@
         - [7.4.3. 开始在Light(协调器)设备上捕获](#743-开始在light协调器设备上捕获)
         - [7.4.4. Network Analyzer捕捉的入网过程](#744-network-analyzer捕捉的入网过程)
 - [8. 结论](#8-结论)
-
-<!-- /TOC -->
 
 </details>
 
@@ -229,7 +225,7 @@ ZCL配置是最重要的设置之一。设备的类型基于其Cluster和属性�
 
 **Plugins**  
 插件是实现功能的单独软件包。插件也可以包含库和源文件。这些文件被收集在此选项卡上，设备类型的选择不会自动过滤掉设备无法使用的插件，因此必须手动完成。例如，此示例应用程序未启用用于网络构建/打开的必要插件，我们需要手动选择。  
-必须添加或删除以下插件，以将当前设备设置为协调器设备。请参阅下图，了解如何在Appbuilder中启用插件。  
+必须添加或删除以下插件，以将当前设备设置为协调器设备。请参阅图3-10，了解如何在Appbuilder中启用插件。  
 请注意，下面提到的插件是完成本实验的最低需求，但是，不足以使“协调器/路由器”和“路由器”设备通过Z3认证。对于Z3认证，请参阅 Z3LightSoc和 Z3SwitchSoc示例以获取必要的插件。  
 
 该**Network Creator**和 **Network Creator Security** 插件实现网络构建开放的功能，因此，这些都要求有。  
@@ -239,6 +235,9 @@ ZCL配置是最重要的设置之一。设备的类型基于其Cluster和属性�
 该**Serial**用于实现命令行（CLI）。如果在项目创建阶段已经有正确选择开发板，那么该插件的的默认GPIO引脚的设置将会与开发板相匹配，当然再次确认设置是否正确也很重要。本实验中，我们通过USB Mini-B接口与PC连接器，以使用开发板上的虚拟串口（VCOM）。该虚拟COM端口，必须从插件中单独启用。稍后将详细介绍。  
 <div align="center">
   <img src="files/ZB-Zigbee-Hands-on-Forming-and-Joining/plugins_enable.png">  
+</div>  
+<div align="center">
+  <b>图3-10 插件</b>
 </div>  
 </br>
 
@@ -254,12 +253,12 @@ ZCL配置是最重要的设置之一。设备的类型基于其Cluster和属性�
 
 在继续介绍之前，我们在这里花费少量的篇幅来说明如何找到有关插件的更多信息。如上所述，某些插件具有源文件，而不仅仅只是预编译的库文件。可以通过查看这些源文件，以了解其内部工作的一些详细信息。头文件和源文件位于“ C:\SiliconLabs\SimplicityStudio\v4\developer\sdks\gecko_sdk_suite\v2.6\protocol\zigbee\app\framework” 目录下的“ plugin”，“ plugin-soc”和“ plugin-host” 文件夹。这几个不同的文件夹用来区分通用的、及专门用于SoC或Host的插件。
 
-从AppBuilder中也可以获取到这些信息，同时，它还提供了一些额外的信息，例如该插件所定义和实现的callback和API。请参阅图3-10。  
+从AppBuilder中也可以获取到这些信息，同时，它还提供了一些额外的信息，例如该插件所定义和实现的callback和API。请参阅图3-11。  
 <div align="center">
   <img src="files/ZB-Zigbee-Hands-on-Forming-and-Joining/plugin_details.png">  
 </div>  
 <div align="center">
-  <b>图3-10 插件详细信息</b>
+  <b>图3-11 插件详细信息</b>
 </div>  
 </br>  
 
@@ -279,12 +278,12 @@ Zigbee-BLE动态多协议蓝牙支持的配置器位于AppBuilder中。
 
 8. 保存.isc文件的修改，现在可以生成项目文件并链接必要的SDK源和库。  
 按下Appbuilder右上方的Generate按钮。
-“Generation successful!”表示已创建了所有必需文件。请参阅图3-11。
+“Generation successful!”表示已创建了所有必需文件。请参阅图3-12。
 <div align="center">
   <img src="files/ZB-Zigbee-Hands-on-Forming-and-Joining/generation_result.png">  
 </div>  
 <div align="center">
-  <b>图3-11 生成结果</b>
+  <b>图3-12 生成结果</b>
 </div>  
 </br>  
 
@@ -438,9 +437,12 @@ pause
 <div align="center">
   <img src="files/ZB-Zigbee-Hands-on-Forming-and-Joining/programming_install_code_batch_result.png">  
 </div>  
+<div align="center">
+  <b>Figure 7‑1 烧录Install Code</b>
+</div>  
 </br>  
 
-**注意**: 以下各节（默认情况下不可见，单击标题以查看详细信息）详细描述了如何对install code进行编程，如果您不想花很多时间在那上面，则可以跳过它并转到 [7.2在Light(协调器)设备上构建集中式网络](#72-在Light(协调器)设备上构建集中式网络)。
+**注意**: 以下各节（默认情况下不可见，单击标题以查看详细信息）详细描述了如何对install code进行编程，如果您不想花很多时间在那上面，则可以跳过它并转到 [7.2 在Light(协调器)设备上构建集中式网络](#72-在light协调器设备上构建集中式网络)。 
 
 <details>
 <summary><font size=5>显示/隐藏 关于如何烧录installation code的更多细节（不作要求）</font> </summary>
@@ -473,6 +475,9 @@ C:\SiliconLabs\SimplicityStudio\v4\developer\adapter_packs\commander
 <div align="center">
   <img src="files/ZB-Zigbee-Hands-on-Forming-and-Joining/check_install_code.png">  
 </div>  
+<div align="center">
+  <b>Figure 7‑2 查看Install Code</b>
+</div>  
 </br>  
 
 ### 7.1.3. 将install code写入EFR32设备上的制造区域
@@ -484,6 +489,9 @@ $ C:\SiliconLabs\SimplicityStudio\v4\developer\adapter_packs\commander\commander
 <div align="center">
   <img src="files/ZB-Zigbee-Hands-on-Forming-and-Joining/write_the_installation_code.png">  
 </div>  
+<div align="center">
+  <b>Figure 7‑3 烧录Install Code</b>
+</div>  
 
 ### 7.1.4. 验证在EFR32设备上存储的install code
 编写install code后，最好再次执行以下命令来验证信息：
@@ -493,14 +501,17 @@ $ C:\SiliconLabs\SimplicityStudio\v4\developer\adapter_packs\commander\commander
 <div align="center">
   <img src="files/ZB-Zigbee-Hands-on-Forming-and-Joining/verify_the_installation_code.png">  
 </div>  
+<div align="center">
+  <b>Figure 7‑4 验证已烧录的Install Code</b>
+</div>  
 
-### 7.1.5. 删除install code（不必要）
+### 7.1.5. 删除install code(不必要)
 **注意**: 在本实验中，通常无需执行此步骤，除非您需要更新已烧录的install code。 
 如果要从刚烧录的设备中删除install code，只需创建具有以下内容的install code文件，然后执行命令以将该文件烧录到目标设备中。
 ```
 Install Code: !ERASE!
 ```
-</details>
+</details>  
 
 ## 7.2. 在Light(协调器)设备上构建集中式网络
 ### 7.2.1. 从install code中获取Link key
@@ -519,12 +530,18 @@ option install-code 0 {00 0B 57 FF FE 64 8D D8} {83 FE D3 40 7A 93 97 23 A5 C6 3
 <div align="center">
   <img src="files/ZB-Zigbee-Hands-on-Forming-and-Joining/check_device_EUI.png">  
 </div>  
+<div align="center">
+  <b>Figure 7‑5 查看设备的EUI</b>
+</div>  
 </br>
 
 * 最后一个参数是在末尾附加2字节CRC的install code。您可以自己计算CRC，也可以简单地从批处理文件执行的输出中找出，其中的命令 ```$ commander tokendump --tokengroup znet```
 
 <div align="center">
   <img src="files/ZB-Zigbee-Hands-on-Forming-and-Joining/verify_the_installation_code.png">  
+</div>  
+<div align="center">
+  <b>Figure 7‑6 获取Install Code的CRC</b>
 </div>  
 </br>
 
@@ -533,6 +550,9 @@ CRC显示在install code的正下方，并以小端格式打印。 **在将其�
 要查看是否成功添加了Link key，请在**Light**节点的CLI上输入```keys print```，以在“Link key表”（或v6.7.0 EmberZNet SDK之后的“Transient Key Table”）中查看它。这显示了从install code派生的Link key和Network Key。
 <div align="center">
   <img src="files/ZB-Zigbee-Hands-on-Forming-and-Joining/check_link_key.png">  
+</div>  
+<div align="center">
+  <b>Figure 7‑7 查看Link Key</b>
 </div>  
 </br>
 
@@ -552,6 +572,9 @@ network id
 ```
 <div align="center">
   <img src="files/ZB-Zigbee-Hands-on-Forming-and-Joining/check_the_network_id.png">  
+</div>  
+<div align="center">
+  <b>Figure 7‑8 查看Pan ID</b>
 </div>  
 </br>
 
@@ -573,6 +596,9 @@ plugin network-steering start 0
 并且串行控制台将输出类似以下内容，以指示Switch节点已成功加入网络0x220E。 
 <div align="center">
   <img src="files/ZB-Zigbee-Hands-on-Forming-and-Joining/join_network_successfully.png">  
+</div>  
+<div align="center">
+  <b>Figure 7‑9 入网</b>
 </div>  
 </br>
 
@@ -613,11 +639,17 @@ Index IEEE Address         In FC     TTL(s) Flag    Key
 <div align="center">
   <img src="files/ZB-Zigbee-Hands-on-Forming-and-Joining/open_Security_Keys_tab.png">  
 </div>  
+<div align="center">
+  <b>Figure 7‑10 设置</b>
+</div>  
 </br>  
 
 2.	确保将Network Analyzer设置为解码正确的协议。选择Window >Preferences>Network Analyzer >Decoding > Stack Versions，并验证其设置是否正确。如果需要更改它，请单击正确的协议栈，单击“Application”，然后单击“Yes”。
 <div align="center">
   <img src="files/ZB-Zigbee-Hands-on-Forming-and-Joining/stack_profile.png">  
+</div>  
+<div align="center">
+  <b>Figure 7‑11 选择正确的协议栈</b>
 </div>  
 </br>  
 
@@ -625,6 +657,9 @@ Index IEEE Address         In FC     TTL(s) Flag    Key
 
 <div align="center">
   <img src="files/ZB-Zigbee-Hands-on-Forming-and-Joining/add_new_network_key.png">  
+</div>  
+<div align="center">
+  <b>Figure 7‑12 添加network key</b>
 </div>  
 </br>  
 
@@ -640,7 +675,7 @@ network leave
   <img src="files/ZB-Zigbee-Hands-on-Forming-and-Joining/start_capturing.png">  
 </div>  
 <div align="center">
-  <b>开始捕捉</b>
+  <b>7-13 开始捕获</b>
 </div>  
 </br>  
 
@@ -649,11 +684,11 @@ network leave
   <img src="files/ZB-Zigbee-Hands-on-Forming-and-Joining/capturing_on_Light.png">  
 </div>  
 <div align="center">
-  <b>对Light捕捉</b>
+  <b>7-14 在Light端捕获网络数据</b>
 </div>  
 </br>  
 
-然后重复步骤[使用派生的Link Key打开网络](#723-使用派生的Link-key打开网络)打开网络，以及下一步[将Switch路由器设备上加入网络](#73-将Switch路由器设备上加入网络)加入网络。  
+然后重复步骤[使用派生的Link Key打开网络](#723-使用派生的link-key打开网络)打开网络，以及下一步[将Switch路由器设备上加入网络](#73-将switch路由器设备上加入网络)加入网络。  
 捕获文件（* Live）应该显示网络上的数据包。
 
 ### 7.4.4. Network Analyzer捕捉的入网过程
@@ -663,7 +698,7 @@ Switch完成加入网络后，请停止Network Analyzer，然后通过Network An
   <img src="files/ZB-Zigbee-Hands-on-Forming-and-Joining/joining_process_in_Network_Analyzer_install_code.png">  
 </div>  
 <div align="center">
-  <b>Network Analyzer的加入过程</b>
+  <b>7-15 Network Analyzer的加入过程</b>
 </div>  
 </br>  
 

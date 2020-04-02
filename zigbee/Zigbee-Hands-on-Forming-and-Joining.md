@@ -226,17 +226,20 @@ This tab is modified quite rarely. It would be possible to use external hardware
 
 **Plugins**  
 The plugins are individual software packages which implement a functionality. A plugin can consist of libraries and source files as well. These are collected on this tab, and the selection of device type doesn't filter out the plugins that the device cannot use, thus it must be done manually. For example, this sample application doesn't enable the necessary plugins for network forming/opening, we need to do that manually.  
-The below plugins must be added or removed to get a device which can operate as a Coordinator. See the Figure below for how to enable the plugins in Appbuilder.  
+The below plugins must be added or removed to get a device which can operate as a Coordinator. See the Figure 3-10 below for how to enable the plugins in Appbuilder.  
 Please note that the plugins mentioned below are the minimal requirements to finish the Forming and Joining hands-on, however, it's not enough for making the "Coordinator/Router" and "Router" device to pass the Z3 certification. For Z3 certification, please refer to the Z3LightSoc and Z3SwitchSoc examples for the necessary plugins.  
 
 The **Network Creator** and **Network Creator Security** plugins implement the network forming and opening functionality, therefore these are required to have.  
 The **Network Steering** and **Update TC Link Key** can be removed, since the device doesn't intend to joint to any network.  
 The **ZigBee PRO Stack Library** includes one of the most complex stack libraries. It contains the routing, networking, scanning, neighbor, child-handler and other functionalities. It's mandatory for Coordinator and Router. The sample application uses this plugin by default.  
 The **Security Link Keys library** provides management of APS link keys in the key table. It is used by a trust center (coordinator) to manage link keys of devices in the network, or by non trust center devices wishing to manage partner link keys. Therefore it is required to have.  
-The **Serial** establishes the Command Line Interface (CLI). This interface lets the user to communicate with the SoC. In case of selecting the correct board at project creation phase, the plugin settings should fit to the pinout of the device, but it is also important to double check the values. This application uses UART0 via USB Mini-B Connector. The WSTK Main board has a Board Controller which does the UART-USB conversion. This is the Virtual COM port, which must be enabled separately out of the plugin. It will be detailed later.   
+The **Serial** establishes the Command Line Interface (CLI). This interface lets the user to communicate with the SoC. In case of selecting the correct board at project creation phase, the plugin settings should fit to the pinout of the device, but it is also important to double check the values. The WSTK comes with a built-in VCOM, and application can use it by connecting WSTK to PC via USB connector. This is the Virtual COM port, which must be enabled separately out of the plugin. It will be detailed later.  
 
 <div align="center">
   <img src="files/ZB-Zigbee-Hands-on-Forming-and-Joining/plugins_enable.png">  
+</div>  
+<div align="center">
+  <b>Figure 3-10 Plugins</b>
 </div>  
 </br>
 
@@ -252,12 +255,12 @@ The **Serial** establishes the Command Line Interface (CLI). This interface lets
 
 Before going ahead, it's a good place to point how the users can find more information about the plugins. As mentioned above, some plugins have source files, not just pre-built libraries. These files can be examined to find some not detailed information about its internal working. The header, and source files can be found at "C:\\SiliconLabs\\SimplicityStudio\\v4\\developer\\sdks\\gecko_sdk_suite\\v2.6\\protocol\\zigbee\\app\\framework", under "plugin", "plugin-soc" and "plugin-host" folders. This separation is used to identify the commonly used, SoC and Host specific plugins.  
 
-These files are available from the AppBuilder as well, but some extra information can be found, as the implemented, defined callbacks and APIs by the plugin. See Figure 3‑10.  
+These files are available from the AppBuilder as well, but some extra information can be found, as the implemented, defined callbacks and APIs by the plugin. See Figure 3‑11.  
 <div align="center">
   <img src="files/ZB-Zigbee-Hands-on-Forming-and-Joining/plugin_details.png">  
 </div>  
 <div align="center">
-  <b>Figure 3‑10 Plugin details</b>
+  <b>Figure 3‑11 Plugin details</b>
 </div>  
 </br>  
 
@@ -278,12 +281,12 @@ Note: This tab is not used in this project. Some BLE related plugin make it edit
 8. Save the modification of the .isc file, and it's ready for generating the project files and link the necessary SDK sources and libraries now.  
 Press the Generate button on the upper-right of the Appbuilder.  
 
-The "Generation successful" label signs all the required files are created. See Figure 3‑11.  
+The "Generation successful" label signs all the required files are created. See Figure 3‑12.  
 <div align="center">
   <img src="files/ZB-Zigbee-Hands-on-Forming-and-Joining/generation_result.png">  
 </div>  
 <div align="center">
-  <b>Figure 3‑11 Generation result</b>
+  <b>Figure 3‑12 Generation result</b>
 </div>  
 </br>  
 
@@ -439,6 +442,9 @@ Below is the result of executing the batch file.
 <div align="center">
   <img src="files/ZB-Zigbee-Hands-on-Forming-and-Joining/programming_install_code_batch_result.png">  
 </div>  
+<div align="center">
+  <b>Figure 7‑1 Programming the Install Code</b>
+</div>  
 </br>  
 
 **Note**: The sections below (invisible by default, click the heading to view the details) describe in detail about how to programming the install code, you can skip it and go to [7.2 Form centralized network on Light (Coordinator) device](#72-form-centralized-network-on-light-coordinator-device) if you don't want spend much time on that.
@@ -476,6 +482,9 @@ C:\SiliconLabs\SimplicityStudio\v4\developer\adapter_packs\commander
 <div align="center">
   <img src="files/ZB-Zigbee-Hands-on-Forming-and-Joining/check_install_code.png">  
 </div>  
+<div align="center">
+  <b>Figure 7‑2 Checking the Install Code</b>
+</div>  
 </br>  
 
 ### 7.1.3. Writing the Install Code into the Manufacturing Area on an EFR32 Device
@@ -487,6 +496,9 @@ You should see output similar to the following:
 <div align="center">
   <img src="files/ZB-Zigbee-Hands-on-Forming-and-Joining/write_the_installation_code.png">  
 </div>  
+<div align="center">
+  <b>Figure 7‑3 Writing the Install Code</b>
+</div>  
 
 ### 7.1.4. Verifying the Stored Install Code on an EFR32 Device
 After writing the install code, it is best to verify the information by executing the following command again:  
@@ -495,6 +507,9 @@ $ C:\SiliconLabs\SimplicityStudio\v4\developer\adapter_packs\commander\commander
 ```
 <div align="center">
   <img src="files/ZB-Zigbee-Hands-on-Forming-and-Joining/verify_the_installation_code.png">  
+</div>  
+<div align="center">
+  <b>Figure 7‑4 Verifying the Stored Install Code</b>
 </div>  
 
 ### 7.1.5. Erasing the Install Code (not-necessary)
@@ -522,12 +537,18 @@ option install-code 0 {00 0B 57 FF FE 64 8D D8} {83 FE D3 40 7A 93 97 23 A5 C6 3
 <div align="center">
   <img src="files/ZB-Zigbee-Hands-on-Forming-and-Joining/check_device_EUI.png">  
 </div>  
+<div align="center">
+  <b>Figure 7‑5 Check device EUI</b>
+</div>  
 </br>
 
 * The last argument is the install code with the 2-byte CRC appended at the end. You can calculate the CRC yourself, or you can simply find out from the output of the batch file execution which has the command ```$ commander tokendump --tokengroup znet``` inside:  
 
 <div align="center">
   <img src="files/ZB-Zigbee-Hands-on-Forming-and-Joining/verify_the_installation_code.png">  
+</div>  
+<div align="center">
+  <b>Figure 7‑6 Get the CRC of Install Code</b>
 </div>  
 </br>
 
@@ -536,6 +557,9 @@ The CRC is displayed just below the install code and is printed in little endian
 To see if the link key is added successfully, enter the ```keys print``` CLI on the **Light** node to see it in the Link Key Table (or Transient Key Table after v6.7.0 EmberZNet SDK). This shows both the link key derived from the install code, and the network key.  
 <div align="center">
   <img src="files/ZB-Zigbee-Hands-on-Forming-and-Joining/check_link_key.png">  
+</div>  
+<div align="center">
+  <b>Figure 7‑7 Check the Link Key</b>
 </div>  
 </br>
 
@@ -555,6 +579,9 @@ network id
 ```
 <div align="center">
   <img src="files/ZB-Zigbee-Hands-on-Forming-and-Joining/check_the_network_id.png">  
+</div>  
+<div align="center">
+  <b>Figure 7‑8 Check the Pan ID</b>
 </div>  
 </br>
 
@@ -577,6 +604,9 @@ And the serial console will output similar as below to indicate that the Switch 
 
 <div align="center">
   <img src="files/ZB-Zigbee-Hands-on-Forming-and-Joining/join_network_successfully.png">  
+</div>  
+<div align="center">
+  <b>Figure 7‑9 Join the network</b>
 </div>  
 </br>
 
@@ -618,17 +648,26 @@ Add the network key ```C1 05 57 73 1A 09 83 71  77 C3 22 B7 E1 90 9A A1``` and d
 <div align="center">
   <img src="files/ZB-Zigbee-Hands-on-Forming-and-Joining/open_Security_Keys_tab.png">  
 </div>  
+<div align="center">
+  <b>Figure 7‑10 Preferences</b>
+</div>  
 </br>  
 
 2. Make sure that Network Analyzer is set to decode the correct protocol. Select Window \> Preferences \> Network Analyzer \> Decoding \> Stack Versions, and verify it is set correctly. If you need to change it, click the correct stack, click Apply, and then OK.  
 <div align="center">
   <img src="files/ZB-Zigbee-Hands-on-Forming-and-Joining/stack_profile.png">  
 </div>  
+<div align="center">
+  <b>Figure 7‑11 Select the correct stack</b>
+</div>  
 </br>  
 
 3. Navigate to Network Analyzer-\>Decoding-\> Security Keys and add the network keys. See the figure below.  
 <div align="center">
   <img src="files/ZB-Zigbee-Hands-on-Forming-and-Joining/add_new_network_key.png">  
+</div>  
+<div align="center">
+  <b>Figure 7‑12 Add network key</b>
 </div>  
 </br>  
 
@@ -645,7 +684,7 @@ Right click on Adapter name of the Light-\> *Connect* (if not connected yet)-\>*
   <img src="files/ZB-Zigbee-Hands-on-Forming-and-Joining/start_capturing.png">  
 </div>  
 <div align="center">
-  <b>Start capturing</b>
+  <b>7-13 Start capturing</b>
 </div>  
 </br>  
 
@@ -654,7 +693,7 @@ It should change the view to *Network Analyzer* and immediately start capturing.
   <img src="files/ZB-Zigbee-Hands-on-Forming-and-Joining/capturing_on_Light.png">  
 </div>  
 <div align="center">
-  <b>Capturing on Light</b>
+  <b>7-14 Capturing on Light</b>
 </div>  
 </br>  
 
@@ -668,7 +707,7 @@ Stop the network analyzer after the Switch finish joining the network, and have 
   <img src="files/ZB-Zigbee-Hands-on-Forming-and-Joining/joining_process_in_Network_Analyzer_install_code.png">  
 </div>  
 <div align="center">
-  <b>Joining process in Network Analyzer</b>
+  <b>7-15 Joining process in Network Analyzer</b>
 </div>  
 </br>  
 
