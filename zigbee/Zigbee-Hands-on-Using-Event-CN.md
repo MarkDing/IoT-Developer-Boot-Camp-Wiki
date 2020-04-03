@@ -1,3 +1,5 @@
+[English](Zigbee-Hands-on-Using-Event) | 中文
+
 <details>
 <summary><font size=5>目录</font> </summary>
 
@@ -11,7 +13,6 @@
 </details>
 
 ***
-[English](Zigbee-Hands-on-Using-Event.md) | 中文
 
 # 1. 简介
 

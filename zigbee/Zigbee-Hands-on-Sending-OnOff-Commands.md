@@ -1,3 +1,5 @@
+English | [中文](Zigbee-Hands-on-Sending-OnOff-Commands-CN)
+
 <details>
 <summary><font size=5>Table of Contents</font> </summary>
 
@@ -19,7 +21,6 @@
 </details>
 
 ***
-English | [中文](Zigbee-Hands-on-Sending-OnOff-Commands-CN.md)
 
 # 1. Introduction
 ## 1.1. Application features

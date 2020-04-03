@@ -1,3 +1,5 @@
+[English](Zigbee-Hands-on-Forming-and-Joining) | 中文
+
 <details>   
 <summary><font size=5>目录</font> </summary>
 
@@ -37,7 +39,6 @@
 
 
 ***
-[English](Zigbee-Hands-on-Forming-and-Joining.md) | 中文
 
 # 1. 简介
 我们提供了基于EmberZnet Stack 6.6.4来创建、编译和运行Zigbee 3.0应用程序的分步操作指南。如果将来使用的是更高版本，则尽管此处可能有未预料到的细微差别，但大多数说明仍适用。  

@@ -1,4 +1,4 @@
-[English](Zigbee-Introduction-of-Zigbee-Basic.md) | 中文
+[English](Zigbee-Introduction-of-Zigbee-Basic) | 中文
 
 <details>
 <summary><font size=5>目录</font> </summary>  

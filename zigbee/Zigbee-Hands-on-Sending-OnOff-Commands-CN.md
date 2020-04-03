@@ -1,3 +1,4 @@
+[English](Zigbee-Hands-on-Sending-OnOff-Commands) | 中文
 
 <details>
 <summary><font size=5>目录</font> </summary>
@@ -20,7 +21,6 @@
 </details>
 
 ***
-[English](Zigbee-Hands-on-Sending-OnOff-Commands.md) | 中文
 
 # 1. 简介
 ## 1.1. 实验内容

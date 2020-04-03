@@ -1,8 +1,7 @@
-English | [中文](Zigbee-Introduction-of-EmberZnet-and-AppBuilder-CN.md)
+English | [中文](Zigbee-Introduction-of-EmberZnet-and-AppBuilder-CN)
 
 <details>
 <summary><font size=5>Table of Contents</font> </summary>  
-&nbsp;
 
 - [1. Overview](#1-overview)
 - [2. SoC and Modules](#2-soc-and-modules)
@@ -34,6 +33,7 @@ English | [中文](Zigbee-Introduction-of-EmberZnet-and-AppBuilder-CN.md)
       - [4.2.6.3. Useful Commands](#4263-useful-commands)
       - [4.2.6.4. Network Analyzer](#4264-network-analyzer)
 - [5. Reference](#5-reference)
+
 </details>
 
 ********
