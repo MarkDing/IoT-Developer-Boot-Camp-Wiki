@@ -1,9 +1,6 @@
 <details>
 <summary><font size=5>目录</font> </summary>
 
-
-<!-- TOC -->
-
 - [1. 简介](#1-简介)
     - [1.1. 实验内容](#11-实验内容)
     - [1.2. 目的](#12-目的)
@@ -11,7 +8,6 @@
 - [3. 测试项目](#3-测试项目)
 - [4. 结论](#4-结论)
 
-<!-- /TOC -->
 </details>
 
 ***
@@ -58,7 +54,7 @@ AppBuilder提供了一种向应用程序添加任何自定义事件的方法。
   <img src="files/ZB-Zigbee-Hands-on-Using-Event/custom_event_adding_in_AppBuilder.png">  
 </div>  
 <div align="center">
-  <b>在AppBuilder中添加自定义事件</b>
+  <b>图2-1 在AppBuilder中添加自定义事件</b>
 </div>  
 </br>  
 
@@ -70,7 +66,7 @@ AppBuilder提供了一种向应用程序添加任何自定义事件的方法。
   <img src="files/ZB-Zigbee-Hands-on-Using-Event/main_init_enabling.png">  
 </div>  
 <div align="center">
-  <b>启用Main Init回调函数</b>
+  <b>图2-2 启用Main Init回调函数</b>
 </div>  
 </br>  
 

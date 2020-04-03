@@ -2,8 +2,6 @@
 <details>
 <summary><font size=5>目录</font> </summary>
 
-<!-- TOC -->
-
 - [1. 简介](#1-简介)
     - [1.1. 实验内容](#11-实验内容)
     - [1.2. 目的](#12-目的)
@@ -18,8 +16,6 @@
     - [3.2. 从Switch设备发送命令](#32-从switch设备发送命令)
 - [4. 测试项目](#4-测试项目)
 - [5. 结论](#5-结论)
-
-<!-- /TOC -->
 
 </details>
 
@@ -118,6 +114,9 @@ Bootloader是存储在预留的闪存中的一段程序，可以初始化设备�
 <div align="center">
   <img src="files/ZB-Zigbee-Hands-on-Sending-OnOff-Commands/project_explorer.png">  
 </div> 
+<div align="center">
+  <b>Figure 3‑2 实现回调函数</b>
+</div>  
 </br>   
 
 该实验的每个步骤在基本[参考项目](https://github.com/MarkDing/IoT-Developer-Boot-Camp/tree/master/zigbee)中都会有一个关联的注释，该注释从“ Send-OnOff-Commands：Step 1”开始，这将使用户更容易找到正确的代码实现位置。 
@@ -150,12 +149,18 @@ bool emberAfOnOffClusterToggleCallback(void){
 <div align="center">
   <img src="files/ZB-Zigbee-Hands-on-Sending-OnOff-Commands/plugin_button_interface_enable.png">  
 </div> 
+<div align="center">
+  <b>Figure 3‑3 使能Button Interface插件</b>
+</div>  
 </br>  
 
 该插件定义了一些回调函数，因此可以在*Callbacks*选项卡中找到这些回调。移动到此处并同时启用**Button0 Pressed Short**和**Button1 Pressed Short**回调函数，分别发送On和Off命令。
 <div align="center">
   <img src="files/ZB-Zigbee-Hands-on-Sending-OnOff-Commands/callback_button_pressed.png">  
 </div> 
+<div align="center">
+  <b>Figure 3‑4 使能回调函数</b>
+</div>  
 </br>  
 
 保存并点击“Generate”生成。 
@@ -254,13 +259,13 @@ T00000000:RX len 3, ep 01, clus 0x0006 (On/off) FC 01 seq 18 cmd 00 payload[]
 Off command is received
 ```
 
-在Network Analyzer中也可以观察到以上事务。请参阅图3-2。
+在Network Analyzer中也可以观察到以上事务。请参阅图4-1。
 
 <div align="center">
   <img src="files/ZB-Zigbee-Hands-on-Sending-OnOff-Commands/ZCL_OnOff_commands_in_Network_Analyzer.png">  
 </div>  
 <div align="center">
-  <b>图3-2 Network Analyzer中的ZCL On/Off命令</b>
+  <b>图4-1 Network Analyzer中的ZCL On/Off命令</b>
 </div>  
 </br>  
 
@@ -269,13 +274,16 @@ Off command is received
   <img src="files/ZB-Zigbee-Hands-on-Sending-OnOff-Commands/format_of_the_general_ZCL_frame.png">  
 </div>  
 <div align="center">
-  <b>图3-3 常规ZCL帧的格式</b>
+  <b>图4-2 常规ZCL帧的格式</b>
 </div> 
 </br>  
 
 使用Network Analyzer，您可以捕获“打开/关闭”命令的网络跟踪，如下所示。 
 <div align="center">
   <img src="files/ZB-Zigbee-Hands-on-Sending-OnOff-Commands/onoff_command_format.png">  
+</div> 
+<div align="center">
+  <b>图4-3 捕获的打开/关闭命令</b>
 </div>  
 
 **Frame Control**  
@@ -285,7 +293,7 @@ Frame Control字段的长度为8位，并包含定义命令类型和其他控制
   <img src="files/ZB-Zigbee-Hands-on-Sending-OnOff-Commands/format_of_the_frame_control_field.png">  
 </div>  
 <div align="center">
-  <b>图3-4 Frame Control字段的格式</b>
+  <b>图4-4 Frame Control字段的格式</b>
 </div> 
 </br>  
 
