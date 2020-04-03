@@ -1,3 +1,5 @@
+English | [中文](Zigbee-Hands-on-Using-Event-CN)
+
 <details>
 <summary><font size=5>Table of Contents</font> </summary>
 
@@ -11,7 +13,6 @@
 </details>
 
 ***
-English | [中文](Zigbee-Hands-on-Using-Event-CN.md)
 
 # 1. Introduction
 

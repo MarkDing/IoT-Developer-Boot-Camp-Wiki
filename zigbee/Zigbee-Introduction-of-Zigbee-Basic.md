@@ -1,8 +1,7 @@
-English | [中文](Zigbee-Introduction-of-Zigbee-Basic-CN.md)
+English | [中文](Zigbee-Introduction-of-Zigbee-Basic-CN)
 
 <details>
 <summary><font size=5>Table of Contents</font> </summary>  
-&nbsp;
 
 - [1. Overview](#1-overview)
   - [1.1. What's Zigbee](#11-whats-zigbee)

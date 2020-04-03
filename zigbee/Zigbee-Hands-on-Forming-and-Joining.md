@@ -1,3 +1,5 @@
+English | [中文](Zigbee-Hands-on-Forming-and-Joining-CN) 
+
 <details>
 <summary><font size=5>Table of Contents</font> </summary>
 
@@ -36,7 +38,6 @@
 </details>
 
 ***
-English | [中文](Zigbee-Hands-on-Forming-and-Joining-CN.md) 
 
 # 1. Introduction
 In this worksheet we provide a step-by-step guide to create, build and run ZigBee 3.0 applications based on EmberZNet Stack 6.6.4. If you use a later release in the future, most of the instructions should be still applied, although there could be minor differences not foreseen at the time of this document.  
