@@ -1,4 +1,4 @@
-[English](Zigbee-Preparatory-Course.md) | 中文
+[English](Zigbee-Preparatory-Course) | 中文
 
 # 介绍
 如果您是Silicon Labs开发环境和Zigbee解决方案的新手，那么我们建议您仔细阅读并完成此预备课程。该文档描述了如何使用EmberZNet PRO SDK和Simplicity Studio以及兼容的无线入门套件（WSTK）来进行Zigbee开发，以及在开始学习Zigbee Boot Camp系列课程之前应该了解的Zigbee基本知识。  
@@ -11,7 +11,6 @@
 </br>  
 
 *** 
-
 
 # 先决条件
 

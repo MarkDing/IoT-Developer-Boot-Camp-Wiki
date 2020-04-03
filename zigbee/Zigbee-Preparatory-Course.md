@@ -1,4 +1,4 @@
-English | [中文](Zigbee-Preparatory-Course-CN.md)
+English | [中文](Zigbee-Preparatory-Course-CN)
 
 # Introduction
 This is a preparatory course that you should take if you are new to the Silicon Labs development environment and Zigbee solution. The document describes how to get started with Zigbee development using the EmberZNet PRO SDK and Simplicity Studio with a compatible wireless starter kit (WSTK), and also the fundamental Zigbee knowledge you should understand before beginning to study the Zigbee Boot Camp series courses.  
