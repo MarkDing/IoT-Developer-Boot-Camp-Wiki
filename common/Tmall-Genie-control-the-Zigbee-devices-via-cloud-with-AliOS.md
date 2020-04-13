@@ -445,4 +445,4 @@ res = device_table_del_subdev(devid);</pre>
 
 在云智能App选择第三方服务，选中天猫精灵，设置好用户名和密码。在天猫精灵App里发现新添加的设备，起好名字。 对天猫精灵说&quot;打开书房的灯&quot;, 灯开; &quot;关闭书房的灯&quot;, 灯灭; &quot;现在灯是开的么?&quot;, 回答&quot;现在灯处于关闭状态&quot;
 
-至此我们实现了天猫精灵以云对云的方式来控制Zigbee设备。
+至此我们实现了天猫精灵以云对云的方式来控制Zigbee设备。 
