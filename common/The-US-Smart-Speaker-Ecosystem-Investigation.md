@@ -19,7 +19,7 @@ Figure 1.0 Options connecting to Alexa
 </div>
 
 
-#### **1.&nbsp;In the Cloud**
+#### **1.&nbsp;In the Cloud** 
 
 This way is pretty much a traditional way of controlling a smart device. It's through Cloud to Cloud to transmit user's directives. The smart speakers or Alexa is only responsible for interpreting voice messages to code directives, and through Amazon cloud, sending the code directives to the AWS Lambda, where the custom skills are held. Then, the AWS Lambda communicates with the developer's cloud to assign the specific commands, and finally, the end devices will receive the commands through the internet using Wi-Fi or cable connection. For every directive, the developer can choose an either synchronous or asynchronous way to respond to Alexa whether the directives were received or not, and Alexa gives feedback to the user accordingly. This mode is implemented through Amazon Smart Home Skill API, which provides the interfaces for describing the device attributes and their supported directives. Customer can also through Alexa phone application to check the status of their devices and give directives.
 
