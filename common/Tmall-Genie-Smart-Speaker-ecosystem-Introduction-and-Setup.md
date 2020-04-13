@@ -8,7 +8,7 @@ Silicon Labs is the leader in silicon, software, and solutions for a smarter, mo
 <img src="files/CM-Smart-Speaker/Tmall BlockDigram.png">
 </div>
 
-# Project Description
+# Project Description 
 
 The [Aligenie](https://www.aligenie.com/)</span>&nbsp;platform&nbsp;provides&nbsp;different&nbsp;solutions&nbsp;that&nbsp;developer&nbsp;can&nbsp;adopt&nbsp;to&nbsp;access&nbsp;the&nbsp;service for controlling smart devices via voice command.
 
