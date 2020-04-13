@@ -27,7 +27,7 @@ The Tmall Genie is a smart speaker developed by Chinese e-commerce company Aliba
 
 *** 
 
-## Before Implementation
+## Before Implementation 
 
 <span style="color: black;">As a pre-condition for adding your Bluetooth mesh device into Tmall Genie ecosystem, you need to apply for the &quot;ProductID&quot;, &quot;Mac Address&quot; and &quot;Secret&quot; from Ali.</span>
 
