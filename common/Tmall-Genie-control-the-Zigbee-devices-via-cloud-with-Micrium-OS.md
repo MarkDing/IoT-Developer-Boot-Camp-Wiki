@@ -1,4 +1,4 @@
-# Zigbee Router Bridge连接到阿里云
+# Zigbee Router Bridge连接到阿里云  
 
 <details>   
 <summary><font size=5>目录</font> </summary>
@@ -53,7 +53,7 @@
 
 Silicon Labs公司的Simplicity Studio可以从[官网](https://www.silabs.com/products/development-tools/software/simplicity-studio)下载，建议安装到默认的路径(C盘预留20GB以上的空间)。由于需要下载Zigbee协议SDK, 需要购买[Zigbee开发套件](https://www.silabs.com/products/development-tools/wireless/mesh-networking)才能拥有下载权限。本项目基于EmberZnet SDK 6.5.5版本开发。此外，此项目中还是用到了Micrium OS操作系统，也需要从Simplicity Studio中下载安装。最后由于EmberZnet中支持Micrium OS的插件现在只支持使用IAR来编译，因此需要安装IAR。
 
-### 1.1 创建工程
+### 1.1 创建工程 
 
 主要步骤如下：
 
