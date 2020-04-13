@@ -20,7 +20,7 @@
 
 </details>  
 
-# Background
+# Background 
 
 <span>People used to regard mobile phones, TVs or routers as the control centers of smart homes until the emergence of smart speakers. It should be that you control your smart devices just by saying a sentence such as &quot;Open the light of living room&quot;, rather than by clicking on the phone screen. Now, there are so many smart speakers in market for controlling the smart device, two of the most famous are Google Home from Google and Echo from Amazon. In China, the most famous smart speaker are XiaoAi from XiaoMi and Tmall Genie from Alibaba. Now, all of these companies have developed IoT platform so that the manufacturer who produce smart homes can connect their smart productions to these smart speakers. This project is intended to introduce how to control a </span><span> </span><span>Silicon Labs Wi-Fi device.</span><span> </span><span>with TmallGenie.</span>
 
