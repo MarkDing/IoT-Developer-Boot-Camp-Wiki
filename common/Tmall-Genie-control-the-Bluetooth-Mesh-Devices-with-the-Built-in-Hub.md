@@ -16,7 +16,7 @@
 
 </details>   
 
-# Background
+# Background 
 
 Several customers raised questions in Salesforce system since Alibaba added another new method to provision Bluetooth Mesh devices. Here is the updated solution demonstration.
 
