@@ -11,7 +11,7 @@
     * [Tmall Genie control the Bluetooth Mesh Devices with the Built-in Hub](Tmall-Genie-control-the-Bluetooth-Mesh-Devices-with-the-Built-in-Hub)
     * [Tmall Genie control the WIFI devices via cloud](Tmall-Genie-control-the-WIFI-devices-via-cloud)
     * [Tmall Genie control the Zigbee devices via cloud with AliOS](Tmall-Genie-control-the-Zigbee-devices-via-cloud-with-AliOS)
-    * [Tmall Genie control the Zigbee devices via cloud with Micrium OS](Tmall-Genie-control-the-Zigbee-devices-via-cloud-with-Micrium-OS)
+    * [Tmall Genie control the Zigbee devices via cloud with Micrium OS](Tmall-Genie-control-the-Zigbee-devices-via-cloud-with-Micrium-OS) 
 
 
 # Background
