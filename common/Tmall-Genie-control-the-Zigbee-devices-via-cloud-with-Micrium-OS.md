@@ -38,7 +38,7 @@
 
     *   &nbsp;Zigbee部分，基于Silicon Labs公司的EFR32MG12以及EmberZnet SDK开发；
     *   &nbsp;WiFi部分，基于Silicon Labs公司的WGM110模组开发；
-*   &nbsp;[Amazon Echo Plus](https://www.amazon.com/All-new-Echo-Plus-2nd-built/dp/B0794W1SKP)，用户需要在手机端下载Alexa APP来控制echo plus
+*   &nbsp;[Amazon Echo Plus](https://www.amazon.com/All-new-Echo-Plus-2nd-built/dp/B0794W1SKP)，用户需要在手机端下载Alexa APP来控制echo plus 
 
 涉及的资源和资料链接:
 
