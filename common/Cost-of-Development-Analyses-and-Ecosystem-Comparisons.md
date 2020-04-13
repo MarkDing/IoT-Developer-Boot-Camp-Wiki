@@ -19,7 +19,7 @@
 
 </details>
 
-# Cost of Development
+# Cost of Development 
 
 ## Amazon Web Service (AWS)
 
