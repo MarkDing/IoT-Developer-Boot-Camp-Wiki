@@ -14,7 +14,7 @@
     * [Tmall Genie control the Zigbee devices via cloud with Micrium OS](Tmall-Genie-control-the-Zigbee-devices-via-cloud-with-Micrium-OS)
 
 
-# Background
+# Background 
 
 <div align="center">
 <img src="files/CM-Smart-Speaker/image2019-8-14_10-43-9.png">
