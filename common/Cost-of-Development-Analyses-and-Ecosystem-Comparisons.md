@@ -23,7 +23,7 @@
 
 ## Amazon Web Service (AWS)
 
-### Amazon Lambda
+### Amazon Lambda 
 
 The Amazon lambda is free for limited usage but totally enough for developing purpose. Developers need also choose the closest Lambda servers to ensure their customers could get high-quality services. However, because it charges by the request number it handles($0.28 per 1M REQUESTS after free trials), so it won't be cheap if the product has a large group of users. More about Lambda function and pricing please check [here](https://aws.amazon.com/lambda/)<span style="color: rgb(17,17,17);">.</span>
 
