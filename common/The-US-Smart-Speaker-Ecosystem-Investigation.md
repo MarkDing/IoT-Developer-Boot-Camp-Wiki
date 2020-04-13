@@ -35,7 +35,7 @@ The very detailed process about how the directives are transmitted can be found 
 
 #### **2. Locally**
 
-Two ways to connect Zigbee-based device to Alexa.
+Two ways to connect Zigbee-based device to Alexa. 
 
 1.  <span style="color: rgb(17,17,17);">Connecting the Zigbee-based smart devices to Alexa using the Zigbee hub built-in to the new Echo Show and Echo Plus</span>
 2.  <span style="color: rgb(17,17,17);">Through other Zigbee Certified hubs such as those from SmartThings and Wink</span>
