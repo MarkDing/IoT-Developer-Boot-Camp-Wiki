@@ -79,7 +79,7 @@ While in China, the Bluetooth mesh is the primary protocol that most smart devic
 In this project, a solution is proposed to solve this problem.  
 A Bluetooth mesh network is going to be controlled by an Amazon Echo Plus 2 via cloud-to-cloud approach. The user can turn on and turn off a Bluetooth mesh light by giving a voice command to the Echo Plus.  
 
-## Project Preparation:
+## Project Preparation: 
 * Install the Alexa App in you iOS device. Note that the Alexa App is only available for some special regions, for e,g. US, you need to Login the AppStore with a special Apple ID. And below is an Apple ID hosted by APAC regional apps team, you can feel free to use it.
    * UserName: xxxxxxxxxxxxx_apac@outlook.com  
    * Password: xxxxxxxxxxxxx  
