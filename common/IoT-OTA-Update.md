@@ -257,7 +257,7 @@ C) In **Includes** tab, add **commissioningEventControl** command and **commissi
 
 D) Click on the Generate button on top-right of Z3GatewayHost.isc to generate source code of the project
 
-E) Open the ZigbeeOTAClient_callbacks.c and add following function
+E) Open the Z3GatewayHost_callbacks.c and add following function
 
 ```c
 EmberEventControl commissioningEventControl;
