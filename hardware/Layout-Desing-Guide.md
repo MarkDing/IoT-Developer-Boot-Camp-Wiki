@@ -1,4 +1,5 @@
 
+<details>
 
 <summary><font size=5>Table of Contents</font> </summary>
  
@@ -18,7 +19,7 @@
     - [3.5  Layout Design Practices - General](#3.5.-Layout-Design-Practices---General)
   - [4. Quiz](#4.-Quiz)
 
-
+</details>
 
 
 
@@ -27,12 +28,12 @@ The purpose of this material is to help users design PCBs
 for the EFR32 Wireless Gecko Portfolio using design practices
 that allow for good RF performance.
 
-PCB layout requirements are described in the application note, [AN928.1: EFR32 Series 1 Layout Design Guide](https://www.silabs.com/documents/public/application-notes/an928.1-efr32-series1-layout-design-guide.pdf),  and the layout design process for EFR32 Series 1 Modules is discussed in [the datasheet of each module](https://www.silabs.com/support/resources.ct-data-sheets.ct-miscellaneous.p-wireless_bluetooth-low-energy_blue-gecko-bluetooth-low-energy-modules.p-wireless_bluetooth-low-energy_blue-gecko-bluetooth-low-energy-modules_bgm11s12f256ga-v2.p-wireless_bluetooth-low-energy_efr32bg1-series-1-modules.p-wireless_bluetooth-low-energy_efr32bg13-series-1-modules.sort=2,asc) and  beside that EFR32 reference design files are available in Simplicity Studio.
+PCB layout requirements are described in the application note, [AN928.1: EFR32 Series 1 Layout Design Guide](https://www.silabs.com/documents/public/application-notes/an928.1-efr32-series1-layout-design-guide.pdf),  and the layout design process for EFR32 Series 1 Modules is discussed in [the datasheet of each module](https://www.silabs.com/support/resources.ct-data-sheets.ct-miscellaneous.p-wireless_bluetooth-low-energy_blue-gecko-bluetooth-low-energy-modules.p-wireless_bluetooth-low-energy_blue-gecko-bluetooth-low-energy-modules_bgm11s12f256ga-v2.p-wireless_bluetooth-low-energy_efr32bg1-series-1-modules.p-wireless_bluetooth-low-energy_efr32bg13-series-1-modules.sort=2,asc) and  besides that EFR32 reference design files are available in Simplicity Studio.
 
 
 # 1. Why is the proper layout design important? 
 
-If the layout is a inappropriate design that can cause 
+If the layout is an inappropriate design that can cause 
 + Degradation in the communication distance 
 + The unit can violate the relevant EMC regulation (high harmonics, spur) 
 + The battery life can be reduced
@@ -66,8 +67,7 @@ In the case of dual band RFIC, this RF part includes the following:
 ### 2.1.1. Function of RF matching  and filtering network
 
 The RF transmitter ICs can synthetize high frequency and high power signals at their TX output: the fundamental, its harmonics and additional spurious content.
-On the Silicon Labs’ reference design boards the function of the TX matching is to drive most of the fundamental power into the antenna, thus to provide the required impedance transformation between the RFIC and the load.
-Beside that, a proper filtering network should be used between the matching network and the antenna design which is able to suppress harmonics and spurs.
+On the Silicon Labs’ reference design boards the function of the TX matching is to drive most of the fundamental power into the antenna, thus to provide the required impedance transformation between the RFIC and the load. Besides that, a proper filtering network should be used between the matching network and the antenna design which is able to suppress harmonics and spurs. RX matching network is able to provide impedancia tuning between IC and the load. 
 
 
 > **TX matching:** 
@@ -84,7 +84,7 @@ Beside that, a proper filtering network should be used between the matching netw
 ### 2.1.2. Function of VDD filterings
 
 Power supplies, high speed blocks and converters mounted on the board can cause extra spurs in the RF spectrum or sensitivity degradation.
-So, the filtering and the isolation of these blocks from the RF part is important. The lowest value capacitors filter on the fundamental frequency. The capacitor with the value around 100nF filters the several tenths of MHz frequency range, thus the leaking clock spurs.Filtering these spurs is important as they can be upconverted inside the chip causing unwanted spurs at several 10MHz offset around the carrier. The largest value capacitor filters the several hundred kHz interferences typically coming from a switching power supply. 
+So, the filtering and the isolation of these blocks from the RF part are important. The lowest value capacitors filter out the fundamental frequency. The capacitor with the value around 100nF filters the several tenths of MHz frequency range, thus the leaking clock spurs. Filtering these spurs is important as they can be upconverted inside the chip causing unwanted spurs at several 10MHz offset around the carrier. The largest value capacitor filters the several hundred kHz interferences typically coming from a switching power supply. 
 
 
 
@@ -109,7 +109,7 @@ Silicon Labs suggests copying the RF part of the reference PCB design, or if it 
 
 ### 2.2.1. Layout of the matching network   
 
-The layout design of the match is critical to achieve the targeted power and efficiency. 
+The layout design of the match is critical to achieve the targeted power, the optimum sensitivity and efficiency. 
 This is especially true for the RX path, which can be easily detuned by the PCB parasitics.   
  
 
@@ -161,7 +161,7 @@ These can cause detuning of the reference matching or filtering and/or detuning 
 </div>
 
 
-3. Couplings through the ground can occur between the nearby filtering capacitors (especially at high harmonics). This can decrease the effectiveness of the low-pass filtering and can cause higher harmonics that can be observed both conducted and radiated.
+3. Couplings through the ground pads can occur between the nearby filtering capacitors (especially at high harmonics). This can decrease the effectiveness of the low-pass filtering and can cause higher harmonics that can be observed both conducted and radiated.
  To avoid the possible high harmanic levels, it is recommended to connect the nearby filtering capacitors to ground planes on different sides of the transmission line.
 
 <p align="center">
@@ -174,7 +174,7 @@ These can cause detuning of the reference matching or filtering and/or detuning 
 
 </div>
 
-**Note:** It is true only in the case of Series 1. In the case Series 2 capacitors should be connected on same sides of the transmissin line. 
+**Note:** It is true only in the case of Series 1 chips. In the case of EFRXG2X Series 2  chips the capacitors should be connected on same sides of the transmissin line. 
 
 
 4. Use at least 0.5 mm separation between traces/pads to the adjacent GND pours in the area of the matching network. This technique will minimize the parasitic capacitance and reduce the detuning effects.
@@ -189,7 +189,7 @@ These can cause detuning of the reference matching or filtering and/or detuning 
 
 </div>
 
-5. The area under the RF chip and the matching network (in 4-layer PCBs, this is the first inner layer beneath the top layer) should be filled with continuous ground metal as it will show good ground reference for the matching network and will ensure a good, low impedance return path to the RF chip’s ground as well. Board routing and wiring should not be placed in this region to prevent coupling effects with the matching network. It is also recommended that the GND return path between the GND vias of the TX/RX matching network and the GND vias of the RFIC paddle should not be blocked in any way; the return currents should see a clear, unhindered pathway through the GND plane to the back of the RFIC.
+5. The area under the RF chip and the matching network (in 4-layer PCBs, this is the first inner layer beneath the top layer) should be filled with continuous ground metal as it will show good ground reference for the matching network and will ensure a good, low impedance return path to the RF chip’s ground as well. Board routing and wiring should not be placed in this region to prevent coupling effects with the matching network. It is also recommended that the GND return path between the GND vias of the TX/RX matching network and the GND vias of the RFIC paddle should not be blocked by anything; the return currents should see a clear, unhindered pathway through the GND plane to the back of the RFIC.
 
 <p align="center">
   <img src="files/Layout-Design-Guide/gnd.png">
@@ -230,7 +230,7 @@ The layout consistency for the 4-layer dual-band EFR32 PCB is shown in the follo
 
 
 
-1. Use the shortest traces possible to connect the first RX matching network component with the RX input pins of the chip. The RX matching network is very sensitive to any extra parasitic inductance and parasitic capacitance, this way it is important to minimize the detuning effects by using as short traces as possible.
+1. Use the shortest traces possible to connect the first RX matching network component with the RX input pins of the chip. The RX matching network is very sensitive to any extra parasitic inductance and parasitic capacitance, doing this way is important to minimize the detuning effects by using as short traces as possible.
 
 
 <p align="center">
@@ -256,7 +256,7 @@ The layout consistency for the 4-layer dual-band EFR32 PCB is shown in the follo
 
 </div>
 
-3. The traces, which connect the first TX components with the TX outputs of the chip, must be routed on different layer.  
+3. The traces, which connect the first TX components with the TX pins of the chip, must be routed on different layer.  
 The figure below shows one example. The RX inputs of the chip are connected to the first RX matching components on the Top layer. But the traces, between first TX components and TX outputs, are routed on the inner layer 2.
 
 <p align="center">
@@ -326,7 +326,7 @@ Traces can be routed beneath the area of the balun and low-pass filter sections 
 </div>
 
 
-8. Use 50 Ω grounded coplanar lines where possible for connecting the antenna or the U.FL connector to the matching to reduce sensitivity to PCB thickness variation. This will also reduce radiation and coupling effects. Use many GND vias near the coplanar lines in order to further reduce radiation.
+8. Use 50 Ω grounded coplanar lines where possible for connecting the antenna or the U.FL connector to the matching, it will reduce sensitivity variation related to PCB thickness. This will also reduce radiation and coupling effects. Use many GND vias near the coplanar lines in order to further reduce radiation.
 
 <p align="center">
   <img src="files/Layout-Design-Guide/antenna trace.png">
@@ -353,7 +353,7 @@ Traces can be routed beneath the area of the balun and low-pass filter sections 
 
 </div>
 
-2. Connect the crystal case to the ground using many vias to avoid radiation of the ungrounded parts. Do not leave any metal unconnected and floating that may be an unwanted radiator. 
+2. Connect the crystal case to the ground using many vias to avoid radiation of the ungrounded parts. Do not leave any metal unconnected and float that may be an unwanted radiator. 
 
 <p align="center">
   <img src="files/Layout-Design-Guide/crystal2.png">
@@ -365,7 +365,7 @@ Traces can be routed beneath the area of the balun and low-pass filter sections 
 
 </div>
 
-3. Use an isolating ground metal between the crystal and VDD traces to avoid any detuning effects on the crystal caused by the nearby power supply and to avoid the leakage of the crystal or clock signal and its harmonics to the supply lines.
+3. Use an isolating ground metal between the crystal and VDD traces to avoid any detuning effects on the crystal caused by the nearby power supply, and to avoid the leakage of the crystal or clock signal and its harmonics to the supply lines.
 
 <p align="center">
   <img src="files/Layout-Design-Guide/crystal3.png">
@@ -380,7 +380,7 @@ Traces can be routed beneath the area of the balun and low-pass filter sections 
 ****
 ## 3.4. Layout Design Practices - VDD filtering
 
-1. The lowest value capacitors have to be placed the closest to the VDD pins. Beside that, they need good grounding (with many close vias) at the ground side. The largest value capacitor filters can be placed far away from the VDD pins and is not required in case of battery operation.
+1. The lowest value capacitors have to be placed the closest to the VDD pins. besides that, they need good grounding (with many close vias) at the ground side. The largest value capacitor filters can be placed far away from the VDD pins and is not required in case of battery operation.
 
 
 
@@ -398,7 +398,7 @@ Traces can be routed beneath the area of the balun and low-pass filter sections 
 
 ## 3.5. Layout Design Practices - General
 
-1. Use 50 Ohm grounded coplanar transmission lines to connect distant RF components. Online impedance calculators can be used to get the necessary trace width or see below the typical values for 50 Ohm grounded coplanar lines. 
+1. Use 50 Ohm grounded coplanar transmission lines to connect distant RF components. Online impedance calculators can be used to get the necessary trace width and gap tp ground copper,  as figure below shows the typical values for 50 Ohm grounded coplanar lines. 
 
 <p align="center">
   <img src="files/Layout-Design-Guide/coplanar2.png">
@@ -457,7 +457,7 @@ Traces can be routed beneath the area of the balun and low-pass filter sections 
 </div>
 
 
-5. In a design with more than two layers, all of the wires/traces should be placed in one of the inner layers, especially the VDD trace. Also avoid putting it close to the edge of the PCB. The whole top and bottom layers should contain as much continuous GND metallization as possible in order to reduce the traces' radiations.
+5. In a design with more than two layers, all of the wires/traces should be placed in one of the inner layers, especially the VDD trace. Also avoid putting it close to the edge of the PCB. The whole top and bottom layers should contain as much continuous GND metallization as possible in order to reduce harmonincs/spurs radiations from the signal traces.
 
 <p align="center">
   <img src="files/Layout-Design-Guide/layers.png">
@@ -473,7 +473,7 @@ Traces can be routed beneath the area of the balun and low-pass filter sections 
 
 # 4. Quiz 
 
-There are some mistakes in the following design. Please try to find all the problems, which can cause detuning of the fundamental frequency, lower power level, higher current consumption and higher harmonic power level as well. (tip: 7 mistakes)
+There are some mistakes in the following design. Please try to find all the problems, which can cause detuning of the fundamental frequency, lower power level, higher current consumption, degenerated sensitivity and higher harmonic power level as well. (tip: 7 mistakes)
 
 <p align="center">
   <img src="files/Layout-Design-Guide/example.png">
