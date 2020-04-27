@@ -386,7 +386,7 @@ Same as Zigbee OTA client. We would like to achieve following functionalities.
 * LED1 ON indicates that the device has joined the network. LED OFF is opposite meaning
 * LED0 Blinking indicates the OTA update in progress
 
-A) Click on "New Project" in Simplicity Studio. Choose "Silicon Labs Flex SDK", press Next; Choose "Connect(SoC):Sensor", press Next; Change the project name as "sensor", press Next and then press Finish.
+A) Click on "New Project" in Simplicity Studio. Choose "Silicon Labs Flex SDK", press Next; Choose "Connect(SoC):Sensor", press Next; Keep the project name as "sensor" unchanged, press Next and then press Finish.
 
 It open a sensor.isc which can config Proprietary related functionalities. There many Tabs on it for configuring different settings of project.
 
@@ -481,7 +481,7 @@ void buttonHandler(void)
   if (flash_is_erased == false) {
     bootloaderInitCommand();
     bootloaderFlashEraseCommand();
-	  flash_is_erased = true;
+    flash_is_erased = true;
     emberEventControlSetDelayMS(blinkEvent, 300);
   }
   if (EMBER_NO_NETWORK == emberNetworkState()){
