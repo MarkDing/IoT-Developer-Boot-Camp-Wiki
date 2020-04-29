@@ -22,9 +22,12 @@
 | 1 hour | [Hands on : Using Event](Zigbee-Hands-on-Using-Event) |
 | 1 hour | [Hands on : Non-volatile Data Storage](Zigbee-Hands-on-Non-volatile-Data-Storage) |
 *************
+
 ## Quiz and Feedback
 - [Quiz](https://forms.office.com/Pages/ResponsePage.aspx?id=ItjbVDFSIEuUTW9KvNVB-_gYgvSbceFAppvKGwjVr_1UQVdQVVFYTlYwMjhZRlMzVDdUMlA0NUFSNy4u)
 - [Feedback](https://forms.office.com/Pages/ResponsePage.aspx?id=ItjbVDFSIEuUTW9KvNVB-_gYgvSbceFAppvKGwjVr_1UMDNWUkNYM1UyWkRBRUY5VVFIOTFTTEVZNi4u)
+
 ## Reference
 - [Zigbee Onboarding Roadmap][Zigbee Onboarding Roadmap]
+
 [Zigbee Onboarding Roadmap]: files/ZB-Zigbee-Boot-Camp/Silicon-Labs-ZigBee-Onboarding-Roadmap.pdf
