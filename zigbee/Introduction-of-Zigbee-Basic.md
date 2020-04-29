@@ -1,4 +1,4 @@
-English | [中文](Zigbee-Introduction-of-Zigbee-Basic-CN)
+English | [中文](Introduction-of-Zigbee-Basic-CN)
 
 <details>
 <summary><font size=5>Table of Contents</font> </summary>  
@@ -51,7 +51,7 @@ English | [中文](Zigbee-Introduction-of-Zigbee-Basic-CN)
 As the Internet of Things (IoT) industry develops, more and more wireless technologies come out.   
 
 <div align="center">
-  <img src="files/ZB-Zigbee-Introduction-of-Zigbee-Basic/IoT-Wireless-Technologies.png">  
+  <img src="files/ZB-Introduction-of-Zigbee-Basic/IoT-Wireless-Technologies.png">  
 </div>  
 </br> 
 
@@ -70,7 +70,7 @@ Zigbee is one of the most popular wireless technologies used in IoT networks, es
 Zigbee is an open standard published and revisioned by [Zigbee Alliance](https://zigbeealliance.org/). It has a very long history.
 
 <div align="center">
-  <img src="files/ZB-Zigbee-Introduction-of-Zigbee-Basic/Zigbee-History.png">  
+  <img src="files/ZB-Introduction-of-Zigbee-Basic/Zigbee-History.png">  
 </div>  
 </br> 
 
@@ -80,7 +80,7 @@ Silicon Labs has been devoted to Zigbee technology since the very beginning. The
 Zigbee Alliance is the main strength of promoting Zigbee technology. It's an open organization. Any company can join Zigbee Alliance as a member. Silicon Labs is the member of the board of Zigbee Alliance.  
 
 <div align="center">
-  <img src="files/ZB-Zigbee-Introduction-of-Zigbee-Basic/Zigbee-Alliance.png">  
+  <img src="files/ZB-Introduction-of-Zigbee-Basic/Zigbee-Alliance.png">  
 </div>  
 </br> 
 
@@ -92,7 +92,7 @@ The main three jobs of Zigbee Alliance are:
 In 2016, Zigbee Alliance published the latest Zigbee standard which is Zigbee 3.0. The profiles like Zigbee Home Automation Profile (ZHA), Zigbee Light Link (ZLL), etc, which are used before are unified together.  
 
 <div align="center">
-  <img src="files/ZB-Zigbee-Introduction-of-Zigbee-Basic/Zigbee-Profiles.png">  
+  <img src="files/ZB-Introduction-of-Zigbee-Basic/Zigbee-Profiles.png">  
 </div>  
 </br> 
 
@@ -104,7 +104,7 @@ Zigbee 3.0 is mandated since 2017 as products which are compliant to the previou
 The picture below demostrates the protocol architecture.  
 
 <div align="center">
-  <img src="files/ZB-Zigbee-Introduction-of-Zigbee-Basic/Protocol-Overview.png">  
+  <img src="files/ZB-Introduction-of-Zigbee-Basic/Protocol-Overview.png">  
 </div>  
 </br> 
 
@@ -118,7 +118,7 @@ The picture below demostrates the protocol architecture.
 Zigbee works on ISM frequency. The channels are defined as below:
 
 <div align="center">
-  <img src="files/ZB-Zigbee-Introduction-of-Zigbee-Basic/Physical-Layer.png">  
+  <img src="files/ZB-Introduction-of-Zigbee-Basic/Physical-Layer.png">  
 </div>  
 </br> 
 
@@ -160,7 +160,7 @@ Multi hop transmissions shall be acknowledged on every hop. After the node perfo
 The picture below demostrate MAC frame format:
 
 <div align="center">
-  <img src="files/ZB-Zigbee-Introduction-of-Zigbee-Basic/MAC-Frame.png">  
+  <img src="files/ZB-Introduction-of-Zigbee-Basic/MAC-Frame.png">  
 </div>  
 </br> 
 
@@ -193,7 +193,7 @@ In Zigbee, there are three device types:
 - End Device, including non-sleepy end device and sleepy end device.
 
 <div align="center">
-  <img src="files/ZB-Zigbee-Introduction-of-Zigbee-Basic/Device-Type.png">  
+  <img src="files/ZB-Introduction-of-Zigbee-Basic/Device-Type.png">  
 </div>  
 </br> 
 
@@ -211,8 +211,8 @@ The PAN, or Personal Area Network, is separated from other networks through its 
 
 <table>
   <tr>
-    <td><img src=files/ZB-Zigbee-Introduction-of-Zigbee-Basic/PANID-1.png border="0"></td>
-    <td><img src=files/ZB-Zigbee-Introduction-of-Zigbee-Basic/PANID-2.png border="0"></td>    
+    <td><img src=files/ZB-Introduction-of-Zigbee-Basic/PANID-1.png border="0"></td>
+    <td><img src=files/ZB-Introduction-of-Zigbee-Basic/PANID-2.png border="0"></td>    
   </tr>
 </table>
 
@@ -226,7 +226,7 @@ Extended PAN ID is another network identifier known by all nodes in the PAN.
 While the normal short 16-bit PAN ID is transmitted over the air in all the packets because it’s short and simple, the 64-bit extended PAN ID is rarely transmitted over the air. The extended PAN ID is also unique for every PAN, and it’s basically used as a backup criteria when the 16-bit PAN ID is not enough to always distinguish one network from another. For instance, when a PAN ID conflict occurs and you want to notify all devices in your network to move, the way that you distinguish your network from the conflicting network is, those devices in your network all share the same extended PAN ID. The extended PAN ID is highly unlikely to ever conflict because it has 64 bits compared to the 16 bits in the short PAN ID.
 
 <div align="center">
-  <img src="files/ZB-Zigbee-Introduction-of-Zigbee-Basic/Ext-PAN-ID.png">  
+  <img src="files/ZB-Introduction-of-Zigbee-Basic/Ext-PAN-ID.png">  
 </div>  
 </br> 
 
@@ -240,7 +240,7 @@ Besides their network-wide criteria, one node is distinguished from another by i
 A node has a short address and a long address. The long address is the IEEE-assigned MAC address, or EUI-64. It is a 64-bit address that is globally unique, meaning no two IEEE-based radios in the world should ever have the same EUI-64. This is generally assigned at manufacturing time. They are assigned when the chips come out of our manufacturing facility before they arrive to you, and they will never change. That’s how you tell one radio from another. But because 64 bits are a lot of data, this long address is not sent over the air very often.
 
 <div align="center">
-  <img src="files/ZB-Zigbee-Introduction-of-Zigbee-Basic/Node-Address.png">  
+  <img src="files/ZB-Introduction-of-Zigbee-Basic/Node-Address.png">  
 </div>  
 </br> 
 
@@ -255,7 +255,7 @@ In application layer, a physical device can be split to several logic devices by
 Each endpoint represents a logic device. For example, if we have a smart outlet adapter with 6 outlets on it. We can implement it with 6 endpoints so that  we can switch on/off each outlet respectively.
 
 <div align="center">
-  <img src="files/ZB-Zigbee-Introduction-of-Zigbee-Basic/Endpoint.png">  
+  <img src="files/ZB-Introduction-of-Zigbee-Basic/Endpoint.png">  
 </div>  
 </br> 
 
@@ -269,7 +269,7 @@ The endpoint ID is a 8bit value, ranging from 0 to 255.
 In each endpoint, we can configure several clusters. Zigbee cluster is actually a communication model. 
 
 <div align="center">
-  <img src="files/ZB-Zigbee-Introduction-of-Zigbee-Basic/Cluster.png">  
+  <img src="files/ZB-Introduction-of-Zigbee-Basic/Cluster.png">  
 </div>  
 </br> 
 
@@ -282,7 +282,7 @@ Let’s see an example of the cluster, so that we can understand it better.
 For example we need to implement a Light with two bulbs.
 
 <div align="center">
-  <img src="files/ZB-Zigbee-Introduction-of-Zigbee-Basic/Cluster-Example.png">  
+  <img src="files/ZB-Introduction-of-Zigbee-Basic/Cluster-Example.png">  
 </div>  
 </br> 
 
@@ -307,8 +307,8 @@ Look at the picture below.
 
 <table>
   <tr>
-    <td><img src=files/ZB-Zigbee-Introduction-of-Zigbee-Basic/Network-Layer-Security-1.png border="0"></td>
-    <td><img src=files/ZB-Zigbee-Introduction-of-Zigbee-Basic/Network-Layer-Security-2.png border="0"></td>    
+    <td><img src=files/ZB-Introduction-of-Zigbee-Basic/Network-Layer-Security-1.png border="0"></td>
+    <td><img src=files/ZB-Introduction-of-Zigbee-Basic/Network-Layer-Security-2.png border="0"></td>    
   </tr>
 </table>
 
@@ -325,7 +325,7 @@ A key sequence number is added to support network key updating.
 Network layer security is a hop-by-hop security.  
 
 <div align="center">
-  <img src="files/ZB-Zigbee-Introduction-of-Zigbee-Basic/Hop-by-Hop-Security.png">  
+  <img src="files/ZB-Introduction-of-Zigbee-Basic/Hop-by-Hop-Security.png">  
 </div>  
 </br> 
 
@@ -342,7 +342,7 @@ When new devices join network, they must get a copy of the network key.
 In Zigbee network, the role who distribute network key to new devices is called trust center. There are two typical security models, centralized security network and distributed security network.  
 
 <div align="center">
-  <img src="files/ZB-Zigbee-Introduction-of-Zigbee-Basic/Security-Model.png">  
+  <img src="files/ZB-Introduction-of-Zigbee-Basic/Security-Model.png">  
 </div>  
 </br> 
 
@@ -356,7 +356,7 @@ This encryption is done in application layer. We will talk about it later.
 Frame counter is added to prevent replay attacks. Let’s see how it works.
 
 <div align="center">
-  <img src="files/ZB-Zigbee-Introduction-of-Zigbee-Basic/Frame-Counter.png">  
+  <img src="files/ZB-Introduction-of-Zigbee-Basic/Frame-Counter.png">  
 </div>  
 </br> 
 
@@ -371,7 +371,7 @@ As frame counter is a 32-bit value, it could wrap if the device keep running for
 The message of transporting network key is encrypted in application. Let’s see application layer security.  
 
 <div align="center">
-  <img src="files/ZB-Zigbee-Introduction-of-Zigbee-Basic/APS-Security.png">  
+  <img src="files/ZB-Introduction-of-Zigbee-Basic/APS-Security.png">  
 </div>  
 </br> 
 
@@ -396,7 +396,7 @@ Zigbee defines an approach to configure the link key out of band. It’s the ins
 #### 6.2.2. Install Code
 
 <div align="center">
-  <img src="files/ZB-Zigbee-Introduction-of-Zigbee-Basic/Install-Code.png">  
+  <img src="files/ZB-Introduction-of-Zigbee-Basic/Install-Code.png">  
 </div>  
 </br> 
 
@@ -428,7 +428,7 @@ If you don’t specify a channel, the coordinator will scan and pick a relativel
 ### 7.2. Joining with the Well-Known Link Key
 
 <div align="center">
-  <img src="files/ZB-Zigbee-Introduction-of-Zigbee-Basic/Joining-with-Well-Known-Link-Key.png">  
+  <img src="files/ZB-Introduction-of-Zigbee-Basic/Joining-with-Well-Known-Link-Key.png">  
 </div>  
 </br> 
 
@@ -444,7 +444,7 @@ After the network formed, new devices can start to join.
 ### 7.3. Joining with Install-Code Derived Link Key
 
 <div align="center">
-  <img src="files/ZB-Zigbee-Introduction-of-Zigbee-Basic/Joining-with-Install-Code.png">  
+  <img src="files/ZB-Introduction-of-Zigbee-Basic/Joining-with-Install-Code.png">  
 </div>  
 </br> 
 
