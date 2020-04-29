@@ -1,4 +1,4 @@
-English | [中文](Zigbee-Introduction-of-EmberZnet-and-AppBuilder-CN)
+English | [中文](Introduction-of-EmberZnet-and-AppBuilder-CN)
 
 <details>
 <summary><font size=5>Table of Contents</font> </summary>  
@@ -69,7 +69,7 @@ The benefits of using a module is that you can save a lot of time to get the reg
 Below is the block diagram of EFR32MG12 series SoC.  
  
 <div align="center">
-  <img src="files/ZB-Zigbee-Introduction-of-EmberZnet-and-AppBuilder/SoC-Block-Diagram.png">  
+  <img src="files/ZB-Introduction-of-EmberZnet-and-AppBuilder/SoC-Block-Diagram.png">  
 </div>  
 </br> 
 
@@ -97,7 +97,7 @@ EmberZnet provides two design models for Zigbee applications :
 - System on Chip (Soc) model
 
 <div align="center">
-  <img src="files/ZB-Zigbee-Introduction-of-EmberZnet-and-AppBuilder/Design-Models.png">  
+  <img src="files/ZB-Introduction-of-EmberZnet-and-AppBuilder/Design-Models.png">  
 </div>  
 </br> 
 
@@ -174,7 +174,7 @@ EmberZnet SDK is part of the Gecko SDK Suite. It can be found at **protocol\zigb
 Silicon Labs' Wireless Starter Kit (WSTK) is consis of a mother board and a radio board. Just like below :  
 
 <div align="center">
-  <img src="files/ZB-Zigbee-Introduction-of-EmberZnet-and-AppBuilder/WSTK.png">  
+  <img src="files/ZB-Introduction-of-EmberZnet-and-AppBuilder/WSTK.png">  
 </div>  
 </br> 
 
@@ -192,7 +192,7 @@ The mother board can also used as a standalone flash-programmer and J-Link debug
 2. The radio board is swappable. Users can swap different radio boards to evaluate different SoC or modules.  
 
 <div align="center">
-  <img src="files/ZB-Zigbee-Introduction-of-EmberZnet-and-AppBuilder/Swap-Radio-Board.png">  
+  <img src="files/ZB-Introduction-of-EmberZnet-and-AppBuilder/Swap-Radio-Board.png">  
 </div>  
 </br> 
 
@@ -219,7 +219,7 @@ You can create a Zigbee project following the steps below:
 8. After that, the project is created. The isc file of the project will be opened automatically.
 
 <div align="center">
-  <img src="files/ZB-Zigbee-Introduction-of-EmberZnet-and-AppBuilder/Create-Project.gif">  
+  <img src="files/ZB-Introduction-of-EmberZnet-and-AppBuilder/Create-Project.gif">  
 </div>  
 </br> 
 
@@ -232,7 +232,7 @@ It's recommended to read [UG391](https://www.silabs.com/documents/public/user-gu
 When the isc file is opened, the default tab is the "General" tab. Here you can see the board/parts and toolchain of the project. You can also see the absolute path of the project. You can change to a different part or different toolchain here.  
 
 <div align="center">
-  <img src="files/ZB-Zigbee-Introduction-of-EmberZnet-and-AppBuilder/General-Tab.png">  
+  <img src="files/ZB-Introduction-of-EmberZnet-and-AppBuilder/General-Tab.png">  
 </div>  
 </br> 
 
@@ -249,14 +249,14 @@ After Zigbee device type is determined, you can set the endpoints and the cluste
 1. Firstly, you need to set the manufacture code. This is code is provided by Zigbee Alliance when the first product of your company is certified by the Alliance. If your company has already gotten the manufacture code, you can choose it from the list.  
  
 <div align="center">
-  <img src="files/ZB-Zigbee-Introduction-of-EmberZnet-and-AppBuilder/Manufacture-Code.png">  
+  <img src="files/ZB-Introduction-of-EmberZnet-and-AppBuilder/Manufacture-Code.png">  
 </div>  
 </br> 
 
 2. Secondly, you can add/remove endpoints here, and you can also choose a device profile to use on the endpoint. You can also select extra clusters based on the profile. In that case, when you set "ZCL Device Type", don't select a Zigbee device profile directly. Instead, choose "Zigbee Custom", and then select one device profile.  
 
 <div align="center">
-  <img src="files/ZB-Zigbee-Introduction-of-EmberZnet-and-AppBuilder/ZCL-Clusters.gif">  
+  <img src="files/ZB-Introduction-of-EmberZnet-and-AppBuilder/ZCL-Clusters.gif">  
 </div>  
 </br> 
 
@@ -268,7 +268,7 @@ You can select clusters, and select the attributes and commands defined by the c
 1. Properties of a plugin
 
 <div align="center">
-  <img src="files/ZB-Zigbee-Introduction-of-EmberZnet-and-AppBuilder/Plugin-Properties.png">  
+  <img src="files/ZB-Introduction-of-EmberZnet-and-AppBuilder/Plugin-Properties.png">  
 </div>  
 </br> 
 
@@ -357,7 +357,7 @@ It's recommended to define and implement the selected callbacks in the generated
 Please make sure you have read the comments of the callbacks before you use them.  
 
 <div align="center">
-  <img src="files/ZB-Zigbee-Introduction-of-EmberZnet-and-AppBuilder/Callbacks-Tab.png">  
+  <img src="files/ZB-Introduction-of-EmberZnet-and-AppBuilder/Callbacks-Tab.png">  
 </div>  
 </br> 
 
@@ -365,7 +365,7 @@ Please make sure you have read the comments of the callbacks before you use them
 Under "Includes" tab, you can include your custom header files, include custom token header files, define custom macros and define custom event and handler pair.
 
 <div align="center">
-  <img src="files/ZB-Zigbee-Introduction-of-EmberZnet-and-AppBuilder/Includes-Tab.png">  
+  <img src="files/ZB-Introduction-of-EmberZnet-and-AppBuilder/Includes-Tab.png">  
 </div>  
 </br> 
 
@@ -373,7 +373,7 @@ Under "Includes" tab, you can include your custom header files, include custom t
 Under "HAL" tab, there is a button "Open Hardware Configurator". Hit this button, you will open "Hardware Configurator".  
 
 <div align="center">
-  <img src="files/ZB-Zigbee-Introduction-of-EmberZnet-and-AppBuilder/Hardware-Configurator.png">  
+  <img src="files/ZB-Introduction-of-EmberZnet-and-AppBuilder/Hardware-Configurator.png">  
 </div>  
 </br> 
 
@@ -387,7 +387,7 @@ After completing the project settings, save and press the button "Generate", App
 In the generated project, most source files are linked to the SDK. They don't exist in the project folder. When you try to edit the linked source files, there would be a warning to let you choose whether to make a copy.  
 
 <div align="center">
-  <img src="files/ZB-Zigbee-Introduction-of-EmberZnet-and-AppBuilder/Make-A-Copy.png">  
+  <img src="files/ZB-Introduction-of-EmberZnet-and-AppBuilder/Make-A-Copy.png">  
 </div>  
 </br> 
 
@@ -409,7 +409,7 @@ Some files are generated under the project folder.
 #### 4.2.5. Build Project
 There are two approaches to start the build:
 - Select the project in "Project Explorer" window, right click and select "Build".
-- Select the project in "Project Explorer" window, then press the icon ![zigbee](files/ZB-Zigbee-Introduction-of-EmberZnet-and-AppBuilder/Icon-Build.png) in the tool bar.
+- Select the project in "Project Explorer" window, then press the icon ![zigbee](files/ZB-Introduction-of-EmberZnet-and-AppBuilder/Icon-Build.png) in the tool bar.
 
 After build completed, the generated application image is located in:
 - "IAR ARM - Default" directory if you are using IAR

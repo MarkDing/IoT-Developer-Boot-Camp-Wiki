@@ -1,4 +1,4 @@
-[English](Zigbee-Introduction-of-EmberZnet-and-AppBuilder) | 中文
+[English](Introduction-of-EmberZnet-and-AppBuilder) | 中文
 
 <details>
 <summary><font size=5>目录</font> </summary>  
@@ -69,7 +69,7 @@ Silicon Labs的Zigbee解决方案包括三个部分：
 下面是EFR32MG12系列SoC的框图。
   
 <div align="center">
-  <img src="files/ZB-Zigbee-Introduction-of-EmberZnet-and-AppBuilder/SoC-Block-Diagram.png">  
+  <img src="files/ZB-Introduction-of-EmberZnet-and-AppBuilder/SoC-Block-Diagram.png">  
 </div>
 
 SoC可以在6种不同的功耗模式下工作。从最大功耗到最低功耗：
@@ -96,7 +96,7 @@ EmberZnet为Zigbee应用程序提供了两种设计模型：
 - 片上系统（SoC）模型
 
 <div align="center">
-  <img src="files/ZB-Zigbee-Introduction-of-EmberZnet-and-AppBuilder/Design-Models.png">  
+  <img src="files/ZB-Introduction-of-EmberZnet-and-AppBuilder/Design-Models.png">  
 </div>
 
 1. 在SoC模型中，所有协议层以及应用程序都在单个芯片上实现，较底层的协议栈功能通过专用的硬件外围模块来实现。
@@ -171,7 +171,7 @@ EmberZnet SDK是Gecko SDK套件的一部分。可以在Gecko SDK Suite目录下�
 Silicon Labs的无线入门套件（WSTK）由主板和无线电板组成。就像下面这样：
 
 <div align="center">
-  <img src="files/ZB-Zigbee-Introduction-of-EmberZnet-and-AppBuilder/WSTK.png">  
+  <img src="files/ZB-Introduction-of-EmberZnet-and-AppBuilder/WSTK.png">  
 </div> 
 
 1. 母板是多功能J-Link调试器。在大多数情况下，我们将使用：
@@ -189,7 +189,7 @@ Silicon Labs的无线入门套件（WSTK）由主板和无线电板组成。就�
 2. 开发板是可更换的。用户可以交换不同的开发板来评估不同的SoC或模块 
 
 <div align="center">
-  <img src="files/ZB-Zigbee-Introduction-of-EmberZnet-and-AppBuilder/Swap-Radio-Board.png">  
+  <img src="files/ZB-Introduction-of-EmberZnet-and-AppBuilder/Swap-Radio-Board.png">  
 </div>
 
 ### 4.2. Simplicity IDE
@@ -215,7 +215,7 @@ Simplicity IDE是一个功能强大的IDE。集成了许多工具，包括：
 8. 之后，创建项目。项目的isc文件将自动打开。
 
 <div align="center">
-  <img src="files/ZB-Zigbee-Introduction-of-EmberZnet-and-AppBuilder/Create-Project.gif">  
+  <img src="files/ZB-Introduction-of-EmberZnet-and-AppBuilder/Create-Project.gif">  
 </div>
 
 &nbsp;
@@ -227,7 +227,7 @@ Simplicity IDE是一个功能强大的IDE。集成了许多工具，包括：
 打开isc文件时，默认选项卡是“General”选项卡。在这里，您可以看到项目的板/芯片型号和工具链。您还可以看到项目的绝对路径。您可以在此处更改为其他芯片或不同的工具链。
 
 <div align="center">
-  <img src="files/ZB-Zigbee-Introduction-of-EmberZnet-and-AppBuilder/General-Tab.png">  
+  <img src="files/ZB-Introduction-of-EmberZnet-and-AppBuilder/General-Tab.png">  
 </div>
 
 ##### 4.2.3.2. "Zigbee Stack" 选项卡
@@ -243,12 +243,12 @@ Simplicity IDE是一个功能强大的IDE。集成了许多工具，包括：
 1. 首先，您需要设置制造商代码。这是Zigbee联盟在您公司的第一个产品通过联盟认证时提供的代码。如果您的公司已经获得了制造代码，则可以从列表中选择。
  
 <div align="center">
-  <img src="files/ZB-Zigbee-Introduction-of-EmberZnet-and-AppBuilder/Manufacture-Code.png">  
+  <img src="files/ZB-Introduction-of-EmberZnet-and-AppBuilder/Manufacture-Code.png">  
 </div>
 
 1. 其次，您可以在此处添加/删除endpoint，还可以选择要在endpoint上使用的设备配置文件。您还可以根据配置文件选择其他Clusters。在这种情况下，设置“ ZCL设备类型”时，请勿直接选择Zigbee设备配置文件。而是选择“ Zigbee Custom”，然后选择一个设备配置文件。
 <div align="center">
-  <img src="files/ZB-Zigbee-Introduction-of-EmberZnet-and-AppBuilder/ZCL-Clusters.gif">  
+  <img src="files/ZB-Introduction-of-EmberZnet-and-AppBuilder/ZCL-Clusters.gif">  
 </div>  
 您可以选择Cluster，然后选择Cluster定义的属性和命令。
 
@@ -258,7 +258,7 @@ Simplicity IDE是一个功能强大的IDE。集成了许多工具，包括：
 1. 插件的属性
 
 <div align="center">
-  <img src="files/ZB-Zigbee-Introduction-of-EmberZnet-and-AppBuilder/Plugin-Properties.png">  
+  <img src="files/ZB-Introduction-of-EmberZnet-and-AppBuilder/Plugin-Properties.png">  
 </div> 
 
 插件具有以下属性：
@@ -346,21 +346,21 @@ Silicons Labs建议客户在回调中添加其自定义源代码。好处是，�
 使用它们之前，请确保已阅读回调的注释。
   
 <div align="center">
-  <img src="files/ZB-Zigbee-Introduction-of-EmberZnet-and-AppBuilder/Callbacks-Tab.png">  
+  <img src="files/ZB-Introduction-of-EmberZnet-and-AppBuilder/Callbacks-Tab.png">  
 </div>
 
 ##### 4.2.3.6.“Includes”选项卡
 在“Includes”选项卡下，您可以包含自定义头文件，包含自定义Token头文件，定义自定义宏以及定义自定义事件和处理程序对。
 
 <div align="center">
-  <img src="files/ZB-Zigbee-Introduction-of-EmberZnet-and-AppBuilder/Includes-Tab.png">  
+  <img src="files/ZB-Introduction-of-EmberZnet-and-AppBuilder/Includes-Tab.png">  
 </div>
 
 ##### 4.2.3.7. 硬件配置
 在“ HAL”选项卡下，有一个按钮“ Open Hardware Configurator”。点击此按钮，您将打开“Hardware Configurator”。
 
 <div align="center">
-  <img src="files/ZB-Zigbee-Introduction-of-EmberZnet-and-AppBuilder/Hardware-Configurator.png">  
+  <img src="files/ZB-Introduction-of-EmberZnet-and-AppBuilder/Hardware-Configurator.png">  
 </div>
 
 有很多硬件组件。您可以选择所需的引脚并配置它们的引脚。
@@ -373,7 +373,7 @@ Silicons Labs建议客户在回调中添加其自定义源代码。好处是，�
 在生成的项目中，大多数源文件都链接到SDK。它们在项目文件夹中不存在。当您尝试编辑链接的源文件时，会出现一条警告，让您选择是否进行复制。
 
 <div align="center">
-  <img src="files/ZB-Zigbee-Introduction-of-EmberZnet-and-AppBuilder/Make-A-Copy.png">  
+  <img src="files/ZB-Introduction-of-EmberZnet-and-AppBuilder/Make-A-Copy.png">  
 </div>
 
 如果确实需要编辑这些文件之一，请始终选择进行复制。
@@ -394,7 +394,7 @@ Silicons Labs建议客户在回调中添加其自定义源代码。好处是，�
 #### 4.2.5. 建立项目
 有两种启动编译的方法：
 - 在"Project Explorer"窗口中选择项目, 右键单击并选择"Build".
-- 在"Project Explorer"窗口中选择项目, 然后按工具栏中的![zigbee](files/ZB-Zigbee-Introduction-of-EmberZnet-and-AppBuilder/Icon-Build.png)图标。
+- 在"Project Explorer"窗口中选择项目, 然后按工具栏中的![zigbee](files/ZB-Introduction-of-EmberZnet-and-AppBuilder/Icon-Build.png)图标。
 
 编译完成后，生成的应用程序image位于：
 

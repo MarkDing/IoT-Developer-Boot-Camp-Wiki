@@ -1,47 +1,47 @@
-[English](Zigbee-Introduction-of-Zigbee-Basic) | 中文
+[English](Introduction-of-Zigbee-Basic) | 中文
 
 <details>
 <summary><font size=5>目录</font> </summary>  
 
-- [1. 概述](#1-概述)
-    - [1.1. 什么是Zigbee](#11-什么是zigbee)
-    - [1.2. Zigbee的历史](#12-zigbee的历史)
-    - [1.3. Zigbee联盟](#13-zigbee联盟)
-    - [1.4. 协议概述](#14-协议概述)
-- [2. 物理层](#2-物理层)
-    - [2.1. 调制](#21-调制)
-    - [2.2. 输出功率](#22-输出功率)
-    - [2.3. 数据速率](#23-数据速率)
-    - [2.4. 开阔场地的传输距离](#24-开阔场地的传输距离)
-    - [2.5. 总结](#25-总结)
-- [3. 媒体访问控制（MAC）层](#3-媒体访问控制mac层)
-    - [3.1. CSMA-CA](#31-csma-ca)
-    - [3.2. 确认](#32-确认)
-    - [3.3. MAC帧](#33-mac帧)
-- [4. 网络层](#4-网络层)
-    - [4.1. 设备类型](#41-设备类型)
-    - [4.2. 网络地址](#42-网络地址)
-        - [4.2.1. PAN ID](#421-pan-id)
-        - [4.2.2. 扩展 PAN ID](#422-扩展-pan-id)
-    - [4.3. 节点地址](#43-节点地址)
-- [5. 应用层](#5-应用层)
-    - [5.1. Endpoint](#51-endpoint)
-    - [5.2. Clusters](#52-clusters)
-    - [5.3. 例子](#53-例子)
-- [6. 安全性](#6-安全性)
-    - [6.1. 网络层安全](#61-网络层安全)
-        - [6.1.1. 总览](#611-总览)
-        - [6.1.2. 逐跳安全](#612-逐跳安全)
-        - [6.1.3. Network Key](#613-network-key)
-        - [6.1.4. 帧计数器](#614-帧计数器)
-    - [6.2. APS层安全性](#62-aps层安全性)
-        - [6.2.1. 总览](#621-总览)
-        - [6.2.2. Install Code](#622-install-code)
-- [7. 加入过程](#7-加入过程)
-    - [7.1. 创建网络](#71-创建网络)
-    - [7.2. 使用已知Link Key加入](#72-使用已知link-key加入)
-    - [7.3. 使用Install Code派生的Link key加入](#73-使用install-code派生的link-key加入)
-- [8. 参考](#8-参考)
+- [1. 概述](#1-%e6%a6%82%e8%bf%b0)
+  - [1.1. 什么是Zigbee](#11-%e4%bb%80%e4%b9%88%e6%98%afzigbee)
+  - [1.2. Zigbee的历史](#12-zigbee%e7%9a%84%e5%8e%86%e5%8f%b2)
+  - [1.3. Zigbee联盟](#13-zigbee%e8%81%94%e7%9b%9f)
+  - [1.4. 协议概述](#14-%e5%8d%8f%e8%ae%ae%e6%a6%82%e8%bf%b0)
+- [2. 物理层](#2-%e7%89%a9%e7%90%86%e5%b1%82)
+  - [2.1. 调制](#21-%e8%b0%83%e5%88%b6)
+  - [2.2. 输出功率](#22-%e8%be%93%e5%87%ba%e5%8a%9f%e7%8e%87)
+  - [2.3. 数据速率](#23-%e6%95%b0%e6%8d%ae%e9%80%9f%e7%8e%87)
+  - [2.4. 开阔场地的传输距离](#24-%e5%bc%80%e9%98%94%e5%9c%ba%e5%9c%b0%e7%9a%84%e4%bc%a0%e8%be%93%e8%b7%9d%e7%a6%bb)
+  - [2.5. 总结](#25-%e6%80%bb%e7%bb%93)
+- [3. 媒体访问控制（MAC）层](#3-%e5%aa%92%e4%bd%93%e8%ae%bf%e9%97%ae%e6%8e%a7%e5%88%b6mac%e5%b1%82)
+  - [3.1. CSMA-CA](#31-csma-ca)
+  - [3.2. 确认](#32-%e7%a1%ae%e8%ae%a4)
+  - [3.3. MAC帧](#33-mac%e5%b8%a7)
+- [4. 网络层](#4-%e7%bd%91%e7%bb%9c%e5%b1%82)
+  - [4.1. 设备类型](#41-%e8%ae%be%e5%a4%87%e7%b1%bb%e5%9e%8b)
+  - [4.2. 网络地址](#42-%e7%bd%91%e7%bb%9c%e5%9c%b0%e5%9d%80)
+    - [4.2.1. PAN ID](#421-pan-id)
+    - [4.2.2. 扩展 PAN ID](#422-%e6%89%a9%e5%b1%95-pan-id)
+  - [4.3. 节点地址](#43-%e8%8a%82%e7%82%b9%e5%9c%b0%e5%9d%80)
+- [5. 应用层](#5-%e5%ba%94%e7%94%a8%e5%b1%82)
+  - [5.1. Endpoint](#51-endpoint)
+  - [5.2. Clusters](#52-clusters)
+  - [5.3. 例子](#53-%e4%be%8b%e5%ad%90)
+- [6. 安全性](#6-%e5%ae%89%e5%85%a8%e6%80%a7)
+  - [6.1. 网络层安全](#61-%e7%bd%91%e7%bb%9c%e5%b1%82%e5%ae%89%e5%85%a8)
+    - [6.1.1. 总览](#611-%e6%80%bb%e8%a7%88)
+    - [6.1.2. 逐跳安全](#612-%e9%80%90%e8%b7%b3%e5%ae%89%e5%85%a8)
+    - [6.1.3. Network Key](#613-network-key)
+    - [6.1.4. 帧计数器](#614-%e5%b8%a7%e8%ae%a1%e6%95%b0%e5%99%a8)
+  - [6.2. APS层安全性](#62-aps%e5%b1%82%e5%ae%89%e5%85%a8%e6%80%a7)
+    - [6.2.1. 总览](#621-%e6%80%bb%e8%a7%88)
+    - [6.2.2. Install Code](#622-install-code)
+- [7. 加入过程](#7-%e5%8a%a0%e5%85%a5%e8%bf%87%e7%a8%8b)
+  - [7.1. 创建网络](#71-%e5%88%9b%e5%bb%ba%e7%bd%91%e7%bb%9c)
+  - [7.2. 使用已知Link Key加入](#72-%e4%bd%bf%e7%94%a8%e5%b7%b2%e7%9f%a5link-key%e5%8a%a0%e5%85%a5)
+  - [7.3. 使用Install Code派生的Link key加入](#73-%e4%bd%bf%e7%94%a8install-code%e6%b4%be%e7%94%9f%e7%9a%84link-key%e5%8a%a0%e5%85%a5)
+- [8. 参考](#8-%e5%8f%82%e8%80%83)
 
 </details>
 
@@ -52,7 +52,7 @@
 随着物联网（IoT）行业的发展，越来越多的无线技术应运而生。  
 
 <div align="center">
-  <img src="files/ZB-Zigbee-Introduction-of-Zigbee-Basic/IoT-Wireless-Technologies.png">  
+  <img src="files/ZB-Introduction-of-Zigbee-Basic/IoT-Wireless-Technologies.png">  
 </div>  
 </br>  
 
@@ -72,7 +72,7 @@ Zigbee是IoT网络（尤其是家庭自动化行业）中最流行的无线技�
 Zigbee是[Zigbee联盟](https://zigbeealliance.org/)发布和修订的开放标准。历史悠久。
 
 <div align="center">
-  <img src="files/ZB-Zigbee-Introduction-of-Zigbee-Basic/Zigbee-History.png">  
+  <img src="files/ZB-Introduction-of-Zigbee-Basic/Zigbee-History.png">  
 </div>  
 </br>  
 
@@ -83,7 +83,7 @@ Zigbee是[Zigbee联盟](https://zigbeealliance.org/)发布和修订的开放标�
 Zigbee联盟是推广Zigbee技术的主要力量。这是一个开放的组织。任何公司都可以加入Zigbee联盟作为成员。Silicon Labs是Zigbee联盟的董事会成员。
 
 <div align="center">
-  <img src="files/ZB-Zigbee-Introduction-of-Zigbee-Basic/Zigbee-Alliance.png">  
+  <img src="files/ZB-Introduction-of-Zigbee-Basic/Zigbee-Alliance.png">  
 </div>  
 </br>  
 
@@ -95,7 +95,7 @@ Zigbee联盟的主要三个工作是：
 2016年，Zigbee联盟发布了最新的Zigbee标准，即Zigbee 3.0。之前使用的配置文件（如Zigbee家庭自动化配置文件（ZHA），Zigbee Light Link（ZLL）等）已统一在一起。
 
 <div align="center">
-  <img src="files/ZB-Zigbee-Introduction-of-Zigbee-Basic/Zigbee-Profiles.png">  
+  <img src="files/ZB-Introduction-of-Zigbee-Basic/Zigbee-Profiles.png">  
 </div>  
 </br>  
 
@@ -107,7 +107,7 @@ Zigbee联盟的主要三个工作是：
 下图阐述了协议体系结构。
 
 <div align="center">
-  <img src="files/ZB-Zigbee-Introduction-of-Zigbee-Basic/Protocol-Overview.png">  
+  <img src="files/ZB-Introduction-of-Zigbee-Basic/Protocol-Overview.png">  
 </div>  
 </br>  
 
@@ -121,7 +121,7 @@ Zigbee联盟的主要三个工作是：
 Zigbee在ISM频率上工作。通信信道定义如下：
 
 <div align="center">
-  <img src="files/ZB-Zigbee-Introduction-of-Zigbee-Basic/Physical-Layer.png">  
+  <img src="files/ZB-Introduction-of-Zigbee-Basic/Physical-Layer.png">  
 </div>  
 </br>  
 
@@ -131,7 +131,7 @@ Zigbee最常见的工作频率是2.4GHz。
 物理层还处理数据原始数据的发送和接收。PHY层在868/915 MHz频带中使用二进制相移键控（BPSK），并在2.4 GHz下使用偏移正交相移键控（O-QPSK）。信息通过直接序列扩频（DSSS）编码到载波上，DSSS是一种固有的鲁棒方法，可通过信号处理增益来提高多径性能和接收机灵敏度。请注意，2.4 GHz是全球Zigbee通信最常用的频段。唯一官方Sub GHz的支持是英国的Smart Energy。
 
 ### 2.2. 输出功率
-802.15.4是专为低功耗，低数据速率网络而设计的，其目标是低成本。这些通常称为PAN或个人局域网。它主要是为低到中等无线电范围的应用而设计，但是放大也是可以的。在大多数国家中，有可能获得大约+20 dBm的输出功率。在欧洲，它被调低到+10 dBm左右。但是，这足以使您到达大约一到三公里的距离，这取决于您的链路预算，所拥有的放大率和/或所拥有的天线的类型。
+802.15.4是专为低功耗，低数据速率，低成本的网络设计的。这些通常称为PAN或个人局域网。它主要是为中小无线电范围的应用而设计，但是外接功率放大器也是可以的。在大多数国家中，允许获得大约+20 dBm的输出功率。在欧洲，最大发射功率被限制到+10 dBm左右。但是，这足以使您到达大约一到三公里的距离，这取决于您的链路预算，所使用的功率放大系数和/或所拥有的天线的类型。
 
 ### 2.3. 数据速率
 使用2.4 GHz直接序列扩频Phy或DSSS，原始比特率为250 kb / s。在实际应用中，通常只有理论速率的四分之一或五分之一。预期的吞吐率与56k波特调制解调器相当。单跳链路上每秒约52700 kb。放入多跳效果后，传播所需的时间会更长一些。
@@ -152,18 +152,18 @@ Zigbee最常见的工作频率是2.4GHz。
 MAC层的主要功能是确保可靠的单跳消息传递。以下是有关这些功能的更多详细信息。
 
 ### 3.1. CSMA-CA
-802.15.4允许多个网络位于同一通道上。因此，需要采取某种方式来避免来自不同网络的数据包在空中碰撞而造成通信错误。MAC子层使用CSMA-CA（带有冲突避免功能的载波侦听多路访问）控制对无线电的访问。避免碰撞是通过CCA（透明通道评估）完成的。在发送之前，每个节点必须检查电波是否畅通（RSSI低于CCA阈值）。如果是，则节点应继续进行并在进行少量随机退避后进行传输。如果CCA没有通过，则该节点应等待多个退避周期，然后才能再次尝试该过程。随机退避允许多个节点交错传输，因此它们总是可以在某个时间点找到干净的无线空间来作数据传输。尽管比特率很低，因为数据包比较小（128 bytes），即使在非常嘈杂的信道上每一个节点也可以成功地完成数据传输。
+802.15.4允许多个网络位于同一通道上。因此，需要采取某种方式来避免来自不同网络的数据包在空中碰撞而造成通信错误。MAC子层使用CSMA-CA（Carrier Sense Multiple Access/Collision Avoidance）控制对无线电的访问。避免碰撞是通过CCA（Clear Channel Assessment）完成的。在发送之前，每个节点必须检查电波是否可以正常发送（RSSI低于CCA阈值）。如果是，则节点应继续进行并在进行少量随机退避后进行传输。如果CCA没有通过，则该节点应等待多个退避周期，然后才能再次尝试该过程。随机退避允许多个节点交错传输，因此它们总是可以在某个时间点找到干净的无线空间来作数据传输。尽管比特率很低，因为数据包比较小（128 bytes），即使在非常嘈杂的信道上每一个节点也可以成功地完成数据传输。
 
 ### 3.2. 确认
 MAC层还为节点提供了一种方法，该方法可通过确认得知节点已成功接收到1跳单播传输，并且已通过验证CRC保留了所传输消息的完整性。
+多跳传输应在每个跳上进行确认。节点执行CCA检查并发送消息后，它会等待MAC确认。如果未收到消息，则该节点应尝试多次重发该消息，直到其最终成功或最大的重试次数已用尽。
 
-多跳传输应在每个跳上进行确认。节点执行CCA检查并发送消息后，它会等待MAC确认。如果未收到消息，则该节点应尝试多次重发该消息，直到其最终成功或最大的重试次数已用尽。Silabs Ember ZNet Stack提供了额外的mac重试，为失败的消息传输提供了更早的纠正措施，而不必等到端到端的重试才开始，这可能需要几秒钟。
 
 ### 3.3. MAC帧
 下图演示了MAC帧格式：
 
 <div align="center">
-  <img src="files/ZB-Zigbee-Introduction-of-Zigbee-Basic/MAC-Frame.png">  
+  <img src="files/ZB-Introduction-of-Zigbee-Basic/MAC-Frame.png">  
 </div>  
 </br>  
 
@@ -198,7 +198,7 @@ IEEE-802.15.4定义了两种设备类型：
 - 终端设备，包括睡眠终端设备和非睡眠终端设备。
 
 <div align="center">
-  <img src="files/ZB-Zigbee-Introduction-of-Zigbee-Basic/Device-Type.png">  
+  <img src="files/ZB-Introduction-of-Zigbee-Basic/Device-Type.png">  
 </div>  
 </br>  
 
@@ -216,8 +216,8 @@ PAN，又称个人区域网络，通过其PAN ID与其他网络分开。这是�
 
 <table>
   <tr>
-    <td><img src=files/ZB-Zigbee-Introduction-of-Zigbee-Basic/PANID-1.png border="0"></td>
-    <td><img src=files/ZB-Zigbee-Introduction-of-Zigbee-Basic/PANID-2.png border="0"></td>    
+    <td><img src=files/ZB-Introduction-of-Zigbee-Basic/PANID-1.png border="0"></td>
+    <td><img src=files/ZB-Introduction-of-Zigbee-Basic/PANID-2.png border="0"></td>    
   </tr>
 </table>
 
@@ -231,7 +231,7 @@ PAN ID由协调器在网络创建时选择。因为PAN ID是一个网络与另�
 正常的短16位PAN ID由于简短，在空中传输的所有数据包中都有包含，但64位扩展PAN ID很少通过空中传输。扩展的PAN ID对于每个PAN也是唯一的，当16位PAN ID不足以始终将一个网络与另一个网络区分开时，它基本上用作备份标准。例如，当发生PAN ID冲突并且您要通知网络中的所有设备更新PAN ID时，将网络与冲突的网络区分开的方式是，网络中的这些设备都共享相同的扩展PAN ID。扩展PAN ID极不可能发生冲突，因为与短PAN ID中的16位相比，它具有64位。
 
 <div align="center">
-  <img src="files/ZB-Zigbee-Introduction-of-Zigbee-Basic/Ext-PAN-ID.png">  
+  <img src="files/ZB-Introduction-of-Zigbee-Basic/Ext-PAN-ID.png">  
 </div>  
 </br>
 
@@ -245,7 +245,7 @@ PAN ID由协调器在网络创建时选择。因为PAN ID是一个网络与另�
 节点具有短地址和长地址。长地址是IEEE分配的MAC地址或EUI-64。它是一个全球唯一的64位地址，这意味着世界上没有两个基于IEEE的无线电设备具有相同的EUI-64。通常在制造时分配。芯片在出厂之前，它们会被分配，并且它们永远不会改变。它用来区分不同的无线设备。但是因为64位是相对比较大的数据量，所以这个长地址不是经常通过空中发送的。
 
 <div align="center">
-  <img src="files/ZB-Zigbee-Introduction-of-Zigbee-Basic/Node-Address.png">  
+  <img src="files/ZB-Introduction-of-Zigbee-Basic/Node-Address.png">  
 </div>  
 </br>
 
@@ -260,7 +260,7 @@ PAN ID由协调器在网络创建时选择。因为PAN ID是一个网络与另�
 每个Endpoint代表一个逻辑设备。例如，如果我们有一个带有6个插座的智能插座适配器。我们可以使用6个Endpoint来实现它，以便我们可以分别打开/关闭每个插座。
 
 <div align="center">
-  <img src="files/ZB-Zigbee-Introduction-of-Zigbee-Basic/Endpoint.png">  
+  <img src="files/ZB-Introduction-of-Zigbee-Basic/Endpoint.png">  
 </div>  
 </br>
 
@@ -275,7 +275,7 @@ Endpoint ID是一个8位的值，范围从0到255。
 在每个Endpoint中，我们可以配置几个Clusters。Zigbee Cluster实际上是一种通信模型。
 
 <div align="center">
-  <img src="files/ZB-Zigbee-Introduction-of-Zigbee-Basic/Cluster.png">  
+  <img src="files/ZB-Introduction-of-Zigbee-Basic/Cluster.png">  
 </div>  
 </br>
 
@@ -286,7 +286,7 @@ Endpoint ID是一个8位的值，范围从0到255。
 例如，我们需要实现一个带有两个灯泡的灯。
 
 <div align="center">
-  <img src="files/ZB-Zigbee-Introduction-of-Zigbee-Basic/Cluster-Example.png">  
+  <img src="files/ZB-Introduction-of-Zigbee-Basic/Cluster-Example.png">  
 </div>  
 </br>
 
@@ -307,8 +307,8 @@ Endpoint ID是一个8位的值，范围从0到255。
 
 <table>
   <tr>
-    <td><img src=files/ZB-Zigbee-Introduction-of-Zigbee-Basic/Network-Layer-Security-1.png border="0"></td>
-    <td><img src=files/ZB-Zigbee-Introduction-of-Zigbee-Basic/Network-Layer-Security-2.png border="0"></td>    
+    <td><img src=files/ZB-Introduction-of-Zigbee-Basic/Network-Layer-Security-1.png border="0"></td>
+    <td><img src=files/ZB-Introduction-of-Zigbee-Basic/Network-Layer-Security-2.png border="0"></td>    
   </tr>
 </table>
 
@@ -323,7 +323,7 @@ Endpoint ID是一个8位的值，范围从0到255。
 网络层安全性是逐跳安全性。
 
 <div align="center">
-  <img src="files/ZB-Zigbee-Introduction-of-Zigbee-Basic/Hop-by-Hop-Security.png">  
+  <img src="files/ZB-Introduction-of-Zigbee-Basic/Hop-by-Hop-Security.png">  
 </div>  
 </br>
 
@@ -337,7 +337,7 @@ Network Key是一个16字节的八位位组。通常，它是在网络创建时�
 在Zigbee网络中，将Network Key分发给新设备的角色称为Trust Center。有两种典型的安全模型，即集中式安全网络和分布式安全网络。
 
 <div align="center">
-  <img src="files/ZB-Zigbee-Introduction-of-Zigbee-Basic/Security-Model.png">  
+  <img src="files/ZB-Introduction-of-Zigbee-Basic/Security-Model.png">  
 </div>  
 </br>
 
@@ -350,7 +350,7 @@ Network Key是一个16字节的八位位组。通常，它是在网络创建时�
 添加了帧计数器以防止重发攻击。让我们看看它是如何工作的。
 
 <div align="center">
-  <img src="files/ZB-Zigbee-Introduction-of-Zigbee-Basic/Frame-Counter.png">  
+  <img src="files/ZB-Introduction-of-Zigbee-Basic/Frame-Counter.png">  
 </div>  
 </br>
 
@@ -366,7 +366,7 @@ Network Key是一个16字节的八位位组。通常，它是在网络创建时�
 应用中对传输Network Key的消息进行了加密。让我们看看应用程序层的安全性。
 
 <div align="center">
-  <img src="files/ZB-Zigbee-Introduction-of-Zigbee-Basic/APS-Security.png">  
+  <img src="files/ZB-Introduction-of-Zigbee-Basic/APS-Security.png">  
 </div>  
 </br>
 
@@ -385,7 +385,7 @@ Zigbee定义了一种带外配置Link key的方法。这是Install Code。
 #### 6.2.2. Install Code
 
 <div align="center">
-  <img src="files/ZB-Zigbee-Introduction-of-Zigbee-Basic/Install-Code.png">  
+  <img src="files/ZB-Introduction-of-Zigbee-Basic/Install-Code.png">  
 </div>  
 </br>
 
@@ -414,7 +414,7 @@ Install Code是16字节多项式+ 2字节CRC。
 ### 7.2. 使用已知Link Key加入
 
 <div align="center">
-  <img src="files/ZB-Zigbee-Introduction-of-Zigbee-Basic/Joining-with-Well-Known-Link-Key.png">  
+  <img src="files/ZB-Introduction-of-Zigbee-Basic/Joining-with-Well-Known-Link-Key.png">  
 </div>  
 </br>
 
@@ -430,7 +430,7 @@ Install Code是16字节多项式+ 2字节CRC。
 ### 7.3. 使用Install Code派生的Link key加入
 
 <div align="center">
-  <img src="files/ZB-Zigbee-Introduction-of-Zigbee-Basic/Joining-with-Install-Code.png">  
+  <img src="files/ZB-Introduction-of-Zigbee-Basic/Joining-with-Install-Code.png">  
 </div>  
 </br>
 

@@ -15,8 +15,8 @@
 ## 2019-12-09
 | Time | Content |  
 |:---- |:----|    
-| 09:30 ~ 11:00 | [Introduction of Zigbee](Zigbee-Introduction-of-Zigbee-Basic) |
-| 11:15 ~ 12:00 | [Introduction of EmberZnet and AppBuilder](Zigbee-Introduction-of-EmberZnet-and-AppBuilder) |
+| 09:30 ~ 11:00 | [Introduction of Zigbee](Introduction-of-Zigbee-Basic) |
+| 11:15 ~ 12:00 | [Introduction of EmberZnet and AppBuilder](Introduction-of-EmberZnet-and-AppBuilder) |
 | 13:30 ~ 15:00 | [Hands on : Forming and Joining](Zigbee-Hands-on-Forming-and-Joining) |
 | 15:00 ~ 15:45 | [Hands on : Sending on/off commands](Zigbee-Hands-on-Sending-OnOff-Commands) |
 | 15:45 ~ 16:30 | [Hands on : Using Event](Zigbee-Hands-on-Using-Event) |
