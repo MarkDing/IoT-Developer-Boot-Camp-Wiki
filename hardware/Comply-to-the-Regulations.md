@@ -12,7 +12,7 @@
   - [4.3 CE requirements in Sub-GHz bands](#43-CE-requirements-in-Sub-GHz-bands)
   - [4.4 CE requirements in 2.4GHz band](#44-CE-requirements-in-2.4GHz-band)
 - [5. Customer regulatory cerfitication flow](#5-Customer-regulatory-cerfitication-flow)
-  - [5.1 Silabs provides documents for certification](#51-Silabs-provides-documents-for-certification)
+  - [5.1 Silicon Labs provides documents for certification](#51-Silicon-Labs-provides-documents-for-certification)
   - [5.2 Process flow in certifications](#52-Process-flow-in-certifications)
   - [5.3 Engineering flow](#53-Engineering-flow)
   - [5.4 Paperwork flow](#54-Paperwork-flow)
@@ -21,7 +21,7 @@
 
 
 # 1. Introduction
-After the customer finishes the product design, it should consider how to test the product and let it comply to the RF regulations. RF conducted or Radiated measurements should pass the regulation limits or requirements for product intended to be sold in regions. It is called complying to the regulations or certifications. The regulations depend on different regions or countries. There are chips/modules, Sub-GHz/2.4GHz solutions in Silabs' production catalog, and there are many protocols related product such as proprietary,Zigbee/thread,BLE, and Z-Wave should be classified. Thus the detail regulatory certifications maybe different from application to application and from country to country. 
+After the customer finishes the product design, it should consider how to test the product and let it comply to the RF regulations. RF conducted or Radiated measurements should pass the regulation limits or requirements for product intended to be sold in regions. It is called complying to the regulations or certifications. The regulations depend on different regions or countries. There are chips/modules, Sub-GHz/2.4GHz solutions in Silicon Labs' production catalog, and there are many protocols related product such as proprietary,Zigbee/thread,BLE, and Z-Wave should be classified. Thus the detail regulatory certifications maybe different from application to application and from country to country. 
 
 # 2. Typical regulatory certification regions
 Silicon Labs has many products such as chips, SiP modules, and PCB modules. And the products support main sub-GHz bands(169MHz,434MHz,868MHz and 915MHz) and 2.4GHz frequenc band. These different products and frequency bands almost comply to regulations from any region in the world. There are many region regulations such as [CE](http://ec.europa.eu/growth/sectors/electrical-engineering/red-directive_fi) (Europe), [FCC](https://www.fcc.gov/)(USA), [ISED](https://www.canada.ca/en/innovation-science-economic-development.html)(Canada), [MIC](http://www.soumu.go.jp/english/)(Japan), [KC](http://eng.kcc.go.kr/user/ehpMain.do)(South Korea) and other regions. 
@@ -36,7 +36,7 @@ For the certification activeties, you can directly contact the region authoritie
   <img src="files\HW-Comply-to-the-Regulations\Authorities-Contacts.png">  
 </div>
 
-In the following introduction, it will mainly focus on EC and FCC regulations. For Other region regulatory certifications, please check [AN1048](https://www.silabs.com/documents/public/application-notes/an1048-regulatory-certifications.pdf) for more details.
+In the following introduction, it will mainly focus on EC and FCC regulations. For Other region regulatory certifications, please check [AN1048](https://www.Silicon Labs.com/documents/public/application-notes/an1048-regulatory-certifications.pdf) for more details.
 Though there are RF, EMC and Safety separate categories to be certified.  RF certification is mainly introduced here.
 
 # 3. Key region regulatories introduction
@@ -112,9 +112,9 @@ In this chapter, it will introduces FCC and CE regulations for both sub-GHz and 
    - NB opinion letter (if applied)
  
 # 4. Basic RF test items and limits for complying the regulations 
-Allthough there are RF, EMC and Safety categories need to be certified for regional regulations. It only cares about the RF category in this chapter. And Silabs has SoCs,SiP,and PCB module products, the certification procedure or items are different among them. In this chapter, it only describes the test items and limits base on the end product with SoCs. For end products with SiP/PCB-Module, the finnal test items maybe reduced due to pre-certificated SiP/PCB-Module as described in previous section. As Silabs' products contain sub-G frequency bands and 2.4GHz bands, it will introduce the test items and limits seperately in frequency bands due to the difference regulation requirements.
+Allthough there are RF, EMC and Safety categories need to be certified for regional regulations. It only cares about the RF category in this chapter. And Silicon Labs has SoCs,SiP,and PCB module products, the certification procedure or items are different among them. In this chapter, it only describes the test items and limits base on the end product with SoCs. For end products with SiP/PCB-Module, the finnal test items maybe reduced due to pre-certificated SiP/PCB-Module as described in previous section. As Silicon Labs' products contain sub-G frequency bands and 2.4GHz bands, it will introduce the test items and limits seperately in frequency bands due to the difference regulation requirements.
 ## 4.1. FCC requirements in Sub-GHz bands
-Silabs' products can be mainly applied to FCC-Part-15.231 and FCC-Part-15.247 regulations for sub-G bands. It regulates 260 to 470MHz frequency band in Part-15.231, and 902 to 928MHz frequency band in Part-15.247.
+Silicon Labs' products can be mainly applied to FCC-Part-15.231 and FCC-Part-15.247 regulations for sub-G bands. It regulates 260 to 470MHz frequency band in Part-15.231, and 902 to 928MHz frequency band in Part-15.247.
 - Part-15.231
   Typical applications are Door openers, Alarm systems, Remote Switches, and Control links in this regulation. There are severy typical frequency bands as 315MHz, 433MHz, and 470MHz.
   - Tx power limits
@@ -214,7 +214,7 @@ For 2.4GHz band regulation, it is defined in the FCC-Part-15.247 and FCC-Part-15
     - Spurious falls above 960 MHz = -41.2 dBm EIRP (max) (15.209.a).
 
 ## 4.3. CE requirements in Sub-GHz bands
-  ETSI(European Telecommunications Standards Institute) [EN300220-01](https://www.etsi.org/deliver/etsi_en/300200_300299/30022001/03.01.01_60/en_30022001v030101p.pdf) mainly defines the sub-GHz regulation for CE certification. And it regulates the 25 MHz to 1000 MHz Frequency Range with Power Levels up to 500mW. Silabs' product mainly focus in 169MHz, 434MHz, and 868MHz operating bands. The typical applications are Control links, Alarms, and Metering in these sub-GHz bands. 
+  ETSI(European Telecommunications Standards Institute) [EN300220-01](https://www.etsi.org/deliver/etsi_en/300200_300299/30022001/03.01.01_60/en_30022001v030101p.pdf) mainly defines the sub-GHz regulation for CE certification. And it regulates the 25 MHz to 1000 MHz Frequency Range with Power Levels up to 500mW. Silicon Labs' product mainly focus in 169MHz, 434MHz, and 868MHz operating bands. The typical applications are Control links, Alarms, and Metering in these sub-GHz bands. 
  - Tx power limits
    Tx power can be conducted measurement for devices with antenna connectors, and radiated measurement for devices with integral antennas. The power limits are listed in radiation ERP. 
     - +27dBm at 169.4~169.475MHz(Meter Reading)
@@ -266,7 +266,7 @@ For 2.4GHz band regulation, it is defined in the FCC-Part-15.247 and FCC-Part-15
     RB is the usually 3dB receiver bandwidth selectivity in KHz. For example, the sensitivity is -105dBm with a 16KHz RB.
 
  - Blocking
-   Blocking is a measurement of the capability of the receiver to receive a wanted modulated signal without exceeding a given degradation due to the presence of an unwanted input signal at any frequencies other than those of the spurious responses or the adjacent channels or bands. Usually EN300220 divides the receiver into 4 categories as category 1, category 1.5, category 2, category 3. The most tough requirement is in category 1. Silabs' sub-GHz products can comply category 1.5 regulation.
+   Blocking is a measurement of the capability of the receiver to receive a wanted modulated signal without exceeding a given degradation due to the presence of an unwanted input signal at any frequencies other than those of the spurious responses or the adjacent channels or bands. Usually EN300220 divides the receiver into 4 categories as category 1, category 1.5, category 2, category 3. The most tough requirement is in category 1. Silicon Labs' sub-GHz products can comply category 1.5 regulation.
    The blocking requirement for category 1.5 is shown in following table:
    <div align="center">
    <img src="files\HW-Comply-to-the-Regulations\Blocking-Limits.png">  
@@ -325,9 +325,9 @@ ETSI [EN300328](https://ec.europa.eu/growth/single-market/european-standards/har
    - 1-12.75 GHz, -47 dBm EIRP, BW=1MHz (Section 4.3.1.10.2)
 
 # 5. Customer regulatory cerfitication flow
-Since there are SoCs, SiP modules, and PCB modules in Silabs product catalog. The cerfification work may different among them. It only lists the basical certification flows in this chapter.
-## 5.1. Silabs provides documents for certification
-Before the certification process, Silabs can provides a very exclusive documents for customer adoption. The documents are:
+Since there are SoCs, SiP modules, and PCB modules in Silicon Labs product catalog. The cerfification work may different among them. It only lists the basical certification flows in this chapter.
+## 5.1. Silicon Labs provides documents for certification
+Before the certification process, Silicon Labs can provides a very exclusive documents for customer adoption. The documents are:
 - Datasheet
   - Minimal regulatory information except that which is required by regulatory bodies
   - Highlights the modular approval type

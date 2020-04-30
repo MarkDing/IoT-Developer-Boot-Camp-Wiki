@@ -2,7 +2,7 @@
 <summary><font size=5>Table of Contents</font> </summary>
 
 - [1. Introduction](#1-introduction)
-- [2. Find the relative reference design from Silabs' website](#2-Find-the-relative-reference-design-from-Silabs'-website)
+- [2. Find the relative reference design from Silicon Labs' website](#2-Find-the-relative-reference-design-from-Silicon-Labs'-website)
 - [3. Hardware design considerations](#3-Hardware-design-considerations)
 - [4. RF circuits matching guide](#4-RF-circuits-matching-guide)
 - [5. Customize the schematic design to fit the application](#5-Customize-the-schematic-design-to-fit-the-application)
@@ -10,9 +10,9 @@
 </details>
 
 # 1. Introduction
-If the customer wants to design its own schematic of project, first of all the customer should find a reference from Silabs' web site. Then it can studies the schematic with hardware design consideration and RF circuits matching guide. The customer makes its own schematic based on the reference design and the final application cases.
+If the customer wants to design its own schematic of project, first of all the customer should find a reference from Silicon Labs' web site. Then it can studies the schematic with hardware design consideration and RF circuits matching guide. The customer makes its own schematic based on the reference design and the final application cases.
 
-# 2. Find the relative reference design from Silabs' website
+# 2. Find the relative reference design from Silicon Labs' website
 There are relative reference designs for all of the solutions in the website. Basically the reference designs differ from frequency bands, output power levels, DC-DC regulator configurations, and chip packages. 
 - Frequency bands: 
 
@@ -33,38 +33,38 @@ There are relative reference designs for all of the solutions in the website. Ba
 
   32/48/68 pins QFN package and 125pins BGA package for EFR32 chips.
 
-For example, you want to search the reference schematic of proprietary chip, you can go to the following web page:
+For example, you want to search the reference schematic of proprietary chip, you can go to the following [web page](https://www.Silicon Labs.com/):
 <div align="center">
   <img src="files\HW-Schematic-Design-Guide\Proprietary-Page.png">  
 </div> 
 
-In this page, you can move mouse to Products tab, then the pop-down menu will appear with Wireless products which include the Proprietary item, then click left button of your mouse. And it will enter the Proprietary product list page as following:
+In this page, you can move mouse to "Products" tab, then the pop-down menu will appear with Wireless products which include the Proprietary item, then click left button of your mouse. And it will enter the Proprietary product list [web page](https://www.Silicon Labs.com/wireless/proprietary) as following:
 <div align="center">
   <img src="files\HW-Schematic-Design-Guide\Proprietary-Product.png">  
 </div>
 
-You can find the generations of proprietary products as listed in the bottom table. You can select EFR32FG1 series 1 sub-GHz and 2.4GHz SoCs for more details:
+You can find the generations of proprietary products as listed in the bottom table. You can select "EFR32FG1 series 1 sub-GHz and 2.4GHz SoCs" for more [details](https://www.Silicon Labs.com/wireless/proprietary/efr32fg1-series-1-sub-ghz-2-4-ghz-socs):
 <div align="center">
   <img src="files\HW-Schematic-Design-Guide\Proprietary-S1.png">  
 </div>
 
-In this page, you can find the brief introduction of the proprietary series 1 chips and the parameter list of each chips. Ignore the chips list, you can click the View Document in this page and acess the documents list pages directly:
+In this page, you can find the brief introduction of the proprietary series 1 chips and the parameter list of each chips. Ignore the chips list, you can click the "View Document" in this page and acess the documents list [pages](https://www.Silicon Labs.com/support/resources.p-wireless_proprietary_efr32fg1-series-1-sub-ghz-and-2-4-ghz-socs) directly:
 <div align="center">
   <img src="files\HW-Schematic-Design-Guide\Proprietary-Reference.png">  
 </div>
 
-For example, If you want to look for 434MHz +10dBm output power reference design, you can click item EFR32FG1 BRD4251B 2400/433 MHz 10dBm Radio Board Full Design Package and download the reference design package to your local address.
-The schematic likes:[BRD4251B](https://www.silabs.com/documents/public/schematic-files/EFR32FG1-BRD4251B-B00-schematic.pdf)
+For example, If you want to look for 434MHz +10dBm output power reference design, you can click item "EFR32FG1 BRD4251B 2400/433 MHz 10dBm Radio Board Full Design Package" and download the reference design package to your local address.
+The schematic likes: [BRD4251B](https://www.Silicon Labs.com/documents/public/schematic-files/EFR32FG1-BRD4251B-B00-schematic.pdf)
 
 But keep in mind that this reference design can be applied to a cluster of chips that have difference packages and frequency band configurations. So you can just replace the chips to your interest chip with different package and frequency band.
 # 3. Hardware design considerations
-After you get the reference design, you may have the concern why the reference is designed like this. Therefore Silabs provides a lot of application notes or reference manual for customer reference. For basic hardware considerations, Customer can refer to the following application note for detail descriptions:[AN0002.1](https://www.silabs.com/documents/public/application-notes/an0002.1-efr32-efm32-series-1-hardware-design-considerations.pdf). And there are several hardware considerations in different divisions as following:
+After you get the reference design, you may have the concern why the reference is designed like this. Therefore Silicon Labs provides a lot of application notes or reference manual for customer reference. For basic hardware considerations, Customer can refer to the following application note for detail descriptions:[AN0002.1](https://www.Silicon Labs.com/documents/public/application-notes/an0002.1-efr32-efm32-series-1-hardware-design-considerations.pdf). And there are several hardware considerations in different divisions as following:
 - Power supply configurations: 
   - General requirements: VREGVDD = AVDD, must be the highest voltage on  EFR32; DVDD,IOVDD,RFVDD,PAVDD =< AVDD; DECOUPLE < DVDD
   - If internal DC-DC is not used, typically tie all the power pins to the main power supply.
   - If internal DC-DC is used, typically tie VREGVDD, AVDD, IOVDD to the main power supply, tie DVDD, RFVDD to DCDC output (VREGSW), tie PAVDD to DCDC output if TXP(Transmit Power) =< +13dBm, tie PAVDD to VMCU main supply if TXP > +13dBm.
 
-  For more information, please refer to application notes: [AN0948](https://www.silabs.com/documents/public/application-notes/an0948-power-configurations-and-dcdc.pdf)
+  For more information, please refer to application notes: [AN0948](https://www.Silicon Labs.com/documents/public/application-notes/an0948-power-configurations-and-dcdc.pdf)
 - Debug connector and reset pin:
   - Serial wire debug
 
@@ -84,7 +84,7 @@ After you get the reference design, you may have the concern why the reference i
      <img src="files\HW-Schematic-Design-Guide\Cortex-Debug-Port.png">  
     </div>
     
-  For more information for debug connecors, please refer to [AN0958](https://www.silabs.com/documents/public/application-notes/an958-mcu-stk-wstk-guide.pdf)
+  For more information for debug connecors, please refer to [AN0958](https://www.Silicon Labs.com/documents/public/application-notes/an958-mcu-stk-wstk-guide.pdf)
   - Reset pin
 
     There are a weak pull-up resistor and a low pass filter at reset pin inside the chip. It will allow reset pin floated and prevent noise glitches from outside interfer. The RESETn must not be connected through an external pull-up to an active supply, otherwise driven high as this could damage the device.
@@ -107,10 +107,10 @@ After you get the reference design, you may have the concern why the reference i
      <img src="files\HW-Schematic-Design-Guide\HF-Connection.png">  
     </div>
    
-For additional information on the external oscillators, refer to the application note, [AN0016.1](https://www.silabs.com/documents/public/application-notes/an0016.1-efm32-series-1-oscillator-design-considerations.pdf)
+For additional information on the external oscillators, refer to the application note, [AN0016.1](https://www.Silicon Labs.com/documents/public/application-notes/an0016.1-efm32-series-1-oscillator-design-considerations.pdf)
 
 # 4. RF circuits matching guide 
-The EFR32 Wireless Gecko Series devices include chip variants that provide 2.4 GHz-only operation, sub-GHz-only operation, or dual-band (2.4GHz and sub-GHz)operation.For RF matching circuits design of these bands, there are 2 application notes described the methods. One is for sub-GHz band [AN923](https://www.silabs.com/documents/public/application-notes/AN923-subGHz-Matching.pdf), and the other is for 2.4GHz band [AN930](https://www.silabs.com/documents/public/application-notes/an930-efr32-matching-guide.pdf).
+The EFR32 Wireless Gecko Series devices include chip variants that provide 2.4 GHz-only operation, sub-GHz-only operation, or dual-band (2.4GHz and sub-GHz)operation.For RF matching circuits design of these bands, there are 2 application notes described the methods. One is for sub-GHz band [AN923](https://www.Silicon Labs.com/documents/public/application-notes/AN923-subGHz-Matching.pdf), and the other is for 2.4GHz band [AN930](https://www.Silicon Labs.com/documents/public/application-notes/an930-efr32-matching-guide.pdf).
 
 The matching effort strives to simultaneously achieve several goals:
 - Provide for tying together the TX and RX signal paths, external to the RFIC.
