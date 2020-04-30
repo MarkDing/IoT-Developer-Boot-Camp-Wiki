@@ -36,7 +36,7 @@ For the certification activeties, you can directly contact the region authoritie
   <img src="files\HW-Comply-to-the-Regulations\Authorities-Contacts.png">  
 </div>
 
-In the following introduction, it will mainly focus on EC and FCC regulations. For Other region regulatory certifications, please check [AN1048](https://www.Silicon Labs.com/documents/public/application-notes/an1048-regulatory-certifications.pdf) for more details.
+In the following introduction, it will mainly focus on EC and FCC regulations. For Other region regulatory certifications, please check [AN1048](https://www.silabs.com/documents/public/application-notes/an1048-regulatory-certifications.pdf) for more details.
 Though there are RF, EMC and Safety separate categories to be certified.  RF certification is mainly introduced here.
 
 # 3. Key region regulatories introduction

@@ -44,13 +44,13 @@ Note that every implementation of an antenna design might require different comb
 
 The recommended 3-element PI network for external antenna matching purposes is here:
 
-<p align="center">
+<div align="center">
   <img src="files\HW-RF-Test-Guide\matching.png">
-</p>
+</div>
 
 <div align="center">
 
-<b>Figure 1. 3-element PI type matching network</b> 
+<b>Figure 1.  3-element PI type matching network</b> 
 
 </div>
 
@@ -127,7 +127,7 @@ First of all, it should generate a Railtest tool in Simplicity Studio for all th
 </div>
 
 After build the Railtest tool, you can use the commander tool to program customer device, then the device will be ready for RF test.
-More information for Simplicity Studio usage, please visit the application note [AN0822](https://www.Silicon Labs.com/documents/public/application-notes/AN0822-simplicity-studio-user-guide.pdf)
+More information for Simplicity Studio usage, please visit the application note [AN0822](https://www.Silabs.com/documents/public/application-notes/AN0822-simplicity-studio-user-guide.pdf)
 
 ## 3.3. Tune and measure
 The following strategy is proposed to determine the optimal Ctune value:
@@ -158,9 +158,9 @@ Railtest commands explaination:
 - After the configuration, the "SetTxTone 1" command sets the radio to transmit mode. In this case the radio transmits CW signal. 
 - The CW transmission can be disabled by "SetTXtone 0" command. 
 
-For more Railtest commands information, please refer to this [KBA](https://www.Silicon Labs.com/community/wireless/proprietary/forum.topic.html/railtest_-_more_info-66AE).
+For more Railtest commands information, please refer to this [KBA](https://www.Silabs.com/community/wireless/proprietary/forum.topic.html/railtest_-_more_info-66AE).
 
-For more CTune calibration details, it is discussed in this [KBA.](https://www.Silicon Labs.com/community/wireless/proprietary/knowledge-base.entry.html/2019/03/18/hfxo_capacitor_bank-7uRt)
+For more CTune calibration details, it is discussed in this [KBA.](https://www.Silabs.com/community/wireless/proprietary/knowledge-base.entry.html/2019/03/18/hfxo_capacitor_bank-7uRt)
 
 
 # 4. Contucted Tx fundamental power and harmonics measurement
