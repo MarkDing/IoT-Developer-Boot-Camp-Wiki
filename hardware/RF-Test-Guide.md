@@ -45,7 +45,7 @@ Note that every implementation of an antenna design might require different comb
 The recommended 3-element PI network for external antenna matching purposes is here:
 
 <div align="center">
-  <img src="files\HW-RF-Test-Guide\matching.png">
+  <img src="files\HW-RF-Test-Guide\PI-Match.png">
 </div>
 
 
