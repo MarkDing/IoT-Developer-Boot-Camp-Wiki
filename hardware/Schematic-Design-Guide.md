@@ -10,7 +10,7 @@
 </details>
 
 # 1. Introduction
-If the customer wants to design its own schematic of project, first of all the customer should find a reference from Silicon Labs' web site. Then it can studies the schematic with hardware design consideration and RF circuits matching guide. The customer makes its own schematic based on the reference design and the final application cases.
+If the customer wants to design its own schematic of project, first of all the customer should find a reference from Silicon Labs' web site. Then it can study the schematic with hardware design consideration and RF circuits matching guide. The customer makes its own schematic based on the reference design and the final application cases.
 
 # 2. Find the relative reference design from Silicon Labs' website
 There are relative reference designs for all of the solutions in the website. Basically the reference designs differ from frequency bands, output power levels, DC-DC regulator configurations, and chip packages. 
@@ -31,7 +31,7 @@ There are relative reference designs for all of the solutions in the website. Ba
 
 - Chip packages:
 
-  32/48/68 pins QFN package and 125pins BGA package for EFR32 chips.
+  32/40/48/68 pins QFN package and 125pins BGA package for EFR32 chips.
 
 For example, you want to search the reference schematic of proprietary chip, you can go to the following [web page](https://www.Silabs.com/):
 <div align="center">
@@ -54,17 +54,17 @@ In this page, you can find the brief introduction of the proprietary series 1 ch
 </div>
 
 For example, If you want to look for 434MHz +10dBm output power reference design, you can click item "EFR32FG1 BRD4251B 2400/433 MHz 10dBm Radio Board Full Design Package" and download the reference design package to your local address.
-The schematic likes: [BRD4251B](https://www.Silabs.com/documents/public/schematic-files/EFR32FG1-BRD4251B-B00-schematic.pdf)
+The BRD4251B schematic for example can be found [here](https://www.Silabs.com/documents/public/schematic-files/EFR32FG1-BRD4251B-B00-schematic.pdf).
 
 But keep in mind that this reference design can be applied to a cluster of chips that have difference packages and frequency band configurations. So you can just replace the chips to your interest chip with different package and frequency band.
 # 3. Hardware design considerations
-After you get the reference design, you may have the concern why the reference is designed like this. Therefore Silicon Labs provides a lot of application notes or reference manual for customer reference. For basic hardware considerations, Customer can refer to the following application note for detail descriptions:[AN0002.1](https://www.Silabs.com/documents/public/application-notes/an0002.1-efr32-efm32-series-1-hardware-design-considerations.pdf). And there are several hardware considerations in different divisions as following:
+After you get the reference design, you may have the concern why the reference is designed like this. Therefore Silicon Labs provides a lot of application notes or reference manual for customer reference. For basic hardware considerations, Customer can refer to the following application note for detail descriptions: [AN0002.1](https://www.Silabs.com/documents/public/application-notes/an0002.1-efr32-efm32-series-1-hardware-design-considerations.pdf) for EFR32xG1x series 1 chips, and refer to [AN0002.2](https://www.silabs.com/documents/public/application-notes/an0002.2-efr32-efm32-series-2-hardware-design-considerations.pdf) for EFR32xG2x series 2 chips. And there are several hardware considerations in different divisions as following:
 - Power supply configurations: 
   - General requirements: VREGVDD = AVDD, must be the highest voltage on  EFR32; DVDD,IOVDD,RFVDD,PAVDD =< AVDD; DECOUPLE < DVDD
   - If internal DC-DC is not used, typically tie all the power pins to the main power supply.
   - If internal DC-DC is used, typically tie VREGVDD, AVDD, IOVDD to the main power supply, tie DVDD, RFVDD to DCDC output (VREGSW), tie PAVDD to DCDC output if TXP(Transmit Power) =< +13dBm, tie PAVDD to VMCU main supply if TXP > +13dBm.
 
-  For more information, please refer to application notes: [AN0948](https://www.Silabs.com/documents/public/application-notes/an0948-power-configurations-and-dcdc.pdf)
+  For more information, please refer to [AN0948](https://www.Silabs.com/documents/public/application-notes/an0948-power-configurations-and-dcdc.pdf) for EFR32xG1x series 1 chips, and refer to [AN0948.2](https://www.silabs.com/documents/public/application-notes/an0948.2-efr32-series-2-power-configurations-and-dcdc.pdf) for EFR32xG2x series 2 chips.
 - Debug connector and reset pin:
   - Serial wire debug
 
@@ -107,10 +107,10 @@ After you get the reference design, you may have the concern why the reference i
      <img src="files\HW-Schematic-Design-Guide\HF-Connection.png">  
     </div>
    
-For additional information on the external oscillators, refer to the application note, [AN0016.1](https://www.Silabs.com/documents/public/application-notes/an0016.1-efm32-series-1-oscillator-design-considerations.pdf)
+For additional information on the external oscillators, refer to [AN0016.1](https://www.Silabs.com/documents/public/application-notes/an0016.1-efm32-series-1-oscillator-design-considerations.pdf) for EFR32xG1x series 1 chips, and refer to [AN0016.2](https://www.silabs.com/documents/public/application-notes/an0016.2-efr32-series-2-oscillator-design-considerations.pdf) for EFR32xG2x series 2 chips.
 
 # 4. RF circuits matching guide 
-The EFR32 Wireless Gecko Series devices include chip variants that provide 2.4 GHz-only operation, sub-GHz-only operation, or dual-band (2.4GHz and sub-GHz)operation.For RF matching circuits design of these bands, there are 2 application notes described the methods. One is for sub-GHz band [AN923](https://www.Silabs.com/documents/public/application-notes/AN923-subGHz-Matching.pdf), and the other is for 2.4GHz band [AN930](https://www.Silabs.com/documents/public/application-notes/an930-efr32-matching-guide.pdf).
+The EFR32 Wireless Gecko Series devices include chip variants that provide 2.4 GHz-only operation, sub-GHz-only operation, or dual-band (2.4GHz and sub-GHz)operation.For RF matching circuits design of these bands, there are 2 application notes described the methods. One is for sub-GHz band [AN923](https://www.Silabs.com/documents/public/application-notes/AN923-subGHz-Matching.pdf) for EFR32xG1x series 1 chips, EFR32xG2x series 2 chips have no sub-GHz bands till now, and the other is for 2.4GHz band [AN930](https://www.Silabs.com/documents/public/application-notes/an930-efr32-matching-guide.pdf) for EFR32xG1x series 1 chips, and [AN930.2](https://www.silabs.com/documents/public/application-notes/an930.2-efr32-series-2.pdf) for EFR32xG2x series 2 chips.
 
 The matching effort strives to simultaneously achieve several goals:
 - Provide for tying together the TX and RX signal paths, external to the RFIC.
@@ -121,6 +121,7 @@ The matching effort strives to simultaneously achieve several goals:
 - Comply with regulatory specifications for spurious emissions.
 
 - Matching circuits design for sub-GHz band 
+
   The sub-GHz LNA and PA circuits in EFR32 RFICs are fully differential and are not tied together inside the chip. As a result, a total of four pins are required on the RFIC to provide access to the LNA and PA circuits: SUBGRF_OP/ON for the TX output, and SUBGRF_IP/IN for the RX input.
   AN923 describes the matching method in detail.
 
@@ -151,7 +152,8 @@ The matching effort strives to simultaneously achieve several goals:
    <img src="files\HW-Schematic-Design-Guide\Sub-G-Tested-Performance.png">  
   </div>
 
-- Matching circuits design for 2.4GHz band
+- Matching circuits design for 2.4GHz band(For EFR32xG1x series 1 chips)
+
   AN930 describes the 2.4GHz matching method in detail.The 2.4 GHz front end has a unified, single-ended TX and RX pin (2G4RF_IOP), so the TX and RX paths are tied together internally. The 2G4RF_ION TX pin has to be grounded at the pin. Externally, a single-ended matching network and harmonic filtering are required.
 
   2 main 2.4 GHz matching topologies are presented here:
@@ -176,6 +178,68 @@ The performances:
    <div align="center">
     <img src="files\HW-Schematic-Design-Guide\2.4G-Rx-TestResults.png">  
    </div>
+  
+- Matching circuits design for 2.4GHz band(For EFR32xG2x series 2 chips)
+
+  AN930.2 describes the 2.4GHz matching method in detail. For EFR32xG21 series chips, there are 2 pins(RF2G4-IO1 and RF2G4-IO2) for RF input/output function, the internal switches ground one of the 2 sides to create single-ended inputs/outputs on either RFIO pins. And there are 3 internal PAs inside the chips which require different optimum load impedance. Thus there are several types of matching networks as following:
+
+  - Matching network for 0dBm PA
+  
+   <div align="center">
+   <img src="files\HW-Schematic-Design-Guide\2G4-21-0dBm.png">  
+   </div>
+ 
+  - Matching network for +10dBm PA
+   
+   <div align="center">
+   <img src="files\HW-Schematic-Design-Guide\2G4-21-10dBm.png">  
+   </div>
+  
+
+  - Matching network for 0/+10dBm PA
+
+  <div align="center">
+   <img src="files\HW-Schematic-Design-Guide\2G4-21-0-10dBm.png">  
+  </div>
+
+  - Matching network for +20dBm PA
+
+  <div align="center">
+   <img src="files\HW-Schematic-Design-Guide\2G4-21-20dBm.png">  
+  </div>
+  
+  - The RF performances for these matching networks for EFR32xG21 series chips:
+
+  <div align="center">
+   <img src="files\HW-Schematic-Design-Guide\2G4-21-Perf.png">  
+  </div>
+
+  For EFR32xG22 series chips, there is only one pin(RF2G4-IO) for RF input/output function. And there are 2 internal PAs inside the chips which require similar optimum load impedance. Thus there is one matching network for both 0dBm and +6dBm PAs, But the DC-blocking capacitor can be removed when +6dBm PA is utilized. As there is one matching network, the matching components' values can be tuned to accomodate different PCB stackups, the following matching circuits show the difference:
+
+  - Combined matching network for both 0/+6dBm PA on a 4-layer PCB
+
+   <div align="center">
+   <img src="files\HW-Schematic-Design-Guide\2G4-22-0-6dBm-1.png">  
+   </div>
+
+  - Combined matching network for both 0/+6dBm PA on a 4-layer thin PCB
+
+   <div align="center">
+   <img src="files\HW-Schematic-Design-Guide\2G4-22-0-6dBm-2.png">  
+   </div>
+
+  - Combined matching network for 0dBm PA on a 2-layer PCB
+
+   <div align="center">
+   <img src="files\HW-Schematic-Design-Guide\2G4-22-0dBm.png">  
+   </div>
+  
+  - The RF performances for these matching networks for EFR32xG22 series chips:
+  
+  <div align="center">
+   <img src="files\HW-Schematic-Design-Guide\2G4-22-Perf.png">  
+  </div>
+
 
 # 5. Customize the schematic design to fit the application
    There are several points should be considered before a project's schematic design:
@@ -189,7 +253,7 @@ The performances:
 - What output power requirement with your product?
   Consider the output power requirement base on range, RF regulation, and power consumption restriction.
 
-Based on above considerations, you can customize the reference schematic to your own product.
+Based on above considerations, The customer can tailor the reference schematic to its own application.
 
 
 
