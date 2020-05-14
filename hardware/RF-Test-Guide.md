@@ -45,7 +45,7 @@ Note that every implementation of an antenna design might require different comb
 The recommended 3-element PI network for external antenna matching purposes is here:
 
 <div align="center">
-  <img src="files\HW-RF-Test-Guide\PI-Match.png">
+  <img src="files/HW-RF-Test-Guide/PI-Match.png">
 </div>
 
 
@@ -54,7 +54,7 @@ The recommended 3-element PI network for external antenna matching purposes is h
 It is recommended to add a pi network for antenna matching as shown in Figure 1. Finding appropriate values for the antenna matching components should be considered an iterative task. Usually it use a Vector Network Analyser (VNA) to tune and measure the antenna matching network as following figure shows. 
 
 <div align="center">
- <img src="files\HW-RF-Test-Guide\VNA-Test.png">  
+ <img src="files/HW-RF-Test-Guide/VNA-Test.png">  
 </div>
 
 The following matching steps and tricks are proposed:
@@ -66,7 +66,7 @@ The following matching steps and tricks are proposed:
 
   b. Make sure to route the pigtail towards the center of the PCB and then perpendicularly away from the PCB at the center point. This will limit the effect of the cable on the measured data as much as possible. The following picture shows the detail:
   <div align="center">
-    <img src="files\HW-RF-Test-Guide\Ant-Test-Setup.png">  
+    <img src="files/HW-RF-Test-Guide/Ant-Test-Setup.png">  
   </div>
 
 - Start with no components on the antenna network shown in Figure 1.
@@ -77,7 +77,7 @@ The following matching steps and tricks are proposed:
 
 - Using port extension function in the VNA to move the reference point to the footprint of R1 and R2. This is achieved when the locus of the S-parameters in the Smith chart on the VNA have assembled in a point at the right edge of the Smith chart. The following picture shows detail:
  <div align="center">
-  <img src="files\HW-RF-Test-Guide\VNA-Cal.png">  
+  <img src="files/HW-RF-Test-Guide/VNA-Cal.png">  
  </div>
 
 - Mount a 0 Ω resistor at R2 in Figure 1.
@@ -119,11 +119,11 @@ First of all, it should generate a Railtest tool in Simplicity Studio for all th
 - Build
 
 <div align="center">
- <img src="files\HW-RF-Test-Guide\BER1.png">  
+ <img src="files/HW-RF-Test-Guide/BER1.png">  
 </div>
 
 <div align="center">
- <img src="files\HW-RF-Test-Guide\BER2.png">  
+ <img src="files/HW-RF-Test-Guide/BER2.png">  
 </div>
 
 After build the Railtest tool, you can use the commander tool to program customer device, then the device will be ready for RF test.
@@ -135,7 +135,7 @@ The frequency can be measured by a frequency counter or a Spectrum Analyzer (SA)
 - Connect the custom board's RF port to a SA;
 - Use SA to measure the fundamental frequency as following picture shows:
   <div align="center">
-  <img src="files\HW-RF-Test-Guide\CTune-CW.png">  
+  <img src="files/HW-RF-Test-Guide/CTune-CW.png">  
   </div>
 - Make sure to set appropriate span and Resolution Bandwitdth (RBW) on the spectrum analyzer. Use a few MHz frequency range as span and a few kHz as RBW. 
 - Tune the CTune value until the frequency of the fundamental harmonic reach the optimal value. 
@@ -197,7 +197,7 @@ It is unlike CTune calibration, the fundamental and harmonics test requires big 
 The following picture is a test example:
 
 <div align="center">
-  <img src="files\HW-RF-Test-Guide\Tx-Power-and-Harmonics.png">  
+  <img src="files/HW-RF-Test-Guide/Tx-Power-and-Harmonics.png">  
 </div>
 
 
@@ -219,7 +219,7 @@ At beginning of the test, it should configure SA to generate right modulated sig
 - Tune signal strength level;
 
 <div align="center">
-  <img src="files\HW-RF-Test-Guide\BER3.png">  
+  <img src="files/HW-RF-Test-Guide/BER3.png">  
 </div>
 
 ## 5.2. RailTest commands and test result
@@ -239,7 +239,7 @@ Railtest commands explaination:
 - Wait for a while. Then the Berstatus command will display the BER test result.
 
 <div align="center">
-  <img src="files\HW-RF-Test-Guide\BER4.png">  
+  <img src="files/HW-RF-Test-Guide/BER4.png">  
 </div>
 
 When the PercentBitError rise up to 0.10, the SA's signal strength minus cable loss is the sensitivity 
@@ -256,7 +256,7 @@ They are referred to as free field test sites. Both absolute and relative measur
 Most commonly used site is SAR for radiation test. The following picture shows the site configuration:
 
 <div align="center">
-  <img src="files\HW-RF-Test-Guide\SAR-Site.png">  
+  <img src="files/HW-RF-Test-Guide/SAR-Site.png">  
 </div>
 
 A Semi Anechoic Room is anechoic chamber with a conductive ground plane, and is an enclosure, usually shielded, 
@@ -271,7 +271,7 @@ Radiated measurements shall be performed with the aid of a measurement antenna a
 - The measurement equipment (device 3 in following figure) shall be connected to the measurement antenna and 
 set-up according to the specifications of the test. 
 <div align="center">
-<img src="files\HW-RF-Test-Guide\SAR-Test-Steps.png">  
+<img src="files/HW-RF-Test-Guide/SAR-Test-Steps.png">  
 </div>  
 
 - The DUT shall be rotated through 360° in a horizontal plane until a maximum signal is received at the 
