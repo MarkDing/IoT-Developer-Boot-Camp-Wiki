@@ -28,12 +28,12 @@ Silicon Labs has many products such as chips, SiP modules, and PCB modules. And 
 
 And there are some test houses provide certification service for the regions as following:
 <div align="center">
-  <img src="files\HW-Comply-to-the-Regulations\Test-House.png">  
+  <img src="files/HW-Comply-to-the-Regulations/Test-House.png">  
 </div> 
 
 For the certification activities, you can directly contact the region authorities:
 <div align="center">
-  <img src="files\HW-Comply-to-the-Regulations\Authorities-Contacts.png">  
+  <img src="files/HW-Comply-to-the-Regulations/Authorities-Contacts.png">  
 </div>
 
 In the following introduction, it will mainly focus on CE and FCC regulations. For other region regulatory certifications, please check [AN1048](https://www.silabs.com/documents/public/application-notes/an1048-regulatory-certifications.pdf) for more details.
@@ -241,19 +241,19 @@ For 2.4GHz band regulation, it is defined in the FCC-Part-15.247 and FCC-Part-15
 
    Frequency error is the frequency difference between the measured unmodulated carrier frequency and the manufacturer stated normal frequency. The frequency error shall not exceed the following table (Reference: Table 4 of EN300220-1 V2.4.1 2012-05) under normal and extreme conditions:
   <div align="center">
-  <img src="files\HW-Comply-to-the-Regulations\Frequency-Error.png">  
+  <img src="files/HW-Comply-to-the-Regulations/Frequency-Error.png">  
   </div>
 
  - Tx out of band emissions
 
    Two out of band (OOB) domains are defined, one for operating channel (OC) and one for operational frequency band (OFB):
   <div align="center">
-  <img src="files\HW-Comply-to-the-Regulations\OOB-OC.png">  
+  <img src="files/HW-Comply-to-the-Regulations/OOB-OC.png">  
   </div>
    
    Unwanted emissions limit in OC in out of band domain is shown in above picture (Reference: Figure 5 of EN300220-1 V3.1.1 2017-02).
   <div align="center">
-  <img src="files\HW-Comply-to-the-Regulations\OOB-OFB.png">  
+  <img src="files/HW-Comply-to-the-Regulations/OOB-OFB.png">  
   </div>
 
    Unwanted emissions limit in OFB in out of band domain is shown in above picture (Reference: Figure 6 of EN300220-1 V3.1.1 2017-02). flow_OFB is the lower edge of operational frequency band, and  fhigh_OFB is the upper edge of operational frequency band.
@@ -262,19 +262,19 @@ For 2.4GHz band regulation, it is defined in the FCC-Part-15.247 and FCC-Part-15
 
    Spurious emissions are unwanted emission in spurious domain at frequencies other than those of operating channel and its out of band domain. The following picture and table show the spurs limits (Reference: Figure 7 of EN300220-1 V3.1.1 2017-02):
    <div align="center">
-   <img src="files\HW-Comply-to-the-Regulations\Spurous-OC.png">  
+   <img src="files/HW-Comply-to-the-Regulations/Spurous-OC.png">  
    </div>
    
    The power of any unwanted emission in spurious domain should not exceed the values given in following table (Reference: Table 19 of EN300220-1 V3.1.1 2017-02):
    <div align="center">
-   <img src="files\HW-Comply-to-the-Regulations\Spurous-Values.png">  
+   <img src="files/HW-Comply-to-the-Regulations/Spurous-Values.png">  
    </div>
    
  - Adjacent channel power 
 
    Adjacent channel power is power incidental to proper operation of a transmitter falling into the neighbouring channels. It only defines the limits for narrow band which is less than or equal to 25KHz. The power in adjacent channel should not exceed the values given in following table (Reference: Table 26 of EN300220-1 V3.1.1 2017-02):
    <div align="center">
-   <img src="files\HW-Comply-to-the-Regulations\Adjacent-Channel-Power.png">  
+   <img src="files/HW-Comply-to-the-Regulations/Adjacent-Channel-Power.png">  
    </div>
    
  - Rx sensitivity level
@@ -291,14 +291,14 @@ For 2.4GHz band regulation, it is defined in the FCC-Part-15.247 and FCC-Part-15
    Blocking is a measurement of the capability of the receiver to receive a wanted modulated signal without exceeding a given degradation due to the presence of an unwanted input signal at any frequencies other than those of the spurious responses or the adjacent channels or bands. Usually EN300220 divides the receiver into 4 categories as category 1, category 1.5, category 2, category 3. The toughest requirement is in category 1. Silicon Labs' sub-GHz products can comply category 1.5 regulation.
    The blocking requirement for category 1.5 is shown in following table (Reference: Table 42 of EN300220-1 V3.1.1 2017-02):
    <div align="center">
-   <img src="files\HW-Comply-to-the-Regulations\Blocking-Limits.png">  
+   <img src="files/HW-Comply-to-the-Regulations/Blocking-Limits.png">  
    </div>
    
  - RX Spurious Emissions
 
    In the Rx and other operation modes, the power of any unwanted emission in spurious domain should not exceed the values given in following table (Reference: Table 19 of EN300220-1 V3.1.1 2017-02):
    <div align="center">
-   <img src="files\HW-Comply-to-the-Regulations\Spurous-Values.png">  
+   <img src="files/HW-Comply-to-the-Regulations/Spurous-Values.png">  
    </div>
    
 ## 4.4. CE requirements in 2.4GHz band
@@ -397,18 +397,18 @@ Before the certification process, Silicon Labs can provide very exclusive docume
 ## 5.3. Engineering flow
 The following flow-chart is designed for customer to certify its design that can pass emissions requirements. It is a typical engineering flow for whatever the regulation region cared about. Customer will need to design its own system and test it according to this flow even when using a fully certified module.
 <div align="center">
-<img src="files\HW-Comply-to-the-Regulations\Engineer-Flow.png">  
+<img src="files/HW-Comply-to-the-Regulations/Engineer-Flow.png">  
 </div>
 
 ## 5.4. Paperwork flow
 The flowing flow chart is only provided as a guideline. Customers should consult a TCB (Telecommunication Certification Body) to get answers of questions specific to their situations.  
 <div align="center">
-<img src="files\HW-Comply-to-the-Regulations\Paper-Flow.png">  
+<img src="files/HW-Comply-to-the-Regulations/Paper-Flow.png">  
 </div>
 
 
 <div align="center">
-<img src="files\HW-Comply-to-the-Regulations\Flow-Sum.png">  
+<img src="files/HW-Comply-to-the-Regulations/Flow-Sum.png">  
 </div>
 Remarks: 
 
