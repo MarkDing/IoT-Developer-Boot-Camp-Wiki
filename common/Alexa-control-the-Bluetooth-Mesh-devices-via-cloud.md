@@ -1,76 +1,75 @@
 <details>   
 <summary><font size=5>Table of Contents</font> </summary>
 
-<!-- TOC -->
-
-- [Project Background:](#project-background)
-    - [Project Preparation:](#project-preparation)
-- [Project Overview](#project-overview)
-    - [Topology](#topology)
-        - [Amazon Echo Plus 2](#amazon-echo-plus-2)
-        - [AWS Lambda](#aws-lambda)
-        - [Alexa Skill](#alexa-skill)
-        - [AWS IoT Core](#aws-iot-core)
-        - [AWS FreeRTOS](#aws-freertos)
-        - [Bluetooth mesh network:](#bluetooth-mesh-network)
-    - [Technical details:](#technical-details)
-        - [Alexa Smart Home Skill](#alexa-smart-home-skill)
-        - [Lambda function](#lambda-function)
-        - [AWS IoT Core](#aws-iot-core-1)
-        - [ESP32 and AWS freeRTOS](#esp32-and-aws-freertos)
-        - [Bluetooth Mesh Network](#bluetooth-mesh-network)
-        - [Communications](#communications)
-- [Replication the project](#replication-the-project)
-    - [Preparation](#preparation)
-        - [Components:](#components)
-        - [Software Used:](#software-used)
-    - [Procedures:](#procedures)
-        - [Create and Configure device within AWS IoT](#create-and-configure-device-within-aws-iot)
-            - [Create AWS account](#create-aws-account)
-            - [Navigate to IoT Core Service](#navigate-to-iot-core-service)
-            - [Register Device in AWS IoT Registry](#register-device-in-aws-iot-registry)
-            - [Create an AWS IoT Policy](#create-an-aws-iot-policy)
-            - [Attach an AWS IoT Policy to a Device Certificate](#attach-an-aws-iot-policy-to-a-device-certificate)
-            - [Edit the Device Shadow](#edit-the-device-shadow)
-            - [Test the Created Device](#test-the-created-device)
-            - [Further Reading](#further-reading)
-        - [Create Alexa Smart Home Skill](#create-alexa-smart-home-skill)
-            - [Create account on Amazon Developer Console](#create-account-on-amazon-developer-console)
-            - [Create your Smart Home Skill](#create-your-smart-home-skill)
-            - [Configure your Smart Home Skill (Step1)](#configure-your-smart-home-skill-step1)
-            - [Provide Account Linking Information](#provide-account-linking-information)
-            - [Configure your Smart Home Skill (Step2)](#configure-your-smart-home-skill-step2)
-            - [Test Your Skill](#test-your-skill)
-        - [Add a Lambda Function](#add-a-lambda-function)
-            - [Create a lambda function](#create-a-lambda-function)
-            - [Configure the IAM Role for Lambda](#configure-the-iam-role-for-lambda)
-            - [Test the Lambda function](#test-the-lambda-function)
-            - [Further reading 2](#further-reading-2)
-        - [Download and set up freeRTOS SDK on ESP32:](#download-and-set-up-freertos-sdk-on-esp32)
-            - [Download the project](#download-the-project)
-            - [Use CMake to generate project build files and build project](#use-cmake-to-generate-project-build-files-and-build-project)
-                - [Install ESP-IDF](#install-esp-idf)
-                - [Install CMake](#install-cmake)
-                - [Generate build file by CMake](#generate-build-file-by-cmake)
-                - [Flash and Run Amazon FreeRTOS](#flash-and-run-amazon-freertos)
-            - [Add the custom source code for Alexa BTmesh Bridge](#add-the-custom-source-code-for-alexa-btmesh-bridge)
-                - [Choose the shadow demo and Build the esp32 program](#choose-the-shadow-demo-and-build-the-esp32-program)
-                    - [Configure permission related setting](#configure-permission-related-setting)
-                    - [Configure certification information](#configure-certification-information)
-                    - [Configure the serial port of ESP32](#configure-the-serial-port-of-esp32)
-        - [Create the Bluetooth Mesh network](#create-the-bluetooth-mesh-network)
-            - [Build EFR32BG13 embedded provisioner program](#build-efr32bg13-embedded-provisioner-program)
-            - [Build MG21 Bluetooth mesh light/switch/sensor/sensor monitor program](#build-mg21-bluetooth-mesh-lightswitchsensorsensor-monitor-program)
-        - [Control the light node from Alexa App](#control-the-light-node-from-alexa-app)
-- [To-do](#to-do)
-- [Conclusion:](#conclusion)
+- [1. Project Background:](#1-project-background)
+    - [1.1. Project Preparation:](#11-project-preparation)
+- [2. Project Overview](#2-project-overview)
+    - [2.1. Topology](#21-topology)
+        - [2.1.1. Amazon Echo Plus 2](#211-amazon-echo-plus-2)
+        - [2.1.2. AWS Lambda](#212-aws-lambda)
+        - [2.1.3. Alexa Skill](#213-alexa-skill)
+        - [2.1.4. AWS IoT Core](#214-aws-iot-core)
+        - [2.1.5. AWS FreeRTOS](#215-aws-freertos)
+        - [2.1.6. Bluetooth mesh network:](#216-bluetooth-mesh-network)
+    - [2.2. Technical details:](#22-technical-details)
+        - [2.2.1. Alexa Smart Home Skill](#221-alexa-smart-home-skill)
+        - [2.2.2. Lambda function](#222-lambda-function)
+        - [2.2.3. AWS IoT Core](#223-aws-iot-core)
+        - [2.2.4. ESP32 and AWS freeRTOS](#224-esp32-and-aws-freertos)
+        - [2.2.5. Bluetooth Mesh Network](#225-bluetooth-mesh-network)
+        - [2.2.6. Communications](#226-communications)
+- [3. Replication the project](#3-replication-the-project)
+    - [3.1. Preparation](#31-preparation)
+        - [3.1.1. Components:](#311-components)
+        - [3.1.2. Software Used:](#312-software-used)
+    - [3.2. Procedures:](#32-procedures)
+        - [3.2.1. Create and Configure device within AWS IoT](#321-create-and-configure-device-within-aws-iot)
+            - [3.2.1.1. Create AWS account](#3211-create-aws-account)
+            - [3.2.1.2. Navigate to IoT Core Service](#3212-navigate-to-iot-core-service)
+            - [3.2.1.3. Register Device in AWS IoT Registry](#3213-register-device-in-aws-iot-registry)
+            - [3.2.1.4. Create an AWS IoT Policy](#3214-create-an-aws-iot-policy)
+            - [3.2.1.5. Attach an AWS IoT Policy to a Device Certificate](#3215-attach-an-aws-iot-policy-to-a-device-certificate)
+            - [3.2.1.6. Edit the Device Shadow](#3216-edit-the-device-shadow)
+            - [3.2.1.7. Test the Created Device](#3217-test-the-created-device)
+            - [3.2.1.8. Further Reading](#3218-further-reading)
+        - [3.2.2. Create Alexa Smart Home Skill](#322-create-alexa-smart-home-skill)
+            - [3.2.2.1. Create account on Amazon Developer Console](#3221-create-account-on-amazon-developer-console)
+            - [3.2.2.2. Create your Smart Home Skill](#3222-create-your-smart-home-skill)
+            - [3.2.2.3. Configure your Smart Home Skill (Step1)](#3223-configure-your-smart-home-skill-step1)
+            - [3.2.2.4. Provide Account Linking Information](#3224-provide-account-linking-information)
+            - [3.2.2.5. Configure your Smart Home Skill (Step2)](#3225-configure-your-smart-home-skill-step2)
+            - [3.2.2.6. Test Your Skill](#3226-test-your-skill)
+        - [3.2.3. Add a Lambda Function](#323-add-a-lambda-function)
+            - [3.2.3.1. Create a lambda function](#3231-create-a-lambda-function)
+            - [3.2.3.2. Configure the IAM Role for Lambda](#3232-configure-the-iam-role-for-lambda)
+            - [3.2.3.3. Test the Lambda function](#3233-test-the-lambda-function)
+            - [3.2.3.4. Further reading 2](#3234-further-reading-2)
+        - [3.2.4. Download and set up freeRTOS SDK on ESP32:](#324-download-and-set-up-freertos-sdk-on-esp32)
+            - [3.2.4.1. Download the project](#3241-download-the-project)
+            - [3.2.4.2. Use CMake to generate project build files and build project](#3242-use-cmake-to-generate-project-build-files-and-build-project)
+                - [3.2.4.2.1. Install ESP-IDF](#32421-install-esp-idf)
+                - [3.2.4.2.2. Install CMake](#32422-install-cmake)
+                - [3.2.4.2.3. Generate build file by CMake](#32423-generate-build-file-by-cmake)
+                - [3.2.4.2.4. To build the application](#32424-to-build-the-application)
+                - [3.2.4.2.5. Flash and Run Amazon FreeRTOS](#32425-flash-and-run-amazon-freertos)
+            - [3.2.4.3. Add the custom source code for Alexa BTmesh Bridge](#3243-add-the-custom-source-code-for-alexa-btmesh-bridge)
+                - [3.2.4.3.1. Choose the shadow demo and Build the esp32 program](#32431-choose-the-shadow-demo-and-build-the-esp32-program)
+                - [3.2.4.3.2. Configure permission related setting](#32432-configure-permission-related-setting)
+                - [3.2.4.3.3. Configure certification information](#32433-configure-certification-information)
+                - [3.2.4.3.4. Configure the serial port of ESP32](#32434-configure-the-serial-port-of-esp32)
+        - [3.2.5. Create the Bluetooth Mesh network](#325-create-the-bluetooth-mesh-network)
+            - [3.2.5.1. Build EFR32BG13 embedded provisioner program](#3251-build-efr32bg13-embedded-provisioner-program)
+            - [3.2.5.2. Build MG21 Bluetooth mesh light/switch/sensor/sensor monitor program](#3252-build-mg21-bluetooth-mesh-lightswitchsensorsensor-monitor-program)
+        - [3.2.6. Control the light node from Alexa App](#326-control-the-light-node-from-alexa-app)
+- [4. To-do](#4-to-do)
+- [5. Conclusion:](#5-conclusion)
 
 <!-- /TOC -->
 
 </details>
 
 
-# Project Background:
+# 1. Project Background:
 As the development of the smart home market, the need for controlling smart devices using human voice grows rapidly. The leading companies all over the world introduced many different solutions in the area of smart home to satisfy their customers’ requirements. Among those solutions, the most popular pattern is to control smart devices via a central smart speaker, which listens to the user’s voice command and responds with actions, such as turning on/off smart lights, adjusting the room temperature through sending remote signals to the AC, and even cooking a nice meal by operating an intelligent robot. 
 However, one thing often happens that breaks this good image is that the customers often find the smart speaker does not support their smart devices. That happens mainly due to one big reason—the communicating protocols used by the smart speaker and the endpoint device are not same.  
 Currently, there are three protocols mostly used in the smart home industry: Bluetooth mesh, Zigbee, and Z-Wave. In Chinese and the U.S. market, Bluetooth mesh and Zigbee are the mainly used protocols due to their many advantages, such as low power consumption, extendible network size, and strong security.  
@@ -79,7 +78,7 @@ While in China, the Bluetooth mesh is the primary protocol that most smart devic
 In this project, a solution is proposed to solve this problem.  
 A Bluetooth mesh network is going to be controlled by an Amazon Echo Plus 2 via cloud-to-cloud approach. The user can turn on and turn off a Bluetooth mesh light by giving a voice command to the Echo Plus.  
 
-## Project Preparation:
+## 1.1. Project Preparation:
 * Install the Alexa App in you iOS device. Note that the Alexa App is only available for some special regions, for e,g. US, you need to Login the AppStore with a special Apple ID. And below is an Apple ID hosted by APAC regional apps team, you can feel free to use it.
    * UserName: xxxxxxxxxxxxx_apac@outlook.com  
    * Password: xxxxxxxxxxxxx  
@@ -96,36 +95,36 @@ A Bluetooth mesh network is going to be controlled by an Amazon Echo Plus 2 via 
    * UserName: yuancheng@xxxxxx
    * Password: xxxxxxxxxxxxx
 
-# Project Overview
-## Topology
+# 2. Project Overview
+## 2.1. Topology
 Below is the block diagram of this project.
 <div align="center">
   <img src="./files/CM-Smart-Speaker/topology_block_diagram.png">
 </div>
 
-### Amazon Echo Plus 2
+### 2.1.1. Amazon Echo Plus 2
 Amazon Echo is a brand of smart speakers developed by Amazon. Echo devices connect to the voice-controlled intelligent personal assistant service Alexa, and the Echo Plus has a built-in Zigbee hub to easily setup and control your compatible smart home devices.
 
-### AWS Lambda
+### 2.1.2. AWS Lambda
 AWS Lambda lets you run code without provisioning or managing servers. You pay only for the compute time you consume - there is no charge when your code is not running. 
 With Lambda, you can run code for virtually any type of application or backend service - all with zero administration. Just upload your code and Lambda takes care of everything required to run and scale your code with high availability. You can set up your code to automatically trigger from other AWS services or call it directly from any web or mobile app.
 <div align="center">
   <img src="./files/CM-Smart-Speaker/diagram_Lambda-HowItWorks.png">
 </div>
 
-### Alexa Skill
+### 2.1.3. Alexa Skill
 The Alexa skill is the bridge that connects the users to AWS IoT could.  
 After Amazon Echo receiving the user’s voice commands, it will sent the voice record to AWS Alexa server(AI assistant server), where interprets the voice command to control directives. Then, the Alexa server sends the directives to lambda server, **a place running the skill code**. In the Lambda server, the specific action is executed according to the content of the directives. For example, if the user says “Alexa, turn on my light”, the Alexa will analysis this voice command and sending a JSON formatted file which listed a bunch of information about the light and actions to be executed to lambda, and then lambda will modify the light status from “OFF” to “ON” in the database.
 
-### AWS IoT Core 
+### 2.1.4. AWS IoT Core 
 AWS IoT Core is a powerful platform to manage IoT devices remotely. It has a service called **Thing Shadow**, which is a JSON document recording the information of the devices it manages. In this project, the AWS IoT plays the role of the system database. It records every device’s status in the Thing Shadow document and could be visited by ESP32 via the integrated [AWS freeRTOS](#aws-freertos) SDK.
 **Thing Shadows**: a JSON document that is used to store and retrieve current state information.
 
-### AWS FreeRTOS  
+### 2.1.5. AWS FreeRTOS  
 AWS freeRTOS is running on ESP32 board. It connects the local network to the AWS cloud.  
 ESP32: ESP32 is the gateway in this project. When it runs, it continuously gets the Thing Shadow document from the AWS IoT Core, and then it translates the JSON directives to simple character strings. Through UART communication, it passes the commands to the provisioner in the Bluetooth Mesh network, and the provisioner will give the specific directives to appointed devices.
 
-### Bluetooth mesh network:
+### 2.1.6. Bluetooth mesh network:
 In this project, a simple Bluetooth network is created that includes two mesh node and of course a provisioner.  
 The provisioner in the network to provision new devices and receive commands from ESP32 via UART, and also parse the commands from ESP32 and transfer to the mesh command and transmit it to the mesh network for controlling other nodes.  
 There are total two Bluetooth mesh nodes in the network, a light node and a switch node. Once the user presses the button on the switch node, the light node would receive a BLE mesh message and turn on/off the embedded LED on it.  
@@ -144,7 +143,7 @@ Also, the switch node is capable to change the online shadow document. When the 
   <img src="./files/CM-Smart-Speaker/local_message_flow.png">
 </div>
 
-## Technical details:
+## 2.2. Technical details:
 In this section, the technical details below will be introduced.
 * Alexa Smart Home Skill
 * Lambda function
@@ -155,7 +154,7 @@ sample codes, including lambda function, Alexa smart home skill, ESP32 freeRTOS 
 
 However, because of the limited length of this article, if the reader wants to replicate this project, please read the section of [Replication the project](#replication-the-project) for the step by step guidance, and access the GitHub page: [Alexa Control Bluetooth Mesh Devices](https://github.com/ChengYuan-CY/Alexa-Control-Bluetooth-Mesh-Devices) and find the mentioned packages accordingly.
 
-### Alexa Smart Home Skill
+### 2.2.1. Alexa Smart Home Skill
 Alexa smart home skill interface is designed for controlling smart home devices using Amazon Echo series smart speaker by Amazon. In this project, an Echo plus 2 was utilized to receive the voice command and transmit the voice command to the Alexa server.
 The skill is held by a lambda function, which means the code is running on the Amazon lambda server. When a user gives the smart speaker a voice command, the command will be firstly analyzed on Alexa server. Then, a JSON format directive will be sent to lambda. There are many different directives. The most important one is the discovery directive, which indicates the speaker to find any available devices and report back to the Alexa server.
 In this project, the response is also generated by the same lambda function. After receiving the discovery directive, the lambda function will directly send a response message back. Therefore, the device information needs to be programmed in the codes.
@@ -249,7 +248,7 @@ def respond_brightnessControl_dir(request):
 
 For instance, a brightness controlling directive for light could be executed and responded by the function above. The lambda function will first analyze the directive, extract the information such as the ```endpoint_id```, the ```correlation_token``` (which is used in response to Alexa), and the specific actions to be done. Then the lambda function will access to the IoT core, update the corresponding attribute information on the appointed virtual device using ```update_thing_shadow``` function. If the updating action is done successfully, lambda will give an acknowledging response to Alexa; else it will give an ```ErrorResponse```.  
 
-### Lambda function
+### 2.2.2. Lambda function
 As mentioned above, the **Lambda function** is the place to hold **Alexa skill**. The codes in the lambda function are basically the essence of the Alexa skill. However, to associate a Lambda function and an Alexa smart home skill, several steps need to be done. Please see the section [Replication the project](#replication-the-project) for the detailed steps for replicating this project on your end.
 More information about the lambda function, please refer to the online documentation [EN](https://docs.aws.amazon.com/lambda/latest/dg/getting-started.html) | [CN](https://docs.aws.amazon.com/zh_cn/lambda/latest/dg/getting-started.html) provided by Amazon.
 The lambda function has multiple servers in different areas of the world. However, some of them don’t support Alexa smart home skills. This project chooses **US East(N.Virgina)** server to hold the skill.
@@ -260,7 +259,7 @@ It is worth to mention the rating of the lambda function. The AWS lambda has fre
   <center> <b>Figure: AWS lambda free tiers</b> </center>
 </div>  
 
-### AWS IoT Core
+### 2.2.3. AWS IoT Core
 AWS IoT Core is another platform of AWS IoT service. It stores the status information of the remote IoT devices in a special service called Thing Shadow. Briefly speaking, the thing shadow is a JSON document for recording the real-time changes of the device status.
 
 <div align="center">
@@ -276,7 +275,7 @@ The “state” and “desired/reported” is required for each document uploade
   <center> <b>Figure: JSON document for thing shadow</b> </center>
 </div>  
 
-### ESP32 and AWS freeRTOS
+### 2.2.4. ESP32 and AWS freeRTOS
 ESP32 is the network gateway and responsible for downloading the shadow document, uploading new shadow document, and forwarding directives to the local mesh network. It communicates with the provisioner of the mesh network via UART communication. The JSON document will be first converted to a local string directive and then sent to the provisioner board.  
 The ESP32 board acquires shadow document from IoT core via MQTT protocol. On the IoT Core, each device has a virtual counterpart. To get the shadow document of a device, the user needs to publish a blank message to the MQTT topic ```$aws/things/device name/shadow/get```. The MQTT server will respond with the specified shadow document. Similar operations such as update the shadow and delete the shadow can also be done in this way.
 The code in the ESP32 follows a linear structure. There are two ways to get the thing shadow from IoT console. 
@@ -289,11 +288,11 @@ The second method is recommended, and you can find all of the source for these t
   <center> <b>Figure: ESP32</b> </center>
 </div>  
 
-### Bluetooth Mesh Network
+### 2.2.5. Bluetooth Mesh Network
 The Bluetooth mesh network is composed of three parts: A switch node, a light node, and a provisioner node.
 The provisioner in the network is responsible for establishing the mesh network, authorizing new devices, and receiving messages from outside. The provisioner program obeys the “event-driven” pattern in a big “switch” structure. Every coming event will have an event id and the even data. The application invokes different handler functions to extract information and give responses back according to the event id. Through using the UART interrupt, the provisioner can detect messages come from the esp32 board. Also, when the provisioner receives the event id, which indicates the status changes from mesh network endpoints, it will invoke the UART TX handler to send messages to the ESP32. Moreover, the switch node can control the light node. The provisioner also subscribed the switch node message, which means that it will receive a notification when the switch turns on or turns off the light. The status information of the node will be displayed directly on the Alexa phone application, and the user can also control the devices via the app.
 
-### Communications
+### 2.2.6. Communications
 This project uses different protocols to do communications among different parts. The MQTT protocol is utilized for communicating between the ESP32 and **AWS IoT Core** console, where the thing shadow document is stored; and the Bluetooth mesh is used to organize local devices. Between the ESP32 and the provisioner node in the mesh network, a self-defined simple UART protocol is also used to transmit the devices information and attribute information. Each packet of the UART protocol contains 41 char bytes, and the format is shown below.
 
 <div align="center">
@@ -327,21 +326,21 @@ The first byte is used to identify what type of operation is. Currently, the ope
 
 *** 
 
-# Replication the project
+# 3. Replication the project
 In this section, a step-by-step instruction will be provided to the reader to replicate the project.
-## Preparation
-### Components: 
+## 3.1. Preparation
+### 3.1.1. Components: 
 * 1. SiliconLabs Wireless starter kits x3 (EFR32xG12, EFR32xG13 or EFR32xG21)
 * 2. Espressief ESP32-DevKitC or ESP-WROVER-KIT x1  
 * 3. Wire jumpers x3  
 * 4. CP210x kit(for debugging)  
-### Software Used:  
+### 3.1.2. Software Used:  
 * 1. Simplicity Studio IDE  
 * 2. Bluetooth mesh SDK v1.5.0 or above  
 * 3. Amazon AWS freeRTOS SDK
 * 4. Any serial port monitor tool (Tera Term)  
 
-## Procedures:
+## 3.2. Procedures:
 The picture below illustrates the block diagram of controlling Physical Device (that is Bluetooth Mesh devices in this project) via Amazon Echo. We will split the procedures as several parts below.
 <div align="center">
   <img src="./files/CM-Smart-Speaker/replicate_step0.png">
@@ -354,7 +353,7 @@ The picture below illustrates the block diagram of controlling Physical Device (
 * [Download and set up freeRTOS SDK on ESP32](#download-and-set-up-freertos-sdk-on-esp32)
 * [Reference](#reference)
 
-###	Create and Configure device within AWS IoT
+###	3.2.1. Create and Configure device within AWS IoT
 <div align="center">
   <img src="./files/CM-Smart-Speaker/replicate_step1.png">
 </div>  
@@ -363,10 +362,10 @@ The picture below illustrates the block diagram of controlling Physical Device (
 AWS IoT provides secure, bi-directional communication between internet-connected devices such as sensors, embedded microcontrollers and the AWS Cloud. This makes it possible for you to collect telemetry data from multiple devices, and store and analyze the data. You can also create applications that enable your users to control these devices from their phones or tablets.
 The tutorial below shows you how to create resources required to send, receive, and process MQTT messages from devices using AWS IoT. And the section [Download and set up freeRTOS SDK on ESP32](#download-and-set-up-freertos-sdk-on-esp32) show you how to use an MQTT client to emulate IoT device(s).
 
-#### Create AWS account
+#### 3.2.1.1. Create AWS account
 If you do not have an AWS account, create one by referring to the knowledge base [How do I create and activate a new Amazon Web Services account?](https://aws.amazon.com/premiumsupport/knowledge-center/create-and-activate-aws-account/). 
 
-#### Navigate to IoT Core Service
+#### 3.2.1.2. Navigate to IoT Core Service
 Log into [AWS IoT console](https://us-east-1.console.aws.amazon.com/iot/home?region=us-east-1#/dashboard), open the services and choose **N.Virginia** as the server. Because some of the necessary features (IoT Core, Amazon FreeRTOS, etc.) are only supported on this server, so it's recommended to choose this server, and continue the following steps.
 Navigate to the **IoT Core Service**, below is the screenshot if you log into the AWS IoT console successfully.
 
@@ -375,7 +374,7 @@ Navigate to the **IoT Core Service**, below is the screenshot if you log into th
   <center> <b>Figure: AWS IoT console</b> </center>
 </div>  
 
-#### Register Device in AWS IoT Registry
+#### 3.2.1.3. Register Device in AWS IoT Registry
 Devices connected to AWS IoT are represented by IoT things in the AWS IoT registry. The registry allows you to keep a record of all of the devices that are registered to your AWS IoT account.
 Register a thing and name it as ```esp32_btmesh_bridge``` on your AWS console: 
 click Manage -> Thing -> Register a thing -> Create -> Create a Single thing -> Create certificate -> Download the certificate and Activate. 
@@ -387,7 +386,7 @@ click Manage -> Thing -> Register a thing -> Create -> Create a Single thing -> 
 </div>  
 </br>
 
-#### Create an AWS IoT Policy
+#### 3.2.1.4. Create an AWS IoT Policy
 AWS IoT policies are used to authorize your device to perform AWS IoT operations, such as subscribing or publishing to MQTT topics. Your device presents its certificate when sending messages to AWS IoT. To allow your device to perform AWS IoT operations, you must create an AWS IoT policy and attach it to your device certificate.
 Go back to console -> secure -> policy -> create. The policy statements define the types of actions that can be performed by a resource, you can just follow the screenshot below to set your statement for this policy.
 
@@ -403,7 +402,7 @@ After creating the policy, the UI will similar like below.
 </div>  
 </br>
 
-#### Attach an AWS IoT Policy to a Device Certificate
+#### 3.2.1.5. Attach an AWS IoT Policy to a Device Certificate
 Go back to the console, open your thing ```esp32_btmesh_bridge```. Click Security -> Your certificate -> Policies -> Actions -> Attach Policy. And choose the Policy you created just now, and click Attach then.
 <div align="center">
   <img src="./files/CM-Smart-Speaker/attach_policy_to_ting.gif">
@@ -440,7 +439,7 @@ Please don’t forget to check/modify the “Resource” of the policy and make 
 }
 ```
 
-#### Edit the Device Shadow
+#### 3.2.1.6. Edit the Device Shadow
 A device's shadow is a JSON document that is used to store and retrieve current state information for a device. 
 The Device Shadow service maintains a shadow for each device you connect to AWS IoT. You can use the shadow to get and set the state of a device over MQTT or HTTP, regardless of whether the device is connected to the Internet. Each device's shadow is uniquely identified by the name of the corresponding thing.
 
@@ -517,7 +516,7 @@ Below is the initial Shadow document utilized in this project.
   }
 }
 ```
-#### Test the Created Device
+#### 3.2.1.7. Test the Created Device
 After creating the Things, you can use the test function on AWS IoT console to check if the rule that using the MQTT works or not.
 Click on the “Interact” option, choose the corresponding topic which represents the operations that you wish to do, subscribe to the topic. Below are the all available MQTT topics for subscribe or publish. For example, you can publish the message to the topic ```$aws/things/<things Name>/shadow/update``` to update the thing shadow, and subscribe to the MQTT topics ```$aws/things/<things Name>/shadow/update/accepted``` and ```$aws/things/<things Name>/shadow/update/documents``` for the accepted messages, also you can monitor the topic ```$aws/things/<things Name>/shadow/update/rejected``` for debugging purpose. If the message was rejected, you can get the error code by subscribing the ```$aws/things/<things Name>/shadow/update/rejected``` topic.
 Receiving the MQTT message via the subscribing topic ```$aws/things/<things Name>/shadow/update/accepted``` means that the thing shadow works now.
@@ -587,12 +586,12 @@ You can use the message below directly for replicating this project.
   }
 }
 ```
-#### Further Reading
+#### 3.2.1.8. Further Reading
 Read the documentations below from Amazon for more information about the AWS IoT Service.
 [Register a Device in the AWS IoT Registry](https://docs.aws.amazon.com/iot/latest/developerguide/register-device.html)
 [Device Shadow Service for AWS IoT](https://docs.aws.amazon.com/iot/latest/developerguide/iot-device-shadows.html)
 
-###	Create Alexa Smart Home Skill
+###	3.2.2. Create Alexa Smart Home Skill
 **What is Lambda?**
 AWS Lambda lets you run code without provisioning or managing servers. Alexa sends your code user requests and your code can inspect the request, take any necessary actions (such as looking up information online) and then send back a response. You can write Lambda functions in Node.js, Java, Python, C#, or Go.
 **What is Alexa Smart Home Skill?**
@@ -608,10 +607,10 @@ After creating and configuring device within AWS IoT, we need to create Alexa Sm
 </div>
 </br>
 
-#### Create account on Amazon Developer Console
+#### 3.2.2.1. Create account on Amazon Developer Console
 To configure a new smart home skill, you need an account on the Amazon Developer Console. If you don't already have an account, go to https://developer.amazon.com/alexa/console/ask and create an account. Sign in the [Alexa developer console](https://developer.amazon.com/alexa/console/ask) with your amazon account.
 
-#### Create your Smart Home Skill
+#### 3.2.2.2. Create your Smart Home Skill
 Choose Create skill->Smart Home->Enter the skill name->Create. Once you created the Smart Home Skill, <span id = "YourSkillID"><font color="red">Your Skill ID</font></span> will be assigned that will used by Lambda function.
 
 <div align="center">
@@ -627,7 +626,7 @@ Choose Create skill->Smart Home->Enter the skill name->Create. Once you created 
 Jump to the next section to [Add a Lambda Function](#add-a-lambda-function) and <span id = "backToSkillDeveloperConsole"><font color="red">then back to here</font></span>.
 
 
-#### Configure your Smart Home Skill (Step1)
+#### 3.2.2.3. Configure your Smart Home Skill (Step1)
 You must provide the ARN for your Lambda function in the skill configuration in the developer console.
 Navigate back to your skill in the Developer Console. Under **2. Smart Home service endpoint**, in the **Default endpoint** box, provide the ARN number from the Lambda function you created and click Save.
 Therefore, the skill is associated with the lambda function.
@@ -642,7 +641,7 @@ Therefore, the skill is associated with the lambda function.
   <center> <b>Figure: Lambda function adding Alexa smart home trigger</b> </center>
 </div>  
 
-#### Provide Account Linking Information
+#### 3.2.2.4. Provide Account Linking Information
 **Question**: What is Account Linking?
 **Answer**: Account linking enables your skill to connect the user's identity with their identity in a different system. All smart home, video, and meetings skills must connect the identity of the Alexa user with an identity in the service provider's system. This is known as account linking, because the goal is to create a link between the Alexa user and the service provider. For more information about the Account Linking, please see the section [Further Reading 2](#further-reading-2)
 
@@ -674,7 +673,7 @@ For the “Consent Privacy Notice URL”, please fill it with your own privacy n
 </div> 
 
 
-#### Configure your Smart Home Skill (Step2)
+#### 3.2.2.5. Configure your Smart Home Skill (Step2)
 * i. Go back to https://developer.amazon.com/home.html and sign in as needed
 * ii. Go to Alexa > Alexa Skills Kit > the Alexa skill you created earlier
 * iii. In the Configuration tab:
@@ -702,7 +701,7 @@ After mutual association, the second step would be account linking. On the Alexa
 </div>  
 </br>
 
-#### Test Your Skill
+#### 3.2.2.6. Test Your Skill
 Amazon console also supports the skill-testing.
 However, to test a SmartHome or Video skill, you need first enable the skill with the Alexa companion app (cannot finish it with webpage).
 <div align="center">
@@ -730,8 +729,8 @@ For example, if the user type or say “turn off light”, the Alexa server will
   <center> <b>Figure: Skill-testing</b> </center>
 </div>  
 
-###	Add a Lambda Function
-#### Create a lambda function
+###	3.2.3. Add a Lambda Function
+#### 3.2.3.1. Create a lambda function
 The code for your smart home skill is hosted as a Lambda function on AWS. AWS Lambda is a service that lets you run code in the cloud without managing servers. Alexa sends your skill requests and your code inspects the request, takes any necessary actions such as communicating with the device cloud for that customer, and then sends back a response.
 
 1.	Go to https://console.aws.amazon.com/console/home and sign in
@@ -772,7 +771,7 @@ The code for your smart home skill is hosted as a Lambda function on AWS. AWS La
 </br>
 
 Regarding to the lambda function, we take the *Alexa Smart Home skill sample* released by Amazon as starting point, you can access it from the repository [skill-sample-python-smarthome-switch](https://github.com/alexa/skill-sample-python-smarthome-switch). 
-And also you can just reuse the lambda function we have implemented for this project, the zip package ***alexa-control-btmesh-lambda.zip*** is included in the sub directory and also you can get it from the [github](https://github.com/ChengYuan-CY/Alexa-Control-Bluetooth-Mesh-Devices/tree/master/lambda_function).
+And also you can just reuse the lambda function we have implemented for this project, the zip package [**alexa-control-btmesh-lambda.zip**](./files/CM-Smart-Speaker/lambda_function/alexa-control-btmesh-lambda.zip) is included in the sub directory and also you can get it from the [github](https://github.com/ChengYuan-CY/Alexa-Control-Bluetooth-Mesh-Devices/tree/master/lambda_function).
 
 * Runtime = Python 3.7
 * Code entry type = select the "Upload a .ZIP file" (the Alexa skill package)
@@ -797,7 +796,7 @@ After uploading the ZIP package successfully, please make sure that the director
   <img src="./files/CM-Smart-Speaker/lambda_function_configuration_3.png">
 </div>  
 
-#### Configure the IAM Role for Lambda
+#### 3.2.3.2. Configure the IAM Role for Lambda
 IAM (AWS Identity and Access Management) is a web service that helps you securely control access to AWS resources. You use IAM to control who is authenticated (signed in) and authorized (has permissions) to use resources. 
 Please see the [user guide](https://docs.aws.amazon.com/freertos/latest/userguide/freertos-account-and-permissions.html) for how to set up your account and permission with IAM.
 
@@ -821,7 +820,7 @@ After that, the Lambda function created above should able to access the followin
 
 <a href="#backToSkillDeveloperConsole" target="_self">Now navigate back to your skill in the Developer Console.</a> 
 
-#### Test the Lambda function
+#### 3.2.3.3. Test the Lambda function
 If you want to perform a quick test of the Discovery request in the Lambda code editor, you can click on Test. The Configure test event page appears.
 Leave Create new test event selected. For Event template, leave the default Hello World. In the Event name, enter discovery and replace the entire contents in the editor with the following code.
 
@@ -899,19 +898,19 @@ Do the Test, if successful, the Execution Result should be similar to the follow
 }
 ```
 
-#### Further reading 2
+#### 3.2.3.4. Further reading 2
 [Steps to Build a Smart Home Skill](https://developer.amazon.com/docs/smarthome/steps-to-build-a-smart-home-skill.html#test-your-skill)
 
 [Understand Account Linking](https://developer.amazon.com/docs/account-linking/understand-account-linking.html)
 
-###  Download and set up freeRTOS SDK on ESP32:
-#### Download the project
+###  3.2.4. Download and set up freeRTOS SDK on ESP32:
+#### 3.2.4.1. Download the project
 Go to GitHub page to download the SDK or clone it by using git clone https://github.com/aws/amazon-freertos.git, and also you can clone the [forked amazon freeRTOS SDK](https://github.com/ChengYuan-CY/amazon-freertos) that we are using for this project.
 
-#### Use CMake to generate project build files and build project
+#### 3.2.4.2. Use CMake to generate project build files and build project
 Setup the SDK with correct Toolchains and establish the serial connection to your ESP32 board. The very detailed official instruction can be found HERE [EN](https://docs.aws.amazon.com/freertos/latest/userguide/getting_started_espressif.html) | [CN](https://docs.aws.amazon.com/zh_cn/freertos/latest/userguide/getting_started_espressif.html).
 
-##### Install ESP-IDF 
+##### 3.2.4.2.1. Install ESP-IDF 
 Read the page here [EN](https://docs.espressif.com/projects/esp-idf/en/v3.1.5/get-started-cmake/windows-setup.html) for how to get start with CMake on windows. 
 ESP-IDF is the official development framework for the ESP32 chip. Please note that due to some compatibility issue, the version 3.1.5 of ESP-IDF (the version used by Amazon FreeRTOS) does not support the latest version of the ESP32 compiler. You must use the compiler that is compatible with version 3.1.5 of the ESP-IDF. The compatible compiler is provided within the installation package ```esp-idf-tools-setup-1.1.exe```, please get the installation package from the link above.
 
@@ -937,26 +936,25 @@ Click the **Finish** button. By default, the ESP-IDF installer updates the Windo
 
 If you didn't see these path included in the System Environment, you will need to configure the environment where you are using ESP-IDF with the correct paths by yourself.
 
-##### Install CMake
+##### 3.2.4.2.2. Install CMake
 Install the CMake (Cross-Platform Makefile Generator). The CMake build system is required to build the Amazon FreeRTOS demo and test applications for this device. Amazon FreeRTOS supports CMake versions 3.13 or above, and you can get download the latest version of CMake from [CMake.org](https://cmake.org/download/).
 
 Form you native build system, it can be GNU Make or Ninja. Ninja is recommended by Amazon since it is faster than Make and also provides native support to all desktop operating systems. And we also use the Ninja in this project.
 
-##### Generate build file by CMake
+##### 3.2.4.2.3. Generate build file by CMake
 Use the following CMake command to generate the build files, and then use ```ninja``` to build the application.
 ```cmake -DVENDOR=espressif -DBOARD=esp32_devkitc -DCOMPILER=xtensa-esp32 -GNinja -S . -B your-build-directory```
 
-##### To build the application
+##### 3.2.4.2.4. To build the application
 Change directories to the build directory ```your-build-directory``` you just specified above, i.e, ```build```.
 Invoke Ninja to build the application.
 ```ninja```
-
 <div align="center">
 <img src="./files/CM-Smart-Speaker/ninja_build_project.png">
 </div>  
 </br>
 
-##### Flash and Run Amazon FreeRTOS
+##### 3.2.4.2.5. Flash and Run Amazon FreeRTOS
 Establish serial connection between your host machine and the ESP32 kit. You must install CP210x USB to UART Bridge VCP drivers. You can download these [drivers](https://www.silabs.com/products/development-tools/software/usb-to-uart-bridge-vcp-drivers) from Silicon Labs.
 
 Use Espressif's IDF utility ( amazon-freertos/vendors/espressif/esp-idf/tools/idf.py ) to flash your board, run the application, and see logs.
@@ -974,15 +972,15 @@ You can combine these commands. For example, suppose the com port of your ESP32 
 
 Make sure that you can build the default demo, and flash it to the ESP32 kit, and also can get debug log output on the console.
 
-#### Add the custom source code for Alexa BTmesh Bridge
+#### 3.2.4.3. Add the custom source code for Alexa BTmesh Bridge
 
 Please carefully read the [documentation page](https://docs.aws.amazon.com/freertos/latest/userguide/freertos-getting-started.html) on how to setup the AWS freeRTOS SDK on your computer. The chinese version documentation is available [here](https://docs.aws.amazon.com/zh_cn/freertos/latest/userguide/freertos-getting-started.html).  
 
-#####	Choose the shadow demo and Build the esp32 program 
+#####	3.2.4.3.1. Choose the shadow demo and Build the esp32 program 
 In the file: ```…/vendors/espressif/boards/esp32/aws_demos/config_files/aws_demo_config.h```, enable the shadow demo by ```#define CONFIG_SHADOW_DEMO_ENABLED```.
-If you are using the amazon freeRTOS sdk cloned from Amazon repo, please open the SDK folder, in the folder …/demos/shadow, replace the C file ```aws_iot_demo_shadow.c``` with the provided [aws_iot_demo_shadow.c](https://github.com/ChengYuan-CY/amazon-freertos/blob/master/demos/shadow/aws_iot_demo_shadow.c) file. Also, add the file [aws_iot_shadow_blem.h](https://github.com/ChengYuan-CY/amazon-freertos/blob/master/demos/shadow/aws_iot_shadow_blem.h) to the folder.
+If you are using the amazon freeRTOS sdk cloned from Amazon repo, please open the SDK folder, in the folder …/demos/shadow, replace the C file ```aws_iot_demo_shadow.c``` with the provided [aws_iot_demo_shadow.c](https://github.com/ChengYuan-CY/amazon-freertos/blob/master/demos/shadow/aws_iot_demo_shadow.c) file. Also, add the file [aws_iot_shadow_blem.h](https://github.com/ChengYuan-CY/amazon-freertos/blob/master/demos/shadow/aws_iot_shadow_blem.h) to the folder.   
 
-###### Configure permission related setting
+###### 3.2.4.3.2. Configure permission related setting
 The WiFi settings can be done in the file ```…/demos/include/aws_clientcrediential.h```
 Set ```clientcredentialMQTT_BROKER_ENDPOINT``` as your AWS IoT endpoint. You can find it from the Things' interact information.
 <div align="center">
@@ -992,25 +990,25 @@ Set ```clientcredentialMQTT_BROKER_ENDPOINT``` as your AWS IoT endpoint. You can
 
 Set ```clientcredentialIOT_THING_NAME``` to the unique name of your IoT Thing.
 Set ```clientcredentialWIFI_SSID``` to your network name.
-Set ```clientcredentialWIFI_PASSWORD``` as your password.
+Set ```clientcredentialWIFI_PASSWORD``` as your password.  
 
-###### Configure certification information
+###### 3.2.4.3.3. Configure certification information
 Paste the certificate you acquired when you create the “esp32_btmesh_hub” thing on AWS IoT console to the file ```…/demos/includes/aws_clientcrediential_keys.h```.
 
-Alternatively, you can use the quick setup which instructed on [this page](https://docs.aws.amazon.com/freertos/latest/userguide/getting_started_espressif.html) under Configure the Amazon FreeRTOS Demo Applications section.
+Alternatively, you can use the quick setup which instructed on [this page](https://docs.aws.amazon.com/freertos/latest/userguide/getting_started_espressif.html) under Configure the Amazon FreeRTOS Demo Applications section.  
 
-###### Configure the serial port of ESP32
-The esp32 will parse and forward the received MQTT message to the bluetooth provisioner (EFR32BG13) via uart port, so you need to configure the serial port for ESP32. GPIO16 and GPIO17 of ESP32 are configured as Tx and Rx pin in this project.
+###### 3.2.4.3.4. Configure the serial port of ESP32
+The esp32 will parse and forward the received MQTT message to the bluetooth provisioner (EFR32BG13) via uart port, so you need to configure the serial port for ESP32. GPIO16 and GPIO17 of ESP32 are configured as Tx and Rx pin in this project.  
 ```
 #define ECHO_TEST_TXD (GPIO_NUM_16)
 #define ECHO_TEST_RXD (GPIO_NUM_17)
 ```
-### Create the Bluetooth Mesh network
-#### Build EFR32BG13 embedded provisioner program
+### 3.2.5. Create the Bluetooth Mesh network
+#### 3.2.5.1. Build EFR32BG13 embedded provisioner program
 a.	Download the [provisioner project](https://github.com/ChengYuan-CY/Alexa-Control-Bluetooth-Mesh-Devices/tree/master/BluetoothMeshProvisioner).
 b.	Open the project in simplicity studio, build, flash to BG13 board
 
-#### Build MG21 Bluetooth mesh light/switch/sensor/sensor monitor program
+#### 3.2.5.2. Build MG21 Bluetooth mesh light/switch/sensor/sensor monitor program
 a.	The mesh light and switch are using the demo applications in the simplicity studio Bluetooth mesh SDK v1.5.0, you can use other Bluetooth mesh light device in this project.
 b.	The mesh switch application is also the demo program in simplicity studio, it has three functions: adjusting the lightness of the light, adjusting the temperature, turning on/off the light. A long press will turn on/off the light, a short press will adjust the lightness, and a normal press will change the temperature. Currently, the provisioner only subscribes the on/off function, when the user give it a short press or long press, the provisioner will report the light’s on/off status to IoT console(while the lightness is not 0, the light’s on/off state will be “ON”).
 c.	Sensor/monitor program. The sensor/monitor program is only available after the version 1.5.0 of the Bluetooth mesh SDK. Currently, the IoT console doesn’t monitor the state of the sensor. Once the sensor and the monitor are provisioned, they are functioning as local devices. 
@@ -1021,11 +1019,11 @@ b.	Hold left button and reset button to reset the board
 c.	Flash the switch program and light program into board
 d.	Open a COM tool and connect it to the BG13 board, when seeing the prompt to provision the switch board and light board, press left button to provision.
 
-### Control the light node from Alexa App
+### 3.2.6. Control the light node from Alexa App
 As the Alexa App has discovered all of the device we defined in the ESP32_btmesh_bridge Things, and you can control the bluetooth mesh node by using the Alexa App now.
 
-# To-do
+# 4. To-do
 Port EFR32 on Amazon FreeRTOS. And then we can interface to AWS IoT by using the combination of EFR32+WGM160P.
 
-# Conclusion:
+# 5. Conclusion:
 This project uses multiple protocols and Amazon AWS services. It breaks the limitation between the Zigbee embedded smart speaker and Bluetooth mesh embedded smart devices and realizes voice control. Although it is just a brief demonstration, it reveals the potential of multi-platform cooperation and smart automation.

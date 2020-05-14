@@ -10,7 +10,7 @@ Silicon Labs is the leader in silicon, software, and solutions for a smarter, mo
 
 # Project Description
 
-The [Aligenie](https://www.aligenie.com/)</span>&nbsp;platform&nbsp;provides&nbsp;different&nbsp;solutions&nbsp;that&nbsp;developer&nbsp;can&nbsp;adopt&nbsp;to&nbsp;access&nbsp;the&nbsp;service for controlling smart devices via voice command.
+The [Aligenie](https://www.aligenie.com/)</span> platform provides different solutions that developer can adopt to access the service for controlling smart devices via voice command.
 
 1.  Tmall Genie naturally plays role as BLE Mesh provisioner, it can form the network and directly add/remove device. The project [Tmall Genie control the Bluetooth Mesh Devices with the Built-in Hub](Tmall-Genie-control-the-Bluetooth-Mesh-Devices-with-the-Built-in-Hub) shows how to archived it.
 2.  Alibaba provide an interface to send directive to 3rd party cloud, we can interpret the directive into the command. The project [Tmall Genie control the WIFI devices via cloud](Tmall-Genie-control-the-WIFI-devices-via-cloud) show how to build 3rd party cloud to interpret the directive from Alibaba cloud. So that we can achieve Tmall Genie to control a WiFi device via voice command.

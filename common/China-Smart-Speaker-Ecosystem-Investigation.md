@@ -2,6 +2,7 @@
 
 <details>   
 <summary><font size=5>目录</font> </summary>
+
 <!-- TOC -->
 
 - [国内智能音箱生态系统对比分析](#国内智能音箱生态系统对比分析)
@@ -29,7 +30,7 @@
             - [4.1.2.3. 低功耗蓝牙设备接入](#4123-低功耗蓝牙设备接入)
     - [4.2. 小米IoT开放平台](#42-小米iot开放平台)
         - [4.2.1. 设备直接接入](#421-设备直接接入)
-            - [](#)
+            - [4.2.1.1. WiFi模组模组接入](#4211-wifi模组模组接入)
             - [4.2.1.2. WiFi Linux SDK开发](#4212-wifi-linux-sdk开发)
             - [4.2.1.3. WiFi Android SDK开发](#4213-wifi-android-sdk开发)
             - [4.2.1.4. BLE SDK开发](#4214-ble-sdk开发)
@@ -45,16 +46,16 @@
 
 智能音箱作为智慧家庭的一个重要控制入口，受到各个科技大厂的青睐。相比于传统的仅支持音乐播放功能的音箱而言，智能音箱加入了语音对话，语义理解，智能家居设备控制等功能。
 
-为了对目前国内市场上所流行的智能音箱有一个更为深入的了解，我们通过这一个confluence page来对其作一个分析对比。我们选取了目前国内市场上最为流行的三款智能音箱设备来作对比，它们分别是阿里巴巴的天猫精灵，小米的小爱同学以及百度的小度。因为我们主要关注于智能音箱来控制IoT智能家居设备，因此该文章也主要侧重于智能音箱的智能系统，IoT设备接入方式等几个方面。
+为了对目前国内市场上所流行的智能音箱有一个更为深入的了解，我们通过此文章来对其作一个分析对比。我们选取了目前国内市场上最为流行的三款智能音箱设备来作对比，它们分别是阿里巴巴的天猫精灵，小米的小爱同学以及百度的小度。因为我们主要关注于智能音箱来控制IoT智能家居设备，因此该文章也主要侧重于智能音箱的智能系统，IoT设备接入方式等几个方面。
 
-<div align="center">
-<img src="files/CM-Smart-Speaker/xiao_du.png">
-</div>
 <div align="center">
 <img src="files/CM-Smart-Speaker/tmall_genie.jpg">
 </div>
 <div align="center">
 <img src="files/CM-Smart-Speaker/xiao_ai.png">
+</div>
+<div align="center">
+<img src="files/CM-Smart-Speaker/xiao_du.png">
 </div>
 
 # 2. 市场占有率对比
@@ -91,7 +92,7 @@
 <img src="files/CM-Smart-Speaker/aliGenie_iot_connect.png">
 </div>
 
-如上图所示，AliGenie提供两种不同的智能设备接入方式，直接连入和云云接入。该部分将在&rdquo;**IoT设备接入方式对比**&rdquo;中详细介绍并和其它厂商加以对比。
+如上图所示，AliGenie提供两种不同的智能设备接入方式，直接连入和云云接入。该部分将在"**IoT设备接入方式对比**"中详细介绍并和其它厂商加以对比。
 
 <div align="center">
 <img src="files/CM-Smart-Speaker/aliGenie_iot_direct_connect.png">
@@ -125,11 +126,11 @@ AliGenie硬件接入开放平台（AliGenie Intelligent Devices Platform），�
 
 **注**：小米IoT开发者平台当前仅面向中国大陆地区的企业开放，暂未面向个人开发者开放。
 
-更多详细信息，请参考&quot;**小米IoT开放平台**&ldquo;。
+更多详细信息，请参考"**小米IoT开放平台**"。
 
 ### 3.2.3. 智能设备接入
 
-&ldquo;智能设备接入&rdquo; 是为希望搭载小爱同学语音服务的硬件设备提供适配各系统的SDK，集成SDK后即拥有小爱同学语音能力。若智能设备希望被&ldquo;小爱同学&rdquo;控制(如台灯、空气净化器等)，请前往[小米IoT开发者平台](https://iot.mi.com/a)注册申请以获取更多的技术支持。
+"智能设备接入" 是为希望搭载小爱同学语音服务的硬件设备提供适配各系统的SDK，集成SDK后即拥有小爱同学语音能力。若智能设备希望被"小爱同学"控制(如台灯、空气净化器等)，请前往[小米IoT开发者平台](https://iot.mi.com/a)注册申请以获取更多的技术支持。
 
 ## 3.3. DuerOS开放平台
 
@@ -354,8 +355,7 @@ DIDP 提供软件、devkit 两种接入方式，具体如下图：
 <td colspan="1"><span>MIoT提供库文件，客户集成到产品。客户需要选择MIoT支持列表中芯片</span></td>
 <td colspan="1"><span>所有BLE产品</span></td></tr></tbody></table>
 
-#### 
-4.2.1.1. WiFi模组模组接入
+#### 4.2.1.1. WiFi模组模组接入
 
 平台提供小米智能模组，帮助用户快速开发自己的智能设备。WiFi模组都是采用轻量级RTOS（realtime OS），相对来说具有低功耗、低成本、开发简单等特点。
 

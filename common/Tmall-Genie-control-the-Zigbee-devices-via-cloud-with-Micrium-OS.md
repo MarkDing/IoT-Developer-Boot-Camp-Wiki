@@ -32,20 +32,20 @@
 
 项目中涉及的平台和组件包括：
 
-*   &nbsp;[天猫精灵平台](https://open.aligenie.com/)，只需购买一台天猫精灵智能音箱，使用淘宝账号登录即可；
-*   &nbsp;[阿里物联生活平台](https://living.aliyun.com/)，需要注册帐号，并创建相关产品。
-*   &nbsp;Zigbee router, 即本项目开发的目标。由WiFi和Zigbee两部分组成，用UART接口连接二者。
+*    [天猫精灵平台](https://open.aligenie.com/)，只需购买一台天猫精灵智能音箱，使用淘宝账号登录即可；
+*    [阿里物联生活平台](https://living.aliyun.com/)，需要注册帐号，并创建相关产品。
+*    Zigbee router, 即本项目开发的目标。由WiFi和Zigbee两部分组成，用UART接口连接二者。
 
-    *   &nbsp;Zigbee部分，基于Silicon Labs公司的EFR32MG12以及EmberZnet SDK开发；
-    *   &nbsp;WiFi部分，基于Silicon Labs公司的WGM110模组开发；
-*   &nbsp;[Amazon Echo Plus](https://www.amazon.com/All-new-Echo-Plus-2nd-built/dp/B0794W1SKP)，用户需要在手机端下载Alexa APP来控制echo plus
+    *    Zigbee部分，基于Silicon Labs公司的EFR32MG12以及EmberZnet SDK开发；
+    *    WiFi部分，基于Silicon Labs公司的WGM110模组开发；
+*    [Amazon Echo Plus](https://www.amazon.com/All-new-Echo-Plus-2nd-built/dp/B0794W1SKP)，用户需要在手机端下载Alexa APP来控制echo plus
 
 涉及的资源和资料链接:
 
-*   &nbsp;[阿里物联生活平台](https://living.aliyun.com/doc#index.html)
-*   &nbsp;[阿里物联生活平台设备侧SDK](https://github.com/aliyun/iotkit-embedded)
-*   &nbsp;[Silicon Labs公司Zigbee产品已经开发工具](https://www.silabs.com/products/wireless/mesh-networking/zigbee)
-*   &nbsp;[Amazon alexa开发](https://developer.amazon.com/alexa)
+*    [阿里物联生活平台](https://living.aliyun.com/doc#index.html)
+*    [阿里物联生活平台设备侧SDK](https://github.com/aliyun/iotkit-embedded)
+*    [Silicon Labs公司Zigbee产品已经开发工具](https://www.silabs.com/products/wireless/mesh-networking/zigbee)
+*    [Amazon alexa开发](https://developer.amazon.com/alexa)
 
 * * *
 
@@ -57,30 +57,30 @@ Silicon Labs公司的Simplicity Studio可以从[官网](https://www.silabs.com/p
 
 主要步骤如下：
 
-*   &quot;File&quot;--&gt;&quot;New&quot;--&gt;&quot;Project&quot;;
-*   选择&quot;Silicon Labs AppBuilder Project&quot;, 然后点击&quot;Next&quot;继续;
-*   选择&quot;ZCL Application Framework V2&quot;, 然后点击&quot;Next&quot;继续;
-*   选择&quot;EmberZnet 6.5.5.0 GA Soc 6.5.5.0&quot;, 然后点击&quot;Next&quot;继续;
-*   在对话框的左下方, 勾上&quot;Start with a blank application&quot;, 然后点击&quot;Next&quot;继续;
-*   输入工程名称, 然后点击&quot;Next&quot;继续;
-*   在&quot;Boards&quot;列表框, 选择&quot;BRD4164A&quot;， 然后&quot;Part&quot;框会自动更新成对应的芯片型号。在编译器中选择IAR，最后点击&quot;Finish&quot;完成。 上述步骤完成后，Simplicity Studio会自动打开锁创建的工程对应的isc文件。
+*   "File"-->"New"-->"Project";
+*   选择"Silicon Labs AppBuilder Project", 然后点击"Next"继续;
+*   选择"ZCL Application Framework V2", 然后点击"Next"继续;
+*   选择"EmberZnet 6.5.5.0 GA Soc 6.5.5.0", 然后点击"Next"继续;
+*   在对话框的左下方, 勾上"Start with a blank application", 然后点击"Next"继续;
+*   输入工程名称, 然后点击"Next"继续;
+*   在"Boards"列表框, 选择"BRD4164A"， 然后"Part"框会自动更新成对应的芯片型号。在编译器中选择IAR，最后点击"Finish"完成。 上述步骤完成后，Simplicity Studio会自动打开锁创建的工程对应的isc文件。
 
 ### 1.2 配置工程
 
 在打开的isc界面上有多个tab，每个tab都包含不同的配置项目。这里主要的配置包括：
 
-*   &quot;ZCL global&quot; tab，配置其中的&quot;Manufacture&quot;，这里直接选择&quot;Silicon Laboratories 0x1049&quot;;
-*   &quot;ZCL Clusters&quot; tab, 首先配置endpoint，为了简便起见，只用一个endpoint。然后选中这个endpoint，将&quot;ZCL device type&quot;设置为&quot;Zigbee Custom&quot;--&gt;&quot;HA devices&quot;--&gt;&quot;HA on/off switch&quot;。接下来勾选上其他一些需要的cluster，例如level control， color control等。
-*   &quot;Znet stack&quot; tab，由于本项目是开发一个网关，所以将&quot;Zigbee Device Type&quot;设置为&quot;Coordinator or Router&quot;;
-*   &quot;Plugins&quot; tab，勾选一些需要的plugin，具体如下：
+*   "ZCL global" tab，配置其中的"Manufacture"，这里直接选择"Silicon Laboratories 0x1049";
+*   "ZCL Clusters" tab, 首先配置endpoint，为了简便起见，只用一个endpoint。然后选中这个endpoint，将"ZCL device type"设置为"Zigbee Custom"-->"HA devices"-->"HA on/off switch"。接下来勾选上其他一些需要的cluster，例如level control， color control等。
+*   "Znet stack" tab，由于本项目是开发一个网关，所以将"Zigbee Device Type"设置为"Coordinator or Router";
+*   "Plugins" tab，勾选一些需要的plugin，具体如下：
 
     *   NVM3 Library，需要同时去掉Simulated EEPROM version 1 library，并选中Simulated EEPROM version 2 to NVM3 Upgrade Library。
     *   Serial，在右边的属性设置页面，使能USART3，这个将用来跟WiFi模组WGM110通信；
     *   device table;
     *   Network Steering和Update TC Link key，这两个plugin将用于控制router加入Zigbee网络;
     *   支持Micrium OS，由于需要支持WiFi模组以及集成阿里物联网平台的SDK，需要有OS的支持。这里涉及几个plugin的替换： * 取消Simple Main，使能Micrium RTOS * 取消Zigbee PRO Stack Library，使能Zigbee PRO MbedTls Library for TRNG * 使能mbed TLS Common和mbed TLS TRNG Configuration
-*   &quot;HAL Configurat&quot; tab，点击按钮&quot;Hardware Configurator&quot;，然后勾选上Virtual Serial Port
-*   &quot;Callbacks&quot; tab，使能如下几个callback:
+*   "HAL Configurat" tab，点击按钮"Hardware Configurator"，然后勾选上Virtual Serial Port
+*   "Callbacks" tab，使能如下几个callback:
 
     *   emberAfMainInitCallback 用于完成一些初始化的工作
     *   emberAfHalButtonIsrCallback 用于配置按键来触发WiFi配网
@@ -88,14 +88,14 @@ Silicon Labs公司的Simplicity Studio可以从[官网](https://www.silabs.com/p
     *   emberAfPluginMicriumRtosAppTask1MainLoopCallback task1的主循环
     *   emberAfPluginDeviceTableNewDeviceCallback 新设备入网时，触发动作通知云端
     *   emberAfPluginDeviceTableDeviceLeftCallback 设备离网，触发动作通知云端
-*   &quot;Includes&quot; tab, 添加如下几个event
+*   "Includes" tab, 添加如下几个event
 
     *   addSubDevEventControl 在网关中设备加网离网时，向云端增加删除设备
     *   clearWiFiEventControl 由按钮触发，清除当前的WiFi密码，进入WiFi配网模式
     *   commissionEventControl 启动时自动搜索并加入网络
     *   pollAttrEventControl 周期性轮询设备的属性，同时上报给云端
 
-完成上述动作之后，保存，然后&quot;Generate&quot;生成代码，这样整个工程就建立完成了。编译工程，确保编译通过。 接下来就需要逐步增加功能，并完善。
+完成上述动作之后，保存，然后"Generate"生成代码，这样整个工程就建立完成了。编译工程，确保编译通过。 接下来就需要逐步增加功能，并完善。
 
 * * *
 
@@ -118,16 +118,16 @@ Silicon Labs公司的Simplicity Studio可以从[官网](https://www.silabs.com/p
 用方向键进行控制，空格键或者Enter进行选择或者取消，ESC键返回。
 在默认配置的基础上，需要配置的选项有：
 
-*   &nbsp;&quot;PLATFORM HAS OS&quot;
-*   &nbsp;&quot;FEATURE DYNAMIC REGISTER&quot;
-*   &nbsp;&quot;Device Model Configuration&quot; 菜单下：
+*    "PLATFORM HAS OS"
+*    "FEATURE DYNAMIC REGISTER"
+*    "Device Model Configuration" 菜单下：
 
-    *   &nbsp;&quot;FEATURE DEVICE MODEL GATEWAY&quot;
-*   &nbsp;&quot;FEATURE DEV RESET&quot;
-*   &nbsp;&quot;FEATURE WIFI PROVISION ENABLED&quot;，然后子菜单下：
+    *    "FEATURE DEVICE MODEL GATEWAY"
+*    "FEATURE DEV RESET"
+*    "FEATURE WIFI PROVISION ENABLED"，然后子菜单下：
 
-    *   &nbsp;&quot;FEATURE AWSS SUPPORT DEV AP&quot;
-*   &nbsp;&quot;FEATURE DEV BIND ENABLED&quot;
+    *    "FEATURE AWSS SUPPORT DEV AP"
+*    "FEATURE DEV BIND ENABLED"
 保存配置退出。
 
 ### 2.3 根据配置提取SDK代码
@@ -137,7 +137,7 @@ Silicon Labs公司的Simplicity Studio可以从[官网](https://www.silabs.com/p
 ### 2.4 编译Zigbee工程
 
 编译Zigbee工程，会有一些编译错误。主要原因是提取的SDK的头文件路径没有包含到工程中。
-选择工程，右键，&quot;Properties&quot;，将SDK各个部分的路径添加到Include中，如下图：
+选择工程，右键，"Properties"，将SDK各个部分的路径添加到Include中，如下图：
 
 <div align="center">
 <img src="files/CM-Smart-Speaker/project_include.png">
