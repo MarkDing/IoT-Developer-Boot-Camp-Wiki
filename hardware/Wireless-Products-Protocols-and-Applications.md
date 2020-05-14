@@ -17,7 +17,7 @@
   For proprietary products, there are many FG type chips which are classified with generations, packages, flash size, temperature grades, output power levels, and frequency bands. The general name convention is as follows:
 
   <div align="center">
-  <img src="files\HW-Wireless-Products-Protocols-and-Applications\NameConvention-1.png">  
+  <img src="files/HW-Wireless-Products-Protocols-and-Applications/NameConvention-1.png">  
   </div>
   
   As you can see from the name convention, the proprietary chips include four series such as FG1, FG12, FG13,and FG14. The chips are classified with  P (Performance), B (Basic), and V (Value) performance grades. The chips are Tx/Rx type which include sub-G band, 2.4GHz band, and sub-G& 2.4GHz bands. The chips are classified with 2 temperature range as -40°-+85° and -40°-+125°. And there are many packages(QFN32, QFN40, QFN48, QFN68, and BGA125) to select. 
@@ -32,7 +32,7 @@
 
   For Zigbee/Thread products, there are also many MG type chips which are classified with generations, packages, flash size, temperature grades, output power levels, and frequency bands. The general name convention is as follows:
   <div align="center">
-  <img src="files\HW-Wireless-Products-Protocols-and-Applications\NameConvention-2.png">  
+  <img src="files/HW-Wireless-Products-Protocols-and-Applications/NameConvention-2.png">  
   </div>
 
   As you can see from the name convention, the Zigbee/Thread chips include 2 variants such as MG12 and MG13 for EFR32MG1x series 1 chips, and 2 variants as MG21 and MG22 for EFR32MG2x series 2 chips. The Zigbee/Thread chips only have  P performance grade. The chips are Tx/Rx type which include sub-G band, 2.4GHz band, and sub-G& 2.4GHz bands. The chips are classified with 2 temperature range as -40°-+85° and -40°-+125°. And there are many packages(QFN32, QFN40, QFN48, QFN68, and BGA125) to select. 
@@ -51,7 +51,7 @@
 
   For BLE products, there are many BG type chips which are classified with generations, packages, flash size, temperature grades, output power levels, and frequency bands. The general name convention is as follows:
   <div align="center">
-  <img src="files\HW-Wireless-Products-Protocols-and-Applications\NameConvention-3.png">  
+  <img src="files/HW-Wireless-Products-Protocols-and-Applications/NameConvention-3.png">  
   </div>
  
   As you can see from the name convention, the BLE chips include 3 variants such as FG1,FG12, and FG13 for EFR32BG1x series 1 chips, and 2 variants as BG21 and BG22 for EFR32BG2x series 2 chips.The BLE chips are classified with  P (Performance), B (Basic), and V (Value) performance grades. The BLE chips are Tx/Rx type which include sub-G band, 2.4GHz band, and sub-G& 2.4GHz bands. The BLE chips are classified with 2 temperature range as -40°-+85° and -40°-+125°. And there are many packages(QFN32, QFN40, QFN48, QFN68, and BGA125) to select. 
