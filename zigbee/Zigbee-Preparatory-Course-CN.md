@@ -124,8 +124,8 @@ Simplicity Studio提供了GCC（GNU编译器集合），它将在首次安装Emb
 •一旦安装了IAR-EWARM，下次Simplicity Studio启动时，它将自动检测并配置IDE以使用IAREWARM。   
 
 ## Github 帐户  
-由于[IoT-Developer-Boot-Camp](https://github.com/MarkDing/IoT-Developer-Boot-Camp)是一个开源项目，因此我们使用github维护所有源代码和文档，参与其中的每个人都可以提供你自己对于它的评论（意见），提交你的bug修复，新的功能需求或改进文档请求。  
-有效的github帐户是加入此项目的前提，如果没有，请[创建您的github帐户](https://github.com/join?source=header-home)。然后```Fork```[IoT-Developer-Boot-Camp](https://github.com/MarkDing/IoT-Developer-Boot-Camp)仓库并将其添加到您的监视列表中。
+由于[IoT Developer Boot Camp](https://github.com/MarkDing/IoT-Developer-Boot-Camp)是一个开源项目，因此我们使用github维护所有源代码和文档，参与其中的每个人都可以提供你自己对于它的评论（意见），提交你的bug修复，新的功能需求或改进文档请求。  
+有效的github帐户是加入此项目的前提，如果没有，请[创建您的github帐户](https://github.com/join?source=header-home)。
 
 [Gitter](https://gitter.im/)是面向GitHub仓库的开发人员和使用者开源的即时消息和聊天室系统。我们创建了一个公共聊天室[Zigbee Boot Camp](https://gitter.im/Silabs-IoT/Zigbee-Boot-Camp)，用于共享和讨论有关Zigbee快速入门——新兵训练营的一切。请使用您的GitHub帐户登录Gitter，然后加入此聊天室。
 
