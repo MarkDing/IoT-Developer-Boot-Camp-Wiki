@@ -52,7 +52,7 @@ In the case of dual band RFIC, this RF part includes the following:
 
 
 <p align="center">
-  "<img src="files/Layout-Design-Guide/matching network.png">
+  "<img src="files/HW-PCB-Layout-Design-Guide/matching network.png">
 </p>
 
 <div align="center">
@@ -96,7 +96,7 @@ Silicon Labs suggests copying the RF part of the reference PCB design, or if it 
 
 
 <p align="center">
-  <img src="files/Layout-Design-Guide/RF part.png">
+  <img src="files/HW-PCB-Layout-Design-Guide/RF part.png">
 </p>
 
 <div align="center">
@@ -135,7 +135,7 @@ These can cause detuning of the reference matching or filtering and/or detuning 
 1. Minimize distance between neighboring components. Matching network components should be close to each other and to the RF IC. For nearby components use the width of the pads for trace width.
 
 <p align="center">
-  <img src="files/Layout-Design-Guide/1.png">
+  <img src="files/HW-PCB-Layout-Design-Guide/1.png">
 </p>
 
 <div align="center">
@@ -150,7 +150,7 @@ These can cause detuning of the reference matching or filtering and/or detuning 
 2. The first component of the matching network should be placed as close to the 2G4RF_IOP pin of the RF IC as possible to reduce the series parasitic inductance and to avoid any detuning effects.
 
 <p align="center">
-  <img src="files/Layout-Design-Guide/2.png">
+  <img src="files/HW-PCB-Layout-Design-Guide/2.png">
 </p>
 
 <div align="center">
@@ -164,7 +164,7 @@ These can cause detuning of the reference matching or filtering and/or detuning 
  To avoid the possible high harmonic levels, it is recommended to connect the nearby filtering capacitors to ground planes on different sides of the transmission line.
 
 <p align="center">
-  <img src="files/Layout-Design-Guide/3.png">
+  <img src="files/HW-PCB-Layout-Design-Guide/3.png">
 </p>
 
 <div align="center">
@@ -179,7 +179,7 @@ These can cause detuning of the reference matching or filtering and/or detuning 
 4. Use at least 0.5 mm separation between traces/pads to the adjacent GND pours in the area of the matching network. This technique will minimize the parasitic capacitance and reduce the detuning effects.
 
 <p align="center">
-  <img src="files/Layout-Design-Guide/4.png">
+  <img src="files/HW-PCB-Layout-Design-Guide/4.png">
 </p>
 
 <div align="center">
@@ -191,7 +191,7 @@ These can cause detuning of the reference matching or filtering and/or detuning 
 5. The area under the RF chip and the matching network (in 4-layer PCBs, this is the first inner layer beneath the top layer) should be filled with continuous ground metal as it will show good ground reference for the matching network and will ensure a good, low impedance return path to the RF chip’s ground as well. Board routing and wiring should not be placed in this region to prevent coupling effects with the matching network. It is also recommended that the GND return path between the GND vias of the TX/RX matching network and the GND vias of the RFIC paddle should not be blocked by anything; the return currents should see a clear, unhindered pathway through the GND plane to the back of the RFIC.
 
 <p align="center">
-  <img src="files/Layout-Design-Guide/gnd.png">
+  <img src="files/HW-PCB-Layout-Design-Guide/gnd.png">
 </p>
 
 <div align="center">
@@ -203,7 +203,7 @@ These can cause detuning of the reference matching or filtering and/or detuning 
 6. Use 50 Ω grounded coplanar lines where possible for connecting the antenna or the U.FL connector to the matching to reduce sensitivity to PCB thickness variation. This will also reduce radiation and coupling effects. Use many GND vias near the coplanar lines in order to further reduce radiation.
 
 <p align="center">
-  <img src="files/Layout-Design-Guide/IFA.png">
+  <img src="files/HW-PCB-Layout-Design-Guide/IFA.png">
 </p>
 
 <div align="center">
@@ -217,7 +217,7 @@ These can cause detuning of the reference matching or filtering and/or detuning 
 The layout consistency for the 4-layer dual-band EFR32 PCB is shown in the following figure. The individual layers will be marked with the currently presented colours during this presentation. Let’s see the sub-GHz EFR32 layout design practices one by one.
 
 <p align="center">
-  <img src="files/Layout-Design-Guide/layers.png">
+  <img src="files/HW-PCB-Layout-Design-Guide/layers.png">
 </p>
 
 <div align="center">
@@ -233,7 +233,7 @@ The layout consistency for the 4-layer dual-band EFR32 PCB is shown in the follo
 
 
 <p align="center">
-  <img src="files/Layout-Design-Guide/1s_2.png">
+  <img src="files/HW-PCB-Layout-Design-Guide/1s_2.png">
 </p>
 
 <div align="center">
@@ -246,7 +246,7 @@ The layout consistency for the 4-layer dual-band EFR32 PCB is shown in the follo
 2. In order to decrease the parasitic capacitance towards the ground, it is recommended to apply a keepout on all inner layers beneath the area of the RX matching network.
 
 <p align="center">
-  <img src="files/Layout-Design-Guide/2s.png">
+  <img src="files/HW-PCB-Layout-Design-Guide/2s.png">
 </p>
 
 <div align="center">
@@ -259,7 +259,7 @@ The layout consistency for the 4-layer dual-band EFR32 PCB is shown in the follo
 The figure below shows one example. The RX inputs of the chip are connected to the first RX matching components on the Top layer. But the traces, between first TX components and TX outputs, are routed on the inner layer 2.
 
 <p align="center">
-  <img src="files/Layout-Design-Guide/3s.png">
+  <img src="files/HW-PCB-Layout-Design-Guide/3s.png">
 </p>
 
 <div align="center">
@@ -273,7 +273,7 @@ Traces can be routed beneath the area of the balun and low-pass filter sections 
 
 
 <p align="center">
-  <img src="files/Layout-Design-Guide/4s.png">
+  <img src="files/HW-PCB-Layout-Design-Guide/4s.png">
 </p>
 
 <div align="center">
@@ -287,7 +287,7 @@ Traces can be routed beneath the area of the balun and low-pass filter sections 
 
 
 <p align="center">
-  <img src="files/Layout-Design-Guide/5s.png">
+  <img src="files/HW-PCB-Layout-Design-Guide/5s.png">
 </p>
 
 <div align="center">
@@ -301,7 +301,7 @@ Traces can be routed beneath the area of the balun and low-pass filter sections 
 
 
 <p align="center">
-  <img src="files/Layout-Design-Guide/6s.png">
+  <img src="files/HW-PCB-Layout-Design-Guide/6s.png">
 </p>
 
 <div align="center">
@@ -315,7 +315,7 @@ Traces can be routed beneath the area of the balun and low-pass filter sections 
 
 
 <p align="center">
-  <img src="files/Layout-Design-Guide/7s.png">
+  <img src="files/HW-PCB-Layout-Design-Guide/7s.png">
 </p>
 
 <div align="center">
@@ -328,7 +328,7 @@ Traces can be routed beneath the area of the balun and low-pass filter sections 
 8. Use 50 Ω grounded coplanar lines where possible for connecting the antenna or the U.FL connector to the matching, it will reduce sensitivity variation related to PCB thickness. This will also reduce radiation and coupling effects. Use many GND vias near the coplanar lines in order to further reduce radiation.
 
 <p align="center">
-  <img src="files/Layout-Design-Guide/antenna trace.png">
+  <img src="files/HW-PCB-Layout-Design-Guide/antenna trace.png">
 </p>
 
 <div align="center">
@@ -343,7 +343,7 @@ Traces can be routed beneath the area of the balun and low-pass filter sections 
 1. The crystal should be placed as close to the RFIC as possible to ensure that wire parasitic capacitances are kept as low as possible; this will reduce any frequency offsets. Avoid leading supply traces close or beneath the crystal or parallel with a crystal signal or clock trace. 
 
 <p align="center">
-  <img src="files/Layout-Design-Guide/crystal.png">
+  <img src="files/HW-PCB-Layout-Design-Guide/crystal.png">
 </p>
 
 <div align="center">
@@ -355,7 +355,7 @@ Traces can be routed beneath the area of the balun and low-pass filter sections 
 2. Connect the crystal case to the ground using many vias to avoid radiation of the ungrounded parts. Do not leave any metal unconnected and floating that may be an unwanted radiator. 
 
 <p align="center">
-  <img src="files/Layout-Design-Guide/crystal2.png">
+  <img src="files/HW-PCB-Layout-Design-Guide/crystal2.png">
 </p>
 
 <div align="center">
@@ -367,7 +367,7 @@ Traces can be routed beneath the area of the balun and low-pass filter sections 
 3. Use an isolating ground metal between the crystal and VDD traces to avoid any detuning effects on the crystal caused by the nearby power supply, and to avoid the leakage of the crystal or clock signal and its harmonics to the supply lines.
 
 <p align="center">
-  <img src="files/Layout-Design-Guide/crystal3.png">
+  <img src="files/HW-PCB-Layout-Design-Guide/crystal3.png">
 </p>
 
 <div align="center">
@@ -384,7 +384,7 @@ Traces can be routed beneath the area of the balun and low-pass filter sections 
 
 
 <p align="center">
-  <img src="files/Layout-Design-Guide/VDD.png">
+  <img src="files/HW-PCB-Layout-Design-Guide/VDD.png">
 </p>
 
 <div align="center">
@@ -400,7 +400,7 @@ Traces can be routed beneath the area of the balun and low-pass filter sections 
 1. Use 50 Ohm grounded coplanar transmission lines to connect distant RF components. Online impedance calculators can be used to get the necessary trace width and gap to ground copper,  as figure below shows the typical values for 50 Ohm grounded coplanar lines. 
 
 <p align="center">
-  <img src="files/Layout-Design-Guide/coplanar2.png">
+  <img src="files/HW-PCB-Layout-Design-Guide/coplanar2.png">
 </p>
 
 <div align="center">
@@ -410,7 +410,7 @@ Traces can be routed beneath the area of the balun and low-pass filter sections 
 </div>
 
 <p align="center">
-  <img src="files/Layout-Design-Guide/coplanar.png">
+  <img src="files/HW-PCB-Layout-Design-Guide/coplanar.png">
 </p>
 
 <div align="center">
@@ -422,7 +422,7 @@ Traces can be routed beneath the area of the balun and low-pass filter sections 
 2. The grounding effect in the thermal straps used with capacitors should be improved. In addition, the trace near the GND pin of these capacitors should be thickened, this will minimize series parasitic inductance between the ground pour and the GND pins. Additional vias placed close to the GND pin of capacitors (thus connecting it to the bottom or inner layer GND plane) will further help reduce these effects.
 
 <p align="center">
-  <img src="files/Layout-Design-Guide/vias.png">
+  <img src="files/HW-PCB-Layout-Design-Guide/vias.png">
 </p>
 
 <div align="center">
@@ -434,7 +434,7 @@ Traces can be routed beneath the area of the balun and low-pass filter sections 
 3. The exposed pad footprint for the paddle of the EFR32 IC should use as many vias as possible to ensure good grounding and heat sink capability. In the reference designs there are 25 vias for the 7x7 mm sized package ICs, each with 10 mil diameter. 
 
 <p align="center">
-  <img src="files/Layout-Design-Guide/vias2.png">
+  <img src="files/HW-PCB-Layout-Design-Guide/vias2.png">
 </p>
 
 <div align="center">
@@ -446,7 +446,7 @@ Traces can be routed beneath the area of the balun and low-pass filter sections 
 4. Use as many grounding vias at the GND metal edges (especially at the edge of the PCB and along the VDD traces) as possible in order to reduce their harmonic radiation caused by the fringing field.
 
 <p align="center">
-  <img src="files/Layout-Design-Guide/vias3.png">
+  <img src="files/HW-PCB-Layout-Design-Guide/vias3.png">
 </p>
 
 <div align="center">
@@ -459,7 +459,7 @@ Traces can be routed beneath the area of the balun and low-pass filter sections 
 5. In a design with more than two layers, all of the wires/traces should be placed in one of the inner layers, especially the VDD trace. Also avoid putting it close to the edge of the PCB. The whole top and bottom layers should contain as much continuous GND metallization as possible in order to reduce harmonics/spurs radiations from the signal traces.
 
 <p align="center">
-  <img src="files/Layout-Design-Guide/layers.png">
+  <img src="files/HW-PCB-Layout-Design-Guide/layers.png">
 </p>
 
 <div align="center">
@@ -475,7 +475,7 @@ Traces can be routed beneath the area of the balun and low-pass filter sections 
 There are some mistakes in the following design. Please try to find all the problems, which can cause detuning of the fundamental frequency, lower power level, higher current consumption, degraded sensitivity and higher harmonic power level as well. (tip: 7 mistakes)
 
 <p align="center">
-  <img src="files/Layout-Design-Guide/example.png">
+  <img src="files/HW-PCB-Layout-Design-Guide/example.png">
 </p>
 
 <div align="center">
