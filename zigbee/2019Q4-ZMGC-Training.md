@@ -1,9 +1,7 @@
 ********
 ![zigbee](files/zigbee.png)
 ********
-&nbsp;  
-&nbsp;  
-&nbsp;  
+
 
 # 2019 ZMGC Zigbee Training
 ## Preparatory Course

@@ -1,9 +1,7 @@
 ********
 ![zigbee](files/zigbee.png)
 ********
-&nbsp;  
-&nbsp;  
-&nbsp;  
+
 
 # 2020Q2 物联网Zigbee开发培训－Silicon Labs芯科科技专场
 ## 预备课程
@@ -22,10 +20,10 @@
     <tr>
         <td rowspan="4">2020-06-29</td>
         <td rowspan="2">09:45 ~ 12:00</td>
-        <td><a href="Zigbee-Introduction-of-Zigbee-Basic">Zigbee基础知识介绍</a></td>
+        <td><a href="Introduction-of-Zigbee-Basic">Zigbee基础知识介绍</a></td>
     </tr>
     <tr>
-        <td><a href="Zigbee-Introduction-of-EmberZnet-and-AppBuilder">EmberZnet协议栈介绍及开发工具AppBuilder介绍</a></td>
+        <td><a href="Introduction-of-EmberZnet-and-AppBuilder">EmberZnet协议栈介绍及开发工具AppBuilder介绍</a></td>
     </tr>
     <tr>
         <td>13:45 ~ 17:00</td>
@@ -60,7 +58,7 @@
     <tr>
         <td rowspan="7">2020-07-01</td>
         <td rowspan="5">09:45 ~ 12:00</td>
-        <td><a href="Zigbee-Hands-on-Gateway-OTA">网关设计总体框架介绍</a></td>
+        <td><a href="files\ZB-2020Q2-ZMGC-Training\LCGW_lab_sessions-cn.docx">网关设计总体框架介绍</a></td>
     </tr>
     <tr>
         <td><a href="">Zigbee 3.0网关硬件设计介绍</a></td>
