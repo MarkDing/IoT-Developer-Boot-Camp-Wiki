@@ -56,50 +56,49 @@
         <td>在线答疑</td>
     </tr>
     <tr>
-        <td rowspan="7">2020-07-01</td>
-        <td rowspan="5">09:45 ~ 12:00</td>
-        <td><a href="files/ZB-2020Q2-ZMGC-Training/LCGW_lab_sessions-cn.docx">网关设计总体框架介绍</a></td>
+        <td rowspan="8">2020-07-01</td>
+        <td rowspan="6">09:45 ~ 12:00</td>
     </tr>
     <tr>
-        <td><a href="">Zigbee 3.0网关硬件设计介绍</a></td>
+        <td><a href="files/ZB-2020Q2-ZMGC-Training/LCGW_lab_sessions-cn.docx">Zigbee 3.0 RTOS网关介绍  </a></td>
     </tr>
     <tr>
-        <td><a href="">基于实时操作系统的Zigbee 3.0网关软件设计介绍</a></td>
+        <td><a href="">Zigbee 3.0网关硬件设计概述 </a></td>
     </tr>  
     <tr>
-        <td><a href="">Zigbee 3.0网关升级及设备升级介绍</a></td>
+        <td><a href="">基于实时操作系统的Zigbee 3.0网关软件设计概述</a></td>
     </tr>  
     <tr>
-        <td><a href="">基于FreeRTOS的Zigbee 3.0网关之Zigbee控制接口实例</a></td>
+        <td><a href="">Zigbee 3.0网关NCP升级及设备OTA升级概述</a></td>
+    </tr>
+    <tr>
+        <td><a href="">低成本网关LCGW固件编译和更新</a></td>
     </tr>
     <tr>
         <td>13:45 ~ 17:00</td>
-        <td>实践课：学员自行构建LCGWv2 Zigbee Gateway FreeRTOS CLI固件并操作CLI命令</td>
+        <td>实践课：学员自行构建低成本网关ZigbeeGatewayFreeRTOS CLI固件并操作CLI命令</td>
     </tr>    
     <tr>
         <td>17:00 ~ 18:00</td>
         <td>在线答疑</td>
     </tr>
     <tr>
-        <td rowspan="7">2020-07-02</td>
-        <td rowspan="5">09:45 ~ 12:00</td>
+        <td rowspan="6">2020-07-02</td>
+        <td rowspan="4">09:45 ~ 12:00</td>
         <td><a href="">Zigbee 3.0网关的Wi-Fi和Zigbee共存设计</a></td>
     </tr>
     <tr>
         <td><a href="">Zigbee 3.0网关云端功能开发</a></td>
     </tr>
     <tr>
-        <td><a href="">LCGW SQA</a></td>
+        <td><a href="">LCGW软件质量保证</a></td>
     </tr>  
     <tr>
-        <td><a href="">实例演示：低成本Zigbee网关的共存设计演示及物联网云控制演示（手机App端）</a></td>
+        <td><a href="">实例演示：阿里云生活物联网平台Zigbee低成本网关演示</a></td>
     </tr>  
-    <tr>
-        <td><a href="">Zigbee 3.0网关的代码编译及烧录</a></td>
-    </tr>
     <tr>
         <td>13:45 ~ 17:00</td>
-        <td>实践课：学员自行构建LCGWv2阿里云网关示例固件，通过手机应用添加网关、Z3 Light和Z3 Switch设备，设置云规则引擎</td>
+        <td>实践课：学员自行构建低成本网关的阿里云网关示例固件，通过手机应用添加网关、Zigbee灯和Zigbee开关设备设备，设置云规则引擎</td>
     </tr>    
     <tr>
         <td>17:00 ~ 18:00</td>
