@@ -58,7 +58,7 @@
     <tr>
         <td rowspan="7">2020-07-01</td>
         <td rowspan="5">09:45 ~ 12:00</td>
-        <td><a href="files\ZB-2020Q2-ZMGC-Training\LCGW_lab_sessions-cn.docx">网关设计总体框架介绍</a></td>
+        <td><a href="files/ZB-2020Q2-ZMGC-Training/LCGW_lab_sessions-cn.docx">网关设计总体框架介绍</a></td>
     </tr>
     <tr>
         <td><a href="">Zigbee 3.0网关硬件设计介绍</a></td>
