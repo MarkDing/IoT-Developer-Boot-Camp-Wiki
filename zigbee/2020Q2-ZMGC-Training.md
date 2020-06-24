@@ -66,7 +66,8 @@
     <tr>
         <td>
         <a href="">下载演示文稿: Zigbee-3.0-Low-Cost-Gateway-training_r0.6-2020624(cn).pdf</a><br>
-        <a href="">软件补丁</a>
+        <a href="">下载快速开始指南: qsg_Z3GatewayFreeRTOS_Aliyun_gw_example_build_for_LCGW_r1.0.2.pdf</a><br>
+        <a href="">下载软件补丁</a>
         </td>
     </tr>
     <tr>
