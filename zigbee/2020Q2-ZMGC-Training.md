@@ -65,8 +65,8 @@
     </tr>
     <tr>
         <td>
-        <a href="files/ZB-2020Q2-ZMGC-Traning/Zigbee-3.0-Low-Cost-Gateway-training_r0.6_20200628(cn).pdf">下载演示文稿: Zigbee-3.0-Low-Cost-Gateway-training_r0.6_20200628(cn).pdf</a><br>
-        <a href="files/ZB-2020Q2-ZMGC-Traning/qsg_Z3GatewayFreeRTOS_Aliyun_gw_example_build_for_LCGW_r1.0.2.pdf">下载快速开始指南: qsg_Z3GatewayFreeRTOS_Aliyun_gw_example_build_for_LCGW_r1.0.2.pdf</a><br>
+        <a href="files/ZB-2020Q2-ZMGC-Training/Zigbee-3.0-Low-Cost-Gateway-training_r0.6_20200628(cn).pdf">下载演示文稿: Zigbee-3.0-Low-Cost-Gateway-training_r0.6_20200628(cn).pdf</a><br>
+        <a href="files/ZB-2020Q2-ZMGC-Training/qsg_Z3GatewayFreeRTOS_Aliyun_gw_example_build_for_LCGW_r1.0.2.pdf">下载快速开始指南: qsg_Z3GatewayFreeRTOS_Aliyun_gw_example_build_for_LCGW_r1.0.2.pdf</a><br>
         </td>
     </tr>
     <tr>
@@ -88,7 +88,7 @@
         <td>13:45 ~ 17:00</td>
         <td>
             实践课：学员自行构建低成本网关ZigbeeGatewayFreeRTOS CLI固件并操作CLI命令. <br>
-            <a href="files/ZB-2020Q2-ZMGC-Traning/LCGW_lab_sessions-cn.pdf">下载实验练习指南: LCGW_lab_sessions-cn.pdf</a>
+            <a href="files/ZB-2020Q2-ZMGC-Training/LCGW_lab_sessions-cn.pdf">下载实验练习指南: LCGW_lab_sessions-cn.pdf</a>
         </td>
     </tr>    
     <tr>
@@ -113,7 +113,7 @@
         <td rowspan="2">13:45 ~ 17:00</td>
         <td>
         实践课：学员自行构建低成本网关的阿里云网关示例固件，通过手机应用添加网关、Zigbee灯和Zigbee开关设备设备，设置云规则引擎<br>
-        <a href="files/ZB-2020Q2-ZMGC-Traning/ug_Aliyun_iotkit_integration_of_Z3GatwayFreeRTOS_for_LCGW_r1.0.2.pdf">下载用户指南更新: ug_Aliyun_iotkit_integration_of_Z3GatwayFreeRTOS_for_LCGW_r1.0.2.pdf</a>
+        <a href="files/ZB-2020Q2-ZMGC-Training/ug_Aliyun_iotkit_integration_of_Z3GatwayFreeRTOS_for_LCGW_r1.0.2.pdf">下载用户指南更新: ug_Aliyun_iotkit_integration_of_Z3GatwayFreeRTOS_for_LCGW_r1.0.2.pdf</a>
         </td>
     </tr>
     <tr>
