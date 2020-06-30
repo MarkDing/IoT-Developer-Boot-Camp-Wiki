@@ -67,6 +67,7 @@
         <td>
         <a href="files/ZB-2020Q2-ZMGC-Training/Zigbee-3.0-Low-Cost-Gateway-training_r0.6_20200628(cn).pdf">下载演示文稿: Zigbee-3.0-Low-Cost-Gateway-training_r0.6_20200628(cn).pdf</a><br>
         <a href="files/ZB-2020Q2-ZMGC-Training/qsg_Z3GatewayFreeRTOS_Aliyun_gw_example_build_for_LCGW_r1.0.2.pdf">下载快速开始指南: qsg_Z3GatewayFreeRTOS_Aliyun_gw_example_build_for_LCGW_r1.0.2.pdf</a><br>
+        <a href="files/ZB-2020Q2-ZMGC-Training/amebad_sdk_v6.2_aliyun_gw_example_patch-v1.0.2-20200630.zip">下载amebad_sdk_v6.2_aliyun_gw_example_patch v1.0.2软件补丁</a>
         </td>
     </tr>
     <tr>
