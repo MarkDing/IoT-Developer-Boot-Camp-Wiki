@@ -123,11 +123,15 @@
     <tr>
         <td>17:00 ~ 18:00</td>
         <td>在线答疑</td>
+        <>
     </tr>
     <tr>
         <td>2020-07-03</td>
         <td>09:45 ~ 18:00</td>
-        <td>集中线上答疑</td>
+        <td>
+        集中线上答疑<br>
+        <a href="files/ZB-2020Q2-ZMGC-Training/LCGW-FAQ(cn).pdf">下载 LCGW-FAQ(cn).pdf
+        </td>
     </tr>                                 
 </table>
 
