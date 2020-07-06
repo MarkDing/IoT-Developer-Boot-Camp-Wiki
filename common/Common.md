@@ -8,5 +8,6 @@ We discuss the common IoT knowledge here that applies to all wireless product or
 * [Debugging Custom Board](Debugging-Custom-Board)
 * [Opening Console](Opening-Console)
 * [Network Analyzer](Network-Analyzer)
+* [Smart Speaker](EFR32-Smart-Speaker-Solution-Summary)
 
 ********

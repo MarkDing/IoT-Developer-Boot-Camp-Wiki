@@ -1,5 +1,5 @@
 ********
-![hardware](files/hardware-icon-grey-30x30.png)
+![hardware](files/hardware.png)
 ********
 
 # Hardware Boot Camp
@@ -7,11 +7,11 @@
 ## One Day Workshop
 | Time | Content |  
 |:---- |:----|    
-| 1 hour | [Wireless-Products-Protocols-and-Applications](Wireless-Products-Protocols-and-Applications) |
-| 2 hour | [Schematic-Design-Guide](Schematic-Design-Guide) |
-| 3 hour | [PCB-Layout-Guide](PCB-Layout-Guide) |
-| 1.5 hour | [Comply-to-the-Regulations(Certifications)](Comply-to-the-Regulations-Certifications )|
-| 0.5 hour | [Range-Test](Range-Test) |
+| 1 hour | [Wireless Products Protocols and Applications](Wireless-Products-Protocols-and-Applications)
+| 2 hour | [Schematic Design Guide](Schematic-Design-Guide) |
+| 2.5 hour | [PCB Layout Design Guide](PCB-Layout-Design-Guide) |
+| 1.5 hour | [Comply to the Regulations](Comply-to-the-Regulations)|
+| 1 hour | [RF Test Guide](RF-Test-Guide) |
 
 *************
 
