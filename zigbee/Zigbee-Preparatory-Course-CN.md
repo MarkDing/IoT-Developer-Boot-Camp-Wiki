@@ -331,13 +331,13 @@ Zigbee新手训练营系列培训将涵盖Zigbee基本知识，EmberZNet SDK和W
 ***
 
 # 5. 常见问题及解答
-**Simplicity Studio在我的电脑上无法运行**
+**Simplicity Studio在我的电脑上无法运行**  
 请确保你的工作电脑有至少8GB RAM内存，因为在无线项目开发时，Simplicity Studio要求至少8GB RAM。  
 
-**为什么无法正确的创建/生成项目文件？**
+**为什么无法正确的创建/生成项目文件？**  
 请检查在你的项目名称中是否包含有"-"或者中文字符。项目命令时，只允许使用下划线"_"来作为连字符。
 
-**为什么无法正确编译ZigbeeMinimal项目？**
+**为什么无法正确编译ZigbeeMinimal项目？**  
 在无线项目中有非常多的链接文件，所以请确保你当前的workspace同Simplicity Studio的安装目录处在同一个磁盘。否则在项目编译时可能会出现错误。  
 
 **Github无法访问，或者图片无法显示**  
