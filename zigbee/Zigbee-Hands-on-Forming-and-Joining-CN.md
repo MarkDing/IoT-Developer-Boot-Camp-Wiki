@@ -196,7 +196,7 @@ AppBuilder将用于创建应用程序。Appbuilder是一个交互式GUI工具，
   <b>Figure 3-7 配置UART流控方式（Thunderboard）</b>
 </div>  
 </br> 
-如果使用BRD4162A，请忽略上面的UART流控制配置步骤。
+如果使用BRD4162A，请忽略上面的UART流控制配置步骤。   
 
 此时，项目被放置在默认的工作空间目录中，但是大多数源文件都缺失。这些文件稍后将根据AppBuilder设置进行链接或生成。    
 要打开AppBuilder，请双击“ Zigbee_Light_ZC.isc”文件。文件中有多个选项卡，让我们仔细看看每个选项卡。

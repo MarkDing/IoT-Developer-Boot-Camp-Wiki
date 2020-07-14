@@ -183,11 +183,11 @@ Before the builder would be opened, I recommend to select the target board on th
 </div>  
 </br>  
 
-7. Configure the "Zigbee_Light_ZC" project. 
+7. Configure the "Zigbee_Light_ZC" project.  
 **Note**: If you use Thunderboard Sense 2, you need to configure the UART flow control mode, change it from default mode(hardware flow control) to software flow control. To configure it, click double to the "brd4166a_efr32mg12p332f1024gl125.hwconf" file, then.
 * Click DefaultMode Peripherals Tab
 * Click USART0
-* Change flow control mode from USART-based CTS/RTS to Xon-Xoff.See Figure 3-7. 
+* Change flow control mode from USART-based CTS/RTS to Xon-Xoff. See Figure 3-7. 
 
 <div align="center">
   <img src="files/ZB-Zigbee-Hands-on-Forming-and-Joining/configure_flow_control.png">  
@@ -197,7 +197,7 @@ Before the builder would be opened, I recommend to select the target board on th
 </div>  
 </br> 
 
-If you use BRD4162A, please ignore the UART flow control configuration above.
+If you use BRD4162A, please ignore the UART flow control configuration above.   
 
 At this point the project is placed into the default workspace directory, but most of the source files are missing. These files will be later linked or generated according to the AppBuilder settings.  
 To open the AppBuilder, click double to the "Zigbee_Light_ZC.isc" file. There are multiple tabs in the file, let's have a closer look at each tab.  
