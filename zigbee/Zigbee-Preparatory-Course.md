@@ -23,7 +23,7 @@ Below is the Kit Contents of the EFR32 Mighty Gecko Wireless Starter Kit.
 　AA Battery Board (supports running +19 from battery)  
 　Cables  
 　EFR32MG Getting Started Card  
-
+You also can use [Thunderboard Sense 2 Kit](https://www.silabs.com/development-tools/thunderboard/thunderboard-sense-two-kit) which is a compact, featured-packed development platform. Be careful that you can NOT get Zigbee SDK through Thunderboard Sense 2 Kit, make sure you can get Zigbee SDK before trying to use Thunderboard Sense 2 Kit.
 **Note**: If you are going to attend Zigbee training and all of the hardware will be provided by the organizer. Please just reach out to the organizer of the training event, they will help to provide you a temporary account with Zigbee SDK access granted.  
 
 ## 2.2. Software requirements

@@ -23,7 +23,7 @@
 　AA电池板（支持电池运行+19）  
 　USB线缆  
 　EFR32MG入门卡  
-
+你也可以使用Y[Thunderboard Sense 2 套件](https://www.silabs.com/development-tools/thunderboard/thunderboard-sense-two-kit)，这个套件是一个相对精简的开发板. 需要注意的是这个套件不提供Zigbee SDK的下载权限， 如果您需使用Thunderboard Sense 2 套件，请确保您能通过其他方式下载Zigbee SDK。
 注意：如果您要参加Zigbee培训，所有硬件将由组织者提供。请直接与培训活动的组织者联系，他们将为您提供一个授予Zigbee SDK访问权限的临时帐户。
 
 ## 2.2. 软件需求
