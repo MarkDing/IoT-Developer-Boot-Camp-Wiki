@@ -74,7 +74,9 @@ In fact, the prerequisites of the Zigbee boot camp series training is documented
 
 ## 2.1. Hardware Requirements
 * 2 WSTK Main Development Board  
-* 2 EFR32MG12 radio boards (BRD4162A)  
+* 2 EFR32MG12 radio boards (BRD4162A) 
+Or 
+* 2 Thunderboard Sense 2(BRD4166A)
 
 ## 2.2. Software Requirements
 Make sure you have installed the latest EmberZNet SDK (which is v6.6.4 at the time of this document) and compatible GCC toolchain on your PC.  
@@ -165,16 +167,38 @@ Before the builder would be opened, I recommend to select the target board on th
 </div>  
 </br>  
 
-6.  In next window (Project Setup), double check the board is BRD4162A, if not, you can correct it manually. And also check the compiler is "GNU ARM v7.2.1". Click Finish. See Figure 3‑6.  
+6.  In next window (Project Setup), double check the board is BRD4162A, if not, you can correct it manually. If you use Thunderboard Sense 2, please choose BRD4166A.  And also check the compiler is "GNU ARM v7.2.1". Click Finish. See Figure 3‑6.  
 <div align="center">
   <img src="files/ZB-Zigbee-Hands-on-Forming-and-Joining/check_the_board_and_compiler.png">  
 </div>  
 <div align="center">
-  <b>Figure 3‑6 Check the board and compiler</b>
+  <b>Figure 3‑6A Check the board and compiler</b>
+</div>  
+</br> 
+<div align="center">
+  <img src="files/ZB-Zigbee-Hands-on-Forming-and-Joining/check_the_board_and_compiler_B.png">  
+</div>  
+<div align="center">
+  <b>Figure 3‑6B Check the board and compiler for Thunderboard</b>
 </div>  
 </br>  
 
 7. Configure the "Zigbee_Light_ZC" project.  
+**Note**: If you use Thunderboard Sense 2, you need to configure the UART flow control mode, change it from default mode(hardware flow control) to software flow control. To configure it, click double to the "brd4166a_efr32mg12p332f1024gl125.hwconf" file, then.
+* Click DefaultMode Peripherals Tab
+* Click USART0
+* Change flow control mode from USART-based CTS/RTS to Xon-Xoff. See Figure 3-7. 
+
+<div align="center">
+  <img src="files/ZB-Zigbee-Hands-on-Forming-and-Joining/configure_flow_control.png">  
+</div>  
+<div align="center">
+  <b>Figure 3-7 configure_flow_control for Thunderboard</b>
+</div>  
+</br> 
+
+If you use BRD4162A, please ignore the UART flow control configuration above.   
+
 At this point the project is placed into the default workspace directory, but most of the source files are missing. These files will be later linked or generated according to the AppBuilder settings.  
 To open the AppBuilder, click double to the "Zigbee_Light_ZC.isc" file. There are multiple tabs in the file, let's have a closer look at each tab.  
 
@@ -183,13 +207,13 @@ This page gives information about the current project configuration, its path, f
 **Note**: It's important to mention that in case of changing the toolchain or the board, please always create a new project rather than modify the project settings.  
 
 **ZCL Clusters**  
-One of the most important setting is the ZCL configurations. The type of the device is based on its clusters and attributes. The Silicon Labs pre-defined most of the available device types. In our tutorial it's a "HA Light On/Off Light" kind of device. To enable all the mandatory clusters and attribute for a Light, click on the "ZCL device type" dropdown menu, then select "HA Light On/Off Light" template. See Figure 3‑7.  
+One of the most important setting is the ZCL configurations. The type of the device is based on its clusters and attributes. The Silicon Labs pre-defined most of the available device types. In our tutorial it's a "HA Light On/Off Light" kind of device. To enable all the mandatory clusters and attribute for a Light, click on the "ZCL device type" dropdown menu, then select "HA Light On/Off Light" template. See Figure 3-8.  
 
 <div align="center">
   <img src="files/ZB-Zigbee-Hands-on-Forming-and-Joining/select_ZCL_device_type.png">  
 </div>  
 <div align="center">
-  <b>Figure 3‑7 Select ZCL device type</b>
+  <b>Figure 3-8 Select ZCL device type</b>
 </div>  
 </br>  
 
@@ -199,24 +223,24 @@ After selecting the template, new enabled clusters and attributes are appeared i
 **Note**: It's not possible to modify these templates, therefore the "ZigBee Custom.." should be used if there is need to add any additional cluster.  
 
 **Zigbee Stack**  
-This tab lets to change the device type in network aspect. Since the router device cannot form centralized network, the "Coordinator and Router" type must be selected. The default "Zigbee 3.0 Security" is appropriate. See Figure 3‑8.  
+This tab lets to change the device type in network aspect. Since the router device cannot form centralized network, the "Coordinator and Router" type must be selected. The default "Zigbee 3.0 Security" is appropriate. See Figure 3-9.  
 <div align="center">
   <img src="files/ZB-Zigbee-Hands-on-Forming-and-Joining/change_device_type_to_coordinator.png">  
 </div>  
 <div align="center">
-  <b>Figure 3‑8 Change device type to Coordinator</b>
+  <b>Figure 3-9 Change device type to Coordinator</b>
 </div>  
 </br>  
 
 The rest of the settings should not be modified, because the device operates on Single network with basic clusters.  
 
 **Printing and CLI**  
-Usually the default setting is enough in this Lab. The only thing to do is verify the "Enable debug printing" box is enabled, and check-in the "On off cluster" debug prints to get more information later. See Figure 3‑9.  
+Usually the default setting is enough in this Lab. The only thing to do is verify the "Enable debug printing" box is enabled, and check-in the "On off cluster" debug prints to get more information later. See Figure 3-10.  
 <div align="center">
   <img src="files/ZB-Zigbee-Hands-on-Forming-and-Joining/debug_printing.png">  
 </div>  
 <div align="center">
-  <b>Figure 3‑9 Debug printing</b>
+  <b>Figure 3-10 Debug printing</b>
 </div>  
 </br>
 
@@ -227,7 +251,7 @@ This tab is modified quite rarely. It would be possible to use external hardware
 
 **Plugins**  
 The plugins are individual software packages which implement a functionality. A plugin can consist of libraries and source files as well. These are collected on this tab, and the selection of device type doesn't filter out the plugins that the device cannot use, thus it must be done manually. For example, this sample application doesn't enable the necessary plugins for network forming/opening, we need to do that manually.  
-The below plugins must be added or removed to get a device which can operate as a Coordinator. See the Figure 3-10 below for how to enable the plugins in Appbuilder.  
+The below plugins must be added or removed to get a device which can operate as a Coordinator. See the Figure 3-11 below for how to enable the plugins in Appbuilder.  
 Please note that the plugins mentioned below are the minimal requirements to finish the Forming and Joining hands-on, however, it's not enough for making the "Coordinator/Router" and "Router" device to pass the Z3 certification. For Z3 certification, please refer to the Z3LightSoc and Z3SwitchSoc examples for the necessary plugins.  
 
 The **Network Creator** and **Network Creator Security** plugins implement the network forming and opening functionality, therefore these are required to have.  
@@ -240,7 +264,7 @@ The **Serial** establishes the Command Line Interface (CLI). This interface lets
   <img src="files/ZB-Zigbee-Hands-on-Forming-and-Joining/plugins_enable.png">  
 </div>  
 <div align="center">
-  <b>Figure 3-10 Plugins</b>
+  <b>Figure 3-11 Plugins</b>
 </div>  
 </br>
 
@@ -256,12 +280,12 @@ The **Serial** establishes the Command Line Interface (CLI). This interface lets
 
 Before going ahead, it's a good place to point how the users can find more information about the plugins. As mentioned above, some plugins have source files, not just pre-built libraries. These files can be examined to find some not detailed information about its internal working. The header, and source files can be found at "C:\\SiliconLabs\\SimplicityStudio\\v4\\developer\\sdks\\gecko_sdk_suite\\v2.6\\protocol\\zigbee\\app\\framework", under "plugin", "plugin-soc" and "plugin-host" folders. This separation is used to identify the commonly used, SoC and Host specific plugins.  
 
-These files are available from the AppBuilder as well, but some extra information can be found, as the implemented, defined callbacks and APIs by the plugin. See Figure 3‑11.  
+These files are available from the AppBuilder as well, but some extra information can be found, as the implemented, defined callbacks and APIs by the plugin. See Figure 3-12.  
 <div align="center">
   <img src="files/ZB-Zigbee-Hands-on-Forming-and-Joining/plugin_details.png">  
 </div>  
 <div align="center">
-  <b>Figure 3‑11 Plugin details</b>
+  <b>Figure 3-12 Plugin details</b>
 </div>  
 </br>  
 
@@ -282,12 +306,12 @@ Note: This tab is not used in this project. Some BLE related plugin make it edit
 8. Save the modification of the .isc file, and it's ready for generating the project files and link the necessary SDK sources and libraries now.  
 Press the Generate button on the upper-right of the Appbuilder.  
 
-The "Generation successful" label signs all the required files are created. See Figure 3‑12.  
+The "Generation successful" label signs all the required files are created. See Figure 3-13.  
 <div align="center">
   <img src="files/ZB-Zigbee-Hands-on-Forming-and-Joining/generation_result.png">  
 </div>  
 <div align="center">
-  <b>Figure 3‑12 Generation result</b>
+  <b>Figure 3-13 Generation result</b>
 </div>  
 </br>  
 

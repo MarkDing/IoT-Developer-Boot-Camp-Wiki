@@ -76,6 +76,8 @@ Zigbee快速入门——新兵训练营系列培训的实验环节将涵盖以�
 ## 2.1. 硬体需求
 * 2个无线入门套件 (WSTK) 主板
 * 2个EFR32MG12无线板（BRD4162A）  
+或者 
+* 2个Thunderboard Sense 2开发板(BRD4166A)
 
 ## 2.2. 软件需求
 确保已在PC上安装了最新的EmberZNet SDK（在本文撰写时为v6.6.4）和兼容的GCC工具链。 
@@ -165,16 +167,37 @@ AppBuilder将用于创建应用程序。Appbuilder是一个交互式GUI工具，
 </div>  
 </br>  
 
-6.	在下一个窗口（项目设置）中，仔细检查板子是否为BRD4162A，如果不是，则可以手动进行更正。并且还要检查编译器是“ GNU ARM v7.2.1”。单击完成。请参见图3-6。
+6.	在下一个窗口（项目设置）中，仔细检查板子是否为BRD4162A，如果不是，则可以手动进行更正。如果使用的是Thunderboard sense2 请选择BRD4166A。并且还要检查编译器是“ GNU ARM v7.2.1”。单击完成。请参见图3-6。
 <div align="center">
   <img src="files/ZB-Zigbee-Hands-on-Forming-and-Joining/check_the_board_and_compiler.png">  
 </div>  
 <div align="center">
-  <b>图3-6 检查开发板和编译器</b>
+  <b>图3-6A 检查开发板和编译器</b>
+</div>  
+</br>  
+<div align="center">
+  <img src="files/ZB-Zigbee-Hands-on-Forming-and-Joining/check_the_board_and_compiler_B.png">  
+</div>  
+<div align="center">
+  <b>Figure 3‑6B 检查开发板和编译器(Thunderboard)</b>
 </div>  
 </br>  
 
 7.	设置“ Zigbee_Light_ZC”项目。   
+**注意**: 如果使用Thunderboard Sense 2，则需要配置UART流控模式，将其从默认模式（硬件流控）更改为软件流控。 要进行配置，请双击“ brd4166a_efr32mg12p332f1024gl125.hwconf”文件， 然后。
+* 点击 DefaultMode Peripherals 
+* 点击 USART0
+* 将 flow control mode 从 USART-based CTS/RTS 改为 Xon-Xoff。请参见图3-7。
+
+<div align="center">
+  <img src="files/ZB-Zigbee-Hands-on-Forming-and-Joining/configure_flow_control.png">  
+</div>  
+<div align="center">
+  <b>Figure 3-7 配置UART流控方式（Thunderboard）</b>
+</div>  
+</br> 
+如果使用BRD4162A，请忽略上面的UART流控制配置步骤。   
+
 此时，项目被放置在默认的工作空间目录中，但是大多数源文件都缺失。这些文件稍后将根据AppBuilder设置进行链接或生成。    
 要打开AppBuilder，请双击“ Zigbee_Light_ZC.isc”文件。文件中有多个选项卡，让我们仔细看看每个选项卡。
 
@@ -183,12 +206,12 @@ AppBuilder将用于创建应用程序。Appbuilder是一个交互式GUI工具，
 **注意**: 如果需要更改工具链或者开发板信息，我们建议重新创建一个新的项目，而不是修改当前项目的设置。  
 
 **ZCL Clusters**  
-ZCL配置是最重要的设置之一。设备的类型基于其Cluster和属性。Silicon Labs预定义了大多数可用的设备类型。在我们的教程中，Light是一种“ HA Light On / Off Light”类型的设备。要为Light启用所有必需的Cluster和属性，请单击“ ZCL device type”下拉菜单，然后选择“ HA Light On / Off Light”模板。请参阅图3-7。
+ZCL配置是最重要的设置之一。设备的类型基于其Cluster和属性。Silicon Labs预定义了大多数可用的设备类型。在我们的教程中，Light是一种“ HA Light On / Off Light”类型的设备。要为Light启用所有必需的Cluster和属性，请单击“ ZCL device type”下拉菜单，然后选择“ HA Light On / Off Light”模板。请参阅图3-8。
 <div align="center">
   <img src="files/ZB-Zigbee-Hands-on-Forming-and-Joining/select_ZCL_device_type.png">  
 </div>  
 <div align="center">
-  <b>图3-7 选择ZCL设备类型</b>
+  <b>图3-8 选择ZCL设备类型</b>
 </div>  
 </br>  
 
@@ -198,24 +221,24 @@ ZCL配置是最重要的设置之一。设备的类型基于其Cluster和属性�
 **注意**: 用户无法修改这些模板，因此，如果需要添加任何其他Cluster，则应使用“ ZigBee Custom ..”。
 
 **Zigbee Stack**  
-此选项卡可用于更改设备的类型。由于路由器设备无法构建集中式网络，因此必须选择“Coordinator or Router”类型，并保持默认的“ Zigbee 3.0 Security”设置。请参阅图3-8。
+此选项卡可用于更改设备的类型。由于路由器设备无法构建集中式网络，因此必须选择“Coordinator or Router”类型，并保持默认的“ Zigbee 3.0 Security”设置。请参阅图3-9。
 <div align="center">
   <img src="files/ZB-Zigbee-Hands-on-Forming-and-Joining/change_device_type_to_coordinator.png">  
 </div>  
 <div align="center">
-  <b>图3-8 将设备类型更改为协调器</b>
+  <b>图3-9 将设备类型更改为协调器</b>
 </div>  
 </br>  
 
 其余设置请保持默认值，因为该设备在具有基本Cluster的单一网络上运行。
 
 **Printing and CLI**  
-通常，在此实验中，默认设置已经可以满足基本的要求。唯一要做的就是确认“Enable debug printing”框已启用，然后选择“On off cluster”调试打印以获取更多信息。参见图3-9。
+通常，在此实验中，默认设置已经可以满足基本的要求。唯一要做的就是确认“Enable debug printing”框已启用，然后选择“On off cluster”调试打印以获取更多信息。参见图3-10。
 <div align="center">
   <img src="files/ZB-Zigbee-Hands-on-Forming-and-Joining/debug_printing.png">  
 </div>  
 <div align="center">
-  <b>图3-9 调试打印</b>
+  <b>图3-10 调试打印</b>
 </div>  
 </br>
 
@@ -226,7 +249,7 @@ ZCL配置是最重要的设置之一。设备的类型基于其Cluster和属性�
 
 **Plugins**  
 插件是实现功能的单独软件包。插件也可以包含库和源文件。这些文件被收集在此选项卡上，设备类型的选择不会自动过滤掉设备无法使用的插件，因此必须手动完成。例如，此示例应用程序未启用用于网络构建/打开的必要插件，我们需要手动选择。  
-必须添加或删除以下插件，以将当前设备设置为协调器设备。请参阅图3-10，了解如何在Appbuilder中启用插件。  
+必须添加或删除以下插件，以将当前设备设置为协调器设备。请参阅图3-11，了解如何在Appbuilder中启用插件。  
 请注意，下面提到的插件是完成本实验的最低需求，但是，不足以使“协调器/路由器”和“路由器”设备通过Z3认证。对于Z3认证，请参阅 Z3LightSoc和 Z3SwitchSoc示例以获取必要的插件。  
 
 该**Network Creator**和 **Network Creator Security** 插件实现网络构建开放的功能，因此，这些都要求有。  
@@ -238,7 +261,7 @@ ZCL配置是最重要的设置之一。设备的类型基于其Cluster和属性�
   <img src="files/ZB-Zigbee-Hands-on-Forming-and-Joining/plugins_enable.png">  
 </div>  
 <div align="center">
-  <b>图3-10 插件</b>
+  <b>图3-11 插件</b>
 </div>  
 </br>
 
@@ -254,12 +277,12 @@ ZCL配置是最重要的设置之一。设备的类型基于其Cluster和属性�
 
 在继续介绍之前，我们在这里花费少量的篇幅来说明如何找到有关插件的更多信息。如上所述，某些插件具有源文件，而不仅仅只是预编译的库文件。可以通过查看这些源文件，以了解其内部工作的一些详细信息。头文件和源文件位于“ C:\SiliconLabs\SimplicityStudio\v4\developer\sdks\gecko_sdk_suite\v2.6\protocol\zigbee\app\framework” 目录下的“ plugin”，“ plugin-soc”和“ plugin-host” 文件夹。这几个不同的文件夹用来区分通用的、及专门用于SoC或Host的插件。
 
-从AppBuilder中也可以获取到这些信息，同时，它还提供了一些额外的信息，例如该插件所定义和实现的callback和API。请参阅图3-11。  
+从AppBuilder中也可以获取到这些信息，同时，它还提供了一些额外的信息，例如该插件所定义和实现的callback和API。请参阅图3-12。  
 <div align="center">
   <img src="files/ZB-Zigbee-Hands-on-Forming-and-Joining/plugin_details.png">  
 </div>  
 <div align="center">
-  <b>图3-11 插件详细信息</b>
+  <b>图3-12 插件详细信息</b>
 </div>  
 </br>  
 
@@ -279,12 +302,12 @@ Zigbee-BLE动态多协议蓝牙支持的配置器位于AppBuilder中。
 
 8. 保存.isc文件的修改，现在可以生成项目文件并链接必要的SDK源和库。  
 按下Appbuilder右上方的Generate按钮。
-“Generation successful!”表示已创建了所有必需文件。请参阅图3-12。
+“Generation successful!”表示已创建了所有必需文件。请参阅图3-13。
 <div align="center">
   <img src="files/ZB-Zigbee-Hands-on-Forming-and-Joining/generation_result.png">  
 </div>  
 <div align="center">
-  <b>图3-12 生成结果</b>
+  <b>图3-13 生成结果</b>
 </div>  
 </br>  
 
