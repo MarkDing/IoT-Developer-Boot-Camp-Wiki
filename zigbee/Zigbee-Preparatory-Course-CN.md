@@ -15,7 +15,9 @@
 # 2. 先决条件
 
 ## 2.1. 硬件要求
-在按照本指南中的步骤进行操作之前，您需要购买一套Zigbee开发套件，在Zigbee快速入门——新兵训练营系列实验中使用的套件是[EFR32 Mighty Gecko无线入门套件](https://www.silabs.com/products/development-tools/wireless/mesh-networking/mighty-gecko-starter-kit)。然后，您需要在[客户支持平台](https://siliconlabs.force.com/)上创建一个帐户，并在[KitRegistration](https://siliconlabs.force.com/KitRegistration)上注册开发套件的序列号，以获取Zigbee SDK访问权限。有关更多信息，请参考[KBA关于访问Silicon Labs无线网状网络协议栈](https://www.silabs.com/community/wireless/zigbee-and-thread/knowledge-base.entry.html/2017/11/22/access_to_siliconla-jk1S)。  
+### 2.1.1 无线开发套件
+在按照本指南中的步骤进行操作之前，您需要购买一套Zigbee开发套件。在Zigbee快速入门——新兵训练营系列实验中，你可以使用[EFR32MG无线入门套件](https://www.silabs.com/development-tools/wireless/zigbee/efr32mg-zigbee-thread-starter-kit), [EFR32xG21无线入门套件](https://www.silabs.com/development-tools/wireless/efr32xg21-wireless-starter-kit) 或者 [EFR32xG22无线入门套件](https://www.silabs.com/development-tools/wireless/efr32xg22-wireless-starter-kit)。  
+然后，您需要在[客户支持平台](https://siliconlabs.force.com/)上创建一个帐户，并在[KitRegistration](https://siliconlabs.force.com/KitRegistration)上注册开发套件的序列号，以获取Zigbee SDK访问权限。有关更多信息，请参考[KBA关于访问Silicon Labs无线网状网络协议栈](https://www.silabs.com/community/wireless/zigbee-and-thread/knowledge-base.entry.html/2017/11/22/access_to_siliconla-jk1S)。  
 以下是EFR32 Mighty Gecko无线入门套件的套件器件。   
 　3 x无线入门套件 (WSTK) 主板  
 　3 x EFR32MG12 2.4 GHz 19 dBm无线板  
@@ -23,8 +25,27 @@
 　AA电池板（支持电池运行+19）  
 　USB线缆  
 　EFR32MG入门卡  
-你也可以使用Y[Thunderboard Sense 2 套件](https://www.silabs.com/development-tools/thunderboard/thunderboard-sense-two-kit)，这个套件是一个相对精简的开发板. 需要注意的是这个套件不提供Zigbee SDK的下载权限， 如果您需使用Thunderboard Sense 2 套件，请确保您能通过其他方式下载Zigbee SDK。
+
+你也可以使用[Thunderboard Sense 2 套件](https://www.silabs.com/development-tools/thunderboard/thunderboard-sense-two-kit)，这个套件是一个相对精简的开发板. 需要注意的是这个套件不提供Zigbee SDK的下载权限， 如果您需使用Thunderboard Sense 2 套件，请确保您能通过其他方式下载Zigbee SDK。
+
+注意：不同的无线入门套件包含有不同的器件，请确保你有至少两片无线入门套件主板，以及相应的无线板来完成我们的实验。  
+
 注意：如果您要参加Zigbee培训，所有硬件将由组织者提供。请直接与培训活动的组织者联系，他们将为您提供一个授予Zigbee SDK访问权限的临时帐户。
+
+### 2.1.2 工作电脑
+以下是Simplicity Studio v4对于工作电脑的要求，在进行无线项目开发时，我们强烈建议你准备一台至少具有8GB RAM内存的工作电脑。  
+
+|操作系统 | 版本|
+|- |:---|
+|Windows | Windows 10 (x64)|
+|macOS | 10.14 Mojave|
+|Linux | x64 Kernel 3.13 and above tested with Ubuntu 18.04 LTS|
+
+|硬件配置 | 要求|
+|- |:---|
+|CPU | 1 GHz或更高|
+|内存 | 无线项目开发要求至少8 GB RAM|
+|磁盘空间 | 无线项目开发要求至少7 GB可用磁盘空间|
 
 ## 2.2. 软件需求
 要开发Zigbee应用程序，您将需要通过安装Simplicity Studio，EmberZNet PRO协议栈软件和兼容的工具链来配置软件开发环境。
@@ -32,7 +53,10 @@
 ### 2.2.1. Simplicity Studio
 Simplicity Studio是一个免费的基于Eclipse的集成开发环境（IDE），Silicon Labs在此基础提供了一系列的非常有用的工具。开发人员可以使用Simplicity Studio来开发，调试并分析其应用程序。  
 如果尚未安装Simplicity Studio V4，请连接到[Simplicity Studio 4](http://www.silabs.com/products/mcu/Pages/simplicity-studio-v4.aspx) 以下载安装包，并运行Simplicity Studio安装程序。  
-**注意**：为获得更好的无线协议开发体验，请确保您的PC具有8 GB或更多的RAM内存以及超过7 GB的可用磁盘空间。如果使用Windows（建议使用Windows 10），则强烈建议将Simplicity Studio安装到C：驱动器。  
+**注意**：为获得更好的无线项目开发体验，请逐条确认如下信息。  
+1. 请确保您的工作电脑具有8 GB或更多的RAM内存，以及超过7 GB的可用磁盘空间。
+2. 如果使用Windows（建议使用Windows 10），则强烈建议将Simplicity Studio安装到**C：** 盘。否则，你需要在Simplicity Studio v4的安装盘中，重新创建一个新的workspace，并切换到该workspace。  
+
 首次启动Simplicity Studio时，它将显示一个许可协议对话框。接受协议的条款，然后单击[Next]。  
 
 <div align="center">
@@ -159,7 +183,8 @@ Simplicity Studio提供了GCC（GNU编译器集合），它将在首次安装Emb
 
 ## 2.3. Github 帐户  
 由于[IoT-Developer-Boot-Camp](https://github.com/MarkDing/IoT-Developer-Boot-Camp)是一个开源项目，因此我们使用github维护所有源代码和文档，参与其中的每个人都可以提供你自己对于它的评论（意见），提交你的bug修复，新的功能需求或改进文档请求。  
-有效的github帐户是加入此项目的前提，如果没有，请[创建您的github帐户](https://github.com/join?source=header-home)。然后```Fork```[IoT-Developer-Boot-Camp](https://github.com/MarkDing/IoT-Developer-Boot-Camp)仓库并将其添加到您的监视列表中。
+有效的github帐户是加入此项目的前提，如果没有，请[创建您的github帐户](https://github.com/join?source=header-home)。然后```Fork```[IoT-Developer-Boot-Camp](https://github.com/MarkDing/IoT-Developer-Boot-Camp)仓库并将其添加到您的监视列表中。  
+如果在您所在的区域，因为网络原因导致无法访问github，可以参考网络上的一些[解决方案](https://zhuanlan.zhihu.com/p/75994966)。  
 
 [Gitter](https://gitter.im/)是面向GitHub仓库的开发人员和使用者开源的即时消息和聊天室系统。我们创建了一个公共聊天室[Zigbee Boot Camp](https://gitter.im/Silabs-IoT/Zigbee-Boot-Camp)，用于共享和讨论有关Zigbee快速入门——新兵训练营的一切。请使用您的GitHub帐户登录Gitter，然后加入此聊天室。
 
@@ -308,5 +333,20 @@ Zigbee新手训练营系列培训将涵盖Zigbee基本知识，EmberZNet SDK和W
 
 ***
 
-# 5. 结论
+# 5. 常见问题及解答
+**Simplicity Studio在我的电脑上无法运行**  
+请确保你的工作电脑有至少8GB RAM内存，因为在无线项目开发时，Simplicity Studio要求至少8GB RAM。  
+
+**为什么无法正确的创建/生成项目文件？**  
+请检查在你的项目名称中是否包含有"-"或者中文字符。项目命令时，只允许使用下划线"_"来作为连字符。
+
+**为什么无法正确编译ZigbeeMinimal项目？**  
+在无线项目中有非常多的链接文件，所以请确保你当前的workspace同Simplicity Studio的安装目录处在同一个磁盘。否则在项目编译时可能会出现错误。  
+
+**Github无法访问，或者图片无法显示**  
+如果在您所在的区域，因为网络原因导致无法访问github，可以参考网络上的一些[解决方案](https://zhuanlan.zhihu.com/p/75994966)。  
+
+***
+
+# 6. 结论
 我们希望您已经顺利完成了预备课程，并设置了开发环境为即将到来的Zigbee快速入门——新兵训练营系列培训课程做准备。完成本课程后，请填写[Zigbee预备课程反馈](https://forms.office.com/Pages/ResponsePage.aspx?id=ItjbVDFSIEuUTW9KvNVB-xO90oXNwwFJgomf3rxz4l1URjE3UzdSWFRFQlRZS05aMlBYWUNTTUJEUy4u)，我们将对您的反馈意见表示感谢，同时我们将根据调查结果采取改进措施。
