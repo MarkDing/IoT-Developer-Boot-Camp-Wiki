@@ -3,35 +3,54 @@
 
 - [1. Introduction](#1-Introduction)
 
-- [2. Determination of antenna matching network](#2-Determination-of-antenna-matching-network)
-  - [2.1 Why is antenna tuning important?](#11-Why-is-antenna-tuning-important?)
-  - [2.2 Tune and measure](#12-Tune-and-measure)
+- [2. RF regulatory certification regions](#2-RF-regulatory-certification-regions)
 
-- [3. Frequency error and HFXO Capacitor Bank(CTune) calibration](#3-Frequency-testing-and-HFXO-Capacitor-Bank(CTune)-calibration)
-  - [3.1 Why is Ctune calibration important?](#31-Why-is-Ctune-calibration-important?)
-  - [3.2 Create Railtest tool for the test](#31-Create-Railtest-tool-for-the-test)
-  - [3.3 Tune and measure](#31-Tune-and-measure)
+- [3. Determination of antenna matching network](#3-Determination-of-antenna-matching-network)
+  - [3.1 Why is antenna tuning important?](#31-Why-is-antenna-tuning-important?)
+  - [3.2 Tune and measure](#32-Tune-and-measure)
 
-- [4. Contucted Tx fundamental power and harmonics measurement](#4-Contucted-Tx-fundamental-power-and-harmonics-measurement)
-  - [4.1 RailTest commands for Tx CW signal](#41-RailTest-commands-for-Tx-CW-signal)
-  - [4.2 The Signal Analyser setup and test example](#42-The-Signal-Analyser-setup-and-test-example)
+- [4. Frequency error and HFXO Capacitor Bank(CTune) calibration](#4-Frequency-testing-and-HFXO-Capacitor-Bank(CTune)-calibration)
+  - [4.1 Why is Ctune calibration important?](#41-Why-is-Ctune-calibration-important?)
+  - [4.2 Create Railtest tool for the test](#42-Create-Railtest-tool-for-the-test)
+  - [4.3 Tune and measure](#43-Tune-and-measure)
 
-- [5. Conducted Rx sensitivity measurement](#5-Conducted-Rx-sensitivity-measurement)
-  - [5.1 The Signal Generator settings](#51-The-Signal-Generator-settings)
-  - [5.2 RailTest commands and test result](#52-RailTest-commands-and-test-result)
+- [5. Contucted Tx fundamental power and harmonics measurement](#5-Contucted-Tx-fundamental-power-and-harmonics-measurement)
+  - [5.1 RailTest commands for Tx CW signal](#51-RailTest-commands-for-Tx-CW-signal)
+  - [5.2 The Signal Analyser setup and test example](#52-The-Signal-Analyser-setup-and-test-example)
+
+- [6. Conducted Rx sensitivity measurement](#6-Conducted-Rx-sensitivity-measurement)
+  - [6.1 The Signal Generator settings](#61-The-Signal-Generator-settings)
+  - [6.2 RailTest commands and test result](#62-RailTest-commands-and-test-result)
   
-- [6. Radiation test environment](#6-Radiation-test-environment)
-  - [6.1 Typical radiation test chamber SAR](#51-Typical-radiation-test-chamber-SAR)
-  - [6.2 Procedures for radiated measurement](#52-Procedures-for-radiated-measurement)
+- [7. Radiation test environment](#7-Radiation-test-environment)
+  - [7.1 Typical radiation test chamber SAR](#71-Typical-radiation-test-chamber-SAR)
+  - [7.2 Procedures for radiated measurement](#72-Procedures-for-radiated-measurement)
 
 </details>
 
 # 1. Introduction
-As described in 4th section, the product should pass the regulation and be certified if it will be sold in that region. Usually there is no big problem if the customer comply with the design rules of Silicon Labs' reference design. But some times the customer want to customize its design to fit the final application, it needs doing some pre-tests based on customer design to pass the regulation. If some test items can not pass the regulation, then some tuning and calibration steps will be required. In the following contents, some tuning, calibration, and testing methods will be described in detail for customer reference.
+As described in [AN1048](https://www.silabs.com/documents/public/application-notes/an1048-regulatory-certifications.pdf), the product should pass the regulation and be certified if it will be sold in that region. Usually there is no big problem if the customer comply with the design rules of Silicon Labs' reference design. But some times the customer want to customize its design to fit the final application, it needs doing some pre-tests based on customer design to pass the regulation. If some test items can not pass the regulation, then some tuning and calibration steps will be required. In the following contents, it will introduce RF regulatory certification regions in brief firstly, then some tuning, calibration, and testing methods will be described in detail for customer reference.
 
-# 2. Determination of antenna matching network
+# 2. RF regulatory certification regions
+Silicon Labs has many products such as SOC chips, SiP modules, and PCB modules. And the products support main sub-GHz bands(169MHz, 434MHz, 868MHz and 915MHz) and 2.4GHz frequency band. These different products and frequency bands almost comply to regulations from any region in the world.
 
-## 2.1. Why is antenna tuning important?
+There are many region regulations such as [CE](http://ec.europa.eu/growth/sectors/electrical-engineering/red-directive_fi) (Europe), [FCC](https://www.fcc.gov/) (USA), [ISED](https://www.canada.ca/en/innovation-science-economic-development.html) (Canada), [MIC](http://www.soumu.go.jp/english/) (Japan), [KC](http://eng.kcc.go.kr/user/ehpMain.do) (South Korea) and other regions. 
+
+And there are some test houses provide certification service for the regions as following:
+<div align="center">
+  <img src="files/HW-RF-Test-Guide/Test-House.png">  
+</div> 
+
+For the certification activities, you can directly contact the region authorities:
+<div align="center">
+  <img src="files/HW-RF-Test-Guide/Authorities-Contacts.png">  
+</div>
+
+In general, there are RF, EMC and Safety separate categories to be certified in these regions, RF certification test is mainly introduced here. For more information about regulatory certification, please refer to [AN1048](https://www.silabs.com/documents/public/application-notes/an1048-regulatory-certifications.pdf).
+
+# 3. Determination of antenna matching network
+
+## 3.1. Why is antenna tuning important?
 
 A number of antenna types (e.g. printed inverted-F antenna) can inherently be matched to the desired input impedance (typically, 50-ohm single-ended) without using any external tuning component. However, the board size, plastic enclosures, metal shielding, and components in close proximity to the antenna can detune the antenna performance. Thus it leads to higher radiation harmonics, poor radation power, and degraded sensitivity. 
 In order to get an optimized radiation performance, the antenna might require tuning that can be realized in two ways:
@@ -49,7 +68,7 @@ The recommended 3-element PI network for external antenna matching purposes is h
 </div>
 
 
-## 2.2. Tune and measure
+## 3.2. Tune and measure
 
 It is recommended to add a pi network for antenna matching as shown in Figure 1. Finding appropriate values for the antenna matching components should be considered an iterative task. Usually it use a Vector Network Analyser (VNA) to tune and measure the antenna matching network as following figure shows. 
 
@@ -91,14 +110,14 @@ The following matching steps and tricks are proposed:
   b. When this goal is achieved, it is recommended to use the same values on a small batch of boards to make sure that this matching is acceptable across production tolerances.
 
 
-# 3. Frequency error and HFXO Capacitor Bank(CTune) calibration 
+# 4. Frequency testing and HFXO Capacitor Bank(CTune) calibration 
 
-## 3.1. Why is Ctune calibration important?
+## 4.1. Why is Ctune calibration important?
 It is recommended to calibrate the HFXO frequency for the devices to ensure minimum error of the radio carrier frequency. The link quality will be broken or degraded if the frequency offset (error) is big between two communication nodes. The CTune is an internal on-chip capacitor bank to tune the HFXO frequency, thus it is in charge of tuning the RF carrier frequency because the HFXO clock is used for the radio carrier frequency synthesization.
 Most Silicon Labs modules and radio boards are factory calibrated, and the CTune value is stored on the device information page, the customer can check this by reading this information. For other Silicon Labs radio boards, it is equipped with an external EEPROM which stores the CTune value. 
 For custom boards, the frequency error or crystal calibration should be performed especially for narrow bandwidth communication. It is preferred to calibrate 10-20 board's HFXO frequency per design, and get the average CTune value which can be used for the design. Of cause the customer can calibrate each board in its own manufacture test flow if time and cost allow.
 
-## 3.2. Create Railtest tool for the test 
+## 4.2. Create Railtest tool for the test 
 First of all, it should generate a Railtest tool in Simplicity Studio for all the following RF test items.You can follow these steps to generate the test tools:
 - Connect customer board and debug adapter (BRD4001A mother board) to Simplicity Studio platform.
 - Select proper radio SoCs or module and related reference board 
@@ -129,7 +148,7 @@ First of all, it should generate a Railtest tool in Simplicity Studio for all th
 After build the Railtest tool, you can use the commander tool to program customer device, then the device will be ready for RF test.
 More information for Simplicity Studio usage, please visit the application note [AN0822](https://www.Silabs.com/documents/public/application-notes/AN0822-simplicity-studio-user-guide.pdf).
 
-## 3.3. Tune and measure
+## 4.3. Tune and measure
 The frequency can be measured by a frequency counter or a Spectrum Analyzer (SA). The following strategy is proposed to determine the optimal Ctune value by using a SA:
 - Performe a conducted measurement;
 - Connect the custom board's RF port to a SA;
@@ -163,9 +182,9 @@ For more Railtest commands information, please refer to this [KBA](https://www.S
 For more CTune calibration details, it is discussed in this [KBA.](https://www.Silabs.com/community/wireless/proprietary/knowledge-base.entry.html/2019/03/18/hfxo_capacitor_bank-7uRt)
 
 
-# 4. Conducted Tx fundamental power and harmonics measurement
+# 5. Contucted Tx fundamental power and harmonics measurement
 The fundamental power and harmonics measurement are the basic test items for Tx performance. Usually the test will deploy a single tone signal at its maximum output power state, then the CW signal will be injected into a SA by a RF cable for the measurement. The RF cable should be attached to the 50 ohm point, and the antenna and its matching circuits should be removed from the RF cable attaching point. For generating the desire CW signal, it can use the Railtest tool to control the radio board to do that. As the Railtest tool is already generated in chapter 3, it can be used for this test directly.
-## 4.1. RailTest commands for Tx CW signal
+## 5.1. RailTest commands for Tx CW signal
 The RailTest commands are listed below: 
   - ->rx 0
   - ->Setchannel 0 
@@ -183,7 +202,7 @@ Railtest commands explanation:
 - The "SetTxTone 1" command sets the radio to CW transmit mode, and the radio will transmit CW signal. 
 - The CW signal transmission can be disabled by "SetTXtone 0" command. Then the Setchannel command can be issued in idle radio state.
 
-## 4.2. The Signal Analyser setup and test example
+## 5.2. The Signal Analyser setup and test example
 It is unlike CTune calibration, the fundamental and harmonics test requires big frequency span and big RBW for fast sweep measurement.
 - Set appropriate reference level for the test, e.g. if your maximum output power is +20dBm, you can set reference level to +23dBm which is greater than maximum power by 2-3 dB;
 - Set the frequency span to contain the fundamental and desired harmonics for the test. Usually 5 times fundamental frequency is desired. But according to the regulation, the maximum harmonic is tested at 10 times of fundamental;
@@ -201,10 +220,10 @@ The following picture is a test example:
 </div>
 
 
-# 5. Conducted Rx sensitivity measurement
+# 6. Conducted Rx sensitivity measurement
 Sensitivity is basic test item for Rx performance. Usually it use a Signal Generator (SG) to generate a modulated signal and inject it into radio chip. Then the radio chip can demodulate the signal into data, the Railtest tool can use the data to count the BER. Once the BER critia is achieved, then the SG power level is called sensitivity.
 
-## 5.1. The Signal Generator settings
+## 6.1. The Signal Generator settings
 At beginning of the test, it should configure SA to generate right modulated signal. Following steps will configure a GFSK modulated signal:
 
 - Set the SG to Custom Mode;
@@ -222,7 +241,7 @@ At beginning of the test, it should configure SA to generate right modulated sig
   <img src="files/HW-RF-Test-Guide/BER3.png">  
 </div>
 
-## 5.2. RailTest commands and test result
+## 6.2. RailTest commands and test result
 The RailTest commands are listed below for Rx BER test: 
   - ->rx 0
   - ->Setchannel 0 
@@ -245,9 +264,9 @@ Railtest commands explaination:
 When the PercentBitError rise up to 0.10, the SA's signal strength minus cable loss is the sensitivity 
 under 0.1% BER.
 
-# 6. Radiation test environment
+# 7. Radiation test environment
 Radiation test should be performed in an RF shielded anechoic chamber. Most of the regulation test items can be done with radiation test in an anechoic chamber. Besides that some antenna radiation parameter can be tested with radiation test such as TRP (Total Radiation Power), TIS (Total Isotropic Sensitivity), 2D cuts, and 3D pattern.
-## 6.1. Typical radiation test chamber SAR 
+## 7.1. Typical radiation test chamber SAR 
 Generally there are 3 types of test site (environment) used to do radiation test:
 - Open Area Test Site (OATS); 
 - Semi Anechoic Room (SAR); 
@@ -265,7 +284,7 @@ The antenna mast provides a variable height facility (from 1 m to 4 m) so that t
 can be optimized for maximum coupled signal between the DUT and the measurement antenna. A turntable is capable of rotation through 360° in the horizontal plane and it is used to support the DUT at a specified height, usually 1,5 m above the ground plane. 
 The measurement distance is standardized as 3m or 10m. The distance used in actual measurements shall be recorded with the test results. 
 
-## 6.2. Procedures for radiated measurement 
+## 7.2. Procedures for radiated measurement 
 Radiated measurements shall be performed with the aid of a measurement antenna and a substitution antenna described in the test site picture. The DUT and the measurement antenna shall be oriented such as to obtain the maximum emitted power level. This position shall be recorded in the measurement report:
 - The measurement antenna (device 2 in following figure) shall be oriented initially for vertical polarization unless otherwise stated and the EUT (device 1 in following figure) shall be placed on the support in its standard position and switched on.
 - The measurement equipment (device 3 in following figure) shall be connected to the measurement antenna and 
