@@ -4,35 +4,35 @@ English | [中文](Zigbee-Hands-on-Forming-and-Joining-CN)
 <summary><font size=5>Table of Contents</font> </summary>
 
 - [1. Introduction](#1-introduction)
-    - [1.1. Application features](#11-application-features)
-    - [1.2. Purpose](#12-purpose)
+  - [1.1. Application features](#11-application-features)
+  - [1.2. Purpose](#12-purpose)
 - [2. Fundamental steps](#2-fundamental-steps)
-    - [2.1. Hardware Requirements](#21-hardware-requirements)
-    - [2.2. Software Requirements](#22-software-requirements)
-        - [2.2.1. Check EmberZNet SDK](#221-check-emberznet-sdk)
-        - [2.2.2. Check Toolchains](#222-check-toolchains)
-        - [2.2.3. Using Gecko Bootloader](#223-using-gecko-bootloader)
+  - [2.1. Hardware Requirements](#21-hardware-requirements)
+  - [2.2. Software Requirements](#22-software-requirements)
+    - [2.2.1. Check EmberZNet SDK](#221-check-emberznet-sdk)
+    - [2.2.2. Check Toolchains](#222-check-toolchains)
+    - [2.2.3. Using Gecko Bootloader](#223-using-gecko-bootloader)
 - [3. Create Light application](#3-create-light-application)
 - [4. Download and test the Light application](#4-download-and-test-the-light-application)
 - [5. Create Switch application](#5-create-switch-application)
 - [6. Download and test the Switch application](#6-download-and-test-the-switch-application)
 - [7. Establish connection between Light and Switch with an install code-derived link key](#7-establish-connection-between-light-and-switch-with-an-install-code-derived-link-key)
-    - [7.1. Programming the Install Code to Switch (Router) Device](#71-programming-the-install-code-to-switch-router-device)
-        - [7.1.1. Format of the Install Code File](#711-format-of-the-install-code-file)
-        - [7.1.2. Checking the Install Code on an EFR32 Device](#712-checking-the-install-code-on-an-efr32-device)
-        - [7.1.3. Writing the Install Code into the Manufacturing Area on an EFR32 Device](#713-writing-the-install-code-into-the-manufacturing-area-on-an-efr32-device)
-        - [7.1.4. Verifying the Stored Install Code on an EFR32 Device](#714-verifying-the-stored-install-code-on-an-efr32-device)
-        - [7.1.5. Erasing the Install Code](#715-erasing-the-install-code)
-    - [7.2. Form centralized network on Light (Coordinator) device](#72-form-centralized-network-on-light-coordinator-device)
-        - [7.2.1. Derive a link key from the install code](#721-derive-a-link-key-from-the-install-code)
-        - [7.2.2. Form centralized network](#722-form-centralized-network)
-        - [7.2.3. Open the network with the derived link key](#723-open-the-network-with-the-derived-link-key)
-    - [7.3. Join the network on Switch (Router) device](#73-join-the-network-on-switch-router-device)
-    - [7.4. Capture the Network log on Light (Coordinator) device](#74-capture-the-network-log-on-light-coordinator-device)
-        - [7.4.1. Find the Network key and Derived Link key for capturing](#741-find-the-network-key-and-derived-link-key-for-capturing)
-        - [7.4.2. Add network key and Derived link key to Network Analyzer](#742-add-network-key-and-derived-link-key-to-network-analyzer)
-        - [7.4.3. Start capturing on Light (Coordinator) device](#743-start-capturing-on-light-coordinator-device)
-        - [7.4.4. Joining process in Network Analyzer](#744-joining-process-in-network-analyzer)
+  - [7.1. Programming the Install Code to Switch (Router) Device](#71-programming-the-install-code-to-switch-router-device)
+    - [7.1.1. Format of the Install Code File](#711-format-of-the-install-code-file)
+    - [7.1.2. Checking the Install Code on an EFR32 Device](#712-checking-the-install-code-on-an-efr32-device)
+    - [7.1.3. Writing the Install Code into the Manufacturing Area on an EFR32 Device](#713-writing-the-install-code-into-the-manufacturing-area-on-an-efr32-device)
+    - [7.1.4. Verifying the Stored Install Code on an EFR32 Device](#714-verifying-the-stored-install-code-on-an-efr32-device)
+    - [7.1.5. Erasing the Install Code (not-necessary)](#715-erasing-the-install-code-not-necessary)
+  - [7.2. Form centralized network on Light (Coordinator) device](#72-form-centralized-network-on-light-coordinator-device)
+    - [7.2.1. Derive a link key from the install code](#721-derive-a-link-key-from-the-install-code)
+    - [7.2.2. Form centralized network](#722-form-centralized-network)
+    - [7.2.3. Open the network with the derived link key](#723-open-the-network-with-the-derived-link-key)
+  - [7.3. Join the network on Switch (Router) device](#73-join-the-network-on-switch-router-device)
+  - [7.4. Capture the Network log on Light (Coordinator) device](#74-capture-the-network-log-on-light-coordinator-device)
+    - [7.4.1. Find the Network key and Derived Link key for capturing](#741-find-the-network-key-and-derived-link-key-for-capturing)
+    - [7.4.2. Add network key and Derived link key to Network Analyzer](#742-add-network-key-and-derived-link-key-to-network-analyzer)
+    - [7.4.3. Start capturing on Light (Coordinator) device](#743-start-capturing-on-light-coordinator-device)
+    - [7.4.4. Joining process in Network Analyzer](#744-joining-process-in-network-analyzer)
 - [8. Conclusion](#8-conclusion)
 
 </details>
@@ -70,7 +70,7 @@ The figure below illustrates the working flow of this hands-on.
 
 # 2. Fundamental steps
 Before all the individual steps would be performed, it's necessary to check some basics to avoid unwanted issues during the development.  
-In fact, the prerequisites of the Zigbee boot camp series training is documented in the [Zigbee Preparatory Course](https://github.com/MarkDing/IoT-Developer-Boot-Camp/wiki/Zigbee-Preparatory-Course), we just highlight some items here again to make sure that the development environment is ready on your side.  
+In fact, the prerequisites of the Zigbee boot camp series training is documented in the [Zigbee Preparatory Course](Zigbee-Preparatory-Course), we just highlight some items here again to make sure that the development environment is ready on your side.  
 
 ## 2.1. Hardware Requirements
 * 2 WSTK Main Development Board  
@@ -108,7 +108,7 @@ A bootloader is a program stored in reserved flash memory that can initialize a 
 **Note**: At the beginning of this series hands-on, it's highly recommended to program the pre-built bootloader images which comes with the Gecko SDK to the devices. The image that ends with "-combined" (e.g. bootloader-storage-internal-single-combined.s37) should be flashed, it contains the first+second stage of the Gecko Bootloader. The image can be found at  
 ```c:\SiliconLabs\SimplicityStudio\v4\developer\sdks\gecko_sdk_suite\v2.6\platform\bootloader\sample-apps\bootloader-storage-internal-single\efr32mg12p332f1024gl125-brd4162a\```  
 
-For more information about how to add Gecko Bootloader to your Zigbee project, please read the [preparatory course](https://github.com/MarkDing/IoT-Developer-Boot-Camp/wiki/Zigbee-Preparatory-Course#using-gecko-bootloader).  
+For more information about how to add Gecko Bootloader to your Zigbee project, please read the [preparatory course](https://github.com/MarkDing/IoT-Developer-Boot-Camp/wiki/Zigbee-Preparatory-Course#using-gecko-bootloader).
 **Hint**: More information about Gecko Bootloader, please find the documentations below.  
 [UG266: Silicon Labs Gecko Bootloader User's Guide](https://www.silabs.com/documents/public/user-guides/ug266-gecko-bootloader-user-guide.pdf)  
 [UG103.6: Bootloader Fundamentals](https://www.silabs.com/documents/public/user-guides/ug103-06-fundamentals-bootloading.pdf)  

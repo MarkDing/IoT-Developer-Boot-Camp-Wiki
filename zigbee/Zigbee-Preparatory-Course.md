@@ -1,5 +1,33 @@
 English | [中文](Zigbee-Preparatory-Course-CN)
 
+<details>
+<summary><font size=5>Table of Contents</font> </summary>
+
+- [1. Introduction](#1-introduction)
+- [2. Prerequisites](#2-prerequisites)
+  - [2.1. Hardware requirements](#21-hardware-requirements)
+    - [2.1.1 Wireless Starter Kit](#211-wireless-starter-kit)
+    - [2.1.2 Working Computer](#212-working-computer)
+  - [2.2. Software requirements](#22-software-requirements)
+    - [2.2.1. Simplicity Studio](#221-simplicity-studio)
+    - [2.2.2. EmberZNet PRO stack](#222-emberznet-pro-stack)
+    - [2.2.3. Compiler toolchain:](#223-compiler-toolchain)
+      - [2.2.3.1. GCC](#2231-gcc)
+      - [2.2.3.2. IAR (non-required)](#2232-iar-non-required)
+  - [2.3. Github Account](#23-github-account)
+- [3. Getting started with Zigbee Application Development](#3-getting-started-with-zigbee-application-development)
+  - [3.1. Connect your Hardware](#31-connect-your-hardware)
+  - [3.2. Using Gecko Bootloader](#32-using-gecko-bootloader)
+  - [3.3. Create and Build the Zigbee project](#33-create-and-build-the-zigbee-project)
+  - [3.4. Test your project](#34-test-your-project)
+- [4. Fundamental Knowledge of Zigbee](#4-fundamental-knowledge-of-zigbee)
+- [5. FAQ](#5-faq)
+- [6. Conclusion](#6-conclusion)
+
+</details>
+
+***
+
 # 1. Introduction
 This is a preparatory course that you should take if you are new to the Silicon Labs development environment and Zigbee solution. The document describes how to get started with Zigbee development using the EmberZNet PRO SDK and Simplicity Studio with a compatible wireless starter kit (WSTK), and also the fundamental Zigbee knowledge you should understand before beginning to study the Zigbee Boot Camp series courses.  
 And step-by-step instructions are provided to demonstrate how to create a basic Zigbee project for checking if the development environment is ready on your end.  
@@ -191,7 +219,6 @@ A valid github account is the prerequisite for joining this project, please [Cre
 
 If you are facing some network issue for accessing github in some region, there are abundant workaround solution available for your [reference](https://zhuanlan.zhihu.com/p/75994966).  
 
-[Gitter](https://gitter.im/) is an open-source instant messaging and chat room system for developers and users of GitHub repositories. We have created a public chat room [Zigbee Boot Camp](https://gitter.im/Silabs-IoT/Zigbee-Boot-Camp) for sharing and discussing everything about the Zigbee boot camp. Please sign in the Gitter with your GitHub account, and join this chat room.  
 
 *** 
 

@@ -15,7 +15,7 @@
 *************
 
 ## Quiz and Feedback
-- [Quiz]()
-- [Feedback]()
+- [Quiz](https://forms.office.com/Pages/ResponsePage.aspx?id=ItjbVDFSIEuUTW9KvNVB-yQBQLEEiW5EtILo81bOm-pUOVpHQkQxRzIxTDFPQTVaSzhHMlFIR1dXRS4u)
+- [Feedback](https://forms.office.com/Pages/ResponsePage.aspx?id=ItjbVDFSIEuUTW9KvNVB-yQBQLEEiW5EtILo81bOm-pUNFJGVjZCUFpJQjE0RFYwM0syRVRIQUVKTi4u)
 
 ********

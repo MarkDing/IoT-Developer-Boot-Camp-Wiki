@@ -1,5 +1,33 @@
 [English](Zigbee-Preparatory-Course) | 中文
 
+<details>
+<summary><font size=5>Table of Contents</font> </summary>
+
+- [1. 介绍](#1-介绍)
+- [2. 先决条件](#2-先决条件)
+  - [2.1. 硬件要求](#21-硬件要求)
+    - [2.1.1 无线开发套件](#211-无线开发套件)
+    - [2.1.2 工作电脑](#212-工作电脑)
+  - [2.2. 软件需求](#22-软件需求)
+    - [2.2.1. Simplicity Studio](#221-simplicity-studio)
+    - [2.2.2. EmberZNet PRO Stack](#222-emberznet-pro-stack)
+    - [2.2.3. 编译器工具链：](#223-编译器工具链)
+      - [2.2.3.1. GCC](#2231-gcc)
+      - [2.2.3.2. IAR (非必需)](#2232-iar-非必需)
+  - [2.3. Github 帐户](#23-github-帐户)
+- [3. Zigbee应用程序开发入门](#3-zigbee应用程序开发入门)
+  - [3.1. 连接您的硬件](#31-连接您的硬件)
+  - [3.2. 使用Gecko Bootloader](#32-使用gecko-bootloader)
+  - [3.3. 创建并编译Zigbee项目](#33-创建并编译zigbee项目)
+  - [3.4. 测试你的项目](#34-测试你的项目)
+- [4. Zigbee基础知识](#4-zigbee基础知识)
+- [5. 常见问题及解答](#5-常见问题及解答)
+- [6. 结论](#6-结论)
+
+</details>
+
+***
+
 # 1. 介绍
 如果您是Silicon Labs开发环境和Zigbee解决方案的新手，那么我们建议您仔细阅读并完成此预备课程。该文档描述了如何使用EmberZNet PRO SDK和Simplicity Studio以及兼容的无线入门套件（WSTK）来进行Zigbee开发，以及在开始学习Zigbee Boot Camp系列课程之前应该了解的Zigbee基本知识。  
 并且提供了分步说明来演示如何创建基本的Zigbee项目，以检查开发环境是否已准备就绪。  
@@ -186,7 +214,6 @@ Simplicity Studio提供了GCC（GNU编译器集合），它将在首次安装Emb
 有效的github帐户是加入此项目的前提，如果没有，请[创建您的github帐户](https://github.com/join?source=header-home)。然后```Fork```[IoT-Developer-Boot-Camp](https://github.com/MarkDing/IoT-Developer-Boot-Camp)仓库并将其添加到您的监视列表中。  
 如果在您所在的区域，因为网络原因导致无法访问github，可以参考网络上的一些[解决方案](https://zhuanlan.zhihu.com/p/75994966)。  
 
-[Gitter](https://gitter.im/)是面向GitHub仓库的开发人员和使用者开源的即时消息和聊天室系统。我们创建了一个公共聊天室[Zigbee Boot Camp](https://gitter.im/Silabs-IoT/Zigbee-Boot-Camp)，用于共享和讨论有关Zigbee快速入门——新兵训练营的一切。请使用您的GitHub帐户登录Gitter，然后加入此聊天室。
 
 *** 
 
