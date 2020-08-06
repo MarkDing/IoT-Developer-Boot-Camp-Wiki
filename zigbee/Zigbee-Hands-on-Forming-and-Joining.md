@@ -4,35 +4,35 @@ English | [中文](Zigbee-Hands-on-Forming-and-Joining-CN)
 <summary><font size=5>Table of Contents</font> </summary>
 
 - [1. Introduction](#1-introduction)
-    - [1.1. Application features](#11-application-features)
-    - [1.2. Purpose](#12-purpose)
+  - [1.1. Application features](#11-application-features)
+  - [1.2. Purpose](#12-purpose)
 - [2. Fundamental steps](#2-fundamental-steps)
-    - [2.1. Hardware Requirements](#21-hardware-requirements)
-    - [2.2. Software Requirements](#22-software-requirements)
-        - [2.2.1. Check EmberZNet SDK](#221-check-emberznet-sdk)
-        - [2.2.2. Check Toolchains](#222-check-toolchains)
-        - [2.2.3. Using Gecko Bootloader](#223-using-gecko-bootloader)
+  - [2.1. Hardware Requirements](#21-hardware-requirements)
+  - [2.2. Software Requirements](#22-software-requirements)
+    - [2.2.1. Check EmberZNet SDK](#221-check-emberznet-sdk)
+    - [2.2.2. Check Toolchains](#222-check-toolchains)
+    - [2.2.3. Using Gecko Bootloader](#223-using-gecko-bootloader)
 - [3. Create Light application](#3-create-light-application)
 - [4. Download and test the Light application](#4-download-and-test-the-light-application)
 - [5. Create Switch application](#5-create-switch-application)
 - [6. Download and test the Switch application](#6-download-and-test-the-switch-application)
 - [7. Establish connection between Light and Switch with an install code-derived link key](#7-establish-connection-between-light-and-switch-with-an-install-code-derived-link-key)
-    - [7.1. Programming the Install Code to Switch (Router) Device](#71-programming-the-install-code-to-switch-router-device)
-        - [7.1.1. Format of the Install Code File](#711-format-of-the-install-code-file)
-        - [7.1.2. Checking the Install Code on an EFR32 Device](#712-checking-the-install-code-on-an-efr32-device)
-        - [7.1.3. Writing the Install Code into the Manufacturing Area on an EFR32 Device](#713-writing-the-install-code-into-the-manufacturing-area-on-an-efr32-device)
-        - [7.1.4. Verifying the Stored Install Code on an EFR32 Device](#714-verifying-the-stored-install-code-on-an-efr32-device)
-        - [7.1.5. Erasing the Install Code](#715-erasing-the-install-code)
-    - [7.2. Form centralized network on Light (Coordinator) device](#72-form-centralized-network-on-light-coordinator-device)
-        - [7.2.1. Derive a link key from the install code](#721-derive-a-link-key-from-the-install-code)
-        - [7.2.2. Form centralized network](#722-form-centralized-network)
-        - [7.2.3. Open the network with the derived link key](#723-open-the-network-with-the-derived-link-key)
-    - [7.3. Join the network on Switch (Router) device](#73-join-the-network-on-switch-router-device)
-    - [7.4. Capture the Network log on Light (Coordinator) device](#74-capture-the-network-log-on-light-coordinator-device)
-        - [7.4.1. Find the Network key and Derived Link key for capturing](#741-find-the-network-key-and-derived-link-key-for-capturing)
-        - [7.4.2. Add network key and Derived link key to Network Analyzer](#742-add-network-key-and-derived-link-key-to-network-analyzer)
-        - [7.4.3. Start capturing on Light (Coordinator) device](#743-start-capturing-on-light-coordinator-device)
-        - [7.4.4. Joining process in Network Analyzer](#744-joining-process-in-network-analyzer)
+  - [7.1. Programming the Install Code to Switch (Router) Device](#71-programming-the-install-code-to-switch-router-device)
+    - [7.1.1. Format of the Install Code File](#711-format-of-the-install-code-file)
+    - [7.1.2. Checking the Install Code on an EFR32 Device](#712-checking-the-install-code-on-an-efr32-device)
+    - [7.1.3. Writing the Install Code into the Manufacturing Area on an EFR32 Device](#713-writing-the-install-code-into-the-manufacturing-area-on-an-efr32-device)
+    - [7.1.4. Verifying the Stored Install Code on an EFR32 Device](#714-verifying-the-stored-install-code-on-an-efr32-device)
+    - [7.1.5. Erasing the Install Code (not-necessary)](#715-erasing-the-install-code-not-necessary)
+  - [7.2. Form centralized network on Light (Coordinator) device](#72-form-centralized-network-on-light-coordinator-device)
+    - [7.2.1. Derive a link key from the install code](#721-derive-a-link-key-from-the-install-code)
+    - [7.2.2. Form centralized network](#722-form-centralized-network)
+    - [7.2.3. Open the network with the derived link key](#723-open-the-network-with-the-derived-link-key)
+  - [7.3. Join the network on Switch (Router) device](#73-join-the-network-on-switch-router-device)
+  - [7.4. Capture the Network log on Light (Coordinator) device](#74-capture-the-network-log-on-light-coordinator-device)
+    - [7.4.1. Find the Network key and Derived Link key for capturing](#741-find-the-network-key-and-derived-link-key-for-capturing)
+    - [7.4.2. Add network key and Derived link key to Network Analyzer](#742-add-network-key-and-derived-link-key-to-network-analyzer)
+    - [7.4.3. Start capturing on Light (Coordinator) device](#743-start-capturing-on-light-coordinator-device)
+    - [7.4.4. Joining process in Network Analyzer](#744-joining-process-in-network-analyzer)
 - [8. Conclusion](#8-conclusion)
 
 </details>
@@ -70,11 +70,13 @@ The figure below illustrates the working flow of this hands-on.
 
 # 2. Fundamental steps
 Before all the individual steps would be performed, it's necessary to check some basics to avoid unwanted issues during the development.  
-In fact, the prerequisites of the Zigbee boot camp series training is documented in the [Zigbee Preparatory Course](https://github.com/MarkDing/IoT-Developer-Boot-Camp/wiki/Zigbee-Preparatory-Course), we just highlight some items here again to make sure that the development environment is ready on your side.  
+In fact, the prerequisites of the Zigbee boot camp series training is documented in the [Zigbee Preparatory Course](Zigbee-Preparatory-Course), we just highlight some items here again to make sure that the development environment is ready on your side.  
 
 ## 2.1. Hardware Requirements
 * 2 WSTK Main Development Board  
-* 2 EFR32MG12 radio boards (BRD4162A)  
+* 2 EFR32MG12 radio boards (BRD4162A) 
+Or 
+* 2 Thunderboard Sense 2(BRD4166A)
 
 ## 2.2. Software Requirements
 Make sure you have installed the latest EmberZNet SDK (which is v6.6.4 at the time of this document) and compatible GCC toolchain on your PC.  
@@ -106,7 +108,7 @@ A bootloader is a program stored in reserved flash memory that can initialize a 
 **Note**: At the beginning of this series hands-on, it's highly recommended to program the pre-built bootloader images which comes with the Gecko SDK to the devices. The image that ends with "-combined" (e.g. bootloader-storage-internal-single-combined.s37) should be flashed, it contains the first+second stage of the Gecko Bootloader. The image can be found at  
 ```c:\SiliconLabs\SimplicityStudio\v4\developer\sdks\gecko_sdk_suite\v2.6\platform\bootloader\sample-apps\bootloader-storage-internal-single\efr32mg12p332f1024gl125-brd4162a\```  
 
-For more information about how to add Gecko Bootloader to your Zigbee project, please read the [preparatory course](https://github.com/MarkDing/IoT-Developer-Boot-Camp/wiki/Zigbee-Preparatory-Course#using-gecko-bootloader).  
+For more information about how to add Gecko Bootloader to your Zigbee project, please read the [preparatory course](https://github.com/MarkDing/IoT-Developer-Boot-Camp/wiki/Zigbee-Preparatory-Course#using-gecko-bootloader).
 **Hint**: More information about Gecko Bootloader, please find the documentations below.  
 [UG266: Silicon Labs Gecko Bootloader User's Guide](https://www.silabs.com/documents/public/user-guides/ug266-gecko-bootloader-user-guide.pdf)  
 [UG103.6: Bootloader Fundamentals](https://www.silabs.com/documents/public/user-guides/ug103-06-fundamentals-bootloading.pdf)  
@@ -165,16 +167,38 @@ Before the builder would be opened, I recommend to select the target board on th
 </div>  
 </br>  
 
-6.  In next window (Project Setup), double check the board is BRD4162A, if not, you can correct it manually. And also check the compiler is "GNU ARM v7.2.1". Click Finish. See Figure 3‑6.  
+6.  In next window (Project Setup), double check the board is BRD4162A, if not, you can correct it manually. If you use Thunderboard Sense 2, please choose BRD4166A.  And also check the compiler is "GNU ARM v7.2.1". Click Finish. See Figure 3‑6.  
 <div align="center">
   <img src="files/ZB-Zigbee-Hands-on-Forming-and-Joining/check_the_board_and_compiler.png">  
 </div>  
 <div align="center">
-  <b>Figure 3‑6 Check the board and compiler</b>
+  <b>Figure 3‑6A Check the board and compiler</b>
+</div>  
+</br> 
+<div align="center">
+  <img src="files/ZB-Zigbee-Hands-on-Forming-and-Joining/check_the_board_and_compiler_B.png">  
+</div>  
+<div align="center">
+  <b>Figure 3‑6B Check the board and compiler for Thunderboard</b>
 </div>  
 </br>  
 
 7. Configure the "Zigbee_Light_ZC" project.  
+**Note**: If you use Thunderboard Sense 2, you need to configure the UART flow control mode, change it from default mode(hardware flow control) to software flow control. To configure it, click double to the "brd4166a_efr32mg12p332f1024gl125.hwconf" file, then.
+* Click DefaultMode Peripherals Tab
+* Click USART0
+* Change flow control mode from USART-based CTS/RTS to Xon-Xoff. See Figure 3-7. 
+
+<div align="center">
+  <img src="files/ZB-Zigbee-Hands-on-Forming-and-Joining/configure_flow_control.png">  
+</div>  
+<div align="center">
+  <b>Figure 3-7 configure_flow_control for Thunderboard</b>
+</div>  
+</br> 
+
+If you use BRD4162A, please ignore the UART flow control configuration above.   
+
 At this point the project is placed into the default workspace directory, but most of the source files are missing. These files will be later linked or generated according to the AppBuilder settings.  
 To open the AppBuilder, click double to the "Zigbee_Light_ZC.isc" file. There are multiple tabs in the file, let's have a closer look at each tab.  
 
@@ -183,13 +207,13 @@ This page gives information about the current project configuration, its path, f
 **Note**: It's important to mention that in case of changing the toolchain or the board, please always create a new project rather than modify the project settings.  
 
 **ZCL Clusters**  
-One of the most important setting is the ZCL configurations. The type of the device is based on its clusters and attributes. The Silicon Labs pre-defined most of the available device types. In our tutorial it's a "HA Light On/Off Light" kind of device. To enable all the mandatory clusters and attribute for a Light, click on the "ZCL device type" dropdown menu, then select "HA Light On/Off Light" template. See Figure 3‑7.  
+One of the most important setting is the ZCL configurations. The type of the device is based on its clusters and attributes. The Silicon Labs pre-defined most of the available device types. In our tutorial it's a "HA Light On/Off Light" kind of device. To enable all the mandatory clusters and attribute for a Light, click on the "ZCL device type" dropdown menu, then select "HA Light On/Off Light" template. See Figure 3-8.  
 
 <div align="center">
   <img src="files/ZB-Zigbee-Hands-on-Forming-and-Joining/select_ZCL_device_type.png">  
 </div>  
 <div align="center">
-  <b>Figure 3‑7 Select ZCL device type</b>
+  <b>Figure 3-8 Select ZCL device type</b>
 </div>  
 </br>  
 
@@ -199,24 +223,24 @@ After selecting the template, new enabled clusters and attributes are appeared i
 **Note**: It's not possible to modify these templates, therefore the "ZigBee Custom.." should be used if there is need to add any additional cluster.  
 
 **Zigbee Stack**  
-This tab lets to change the device type in network aspect. Since the router device cannot form centralized network, the "Coordinator and Router" type must be selected. The default "Zigbee 3.0 Security" is appropriate. See Figure 3‑8.  
+This tab lets to change the device type in network aspect. Since the router device cannot form centralized network, the "Coordinator and Router" type must be selected. The default "Zigbee 3.0 Security" is appropriate. See Figure 3-9.  
 <div align="center">
   <img src="files/ZB-Zigbee-Hands-on-Forming-and-Joining/change_device_type_to_coordinator.png">  
 </div>  
 <div align="center">
-  <b>Figure 3‑8 Change device type to Coordinator</b>
+  <b>Figure 3-9 Change device type to Coordinator</b>
 </div>  
 </br>  
 
 The rest of the settings should not be modified, because the device operates on Single network with basic clusters.  
 
 **Printing and CLI**  
-Usually the default setting is enough in this Lab. The only thing to do is verify the "Enable debug printing" box is enabled, and check-in the "On off cluster" debug prints to get more information later. See Figure 3‑9.  
+Usually the default setting is enough in this Lab. The only thing to do is verify the "Enable debug printing" box is enabled, and check-in the "On off cluster" debug prints to get more information later. See Figure 3-10.  
 <div align="center">
   <img src="files/ZB-Zigbee-Hands-on-Forming-and-Joining/debug_printing.png">  
 </div>  
 <div align="center">
-  <b>Figure 3‑9 Debug printing</b>
+  <b>Figure 3-10 Debug printing</b>
 </div>  
 </br>
 
@@ -227,7 +251,7 @@ This tab is modified quite rarely. It would be possible to use external hardware
 
 **Plugins**  
 The plugins are individual software packages which implement a functionality. A plugin can consist of libraries and source files as well. These are collected on this tab, and the selection of device type doesn't filter out the plugins that the device cannot use, thus it must be done manually. For example, this sample application doesn't enable the necessary plugins for network forming/opening, we need to do that manually.  
-The below plugins must be added or removed to get a device which can operate as a Coordinator. See the Figure 3-10 below for how to enable the plugins in Appbuilder.  
+The below plugins must be added or removed to get a device which can operate as a Coordinator. See the Figure 3-11 below for how to enable the plugins in Appbuilder.  
 Please note that the plugins mentioned below are the minimal requirements to finish the Forming and Joining hands-on, however, it's not enough for making the "Coordinator/Router" and "Router" device to pass the Z3 certification. For Z3 certification, please refer to the Z3LightSoc and Z3SwitchSoc examples for the necessary plugins.  
 
 The **Network Creator** and **Network Creator Security** plugins implement the network forming and opening functionality, therefore these are required to have.  
@@ -240,7 +264,7 @@ The **Serial** establishes the Command Line Interface (CLI). This interface lets
   <img src="files/ZB-Zigbee-Hands-on-Forming-and-Joining/plugins_enable.png">  
 </div>  
 <div align="center">
-  <b>Figure 3-10 Plugins</b>
+  <b>Figure 3-11 Plugins</b>
 </div>  
 </br>
 
@@ -256,12 +280,12 @@ The **Serial** establishes the Command Line Interface (CLI). This interface lets
 
 Before going ahead, it's a good place to point how the users can find more information about the plugins. As mentioned above, some plugins have source files, not just pre-built libraries. These files can be examined to find some not detailed information about its internal working. The header, and source files can be found at "C:\\SiliconLabs\\SimplicityStudio\\v4\\developer\\sdks\\gecko_sdk_suite\\v2.6\\protocol\\zigbee\\app\\framework", under "plugin", "plugin-soc" and "plugin-host" folders. This separation is used to identify the commonly used, SoC and Host specific plugins.  
 
-These files are available from the AppBuilder as well, but some extra information can be found, as the implemented, defined callbacks and APIs by the plugin. See Figure 3‑11.  
+These files are available from the AppBuilder as well, but some extra information can be found, as the implemented, defined callbacks and APIs by the plugin. See Figure 3-12.  
 <div align="center">
   <img src="files/ZB-Zigbee-Hands-on-Forming-and-Joining/plugin_details.png">  
 </div>  
 <div align="center">
-  <b>Figure 3‑11 Plugin details</b>
+  <b>Figure 3-12 Plugin details</b>
 </div>  
 </br>  
 
@@ -282,12 +306,12 @@ Note: This tab is not used in this project. Some BLE related plugin make it edit
 8. Save the modification of the .isc file, and it's ready for generating the project files and link the necessary SDK sources and libraries now.  
 Press the Generate button on the upper-right of the Appbuilder.  
 
-The "Generation successful" label signs all the required files are created. See Figure 3‑12.  
+The "Generation successful" label signs all the required files are created. See Figure 3-13.  
 <div align="center">
   <img src="files/ZB-Zigbee-Hands-on-Forming-and-Joining/generation_result.png">  
 </div>  
 <div align="center">
-  <b>Figure 3‑12 Generation result</b>
+  <b>Figure 3-13 Generation result</b>
 </div>  
 </br>  
 

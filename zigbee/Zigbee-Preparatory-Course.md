@@ -1,5 +1,33 @@
 English | [中文](Zigbee-Preparatory-Course-CN)
 
+<details>
+<summary><font size=5>Table of Contents</font> </summary>
+
+- [1. Introduction](#1-introduction)
+- [2. Prerequisites](#2-prerequisites)
+  - [2.1. Hardware requirements](#21-hardware-requirements)
+    - [2.1.1 Wireless Starter Kit](#211-wireless-starter-kit)
+    - [2.1.2 Working Computer](#212-working-computer)
+  - [2.2. Software requirements](#22-software-requirements)
+    - [2.2.1. Simplicity Studio](#221-simplicity-studio)
+    - [2.2.2. EmberZNet PRO stack](#222-emberznet-pro-stack)
+    - [2.2.3. Compiler toolchain:](#223-compiler-toolchain)
+      - [2.2.3.1. GCC](#2231-gcc)
+      - [2.2.3.2. IAR (non-required)](#2232-iar-non-required)
+  - [2.3. Github Account](#23-github-account)
+- [3. Getting started with Zigbee Application Development](#3-getting-started-with-zigbee-application-development)
+  - [3.1. Connect your Hardware](#31-connect-your-hardware)
+  - [3.2. Using Gecko Bootloader](#32-using-gecko-bootloader)
+  - [3.3. Create and Build the Zigbee project](#33-create-and-build-the-zigbee-project)
+  - [3.4. Test your project](#34-test-your-project)
+- [4. Fundamental Knowledge of Zigbee](#4-fundamental-knowledge-of-zigbee)
+- [5. FAQ](#5-faq)
+- [6. Conclusion](#6-conclusion)
+
+</details>
+
+***
+
 # 1. Introduction
 This is a preparatory course that you should take if you are new to the Silicon Labs development environment and Zigbee solution. The document describes how to get started with Zigbee development using the EmberZNet PRO SDK and Simplicity Studio with a compatible wireless starter kit (WSTK), and also the fundamental Zigbee knowledge you should understand before beginning to study the Zigbee Boot Camp series courses.  
 And step-by-step instructions are provided to demonstrate how to create a basic Zigbee project for checking if the development environment is ready on your end.  
@@ -15,7 +43,9 @@ The figure below illustrates the working flow for setting up the development env
 # 2. Prerequisites
 
 ## 2.1. Hardware requirements
-Before following the procedures in this guide you should have purchased one of the mesh networking development kits, what the kits used in the boot camp series hands-on are [EFR32 Mighty Gecko Wireless Starter Kit](https://www.silabs.com/products/development-tools/wireless/mesh-networking/mighty-gecko-starter-kit). And then you need to create an account on the [support portal](https://siliconlabs.force.com/), and register the serial number of your development kits on [KitRegistration](https://siliconlabs.force.com/KitRegistration) to grant Zigbee SDK access. Please refer to the [KBA on access to Silicon Labs wireless mesh networking stacks](https://www.silabs.com/community/wireless/zigbee-and-thread/knowledge-base.entry.html/2017/11/22/access_to_siliconla-jk1S) for more information.  
+### 2.1.1 Wireless Starter Kit
+Before following the procedures in this guide you should have purchased one of the mesh networking development kits. You can use the [EFR32MG Wireless Starter Kit](https://www.silabs.com/development-tools/wireless/zigbee/efr32mg-zigbee-thread-starter-kit), [EFR32xG21 Wireless Gecko Starter Kit](https://www.silabs.com/development-tools/wireless/efr32xg21-wireless-starter-kit) or [EFR32xG22 Wireless Gecko Starter Kit](https://www.silabs.com/development-tools/wireless/efr32xg22-wireless-starter-kit) in the boot camp series hands-on.  
+And then you need to create an account on the [support portal](https://siliconlabs.force.com/), and register the serial number of your development kits on [KitRegistration](https://siliconlabs.force.com/KitRegistration) to grant Zigbee SDK access. Please refer to the [KBA on access to Silicon Labs wireless mesh networking stacks](https://www.silabs.com/community/wireless/zigbee-and-thread/knowledge-base.entry.html/2017/11/22/access_to_siliconla-jk1S) for more information.  
 Below is the Kit Contents of the EFR32 Mighty Gecko Wireless Starter Kit.  
 　3 x Wireless starter kit mainboard  
 　3 x EFR32MG12 2.4 GHz 19 dBm radio board  
@@ -24,7 +54,26 @@ Below is the Kit Contents of the EFR32 Mighty Gecko Wireless Starter Kit.
 　Cables  
 　EFR32MG Getting Started Card  
 
+You also can use [Thunderboard Sense 2 Kit](https://www.silabs.com/development-tools/thunderboard/thunderboard-sense-two-kit) which is a compact, featured-packed development platform. Be careful that you can NOT get Zigbee SDK through Thunderboard Sense 2 Kit, make sure you can get Zigbee SDK before trying to use Thunderboard Sense 2 Kit.
+
+**Note**: Different Wireless Gecko Starter Kit has different contents, please make sure that you have at least two wireless starter kit mainboard with radio board mounted for finishing the hands-on.  
+
 **Note**: If you are going to attend Zigbee training and all of the hardware will be provided by the organizer. Please just reach out to the organizer of the training event, they will help to provide you a temporary account with Zigbee SDK access granted.  
+
+### 2.1.2 Working Computer
+Below is the system requirements of the Simplicity Studio v4, and it's strongly recommended to prepare a working computer has at least 8GB RAM for wireless project development.
+
+|Operating System | Version|
+|- |:---|
+|Windows | Windows 10 (x64)|
+|macOS | 10.14 Mojave|
+|Linux | x64 Kernel 3.13 and above tested with Ubuntu 18.04 LTS|
+
+|Hardware Component | Item|
+|- |:---|
+|CPU | 1 GHz or better|
+|Memory | **8 GB for Wireless Protocol development**|
+|Disk Space | 7 GB for Wireless Dynamic Protocol support|
 
 ## 2.2. Software requirements
 To develop Zigbee applications, you will need to setting up your software development environment by installing Simplicity Studio, EmberZNet PRO stack and the compatible toolchains.  
@@ -32,7 +81,10 @@ To develop Zigbee applications, you will need to setting up your software develo
 ### 2.2.1. Simplicity Studio
 Simplicity Studio is a free Eclipse-based Integrated Development Environment (IDE) and a collection of value-add tools provided by Silicon Labs. Developers can use Simplicity Studio to develop, debug and analyze their applications.  
 If you do not have Simplicity Studio V4 installed, please connect to [Simplicity Studio 4](http://www.silabs.com/products/mcu/Pages/simplicity-studio-v4.aspx) to download the installation package, and run the Simplicity Studio installation application.  
-**Note**: For better wireless protocol development experience, please make sure that your PC has 8 GB or more RAM memory and more than 7 GB disk space available. If you are using the Windows (Windows 10 is recommended), it highly recommended to install the Simplicity Studio to the **C:** drive.  
+**Note**: For better wireless protocol development experience, please check the items below one by one.  
+1. Make sure that your PC has 8 GB or more RAM memory and more than 7 GB disk space available.  
+2. If you are using the Windows (Windows 10 is recommended), it highly recommended to install the Simplicity Studio to the **C:** drive. Otherwise, you need to create another workspace locates at the same drive as your Simplicity Studio installed, and switch to that workspace.  
+
 When Simplicity Studio first launches, it presents a License Agreement dialog. Accept the terms of the agreement and click [Next].  
 
 <div align="center">
@@ -165,7 +217,8 @@ For Silicon Labs customer, you can get a 30-day evaluation license for IAR:
 As the [IoT-Developer-Boot-Camp](https://github.com/MarkDing/IoT-Developer-Boot-Camp) is a open source project, we use the github to maintain all of the source code and documentations, every participating in it can provide your comments on it, submit your pull request for bug fix, new feature implementation or documentation improvement.  
 A valid github account is the prerequisite for joining this project, please [Create your github account](https://github.com/join?source=header-home) if you do not have that. And then Fork the [IoT-Developer-Boot-Camp](https://github.com/MarkDing/IoT-Developer-Boot-Camp) repository and add it to your watching list.  
 
-[Gitter](https://gitter.im/) is an open-source instant messaging and chat room system for developers and users of GitHub repositories. We have created a public chat room [Zigbee Boot Camp](https://gitter.im/Silabs-IoT/Zigbee-Boot-Camp) for sharing and discussing everything about the Zigbee boot camp. Please sign in the Gitter with your GitHub account, and join this chat room.  
+If you are facing some network issue for accessing github in some region, there are abundant workaround solution available for your [reference](https://zhuanlan.zhihu.com/p/75994966).  
+
 
 *** 
 
@@ -310,5 +363,22 @@ Although this series of training are designed for new to Silicon Labs Zigbee sol
 
 ***
 
-# 5. Conclusion
+# 5. FAQ
+Below are some frequently asked questions and the debug guideline.  
+
+**Simplicity Studio cannot run on my computer.**  
+Please check if your computer has 8GB or more RAM since the SSv4 requires at least 8 GB RAM for Wireless Protocol development.  
+
+**Why cannot create/generate the project correctly?**  
+Make sure that there is no "-" and no any Chinese characters in your project name. Underscore '_' is the only acceptable characteristic for separating multiple words in the project name.  
+
+**Why can not build the example project ZigbeeMinimal successfully?**  
+There are lots of linked file in the wireless project, please make sure that your working workspace is in the same drive as Simplicity Studio installed.  
+
+**Cannot access the github, or it doesn't display the picture**  
+If you are facing some network issue for accessing github in some region, there are abundant workaround solution available for your [reference](https://zhuanlan.zhihu.com/p/75994966).   
+
+***
+
+# 6. Conclusion
 We hope that you have completed the preparatory course well, and set up the development environment as the preparation for the coming boot camp series training course. And please fill the [Zigbee Preparatory Course feedback](https://forms.office.com/Pages/ResponsePage.aspx?id=ItjbVDFSIEuUTW9KvNVB-xO90oXNwwFJgomf3rxz4l1URjE3UzdSWFRFQlRZS05aMlBYWUNTTUJEUy4u) after finishing this course, any feedback is appreciated and we will take action for improvement based on the survey result.  

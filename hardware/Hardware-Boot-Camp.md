@@ -8,15 +8,14 @@
 | Time | Content |  
 |:---- |:----|    
 | 1 hour | [Wireless Products Protocols and Applications](Wireless-Products-Protocols-and-Applications)
-| 2 hour | [Schematic Design Guide](Schematic-Design-Guide) |
+| 2.5 hour | [Schematic Design Guide](Schematic-Design-Guide) |
 | 2.5 hour | [PCB Layout Design Guide](PCB-Layout-Design-Guide) |
-| 1.5 hour | [Comply to the Regulations](Comply-to-the-Regulations)|
-| 1 hour | [RF Test Guide](RF-Test-Guide) |
+| 2 hour | [RF Test Guide](RF-Test-Guide) |
 
 *************
 
 ## Quiz and Feedback
-- [Quiz]()
-- [Feedback]()
+- [Quiz](https://forms.office.com/Pages/ResponsePage.aspx?id=ItjbVDFSIEuUTW9KvNVB-yQBQLEEiW5EtILo81bOm-pUOVpHQkQxRzIxTDFPQTVaSzhHMlFIR1dXRS4u)
+- [Feedback](https://forms.office.com/Pages/ResponsePage.aspx?id=ItjbVDFSIEuUTW9KvNVB-yQBQLEEiW5EtILo81bOm-pUNFJGVjZCUFpJQjE0RFYwM0syRVRIQUVKTi4u)
 
 ********
