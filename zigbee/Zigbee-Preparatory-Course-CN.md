@@ -210,9 +210,8 @@ Simplicity Studio提供了GCC（GNU编译器集合），它将在首次安装Emb
 •一旦安装了IAR-EWARM，下次Simplicity Studio启动时，它将自动检测并配置IDE以使用IAREWARM。   
 
 ## 2.3. Github 帐户  
-由于[IoT-Developer-Boot-Camp](https://github.com/MarkDing/IoT-Developer-Boot-Camp)是一个开源项目，因此我们使用github维护所有源代码和文档，参与其中的每个人都可以提供你自己对于它的评论（意见），提交你的bug修复，新的功能需求或改进文档请求。  
-有效的github帐户是加入此项目的前提，如果没有，请[创建您的github帐户](https://github.com/join?source=header-home)。然后```Fork```[IoT-Developer-Boot-Camp](https://github.com/MarkDing/IoT-Developer-Boot-Camp)仓库并将其添加到您的监视列表中。  
-如果在您所在的区域，因为网络原因导致无法访问github，可以参考网络上的一些[解决方案](https://zhuanlan.zhihu.com/p/75994966)。  
+由于[IoT-Developer-Boot-Camp](Home)是一个开源项目，因此我们使用github维护所有源代码和文档，参与其中的每个人都可以提供你自己对于它的评论（意见），提交你的bug修复，新的功能需求或改进文档请求。  
+有效的github帐户是加入此项目的前提，如果没有，请[创建您的github帐户](https://github.com/join?source=header-home)。s
 
 
 *** 
@@ -221,7 +220,7 @@ Simplicity Studio提供了GCC（GNU编译器集合），它将在首次安装Emb
 作为准备课程，本节的目的是提供逐步说明，以演示如何开始使用**ZigbeeMinimal**示例项目，以验证您的开发环境是否已搭建完成。。
 
 ## 3.1. 连接您的硬件
-**注意**: 如果您还没有开发套件，请在Launcher视图左下角的“My Products”选项卡中键入开发板名“ BRD4162A”。并跳至“ [创建并编译Zigbee项目](#创建并编译Zigbee项目)”部分。
+**注意**: 如果您还没有开发套件，请在Launcher视图左下角的“My Products”选项卡中键入开发板名“ BRD4162A”。并跳至“ [创建并编译Zigbee项目](#33-创建并编译zigbee项目)”部分。
 
 使用USB线将WSTK连接到已安装Simplicity Studio的PC。为了在Simplicity Studio中获得最佳性能，请确保WSTK左下方的电源开关位于“ AEM”（高级能量监控）位置。
 
@@ -263,7 +262,7 @@ c:\SiliconLabs\SimplicityStudio\v4\developer\sdks\gecko_sdk_suite\v2.6\platform\
 </div>
 </br>  
 
-**注意**: 如果已成功将预编译的Bootloader image烧录到radio board，则**不需要**以下第二种方法。您可以直接跳至“ [创建和编译Zigbee项目](#创建并编译Zigbee项目)”部分。  
+**注意**: 如果已成功将预编译的Bootloader image烧录到radio board，则**不需要**以下第二种方法。您可以直接跳至“ [创建和编译Zigbee项目](#33-创建并编译zigbee项目)”部分。  
 第二种方法是使用AppBuilder创建，生成和编译自己的应用程序。可以自定义和添加新功能，当前实验没有详细介绍这种方法。
 1.	转到File-> New ->Project。这将显示“New Project Wizard”
 2.	选择“ Silicon Labs AppBuilder Project”。点击“ Next”。

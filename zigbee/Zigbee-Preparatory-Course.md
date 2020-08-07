@@ -214,10 +214,8 @@ For Silicon Labs customer, you can get a 30-day evaluation license for IAR:
 • Once IAR-EWARM is installed, the next time Simplicity Studio starts it will automatically detect and configure the IDE to use IAREWARM.  
 
 ## 2.3. Github Account  
-As the [IoT-Developer-Boot-Camp](https://github.com/MarkDing/IoT-Developer-Boot-Camp) is a open source project, we use the github to maintain all of the source code and documentations, every participating in it can provide your comments on it, submit your pull request for bug fix, new feature implementation or documentation improvement.  
-A valid github account is the prerequisite for joining this project, please [Create your github account](https://github.com/join?source=header-home) if you do not have that. And then Fork the [IoT-Developer-Boot-Camp](https://github.com/MarkDing/IoT-Developer-Boot-Camp) repository and add it to your watching list.  
-
-If you are facing some network issue for accessing github in some region, there are abundant workaround solution available for your [reference](https://zhuanlan.zhihu.com/p/75994966).  
+As the [IoT-Developer-Boot-Camp](Home) is a open source project, we use the github to maintain all of the source code and documentations, every participating in it can provide your comments on it, submit your pull request for bug fix, new feature implementation or documentation improvement.  
+A valid github account is the prerequisite for joining this project, please [Create your github account](https://github.com/join?source=header-home) if you do not have that.   
 
 
 *** 
@@ -226,7 +224,7 @@ If you are facing some network issue for accessing github in some region, there 
 As a preparatory course, the purpose of this section is providing a step-by-step instructions to demonstrate how to get start with the **ZigbeeMinimal** example project to verify that the development environment is setting done on your side.  
 
 ## 3.1. Connect your Hardware
-**Note**: If you don't have development kit yet, please just type the board name "BRD4162A" in the "My Products" tab on the lower-left of the launcher perspective. And jump to the section [Create and Build the Zigbee project](#create-and-build-the-zigbee-project).  
+**Note**: If you don't have development kit yet, please just type the board name "BRD4162A" in the "My Products" tab on the lower-left of the launcher perspective. And jump to the section [Create and Build the Zigbee project](#33-create-and-build-the-zigbee-project).  
 
 Connect your WSTK using a USB cable to the PC on which has Simplicity Studio installed. For best performance in Simplicity Studio, please be sure that the power switch on the lower left of the WSTK is in the "AEM" (Advanced Energy Monitoring) position.  
 
@@ -265,7 +263,7 @@ Click the [Connect] button to connect to the J-Link Adapter, then click [Connect
 </div>
 </br>  
 
-**Note**: The following 2nd way is **non-required** if you have programmed the pre-built bootloader image to your starter kit successfully. You can just jump to the section [Create and Build the Zigbee project](#create-and-build-the-zigbee-project).  
+**Note**: The following 2nd way is **non-required** if you have programmed the pre-built bootloader image to your starter kit successfully. You can just jump to the section [Create and Build the Zigbee project](#33-create-and-build-the-zigbee-project).  
 The 2nd way is to use the AppBuilder to create-, generate-, and build your own application. It is possible to customize and add new features to it, but the current lab doesn’t detail these possibilities.  
 1.	Go to File -> New -> Project.  This will bring up the New Project Wizard  
 2.	Select “Silicon Labs AppBuilder Project”. Click Next.  

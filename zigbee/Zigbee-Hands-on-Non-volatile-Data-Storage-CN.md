@@ -4,42 +4,43 @@
 <summary><font size=5>目录</font> </summary>
 
 - [1. 简介](#1-简介)
-    - [1.1. 实验内容](#11-实验内容)
-    - [1.2. 目的](#12-目的)
+  - [1.1. 实验内容](#11-实验内容)
+  - [1.2. 目的](#12-目的)
 - [2. 非易失性存储器的基础知识](#2-非易失性存储器的基础知识)
-    - [2.1. 什么是非易失性存储？](#21-什么是非易失性存储)
-    - [2.2. 为什么在EmberZNet PRO中需要非易失性存储？](#22-为什么在emberznet-pro中需要非易失性存储)
-    - [2.3. Silicon Labs如何实现非易失性数据存储？](#23-silicon-labs如何实现非易失性数据存储)
+  - [2.1. 什么是非易失性存储？](#21-什么是非易失性存储)
+  - [2.2. 为什么在EmberZNet PRO中需要非易失性存储？](#22-为什么在emberznet-pro中需要非易失性存储)
+  - [2.3. Silicon Labs如何实现非易失性数据存储？](#23-silicon-labs如何实现非易失性数据存储)
 - [3. 使用Token API访问NVM3对象](#3-使用token-api访问nvm3对象)
-    - [3.1. Token类型：Dynamic Tokens和Manufacturing Tokens](#31-token类型dynamic-tokens和manufacturing-tokens)
-        - [3.1.1. Dynamic Tokens](#311-dynamic-tokens)
-            - [3.1.1.1. Basic (Non-indexed) Tokens](#3111-basic-non-indexed-tokens)
-            - [3.1.1.2. Indexed Tokens](#3112-indexed-tokens)
-        - [3.1.2. Manufacturing Tokens](#312-manufacturing-tokens)
-    - [3.2. Token的用法：创建和访问](#32-token的用法创建和访问)
-        - [3.2.1. Dynamic Tokens](#321-dynamic-tokens)
-            - [3.2.1.1. 创建Dynamic Tokens](#3211-创建dynamic-tokens)
-                - [3.2.1.1.1. 定义Token名称](#32111-定义token名称)
-                - [3.2.1.1.2. 定义Token类型](#32112-定义token类型)
-                - [3.2.1.1.3. 定义Token存储](#32113-定义token存储)
-            - [3.2.1.2. 访问Dynamic Tokens](#3212-访问dynamic-tokens)
-                - [3.2.1.2.1. 访问Basic (Non-indexed) Tokens](#32121-访问basic-non-indexed-tokens)
-                - [3.2.1.2.2. 访问Indexed Tokens](#32122-访问indexed-tokens)
-        - [3.2.2. Manufacturing Tokens](#322-manufacturing-tokens)
-            - [3.2.2.1. 访问Manufacturing Tokens](#3221-访问manufacturing-tokens)
-        - [3.2.3. 在哪里可以找到默认Token定义](#323-在哪里可以找到默认token定义)
+  - [3.1. Token类型：Dynamic Tokens和Manufacturing Tokens](#31-token类型dynamic-tokens和manufacturing-tokens)
+    - [3.1.1. Dynamic Tokens](#311-dynamic-tokens)
+      - [3.1.1.1. Basic (Non-indexed) Tokens](#3111-basic-non-indexed-tokens)
+      - [3.1.1.2. Indexed Tokens](#3112-indexed-tokens)
+    - [3.1.2. Manufacturing Tokens](#312-manufacturing-tokens)
+  - [3.2. Token的用法：创建和访问](#32-token的用法创建和访问)
+    - [3.2.1. Dynamic Tokens](#321-dynamic-tokens)
+      - [3.2.1.1. 创建Dynamic Tokens](#3211-创建dynamic-tokens)
+        - [3.2.1.1.1. 定义Token名称](#32111-定义token名称)
+        - [3.2.1.1.2. 定义Token类型](#32112-定义token类型)
+        - [3.2.1.1.3. 定义Token存储](#32113-定义token存储)
+      - [3.2.1.2. 访问Dynamic Tokens](#3212-访问dynamic-tokens)
+        - [3.2.1.2.1. 访问Basic (Non-indexed) Tokens](#32121-访问basic-non-indexed-tokens)
+        - [3.2.1.2.2. 访问Indexed Tokens](#32122-访问indexed-tokens)
+    - [3.2.2. Manufacturing Tokens](#322-manufacturing-tokens)
+      - [3.2.2.1. 访问Manufacturing Tokens](#3221-访问manufacturing-tokens)
+    - [3.2.3. 在哪里可以找到默认Token定义](#323-在哪里可以找到默认token定义)
 - [4. 实验](#4-实验)
-    - [4.1. 硬体需求](#41-硬体需求)
-    - [4.2. 软件需求](#42-软件需求)
-    - [4.3. 实践](#43-实践)
-        - [4.3.1. 打开Switch项目](#431-打开switch项目)
-        - [4.3.2. 创建自定义Token](#432-创建自定义token)
-        - [4.3.3. 访问Basic Tokens LED1_ON_OFF](#433-访问basic-tokens-led1_on_off)
-            - [4.3.3.1. 步骤1：检索Basic Tokens数据](#4331-步骤1检索basic-tokens数据)
-            - [4.3.3.2. 步骤2：写入基本的Tokens数据](#4332-步骤2写入基本的tokens数据)
-            - [4.3.3.3. 步骤3：测试](#4333-步骤3测试)
-        - [4.3.4. 访问Manufacturing Tokens](#434-访问manufacturing-tokens)
-            - [4.3.4.1. 步骤4：读取Manufacturing Tokens MFG_STRING](#4341-步骤4读取manufacturing-tokens-mfg_string)
+  - [4.1. 硬体需求](#41-硬体需求)
+  - [4.2. 软件需求](#42-软件需求)
+  - [4.3. 实践](#43-实践)
+    - [4.3.1. 打开Switch项目](#431-打开switch项目)
+    - [4.3.2. 创建自定义Token](#432-创建自定义token)
+    - [4.3.3. 访问Basic Tokens LED1_ON_OFF](#433-访问basic-tokens-led1_on_off)
+      - [4.3.3.1. 步骤1：检索Basic Tokens数据](#4331-步骤1检索basic-tokens数据)
+      - [4.3.3.2. 步骤2：写入基本的Tokens数据](#4332-步骤2写入基本的tokens数据)
+      - [4.3.3.3. 步骤3：测试](#4333-步骤3测试)
+    - [4.3.4. 访问Manufacturing Tokens](#434-访问manufacturing-tokens)
+      - [4.3.4.1. 步骤4：读取Manufacturing Tokens MFG_STRING](#4341-步骤4读取manufacturing-tokens-mfg_string)
+- [5. 结论](#5-结论)
 
 </details>
 
@@ -277,7 +278,7 @@ EmberZNet PRO协议栈已经为协议栈本身，应用程序框架，制造数�
 这也正是我们在本文章开始时[你需要做](#12-目的)的部分中提出的问题。
 
 **前提条件**  
-请确保您已完成[Zigbee预备课程](https://github.com/MarkDing/IoT-Developer-Boot-Camp/wiki/Zigbee-Preparatory-Course-CN)，并确保所有SDK软件和开发套件都已准备就绪。
+请确保您已完成[Zigbee预备课程](Zigbee-Preparatory-Course-CN)，并确保所有SDK软件和开发套件都已准备就绪。
 
 ## 4.1. 硬体需求
 该实验需要EFR32MG21 / EFR32MG13 / EFR32MG12开发板中的任何一款，我们推荐使用EFR32MG12无线开发板BRD4162A，我们的示例项目也是基于该套件创建的。以下是该开发板的布局。
@@ -299,13 +300,12 @@ EmberZNet PRO协议栈已经为协议栈本身，应用程序框架，制造数�
 </br>
 
 ## 4.2. 软件需求
-该实验是在之前的三个实验“ [构建和连接](https://github.com/MarkDing/IoT-Developer-Boot-Camp/wiki/Zigbee-Hands-on-Forming-and-Joining-CN)”，“ [发送/关闭命令](https://github.com/MarkDing/IoT-Developer-Boot-Camp/wiki/Zigbee-Hands-on-Sending-OnOff-Commands-CN)”和“ [使用事件](https://github.com/MarkDing/IoT-Developer-Boot-Camp/wiki/Zigbee-Hands-on-Using-Event-CN)”的基础上进行的，并且假设您已经按照我们的[Zigbee预备课程](https://github.com/MarkDing/IoT-Developer-Boot-Camp/wiki/Zigbee-Preparatory-Course-CN)中的说明安装了Simplicity Studio和必需的SDK 。
+该实验是在之前的三个实验“ [构建和连接](Zigbee-Hands-on-Forming-and-Joining-CN)”，“ [发送/关闭命令](Zigbee-Hands-on-Sending-OnOff-Commands-CN)”和“ [使用事件](Zigbee-Hands-on-Using-Event-CN)”的基础上进行的，并且假设您已经按照我们的[Zigbee预备课程](Zigbee-Preparatory-Course-CN)中的说明安装了Simplicity Studio和必需的SDK 。
 
 
 ## 4.3. 实践
 ### 4.3.1. 打开Switch项目
-该实验是在前三个实验基础之上。由于非易失性数据存储机制不依赖于网络节点类型，因此我们仅仅演示如何在Switch（路由节点）设备端通过TokenAPI访问NVM3对象，即Zigbee_Switch_ZR项目。    
-如果在完成该实验过程中遇到任何困难，你可以在[IoT-Developer-Boot-Camp](https://github.com/MarkDing/IoT-Developer-Boot-Camp/tree/master/zigbee)中找到示例项目，以供参考。
+该实验是在前三个实验基础之上。由于非易失性数据存储机制不依赖于网络节点类型，因此我们仅仅演示如何在Switch（路由节点）设备端通过TokenAPI访问NVM3对象，即Zigbee_Switch_ZR项目。
 
 ### 4.3.2. 创建自定义Token
 我们将创建一个头文件```custom-token.h```，并在此头文件中定义Token名称，Token类型和Token存储。

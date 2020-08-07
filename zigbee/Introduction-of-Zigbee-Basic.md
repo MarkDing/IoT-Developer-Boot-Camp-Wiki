@@ -46,8 +46,8 @@ English | [中文](Introduction-of-Zigbee-Basic-CN)
 
 ********
 
-## 1. Overview
-### 1.1. What's Zigbee
+# 1. Overview
+## 1.1. What's Zigbee
 As the Internet of Things (IoT) industry develops, more and more wireless technologies come out.   
 
 <div align="center">
@@ -66,7 +66,7 @@ Zigbee is one of the most popular wireless technologies used in IoT networks, es
 - Low Power – a sleepy end device can use less than 5uA at sleep mode;
 - It’s a mesh technology – the network can be easily extended to very large. Theoretically maximum nodes number is 65535.
 
-### 1.2. History of Zigbee
+## 1.2. History of Zigbee
 Zigbee is an open standard published and revisioned by [Zigbee Alliance](https://zigbeealliance.org/). It has a very long history.
 
 <div align="center">
@@ -76,7 +76,7 @@ Zigbee is an open standard published and revisioned by [Zigbee Alliance](https:/
 
 Silicon Labs has been devoted to Zigbee technology since the very beginning. The Silicon Labs' Zigbee technology comes from Ember who began zigbee research and develop since it's born. In 2012, Silicon Labs acquired Ember and continue to provide Zigbee products and solutions. 
 
-### 1.3. Zigbee Alliance
+## 1.3. Zigbee Alliance
 Zigbee Alliance is the main strength of promoting Zigbee technology. It's an open organization. Any company can join Zigbee Alliance as a member. Silicon Labs is the member of the board of Zigbee Alliance.  
 
 <div align="center">
@@ -100,7 +100,7 @@ Further more, security has been enhanced as it's getting more and more important
 
 Zigbee 3.0 is mandated since 2017 as products which are compliant to the previous specification won't get certified.
 
-### 1.4. Protocol Overview
+## 1.4. Protocol Overview
 The picture below demostrates the protocol architecture.  
 
 <div align="center">
@@ -114,7 +114,7 @@ The picture below demostrates the protocol architecture.
 4. Application layer is left for user design. Each application instance is called an endpoint. A special endpoint, which is endpoint 0, is reserved for management functionalities. We also call this management functionalities model as Zigbee Device Object (ZDO).
 5. In APS layer and network layer, there are some security features which are used to protect the network from being hacked.
 
-## 2. Physical Layer
+# 2. Physical Layer
 Zigbee works on ISM frequency. The channels are defined as below:
 
 <div align="center">
@@ -124,19 +124,19 @@ Zigbee works on ISM frequency. The channels are defined as below:
 
 Most commonly, Zigbee works on 2.4GHz.
 
-### 2.1. Modulation
+## 2.1. Modulation
 Physical layer also handles the transmission and reception of raw bits of data. The PHY layer uses binary phase shift keying (BPSK) in the 868/915 MHz bands and offset quadrature phase shift keying (O-QPSK) at 2.4 GHz. The information is coded onto the carrier with direct sequence spread spectrum (DSSS), an inherently robust method of improving multipath performance and receiver sensitivity through signal processing gain. Note that 2.4 GHz is the most commonly used frequency band for Zigbee communication worldwide. The only official sub GHz support is for UK smart energy. 
 
-### 2.2. Output Power
+## 2.2. Output Power
 802.15.4 is designed for low power, low data rate networks with a low-cost objective in mind. These are generally referred to as PANs or Personal Area Networks. The idea here is that these would be low to moderate radio range application designs. But amplification is also possible. It is possible to get up to roughly +20 dBm output power in most countries. In Europe it is regulated a little bit lower to around +10 dBm. But, that's enough to get you anywhere from about one to three kilometers, depending on what your link budget is and what kind of amplification you have and/or what kind of antenna you have. 
 
-### 2.3. Data Rate
+## 2.3. Data Rate
 The raw bit rate is 250 kilobits per second using the 2.4 GHz direct sequence spread spectrum Phy or DSSS. In the real world you are going to see about a quarter or fifth of that. The expected throughout is comparable to a 56k baud modem. Around 52700 kilobits per second on a single hop link. Once you put in multi-hop effects, things will take a little bit longer to propagate. 
 
-### 2.4. Open Field Range
+## 2.4. Open Field Range
 With 2.4 GHz PHY, the ranges we mentioned could be roughly two kilometers with line of sight. This is with a fair amount of amplification and still within legal limits in most areas. And because of all the channels, you have robust communications such that you can avoid interference by making sure to pick channels that are not terribly noisy. Now if you do pick a channel and it becomes noisy, ZigBee has a high level response with what they call "frequency agility." So that some network manager can move the network to a different channel. The other advantage to the 2.4 GHz spectrum is that it's available globally which means you have a wide range install base for your product.
 
-### 2.5. Summary
+## 2.5. Summary
 Functions of Physical layer includes:
 - Interface of physical radio and MAC layer
 - Radio on/off Control
@@ -145,18 +145,18 @@ Functions of Physical layer includes:
 - Link Quality Estimation
 - Energy Detection
 
-## 3. Medium Access Control (MAC) Layer
+# 3. Medium Access Control (MAC) Layer
 The main function of the MAC layer is to ensure reliable one-hop message delivery. Here are some more details on these functions. 
 
-### 3.1. CSMA-CA
+## 3.1. CSMA-CA
 802.15.4 allows for multiple networks to be on the same channel. Therefore there needs to be some way to avoid having packets from different networks collide over the air and cause errors in communication. MAC sub-layer controls access to the radio using CSMA-CA (Carrier sense multiple access with Collision avoidance). Collision avoidance is done by CCA (Clear Channel Assessment). Before transmitting, every node shall check to see if the airwaves are clear (RSSI below CCA threshold). If they are, the node shall go ahead and transmit after a small random backoff. If the CCA does not pass, then the node shall wait a number of back off periods before trying the process again.  The random backoff allows multiple nodes to stagger transmissions so at some point they can find clear air to transmit. Although the bit rate is low, since packets are small (128 bytes), each node completes its transmission successfully even if the channel is fairly busy. 
 
-### 3.2. Acknowledgements
+## 3.2. Acknowledgements
 MAC layer also provides a method for nodes to know that 1 hop unicast transmission have been successfully received by way of acknowledgements and that the integrity of the transmitted message has been preserved by verifying a CRC. 
 
 Multi hop transmissions shall be acknowledged on every hop. After the node performs the CCA check and transmits the message, it waits for a MAC acknowledgment. If it does not receive one, the node shall attempt to resend the message multiple times until it eventually succeeds, or the maximum retries have been exhausted. The Silabs Ember ZNet stack provides additional mac retries providing earlier corrective action for a failed message transmission instead of waiting until an end-end retry to kick in, which could take several seconds.  
 
-### 3.3. MAC Frame
+## 3.3. MAC Frame
 The picture below demostrate MAC frame format:
 
 <div align="center">
@@ -170,7 +170,7 @@ At the end of each MAC frame, there are two bytes CRC used to verify the integri
 - ACK, acknowledgement
 - MAC Command, control commands of MAC layer, like MAC association procedure.
 
-## 4. Network Layer
+# 4. Network Layer
 Here we will introduce some basic concepts of Zigbee network, including:  
 - Device Type
 - Network Address
@@ -180,7 +180,7 @@ Here we will introduce some basic concepts of Zigbee network, including:
   - Node ID
   - Eui64
 
-### 4.1. Device Type
+## 4.1. Device Type
 IEEE-802.15.4 defined two device types:
 - **FFD**, Full Functional Device, capable of performing all the duties described in the IEEE 802.15.4 standard and can accept any role in the network. 
 - **RFD**, Reduced Functional Device, has limited capabilities. 
@@ -203,10 +203,10 @@ In Zigbee, there are three device types:
 |Router|No|Yes|Main Power|Yes||
 |End Device|No|No|Main Power or Battery|No|Must have a parent.|
 
-### 4.2. Network Address
+## 4.2. Network Address
 Zigbee use PAN ID and extended PAN ID to indentify a network.
 
-#### 4.2.1. PAN ID
+### 4.2.1. PAN ID
 The PAN, or Personal Area Network, is separated from other networks through its PAN ID. This is a 16-bit identifier that all nodes in the same PAN will share. So it’s something akin to a subnet mask in the Ethernet world in that you generally would only be communicating with devices within your local network, which is the PAN in this case. **This identifier is placed into the low-level MAC-layer header in every out-going packet, and it allows devices that receive the packet to filter out the messages that don’t pertain to their network.** They can compare it against their own PAN ID, and decide if this is a message from someone in their own network, or if it’s from someone in a different network that just happens to be on this channel so there’s no need to try to decode or decrypt it.
 
 <table>
@@ -220,7 +220,7 @@ The PAN ID is chosen by the coordinator upon network formation. Because the PAN 
 
 Now, what if you happened to pick a PAN ID that’s already used by another network? Or what if you did pick a random PAN ID that wasn’t in conflict with any other network, but later another network grew to overlap with yours? If the PAN ID conflict ever happens, the stack can in fact detect such a conflict and can update its PAN ID automatically and inform all the nodes in its network to move to the new PAN ID, so that each node can continue communicating with nodes in its original network and exclude anyone on the conflicting network. If the PAN ID is conflict, we need to use extended PAN ID to distinguish the networks.
 
-#### 4.2.2. Extended PAN ID
+### 4.2.2. Extended PAN ID
 Extended PAN ID is another network identifier known by all nodes in the PAN.
 
 While the normal short 16-bit PAN ID is transmitted over the air in all the packets because it’s short and simple, the 64-bit extended PAN ID is rarely transmitted over the air. The extended PAN ID is also unique for every PAN, and it’s basically used as a backup criteria when the 16-bit PAN ID is not enough to always distinguish one network from another. For instance, when a PAN ID conflict occurs and you want to notify all devices in your network to move, the way that you distinguish your network from the conflicting network is, those devices in your network all share the same extended PAN ID. The extended PAN ID is highly unlikely to ever conflict because it has 64 bits compared to the 16 bits in the short PAN ID.
@@ -234,7 +234,7 @@ The extended PAN ID is also chosen by the coordinator during network formation. 
 
 It’s also a useful factor in allowing you to select the network. If you are trying to come into a network rather than form one, you might wonder how to tell which networks are available. The way the networks are distinguishable from one another is not only in the PAN ID but also in the extended PAN ID. You might want to do something special where you decide you are only going to use a certain subset of extended PAN IDs so that you can distinguish your networks from other networks, but just don’t limit yourself too much, because the more you limit this the more likely that you have a conflict, and if your extended PAN ID ever conflicts there’s really nothing you can do to fix that. It’s a little like a WiFi SSID, except that those can be the same between networks and this one can’t.
 
-### 4.3. Node Address
+## 4.3. Node Address
 Besides their network-wide criteria, one node is distinguished from another by its individual node addresses.
 
 A node has a short address and a long address. The long address is the IEEE-assigned MAC address, or EUI-64. It is a 64-bit address that is globally unique, meaning no two IEEE-based radios in the world should ever have the same EUI-64. This is generally assigned at manufacturing time. They are assigned when the chips come out of our manufacturing facility before they arrive to you, and they will never change. That’s how you tell one radio from another. But because 64 bits are a lot of data, this long address is not sent over the air very often.
@@ -248,10 +248,10 @@ Most of the time the much shorter, 16-bit address is used over the air. This is 
 
 Note that it’s possible for two nodes to have chosen the same random node ID when they enter the network. If that happens, much like the PAN ID scheme, there is a method for conflict resolution. When the nodes notice the conflict, based on the EUI-64 information as a fallback, they can agree upon new addresses. So the nodes can change addresses at run-time if required, based on a conflict.
 
-## 5. Application Layer
+# 5. Application Layer
 In application layer, a physical device can be split to several logic devices by implementing multiple endpoints.
 
-### 5.1. Endpoint
+## 5.1. Endpoint
 Each endpoint represents a logic device. For example, if we have a smart outlet adapter with 6 outlets on it. We can implement it with 6 endpoints so that  we can switch on/off each outlet respectively.
 
 <div align="center">
@@ -265,7 +265,7 @@ The endpoint ID is a 8bit value, ranging from 0 to 255.
 - Endpoint 240 to 254 are reserved for special applications. Like Zigbee Green Power use dedicate endpoint 242.
 - Endpoint 255 is used for broadcasting. 
 
-### 5.2. Cluster
+## 5.2. Cluster
 In each endpoint, we can configure several clusters. Zigbee cluster is actually a communication model. 
 
 <div align="center">
@@ -277,7 +277,7 @@ It’s based on client/server mode and used to describe the application protocol
 Each cluster has a cluster ID which is defined in Zigbee Cluster Library (ZCL).
 A cluster may define several attributes and commands.
 
-### 5.3. Example
+## 5.3. Example
 Let’s see an example of the cluster, so that we can understand it better.  
 For example we need to implement a Light with two bulbs.
 
@@ -298,11 +298,11 @@ There is also commands like “move to level” defined and should be sent from 
 
 And if we need even more functionalities, for example we need to support color control, we can use the color control cluster.
 
-## 6. Security
+# 6. Security
 As Zigbee is a wireless technology, security is very important because hackers can sniffer those packets over the air. Imaging that you have a smart door lock. If the hacker captured the packets of unlocking your door, then he could replay that to open your door. That would be dangerous. To prevent that from happening, Zigbee defined many security features. Let talk about it.  
 
-### 6.1. Network Layer Security
-#### 6.1.1. Overview
+## 6.1. Network Layer Security
+### 6.1.1. Overview
 Look at the picture below. 
 
 <table>
@@ -321,7 +321,7 @@ As it's a symmetric encrypting algorithm, all devices in the same Zigbee network
 In the network security header, a field named “frame counter” and the source Eui64 of the node who encrypt the message are added to protect replay attack.
 A key sequence number is added to support network key updating.
 
-#### 6.1.2. Hop-by-Hop Security
+### 6.1.2. Hop-by-Hop Security
 Network layer security is a hop-by-hop security.  
 
 <div align="center">
@@ -334,7 +334,7 @@ If the decrypting fails, the message will be dropped immediately.
 
 The benefits of this is to drop the attacking messages as soon as we can.
 
-#### 6.1.3. Network Key
+### 6.1.3. Network Key
 Network key is a 16 bytes octets.
 Normally it’s randomly generated by coordinator when the network is formed.
 When new devices join network, they must get a copy of the network key.
@@ -352,7 +352,7 @@ In a distributed security network, every router is a trust center. New devices c
 As the network key needs to be transported from one device to another, the key value needs to be encrypted during transporting. 
 This encryption is done in application layer. We will talk about it later.
 
-#### 6.1.4. Frame Counter
+### 6.1.4. Frame Counter
 Frame counter is added to prevent replay attacks. Let’s see how it works.
 
 <div align="center">
@@ -366,8 +366,8 @@ To achieve this, on the transmitting side, every node will save it’s outgoing 
 
 As frame counter is a 32-bit value, it could wrap if the device keep running for a very long time. Apparently there could be a problem if the frame counter wraps. To prevent this from happening, the network key must be updated before it wraps. If the network key is updated, the frame counter could start from zero again.
 
-### 6.2. APS Layer Security
-#### 6.2.1. Overview
+## 6.2. APS Layer Security
+### 6.2.1. Overview
 The message of transporting network key is encrypted in application. Let’s see application layer security.  
 
 <div align="center">
@@ -393,7 +393,7 @@ But what if they need to use different link key?
 
 Zigbee defines an approach to configure the link key out of band. It’s the install code.
 
-#### 6.2.2. Install Code
+### 6.2.2. Install Code
 
 <div align="center">
   <img src="files/ZB-Introduction-of-Zigbee-Basic/Install-Code.png">  
@@ -411,10 +411,10 @@ After that, this link key will be used to encrypt the message in application lay
 
 On the device side, it reads the install code from the flash and then derive a link key with the same algorithm. This link key should be the same with the derived link key on the coordinator side. So that they can communicate in application layer even if the message is encrypted.
 
-## 7. Joining Procedure
+# 7. Joining Procedure
 We will talk a little about how a Zigbee network is formed and how a device joins into the network.
 
-### 7.1. Form Network
+## 7.1. Form Network
 First, the coordinator forms a network. To form a Zigbee network, you have to prepare 4 parameters:
 - PAN ID
 - Extend PAN ID
@@ -425,7 +425,7 @@ You need to specify these four parameters.
 If you don’t, the coordinator will randomly choose a PAN ID and an extended PAN ID.
 If you don’t specify a channel, the coordinator will scan and pick a relatively quiet channel to work on.
 
-### 7.2. Joining with the Well-Known Link Key
+## 7.2. Joining with the Well-Known Link Key
 
 <div align="center">
   <img src="files/ZB-Introduction-of-Zigbee-Basic/Joining-with-Well-Known-Link-Key.png">  
@@ -441,7 +441,7 @@ After the network formed, new devices can start to join.
 6. When the new device receives this message, **it uses the well-known link key to decrypt the message and gets the network key**. After that, the device is really joined the network and is able to communicate with all other nodes in the network.
 7. The device will send an announce message to notify the other nodes of the network to inform them that I’m joined.
 
-### 7.3. Joining with Install-Code Derived Link Key
+## 7.3. Joining with Install-Code Derived Link Key
 
 <div align="center">
   <img src="files/ZB-Introduction-of-Zigbee-Basic/Joining-with-Install-Code.png">  
@@ -454,7 +454,7 @@ After the network formed, new devices can start to join.
 
 The rest procedure is similar to the procedure of joining with the well-known link key. **When coordinator starts to transport network key to the new device, it encrypt the message and transport it to the new device.** When the new device receives this message, **it reads the install code from flash and derive a link key from it, then use this key to decrypt the message and get the network key**.
 
-## 8. Reference
+# 8. Reference
 - [UG103-01 Fundamentals: Wireless Network](https://www.silabs.com/documents/public/user-guides/ug103-01-fundamentals-wireless-network.pdf)
 - [UG103-02 Fundamentals: Zigbee](https://www.silabs.com/documents/public/user-guides/ug103-02-fundamentals-zigbee.pdf)
 - [UG103-03 Fundamentals: Design Choices](https://www.silabs.com/documents/public/user-guides/ug103-03-fundamentals-design-choices.pdf)

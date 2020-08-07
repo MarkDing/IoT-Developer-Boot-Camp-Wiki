@@ -82,7 +82,7 @@ Zigbee快速入门——新兵训练营系列培训的实验环节将涵盖以�
 Bootloader是存储在预留的闪存中的一段程序，可以初始化设备，更新固件image并可能执行某些完整性检查。如果怀疑应用程序没有运行，请始终检查Bootloader，因为缺少Bootloader会导致程序无法运行。  
 **注意**: 在本系列实验的开始，强烈建议对设备用Gecko SDK随附的预编译的Bootloader image进行烧录。应当用以“ -combined”结尾的image（例如，bootloader-storage-internal-single-combined.s37）烧录，这个image包含Gecko Bootloader的第一和第二阶段。该image可以在如下位置找到```c:\SiliconLabs\SimplicityStudio\v4\developer\sdks\gecko_sdk_suite\v2.6\platform\bootloader\sample-apps\bootloader-storage-internal-single\efr32mg12p332f1024gl125-brd4162a\```  
 
-想知道有关如何将Gecko Bootloader添加到Zigbee项目的更多信息，请阅读[Zigbee预备课程](https://github.com/MarkDing/IoT-Developer-Boot-Camp/wiki/Zigbee-Preparatory-Course-CN#使用-gecko-bootloader)。   
+想知道有关如何将Gecko Bootloader添加到Zigbee项目的更多信息，请阅读[Zigbee预备课程](Zigbee-Preparatory-Course-CN#32-使用gecko-bootloader)。   
 **提示**: 有关Gecko Bootloader的更多信息，请参见下面的文档。    
 [UG266: Silicon Labs Gecko Bootloader User’s Guide](https://www.silabs.com/documents/public/user-guides/ug266-gecko-bootloader-user-guide.pdf)    
 [UG103.6: Bootloader Fundamentals](https://www.silabs.com/documents/public/user-guides/ug103-06-fundamentals-bootloading.pdf)  
@@ -119,9 +119,7 @@ Bootloader是存储在预留的闪存中的一段程序，可以初始化设备�
 </div>  
 </br>   
 
-该实验的每个步骤在基本[参考项目](https://github.com/MarkDing/IoT-Developer-Boot-Camp/tree/master/zigbee)中都会有一个关联的注释，该注释从“ Send-OnOff-Commands：Step 1”开始，这将使用户更容易找到正确的代码实现位置。 
-
-找到步骤1的注释，并按如下所示实现应用程序代码。
+按如下所示实现应用程序代码。
 
 ```
 // Sending-OnOff-Commands: Step 1
@@ -233,7 +231,7 @@ void emberAfPluginButtonInterfaceButton1PressedShortCallback(uint16_t timePresse
 # 4. 测试项目
 前2章介绍了如何使设备能够通过某些API发送和接收命令。  
 生成应用程序并将输出文件烧录到目标设备。在对设备进行烧录之前，请退出网络数据捕获状态，因为在连接Network Analyzer（或Energy Profiler）时调试器无法访问芯片。  
-**注意**：请**不要**在烧录之前擦除设备，否则“znet” token将被删除，并且设备将无法加入网络，只能按照上一个实验中的说明再次[加入网络](https://github.com/MarkDing/IoT-Developer-Boot-Camp/wiki/Zigbee-Hands-on-Forming-and-Joining-CN#73-将Switch(路由器)设备上加入网络)。  
+**注意**：请**不要**在烧录之前擦除设备，否则“znet” token将被删除，并且设备将无法加入网络，只能按照上一个实验中的说明再次[加入网络](Zigbee-Hands-on-Forming-and-Joining-CN#73-将switch路由器设备上加入网络)。  
 按下Button0发送ON命令，您将注意到Light上的LED1打开。  
 按下Button1发送OFF命令，您会注意到Light 1的LED1熄灭。  
 **注意**：默认情况下，Light节点上的LED0用于指示网络活动，因此，发送命令时还能观察light节点上的LED0闪烁。  
