@@ -84,7 +84,7 @@ A bootloader is a program stored in reserved flash memory that can initialize a 
 **Note**: At the beginning of this series hands-on, it's highly recommended to program the pre-built bootloader images which comes with the Gecko SDK to the devices. The image that ends with "-combined" (e.g. bootloader-storage-internal-single-combined.s37) should be flashed, it contains the first+second stage of the Gecko Bootloader. The image can be found at  
 ```c:\SiliconLabs\SimplicityStudio\v4\developer\sdks\gecko_sdk_suite\v2.6\platform\bootloader\sample-apps\bootloader-storage-internal-single\efr32mg12p332f1024gl125-brd4162a\```  
 
-For more information about how to add Gecko Bootloader to your Zigbee project, please read the [preparatory course](https://github.com/MarkDing/IoT-Developer-Boot-Camp/wiki/Zigbee-Preparatory-Course#using-gecko-bootloader).  
+For more information about how to add Gecko Bootloader to your Zigbee project, please read the [preparatory course](Zigbee-Preparatory-Course#32-using-gecko-bootloader).  
 **Hint**: More information about Gecko Bootloader, please find the documentations below.  
 [UG266: Silicon Labs Gecko Bootloader User’s Guide](https://www.silabs.com/documents/public/user-guides/ug266-gecko-bootloader-user-guide.pdf)  
 [UG103.6: Bootloader Fundamentals](https://www.silabs.com/documents/public/user-guides/ug103-06-fundamentals-bootloading.pdf)  
@@ -126,9 +126,7 @@ Open Zigbee_Light_ZC_Callback.c from the project explorer as show below.
 </div>  
 </br>   
 
-Each step for this lab will have an associated comment in the primary [reference project](https://github.com/MarkDing/IoT-Developer-Boot-Camp/tree/master/zigbee) that starts off “Sending-OnOff-Commands: Step 1”, it will benefit the user for navigating to the right place for code implementation.  
-
-Locate the comment for step 1, and implement the application code as below.  
+Implement the application code as below.  
 
 ```
 // Sending-OnOff-Commands: Step 1
@@ -240,7 +238,7 @@ void emberAfPluginButtonInterfaceButton1PressedShortCallback(uint16_t timePresse
 The previous 2 chapters presented how to make the devices to be able to send and receive commands through some APIs.  
 
 Build the applications and download the output files to the target devices. Please exit from the network log capturing before programming the device, because the debugger has no access to the chip while the Network Analyzer (or Energy Profiler) is connected.  
-**Note**: Please **do not** erase the device before programming, otherwise the "znet" tokes will be deleted, and the device cannot join the network except [Join the network](https://github.com/MarkDing/IoT-Developer-Boot-Camp/wiki/Zigbee-Hands-on-Forming-and-Joining#73-join-the-network-on-switch-router-device) again as instructed in last lab.  
+**Note**: Please **do not** erase the device before programming, otherwise the "znet" tokes will be deleted, and the device cannot join the network except [Join the network](Zigbee-Hands-on-Forming-and-Joining#73-join-the-network-on-switch-router-device) again as instructed in last lab.  
 
 Press Button0 to send the ON command, and you will notice that LED1 on the Light turn on.  
 Press Button1 to send the OFF command, and you will notice that LED1 on the Light turn off.  

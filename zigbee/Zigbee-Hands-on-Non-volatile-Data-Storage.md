@@ -4,42 +4,42 @@ English | [中文](Zigbee-Hands-on-Non-volatile-Data-Storage-CN)
 <summary><font size=5>Table of Contents</font> </summary>
 
 - [1. Introduction](#1-introduction)
-    - [1.1. Application features](#11-application-features)
-    - [1.2. Purpose](#12-purpose)
+  - [1.1. Application features](#11-application-features)
+  - [1.2. Purpose](#12-purpose)
 - [2. Fundamentals of Non-Volatile Memory](#2-fundamentals-of-non-volatile-memory)
-    - [2.1. What is Non-Volatile Memory?](#21-what-is-non-volatile-memory)
-    - [2.2. Why need Non-Volatile Storage in EmberZNet PRO?](#22-why-need-non-volatile-storage-in-emberznet-pro)
-    - [2.3. How does Silicon Labs implement the Non-Volatile Data Storage?](#23-how-does-silicon-labs-implement-the-non-volatile-data-storage)
+  - [2.1. What is Non-Volatile Memory?](#21-what-is-non-volatile-memory)
+  - [2.2. Why need Non-Volatile Storage in EmberZNet PRO?](#22-why-need-non-volatile-storage-in-emberznet-pro)
+  - [2.3. How does Silicon Labs implement the Non-Volatile Data Storage?](#23-how-does-silicon-labs-implement-the-non-volatile-data-storage)
 - [3. Access NVM3 objects with Token API](#3-access-nvm3-objects-with-token-api)
-    - [3.1. Types of Tokens: Dynamic Tokens and Manufacturing Tokens](#31-types-of-tokens-dynamic-tokens-and-manufacturing-tokens)
-        - [3.1.1. Dynamic Tokens](#311-dynamic-tokens)
-            - [3.1.1.1. Basic (Non-indexed) Tokens](#3111-basic-non-indexed-tokens)
-            - [3.1.1.2. Indexed Tokens](#3112-indexed-tokens)
-        - [3.1.2. Manufacturing Tokens](#312-manufacturing-tokens)
-    - [3.2. Usage of Tokens: Creating and Accessing](#32-usage-of-tokens-creating-and-accessing)
-        - [3.2.1. Dynamic Tokens](#321-dynamic-tokens)
-            - [3.2.1.1. Creating Dynamic Token](#3211-creating-dynamic-token)
-                - [3.2.1.1.1. Define the Token Name](#32111-define-the-token-name)
-                - [3.2.1.1.2. Define the Token Type](#32112-define-the-token-type)
-                - [3.2.1.1.3. Define the Token Storage](#32113-define-the-token-storage)
-            - [3.2.1.2. Accessing Dynamic Tokens](#3212-accessing-dynamic-tokens)
-                - [3.2.1.2.1. Accessing Basic (Non-indexed) Tokens](#32121-accessing-basic-non-indexed-tokens)
-                - [3.2.1.2.2. Accessing Indexed Tokens](#32122-accessing-indexed-tokens)
-        - [3.2.2. Manufacturing Tokens](#322-manufacturing-tokens)
-            - [3.2.2.1. Accessing Manufacturing Tokens](#3221-accessing-manufacturing-tokens)
-        - [3.2.3. Where to Find Default Token Definitions](#323-where-to-find-default-token-definitions)
+  - [3.1. Types of Tokens: Dynamic Tokens and Manufacturing Tokens](#31-types-of-tokens-dynamic-tokens-and-manufacturing-tokens)
+    - [3.1.1. Dynamic Tokens](#311-dynamic-tokens)
+      - [3.1.1.1. Basic (Non-indexed) Tokens](#3111-basic-non-indexed-tokens)
+      - [3.1.1.2. Indexed Tokens](#3112-indexed-tokens)
+    - [3.1.2. Manufacturing Tokens](#312-manufacturing-tokens)
+  - [3.2. Usage of Tokens: Creating and Accessing](#32-usage-of-tokens-creating-and-accessing)
+    - [3.2.1. Dynamic Tokens](#321-dynamic-tokens)
+      - [3.2.1.1. Creating Dynamic Token](#3211-creating-dynamic-token)
+        - [3.2.1.1.1. Define the Token Name](#32111-define-the-token-name)
+        - [3.2.1.1.2. Define the Token Type](#32112-define-the-token-type)
+        - [3.2.1.1.3. Define the Token Storage](#32113-define-the-token-storage)
+      - [3.2.1.2. Accessing Dynamic Tokens](#3212-accessing-dynamic-tokens)
+        - [3.2.1.2.1. Accessing Basic (Non-indexed) Tokens](#32121-accessing-basic-non-indexed-tokens)
+        - [3.2.1.2.2. Accessing Indexed Tokens](#32122-accessing-indexed-tokens)
+    - [3.2.2. Manufacturing Tokens](#322-manufacturing-tokens)
+      - [3.2.2.1. Accessing Manufacturing Tokens](#3221-accessing-manufacturing-tokens)
+    - [3.2.3. Where to Find Default Token Definitions](#323-where-to-find-default-token-definitions)
 - [4. Lab](#4-lab)
-    - [4.1. Hardware Requirements](#41-hardware-requirements)
-    - [4.2. Software Requirements](#42-software-requirements)
-    - [4.3. Exercise](#43-exercise)
-        - [4.3.1. Open the Switch projects](#431-open-the-switch-projects)
-        - [4.3.2. Create Custom Tokens](#432-create-custom-tokens)
-        - [4.3.3. Access the basic Token LED1_ON_OFF](#433-access-the-basic-token-led1_on_off)
-            - [4.3.3.1. Step 1: Retrieve the basic Token data](#4331-step-1-retrieve-the-basic-token-data)
-            - [4.3.3.2. Step 2: Write the basic Token data](#4332-step-2-write-the-basic-token-data)
-            - [4.3.3.3. Step 3: Testing your project](#4333-step-3-testing-your-project)
-        - [4.3.4. Access the manufacturing Token](#434-access-the-manufacturing-token)
-            - [4.3.4.1. Step 4: Read the manufacturing Token MFG_STRING](#4341-step-4-read-the-manufacturing-token-mfg_string)
+  - [4.1. Hardware Requirements](#41-hardware-requirements)
+  - [4.2. Software Requirements](#42-software-requirements)
+  - [4.3. Exercise](#43-exercise)
+    - [4.3.1. Open the Switch projects](#431-open-the-switch-projects)
+    - [4.3.2. Create Custom Tokens](#432-create-custom-tokens)
+    - [4.3.3. Access the basic Token LED1_ON_OFF](#433-access-the-basic-token-led1_on_off)
+      - [4.3.3.1. Step 1: Retrieve the basic Token data](#4331-step-1-retrieve-the-basic-token-data)
+      - [4.3.3.2. Step 2: Write the basic Token data](#4332-step-2-write-the-basic-token-data)
+      - [4.3.3.3. Step 3: Testing your project](#4333-step-3-testing-your-project)
+    - [4.3.4. Access the manufacturing Token](#434-access-the-manufacturing-token)
+      - [4.3.4.1. Step 4: Read the manufacturing Token MFG_STRING](#4341-step-4-read-the-manufacturing-token-mfg_string)
 - [5. Conclusion](#5-conclusion)
 
 </details>
@@ -282,7 +282,7 @@ This section provides step-by-step instructions to demonstrate how to store and 
 That are the question we raised in the section [You need to do](#12-purpose) at the beginning of this documentation.  
 
 **Prerequisites**  
-Please make sure that you have finished the [preparatory course](https://github.com/MarkDing/IoT-Developer-Boot-Camp/wiki/Zigbee-Preparatory-Course) and make sure all of the SDKs software and Starter Kits are ready.  
+Please make sure that you have finished the [preparatory course](Zigbee-Preparatory-Course) and make sure all of the SDKs software and Starter Kits are ready.  
 
 ## 4.1. Hardware Requirements
 This hands-on requires either EFR32MG21/EFR32MG13/EFR32MG12 radio board, and EFR32MG12 radio board BRD4162A is recommended since we created the example project with that kit. Below is the layout of the starter kit.  
@@ -304,12 +304,11 @@ Connect the starter kit to PC using the "J-Link USB" connector and the cable pro
 </br>
 
 ## 4.2. Software Requirements
-This hands-on is building on top of the previous three hands-on [Forming and Joining](https://github.com/MarkDing/IoT-Developer-Boot-Camp/wiki/Zigbee-Hands-on-Forming-and-Joining), [Sending on/off commands](https://github.com/MarkDing/IoT-Developer-Boot-Camp/wiki/Zigbee-Hands-on-Sending-OnOff-Commands) and [Using Event](https://github.com/MarkDing/IoT-Developer-Boot-Camp/wiki/Zigbee-Hands-on-Using-Event), and it's supposed that you have installed the Simplicity Studio and necessary SDKs as documented in our [preparatory course](https://github.com/MarkDing/IoT-Developer-Boot-Camp/wiki/Zigbee-Preparatory-Course).  
+This hands-on is building on top of the previous three hands-on [Forming and Joining](Zigbee-Hands-on-Forming-and-Joining), [Sending on/off commands](Zigbee-Hands-on-Sending-OnOff-Commands) and [Using Event](Zigbee-Hands-on-Using-Event), and it's supposed that you have installed the Simplicity Studio and necessary SDKs as documented in our [preparatory course](Zigbee-Preparatory-Course).  
 
 ## 4.3. Exercise
 ### 4.3.1. Open the Switch projects
 This hands-on is building on top of previous three hands-on. Since the Non-volatile data storage mechanism does not depend on the mesh node type, we will only demonstrate how to access the NVM3 object via token API on the Switch (router) device side, it refers to the ```Zigbee_Switch_ZR``` project.  
-Also the example projects are available in the [IoT-Developer-Boot-Camp](https://github.com/MarkDing/IoT-Developer-Boot-Camp/tree/master/zigbee) repository for your reference if any difficulty for finishing the series hands-on.  
 
 ### 4.3.2. Create Custom Tokens
 We are going to create a header file ```custom-token.h```, and define the token name, token type and token storage in this header file.  
