@@ -1,4 +1,4 @@
-![Silicon Labs](files/logo.png)
+![Silicon Labs](files/logo_zb.png)
 --------------------------------------------------------
 [Home](Home) > [Zigbee](Zigbee-Boot-Camp)
 

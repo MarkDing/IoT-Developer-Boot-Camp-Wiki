@@ -1,4 +1,4 @@
-![Silicon Labs](files/logo.png)
+![Silicon Labs](files/logo_cm.png)
 --------------------------------------------------------
 [Home](Home) > [Common](Common)
 
