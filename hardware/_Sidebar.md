@@ -1,4 +1,4 @@
-![Silicon Labs](files/logo.png)
+![Silicon Labs](files/logo_hw.png)
 --------------------------------------------------------
 [Home](Home) > [Hardware](Hardware-Boot-Camp)
 

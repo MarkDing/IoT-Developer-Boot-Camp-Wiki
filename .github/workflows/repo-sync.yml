@@ -7,11 +7,11 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - name: repo-sync
-      uses: wei/git-sync@v1
+      uses: silabs-JimL/github-sync@v3.0.0
       env:
         SOURCE_REPO: "https://${{secrets.AUTO_USER}}:${{secrets.AUTO_PASSWD}}@github.com/MarkDing/IoT-Developer-Boot-Camp-Wiki"
         SOURCE_BRANCH: "master"
         DESTINATION_REPO: "https://${{secrets.AUTO_USER}}:${{secrets.AUTO_PASSWD}}@github.com/MarkDing/IoT-Developer-Boot-Camp.wiki"
         DESTINATION_BRANCH: "master"
       with:
-        args: $SOURCE_REPO $SOURCE_BRANCH $DESTINATION_REPO $DESTINATION_BRANCH
+        args: ${SOURCE_REPO} ${SOURCE_BRANCH} ${DESTINATION_REPO} ${DESTINATION_BRANCH}
