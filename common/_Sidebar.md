@@ -9,3 +9,4 @@
 * [Opening Console](Opening-Console)
 * [Network Analyzer](Network-Analyzer)
 * [Smart Speaker](EFR32-Smart-Speaker-Solution-Summary)
+* [Reduce Current Consumption](Measure-EM2-Current-Consumption-under-1.4uA-in-EFR32xG22)
