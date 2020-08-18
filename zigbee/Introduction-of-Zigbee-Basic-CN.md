@@ -46,6 +46,7 @@
 </details>
 
 ********
+## [点击这里观看视频课程][video-tutorial]
 
 # 1. 概述
 ## 1.1. 什么是Zigbee
@@ -447,3 +448,5 @@ Install Code是16字节多项式+ 2字节CRC。
 - [AN1233 Zigbee Security](https://www.silabs.com/documents/public/application-notes/an1233-zigbee-security.pdf)
 - [Zigbee Online Training Resources](https://www.silabs.com/support/training/mesh)
 ********
+
+[video-tutorial]:https://www.bilibili.com/video/BV1wV41167Zx/

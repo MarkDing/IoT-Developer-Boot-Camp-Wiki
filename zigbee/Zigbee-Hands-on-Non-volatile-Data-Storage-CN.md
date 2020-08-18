@@ -45,6 +45,7 @@
 </details>
 
 ***  
+## [点击这里观看视频课程][video-tutorial]
 
 # 1. 简介
 ## 1.1. 实验内容
@@ -469,3 +470,5 @@ emberAfAppPrintln("MFG String: %s", mfgString);
 [AN1154: Using Tokens for Non-Volatile Data Storage]: https://www.silabs.com/documents/public/application-notes/an1154-tokens-for-non-volatile-storage.pdf  
 [AN1135: Using Third Generation NonVolatile Memory (NVM3) Data Storage]: https://www.silabs.com/documents/public/application-notes/an1135-using-third-generation-nonvolatile-memory.pdf  
 [AN703: Simulated EEPROM]: https://www.silabs.com/documents/public/application-notes/an703-simulated-eeprom.pdf  
+
+[video-tutorial]:https://www.bilibili.com/video/BV15t4y197Su
