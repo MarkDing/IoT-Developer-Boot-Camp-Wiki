@@ -75,7 +75,7 @@ Silicon Labs公司的Simplicity Studio可以从[官网](https://www.silabs.com/p
 4. 选择`EmberZnet 6.7.6.0 GA Soc 6.7.6.0`, 然后点击`Next`继续;
 5. 选择`ZigbeeMinimal`, 然后点击`Next`继续;
 6. 输入工程名称`Z3Aliyun`, 然后点击`Next`继续;
-7. 在`Boards`列表框, 选择`BRD4162A`， 然后`Part`框会自动更新成对应的芯片型号。在编译器中选择IAR，最后点击`Finish`完成。 上述步骤完成后，Simplicity Studio会自动打开锁创建的工程对应的isc文件。
+7. 在`Boards`列表框, 选择`BRD4162A`， 然后`Part`框会自动更新成对应的芯片型号。在编译器中选择GCC，最后点击`Finish`完成。 上述步骤完成后，Simplicity Studio会自动打开锁创建的工程对应的isc文件。
 
 ### 2.2. 配置工程
 
