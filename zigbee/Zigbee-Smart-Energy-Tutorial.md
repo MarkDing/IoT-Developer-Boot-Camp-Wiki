@@ -1,3 +1,5 @@
+English | [中文](Zigbee-Smart-Energy-Tutorial-CN)
+
 ********
 ![zigbee](files/ZB-Zigbee-Smart-Energy-Tutorial/SmartEnergy.png)
 ********
