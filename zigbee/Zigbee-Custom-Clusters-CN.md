@@ -58,7 +58,7 @@ C:\SiliconLabs\SimplicityStudio\v4\developer\sdks\gecko_sdk_suite\v2.7\app\zcl
 
 #### 2.1.1. 理解XML 文件
 在SDK中已经有一个示例的xml文件，即 `app\zcl` 文件夹下的 `sample-extensions.xml`。
-```
+``` xml
   <!-- Use the cluster extension Extend the on/off cluster -->
   <clusterExtension code="0x0006"> 
     <attribute side="server" code="0x0000" 
@@ -128,7 +128,7 @@ C:\SiliconLabs\SimplicityStudio\v4\developer\sdks\gecko_sdk_suite\v2.7\app\zcl
 
 #### 2.1.2. 创建 XML 文件以扩展标准Cluster
 作为测试，我们扩展了 `Level Control` 这个Cluster的属性和命令。以下是 xml 的内容： 
-```
+``` xml
 <configurator>
   <domain name="Test" />
   
@@ -181,7 +181,7 @@ C:\SiliconLabs\SimplicityStudio\v4\developer\sdks\gecko_sdk_suite\v2.7\app\zcl
 </br>
 
 在文件 `<projectname>_callbacks.c` 中, 添加下面两个回调函数的实现:
-```
+``` C
 boolean emberAfLevelControlClusterSampleMfgSpecificCmdCallback(void)
 {
 	emberAfCorePrintln("[%s] called", __func__);
@@ -199,7 +199,7 @@ boolean emberAfLevelControlClusterSampleMfgSpecificCmdWithArgsCallback(int8u arg
 
 在此测试中，我们使用协调器作为服务器端。我们添加一个自定义命令来发送 `Level Control` Cluster的两个扩展命令。（如果您不知道如何添加自定义命令，可以参考[自定义 CLI 命令](Zigbee-Custom-CLI-Commands)）
 
-```
+``` C
 static void custom_test_noargcmd()
 {
 	EmberStatus status;
@@ -253,8 +253,8 @@ T00000000:RX len 6, ep 01, clus 0x0008 (Level Control) mfgId 1002 FC 05 seq 04 c
 
 ## 3. 添加自定义 Cluster
 ### 3.1. 定义自定义 Cluster
-要添加自定义群集，我们需要首先在 xml 中定义它。我们有一个示例，它是 `app\zcl` 目录中的 `sample-extensions.xml`。
-```
+要添加自定义Cluster，我们需要首先在 xml 中定义它。我们有一个示例，它是 `app\zcl` 目录中的 `sample-extensions.xml`。
+``` xml
   <cluster manufacturerCode="0x1002">
     <name>Sample Mfg Specific Cluster</name>
     <domain>Ember</domain>
@@ -287,7 +287,7 @@ T00000000:RX len 6, ep 01, clus 0x0008 (Level Control) mfgId 1002 FC 05 seq 04 c
 在此示例中，我们定义了一个自定义Cluster，其制造商代码为 0x1002。Cluster ID 为 0xFC00，其中定义了两个属性和一个命令。
 
 作为测试，我们可以定义如下自定义Cluster：
-```
+``` xml
 <configurator>
   <domain name="Test" />
   
@@ -338,14 +338,14 @@ T00000000:RX len 6, ep 01, clus 0x0008 (Level Control) mfgId 1002 FC 05 seq 04 c
 </br>
 
 ### 3.3. 测试
-创建启用自定义Cluster `Hello World` 的服务器端的项目，同时创建一个启用自定义Cluster `Hello World` 的客户端的另一个项目。在服务器项目上，检查要测试的回调 `Command One`。
+创建启用自定义Cluster `Hello World` 的服务器端的项目，同时创建一个启用自定义Cluster `Hello World` 的客户端的另一个项目。在服务器项目上，勾选要测试的回调 `Command One`。
 <div align="center">
   <img src="files/ZB-Zigbee-Custom-Clusters/Test-Custom-Cluster-Command-Handling.png">
 </div>
 </br>
 
 在文件 `<projectname>_callbacks.c` 中, 添加回调函数的实现:
-```
+``` C
 boolean emberAfSampleMfgSpecificHelloworldClusterCommandOneCallback(int8u* argOne)
 {
 	emberAfCorePrintln("[%s] called argOne=%s", __func__, argOne);
@@ -355,7 +355,7 @@ boolean emberAfSampleMfgSpecificHelloworldClusterCommandOneCallback(int8u* argOn
 
 在此测试中，我们使用协调器作为服务器端。我们在客户端添加自定义命令以发送自定义Cluster的命令。（如果您不知道如何添加自定义命令，可以参考[自定义 CLI 命令](Zigbee-Custom-CLI-Commands)）
 
-```
+``` C
 static void custom_helloworld_cmd()
 {
 	EmberStatus status;

@@ -58,7 +58,7 @@ First, you need to create a xml file. Edit this file to define the attributes an
 
 #### 2.1.1. Understanding the XML file
 We already have an example which is **sample-extensions.xml** in the **app\zcl** directory. 
-```
+``` xml
   <!-- Use the cluster extension Extend the on/off cluster -->
   <clusterExtension code="0x0006"> 
     <attribute side="server" code="0x0000" 
@@ -111,12 +111,16 @@ We already have an example which is **sample-extensions.xml** in the **app\zcl**
 ```
 In this sample, we extend the standard on/off clusters by adding some attribtues and commands. 
 The attributes below is customized:  
-
-![zigbee](files/ZB-Zigbee-Custom-Clusters/Extend-Attributes.png)
+<div align="center">
+  <img src="files/ZB-Zigbee-Custom-Clusters/Extend-Attributes.png">
+</div>
+</br>
 
 The commands below is customized:
-
-![zigbee](files/ZB-Zigbee-Custom-Clusters/Extend-Commands.png)
+<div align="center">
+  <img src="files/ZB-Zigbee-Custom-Clusters/Extend-Commands.png">
+</div>
+</br>
 
 **Notes:**
 - The extended attribute ID and command ID can be the same with the standard ones as these extended attributes and commands are only applicable to the products with the specified manufacture code. 
@@ -125,7 +129,7 @@ The commands below is customized:
 
 #### 2.1.2. Create XML File to Extend Standard Clusters
 As a test, we extend an attribute and a command of the "level" control cluster. Below is the content of the xml:  
-```
+``` xml
 <configurator>
   <domain name="Test" />
   
@@ -153,23 +157,31 @@ As a test, we extend an attribute and a command of the "level" control cluster. 
 
 ### 2.2. Add the xml of the Extended Cluster into the Project
 Put the xml file of your customization to the project folder, then turn to "Zigbee Stack" tab, in the bottom, there is a panel about "Custom ZCL additions". Click the button "Add" and then select the xml file to add it into the project.
-
-![zigbee](files/ZB-Zigbee-Custom-Clusters/Add-Xml-of-Extended-Cluster-to-Project.png)
+<div align="center">
+  <img src="files/ZB-Zigbee-Custom-Clusters/Add-Xml-of-Extended-Cluster-to-Project.png">
+</div>
+</br>
 
 After that, check if you can find the extended attribute and the extended command in "ZCL Clusters" tab.
+<div align="center">
+  <img src="files/ZB-Zigbee-Custom-Clusters/Test-Extended-Attribute.png">
+</div>
+</br>
 
-![zigbee](files/ZB-Zigbee-Custom-Clusters/Test-Extended-Attribute.png)
-
-
-![zigbee](files/ZB-Zigbee-Custom-Clusters/Test-Extended-Command.png)
+<div align="center">
+  <img src="files/ZB-Zigbee-Custom-Clusters/Test-Extended-Command.png">
+</div>
+</br>
 
 ### 2.3. Test
 Build a project with the server side of cluster "level control" enabled, and another project with the client side of cluster "level control" enabled. On the server project, check the callback "Sample Mfg Specific Cmd" and "Sample Mfg Specific Cmd With Args" to test.
-
-![zigbee](files/ZB-Zigbee-Custom-Clusters/Test-Extended-Command-Handling.png)
+<div align="center">
+  <img src="files/ZB-Zigbee-Custom-Clusters/Test-Extended-Command-Handling.png">
+</div>
+</br>
 
 In \<projectname\>_callbacks.c, add the implementation of the two callbacks:
-```
+``` C
 boolean emberAfLevelControlClusterSampleMfgSpecificCmdCallback(void)
 {
 	emberAfCorePrintln("[%s] called", __func__);
@@ -186,7 +198,7 @@ boolean emberAfLevelControlClusterSampleMfgSpecificCmdWithArgsCallback(int8u arg
 **Note:** Pay attention that the name of callback function of the extended clusters might not be exactly the same with the command name. This depends on the Simplicity Studio version you are using now. It's recommended to read the source code of the generated file "call-command-handler.c", then in function "emberAfClusterSpecificCommandParse", find the cluster you extended, and the command you added, then you will find the callback function name here. The callbacks will be called here. 
 
 In this test, we use the coordinator as the server side. We add a custom command to send the two extended commands of "level control" cluster. (You can refer to [Customizing CLI Command](Zigbee-Custom-CLI-Commands) if you don't know how to add custom commands.)  
-```
+``` C
 static void custom_test_noargcmd()
 {
 	EmberStatus status;
@@ -233,13 +245,15 @@ T00000000:RX len 6, ep 01, clus 0x0008 (Level Control) mfgId 1002 FC 05 seq 04 c
 ```
 
 In the sniffer, you can find the detail info about these two commands.
-
-![zigbee](files/ZB-Zigbee-Custom-Clusters/Test-Result-Extended-Commands.png)
+<div align="center">
+  <img src="files/ZB-Zigbee-Custom-Clusters/Test-Result-Extended-Commands.png">
+</div>
+</br>
 
 ## 3. Add a Custom Cluster
 ### 3.1. Define the Custom Cluster
 To add a custom cluster, we need to define it in xml first. We also have an example which is **sample-extensions.xml** in the **app\zcl** directory. 
-```
+``` xml
   <cluster manufacturerCode="0x1002">
     <name>Sample Mfg Specific Cluster</name>
     <domain>Ember</domain>
@@ -272,7 +286,7 @@ To add a custom cluster, we need to define it in xml first. We also have an exam
 In this sample, we defined a custom cluster with the manufacture code 0x1002. The cluster ID is 0xFC00 and there are two attributes and one command defined in it.  
 
 As a test, we can define a custom cluster like below:
-```
+``` xml
 <configurator>
   <domain name="Test" />
   
@@ -306,23 +320,31 @@ As a test, we can define a custom cluster like below:
 
 ### 3.2. Add the xml of the Custom Cluster into the Project
 Put the xml file of your customization to the project folder, then turn to "Zigbee Stack" tab, in the bottom, there is a panel about "Custom ZCL additions". Click the button "Add" and then select the xml file to add it into the project.
-
-![zigbee](files/ZB-Zigbee-Custom-Clusters/Add-Xml-of-Custom-Cluster-to-Project.png)
+<div align="center">
+  <img src="files/ZB-Zigbee-Custom-Clusters/Add-Xml-of-Custom-Cluster-to-Project.png">
+</div>
+</br>
 
 After that, check if you can find the custom cluster as well as the attribute and  command in "ZCL Clusters" tab.
+<div align="center">
+  <img src="files/ZB-Zigbee-Custom-Clusters/Custom-Cluster-Attributes.png">
+</div>
+</br>
 
-![zigbee](files/ZB-Zigbee-Custom-Clusters/Custom-Cluster-Attributes.png)
-
-
-![zigbee](files/ZB-Zigbee-Custom-Clusters/Custom-Cluster-Commands.png)
+<div align="center">
+  <img src="files/ZB-Zigbee-Custom-Clusters/Custom-Cluster-Commands.png">
+</div>
+</br>
 
 ### 3.3. Test
 Build a project with the server side of the custom cluster "Hello World" enabled, and another project with the client side of the custom cluster "Hello World" enabled. On the server project, check the callback "Command One" to test. 
-
-![zigbee](files/ZB-Zigbee-Custom-Clusters/Test-Custom-Cluster-Command-Handling.png)
+<div align="center">
+  <img src="files/ZB-Zigbee-Custom-Clusters/Test-Custom-Cluster-Command-Handling.png">
+</div>
+</br>
 
 In \<projectname\>_callbacks.c, add the implementation of the callback:
-```
+``` C
 boolean emberAfSampleMfgSpecificHelloworldClusterCommandOneCallback(int8u* argOne)
 {
 	emberAfCorePrintln("[%s] called argOne=%s", __func__, argOne);
@@ -331,7 +353,7 @@ boolean emberAfSampleMfgSpecificHelloworldClusterCommandOneCallback(int8u* argOn
 ```
 
 In this test, we use the coordinator as the server side. We add a custom command on the client side to send the command of customized cluster. (You can refer to [Customizing CLI Command](Zigbee-Custom-CLI-Commands) if you don't know how to add custom commands.)  
-```
+``` C
 static void custom_helloworld_cmd()
 {
 	EmberStatus status;
@@ -373,8 +395,10 @@ T00000000:RX len 17, ep 01, clus 0xFC10 (Hello World) mfgId 1002 FC 05 seq 00 cm
 ```
 
 In the sniffer, you can find the detail info about the custom command.
-
-![zigbee](files/ZB-Zigbee-Custom-Clusters/Test-Result-Custom-Cluster-Commands.png)
+<div align="center">
+  <img src="files/ZB-Zigbee-Custom-Clusters/Test-Result-Custom-Cluster-Commands.png">
+</div>
+</br>
 
 ## 4. Reference
 - [Zigbee Cluster Library Specification](https://zigbeealliance.org/wp-content/uploads/2019/12/07-5123-06-zigbee-cluster-library-specification.pdf)

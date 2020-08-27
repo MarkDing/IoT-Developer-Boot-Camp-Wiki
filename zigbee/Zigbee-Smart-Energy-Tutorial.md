@@ -105,32 +105,40 @@ For the time being, the ECC libraries are built with IAR. Therefore, we have to 
 5. On the bottom, select “ZigbeeMinimal”. Click Next.
 6. Name your project, such as “ZSEClient”. Click Next.
 7. In next window (Project Setup), select board, and compiler to “IAR ARM”. Click Finish.  
-![zigbee](files/ZB-Zigbee-Smart-Energy-Tutorial/Create-Project-Compiler.png)
+  <div align="center">
+    <img src="files/ZB-Zigbee-Smart-Energy-Tutorial/Create-Project-Compiler.png">
+  </div>
+  </br>
+
 8. The new project should have been created now, with the project configuration file (an .isc file) open.
-9. Click “Zigbee Stack” tab, select “Security Type” to “Smart Energy Security Test (development only)”. **Note: If you use production certificate, please select "Smart Energy Security Full(compliant)".**
-![zigbee](files/ZB-Zigbee-Smart-Energy-Tutorial/Security.png)
+9. Click “Zigbee Stack” tab, select “Security Type” to “Smart Energy Security Test (development only)”. **Note: If you use production certificate, please select "Smart Energy Security Full(compliant)".**  
+  <div align="center">
+    <img src="files/ZB-Zigbee-Smart-Energy-Tutorial/Security.png">
+  </div>
+  </br>
+
 10. Click “ZCL clusters” tab, in “ZCL device type” field, set “ZCL device type” to “SE devices --> SE Metering Device”.
 11. Click “Plugins” tab, enable the following plugins:  
 
-| Plugin | Comments |  
-|:---- |:----|   
-|Key Establishment||
-|CBKE 163k Library||
-|CBKE 283k Library||
-|CBKE 283k1 DSA Verify Library||
-|CBKE Core Library||
-|ECC 163k1 Library|Select the library file:<br>**The absolute path of ecc-library-efr32mg12p433f1024gl125.a**|
-|ECC 283k1 Library|Select the library file:<br>**The absolute path of ecc-library-283k1-efr32mg12p433f1024gl125.a**|
+    | Plugin | Comments |  
+    |:---- |:----|   
+    |Key Establishment||
+    |CBKE 163k Library||
+    |CBKE 283k Library||
+    |CBKE 283k1 DSA Verify Library||
+    |CBKE Core Library||
+    |ECC 163k1 Library|Select the library file:<br>**The absolute path of ecc-library-efr32mg12p433f1024gl125.a**|
+    |ECC 283k1 Library|Select the library file:<br>**The absolute path of ecc-library-283k1-efr32mg12p433f1024gl125.a**|
 
 12. Click “Printing and CLI” tab, enable the debug print of the following items:  
-- Security
-- CBKE 163k1 Library
-- CBKE 283k1 Library
-- Key Establishment
-- ECC 163k1 Library
-- ECC 283k1 Library
-- CBKE Core Library
-- Key Establishment Cluster
+    - Security
+    - CBKE 163k1 Library
+    - CBKE 283k1 Library
+    - Key Establishment
+    - ECC 163k1 Library
+    - ECC 283k1 Library
+    - CBKE Core Library
+    - Key Establishment Cluster
 13. Save the modified Project .ISC file and click “Generate”. Notice the project files appearing in Project Explorer. A window saying “generating successfully” will appear. Click OK.
 14. Build.
 &nbsp; 
@@ -145,20 +153,20 @@ For the time being, the ECC libraries are built with IAR. Therefore, we have to 
 7. The new project should have been created now, with the project configuration file (an .isc file) open.
 8. Click “Plugins” tab, enable the following plugins:  
 
-| Plugin | Enable | Disable | Comments |  
-|:---- |:----|:----|:----|   
-|CBKE 163k Library|Yes|||
-|CBKE 163k Stub Library||Yes||
-|CBKE 283k Library|Yes|||
-|CBKE 283k Stub Library||Yes||
-|CBKE 283k1 DSA Verify Library|Yes|||
-|CBKE 283k1 DSA Verify Stub Library||Yes||
-|CBKE Core Library|Yes|||
-|CBKE Core Stub Library||Yes||
-|CBKE DSA Sign Library|Yes|||
-|CBKE DSA Sign Stub Library||Yes||
-|ECC 163k1 Library|Yes||Select the library file:<br>**The absolute path of ecc-library-efr32mg12p433f1024gl125.a**|
-|ECC 283k1 Library|Yes||Select the library file:<br>**The absolute path of ecc-library-283k1-efr32mg12p433f1024gl125.a**|
+    | Plugin | Enable | Disable | Comments |  
+    |:---- |:----|:----|:----|   
+    |CBKE 163k Library|Yes|||
+    |CBKE 163k Stub Library||Yes||
+    |CBKE 283k Library|Yes|||
+    |CBKE 283k Stub Library||Yes||
+    |CBKE 283k1 DSA Verify Library|Yes|||
+    |CBKE 283k1 DSA Verify Stub Library||Yes||
+    |CBKE Core Library|Yes|||
+    |CBKE Core Stub Library||Yes||
+    |CBKE DSA Sign Library|Yes|||
+    |CBKE DSA Sign Stub Library||Yes||
+    |ECC 163k1 Library|Yes||Select the library file:<br>**The absolute path of ecc-library-efr32mg12p433f1024gl125.a**|
+    |ECC 283k1 Library|Yes||Select the library file:<br>**The absolute path of ecc-library-283k1-efr32mg12p433f1024gl125.a**|
 9. Save, generate and build.
 
 ### 3.3. Host
@@ -168,31 +176,48 @@ For the time being, the ECC libraries are built with IAR. Therefore, we have to 
 4. Select our latest EmberZNet stack for host (in this case EmberZNet 6.6.4 GA Host). Click Next.
 5. Select “Z3Gateway”. Click Next.
 6. Name your project, such as ZSE_Host. Click Next.
-7. In next window (Project Setup), leave the “Boards” and “Parts” field empty, then finish.
-![zigbee](files/ZB-Zigbee-Smart-Energy-Tutorial/Create-Host.png)
-8. Click “Zigbee Stack” tab, select “Security Type” to “Smart Energy Security Test (development only)”. **Note: If you use production certificate, please select "Smart Energy Security Full(compliant)".**
-![zigbee](files/ZB-Zigbee-Smart-Energy-Tutorial/Host-Security.png)
-9. Click “ZCL clusters” tab, add a new endpoint.
-![zigbee](files/ZB-Zigbee-Smart-Energy-Tutorial/Add-Endpoint.png)  
+7. In next window (Project Setup), leave the “Boards” and “Parts” field empty, then finish.  
+  <div align="center">
+    <img src="files/ZB-Zigbee-Smart-Energy-Tutorial/Create-Host.png">
+  </div>
+  </br>
 
-The new endpoint ID should be 2. Select the new endpoint, and edit the configuration, change its type to SE.  
+8. Click “Zigbee Stack” tab, select “Security Type” to “Smart Energy Security Test (development only)”. **Note: If you use production certificate, please select "Smart Energy Security Full(compliant)".**  
+  <div align="center">
+    <img src="files/ZB-Zigbee-Smart-Energy-Tutorial/Host-Security.png">
+  </div>
+  </br>
 
-![zigbee](files/ZB-Zigbee-Smart-Energy-Tutorial/Edit-Endpoint-Type.png)  
+9. Click “ZCL clusters” tab, add a new endpoint.  
+    <div align="center">
+      <img src="files/ZB-Zigbee-Smart-Energy-Tutorial/Add-Endpoint.png">
+    </div>
+    </br>
 
-Keep the new endpoint selected, change the "ZCL device type" to "SE devices  --> SE Smart Appliance".  
+    The new endpoint ID should be 2. Select the new endpoint, and edit the configuration, change its type to SE.  
+    <div align="center">
+      <img src="files/ZB-Zigbee-Smart-Energy-Tutorial/Edit-Endpoint-Type.png">
+    </div>
+    </br>
 
-![zigbee](files/ZB-Zigbee-Smart-Energy-Tutorial/ZCL-Device-Type.png)  
+    Keep the new endpoint selected, change the "ZCL device type" to "SE devices  --> SE Smart Appliance".  
+    <div align="center">
+      <img src="files/ZB-Zigbee-Smart-Energy-Tutorial/ZCL-Device-Type.png">
+    </div>
+    </br>
 
-10.  Click “Plugins” tab, enable the following plugins:  
+10. Click “Plugins” tab, enable the following plugins:
 
-| Plugin | Comments |  
-|:---- |:----|   
-|Key Establishment||
-11.  Click “Printing and CLI” tab, enable the debug print of the following items:  
-- Debug
-- Security
-- Key Establishment Cluster
-12.  Save the modified Project .ISC file and click “Generate”. Notice the project files appearing in Project Explorer. A window saying “generating successfully” will appear. Click OK.
+    | Plugin | Comments |
+    |:---- |:----|
+    |Key Establishment||
+
+11. Click “Printing and CLI” tab, enable the debug print of the following items:  
+    - Debug
+    - Security
+    - Key Establishment Cluster
+  
+12. Save the modified Project .ISC file and click “Generate”. Notice the project files appearing in Project Explorer. A window saying “generating successfully” will appear. Click OK.
 13.  Build.  
 &nbsp; 
 

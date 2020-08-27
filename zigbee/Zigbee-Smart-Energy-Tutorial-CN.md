@@ -95,7 +95,7 @@ Smart Energy 1.2 引入了新的曲线 ECC 283k1 和 74 字节证书格式。Sma
 4. 选择 `EmberZNet x.x.x GA SoC`， 请选择最新版本。(当前最新版本是EmberZNet 6.7.0 GA SoC)， 然后点击`Next`；
 5. 在列表最下端，选择 `ZigbeeMinimal`， 然后点击`Next`；
 6. 命名你的工程, 例如 `ZSEClient`， 然后点击`Next`；
-7. 在接下来的窗口(`Project Setup`)中, 选择开发板型号, 并且设置编译器未`IAR ARM`，然后点击`Finish`；
+7. 在接下来的窗口(`Project Setup`)中, 选择开发板型号, 并且设置编译器为`IAR ARM`，然后点击`Finish`；
   <div align="center">
     <img src="files/ZB-Zigbee-Smart-Energy-Tutorial/Create-Project-Compiler.png">
   </div>
