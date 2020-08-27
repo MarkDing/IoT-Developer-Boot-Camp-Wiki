@@ -1,63 +1,63 @@
-English | [中文](Zigbee-Custom-Clusters-CN)  
+[English](Zigbee-Custom-Clusters) | 中文
 
 <details>
 <summary><font size=5>Table of Contents</font> </summary>
 &nbsp;  
 
-- [1. Introduction](#1-introduction)
-  - [1.1. Extensibility of Zigbee Clusters](#11-extensibility-of-zigbee-clusters)
-  - [1.2. Clusters in EmberZnet SDK](#12-clusters-in-emberznet-sdk)
-- [2. Extend the Standard Clusters](#2-extend-the-standard-clusters)
-  - [2.1. Define the Extended Attributes and Commands](#21-define-the-extended-attributes-and-commands)
-    - [2.1.1. Understanding the XML file](#211-understanding-the-xml-file)
-    - [2.1.2. Create XML File to Extend Standard Clusters](#212-create-xml-file-to-extend-standard-clusters)
-  - [2.2. Add the xml of the Extended Cluster into the Project](#22-add-the-xml-of-the-extended-cluster-into-the-project)
-  - [2.3. Test](#23-test)
-- [3. Add a Custom Cluster](#3-add-a-custom-cluster)
-  - [3.1. Define the Custom Cluster](#31-define-the-custom-cluster)
-  - [3.2. Add the xml of the Custom Cluster into the Project](#32-add-the-xml-of-the-custom-cluster-into-the-project)
-  - [3.3. Test](#33-test)
-- [4. Reference](#4-reference)
+- [1. 介绍](#1-介绍)
+  - [1.1. Zigbee Clusters 的扩展性](#11-zigbee-clusters-的扩展性)
+  - [1.2. EmberZnet SDK 中的 Cluster](#12-emberznet-sdk-中的-cluster)
+- [2. 扩展标准的 Clusters](#2-扩展标准的-clusters)
+  - [2.1. 定义扩展属性和命令](#21-定义扩展属性和命令)
+    - [2.1.1. 理解XML 文件](#211-理解xml-文件)
+    - [2.1.2. 创建 XML 文件以扩展标准Cluster](#212-创建-xml-文件以扩展标准cluster)
+  - [2.2. 把定义好的xml文件添加到工程中](#22-把定义好的xml文件添加到工程中)
+  - [2.3. 测试](#23-测试)
+- [3. 添加自定义 Cluster](#3-添加自定义-cluster)
+  - [3.1. 定义自定义 Cluster](#31-定义自定义-cluster)
+  - [3.2. 将自定义Cluster的 xml 添加到工程中](#32-将自定义cluster的-xml-添加到工程中)
+  - [3.3. 测试](#33-测试)
+- [4. 参考](#4-参考)
 </details>
 &nbsp; 
 
-## 1. Introduction
-### 1.1. Extensibility of Zigbee Clusters
-Zigbee Alliance has defined a lot a standard clusters. It also allow manufactures to customize their own clusters if needed. In this guide, we will introduce how we extend clusters in EmberZnet. The are two scenarios of extending the clusters:  
-- Extend the attributes or commands on a standard cluster
-- Create a completely new custom cluster
+## 1. 介绍
+### 1.1. Zigbee Clusters 的扩展性
+Zigbee 联盟已经定义了很多标准Cluster。它还允许制造商根据需要自定义自己的Cluster。在本文中，我们将介绍如何在 EmberZnet 中扩展Cluster。扩展Cluster的两种场景： 
+- 扩展标准Cluster上的属性或命令
+- 创建全新的自定义Cluster  
 
-**Please keep in mind that in either scenario, the functionalities based on the custom clusters can only inter-operate with products with these custom clusters, which means your products can only inter-operate with your own products. We recommend you use custom clusters only when you have to.**
+**请注意，在这两种情况下，基于自定义Cluster的功能只能与具有这些自定义Cluster的产品进行交互操作，这意味着您的产品只能与您自己的产品进行交互操作。我们建议您仅在必须使用自定义Cluster时才使用。**
 
-&nbsp;
+根据 [ZCL 规范](https://zigbeealliance.org/wp-content/uploads/2019/12/07-5123-06-zigbee-cluster-library-specification.pdf)的描述, 一部分Cluster ID是预留给厂商自行定义的：
 
-As defined in [ZCL Spec](https://zigbeealliance.org/wp-content/uploads/2019/12/07-5123-06-zigbee-cluster-library-specification.pdf), some values of the cluster ID are reserved for manufactures.  
-
-|Cluster Identifier|Descripton|
+|Cluster ID|描述|
 |:-|:-|
-|0x0000 – 0x7fff|Standard cluster|
-|0xfc00 – 0xffff|Manufacturer specific cluster|
-|all other values|Reserved|
+|0x0000 – 0x7fff|标准 Cluster|
+|0xfc00 – 0xffff|厂商自定义 cluster|
+|其他值|保留|
 
-### 1.2. Clusters in EmberZnet SDK
-Zibgee clusters are defined in xml files in EmberZnet. The xml files can be found at **app\zcl** directory under the root directory of your SDK.  
-e.g.  
+### 1.2. EmberZnet SDK 中的 Cluster
+Zibgee Clusters 在 EmberZnet SDK 中是以xml文件的形式来定义的. 这些xml文件可以在SDK下面的`app\zcl` 目录中找到。  
+
+例如：  
 ```
 C:\SiliconLabs\SimplicityStudio\v4\developer\sdks\gecko_sdk_suite\v2.7\app\zcl
 ```
 
-You may take one of them as an example. e.g, the xml file **general.xml** defines the general clusters, like basic, identify, groups, scenes, on/off, etc.  
+你可以查看其中的xml文件内容来尝试去理解这些格式。  
 
+例如，`general.xml` 这个文件定义了一些通用类别的Cluster，比如Basic、Identify、Groups、Scenes、On/Off等等。
 &nbsp; 
 
-## 2. Extend the Standard Clusters
-Extending standard clusters means we are going to add custom attributes or commands to the standard clusters.  
+## 2. 扩展标准的 Clusters
+扩展标准Clusters意味着我们将自定义属性或命令添加到标准Clusters。
 
-### 2.1. Define the Extended Attributes and Commands
-First, you need to create a xml file. Edit this file to define the attributes and commands which you are going to customize. 
+### 2.1. 定义扩展属性和命令
+首先，您需要创建一个 xml 文件。编辑此文件，定义自定义的属性和命令。
 
-#### 2.1.1. Understanding the XML file
-We already have an example which is **sample-extensions.xml** in the **app\zcl** directory. 
+#### 2.1.1. 理解XML 文件
+在SDK中已经有一个示例的xml文件，即 `app\zcl` 文件夹下的 `sample-extensions.xml`。
 ``` xml
   <!-- Use the cluster extension Extend the on/off cluster -->
   <clusterExtension code="0x0006"> 
@@ -109,26 +109,25 @@ We already have an example which is **sample-extensions.xml** in the **app\zcl**
     </command>
   </clusterExtension>
 ```
-In this sample, we extend the standard on/off clusters by adding some attribtues and commands. 
-The attributes below is customized:  
+在此示例中，我们通过添加一些属性和命令来扩展标准Cluster On/Off。以下属性是自定义的：  
 <div align="center">
   <img src="files/ZB-Zigbee-Custom-Clusters/Extend-Attributes.png">
 </div>
 </br>
 
-The commands below is customized:
+以下命令是自定义的：
 <div align="center">
   <img src="files/ZB-Zigbee-Custom-Clusters/Extend-Commands.png">
 </div>
 </br>
 
-**Notes:**
-- The extended attribute ID and command ID can be the same with the standard ones as these extended attributes and commands are only applicable to the products with the specified manufacture code. 
-- The extended attribute ID and command ID from different manufactures can be the same.
-- All extended attributes and commands must be optional.
+**注意:**
+- 扩展属性 ID 和命令 ID 可以与标准属性 ID 相同，因为这些扩展属性和命令仅适用于特定制造商的产品（可以通过Manufacture Code来区分）。
+- 不同制造商的扩展属性 ID 和命令 ID 可以相同。
+- 所有扩展属性和命令必须是可选的。
 
-#### 2.1.2. Create XML File to Extend Standard Clusters
-As a test, we extend an attribute and a command of the "level" control cluster. Below is the content of the xml:  
+#### 2.1.2. 创建 XML 文件以扩展标准Cluster
+作为测试，我们扩展了 `Level Control` 这个Cluster的属性和命令。以下是 xml 的内容： 
 ``` xml
 <configurator>
   <domain name="Test" />
@@ -155,14 +154,14 @@ As a test, we extend an attribute and a command of the "level" control cluster. 
 </configurator>
 ```
 
-### 2.2. Add the xml of the Extended Cluster into the Project
-Put the xml file of your customization to the project folder, then turn to "Zigbee Stack" tab, in the bottom, there is a panel about "Custom ZCL additions". Click the button "Add" and then select the xml file to add it into the project.
+### 2.2. 把定义好的xml文件添加到工程中
+将定义好的 xml 文件放入项目文件夹，然后转向 `Zigbee Stack` 标签，在底部有一个 `Custom ZCL additions` 的区域。单击按钮"Add"，然后选择 xml 文件将其添加到项目中。
 <div align="center">
   <img src="files/ZB-Zigbee-Custom-Clusters/Add-Xml-of-Extended-Cluster-to-Project.png">
 </div>
 </br>
 
-After that, check if you can find the extended attribute and the extended command in "ZCL Clusters" tab.
+之后，检查能否在 `ZCL Clusters` 标签中找到扩展属性和扩展命令。
 <div align="center">
   <img src="files/ZB-Zigbee-Custom-Clusters/Test-Extended-Attribute.png">
 </div>
@@ -173,14 +172,15 @@ After that, check if you can find the extended attribute and the extended comman
 </div>
 </br>
 
-### 2.3. Test
-Build a project with the server side of cluster "level control" enabled, and another project with the client side of cluster "level control" enabled. On the server project, check the callback "Sample Mfg Specific Cmd" and "Sample Mfg Specific Cmd With Args" to test.
+### 2.3. 测试
+创建一个启用了 `Level Control` 服务器端的项目，以及启用了 `Level Control` 客户端的另一个项目。在服务器项目中，勾选回调 `Sample Mfg Specific Cmd` 和 `Sample Mfg Specific Cmd With Args` 进行测试。
+
 <div align="center">
   <img src="files/ZB-Zigbee-Custom-Clusters/Test-Extended-Command-Handling.png">
 </div>
 </br>
 
-In \<projectname\>_callbacks.c, add the implementation of the two callbacks:
+在文件 `<projectname>_callbacks.c` 中, 添加下面两个回调函数的实现:
 ``` C
 boolean emberAfLevelControlClusterSampleMfgSpecificCmdCallback(void)
 {
@@ -195,9 +195,10 @@ boolean emberAfLevelControlClusterSampleMfgSpecificCmdWithArgsCallback(int8u arg
 }
 ```
 
-**Note:** Pay attention that the name of callback function of the extended clusters might not be exactly the same with the command name. This depends on the Simplicity Studio version you are using now. It's recommended to read the source code of the generated file "call-command-handler.c", then in function "emberAfClusterSpecificCommandParse", find the cluster you extended, and the command you added, then you will find the callback function name here. The callbacks will be called here. 
+**注意:** 注意扩展Cluster的回调函数的名称可能与命令名称不完全相同。这取决于您现在使用的Simplicity Studio版本。建议读取生成的文件 `call-command-handler.c` 的源代码，然后在函数 `emberAfClusterSpecificCommandParse` 中，查找您扩展的Cluster和您添加的命令，然后您将在此处找到回调函数名称。回调将在这里调用。
 
-In this test, we use the coordinator as the server side. We add a custom command to send the two extended commands of "level control" cluster. (You can refer to [Customizing CLI Command](Zigbee-Custom-CLI-Commands) if you don't know how to add custom commands.)  
+在此测试中，我们使用协调器作为服务器端。我们添加一个自定义命令来发送 `Level Control` Cluster的两个扩展命令。（如果您不知道如何添加自定义命令，可以参考[自定义 CLI 命令](Zigbee-Custom-CLI-Commands)）
+
 ``` C
 static void custom_test_noargcmd()
 {
@@ -227,14 +228,13 @@ EmberCommandEntry emberAfCustomCommands[] = {
 };
 ```
 
-Join the client and the server into a network. 
-On the client side, run the following commands:
+将客户端和服务器加入网络。在客户端，运行以下命令：
 ```
 custom test_cmd_noarg
 custom test_cmd_1arg 100
 ```
 
-Then on the server side, you will see the following output:
+然后在服务器端，你会看到以下输出：
 ```
 T00000000:RX len 5, ep 01, clus 0x0008 (Level Control) mfgId 1002 FC 05 seq 03 cmd 00 payload[]
 [emberAfLevelControlClusterSampleMfgSpecificCmdCallback] called
@@ -244,15 +244,16 @@ T00000000:RX len 6, ep 01, clus 0x0008 (Level Control) mfgId 1002 FC 05 seq 04 c
 [emberAfLevelControlClusterSampleMfgSpecificCmdWithArgsCallback] called argOne=64
 ```
 
-In the sniffer, you can find the detail info about these two commands.
+在抓包中，您可以找到有关这两个命令的详细信息。
+
 <div align="center">
   <img src="files/ZB-Zigbee-Custom-Clusters/Test-Result-Extended-Commands.png">
 </div>
 </br>
 
-## 3. Add a Custom Cluster
-### 3.1. Define the Custom Cluster
-To add a custom cluster, we need to define it in xml first. We also have an example which is **sample-extensions.xml** in the **app\zcl** directory. 
+## 3. 添加自定义 Cluster
+### 3.1. 定义自定义 Cluster
+要添加自定义Cluster，我们需要首先在 xml 中定义它。我们有一个示例，它是 `app\zcl` 目录中的 `sample-extensions.xml`。
 ``` xml
   <cluster manufacturerCode="0x1002">
     <name>Sample Mfg Specific Cluster</name>
@@ -283,9 +284,9 @@ To add a custom cluster, we need to define it in xml first. We also have an exam
     </command>
   </cluster>
 ```
-In this sample, we defined a custom cluster with the manufacture code 0x1002. The cluster ID is 0xFC00 and there are two attributes and one command defined in it.  
+在此示例中，我们定义了一个自定义Cluster，其制造商代码为 0x1002。Cluster ID 为 0xFC00，其中定义了两个属性和一个命令。
 
-As a test, we can define a custom cluster like below:
+作为测试，我们可以定义如下自定义Cluster：
 ``` xml
 <configurator>
   <domain name="Test" />
@@ -318,14 +319,14 @@ As a test, we can define a custom cluster like below:
 </configurator>
 ```
 
-### 3.2. Add the xml of the Custom Cluster into the Project
-Put the xml file of your customization to the project folder, then turn to "Zigbee Stack" tab, in the bottom, there is a panel about "Custom ZCL additions". Click the button "Add" and then select the xml file to add it into the project.
+### 3.2. 将自定义Cluster的 xml 添加到工程中
+将自定义的 xml 文件放入项目文件夹，然后转向 `Zigbee Stack` 标签，在底部有一个 `Custom ZCL additions` 的区域。单击按钮"Add"，然后选择 xml 文件将其添加到项目中。
 <div align="center">
   <img src="files/ZB-Zigbee-Custom-Clusters/Add-Xml-of-Custom-Cluster-to-Project.png">
 </div>
 </br>
 
-After that, check if you can find the custom cluster as well as the attribute and  command in "ZCL Clusters" tab.
+之后，请检查能否在 `ZCL Clusters` 标签中找到自定义Cluster以及属性和命令。
 <div align="center">
   <img src="files/ZB-Zigbee-Custom-Clusters/Custom-Cluster-Attributes.png">
 </div>
@@ -336,14 +337,14 @@ After that, check if you can find the custom cluster as well as the attribute an
 </div>
 </br>
 
-### 3.3. Test
-Build a project with the server side of the custom cluster "Hello World" enabled, and another project with the client side of the custom cluster "Hello World" enabled. On the server project, check the callback "Command One" to test. 
+### 3.3. 测试
+创建启用自定义Cluster `Hello World` 的服务器端的项目，同时创建一个启用自定义Cluster `Hello World` 的客户端的另一个项目。在服务器项目上，勾选要测试的回调 `Command One`。
 <div align="center">
   <img src="files/ZB-Zigbee-Custom-Clusters/Test-Custom-Cluster-Command-Handling.png">
 </div>
 </br>
 
-In \<projectname\>_callbacks.c, add the implementation of the callback:
+在文件 `<projectname>_callbacks.c` 中, 添加回调函数的实现:
 ``` C
 boolean emberAfSampleMfgSpecificHelloworldClusterCommandOneCallback(int8u* argOne)
 {
@@ -352,7 +353,8 @@ boolean emberAfSampleMfgSpecificHelloworldClusterCommandOneCallback(int8u* argOn
 }
 ```
 
-In this test, we use the coordinator as the server side. We add a custom command on the client side to send the command of customized cluster. (You can refer to [Customizing CLI Command](Zigbee-Custom-CLI-Commands) if you don't know how to add custom commands.)  
+在此测试中，我们使用协调器作为服务器端。我们在客户端添加自定义命令以发送自定义Cluster的命令。（如果您不知道如何添加自定义命令，可以参考[自定义 CLI 命令](Zigbee-Custom-CLI-Commands)）
+
 ``` C
 static void custom_helloworld_cmd()
 {
@@ -382,23 +384,22 @@ EmberCommandEntry emberAfCustomCommands[] = {
 };
 ```
 
-Join the client and the server into a network. 
-On the client side, run the following commands:
+将客户端和服务器加入网络。在客户端，运行以下命令：
 ```
 custom helloworld_cmd "hello world"
 ```
 
-Then on the server side, you will see the following output:
+然后在服务器端，你会看到以下输出：
 ```
 T00000000:RX len 17, ep 01, clus 0xFC10 (Hello World) mfgId 1002 FC 05 seq 00 cmd 00 payload[0B 68 65 6C 6C 6F 20 77 6F 72 6C 64 ]
 [emberAfSampleMfgSpecificHelloworldClusterCommandOneCallback] called argOne=hello world
 ```
 
-In the sniffer, you can find the detail info about the custom command.
+在抓包中，您可以找到有关自定义命令的详细信息。
 <div align="center">
   <img src="files/ZB-Zigbee-Custom-Clusters/Test-Result-Custom-Cluster-Commands.png">
 </div>
 </br>
 
-## 4. Reference
+## 4. 参考
 - [Zigbee Cluster Library Specification](https://zigbeealliance.org/wp-content/uploads/2019/12/07-5123-06-zigbee-cluster-library-specification.pdf)
