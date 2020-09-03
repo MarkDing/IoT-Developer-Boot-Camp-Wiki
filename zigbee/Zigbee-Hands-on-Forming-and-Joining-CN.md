@@ -39,6 +39,7 @@
 
 
 ***
+## [点击这里观看视频课程][video-tutorial]
 
 # 1. 简介
 我们提供了基于EmberZnet Stack 6.6.4来创建、编译和运行Zigbee 3.0应用程序的分步操作指南。如果将来使用的是更高版本，则尽管此处可能有未预料到的细微差别，但大多数说明仍适用。  
@@ -733,3 +734,5 @@ Switch完成加入网络后，请停止Network Analyzer，然后通过Network An
 # 8. 结论
 在本实验中，您学习了如何从ZigbeeMinimal示例开始创建Zigbee应用程序项目。以及如何将您的应用程序配置为不同类型的Zigbee节点（协调器，路由器等），如何为不同的功能启用/禁用不同的插件以满足您的需求，以及如何构建集中式网络并加入该网络。
 还演示了如何使用Network Analyzer工具来分析、评估在Zigbee网络中传输的数据。
+
+[video-tutorial]:https://www.bilibili.com/video/BV1CT4y177HV

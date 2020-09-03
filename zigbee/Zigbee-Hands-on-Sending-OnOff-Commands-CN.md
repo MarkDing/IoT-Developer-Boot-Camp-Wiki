@@ -21,6 +21,7 @@
 </details>
 
 ***
+## [点击这里观看视频课程][video-tutorial]
 
 # 1. 简介
 ## 1.1. 实验内容
@@ -321,3 +322,5 @@ ID | Description
 # 5. 结论
 在本实验中，学习了如何发送不同的ZCL命令以及如何从用户应用层处理收到的命令。以及如何使能/禁用不同功能的插件来满足不同的需求。  
 还学习了如何使用Network Analyzer评估在Zigbee网络中传输的数据。
+
+[video-tutorial]:https://www.bilibili.com/video/BV1Lf4y11783

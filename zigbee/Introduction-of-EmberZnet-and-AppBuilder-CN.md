@@ -37,6 +37,7 @@
 </details>
 
 ********
+## [点击这里观看视频课程][video-tutorial]
 
 # 1. 总览
 Silicon Labs的Zigbee解决方案包括三个部分： 
@@ -554,3 +555,5 @@ Network Analyzer 对于调试无线故障非常有用. 空中传输的数据包�
 - [Silicon Labs: Zigbee - Application Framework API Reference Documentation](https://docs.silabs.com/zigbee/latest/)
 - [Peripheral Utilization on EFR32MG by EmberZNet Stack](https://www.silabs.com/community/wireless/zigbee-and-thread/knowledge-base.entry.html/2016/07/08/peripheral_utilizati-n9VT)
 ******** 
+
+[video-tutorial]:https://www.bilibili.com/video/BV1SK411n7mp
