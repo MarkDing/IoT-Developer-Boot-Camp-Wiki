@@ -20,7 +20,11 @@ EFR32xG22最突出的新特性之一就是低功耗，可以在保留32 KB RAM�
 
 为了得到更准确的结果，接下来的讨论和测试将严格按照datasheet中的测试条件进行，并使用高精度的直流分析仪代替Energy Profiler。
 
-![common](files/CM-Reduce-Current-Consumption/agilent-n6705b.jpg) 
+<div align="center">
+<img src="files/CM-Reduce-Current-Consumption/agilent-n6705b.jpg">  
+</div>  
+</br>
+
  
 本文使用的直流功率分析仪是安捷伦公司的N6705B，其电流表精度可达0.025% + 8 nA。此外，它还提供了数据记录器功能，测量间隔为20 µs到60 s，便于我们得到当前d电流消耗的平均值。 
 

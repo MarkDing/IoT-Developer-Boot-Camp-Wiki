@@ -20,7 +20,10 @@ Besides, as can be seen from the figure above, the radio board voltage is at aro
 
 In order to get more accurate results, the following discussion and test will strictly obey the testing conditions in datasheet as well as using a high-accuracy DC analyzer instead of Energy Profiler.
 
-![common](files/CM-Reduce-Current-Consumption/agilent-n6705b.jpg) 
+<div align="center">
+<img src="files/CM-Reduce-Current-Consumption/agilent-n6705b.jpg">  
+</div>  
+</br>
 
 The DC Power Analyzer used in this article is N6705B from Agilent, whose ammeter accuracy is up to 0.025% + 8 nA. Besides, it provides Data logger function with Mesurement Interval from 20 µs to 60s so that we can easily get the average value of the current consumption.  
 
