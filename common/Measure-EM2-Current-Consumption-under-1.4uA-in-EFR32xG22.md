@@ -12,10 +12,7 @@ When creating an "SoC - Empty" project, we can measure the initial sleep current
  
 The figure below shows the result tested from Energy Profiler in Simplicity Studio. From the view, we can find two current measuring results. The left one represents the total average current which include the huge increasing of current while reset. And the right one calculated from the selected range should be the values user read from.
   
-<div align="center">
-<img src="CM-Reduce-Current-Consumption/soc-empty-energy-profiler.png">  
-</div>  
-</br>  
+![common](files/CM-Reduce-Current-Consumption/soc-empty-energy-profiler.png) 
  
 In accordance with "AEM Accuracy and Performance" section from [UG172](https://www.silabs.com/documents/public/user-guides/ug172-brd4320a-user-guide.pdf), the AEM is capable of measuring currents in the range of 0.1 µA to 95 mA. For currents above 250 µA, the AEM is accurate within 0.1 mA. When measuring currents below 250 µA, the accuracy increases to 1 µA. Even though the absolute accuracy is 1 µA in the sub 250 µA range, Energy Profiler is still not accurate enough to measure low power consumption especially in Deep Sleep mode.
 
@@ -23,10 +20,8 @@ Besides, as can be seen from the figure above, the radio board voltage is at aro
 
 In order to get more accurate results, the following discussion and test will strictly obey the testing conditions in datasheet as well as using a high-accuracy DC analyzer instead of Energy Profiler.
 
-<div align="center">
-<img src="CM-Reduce-Current-Consumption/agilent-n6705b.jpg">  
-</div>  
-</br>  
+![common](files/CM-Reduce-Current-Consumption/agilent-n6705b.jpg) 
+
 The DC Power Analyzer used in this article is N6705B from Agilent, whose ammeter accuracy is up to 0.025% + 8 nA. Besides, it provides Data logger function with Mesurement Interval from 20 µs to 60s so that we can easily get the average value of the current consumption.  
 
 </br>In the following section, we will discuss how different testing conditions and peripherals effect on current consumption.
@@ -37,10 +32,7 @@ Firstly, we are going to do a simple comparison when supply voltage is 3.0 V and
 
 The figure below shows testing results of "SoC Empty Project" with different supply voltage. The upper line is the current consumption with 3.0 V supply voltage while the lower line is with 3.3 V. We can find from the table below that with 3.0 V supply voltage will consume higher current consumption than with 3.3 V supply voltage. This is because the device will maintain constant power in EM2. According to the formula **P = U x I**, voltage is inversely proportional to current under constant power.
 
-<div align="center">
-<img src="CM-Reduce-Current-Consumption/InputVoltage_Comparison.png">  
-</div>  
-</br> 
+![common](files/CM-Reduce-Current-Consumption/InputVoltage_Comparison.png) 
 
 
 ### Debugger
@@ -63,10 +55,7 @@ A DC-DC buck converter is a type of switching regulator that efficiently convert
 
 DCDC is enable by default in SoC Empty project. The figure below show the current curve comparison with and without DCDC usage after disabling debug mode in soc empty project. We can see from the average current that using DCDC can save a great amount of current.
 
-<div align="center">
-<img src="CM-Reduce-Current-Consumption/DCDC_comparison.png">  
-</div>  
-</br>  
+![common](files/CM-Reduce-Current-Consumption/DCDC_comparison.png) 
 
 
 ### External flash
@@ -234,10 +223,7 @@ The example project adopted most of the strategies mentioned above to reduce ene
 #### Experiment results
 The experiment results show the sleep current consumption in two minutes. We can see from the overall statistics in the table at the bottom and the average current consumption is about 1.65 µA. 
 
-<div align="center">
-<img src="CM-Reduce-Current-Consumption/soc-empty-disable-debug.png">  
-</div>  
-</br>  
+![common](files/CM-Reduce-Current-Consumption/soc-empty-disable-debug.png) 
 
 Since we are testing in a wireless BLE project (SoC empty project), Radio RAM (both FRC and SEQ) should be retained even in EM2 which consume about 0.25 µA extra supply current. Therefore, the testing result will be higher than 1.4 µA. If the wireless radio functions are not required, xG22 can reach lower than 1.4 µA consumption in MCU project.
 
@@ -257,11 +243,8 @@ Since we are testing in a wireless BLE project (SoC empty project), Radio RAM (b
 
 We can see from the testing results in MCU project that the current consumption can reach lower than 1.4 µA.
 
-<div align="center">
-<img src="CM-Reduce-Current-Consumption/mcu-noradioram-32ram-v0.png">  
-</div>  
-</br> 
- 
+ ![common](files/CM-Reduce-Current-Consumption/mcu-noradioram-32ram-v0.png) 
+
 ## Conclusion
 From this experiment, we can find that enable or disable different peripherals will have different impacts on the current consumption. To reduce current draw, it is recommended to use adjusted voltage to optimize the energy efficiency of the system. Besides, user should adopt different strategies depending on their requirements to reach the minimum consumption in their cases.
 
