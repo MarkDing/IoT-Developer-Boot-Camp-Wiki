@@ -1,3 +1,4 @@
+English | [中文](PCB-Layout-Design-Guide-CN)
 
 <details>
 
