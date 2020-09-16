@@ -61,7 +61,8 @@
  例如，想要找434MHz的+10dBm输出功率的参考设计，就可点击"EFR32FG1 BRD4251B 2400/433 MHz 10dBm Radio Board Full Design Package"项，下载参考设计到本地。例如BRD4251B板子的原理图就在[这里](https://www.Silabs.com/documents/public/schematic-files/EFR32FG1-BRD4251B-B00-schematic.pdf)。
 须知参考设计对于不同封装和频段配置的一簇芯片都是适用的。只需替换为感兴趣的不同封装和频段的芯片即可。
 # 3. 硬件设计要点
- 找到参考设计后，你也许会考虑为什么参考设计成这个样子。Silicon Labs提供许多应用报告和参考手册供用户参考。对于基本的硬件设计要点，对于第一代EFR32xG1x系列芯片，客户可参考[AN0002.1](https://www.Silabs.com/documents/public/application-notes/an0002.1-efr32-efm32-series-1-hardware-design-considerations.pdf)得到更多详细信息，对于第二代EFR32xG2x系列芯片，客户可参考[AN0002.2](https://www.silabs.com/documents/public/application-notes/an0002.2-efr32-efm32-series-2-hardware-design-considerations.pdf)得到更多详细信息。
+ 找到参考设计后，你也许会考虑为什么参考设计成这个样子。Silicon Labs提供许多应用报告和参考手册供用户参考。对于基本的硬件设计要点，更多详细信息, 第一代EFR32xG1x系列芯片客户可参考[AN0002.1](https://www.Silabs.com/documents/public/application-notes/an0002.1-efr32-efm32-series-1-hardware-design-considerations.pdf)，第二代EFR32xG2x系列芯片客户可参考[AN0002.2](https://www.silabs.com/documents/public/application-notes/an0002.2-efr32-efm32-series-2-hardware-design-considerations.pdf)。
+
 下面有几种不同部分的硬件设计要点：
 - 电源配置： 
   - 总体要求：VREGVDD = AVDD, 必须是EFR32芯片的最高电压；DVDD,IOVDD,RFVDD,PAVDD =< AVDD； DECOUPLE < DVDD。
@@ -72,16 +73,17 @@
 
 - 调试接口和复位引脚:
   - 串行调试口：
-    所有EFR32无线器件支持串行调试接口(SWD)，包括SWCLK(输入时钟)和SWDIO(数据输入/输出)信号，还有可选的SWO(串口输出)。SWO信号用来做仪器跟踪和编程计数采样，对于烧程序和常规调试来说是不需要的。然而它对于高级调试来说是非常有用的，设计者强烈推荐此信号连同其他的SWD信号包括到调试接口中。再者VCOM口和PTI跟踪口也连进了10脚Mini SimplicSity Studio调试口，这将带来强大的编程，控制和跟踪功能。
-    这个10脚调试口的管脚图和功能描述如下：
+    所有EFR32无线器件支持串行调试接口(SWD)，包括SWCLK(输入时钟)和SWDIO(数据输入/输出)信号，还有可选的SWO(串口输出)。SWO信号用来做仪器跟踪和编程计数采样，对于烧程序和常规调试来说是不需要的。然而它对于高级调试来说是非常有用的，强烈推荐设计者将此信号连同其他的SWD信号整合到调试接口中。还有VCOM口和PTI跟踪口也连到了10-pin Mini SimplicSity Studio调试口，这能带来强大的编程，控制和跟踪功能。
+
+    这个10-pin Mini 调试口的管脚图和功能描述如下：
     <div align="center">
     <img src="files/HW-Schematic-Design-Guide/SWD-Debug-Port.png">  
     </div>
-    通常推荐客户在其板子中保留此调试口以方便调试和测试之目的。
+    为了方便调试和测试，通常推荐客户在其板子中保留此调试口。
 
   - JTAG调试口
     EFR32无线器件选择性地支持JTAG调试接口，其使用TCLK（时钟），TDI（数据输入），TDO（数据输出）和TMS（输入模式选择）等信号。TCLK是JTAG接口时钟，TDI在TCLK上升沿采样输入数据，TDO在TCLK下降沿输出数据，最后TMS是输入模式选择信号，它通过TAP状态机来导航。
-    10管脚的Cortex调试口定义如下:
+    10-pin Cortex调试口定义如下:
     <div align="center">
      <img src="files/HW-Schematic-Design-Guide/Cortex-Debug-Port.png">  
     </div>
@@ -90,7 +92,7 @@
 
   - 复位管脚
 
-    芯片内部复位管脚上有一个弱上拉电阻和一个低通滤波器。这将容许复位管脚悬空且抑制外面的噪声干扰。复位管脚不必连接外部电源上拉电阻，否则高电平驱动将损坏芯片。
+    芯片内部复位管脚上有一个弱上拉电阻和一个低通滤波器。这将容许复位管脚悬空且能抑制外面的噪声干扰。复位管脚不可连接外部电源上拉电阻，否则高电平驱动将损坏芯片。
 
 - 外部时钟源:
 
@@ -113,7 +115,7 @@
 更多参考信息，对于EFR32xG1x一代芯片，请参考[AN0016.1](https://www.Silabs.com/documents/public/application-notes/an0016.1-efm32-series-1-oscillator-design-considerations.pdf)；对于EFR32xG2x二代芯片，请参考[AN0016.2](https://www.silabs.com/documents/public/application-notes/an0016.2-efr32-series-2-oscillator-design-considerations.pdf)。
 
 # 4. 射频电路匹配指导 
-EFR32无线器件包括提供只有2.4GHz频段的，只有sub-GHz频段的，或2.4GHz和sub-GHz双频段的芯片选型。对于这些频段的射频匹配电路有两个应用报告讲述匹配方法。一是对于EFR32xG1x一代系列的芯片的sub-GHz频段[AN923](https://www.Silabs.com/documents/public/application-notes/AN923-subGHz-Matching.pdf)，EFR32xG2x二代系列芯片目前还没有sub-GHz频段；二是对于EFR32xG1x一代系列的芯片的2.4GHz频段[AN930](https://www.Silabs.com/documents/public/application-notes/an930-efr32-matching-guide.pdf)，对于EFR32xG2x二代系列的芯片的2.4GHz频段[AN930.2](https://www.silabs.com/documents/public/application-notes/an930.2-efr32-series-2.pdf)。
+EFR32无线器件包括提供单2.4GHz频段的，单sub-GHz频段的，或2.4GHz和sub-GHz双频段的芯片选型。对于这些频段的射频匹配电路有两个应用指南讲述匹配方法。一是对于EFR32xG1x一代系列的芯片的sub-GHz频段[AN923](https://www.Silabs.com/documents/public/application-notes/AN923-subGHz-Matching.pdf)，EFR32xG2x二代系列芯片目前还没有sub-GHz频段；二是对于EFR32xG1x一代系列的芯片的2.4GHz频段[AN930](https://www.Silabs.com/documents/public/application-notes/an930-efr32-matching-guide.pdf)，对于EFR32xG2x二代系列的芯片的2.4GHz频段[AN930.2](https://www.silabs.com/documents/public/application-notes/an930.2-efr32-series-2.pdf)。
 
 匹配电路努力同时达到以下的几个目标：
 - 在RFIC外部把Tx和Rx信号通路连在一起。
