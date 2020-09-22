@@ -1,0 +1,172 @@
+# Silicon Labs Project Configuration Tools: slcp, v0, Component selection file.
+include:
+- path: ''
+  file_list:
+  - {path: app_init.h}
+  - {path: app_process.h}
+package: Flex
+configuration:
+- condition: [iostream_usart]
+  name: SL_BOARD_ENABLE_VCOM
+  value: '1'
+- {name: SL_CLI_LOCAL_ECHO, value: 'true'}
+- {name: SL_IOSTREAM_USART_VCOM_CONVERT_BY_DEFAULT_LF_TO_CRLF, value: 'true'}
+- condition: [iostream_usart]
+  name: SL_IOSTREAM_USART_VCOM_FLOW_CONTROL_TYPE
+  value: usartHwFlowControlNone
+description: The Sink example is the counterpart of the Sensor example. It manages
+  paired Sensor nodes, receiving their packets with temperature readings.
+label: sink
+source:
+- {path: main.c}
+- {path: app_init.c}
+- {path: app_process.c}
+- {path: app_callbacks.c}
+- {path: app_cli.c}
+project_name: sink
+quality: production
+template_contribution:
+- name: cli_command
+  priority: 0
+  value: {name: info, handler: cli_info, help: 'MCU ID, Network state, Node ID, PAN
+      ID, Channel ID, etc.'}
+- name: cli_command
+  priority: 0
+  value: {name: reset, handler: cli_reset, help: Reset the hardware}
+- name: cli_command
+  priority: 0
+  value:
+    name: counter
+    handler: cli_counter
+    help: Print out the passed stack counter
+    argument:
+    - {type: uint8, help: Counter type}
+- name: cli_command
+  priority: 0
+  value:
+    name: set_channel
+    handler: cli_set_channel
+    help: Set Connect channel
+    argument:
+    - {type: uint8, help: Channel ID}
+- name: cli_command
+  priority: 0
+  value: {name: leave, handler: cli_leave, help: Forget the current network and revert
+      to EMBER_NO_NETWORK}
+- name: cli_command
+  priority: 0
+  value:
+    name: set_tx_options
+    handler: cli_set_tx_option
+    help: Set Tx options
+    argument:
+    - {type: uint8, help: Security(0x01) MAC Ack(0x02) High Prio(0x04)}
+- name: cli_command
+  priority: 0
+  value:
+    name: start_energy_scan
+    handler: cli_start_energy_scan
+    help: Scan the energy level on the given channel
+    argument:
+    - {type: uint8, help: Channel ID}
+    - {type: uint8, help: Number of samples}
+- name: cli_command
+  priority: 0
+  value:
+    name: set_key
+    handler: cli_set_security_key
+    help: Set security key
+    argument:
+    - {type: hex, help: 'Security key (size:EMBER_ENCRYPTION_KEY_SIZE)'}
+- name: cli_command
+  priority: 0
+  value:
+    name: form
+    handler: cli_form
+    help: Forms a network
+    argument:
+    - {type: uint8, help: Channel}
+- name: cli_command
+  priority: 0
+  value:
+    name: set_tx_power
+    handler: cli_set_tx_power
+    help: Sets the antenna output power. The second optional parameter can be used
+      to save the TX power as default.
+    argument:
+    - {type: int16, help: TX power value in 0.1 dBm steps}
+    - {type: uint8opt, help: '1 - TX power persistent (saved in token), 0 - TX power
+        volatile'}
+- name: cli_command
+  priority: 0
+  value: {name: advertise, handler: cli_advertise, help: Advertise the Sink to Sensors.}
+- name: cli_command
+  priority: 0
+  value: {name: sensors, handler: cli_sensors, help: Prints the values of the child
+      sensors}
+- name: cli_command
+  priority: 0
+  value:
+    name: pjoin
+    handler: cli_pjoin
+    help: Permit join for a given time period with optional selective payload
+    argument:
+    - {type: uint8, help: Duration}
+    - {type: stringopt, help: Optional Join payload}
+- name: cli_command
+  priority: 0
+  value:
+    name: remove_child
+    handler: cli_remove_child
+    help: Remove a specific sensor child from the list.
+    argument:
+    - {type: uint8, help: Mode}
+    - {type: uint16, help: Short Address of the child to remove. Not used if long
+        address given.}
+    - {type: hexopt, help: Long Address of the child to remove.}
+component:
+- {id: connect_parent_support}
+- {id: connect_ota_unicast_bootloader_server}
+- {id: connect_debug_print}
+- {id: iostream_retarget_stdio}
+- {id: connect_frequency_hopping}
+- instance: [example]
+  id: cli
+- {id: sl_sensor_sink_core}
+- {id: mpu}
+- instance: [led0]
+  id: simple_led
+- {id: sl_connect_ota_unicast_bootloader_test}
+- {id: legacy_hal}
+- {id: connect_stack_common}
+- {id: sl_flex_assert}
+- {id: sl_system}
+- instance: [vcom]
+  id: iostream_usart
+- {id: radio_config_simple_connect_singlephy}
+- {id: connect_aes_security}
+- {id: printf}
+- {id: token_manager}
+- {id: connect_mac_queue}
+- {id: brd4184a}
+- {id: connect_poll}
+- {id: connect_app_framework_common}
+- {id: sl_connect_ota_bootloader_test_common}
+- {id: EFR32BG22C224F512IM40}
+- {id: connect_stack_counters}
+other_file:
+- {path: connect_create_gbl_image.bat}
+- {path: connect_create_gbl_image.sh}
+define:
+- {name: SINK_ROLE, value: '1'}
+tag: ['hardware:component:pti', 'hardware:component:vcom', 'hardware:device:flash:128',
+  'hardware:rf:count:1+', 'hardware:component:led:1+', 'hardware:device:ram:32']
+category: Connect Examples
+toolchain_settings:
+- {value: debug, option: optimize}
+ui_hints: {}
+requires:
+- {name: a_radio_config}
+- condition: [device_is_module]
+  name: module_not_supported
+

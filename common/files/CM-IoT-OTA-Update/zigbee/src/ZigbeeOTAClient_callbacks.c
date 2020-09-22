@@ -58,7 +58,7 @@ void emberAfHalButtonIsrCallback(int8u button, int8u state)
 	halSetLed(BOARDLED1);
 	if (state == BUTTON_RELEASED)
     {
-		halClearLed(BOARDLED1);
+	  	halClearLed(BOARDLED1);
 	    emberEventControlSetActive(steeringEventControl);
 	}
 }
