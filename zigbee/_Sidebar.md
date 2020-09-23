@@ -1,4 +1,4 @@
-![Silicon Labs](files/logo_zb.png)
+![Silicon Labs](files/zigbee.png)
 --------------------------------------------------------
 [Home](Home) > [Zigbee](Zigbee)
 

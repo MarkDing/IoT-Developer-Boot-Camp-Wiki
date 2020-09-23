@@ -20,12 +20,13 @@
 
 
 ********
+## [点击这里观看视频课程][video-tutorial]
 
 # 1. 介绍
 Bluetooth SIG组织在2017年7月17日发布了蓝牙Mesh标准. 蓝牙Mesh不同于传统Bluetooth Low Energy(BLE)协议的1对1, 1对多的通信方式, 它实现了多对多的通信. 这使得mesh网络中的各个节点之间可以相互通信. 蓝牙Mesh协议建立在BLE的物理层和链路层之上, 也就是说它可以和BLE 4.0及以上版本的蓝牙设备通信. 注意这并不意味着它支持所有BLE最新的特性, 譬如低功耗蓝牙的LE Coded PHY及2M PHY, 在现有的Bluetooth Mesh规范中并不支持. 
 
 <div align="center">
-<img src="files/CM-Bluetooth-Mesh-Overview/2020-09-22-16-50-58.png">
+<img src="files/BL-Bluetooth-Mesh-Overview/2020-09-22-16-50-58.png">
 </div>
 
 # 2. BLE 物理层和链路层
@@ -34,7 +35,7 @@ Bluetooth SIG组织在2017年7月17日发布了蓝牙Mesh标准. 蓝牙Mesh不�
 BLE工作在2.4GHz ISM频段2402MHz-2480MHz. BLE定义了40个信道, 每个信道2MHz宽度. 其中有3个广播信道, 图中绿色标示的37, 38, 39信道. 它们被用于设备的发现, 广播等功能. 这三个信道所处的频段正好避开了和同样工作在2.4GHz频段的WiFi最常用的第1, 6, 11信道  减少正常通信的干扰. 其他37个信道用做BLE建立连接后的双向数据传输, 叫做数据信道. 在打开蓝牙的自适用跳频功能后, 设备将会自动侦测干扰来选择合适的工作信道. 这两种信道类型正是对应于BLE的两种主要通讯模式Advertising 和 Connection. 蓝牙Mesh在网络内部节点间的通信只采用了Advertising的方式
 
 <div align="center">
-<img src="files/CM-Bluetooth-Mesh-Overview/2020-09-22-16-56-12.png">
+<img src="files/BL-Bluetooth-Mesh-Overview/2020-09-22-16-56-12.png">
 </div>
 
 ## 2.2 BLE 链路层
@@ -43,7 +44,7 @@ Advertising是指蓝牙广播设备在3个广播信道里以特定的时间间�
 蓝牙Mesh设备在发送特定信息的时候并不会像普通BLE广播要等一个广播间隔, 而是延迟一小段随机时间就立即发送出去.
 
 <div align="center">
-<img src="files/CM-Bluetooth-Mesh-Overview/2020-09-22-17-00-35.png">
+<img src="files/BL-Bluetooth-Mesh-Overview/2020-09-22-18-28-14.png">
 </div>
 
 # 3. 蓝牙Mesh发布/订阅系统
@@ -51,19 +52,19 @@ Advertising是指蓝牙广播设备在3个广播信道里以特定的时间间�
 如图中所示 开关和灯是直接建立连接的. 那么每个灯要记住是那些开关能控制它, 而开关同样要记住那些灯是它要控制的. 
 
 <div align="center">
-<img src="files/CM-Bluetooth-Mesh-Overview/2020-09-22-17-18-58.png">
+<img src="files/BL-Bluetooth-Mesh-Overview/2020-09-22-17-18-58.png">
 </div>
 
 如果灯泡3坏了, 更换了一个灯泡4. 不仅灯泡4自己要设置哪那些开关要控制它, 而且同时开关1和2也要更新自己的设置, 把灯泡3的信息用灯泡4来替换. 系统里的个体的改动会影响到其他关联个体. 
 
 <div align="center">
-<img src="files/CM-Bluetooth-Mesh-Overview/2020-09-22-17-19-56.png">
+<img src="files/BL-Bluetooth-Mesh-Overview/2020-09-22-17-19-56.png">
 </div>
 
 那么我们可以考虑引入组(Group)的概念来实现松耦合(independent). 我们把有关联的开关和灯放在同一个组, 并取个易懂的名称, 如厨房和花园. 开关发布消息到组地址, 而灯则订阅来自组地址的消息. 组成发布/订阅系统. 
 
 <div align="center">
-<img src="files/CM-Bluetooth-Mesh-Overview/2020-09-22-17-22-36.png">
+<img src="files/BL-Bluetooth-Mesh-Overview/2020-09-22-17-22-36.png">
 </div>
 
 开关记录它要发布组地址列表, 灯则记录它的订阅组地址列表. 如果要更换灯泡, 只需要重新设置新灯泡里的订阅列表即可, 不用修改开关那边发布列表的设置. 开关只需要发布消息到厨房或花园的组播地址, 无需关心订阅者的情况.
@@ -81,7 +82,7 @@ Advertising是指蓝牙广播设备在3个广播信道里以特定的时间间�
 蓝牙Mesh的节点都具有收发消息的功能, 同时节点可以选配一些特性, 如中继(relay), 代理(Proxy), 好友(Friend)和低功耗(Low Power).
 
 <div align="center">
-<img src="files/CM-Bluetooth-Mesh-Overview/2020-09-22-17-27-28.png">
+<img src="files/BL-Bluetooth-Mesh-Overview/2020-09-22-17-27-28.png">
 </div>
 
 * **中继特性**:
@@ -93,7 +94,7 @@ Advertising是指蓝牙广播设备在3个广播信道里以特定的时间间�
 图中所示的蓝牙Mesh网络拓扑. 针对使能了不同特性的节点, 分别称呼为低功耗节点, 好友节点, 中继节点. 
 
 <div align="center">
-<img src="files/CM-Bluetooth-Mesh-Overview/2020-09-22-17-52-50.png">
+<img src="files/BL-Bluetooth-Mesh-Overview/2020-09-22-17-52-50.png">
 </div>
 
 节点之间的连线表示无线信号覆盖范围内的直接连接, 对无线信号覆盖范围外的节点之间的通信需要经过中继节点. 如图中的Q,R,S进行消息转发到达目的节点. 图中有3个好友节点, 其中节点P和O分别有3个和2个低功耗节点组合, 好友节点N没有低功耗节点组合. 
@@ -108,21 +109,21 @@ Advertising是指蓝牙广播设备在3个广播信道里以特定的时间间�
 完成认证, 创建网络密钥, 蓝牙设备成为未配置的蓝牙节点(Node). 
 
 <div align="center">
-<img src="files/CM-Bluetooth-Mesh-Overview/2020-09-22-17-58-17.png">
+<img src="files/BL-Bluetooth-Mesh-Overview/2020-09-22-17-58-17.png">
 </div>
 
 未配置好的节点是不能做任何事情的, Provisioner再进行节点配置
 绑定应用层和网络层密钥, 设置模型的发布/订阅等. 完成上述动作后蓝牙设备(Device)成为蓝牙Mesh网络里的功能节点(Node)
 
 <div align="center">
-<img src="files/CM-Bluetooth-Mesh-Overview/2020-09-22-17-59-42.png">
+<img src="files/BL-Bluetooth-Mesh-Overview/2020-09-22-17-59-42.png">
 </div>
 
 ## 7.2 元素和地址
 一个节点可以包含1个或多个元素(Elements), 比如一个双孔插座板, 每个插孔就是一个元素. 
 
 <div align="center">
-<img src="files/CM-Bluetooth-Mesh-Overview/2020-09-22-18-01-24.png">
+<img src="files/BL-Bluetooth-Mesh-Overview/2020-09-22-18-01-24.png">
 </div>
 
 * 每个元素在加网的过程会被分配唯一的**单播地址**(Unicast Address), 地址范围是0x0001-0x7FFF. 
@@ -134,7 +135,7 @@ Advertising是指蓝牙广播设备在3个广播信道里以特定的时间间�
 模型包含了三个部分:
 
 <div align="center">
-<img src="files/CM-Bluetooth-Mesh-Overview/2020-09-22-18-07-17.png">
+<img src="files/BL-Bluetooth-Mesh-Overview/2020-09-22-18-07-17.png">
 </div>
 
 
@@ -155,7 +156,7 @@ Advertising是指蓝牙广播设备在3个广播信道里以特定的时间间�
 为了方便理解, 图中是灯和开关的模型简化示意图
 
 <div align="center">
-<img src="files/CM-Bluetooth-Mesh-Overview/2020-09-22-18-12-02.png">
+<img src="files/BL-Bluetooth-Mesh-Overview/2020-09-22-18-12-02.png">
 </div>
 
 左边灯的元素中含有通用开关(Generic OnOff)和灯的亮度(Light Lightness)服务器模型, 分别包含通用开关(Generic OnOff)和灯亮度(Light Lightness Actual)状态. 两个状态是绑定状态关系. 
@@ -166,7 +167,7 @@ Advertising是指蓝牙广播设备在3个广播信道里以特定的时间间�
 蓝牙mesh的协议栈是层级结构
 
 <div align="center">
-<img src="files/CM-Bluetooth-Mesh-Overview/2020-09-22-18-14-14.png">
+<img src="files/BL-Bluetooth-Mesh-Overview/2020-09-22-18-14-14.png">
 </div>
 
 
@@ -184,7 +185,7 @@ Advertising是指蓝牙广播设备在3个广播信道里以特定的时间间�
 最后我们谈谈蓝牙Mesh的安全机制. 
 
 <div align="center">
-<img src="files/CM-Bluetooth-Mesh-Overview/2020-09-22-18-18-51.png">
+<img src="files/BL-Bluetooth-Mesh-Overview/2020-09-22-18-18-51.png">
 </div>
 
 * 蓝牙mesh的安全是强制性的
@@ -195,3 +196,4 @@ Advertising是指蓝牙广播设备在3个广播信道里以特定的时间间�
 * 在mesh网络中通过刷新密钥来防止垃圾桶攻击
 
 
+[video-tutorial]:https://www.bilibili.com/video/BV1DV411m7HV
