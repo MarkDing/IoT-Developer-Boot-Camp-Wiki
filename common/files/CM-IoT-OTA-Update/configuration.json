@@ -1,0 +1,37 @@
+{
+    "protocol":"proprietary",
+
+    "commander":{
+      "path":"C:/SiliconLabs/SimplicityStudio/v5/developer/adapter_packs/commander/commander.exe",
+      "erase":"device masserase",
+      "flash":"flash",
+      "wstk":["--serialno 440179514", "--serialno 440179623"]
+    },
+    "proprietary":{
+      "server":"./proprietary/ssv5/sink.s37", 
+      "client":"./proprietary/ssv5/sensor.s37", 
+      "bootloader":"bootloader-storage-internal-single-512k.s37",
+      "hostApp":{
+        "path":"C:/SiliconLabs/SimplicityStudio/v5/developer/adapter_packs/commander/commander.exe",
+        "params":"flash --address 0x44000 --serialno 440179514 ./proprietary/ssv5/sensor.bin"
+      }
+    },
+    "zigbee":{
+      "server":"./zigbee/ncp-uart-hw.s37",
+      "client":"./zigbee/ZigbeeOTAClient.s37",
+      "bootloader":"bootloader-storage-internal-single-combined.s37",
+      "hostApp":{
+        "path":"./zigbee/Z3GatewayHost.exe",
+        "params":"-p COM5"
+      }
+    },
+    "bluetooth":{
+      "server":"./bluetooth/ncp-empty-target.s37",
+      "client":"./bluetooth/soc-empty.s37",
+      "hostApp":{
+        "path":"./bluetooth/ota-dfu.exe",
+        "params":"COM5 115200 ./bluetooth/application.gbl 00:0B:57:64:8D:C2"
+      }
+    }
+}
+
