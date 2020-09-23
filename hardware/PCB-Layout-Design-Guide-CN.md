@@ -4,7 +4,7 @@
 
 <summary><font size=5>目录</font> </summary>
  
-  - [1. 为什么正确PCB布线是很重要的?](#1.-为什么正确PCB布线是很重要的?)
+  - [1. 为什么正确布线是很重要的?](#1.-为什么正确布线是很重要的?)
   - [2. 射频电路部分](#2.-射频电路部分)
     - [2.1. 射频电路的不同部分](#2.1.-射频电路的不同部分)
       - [2.1.1. 射频匹配和滤波网络的作用](#2.1.1.-射频匹配和滤波网络的作用)
@@ -26,7 +26,7 @@
 本文目的是以实践经验帮助客户用EFR32无线系列芯片设计PCB，以达到较好的射频性能。
 PCB布线要求在[AN928.1: EFR32 Series 1 Layout Design Guide](https://www.silabs.com/documents/public/application-notes/an928.1-efr32-series1-layout-design-guide.pdf)里有详细描述。EFR32第一代系列的模块PCB布线在[the datasheet of each module](https://www.silabs.com/support/resources.ct-data-sheets.ct-miscellaneous.p-wireless_bluetooth-low-energy_blue-gecko-bluetooth-low-energy-modules.p-wireless_bluetooth-low-energy_blue-gecko-bluetooth-low-energy-modules_bgm11s12f256ga-v2.p-wireless_bluetooth-low-energy_efr32bg1-series-1-modules.p-wireless_bluetooth-low-energy_efr32bg13-series-1-modules.sort=2,asc)里讲述。另外在Simplicity Studio里面可以找到EFR32芯片的参考设计文件。
 
-# 1. 为什么正确PCB布线是很重要的?PCB
+# 1. 为什么正确布线是很重要的?
 如果PCB布线不好，可能引起以下问题：
 + 通信距离变差；
 + 产品违背相关EMC规范（高谐波，毛刺）；
