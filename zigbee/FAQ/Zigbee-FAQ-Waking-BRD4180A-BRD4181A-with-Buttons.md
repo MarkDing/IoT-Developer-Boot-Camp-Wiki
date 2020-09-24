@@ -45,18 +45,17 @@ Below are the steps of setting up the projects:
 	- [x] emberAfMainInitCallback
 4. Save and generate.
 5. Edit the source file `ZigbeeMinimalSoc4181A_EM4WU_callbacks.c`, add the following source code:
-		```C
-		extern bool emAfForceEndDeviceToStayAwake;
+	``` C
+	extern bool emAfForceEndDeviceToStayAwake;
+	void hal_EM4WU_Isr(uint8_t pin)
 
-		void hal_EM4WU_Isr(uint8_t pin)
-		{
+	{
 		halToggleLed(1);
-
 		emAfForceEndDeviceToStayAwake = !emAfForceEndDeviceToStayAwake;
-		}
+	}
 
-		void emberAfMainInitCallback(void)
-		{
+	void emberAfMainInitCallback(void)
+	{
 		CMU_ClockEnable(cmuClock_GPIO, true);
 
 		GPIO_PinModeSet(gpioPortD, 2, gpioModeInput, 1);
@@ -68,8 +67,8 @@ Below are the steps of setting up the projects:
 		GPIO_IntClear(1<<25);
 
 		GPIOINT_CallbackRegister(25, hal_EM4WU_Isr);
-		}
-		```
+	}
+	```
 
 6. Modify the source file `emdrv/gpiointerrupt.c`, here we need the following changes:
 	- Change the size of the array `gpioCallbacks` from 16 to 32, as the interrupt of GPIO_EM4WU is in the high 16bit.
