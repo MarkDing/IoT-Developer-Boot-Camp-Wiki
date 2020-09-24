@@ -55,8 +55,8 @@ Similar as the star topology, the whole network depends on the health the centra
 A mesh topology is a type of network topology that each node in the network has a point-to-point connect to every other node. In the mesh network, devices may relay data to other devices not in direct radio range of the originating device. In this way, mesh networks can span very large physical areas and contain large numbers of devices.   
 
 In general, mesh networks can relay messages using either a flooding technique or a routing technique.   
-With routing, the message is propagated along a path by hopping from node to node until it reaches its destination. To ensure that all its paths are available, the network must allow for continuous connections and must reconfigure itself around broken paths by using self-healing algorithms.   
-With flooding, the messages are not routed by a process which results in them being transmitted along a specific path comprising a sequence of only certain devices. Instead, all devices in range receive messages and those which are acting as relays, retransmit the message to all other devices in range. And there are generally two types of flooding available, uncontrolled flooding and controlled flooding.   
+* With routing, the message is propagated along a path by hopping from node to node until it reaches its destination. To ensure that all its paths are available, the network must allow for continuous connections and must reconfigure itself around broken paths by using self-healing algorithms.   
+* With flooding, the messages are not routed by a process which results in them being transmitted along a specific path comprising a sequence of only certain devices. Instead, all devices in range receive messages and those which are acting as relays, retransmit the message to all other devices in range. And there are generally two types of flooding available, uncontrolled flooding and controlled flooding.   
 
 The mesh topology provides multi-hop communications and this basically allows you to increase the range between devices and cover large areas because messages can be delivered over multiple hops. Mesh topology also allows you to increase the scale of the network to tens or even hundreds of devices. The third thing the Mesh topology solved is reliability of message delivery, the network is not dependent on single nodes or routes, but the messages can reach the destinations through multiple routes and this of course increases the reliability of communications.   
 
@@ -111,7 +111,7 @@ Zigbee is a more mature standard with a well defined application layer for other
 And a major difference between BLE Mesh and Zigbee is routing. While Zigbee uses full, table-based routing BLE Mesh uses a controlled or managed flood.   
 In Bluetooth Mesh network, the messages are sent from one node to another through relay nodes by re-broadcasting. When a node receives a message that is not intended for itself, the message is rebroadcasted. Packets are given a time-to-live (TTL) value to avoid continually re-broadcasting.   
 
-All mesh networks have some similar concept about the network forming process, network topology, security feature, however, the implementation are different. We can have a comparison between these two protocol about the items below for understanding them better.    
+All mesh networks have some similar concept about the network joining process, network topology, security feature, however, the implementation are different. We can have a comparison between these two protocols about the items below for understanding them better.    
 * [Mesh network joining process comparison](Mesh-Network-Joining-Process-Comparison)
 * [Mesh network topology comparison](Mesh-Network-Topology-Comparison)
 * [Mesh network security comparison](Mesh-Network-Security-Comparison)
