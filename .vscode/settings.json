@@ -1,5 +1,6 @@
 {
     "cSpell.words": [
         "uart"
-    ]
+    ],
+    "pasteImage.path": "${currentFileDir}/files/BL-Bluetooth-Mesh-Overview"
 }
