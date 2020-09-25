@@ -4,7 +4,7 @@
 
 <summary><font size=5>目录</font> </summary>
  
-  - [1. 为什么正确布线是很重要的?](#1.-为什么正确布线是很重要的?)
+  - [1. 为什么正确PCB布线是很重要的?](#1.-为什么正确PCB布线是很重要的?)
   - [2. 射频电路部分](#2.-射频电路部分)
     - [2.1. 射频电路的不同部分](#2.1.-射频电路的不同部分)
       - [2.1.1. 射频匹配和滤波网络的作用](#2.1.1.-射频匹配和滤波网络的作用)
@@ -21,16 +21,16 @@
 
 </details>
 
-# 简介
+# 概述
 
 本文目的是以实践经验帮助客户用EFR32无线系列芯片设计PCB，以达到较好的射频性能。
-PCB布线要求在[AN928.1: EFR32 Series 1 Layout Design Guide](https://www.silabs.com/documents/public/application-notes/an928.1-efr32-series1-layout-design-guide.pdf)里有详细描述。EFR32第一代系列的模块PCB布线在[the datasheet of each module](https://www.silabs.com/support/resources.ct-data-sheets.ct-miscellaneous.p-wireless_bluetooth-low-energy_blue-gecko-bluetooth-low-energy-modules.p-wireless_bluetooth-low-energy_blue-gecko-bluetooth-low-energy-modules_bgm11s12f256ga-v2.p-wireless_bluetooth-low-energy_efr32bg1-series-1-modules.p-wireless_bluetooth-low-energy_efr32bg13-series-1-modules.sort=2,asc)里讲述。另外在Simplicity Studio里面可以找到EFR32芯片的参考设计文件。
+PCB基于第一代系列SOC的设计布线要求在[AN928.1: EFR32 Series 1 Layout Design Guide](https://www.silabs.com/documents/public/application-notes/an928.1-efr32-series1-layout-design-guide.pdf)里有详细描述。EFR32第一代系列的模块PCB布线在各个模块[the datasheet of each module](https://www.silabs.com/support/resources.ct-data-sheets.ct-miscellaneous.p-wireless_bluetooth-low-energy_blue-gecko-bluetooth-low-energy-modules.p-wireless_bluetooth-low-energy_blue-gecko-bluetooth-low-energy-modules_bgm11s12f256ga-v2.p-wireless_bluetooth-low-energy_efr32bg1-series-1-modules.p-wireless_bluetooth-low-energy_efr32bg13-series-1-modules.sort=2,asc)里讲述。另外在Simplicity Studio里面可以找到EFR32芯片的参考设计文件。
 
-# 1. 为什么正确布线是很重要的?
+# 1. 为什么正确PCB布线是很重要的?
 如果PCB布线不好，可能引起以下问题：
 + 通信距离变差；
 + 产品违背相关EMC规范（高谐波，毛刺）；
-+ 减短电池寿命。
++ 缩短电池寿命。
 
 # 2. 射频电路部分 
 ## 2.1. 射频电路的不同部分
@@ -52,7 +52,7 @@ PCB布线最重要的部分是射频电路部分。
 
   
 ### 2.1.1. 射频匹配和滤波网络的作用
-射频发射器可以产生基波，谐波和包括射频毛刺的高频高能量的信号。在Silicon Labs参考板里Tx匹配电路的目的就是提供最多的基波能量给到天线，这就要求它提供RFIC和负载之间必要的阻抗变换。另外一个合适的在匹配电路与天线间滤波网络设计用来抑制谐波和毛刺的成分。接收匹配网络可以提供负载到RFIC的阻抗匹配。
+射频发射器可以产生基波，谐波和包括射频毛刺的高频高能量的信号。在Silicon Labs参考板里Tx匹配电路的目的就是提供最多的基波能量给到天线，这就要求它提供RFIC和负载之间必要的阻抗变换。另外在匹配电路与天线之间设计一个合适滤波网络可以用来抑制谐波和毛刺的成分。接收匹配网络可以提供负载到RFIC的阻抗匹配。
 > **发射匹配** 
 > + 传输要求的RF发射能量
 > + 阻抗变换
@@ -63,7 +63,7 @@ PCB布线最重要的部分是射频电路部分。
 
 
 ### 2.1.2. VDD电源滤波的作用
-电源线及板子上的高频模块和变换器能产生额外的射频毛刺，可导致灵敏度的降低。因此电源隔离和滤波使高频模块与射频部分隔离开来是非常重要的。最低值的电容滤除基波成分，100nF左右的电容滤除几十MHz的成分，也即是泄露的时钟毛刺。因这些成分可以在芯片内部与基波混频产生离基波几十MHz远的有害毛刺，所以滤除这些成分是很重要的。最大值的电容滤除几百KHz的类似来自开关电源的干扰。
+电源线及板子上的高速模块和变换器可能会产生额外的射频毛刺，或者导致灵敏度的降低。因此高速模块与射频电路部分间的滤波和隔离是非常重要的。最低值的电容滤除基波成分，100nF左右的电容滤除几十MHz的成分，也即是泄露的时钟毛刺。因这些成分可以在芯片内部与基波混频产生离基波几十MHz远的有害毛刺，所以滤除这些成分是很重要的。最大值的电容滤除几百KHz的类似来自开关电源的干扰。
  
 ## 2.2. 射频部分的布线    
 Silicon Labs建议直接拷贝参考PCB板上的RF部分的走线。如果不可能，请尽量遵循[AN928.1](https://www.silabs.com/documents/public/application-notes/an928.1-efr32-series1-layout-design-guide.pdf)里面讲的布线设计规则和指导。
@@ -81,12 +81,12 @@ Silicon Labs建议直接拷贝参考PCB板上的RF部分的走线。如果不可
 
 
 ### 2.2.1. 匹配网络的布线  
-匹配网络布线对达到要求的功率，优化的灵敏度和电源效率来说是非常关键的。对Rx通路来说，它很容易被PCB寄生参数引起失调，这是真的。
-尽管匹配网络尺寸比较小，因频率高，匹配电路对匹配布线的物理参数非常敏感（当然除了器件值外）。
-相对与参考布线设计来说：
-> - 不同的器件距离和线长度会引入不同大小的寄生电感
+匹配网络布线对达到要求的功率，最优的灵敏度和电源效率来说是非常关键的。PCB寄生参数很容易引起失调，特别对Rx电路更是如此。
+尽管匹配网络尺寸比较小，因频率高，匹配电路对匹配布线的物理参数非常敏感（当然包括器件值外）。
+与参考方案布线比较来说：
+> - 不同的器件距离和线长会引入不同大小的寄生电感
 > - 不同的介质厚度，介电常数和间隙产生不同的寄生电容
-> - 不同的器件位置和方向导致不同的器件间的耦合作用
+> - 不同的器件间距离，放置方向及器件相对放置方向导致不同的器件间的耦合作用
 > - 器件大小型号的不同也有不同的器件寄生参数
 这些将引起参考匹配和滤波电路或晶振负载电容等失调。可能的影响有：
 > - 降低基波发射功率
@@ -153,7 +153,7 @@ Silicon Labs建议直接拷贝参考PCB板上的RF部分的走线。如果不可
 
 </div>
 
-5. 在RF芯片及匹配网络的下方区域（对于4层PCB，就是在顶层下的首个内层）应铺上连续的实地铜皮，这将为匹配网络提供良好的参考地平面，而且保证了到RF芯片地的良好的低阻抗的回流路径。板子走线不能放在此区域，仪避免与匹配网络的耦合效应。也建议在匹配网络的地过孔和RF IC地焊盘之间的地回流路径不能被任何东西阻挡；回流电流将会看到一个干净的，无阻挡的到RF IC地的地平面路径。
+5. 在RF芯片及匹配网络的下方区域（对于4层PCB，就是在顶层下的首个内层）应铺上连续的实地铜皮，这将为匹配网络提供良好的参考地平面，而且保证了到RF芯片地的良好的低阻抗的回流路径。板子走线不能放在此区域，以避免与匹配网络的耦合效应。同时建议在匹配网络的地过孔和RF IC地焊盘之间的地回流路径不能被任何东西阻挡；回流电流将会看到一个干净的，无阻挡的到RF IC地的地平面路径。
 
 <p align="center">
   <img src="files/HW-PCB-Layout-Design-Guide/gnd.png">
@@ -179,7 +179,7 @@ Silicon Labs建议直接拷贝参考PCB板上的RF部分的走线。如果不可
 ***
 ## 3.2. Sub-G匹配网络布线设计实践
 
-下图展示了4层EFR32双频段的一气呵成的PCB布线。此讲中各层将用当前显示层的颜色标识。下面就一个一个地看看EFR32的Sub-GHz频段的布线。
+下图展示了4层EFR32双频段连贯的PCB布线。此讲中各层将用当前显示层的颜色标识。下面就一个一个地看看EFR32的Sub-GHz频段的布线。
 
 <p align="center">
   <img src="files/HW-PCB-Layout-Design-Guide/layers.png">
@@ -229,7 +229,7 @@ Silicon Labs建议直接拷贝参考PCB板上的RF部分的走线。如果不可
 
 </div>
 
-4. 在第一内层上，剩下匹配网络（巴伦和低通滤波器）的下面需要铺上实地铜皮。在匹配网络的下面的其它内层上可以布线。
+4. 在第一内层上，匹配网络的下面以外的区域（巴伦和低通滤波器）需要铺上实地铜皮。在匹配网络的下面的其它内层上可以布线。
 
 <p align="center">
   <img src="files/HW-PCB-Layout-Design-Guide/4s.png">
@@ -279,7 +279,7 @@ Silicon Labs建议直接拷贝参考PCB板上的RF部分的走线。如果不可
 </div>
 
 
-8. 尽可能用50欧的带地平面的共面波导线连接天线或U.FL连接器到匹配电路，这将减少不定PCB厚度对匹配的影响。这也将减小辐射或耦合效应。在靠近共面波导线两边多放上地过孔以进一步减少辐射。
+8. 尽可能用50欧的带地平面的共面波导线连接天线或U.FL连接器到匹配电路，这将减少PCB厚度变化对匹配的影响。这也将减小辐射或耦合效应。在靠近共面波导线两边多放地过孔以进一步减少辐射。
 
 <p align="center">
   <img src="files/HW-PCB-Layout-Design-Guide/antenna trace.png">
@@ -332,7 +332,7 @@ Silicon Labs建议直接拷贝参考PCB板上的RF部分的走线。如果不可
 ****
 ## 3.4. VDD电源滤波布线设计实践
 
-1. 最低值的去耦电容应考VDD管脚最近，而且他们需要在接地端很好地接地（用靠近的地过孔）。最大的滤波电容可放在VDD管脚的远处，在电池供电的情况下大电容不是必需的。
+1. 最低值的去耦电容应靠VDD管脚最近，而且他们需要在接地端很好地接地（用靠近的地过孔）。最大的滤波电容可放在VDD管脚的远处，在电池供电的情况下大电容不是必需的。
 
 <p align="center">
   <img src="files/HW-PCB-Layout-Design-Guide/VDD.png">
@@ -370,7 +370,7 @@ Silicon Labs建议直接拷贝参考PCB板上的RF部分的走线。如果不可
 
 </div>
 
-2. 应加强电容上热焊盘线的接地效果。而且这些电容接地管脚附近的走线需要变宽，这将减小地铜皮到地管脚之间的串联寄生电感。在靠近电容地管脚加更多的地孔（也即连接到底面或内部参考地平面）有助于进一步减小这一效应。
+2. 应加强电容上热焊盘线的接地效果。而且这些电容接地管脚附近的走线需要变宽，这将减小地铜皮到地管脚之间的串联寄生电感。在靠近电容地管脚加更多的地孔（也即连接到底层或中间层参考地平面）有助于进一步减小这一效应。
 
 <p align="center">
   <img src="files/HW-PCB-Layout-Design-Guide/vias.png">
@@ -382,7 +382,7 @@ Silicon Labs建议直接拷贝参考PCB板上的RF部分的走线。如果不可
 
 </div>
 
-3. EFR32芯片中间的暴露地焊盘需打进可能多的过孔以保证良好接地和散热能力。参考设计中7X7mm封装中的地焊盘上有25个地过孔，每个地过孔直径为10密尔。
+3. EFR32芯片中间的暴露地焊盘需打尽可能多的过孔以保证良好接地和散热能力。参考设计中7X7mm封装中的地焊盘上有25个地过孔，每个地过孔直径为10mil。
 
 <p align="center">
   <img src="files/HW-PCB-Layout-Design-Guide/vias2.png">
@@ -407,7 +407,7 @@ Silicon Labs建议直接拷贝参考PCB板上的RF部分的走线。如果不可
 </div>
 
 
-5. 在多于2层的PCB设计中，所有走线特别是对VDD电源走线应放在其中的内层上。同时避免电源线靠近PCB板边放置。顶层或底层的整层应尽可能多的放置连续金属化地，以减少来自信号线带来的谐波和杂散辐射。 
+5. 在多于2层的PCB设计中，所有走线应放在内层上，特别是VDD电源走线。同时避免电源线靠近PCB板边放置。顶层或底层的整层应尽可能多的放置连续金属化地，以减少来自信号线带来的谐波和杂散辐射。 
 
 <p align="center">
   <img src="files/HW-PCB-Layout-Design-Guide/layers.png">
