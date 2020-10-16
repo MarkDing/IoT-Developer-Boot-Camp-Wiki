@@ -153,15 +153,20 @@ SYSCFG->DMEM0RETNCTRL = 0x01UL;
 
 **Note**:完全移除32 KB RAM是没有意义的(可以实现，但是会导致唤醒失败)。
 
-##### LFXO
-根据我们的测试结果，使用LFXO代替LFRCO可以降低70 nA- 100 nA的电流消耗
+### 低频振荡器设置
+LFRCO是芯片内部集成的32.768 kHz RC振荡器，用于不使用外部晶振的低功耗模式。部分系列芯片的LFRCO可以提供精确模式，精确模式下的LFRCO（PLFRCO）在温度变化时可以通过使能硬件，周期性地参照38.4 MHz HFXO进行校准，提供32.768 kHz和+/- 500ppm精度的时钟源。在温度变化时，由于PLFRCO频繁地进行自动校准，往往会增大电流的消耗。
+
+LFXO使用外部32.768 kHz晶振，提供准确的低频时钟。使用LFXO代替LFRCO作为振荡器，能够降低电流消耗
 ```c
 CMU_LFXOInit_TypeDef lfxoInit = CMU_LFXOINIT_DEFAULT;
 CMU_LFXOInit(&lfxoInit);
-CMU_OscillatorEnable(cmuOsc_LFRCO, true, false);
+CMU_OscillatorEnable(cmuOsc_LFRCO, false, false);
 CMU_OscillatorEnable(cmuOsc_LFXO, true, true);
 CMU_ClockSelectSet(cmuClock_LFXO, cmuSelect_LFXO);
 ```
+根据EFR32xG22的数据手册，使用DC-DC 3.0V 电源供电时，MCU 在 EM2 及 VSCALE0模式下的电流消耗如下表所示：
+
+![common](files/CM-Reduce-Current-Consumption/datasheet-MCU-current-consumption.png) 
  
 **Note**: 重置设备后立即进入EM2模式，可能会让debugger不能再被连接。
 为了解决这个问题，请将电池盒旁边的WSTK开关设置为USB(关闭EFR电源)。执行简单命令命令行参数"./command .exe device recover"后，立即将开关移动到AEM位置。
@@ -256,6 +261,7 @@ CMU_ClockSelectSet(cmuClock_LFXO, cmuSelect_LFXO);
  
 ### 参考
 * [github peripheral example](https://github.com/SiliconLabs/peripheral_examples/tree/master/series2/emu/em23_voltage_scaling)
+* [AN969: Measuring Power Consumption on Wireless Gecko Devices](https://www.silabs.com/documents/public/application-notes/an969-measuring-power-consumption.pdf)
 * [Enabling sleep mode of the MX25 series SPI flash](https://www.silabs.com/community/wireless/zigbee-and-thread/knowledge-base.entry.html/2018/12/10/enabling_sleep_mode-V2wx)
  
  
