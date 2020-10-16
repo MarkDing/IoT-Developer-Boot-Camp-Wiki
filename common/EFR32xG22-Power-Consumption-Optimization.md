@@ -1,4 +1,4 @@
-# Measure EM2 Current Consumption under 1.4µA in EFR32xG22
+# EFR32xG22-Power-Consumption-Optimization
  
 English | [中文](EFR32xG22-Power-Consumption-Optimization-CN)
 
