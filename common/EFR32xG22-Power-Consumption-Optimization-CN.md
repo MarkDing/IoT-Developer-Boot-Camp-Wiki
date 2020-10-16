@@ -1,6 +1,6 @@
 # 如何测量EFR32xG22的EM2电流消耗（1.40 µA）
  
-[English](Measure-EM2-Current-Consumption-under-1.4uA-in-EFR32xG22) | 中文
+[English](EFR32xG22-Power-Consumption-Optimization) | 中文
 
 ## 介绍
 EFR32xG22最突出的新特性之一就是低功耗，可以在保留32 KB RAM及使用LFRCO的条件下，达到1.40 µA的EM2深度睡眠电流。本文将讨论如何达到EFR32xG22 EM2的最小电流消耗，以及如何降低电流消耗。
@@ -156,7 +156,7 @@ SYSCFG->DMEM0RETNCTRL = 0x01UL;
 ### 低频振荡器设置
 LFRCO是芯片内部集成的32.768 kHz RC振荡器，用于不使用外部晶振的低功耗模式。部分系列芯片的LFRCO可以提供精确模式，精确模式下的LFRCO（PLFRCO）在温度变化时可以通过使能硬件，周期性地参照38.4 MHz HFXO进行校准，提供32.768 kHz和+/- 500ppm精度的时钟源。在温度变化时，由于PLFRCO频繁地进行自动校准，往往会增大电流的消耗。
 
-LFXO使用外部32.768 kHz晶振，提供准确的低频时钟。使用LFXO代替LFRCO作为振荡器，能够降低电流消耗
+LFXO使用外部32.768 kHz晶振，提供准确的低频时钟。使用LFXO代替PLFRCO作为振荡器，能够降低电流消耗
 ```c
 CMU_LFXOInit_TypeDef lfxoInit = CMU_LFXOINIT_DEFAULT;
 CMU_LFXOInit(&lfxoInit);

@@ -1,6 +1,6 @@
 # Measure EM2 Current Consumption under 1.4µA in EFR32xG22
  
-English | [中文](Measure-EM2-Current-Consumption-under-1.4uA-in-EFR32xG22-CN)
+English | [中文](EFR32xG22-Power-Consumption-Optimization-CN)
 
 ## Introduction
 One of the new features highlighted in EFR32xG22 is the Low System Energy Consumption which can reach 1.40 µA EM2 DeepSleep current with 32 kB RAM retention and RTC running from LFRCO. This article discusses how to measure the minimum current consumption in EFR32xG22 EM2, as well how to reduce current consumption.
