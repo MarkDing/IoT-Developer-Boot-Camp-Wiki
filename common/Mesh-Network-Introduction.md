@@ -17,15 +17,15 @@
 ***
 
 # 1. Wireless network introduction
-While the term wireless network may technically be used to refer to any type of network that functions without the need for interconnecting wires. Wireless telecommunications networks are generally implemented with radios for the carrier or physical layer of the network.   
+While the term - "wireless network" may technically be used to refer to any type of network that functions without the need for interconnecting wires. Wireless telecommunications networks are generally implemented with radios for the carrier or physical layer of the network.   
 
 As you probably know that the radio spectrum is regulated by government agencies and by international treaties. Most transmitting stations, including commercial broadcasters, military, scientific, industrial, and amateur radio stations, require a license to operate. Each license typically defines the limits of the type of operation, power levels, modulation types, and whether the assigned frequency bands are reserved for exclusive or shared use.   
 
 A common strategy in wireless network is to use 2400 MHz which was the one of the first worldwide unlicensed bands and is a very commonly-used frequency band. Both Bluetooth SIG and Zigbee Alliance endorse the use of this band, and of course the Zigbee Alliance can also use other SubGHz bands to expand their capabilities.   
 
 ## 1.1. Network Topology
-Before taking about the mesh network, we'd like to introduce something more about the network topology.   
-Network topology is the topological structure of a network, it refers to how nodes, devices in the network are physically or logically connected. There are a lot of different type of network topologies, including point-to-point, star, tree, mesh etc.   
+Before talking about the mesh network, we'd like to introduce something more about the network topology.   
+Network topology is the topological structure of a network, it refers to how nodes or devices in the network are physically or logically connected. There are a lot of different type of network topologies, including point-to-point, star, tree, mesh etc.   
 
 ### 1.1.1. Point-to-Point
 Point-to-point topology is the simplest topology which has a dedicated link between two endpoints. Due to the direct link between these two devices, it can provide a fast and reliable connections, however, it can only be used for small area with only two devices involved.   
@@ -43,9 +43,9 @@ The advantage of the star topology is the simplicity of adding additional nodes,
 ### 1.1.3. Tree
 A tree topology can be viewed as a collection of star networks arranged in a hierarchy.   
 Unlike the star topology that each node is directly connected to the central hub, a tree topology has a parent-child hierarchy to how the nodes are connected. 
-The advantage of the tree network is that you can expand the network easily, and each branch of the network can be individually work.   
+The advantage of the tree network is that you can expand the network easily, and each branch of the network can individually work.   
 
-Similar as the star topology, the whole network depends on the health the central hub, if the central hub goes down, the entire network cannot work. In the tree network, each branch of the tree network also depends on the health of the central device of the tree branch. And each two device in the network cannot communicate without the participation of the network or tree central device.   
+Similar to the star topology, the whole network depends on the health the central hub, if the central hub goes down, the entire network cannot work. In the tree network, each branch of the tree network also depends on the health of the root of the tree branch. And each two device in the network cannot communicate without the participation of the network or tree central device.   
 
 <div align="center">
   <img src="files/CM-Mesh-Network-Comparison/network-topology-tree.png">  
@@ -104,7 +104,7 @@ The picture below illustrates the Bluetooth mesh protocol architecture, and you 
 # 3. Comparing Zigbee and Bluetooth Mesh
 Both Zigbee and Bluetooth mesh are mesh networking protocol and each has unique characteristics, there is no simple answer about which protocol is better than another since the performance varies based on the application and use case.   
 
-A major advantage of BLE mesh is it's capability to interface with mobile phones and tablets. This offers users an easy way to control the network and collect data from the network. This can be useful for obtaining sensor data, health data from light bulbs, etc.   
+A major advantage of BLE mesh is it's capability to interface with mobile phones and tablets. This offers users an easy way to control the network and collect data from the network. This can be useful for controlling the light bulbs, obtaining sensor data, etc.   
 
 Zigbee is a more mature standard with a well defined application layer for other applications besides lighting.  While BLE Mesh only supports the 2.4 GHz band, Zigbee is available in several sub-GHz bands. The frequencies are country-dependent. A Zigbee network interfaces to the outside world through a Zigbee gateway.   
 
@@ -120,5 +120,5 @@ All mesh networks have some similar concept about the network joining process, n
 *** 
 
 # 4. Reference
-[Network Topology](https://en.wikipedia.org/wiki/Network_topology)
-[Zigbee Fundamentals](https://www.silabs.com/documents/public/user-guides/ug103-02-fundamentals-zigbee.pdf)
+* [Network Topology](https://en.wikipedia.org/wiki/Network_topology)
+* [Zigbee Fundamentals](https://www.silabs.com/documents/public/user-guides/ug103-02-fundamentals-zigbee.pdf)

@@ -18,7 +18,7 @@
 - [3. Bluetooth Mesh](#3-bluetooth-mesh)
   - [3.1. Architecture Introduction](#31-architecture-introduction)
   - [3.2. Network topology](#32-network-topology)
-  - [3.3. Node type in Bluetooth Mesh network](#33-node-type-in-bluetooth-mesh-network)
+  - [3.3. Member of Bluetooth Mesh network](#33-member-of-bluetooth-mesh-network)
   - [3.4. Provisioning behavior](#34-provisioning-behavior)
     - [3.4.1. Beaconing](#341-beaconing)
       - [3.4.1.1. PB-ADV](#3411-pb-adv)
@@ -30,6 +30,7 @@
 - [4. Conclusion](#4-conclusion)
   - [4.1. Network joining process in Zigbee](#41-network-joining-process-in-zigbee)
   - [4.2. Provisioning process in Bluetooth Mesh](#42-provisioning-process-in-bluetooth-mesh)
+- [5. Reference](#5-reference)
 </details>
 
 ***
@@ -49,7 +50,7 @@ As you already know that the Zigbee networks are based on the IEEE 802.15.4 MAC 
   <img src="files/CM-Mesh-Network-Comparison/joining-process-zigbee-architecture.png">  
 </div>  
 
-The 802.15.4 MAC layer is used for basic message handling and congestion control. This MAC layer includes mechanisms for forming and joining a network, a CSMA mechanism for devices to listen for a clear channel, as well as a link layer to handle retries and acknowledgment of messages for reliable communications between adjacent devices.   
+The 802.15.4 MAC layer is used for basic message handling and congestion control. This MAC layer includes mechanisms for forming and joining a network, a Carrier Sense Multiple Access (CSMA) mechanism for devices to listen for a clear channel, as well as a link layer to handle retries and acknowledgment of messages for reliable communications between adjacent devices.   
 
 The Zigbee network layer, the **Next higher layers** in the architecture below, builds on these underlying mechanisms to provide network configuration, manipulation, and message routing for reliable end-to-end communications in the network.    
 
@@ -73,10 +74,12 @@ Depending on the application requirements, an IEEE 802.15.4 low-rate wireless pe
 
 In the star topology, the communication is established between devices and a single central controller, called the Personal Area Network (PAN) Coordinator. The PAN Coordinator is the primary controller of the PAN.   
 
-The peer-to-peer topology also has a PAN Coordinator, however, it differs from the star topology in that any device is able to communicate with any other device as long as they are in range of one another. Peer-to-peer topology allows more complex network formations to be implemented, such as mesh networking topology. 
+The peer-to-peer topology also has a PAN Coordinator, however, it differs from the star topology in that any device is able to communicate with any other device as long as they are in range of one another. Peer-to-peer topology allows more complex network formations to be implemented, such as mesh networking topology.   
+**Note**: A peer-to-peer topology is different from the point-to-point network. In a peer-to-peer topology, each device is capable of communicating with any other device within its radio communications range. However, in the point-to-point topology, there is only two devices get involved.   
+
 A peer-to-peer network allows multiple hops to route messages from any device to any other device on the network. Such functions can be added at the higher layer, which is Network layer in Zigbee architecture.   
 
-The PAN Coordinator forms a network by choosing an unused PAN ID and broadcasting beacon frames to neighboring devices. Once the PAN ID is chosen, the PAN Coordinator allows other devices, potentially both FFDs and RFDs, to join its network. A candidate device receiving a beacon frame is able to request to join the network at the PAN Coordinator. If the PAN Coordinator permits the device to join, it adds the new device as a child device in its neighbor list. Then the newly joined device adds the PAN Coordinator as its parent in its neighbor list and begins transmitting periodic beacons; other candidate devices are able to then join the network at that device. If the original candidate device is not able to join the network at the PAN Coordinator, it will search for another parent device.   
+The PAN Coordinator forms a network by choosing an unused PAN ID and broadcasting beacon frames to neighboring devices. Once the PAN ID is chosen, the PAN Coordinator allows other devices, potentially both FFDs and RFDs, to join its network. A candidate device receiving a beacon frame is able to request to join the network at the PAN Coordinator. If the PAN Coordinator permits the device to join, it adds the new device as a child device in its neighbor list. Then the newly joined device adds the PAN Coordinator as its parent in its neighbor list and begins transmitting periodic beacons; other candidate devices are able to then join the network at that newly joined device. If the original candidate device is not able to join the network at the PAN Coordinator, it will search for another parent device.   
 
 
 ## 2.3. Mesh Network maintenance
@@ -84,14 +87,18 @@ The network formation is performed by next higher layer which is network layer, 
 
 ### 2.3.1. Device type in Zigbee network
 
-* **PAN coordinator**: the principal controller of an IEEE 802.15.4-based network that is responsible for network formation. The PAN coordinator must be a full function device (FFD). 
-* **ZigBee coordinator**: an IEEE 802.15.4 PAN coordinator. 
+* **ZigBee coordinator**: an IEEE 802.15.4 PAN coordinator. The PAN coordinator is the principal controller of an IEEE 802.15.4-based network that is responsible for network formation. The PAN coordinator must be a full function device (FFD).   
 * **ZigBee router**: an IEEE 802.15.4 FFD participating in a ZigBee network, which is not the ZigBee coordinator but may act as an IEEE 802.15.4 coordinator within its personal operating space, that is capable of routing messages between devices and supporting associations. 
 * **ZigBee end device**: an IEEE 802.15.4 RFD or FFD participating in a ZigBee network, which is neither the ZigBee coordinator nor a ZigBee router. 
 
 In Zigbee network, the ZigBee coordinators shall provide functionality to establish a new network. ZigBee routers and end devices shall provide the support of portability within a network.   
 
 ### 2.3.2. Establish a New Network
+The procedure to successfully start a new network is illustrated in the message sequence chart shown as below.   
+<div align="center">
+  <img src="files/CM-Mesh-Network-Comparison/joining-process-establish-network.png">  
+</div>  
+
 1. The procedure to establish a new network is initiated through use of the *NLME-NETWORK-FORMATION.request* primitive, the primitive allows the next higher layer to request that the device start a new ZigBee network with itself as the coordinator. Only the device which is capable of becoming the Zigbee coordinator and not currently joined to a network shall attempt to establish a new network.    
 
 2. When this procedure is initiated, the Network Layer Management Entity (NLME) shall first request that the MAC sub-layer(s) perform an energy detection scan over either a specified set of channels or, by default, the complete set of available channels, as dictated by the PHY layer(s), to search for possible interferers. In EmberZNet stack based project, you can configure the channel mask in the **Network Creator** plugin. And of course, the energy detection scan is not necessary if there is only one channel specified.   
@@ -105,22 +112,18 @@ Once a PAN identifier is selected, the NLME shall select a 16-bit network addres
 5. Then, the NLME shall initiate a new PAN by issuing the *MLME-START.request* primitive to each MAC sub-layer. And each MAC interface will response the status of the PAN startup via the *MLME-START.confirm* primitive.   
 6. On receipt of the status of the PAN startup, the NLME shall inform the next higher layer of the status of its request to initialize the ZigBee coordinator.   
 
+### 2.3.3. Permit Device to Join a Network
+The procedure for permitting devices to join a network is illustrated as below.   
+
 <div align="center">
-  <img src="files/CM-Mesh-Network-Comparison/joining-process-establish-network.png">  
+  <img src="files/CM-Mesh-Network-Comparison/joining-process-permit-join.png">  
 </div>  
 
-### 2.3.3. Permit Device to Join a Network
 The procedure for permitting devices to join a network is initiated through the *NLME-PERMIT-JOINING.request* primitive, the primitive allows the next higher layer of a Zigbee coordinator or router to set its MAC sub-layer association permit flag for a fixed period when it may accept devices onto its network. Only the ZigBee coordinator or a ZigBee router shall attempt to permit devices to join the network.   
 
 When this procedure is initiated with the *PermitDuration* parameter set to value between 0x01 and 0xfe, indicate the permit is allowed for a fixed period, the NLME shall set the *macAssociationPermit* attribute in the MAC sub-layer to TRUE indicates that association is permitted.   
 
 The NLME shall then start a timer to expire after the specified duration. On expiration of this timer, the NLME shall set the macAssociationPermit attribute in the MAC sub-layer to FALSE.   
-
-The procedure for permitting devices to join a network is illustrated as below.  
-
-<div align="center">
-  <img src="files/CM-Mesh-Network-Comparison/joining-process-permit-join.png">  
-</div>  
 
 ### 2.3.4. Network Discovery
 The procedure for network discovery shall be initiated by issuing the *NLME-NETWORK-DISCOVERY.request* primitive with the ScanChannelsListStructure parameter set to indicate which channels are to be scanned for networks and the ScanDuration parameter set to indicate the length of time to be spent scanning each channel.   
@@ -266,8 +269,6 @@ And the architecture of the Bluetooth Mesh stack below illustrates that the Blue
 Unlike the Zigbee which uses IEEE 802.15.4 MAC layer, and the MAC layer defined the mechanism for network forming and joining, the Bluetooth Mesh use the Bluetooth Low energy transfer as the fundamental wireless communication, and the provisioner will create the mesh network, and add devices to the mesh network. And the Network layer as illustrated in the Bluetooth mesh architecture defines the network PDU format, decrypts and authenticates and forwards the received incoming message to upper layer, and encrypt and authenticates and forwards outgoing message to lower layer.   
 
 Below is a typical network topology for using the smart phone as a provisioner. The Bluetooth mesh mobile application running on the smart phone will discovery and provision devices over GATT.   
-As most of the smartphones in the market at this point do not natively support Bluetooth mesh, a Bluetooth mesh stack for the phones is necessary for the phone to be able to provision, configure, and control the Bluetooth mesh nodes over the GATT bearer.   
-
 <div align="center">
   <img src="files/CM-Mesh-Network-Comparison/joining-process-btmesh-topology-2.png">  
 </div>  
@@ -276,9 +277,18 @@ As most of the smartphones in the market at this point do not natively support B
 </div>  
 <br>
 
-## 3.3. Node type in Bluetooth Mesh network
+As most of the smartphones in the market at this point do not natively support Bluetooth mesh, a Bluetooth mesh stack for the phones is necessary for the phone to be able to provision, configure, and control the Bluetooth mesh nodes over the GATT bearer. Below is the typical architecture of the Bluetooth stack and application on smartphones.   
+<div align="center">
+  <img src="files/CM-Mesh-Network-Comparison/joining-process-bluetooth-stack-on-smartphone.png">  
+</div>  
+<div align="center">
+  <b> Bluetooth Stacks and Application architecture on smartphone </b>
+</div>  
+<br>
+
+## 3.3. Member of Bluetooth Mesh network
 **Provisioner**: 
-The provisioner is the node that is capable of adding a device to a mesh network.   
+The provisioner is the node that is capable of setting up a mesh network and adding a device to a mesh network.   
 The provisioner will implement a ***Configuration Client model*** which will manage the network resources and allocate them to nodes. It manages allocation of addresses to make sure no duplicate unicast addresses are allocated, whereas a Configuration Client generates and distributes network and application keys and makes sure that devices that need to communicate with each other share proper keys for both network and access layers.   
 
 **Device**:
@@ -350,7 +360,7 @@ A Provisioner sends the *Provisioning Invite PDU* to indicate to the device that
 </div>  
 <br>
 
-The *Attention Timer state* is generally intended to allow an element to attract human attention during provisioning, e.g., LED blinks. A device may not support the Attention Timer, and the Attention Timer state shall always be set to zero.   
+The *Attention Timer state* is generally intended to allow an element to attract human attention during provisioning, e.g., LED blinks. A device may not support the Attention Timer, then the Attention Timer state shall always be set to zero.   
 The network data below is a example that the *Attention Timer* field was set to zero.   
 
 <div align="center">
@@ -462,7 +472,7 @@ The Provisioner shall send the *Provisioning Random* PDU after it has received t
 </div>  
 <br>
 
-If static OOB authentication is used, or if No OOB authentication is used, then the Provisioner shall immediately use the confirmation and random number exchanges. The figure below illustrates the message sequence for authentication with Static OOB or No OOB used.   
+If static OOB authentication is used, or No OOB authentication is used, then the Provisioner shall immediately use the confirmation and random number exchanges. The figure below illustrates the message sequence for authentication with Static OOB or No OOB used.   
 
 <div align="center">
   <img src="files/CM-Mesh-Network-Comparison/joining-process-provisioning-Authentication-with-static-or-no-OOB.png">  
@@ -513,7 +523,7 @@ For establishing a centralized Zigbee network, a Zigbee coordinator (PAN coordin
 
 For joining a network using the MAC layer association procedure, the joiner device will issue an NLME-NETWORK-DISCOVERY.request primitive, this primitive will invoke an MLME-SCAN.request primitive which may case the transmission of an unsecured *Beacon Request* frame. The joiner device receives *Beacon* from nearby routers (router or coordinator) which conveys the information that the device is capable of accepting join request from router-capable devices or end device, and the extended PAN identifier is included in the payload, and so on.   
 
-The joiner device will choose a network to join from the discovered networks. Once a network is selected, it shall then send *Association request* to the router. Upon receipt of an *Association request* MAC command, the router will send an *Association response* to the joiner device. If the coordinator was able to associate the device to its PAN, this field of the *Association response* shall contain the short address that the device may use in its communications on the PAN until it is disassociated.   
+The joiner device will choose a network from the discovered networks to join. Once a network is selected, it shall then send *Association request* to the router. Upon receipt of an *Association request* MAC command, the router will send an *Association response* to the joiner device. If the router was able to associate the device to the PAN, this field of the *Association response* shall contain the short address that the device may use in its communications on the PAN until it is disassociated.   
 
 Once a device joins a secured network and is declared "joined but unauthorized", and the trust center shall determine whether or not to allow the device onto the network. If it decides to allow the device onto the network, it shall send the device the active network key. And the joiner device has now successfully joined a secured network.   
 
@@ -535,6 +545,6 @@ Upon receiving the *Provisioning Data PDU* from the Provisioner, the device shal
 *** 
 
 # 5. Reference
-[Bluetooth Mesh Profile Specification](https://www.bluetooth.com/specifications/mesh-specifications/)
-[Zigbee Specification](https://zigbeealliance.org/)
-[Understanding bluetooth mesh lighting demo](https://www.silabs.com/documents/public/application-notes/an1098-understanding-bluetooth-mesh-lighting-demo.pdf)
+* [Bluetooth Mesh Profile Specification](https://www.bluetooth.com/specifications/mesh-specifications/)
+* [Zigbee Specification](https://zigbeealliance.org/)
+* [Understanding bluetooth mesh lighting demo](https://www.silabs.com/documents/public/application-notes/an1098-understanding-bluetooth-mesh-lighting-demo.pdf)
