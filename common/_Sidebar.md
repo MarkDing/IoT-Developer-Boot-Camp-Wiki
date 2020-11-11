@@ -11,3 +11,4 @@
 * [Smart Speaker](EFR32-Smart-Speaker-Solution-Summary)
 * [EFR32xG22 Power Consumption Optimization](EFR32xG22-Power-Consumption-Optimization)
 * [IoT OTA Update](IoT-OTA-Update)
+* [Mesh Network Comparison](Mesh-Network-Introduction)
