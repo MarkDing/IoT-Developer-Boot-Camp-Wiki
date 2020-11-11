@@ -1,6 +1,6 @@
-# Measure EM2 Current Consumption under 1.4µA in EFR32xG22
+# EFR32xG22-Power-Consumption-Optimization
  
-English | [中文](Measure-EM2-Current-Consumption-under-1.4uA-in-EFR32xG22-CN)
+English | [中文](EFR32xG22-Power-Consumption-Optimization-CN)
 
 ## Introduction
 One of the new features highlighted in EFR32xG22 is the Low System Energy Consumption which can reach 1.40 µA EM2 DeepSleep current with 32 kB RAM retention and RTC running from LFRCO. This article discusses how to measure the minimum current consumption in EFR32xG22 EM2, as well how to reduce current consumption.
@@ -156,16 +156,22 @@ SYSCFG->DMEM0RETNCTRL = 0x01UL;
 **Note**: No RAM retention does not make sense (achievable but wake up failed).
 
 
-### LFXO
-According to our test result, there is 70-100 nA current consumption reduction when using LFXO instead of LFRCO
+### Low Frequency Oscillator Setting
+The LFRCO is an integrated low-frequency 32.768 kHz RC oscillator for low power operation without an external crystal. It provides precision mode on certain part numbers which enable hardware that periodically recalibrates the LFRCO against the 38.4 MHz HFXO crystal when temperature changes to provide a fully internal 32.768 kHz clock source with +/- 500 ppm accuracy. In the scene with temperature variations, PLFRCO(LFRCO in precision mode) will autonomously calibrate frequently which cost an increase in consumption. 
+
+The Low Frequency Crystal Oscillator (LFXO) uses an external 32.768 kHz crystal to provide an accurate low-frequency clock. Using LFXO instead of PLFRCO will reduce the current consumption. 
 ```c
 CMU_LFXOInit_TypeDef lfxoInit = CMU_LFXOINIT_DEFAULT;
 CMU_LFXOInit(&lfxoInit);
-CMU_OscillatorEnable(cmuOsc_LFRCO, true, false);
+CMU_OscillatorEnable(cmuOsc_LFRCO, false, false);
 CMU_OscillatorEnable(cmuOsc_LFXO, true, true);
 CMU_ClockSelectSet(cmuClock_LFXO, cmuSelect_LFXO);
 ```
- 
+According to the datasheet of EFR32xG22, MCU current consumption using DC-DC at 3.0 V input in EM2 mode, VSCALE0 are listed as below:
+
+![common](files/CM-Reduce-Current-Consumption/datasheet-MCU-current-consumption.png) 
+
+
 **Note** : Enter EM2 mode immediately after reset may bricks the device and the debugger may no longer can be attached.
 To remedy this, set the WSTK switch next to the battery holder to USB (powers down the EFR). Execute Simplicity Commander with command line parameters "./commander.exe device recover" and then immediately move the switch to the AEM position.
  
@@ -256,6 +262,7 @@ From this experiment, we can find that enable or disable different peripherals w
  
 ## Reference
 * [github peripheral example](https://github.com/SiliconLabs/peripheral_examples/tree/master/series2/emu/em23_voltage_scaling)
+* [AN969: Measuring Power Consumption on Wireless Gecko Devices](https://www.silabs.com/documents/public/application-notes/an969-measuring-power-consumption.pdf)
 * [Enabling sleep mode of the MX25 series SPI flash](https://www.silabs.com/community/wireless/zigbee-and-thread/knowledge-base.entry.html/2018/12/10/enabling_sleep_mode-V2wx)
 
  

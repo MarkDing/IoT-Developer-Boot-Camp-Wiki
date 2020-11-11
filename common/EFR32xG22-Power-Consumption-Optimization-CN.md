@@ -1,6 +1,6 @@
-# 如何测量EFR32xG22的EM2电流消耗（1.40 µA）
+# EFR32xG22功耗优化
  
-[English](Measure-EM2-Current-Consumption-under-1.4uA-in-EFR32xG22) | 中文
+[English](EFR32xG22-Power-Consumption-Optimization) | 中文
 
 ## 介绍
 EFR32xG22最突出的新特性之一就是低功耗，可以在保留32 KB RAM及使用LFRCO的条件下，达到1.40 µA的EM2深度睡眠电流。本文将讨论如何达到EFR32xG22 EM2的最小电流消耗，以及如何降低电流消耗。
@@ -38,7 +38,7 @@ EFR32xG22最突出的新特性之一就是低功耗，可以在保留32 KB RAM�
 ![common](files/CM-Reduce-Current-Consumption/InputVoltage_Comparison.png) 
  
 
-##### Debugger
+### Debugger
 可以通过在EMU_CTRL寄存器上设置EM2DBGEN字段来启用调试连接，这将消耗大约0.5 µA的额外电流。在不需要debug功能的条件下，为了减少当前消耗，可以注释下面一行。
 ```c
 //Force PD0B to stay on EM2 entry. This allow debugger to remain connected in EM2
@@ -60,7 +60,7 @@ DC-DC降压变换器是一种开关稳压器，能有效地将高输入电压转
 ![common](files/CM-Reduce-Current-Consumption/DCDC_comparison.png) 
 
 
-##### 外部 flash
+### 外部 flash
 BRD4182A radio board中配备的外部flash“MX25R8035F”默认为Standby Mode。EFR32无线电板上使用的MX25R8035F设备在Standby Mode下的典型电流是5µA，这使得观察VS2和VS0电压缩放级别之间的差异非常困难。
 幸运的是，JEDEC标准SPI Flash有一个Deep Powerdown Mode，在这种模式下，典型的电流消耗可以达到0.35 µA，通常是0.007 µA。使用下面的命令，MX25将进入Deep Powerdown Mode。
 
@@ -72,7 +72,7 @@ BRD4182A radio board中配备的外部flash“MX25R8035F”默认为Standby Mode
 MX25_init 初始化SPI Flash，调用MX25_DP发送将Flash放入DP模式所需的字节.
  
 
-##### Voltage scaling
+### Voltage scaling
 电压调整通过尽可能在较低的电压下运行系统，优化系统的能源效率。三种电压等级可供使用:
 
 | VSCALE 等级设置 | DECOUPLE Voltage | 使用条件 |
@@ -90,7 +90,7 @@ EM2和EM3模式下的电压等级可以通过EMU_CTRL_EMU23VSCALE字段设置。
 在EM2和EM3中有两个电压缩放等级，分别是emuVScaleEM23_LowPower模式 (vscale0) 和emuVScaleEM23_FastWakeup (vscale2)。不同缩放模式下的电流减小将在后面的章节中介绍。
  
 
-##### Radio RAM
+### Radio RAM
 EFR32xG22设备包含用于各种功能的SRAM块，包括通用数据存储器(RAM)和各种RF子系统RAM (SEQRAM, FRCRAM)。
 如果不需要，在EM2/EM3模式下，可以关闭帧速率控制器SRAM(FRCRAM)和序列SRAM(SEQRAM)的所有部分。SYSCFG_RADIORAMRETNCTRL中设置了FRCRAMRETNCTRL和SEQRAMRETNCTRL用于控制这些区域是否保留。
 ```c
@@ -109,7 +109,7 @@ EFR32xG22设备包含用于各种功能的SRAM块，包括通用数据存储器(
 |VSCALE0| 1.24 µA| 1.38 µA | 1.43 µA| 1.19 µA|
   
  
-##### GPIO
+### GPIO
 所有未连接的引脚在EFR32上应配置到 Disable模式(高阻抗，无外接电阻)，和reset相关的IO引脚也是禁用的。这可以通过设置 gpioModeDisabled来完成。可参照MX_25deinit函数的设置。
 ```c
 MX25_deinit();
@@ -121,20 +121,20 @@ MX25_deinit();
 ```
 
 
-##### Peripherals 
+### Peripherals 
 EFR32xG22设置了不同的power domain，在外设不使用时，会被降至最低的供应电流。Power domain由EMU自动管理。它包括最低能量功率域(PDHV)、低功率域(PD0)、低功率域A (PD0A)和辅助PD0功率域(PD0B、PD0C等)。当进入EM2或EM3时，如果辅助低功率域中的任何外设(PD0B、PD0C等)被启用，则辅助低功率域中的任何外设将被通电，导致较高的电流。否则，辅助电源域将被关闭。
  
 如果在EM2/EM3模式下启用了PD0B中的任何模块，那么整个PD0B将在EM2/EM3中继续运行。因此，在进入EM2时，请确保禁用高功率的外设。
 
  
-##### 温度
+### 温度
 注意，温度对功耗有**很大**的影响。此测试的推荐环境温度为25℃，如数据手册所示。
  
 
-###### 另外，如果不需要遵循保留32 KB RAM及LFRCO的情况下，您还可以禁用部分RAM或使用其他振荡器代替LFRCO来降低功耗。
+##### 另外，如果不需要遵循保留32 KB RAM及LFRCO的情况下，您还可以禁用部分RAM或使用其他振荡器代替LFRCO来降低功耗。
 
  
-##### SRAM Retention
+### SRAM Retention
 RAM可以被分为24 KB和8 KB的bank，分别从地址0x20000000和0x20006000开始。默认情况下，EM2/EM3中保留了这两个bank。在不需要用到32 KB RAM的情况下，可以通过关闭其中的bank减少电流消耗。RETNCTRL寄存器控制这两种bank的保留。
 ```c
 /* Disable MCU RAM retention */
@@ -153,15 +153,20 @@ SYSCFG->DMEM0RETNCTRL = 0x01UL;
 
 **Note**:完全移除32 KB RAM是没有意义的(可以实现，但是会导致唤醒失败)。
 
-##### LFXO
-根据我们的测试结果，使用LFXO代替LFRCO可以降低70 nA- 100 nA的电流消耗
+### 低频振荡器设置
+LFRCO是芯片内部集成的32.768 kHz RC振荡器，用于不使用外部晶振的低功耗模式。部分系列芯片的LFRCO可以提供精确模式，精确模式下的LFRCO（PLFRCO）在温度变化时可以通过使能硬件，周期性地参照38.4 MHz HFXO进行校准，提供32.768 kHz和+/- 500ppm精度的时钟源。在温度变化时，由于PLFRCO频繁地进行自动校准，往往会增大电流的消耗。
+
+LFXO使用外部32.768 kHz晶振，提供准确的低频时钟。使用LFXO代替PLFRCO作为振荡器，能够降低电流消耗
 ```c
 CMU_LFXOInit_TypeDef lfxoInit = CMU_LFXOINIT_DEFAULT;
 CMU_LFXOInit(&lfxoInit);
-CMU_OscillatorEnable(cmuOsc_LFRCO, true, false);
+CMU_OscillatorEnable(cmuOsc_LFRCO, false, false);
 CMU_OscillatorEnable(cmuOsc_LFXO, true, true);
 CMU_ClockSelectSet(cmuClock_LFXO, cmuSelect_LFXO);
 ```
+根据EFR32xG22的数据手册，使用DC-DC 3.0V 电源供电时，MCU 在 EM2 及 VSCALE0模式下的电流消耗如下表所示：
+
+![common](files/CM-Reduce-Current-Consumption/datasheet-MCU-current-consumption.png) 
  
 **Note**: 重置设备后立即进入EM2模式，可能会让debugger不能再被连接。
 为了解决这个问题，请将电池盒旁边的WSTK开关设置为USB(关闭EFR电源)。执行简单命令命令行参数"./command .exe device recover"后，立即将开关移动到AEM位置。
@@ -222,7 +227,7 @@ CMU_ClockSelectSet(cmuClock_LFXO, cmuSelect_LFXO);
 5.编译项目并烧录到 radio board xg22。  
  
 
-##### 实验结果
+#### 实验结果
 实验结果显示两分钟内睡眠电流消耗情况。从底部的表中我们可以看到整体的统计数据，平均电流消耗约为1.65 µA。
  
 ![common](files/CM-Reduce-Current-Consumption/soc-empty-disable-debug.png) 
@@ -254,8 +259,9 @@ CMU_ClockSelectSet(cmuClock_LFXO, cmuSelect_LFXO);
 **Note**:虽然Energy Profiler对低功率测量不够精确，但它可以检测到小到100nA的当前电流消耗变化。如果条件允许，建议使用精度较高的设备。
  
  
-### 参考
+## 参考
 * [github peripheral example](https://github.com/SiliconLabs/peripheral_examples/tree/master/series2/emu/em23_voltage_scaling)
+* [AN969: Measuring Power Consumption on Wireless Gecko Devices](https://www.silabs.com/documents/public/application-notes/an969-measuring-power-consumption.pdf)
 * [Enabling sleep mode of the MX25 series SPI flash](https://www.silabs.com/community/wireless/zigbee-and-thread/knowledge-base.entry.html/2018/12/10/enabling_sleep_mode-V2wx)
  
  

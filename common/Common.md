@@ -10,7 +10,8 @@ We discuss the common IoT knowledge here that applies to all wireless product or
 * [Opening Console](Opening-Console)
 * [Network Analyzer](Network-Analyzer)
 * [Smart Speaker](EFR32-Smart-Speaker-Solution-Summary)
-* [Measure EM2 Current Consumption under 1.4uA in EFR32xG22](Measure-EM2-Current-Consumption-under-1.4uA-in-EFR32xG22)
+* [EFR32xG22 Power Consumption Optimization](EFR32xG22-Power-Consumption-Optimization)
 * [IoT OTA Update](IoT-OTA-Update)
 * [Mesh Network Comparison](Mesh-Network-Introduction)
+
 ********
