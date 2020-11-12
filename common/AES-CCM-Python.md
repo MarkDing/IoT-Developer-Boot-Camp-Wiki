@@ -28,14 +28,16 @@ cipher = AES.new(key, AES.MODE_CCM, cipher.nonce)
 decrptdata = cipher.decrypt_and_verify(ciphertext, tag)
 print("decrptdata:",binascii.hexlify(decrptdata))
 ```
-其中**data**变量是你要加解密的源数据；**nonce**在密码学中是一个只被使用一次的任意或非重复的随机数值; **Key**是用来加密的密钥。这里我们采用了蓝牙Mesh协议spec里面的样本数据来验证我们的脚本运行是否正确，如下图所示。
+其中**data**变量是你要加解密的源数据；**nonce**在密码学中是一个只被使用一次的任意或非重复的随机数值; **Key**是用来加密的密钥。
+
+## 2.3 验证
+这里我们采用了蓝牙Mesh协议spec里面的样本数据来验证我们的脚本运行是否正确，如下图所示。
 
 <div align="center">
 <img src="files/CM-AES-CCM-Python/2020-11-11-15-42-19.png">
 </div>
 
-## 2.3 验证
-运行脚本，输出结果显示加密后的数据和解密后的数据与spec上的数据完全一致。
+运行脚本，输出结果显示加密后和解密后的数据与spec上的数值完全一致。
 ```shell
 ciphertext: b'b5e5bfdacbaf6cb7fb6bff871f'
 decrptdata: b'fffd034b50057e400000010000'
