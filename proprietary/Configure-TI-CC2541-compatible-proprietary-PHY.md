@@ -62,7 +62,7 @@ Try to configure a PHY according to above known parameter. The PHY don't work, d
 </div> 
 For easier figure out the frame, it is worth to disable the whitening and set some special data bit on the frame, like add 0x00/0xFF.
 <div align="left">
-  <img src="files/CM-Configure-TI-CC2541-compatible-proprietary-PHY/frame.png">  
+  <img src="files/CM-Configure-TI-CC2541-compatible-proprietary-PHY/Frame.png">  
 </div> 
 
 ## 3.2. Capture data on MS2692A
