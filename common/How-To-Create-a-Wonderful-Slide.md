@@ -55,4 +55,5 @@ Keynote建议多使用magic move，PPT则可使用Morph。
 
 # Example
 提供了一个例程供参考，大家可以直接复制slide某一页，在上面修改成你需要的内容： slide_example.pptx   slide_example.key 
-提供了一个动画例程供参考如何使用Moroph：animation_example.pptx animation_example.key
+提供了一个动画例程供参考如何使用Moroph：animation_example.pptx animation_example.key   
+[示例下载](https://github.com/hoo-way/How-To-Create-a-Wonderful-Slide)
