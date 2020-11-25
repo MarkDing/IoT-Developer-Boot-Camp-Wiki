@@ -1,4 +1,4 @@
-![Silicon Labs](files/logo_cm.png)
+![Proprietary](files/logo_pr.png)
 --------------------------------------------------------
 [Home](Home) > [Proprietary](Proprietary)
 

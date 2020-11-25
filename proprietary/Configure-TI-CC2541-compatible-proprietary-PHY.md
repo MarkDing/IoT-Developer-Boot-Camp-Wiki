@@ -10,7 +10,7 @@
 </details>
 
 # 1. Introduction
-Sometime it has request on configure compatiable PHY for communicate with device from other vendor. Here share the experiece on configure an EFR32xG22 PHY communicate with TI CC2541 [proprietary 2.4G PHY](files/CM-Configure-TI-CC2541-compatible-proprietary-PHY/2M_BS-TX_2.xml). To communicate between 2 RF devices, the frequency, modulation, datarate, deviation, preamble, syncwork, packet etc. must be the same.
+Sometime it has request on configure compatiable PHY for communicate with device from other vendor. Here share the experiece on configure an EFR32xG22 PHY communicate with TI CC2541 [proprietary 2.4G PHY](files/CM-Configure-TI-CC2541-compatible-proprietary-PHY/2M_BS-TX_2.xml). To communicate between 2 RF devices, the frequency, modulation, datarate, deviation, preamble, syncwork, packet format etc. must be the same.
 To configure the PHY for EFR32xG22, it needs to know the detail parameters on radio configurator.
 
 # 2. Prerequisite 
@@ -24,7 +24,7 @@ The BRD4182A radio board supports three wireless protocols. Bluetooth LE/Mesh, Z
 <div align="center">
   <img src="files/CM-Configure-TI-CC2541-compatible-proprietary-PHY/wstk.png">  
 </div> 
-CC2541EMK is same as BRD4182A, supports the Proprietary protocol to communicate with BRD4182A, it is needed to establish the communication. And get some unknown feature from its air data.
+CC2541EMK is same as BRD4182A, supports the Proprietary protocol to communicate with the BRD4182A, it is needed to establish the communication. And get some unknown feature from its air data.
 <div align="center">
   <img src="files/CM-Configure-TI-CC2541-compatible-proprietary-PHY/SmartRF05EB.png">  
 </div> 
@@ -106,7 +106,7 @@ Double click radio config file -- "radio_settings.radioconf", select one preset 
 <div align="center">
   <img src="files/CM-Configure-TI-CC2541-compatible-proprietary-PHY/customized.png">  
 </div> 
-Configure according to target PHY. 2Mbps data rate, 500KHz deviation. Configure flexible payload length, use CCITT_16(0x1021) polynomial and 0xFFFF CRC seed. Enable whitening, the given whitening seed is 0xFF, but according to test result it shoulds use 0x01FF on our radio configurator. The Preamble set 8 bit here.
+Configure according to target PHY. 2Mbps data rate, 500KHz deviation. Configure flexible payload length, use CCITT_16(0x1021) CRC polynomial and 0xFFFF CRC seed. Enable whitening, the given whitening seed is 0xFF, but according to test result it shoulds use 0x01FF on our radio configurator. The Preamble set 8 bit here.
 <div align="center">
   <img src="files/CM-Configure-TI-CC2541-compatible-proprietary-PHY/packet.png">  
 </div> 
