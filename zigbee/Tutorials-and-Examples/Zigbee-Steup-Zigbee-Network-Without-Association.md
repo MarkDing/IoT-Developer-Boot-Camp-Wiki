@@ -1,28 +1,41 @@
+<details>
+<summary><font size=5>Table of Contents</font> </summary>
 
+- [1. Introduction](#1-introduction)
+- [2. Joining a Network Through Association](#2-joining-a-network-through-association)
+- [3. Joining a Network without association](#3-joining-a-network-without-association)
+  - [3.1. Set the initial security state](#31-set-the-initial-security-state)
+  - [3.2. Software Development](#32-software-development)
+  - [3.3. Test](#33-test)
+    - [3.3.1. Form centralized network](#331-form-centralized-network)
+    - [3.3.2. Join the network without association](#332-join-the-network-without-association)
+</details>
+
+***
 
 # 1. Introduction
 This article will provide a guideline for how to setup Zigbee network without association process.
 
 # 2. Joining a Network Through Association
-As you probably know that setup a Zigbee network always required to establishing a new network on the Zigbee Coordinator side and permit device to join, and then the joining device should initiate the procedure for network discovery to find a joinable network. The beacon request will be sent out from the joining device, and router or coordinator will response the beacon request with beacon. 
+As you probably know that setup a Zigbee network is always required to establish a new network on the Zigbee Coordinator side and permit device to join, and then the joining device should initiate the procedure for network discovery to find a joinable network. The beacon request will be sent out from the joining device, and router or coordinator will response the beacon request with beacon. 
 
 Each beacon frame includes information such as the PAN ID, extend PAN ID, the information that the device is capable of accepting join request from new device. 
 
-The joiner device receives beacons from nearby routers, and it will choose a network with the best signal quality to join from the discovered networks. Once the network is selected, it will send Association request. In this request, the PAN ID is set to the chosen PAN and the destination node id is set to the node ID of the chosen device, and the capability information of the joining device will also be carried on in the Association request command frame.
+The joining device receives beacons from nearby routers, and it will choose a network with the best signal quality to join from the discovered networks. Once the network is selected, it will send an Association request. In this request, the PAN ID is set to the chosen PAN, and the destination node id is set to the node ID of the chosen device which sent the beacon, and the capability information of the joining device will also be carried on in the Association request command frame.
 
-Upon receipt of an Association request, if the router or coordinator was able to associate the device to its PAN, it will response it with an Association response, and a short address will be contained in the response that the device may use in its communications on the PAN until it is disassociated. Upon receipt of the Association response MAC command, the joiner is now declared "joined, but unauthorized" to the network.
+Upon receipt of an Association request, if the router or coordinator was able to associate the device to its PAN, it responds it with an Association response, and a short address will be contained in the response that the device may use in its communications on the PAN until it is disassociated. Upon receipt of the Association response MAC command, the joining device is now declared "joined, but unauthorized" to the network.
 
 The coordinator will then transport the current NWK key to the new device. This transporting message is encrypted in application layer with the well-known link key or the link key derived from the install code.
 
 When the new device receives this message, it uses the well-known link key or the link key derived from the install code to decrypt the message and gets the network key. After that, the device is really joined the network and is able to communicate with all other nodes in the network.
 
 # 3. Joining a Network without association
-However, sometimes the customer would like to simplify the network joining procedure when deploy their Zigbee network. They want to pre-configure all of the network information of the Zigbee device during factory production, and the devices will be able to communicate with other pre-configured nodes after power up without the association process as mentioned in last chapter.
+However, sometimes the customer would like to simplify the network joining procedure when deploying their Zigbee network. They want to pre-configure all of the network information of the Zigbee device during factory production, and the devices will be able to communicate with other pre-configured nodes after power up without the association process as mentioned in last chapter.
 
 Another customer requirement is that transfer the network information from the gateway to joining device via Out-of-Band mechanism, after receiving the network information, the joining device can just fill out the information to stack, and make it work without association process.  
 
 It's doable with the commissioning mode to setup a Zigbee network without using the standard association process. The general method would be to load up all the attributes while in one "dummy" network with all of the desired network information, then you could join a new network using the commissioning mode.  
-**Note**: You cannot actually use the commissioning joining method with your end devices as they need parents.  
+**Note**: The commissioning joining method is not available for the end device as a rejoin process is required following the commissioning join, however, by default, the trust center will not allow rejoining of a device using the well known key. In the case of end device, you need to enable the option of "Allow Trust Center rejoin with well known key" on the trust center side, or pre-configure the link key of the end device as the updated trust center link key.  
 
 Regarding to the desired network information for joining a new network, please check the stack's tokens information in the See stack/config/token-stack.h  
 
@@ -231,7 +244,7 @@ And then enter the command below to associate with the network using the specifi
 ```
 custom commissioning-join 0x0B 3 0x4595 {98FD4A94FB499048}
 ```
-After that, the device is joined the network now, and the joining device will start the process of update link key.  
+After that, the device is joined the network now, and the joining device will start the process of updating link key.  
 <div align="center">
   <img src="files/ZB-Zigbee-Steup-Zigbee-Network-Without-Association/update-link-key.png">  
 </div>  
