@@ -10,6 +10,7 @@
     - [2.2.2. Outgoing Cost](#222-outgoing-cost)
     - [2.2.3. Analyze](#223-analyze)
   - [2.3. Neighbor Table Age](#23-neighbor-table-age)
+- [3. Reference](#3-reference)
 
 </details>
 
@@ -51,7 +52,7 @@ Per Zigbee spec, section 3.4.8.3.2, the neighbor entry in link status is filled 
 </div>
 </br>
 
-The incoming cost and outgoing cost are represented by 3-bit value, valid range from 1 to 7, the smaller, the better.
+The incoming cost and outgoing cost are represented by 3-bit value, valid range from 1 to 7, the smaller, the better. In EmberZnet, only 1,3,5 is being used. Link cost 7 is only used when the neighbor is considered unreachable.
 
 ### 2.2.1. Incoming Cost
 The incoming cost is calculated by the reception side. The valid range of the incoming cost is 1 ~ 7, the smaller the better. When a link status message is received, the reception device will calculate the incoming cost from the LQI. As the valid range of the LQI is 0 ~ 255, the bigger the better, there is an algorithm mapping the LQI into incoming cost.
@@ -70,6 +71,18 @@ There could be several different situations. Let's take two nodes A and B as an 
 
 ## 2.3. Neighbor Table Age
 Imaging this scenario that we power off one node of a network, what will happen in the neighbor table of the rest routers? The corresponding neighbor table entries will be aged. If there are still free entries on the node, the stale entry will still be kept, but it won't appear in the ougoing link status.
+
+In EmberZnet, the neighbor exchange period is 16 seconds. The age of the neighbor entries increases every 16 seconds.
+
+The age of the neighbor table entry is set to a value between 0 to 7. A neighbor table entry have three states, probation, normal, stale. 
+- Probation (Age 0 ~ 2): When a neighbor table entry is created, but the outgoing cost is unknown, the state is set t probation state. i.e. If Node A on neighbor table of Node B is in probation state, it means that B can receive messages from A, but A can't received message from B. Once the node received a link status and can get a valid outgoing cost, the age will be set to 3 directly. 
+- Normal (Age 3 ~ 6): Once the node received a link status and can get a valid outgoing cost, the age will be set back to 3. Otherwise, the age will keep increasing every interval.
+- Stale (Age 7): Once the age reaches 7, the entry is considered as stale and won't appear in the neighbor list of the outgoing link status.
+
+
+# 3. Reference
+- [How does neighbor table aging in EmberZNet work? What constitutes a stale neighbor?](https://www.silabs.com/community/wireless/zigbee-and-thread/knowledge-base.entry.html/2012/06/29/how_does_neighborta-2WUW)
+- [Zigbee Spec](https://zigbeealliance.org/wp-content/uploads/2019/11/docs-05-3474-21-0csg-zigbee-specification.pdf)
 
 
 
