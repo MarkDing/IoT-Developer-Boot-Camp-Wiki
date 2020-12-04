@@ -33,3 +33,4 @@ This page is a list of the articles that can help users understand EmberZnet.
 
 # Misc
 - [x] [Understanding OTA Storage settings](Zigbee-Understanding-OTA-Storage)
+- [x] [Understanding EZSP UART](Zigbee-Understanding-EZSP-UART)
