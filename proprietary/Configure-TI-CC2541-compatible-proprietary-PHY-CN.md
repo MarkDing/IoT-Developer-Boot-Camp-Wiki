@@ -10,7 +10,7 @@
 </details>
 
 # 1. 介绍
-有时会收到这样的需求, 配置与其他供应商的设备兼容的 PHY(Physical Layer / 物理层), 以便两者进行通信. 这里分享配置EFR32xG22 PHY与TI CC2541 [Proprietary(专有协议) 2.4G PHY](files/PR-Configure-TI-CC2541-compatible-proprietary-PHY/2M_BS-TX_2.xml) 通信的经验. 要在两个RF设备之间进行通信, 频率, 调制, 数据速率, 频偏, 前导码, 同步, 数据包结构等参数必须相同相似. 要为 EFR32xG22 配置PHY, 需要知道 radio configurator 上需要的详细参数.
+有时会收到这样的需求, 配置与其他供应商的设备兼容的 PHY(Physical Layer / 物理层), 以便两者进行通信. 这里分享配置EFR32xG22 PHY 与 TI CC2541 [Proprietary(专有协议) 2.4G PHY](files/PR-Configure-TI-CC2541-compatible-proprietary-PHY/2M_BS-TX_2.xml) 通信的经验. 要在两个RF设备之间进行通信, 频率, 调制, 数据速率, 频偏, 前导码, 同步, 数据包结构等参数必须相同相似. 要为 EFR32xG22 配置PHY, 需要知道 radio configurator 上需要的详细参数.
 
 # 2. 先决条件 
 ## 2.1. 硬件要求
@@ -35,10 +35,10 @@ CC2541EMK 与 BRD4182A一样, 支持 Proprietary, 可以与BRD4182A进行通信.
 ## 2.2. 软件要求
 **Simplicity Studio** 是一个免费的基于 Eclipse 的集成开发环境(IDE), Silicon Labs 在此基础提供了一系列的非常有用的工具. 开发人员可以使用 Simplicity Studio 来开发, 调试并分析其应用程序. 最近发布了 [Simplicity Studio 5](https://www.silabs.com/products/development-tools/software/simplicity-studio/simplicity-studio-5), 这个 IDE 基于最新版本的 Eclipse 和 C/C++ 开发工具. 以先前版本的功能为基础, 包含先进的 SecureVault 技术, 新的 Web 形式界面以及可靠的性能改进.  
 
-**SmartRF™ Studio** 是一个 Windows 应用, 可用于评估和配置德州仪器 (TI) 的低功耗射频器件.该应用可帮助射频系统的设计人员在设计过程的早期阶段轻松评估无线电. 它特别适用于生成配置寄存器值和命令, 以及实际测试和调试射频系统. 我们使用 [SmartRF Studio 7](https://www.ti.com/tool/SMARTRFTM-STUDIO).
+**SmartRF™ Studio** 是一个 Windows 应用, 可用于评估和配置德州仪器 (TI) 的低功耗射频器件. 该应用可帮助射频系统的设计人员在设计过程的早期阶段轻松评估无线电. 它特别适用于生成配置寄存器值和命令, 以及实际测试和调试射频系统. 这里使用 [SmartRF Studio 7](https://www.ti.com/tool/SMARTRFTM-STUDIO).
 
 ## 2.3. 所给的要求参数
-这个案例中有些参数是已提供的, 有些是通过 [xml 文件](files/PR-Configure-TI-CC2541-compatible-proprietary-PHY/2M_BS-TX_2.xml)读取的, 这是 CC2541 带有详细寄存器设置的配置文件. 最终以下参数是已知的.
+这个案例中有些参数是已提供的, 有些是通过 [xml 文件](files/PR-Configure-TI-CC2541-compatible-proprietary-PHY/2M_BS-TX_2.xml)读取的, 这个 xml 是 CC2541 带有详细寄存器设置的配置文件. 最终以下参数是已知的.
 * 调试方式: 2GFSK
 * 数据速率: 2Mbps
 * 频偏: 500KHz
@@ -52,23 +52,23 @@ CC2541EMK 与 BRD4182A一样, 支持 Proprietary, 可以与BRD4182A进行通信.
 * 白化种子: 0xFF
 
 # 3. PHY 确认
-根据已知参数配置了一个 PHY, 没工作起来, 甚至连前导码都没检测到, 这就有必要去抓取从 CC2541 发出来的空中数据包了.
+根据已知参数配置了一个 PHY, 没工作起来, 甚至连前导码都没检测到, 这就有必要去抓取并分析从 CC2541 发出来的空中数据包了.
 
 ## 3.1. 通过 SmartRF Studio 7 发送数据
-下面动态图演示了如何通过 SmartRF Studio 7 打开一个配置文件并发送射频数据.
+下面动态图演示了如何通过 SmartRF Studio 7 打开配置文件并发送射频数据.
 <div align="center">
   <img src="files/PR-Configure-TI-CC2541-compatible-proprietary-PHY/TICC2541-TX.gif">  
 </div> 
-为了能更快更好的找到相应的数据帧, 有必要关掉数据白化与设置一些特殊的数据, 如加 0x00/0xFF 到数据包里.
+为了能更快更好的找到相应的数据帧, 有必要禁用数据白化与设置一些特殊的数据, 如加 0x00/0xFF 到数据包里.
 <div align="center">
   <img src="files/PR-Configure-TI-CC2541-compatible-proprietary-PHY/Frame.png">  
 </div> 
 
 ## 3.2. 在 MS2692A 获取空中数据
-我们需要根据实际用例配置相应的中心频率, 参考电平等, 以使得 MS2692 抓到可读的数据帧.
+需要根据实际用例配置相应的中心频率, 参考电平等, 以使得 MS2692 抓到可读的数据帧.
 ### 3.2.1 使用 "Power vs Time" 模式抓取TX 脉冲
 <div align="center">
-  <img src="files/PR-Configure-TI-CC2541-compatible-proprietary-PHY/SA-01-pluse.png">  
+  <img src="files/PR-Configure-TI-CC2541-compatible-proprietary-PHY/SA-01-pulse.png">  
 </div> 
 
 ### 3.2.2 改变 "Start Time" 来定位一个脉冲
@@ -82,29 +82,29 @@ CC2541EMK 与 BRD4182A一样, 支持 Proprietary, 可以与BRD4182A进行通信.
 </div> 
 
 ### 3.2.4 切换到 "Frequency vs Time" 模式显现出整个数据帧
-如图, Marker1 与 Marker2 之间的间隔时间是 52us. 13字节的前导码, 2Mbps 意味着第个比特占 0.5us, 13 x 8 x 0.5us = 52us, 所以可以判断这个是前导码. MS2629A 检测到1字节的前导码与48us载波信号, 目前还没搞明白其原因, 检查了 TI BLE PHY等其他2M PHY, 也存在这样的问题. 之前提到按已知参数配置 EFR32 PHY 连前导码都没检测到, 应该就是这个原因导致的.
+如图, Marker1 与 Marker2 之间的间隔时间是 52us. 13字节的前导码, 2Mbps 意味着第个比特占 0.5us, 13 x 8 x 0.5us = 52us, 所以可以判断这个是前导码. MS2629A 检测到1字节的前导码与48us载波信号, 目前还没搞明白其原因, 检查了 TI BLE PHY等其他2M PHY, 也存在这样的问题. 之前提到按已知参数配置 EFR32 PHY 连前导码都没检测到, 就是这个原因导致的.
 <div align="center">
   <img src="files/PR-Configure-TI-CC2541-compatible-proprietary-PHY/SA-04-frame.png">  
 </div> 
 
 ### 3.2.5 解读数据帧
-前导码定位到之后, 这个帧的数据就可读了, 因为我们知道每个比特位之间的间隔, 只要按 0.5us 间隔采样读取数据就可以了.
+前导码定位到之后, 这个帧的数据就可读了, 因为知道每个比特位之间的间隔, 只要按 0.5us 间隔采样读取数据就可以了.
 <div align="center">
   <img src="files/PR-Configure-TI-CC2541-compatible-proprietary-PHY/SA-05-syncwords.png">  
 </div> 
 
 # 4. EFR32xG22 工程
-确认了 CC2541 数据帧后, 得到了 radio configurator 需要的具体参数设定, 现在可以创建与配置 EFR32xG22 工程, 这里用 SSv5 的"Flex (RAIL) - RAILtest".
+确认 CC2541 数据帧后, 得到了 radio configurator 需要的具体参数设定, 现在可以创建与配置 EFR32xG22 工程, 这里用 SSv5 的 "Flex (RAIL) - RAILtest".
 <div align="center">
   <img src="files/PR-Configure-TI-CC2541-compatible-proprietary-PHY/railtest.png">  
 </div> 
 
 ## 4.1. PHY 定制化
-双击射频配置文件 -- "radio_settings.radioconf", 选一个预设PHY(2450M 2GFSK 2Mbps 1M), 点击"Customized", 目标 PHY 中心频率是 2466MHz, 我们先把频率改到 2466MHz.
+双击射频配置文件 -- "radio_settings.radioconf", 选一个预设 PHY(2450M 2GFSK 2Mbps 1M), 点击"Customized", 目标 PHY 中心频率是 2466MHz, 先把频率改到 2466MHz.
 <div align="center">
   <img src="files/PR-Configure-TI-CC2541-compatible-proprietary-PHY/customized.png">  
 </div> 
-根据目标 PHY 配置其他参数. 2Mbps 数据速率, 500KHz 频偏, 配置可变包长, 用 CCITT_16(0x1021) CRC 多项式 与 0xFFFF CRC 种子. 使能数据白化, 其白化种子是0xFF. 这里要注意的是根据实验结果, 我们的 radio configurator 要使用 0x01FF 做白化种子. 还有其前导码设成8位.
+根据目标 PHY 配置其他参数. 2Mbps 数据速率, 500KHz 频偏, 配置可变包长, 用 CCITT_16(0x1021) CRC 多项式 与 0xFFFF CRC 种子. 使能数据白化, 其白化种子是 0xFF. 这里要注意的是根据实验结果, radio configurator 要使用 0x01FF 做白化种子. 还有其前导码设成8位.
 <div align="center">
   <img src="files/PR-Configure-TI-CC2541-compatible-proprietary-PHY/packet.png">  
 </div> 
