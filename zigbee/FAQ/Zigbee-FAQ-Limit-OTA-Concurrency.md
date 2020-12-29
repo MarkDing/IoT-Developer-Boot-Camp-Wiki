@@ -1,14 +1,14 @@
 <details>
 <summary><font size=5>Table of Contents</font> </summary>  
 
-- [Waking BRD4180A/BRD4181A with Buttons](#waking-brd4180abrd4181a-with-buttons)
+- [Limit OTA Concurrency](#limit-ota-concurrency)
 	- [1. Overview](#1-overview)
 	- [2. Setup](#2-setup)
 </details>
 
 ********
 
-# Waking BRD4180A/BRD4181A with Buttons
+# Limit OTA Concurrency
 
 ## 1. Overview
 As you know, multiple OTA clients can start the OTA upgrading at the same time, but when too many OTA clients are downloading at the same time, there could be many timeout and retries over the air. The server could also be overload in that case. It's better to have an approach to limit the concurrency of the OTA upgrading.
