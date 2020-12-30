@@ -1,3 +1,4 @@
+[English](Configure-TI-CC2541-compatible-proprietary-PHY.md) | Chinese
 <details>
 <summary><font size=5>目录</font> </summary>
 
@@ -10,11 +11,11 @@
 </details>
 
 # 1. 介绍
-有时会收到这样的需求, 配置与其他供应商的设备兼容的 PHY(Physical Layer / 物理层), 以便两者进行通信. 这里分享配置EFR32xG22 PHY 与 TI CC2541 [Proprietary(专有协议) 2.4G PHY](files/PR-Configure-TI-CC2541-compatible-proprietary-PHY/2M_BS-TX_2.xml) 通信的经验. 要在两个RF设备之间进行通信, 频率, 调制, 数据速率, 频偏, 前导码, 同步, 数据包结构等参数必须相同相似. 要为 EFR32xG22 配置PHY, 需要知道 radio configurator 上需要的详细参数.
+有时会收到这样的需求, 配置与其他供应商的设备兼容的 PHY(Physical Layer / 物理层), 以便两者进行通信. 这里分享配置EFR32xG22 PHY 与 TI CC2541 [Proprietary(专有协议) 2.4G PHY](files/PR-Configure-TI-CC2541-compatible-proprietary-PHY/2M_BS-TX_2.xml) 通信的经验. 要在两个RF设备之间进行通信, 频率, 调制, 数据速率, 频偏, 前导码, 同步字, 数据包结构等参数必须相同. 要为 EFR32xG22 配置PHY, 需要知道 radio configurator 上需要的详细参数.
 
 # 2. 先决条件 
 ## 2.1. 硬件要求
-* 1 [WSTK 与 EFR32MG22 radio boards(BRD4182A)](https://www.silabs.com/development-tools/wireless/efr32xg22-wireless-starter-kit)
+* 1 [WSTK 与 EFR32xG22 radio boards(BRD4182A)](https://www.silabs.com/development-tools/wireless/efr32xg22-wireless-starter-kit)
 * 1 SmartRF05 EB 与 [CC2541EMK](https://www.ti.com/tool/CC2541EMK)
 * 1 [Anritsu MS2692A](https://www.anritsu.com/en-US/test-measurement/products/ms2692a)
 
@@ -22,11 +23,11 @@ BRD4182A radio 板支持三种无线协议, Bluetooth LE/Mesh, Zigbee 与 Propri
 <div align="center">
   <img src="files/PR-Configure-TI-CC2541-compatible-proprietary-PHY/wstk.png">  
 </div> 
-CC2541EMK 与 BRD4182A一样, 支持 Proprietary, 可以与BRD4182A进行通信. 通过 MS2692A 可以从它的空中信号获得一些未知的特性或参数.
+CC2541EMK 与 BRD4182A一样, 支持 Proprietary, 可以与BRD4182A进行通信. 通过信号分析仪 MS2692A 可以从它的空中信号获得一些未知的特性或参数.
 <div align="center">
   <img src="files/PR-Configure-TI-CC2541-compatible-proprietary-PHY/SmartRF05EB.png">  
 </div> 
-功能强大的射频工具 Anritsu MS2692A, 用来确认 EFR32xG22 或 CC2541 的空中数据.
+功能强大的射频工具信号分析仪 Anritsu MS2692A, 用来确认 EFR32xG22 或 CC2541 的空中数据.
 <div align="center">
   <img src="files/PR-Configure-TI-CC2541-compatible-proprietary-PHY/ms2692a-signalanalyzers.png">  
 </div> 
@@ -64,7 +65,7 @@ CC2541EMK 与 BRD4182A一样, 支持 Proprietary, 可以与BRD4182A进行通信.
   <img src="files/PR-Configure-TI-CC2541-compatible-proprietary-PHY/Frame.png">  
 </div> 
 
-## 3.2. 在 MS2692A 获取空中数据
+## 3.2. 在信号分析仪 MS2692A 获取空中数据
 需要根据实际用例配置相应的中心频率, 参考电平等, 以使得 MS2692 抓到可读的数据帧.
 ### 3.2.1 使用 "Power vs Time" 模式抓取TX 脉冲
 <div align="center">
@@ -82,7 +83,7 @@ CC2541EMK 与 BRD4182A一样, 支持 Proprietary, 可以与BRD4182A进行通信.
 </div> 
 
 ### 3.2.4 切换到 "Frequency vs Time" 模式显现出整个数据帧
-如图, Marker1 与 Marker2 之间的间隔时间是 52us. 13字节的前导码, 2Mbps 意味着第个比特占 0.5us, 13 x 8 x 0.5us = 52us, 所以可以判断这个是前导码. MS2629A 检测到1字节的前导码与48us载波信号, 目前还没搞明白其原因, 检查了 TI BLE PHY等其他2M PHY, 也存在这样的问题. 之前提到按已知参数配置 EFR32 PHY 连前导码都没检测到, 就是这个原因导致的.
+如图, Marker1 与 Marker2 之间的间隔时间是 52us. 13字节的前导码, 2Mbps 意味着第个比特占 0.5us, 13 x 8 x 0.5us = 52us, 所以可以判断这个是前导码. 信号分析仪 MS2692A 检测到 1 字节的前导码与 48us 载波信号. 检查了 TI BLE PHY等其他 GFSK 2Mbps PHY, 也存在这样的问题, 由此可知, CC2541 仅发送了 1 字节的前导码及 48us 载波信号, 而非完整的 13 字节前导码. 之前提到按已知参数配置 EFR32xG22 PHY 连前导码都没检测到, 就是这个原因导致的.
 <div align="center">
   <img src="files/PR-Configure-TI-CC2541-compatible-proprietary-PHY/SA-04-frame.png">  
 </div> 
@@ -100,7 +101,7 @@ CC2541EMK 与 BRD4182A一样, 支持 Proprietary, 可以与BRD4182A进行通信.
 </div> 
 
 ## 4.1. PHY 定制化
-双击射频配置文件 -- "radio_settings.radioconf", 选一个预设 PHY(2450M 2GFSK 2Mbps 1M), 点击"Customized", 目标 PHY 中心频率是 2466MHz, 先把频率改到 2466MHz.
+双击射频配置文件 -- "radio_settings.radioconf", 选一个预设 PHY(2450M 2GFSK 2Mbps 1M), 点击 "Customized", 目标 PHY 中心频率是 2466MHz, 先把频率改到 2466MHz.
 <div align="center">
   <img src="files/PR-Configure-TI-CC2541-compatible-proprietary-PHY/customized.png">  
 </div> 
@@ -122,11 +123,11 @@ CC2541EMK 与 BRD4182A一样, 支持 Proprietary, 可以与BRD4182A进行通信.
 如需要 radio configurator 相关更多信息, 请参考 [AN1253](https://www.silabs.com/documents/public/application-notes/an1253-efr32-radio-configurator-guide-for-ssv5.pdf). 
 
 ## 4.2. 结果确认
-TI CC2541 RX, EFR32 TX, 20 个数据包.
+TI CC2541 RX, EFR32xG22 TX, 20 个数据包.
 <div align="center">
   <img src="files/PR-Configure-TI-CC2541-compatible-proprietary-PHY/EFR32-TX.gif">  
 </div> 
-TI CC2541 TX, EFR32 RX, 20 个数据包.
+TI CC2541 TX, EFR32xG22 RX, 20 个数据包.
 <div align="center">
   <img src="files/PR-Configure-TI-CC2541-compatible-proprietary-PHY/EFR32-RX.gif">  
 </div> 
@@ -134,4 +135,4 @@ TI CC2541 TX, EFR32 RX, 20 个数据包.
 如需要CLI command相关更多信息, 请参考 [UG409](https://www.silabs.com/documents/public/user-guides/ug409-railtest-users-guide.pdf).
 
 # 5. 结论
-通过在 MS2692A 确认 CC2541 的 TX PHY 参数, 在 CRC 与白化设置上做了几次试验, 得到了相应的配置参数, 可以配出使得 EFR32xG22 能与 CC2541 通信的兼容的 PHY.
+通过在信号分析仪 MS2692A 确认 CC2541 的 TX PHY 参数, 在 CRC 与白化设置上做了几次试验, 得到了相应的配置参数, 可以配出使得 EFR32xG22 能与 CC2541 通信的兼容的 PHY.

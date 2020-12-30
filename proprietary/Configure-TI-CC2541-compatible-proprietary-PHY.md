@@ -1,3 +1,4 @@
+English | [Chinese](Configure-TI-CC2541-compatible-proprietary-PHY-CN.md)
 <details>
 <summary><font size=5>Table of Contents</font> </summary>
 
@@ -16,7 +17,7 @@ To configure the PHY for EFR32xG22, it needs to know the detail parameters on ra
 # 2. Prerequisite 
 
 ## 2.1. Hardware Requirement
-* 1 [WSTK with EFR32MG22 radio boards(BRD4182A)](https://www.silabs.com/development-tools/wireless/efr32xg22-wireless-starter-kit)
+* 1 [WSTK with EFR32xG22 radio boards(BRD4182A)](https://www.silabs.com/development-tools/wireless/efr32xg22-wireless-starter-kit)
 * 1 SmartRF05 EB plus [CC2541EMK](https://www.ti.com/tool/CC2541EMK)
 * 1 [Anritsu MS2692A](https://www.anritsu.com/en-US/test-measurement/products/ms2692a)
 
@@ -28,7 +29,7 @@ CC2541EMK is same as BRD4182A, supports the Proprietary protocol to communicate 
 <div align="center">
   <img src="files/PR-Configure-TI-CC2541-compatible-proprietary-PHY/SmartRF05EB.png">  
 </div> 
-Anritsu MS2692A, powerful tool use for checking the air data on both EFR32xG22 and CC2541.
+Signal analyzer Anritsu MS2692A, powerful tool use for checking the air data on both EFR32xG22 and CC2541.
 <div align="center">
   <img src="files/PR-Configure-TI-CC2541-compatible-proprietary-PHY/ms2692a-signalanalyzers.png">  
 </div> 
@@ -66,8 +67,8 @@ For easier figure out the frame, it is worth to disable the whitening and set so
   <img src="files/PR-Configure-TI-CC2541-compatible-proprietary-PHY/Frame.png">  
 </div> 
 
-## 3.2. Capture data on MS2692A
-To get a readable frame data on MS2692A, it needs to configure the frequency, reference power level etc. accordingly.
+## 3.2. Capture data on signal analyzer MS2692A
+To get a readable frame data on signal analyzer MS2692A, it needs to configure the frequency, reference power level etc. accordingly.
 ### 3.2.1 Use "Power vs Time" trace mode to get the TX pulse
 <div align="center">
   <img src="files/PR-Configure-TI-CC2541-compatible-proprietary-PHY/SA-01-pulse.png">  
@@ -84,7 +85,7 @@ To get a readable frame data on MS2692A, it needs to configure the frequency, re
 </div> 
 
 ### 3.2.4 Use "Frequency vs Time" trace mode, the whole frame will be show up.
-Time between Marker1 and Marker2 is 52us. This should be the preamble time. 13bytes preamble, 2Mbps means one bit take 0.5us, 13x8x0.5us=52us. The MS2629A only detect 1 byte preamble and got 48us CW signal. Still not know the reason, but checking only TI BLE PHY, it got the same issue. This's why it has configured according to given parameters but our EFR32 device can not detect the preamble.
+Time between Marker1 and Marker2 is 52us. This should be the preamble time. 13bytes preamble, 2Mbps means one bit take 0.5us, 13x8x0.5us=52us. The signal analyzer MS2692A only detect 1 byte preamble and got 48us CW signal. Still not know the reason, but checking on TI BLE PHY and other GFSK 2Mbps PHYs, all got the same issue. This's why it has configured according to given parameters but our EFR32xG22 device can not detect the preamble.
 <div align="center">
   <img src="files/PR-Configure-TI-CC2541-compatible-proprietary-PHY/SA-04-frame.png">  
 </div> 
@@ -124,11 +125,11 @@ Left the other parameter as default, the PHY is done. Save and build, now then s
 For more information on radio configurator, refer to [AN1253](https://www.silabs.com/documents/public/application-notes/an1253-efr32-radio-configurator-guide-for-ssv5.pdf). 
 
 ## 4.2. Confirm the PHY
-TI CC2541 RX, EFR32 TX, 20 packets.
+TI CC2541 RX, EFR32xG22 TX, 20 packets.
 <div align="center">
   <img src="files/PR-Configure-TI-CC2541-compatible-proprietary-PHY/EFR32-TX.gif">  
 </div> 
-TI CC2541 TX, EFR32 RX, 20 packets.
+TI CC2541 TX, EFR32xG22 RX, 20 packets.
 <div align="center">
   <img src="files/PR-Configure-TI-CC2541-compatible-proprietary-PHY/EFR32-RX.gif">  
 </div> 
@@ -136,4 +137,4 @@ TI CC2541 TX, EFR32 RX, 20 packets.
 For more information on CLI command, refer to [UG409](https://www.silabs.com/documents/public/user-guides/ug409-railtest-users-guide.pdf).
 
 # 5. Conclusion
-By checking PHY configuration from CC2541 TX on MS2692A, and tried several times on its CRC and Whitening configuration, know the parameters on radio configurator, it can get a compatible PHY for both sides.
+By checking PHY configuration from CC2541 TX on signal analyzer MS2692A, and tried several times on its CRC and Whitening configuration, know the parameters on radio configurator, it can get a compatible PHY for EFR32xG22 and CC2541.
