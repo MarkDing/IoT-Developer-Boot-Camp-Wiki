@@ -1,3 +1,4 @@
+English | [Chinese](Bluetooth-connection-issue-location-CN.md)
 <details>
 <summary><font size=5>Table of Contents</font> </summary>
 
@@ -40,7 +41,7 @@ Ellisys Bluetooth Tracker, capture BLE packet over the air, include traffic betw
 ## 2.3. Data Capture
 Download test software on EFR32xG22. Start both Network Analyzer and Ellisys Bluetooth Analyzer capture. Manually operate connect and disconnect on smart phone EFR connect. Retry several times then stop the capture and save the data. How to capture the air data, here will not going into the detail, refer these links for more information, [Network Analyzer](https://www.silabs.com/documents/login/presentations/tech-talk-using%20silabs-network-analyzer.pdf), [Ellisys Bluetooth Analyzer](https://www.ellisys.com/products/download/bta_manual.pdf).
 
-# 3. Analyzer Captured Data
+# 3. Analyze Captured Data
 After captured, got [.btt](files/BL-Bluetooth-connection-issue-location/src/connecton.btt) file on Ellisys Bluetooth Analyzer and [.isd](files/BL-Bluetooth-connection-issue-location/src/connecton.isd) file on Network Analyzer.
 
 ## 3.1. Data on Ellisys Bluetooth Analyzer
