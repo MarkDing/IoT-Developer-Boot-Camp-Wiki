@@ -3,14 +3,13 @@
 
 - [1. Introduction](#1-introduction)
 - [2. Prerequiesite](#2-Prerequisite)
-- [3. PHY Confirm](#3-PHY-Confirm)
-- [4. EFR32xG22 project](#4-EFR32xG22-project)
-- [5. Conclusion](#5-Conclusion)
+- [3. Analyzer Captured Data](#3-Analyzer-Captured-Data)
+- [4. Conclusion](#4-Conclusion)
 
 </details>
 
 # 1. Introduction
-Sometime Bluetooth connection fail happen, to avoid or improve this, it needs to locate the the failaure cause by which side(GATT Client or Server) or stop at which step. The Simplicity Studio got the helpful tool Network Analyzer. Packets over the air can be captured by the WSTK and decoded detailly. The captured data is provided by the EFR32 device RF layer. In some case it is possible that the data don't even cupture by EFR32 device RF layer. So here introduce another powerful tool [Ellisys Bluetooth Tracker](https://www.ellisys.com/products/btr1), it designed to support concurrent capture and analysis of Bluetooth Low Energy and Wi-Fi communications, as well as a wide variety of wired interfaces.
+Sometime Bluetooth GATT connect failure happen, to avoid or improve this, it needs to locate the failure cause by which side(GATT Client or Server) or stop at which step. The Simplicity Studio got the helpful tool Network Analyzer. Packets over the air can be captured by the WSTK and decoded detailly. The captured data is provided by the EFR32 device RF layer. In some case it is possible that the data don't even capture by EFR32 device RF layer, this will cause Network Analyzer cannot capture the data. Here introduce another powerful tool [Ellisys Bluetooth Tracker](https://www.ellisys.com/products/btr1), it designed to support concurrent capture and analysis of Bluetooth Low Energy and Wi-Fi communications, as well as a wide variety of wired interfaces. And analyzer BLE behave base on captured data on these 2 tools.
 
 # 2. Prerequisite 
 
@@ -36,92 +35,93 @@ Ellisys Bluetooth Tracker, capture BLE packet over the air, include traffic betw
 ## 2.2. Software Requirement
 **Simplicity Studio** is a free Eclipse-based Integrated Development Environment (IDE) and a collection of value-add tools provided by Silicon Labs. Developers can use Simplicity Studio to develop, debug and analyze their applications. Use it Network Analyzer for packets capture.  
 
-**Ellisys Bluetooth Analyzer** Support BLE air data concurrent capture, use for compare with datd captured by Network Analyzer.
+**Ellisys Bluetooth Analyzer** Support BLE air data concurrent capture, use for compare with data captured by Network Analyzer.
 
-## 2.3. Data Cupture
-Download test software on EFR32xG22. Start both Network Analyzer and Ellisys Bluetooth Analyzer capture. Manually operate connect and disconnect on Smart phone EFR connect. Retry several times then stop the capture and save the data. How to cupture the air data, here will not going into the detail, refer these links for more information, [Network Analyzer](https://www.silabs.com/documents/login/presentations/tech-talk-using%20silabs-network-analyzer.pdf), [Ellisys Bluetooth Analyzer](https://www.ellisys.com/products/download/bta_manual.pdf).
+## 2.3. Data Capture
+Download test software on EFR32xG22. Start both Network Analyzer and Ellisys Bluetooth Analyzer capture. Manually operate connect and disconnect on Smart phone EFR connect. Retry several times then stop the capture and save the data. How to capture the air data, here will not going into the detail, refer these links for more information, [Network Analyzer](https://www.silabs.com/documents/login/presentations/tech-talk-using%20silabs-network-analyzer.pdf), [Ellisys Bluetooth Analyzer](https://www.ellisys.com/products/download/bta_manual.pdf).
 
-# 3. Analyzer Cuptured Data
-After Cuptured, got [.btt](files/BL-Bluetooth-connection-issue-location/src/connecton.btt) file on Ellisys Bluetooth Analyzer and [.isd](files/BL-Bluetooth-connection-issue-location/src/connecton.isd) file on Network Analyzer.
+# 3. Analyzer Captured Data
+After captured, got [.btt](files/BL-Bluetooth-connection-issue-location/src/connecton.btt) file on Ellisys Bluetooth Analyzer and [.isd](files/BL-Bluetooth-connection-issue-location/src/connecton.isd) file on Network Analyzer.
 
 ## 3.1. Data on Ellisys Bluetooth Analyzer
-Below GIF file show how to open a config file and transmit RF data on SmartRF Studio 7.
+Too many traffic on the data, set filter to make it more clear.
 <div align="center">
-  <img src="files/BL-Bluetooth-connection-issue-location/">  
+  <img src="files/BL-Bluetooth-connection-issue-location/el-filter.png">  
 </div> 
-For easier figure out the frame, it is worth to disable the whitening and set some special data bit on the frame, like add 0x00/0xFF.
+Show "Silabs Example" relevant packets only.
 <div align="center">
-  <img src="files/PR-Configure-TI-CC2541-compatible-proprietary-PHY/Frame.png">  
+  <img src="files/BL-Bluetooth-connection-issue-location/el-Silabs-Example.png">  
 </div> 
+Filter the Connection Indication Packet to check how many connect request from the phone side.
+<div align="center">
+  <img src="files/BL-Bluetooth-connection-issue-location/el-CONNECT-IND-filter.png">  
+</div> 
+Found 9 Connection Indication packets.
+<div align="center">
+  <img src="files/BL-Bluetooth-connection-issue-location/el-CONNECT-IND.png">  
+</div> 
+Found 10 feature request packets.
+<div align="center">
+  <img src="files/BL-Bluetooth-connection-issue-location/el-LL-FEATURE-REQ.png">  
+</div> 
+Found 8 feature response packets.
+<div align="center">
+  <img src="files/BL-Bluetooth-connection-issue-location/el-LL-FEATURE-RSP.png">  
+</div> 
+Found 8 termination packets.
+<div align="center">
+  <img src="files/BL-Bluetooth-connection-issue-location/el-LL-TERMINATE-IND.png">  
+</div> 
+According to above findings, there are 10 connect request from the phone, but only 8 connect successful, 8 connect termination.
+There are only 9 Connection Indication packets after filtering, double check in "Instant Timing" view, it can found 10 Connection Indication packets, so this should be Ellisys Bluetooth Analyzer software's bug.
+These findings same as test result, 10 connection tries 8 connect successful. Next step is locate which connect request fail.
+Check over all traffic in "Instant Timing" view, there are 2 points looks different. 
+<div align="center">
+  <img src="files/BL-Bluetooth-connection-issue-location/el-overview.png">  
+</div> 
+To get the exact timing, set the first connection indication as time reference(0 point).
+<div align="center">
+  <img src="files/BL-Bluetooth-connection-issue-location/el-set-time-reference.png">  
+</div> 
+Zoom in and move to 42.7x", it can found the Connection Indication  Packet from the phone side, but "Silabs Example" device ignore and send out Connectable Undirected Adv Packet.
+Checking the following packet, not found feature response packet. It is here.
+<div align="center">
+  <img src="files/BL-Bluetooth-connection-issue-location/el-CONNECT-IND-NO-RSP.png">  
+</div> 
+The other connection failure point is the same, remember the time 42.7x", and check traffic at that point on Network Analyzer captured data.
 
 ## 3.2. Data on Network Analyzer
-To get a readable frame data on MS2692A, it needs to configure the frequency, reference power level etc. accordingly.
-### 3.2.1 Use "Power vs Time" trace mode to get the TX pulse
+Here also need to filter the traffic.
 <div align="center">
-  <img src="files/PR-Configure-TI-CC2541-compatible-proprietary-PHY/SA-01-pulse.png">  
+  <img src="files/BL-Bluetooth-connection-issue-location/na-all.png">  
+</div> 
+Found 8 connection indication packets.
+<div align="center">
+  <img src="files/BL-Bluetooth-connection-issue-location/na-connection-indication.png">  
+</div> 
+Found 8 Feature Request packets.
+<div align="center">
+  <img src="files/BL-Bluetooth-connection-issue-location/na-Feature-Request.png">  
+</div> 
+Found 8 Feature Response packets.
+<div align="center">
+  <img src="files/BL-Bluetooth-connection-issue-location/na-Feature-Response.png">  
+</div> 
+Found 8 Terminate packets.
+<div align="center">
+  <img src="files/BL-Bluetooth-connection-issue-location/na-Terminate.png">  
+</div> 
+According to this findings, on EFR32xG22 side, there are 8 connect request from the phone and 8 connect successful, 8 connect termination.
+
+Set time 0 point at first connection indication packet, then it get the same time reference with Ellisys Bluetooth Analyzer. 
+<div align="center">
+  <img src="files/BL-Bluetooth-connection-issue-location/na-set-time-reference.png">  
+</div> 
+Move to 42.7x" point for checking. There should be a connection indication packet around time point 42.7x", but not found.
+<div align="center">
+  <img src="files/BL-Bluetooth-connection-issue-location/na-not-get-connection-indication.png">  
 </div> 
 
-### 3.2.2 Change the "Start Time" to locate one pulse
-<div align="center">
-  <img src="files/PR-Configure-TI-CC2541-compatible-proprietary-PHY/SA-02-location.png">  
-</div> 
-
-### 3.2.3 Zoom in
-<div align="center">
-  <img src="files/PR-Configure-TI-CC2541-compatible-proprietary-PHY/SA-03-zoom-in.png">  
-</div> 
-
-### 3.2.4 Use "Frequency vs Time" trace mode, the whole frame will be show up.
-Time between Marker1 and Marker2 is 52us. This should be the preamble time. 13bytes preamble, 2Mbps means one bit take 0.5us, 13x8x0.5us=52us. The MS2629A only detect 1 byte preamble and got 48us CW signal. Still not know the reason, but checking only TI BLE PHY, it got the same issue. This's why it has configured according to given parameters but our EFR32 device can not detect the preamble.
-<div align="center">
-  <img src="files/PR-Configure-TI-CC2541-compatible-proprietary-PHY/SA-04-frame.png">  
-</div> 
-
-### 3.2.5 Read the frame data.
-Once the Preamble can be located, the frame data should be readable, just try to sampling the data bit for each 0.5us interval.
-<div align="center">
-  <img src="files/PR-Configure-TI-CC2541-compatible-proprietary-PHY/SA-05-syncwords.png">  
-</div> 
-
-# 4. EFR32xG22 Project
-After checking the CC2541 frame data, know detail parameters setting on radio configurator, now it can create and configure on our EFR32xG22 project, here use "Flex (RAIL) - RAILtest" example on SSv5.
-<div align="center">
-  <img src="files/PR-Configure-TI-CC2541-compatible-proprietary-PHY/railtest.png">  
-</div> 
-
-## 4.1. Customize the PHY
-Double click radio config file -- "radio_settings.radioconf", select one preset PHY(2450M 2GFSK 2Mbps 1M), then check on "Customized", target PHY's center frequency is 2466MHz, first change frequency to 2466MHz.
-<div align="center">
-  <img src="files/PR-Configure-TI-CC2541-compatible-proprietary-PHY/customized.png">  
-</div> 
-Configure according to target PHY. 2Mbps data rate, 500KHz deviation. Configure flexible payload length, use CCITT_16(0x1021) CRC polynomial and 0xFFFF CRC seed. Enable whitening, the given whitening seed is 0xFF, but according to test result it should use 0x01FF on our radio configurator. The Preamble set 8 bit here.
-<div align="center">
-  <img src="files/PR-Configure-TI-CC2541-compatible-proprietary-PHY/packet.png">  
-</div> 
-
-It only got 8 bits preamble, according to [AN1253](https://www.silabs.com/documents/public/application-notes/an1253-efr32-radio-configurator-guide-for-ssv5.pdf), timing detect on preamble should be disable.
-<div align="center">
-  <img src="files/PR-Configure-TI-CC2541-compatible-proprietary-PHY/timing-window.png">  
-</div> 
-Uncheck "Number of Symbols in Timing Window" for disable RX side preamble detection, use syncword for timing detection.
-<div align="center">
-  <img src="files/PR-Configure-TI-CC2541-compatible-proprietary-PHY/timing.png">  
-</div> 
-
-Left the other parameter as default, the PHY is done. Save and build, now then software is ready.  
-For more information on radio configurator, refer to [AN1253](https://www.silabs.com/documents/public/application-notes/an1253-efr32-radio-configurator-guide-for-ssv5.pdf). 
-
-## 4.2. Confirm the PHY
-TI CC2541 RX, EFR32 TX, 20 packets.
-<div align="center">
-  <img src="files/PR-Configure-TI-CC2541-compatible-proprietary-PHY/EFR32-TX.gif">  
-</div> 
-TI CC2541 TX, EFR32 RX, 20 packets.
-<div align="center">
-  <img src="files/PR-Configure-TI-CC2541-compatible-proprietary-PHY/EFR32-RX.gif">  
-</div> 
-
-For more information on CLI command, refer to [UG409](https://www.silabs.com/documents/public/user-guides/ug409-railtest-users-guide.pdf).
-
-# 5. Conclusion
-By checking PHY configuration from CC2541 TX on MS2692A, and tried several times on its CRC and Whitening configuration, know the parameters on radio configurator, it can get a compatible PHY for both sides.
+# 4. Conclusion
+The phone side have sent out connection indication packet, but the EFR32xG22 device cannot catch and response, so the issue is cause by EFR32xG22 device side, it does not recieve the connection indication packet.
+By set the time reference point at the first connection indication packet, it is easy to compare air data capture by Network Analyzer and Ellisys Bluetooth Analyzer, it helps to location the issue cause by which side, which step.
