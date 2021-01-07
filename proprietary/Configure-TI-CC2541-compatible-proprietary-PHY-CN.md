@@ -1,4 +1,4 @@
-[English](Configure-TI-CC2541-compatible-proprietary-PHY.md) | Chinese
+[English](Configure-TI-CC2541-compatible-proprietary-PHY) | Chinese
 <details>
 <summary><font size=5>目录</font> </summary>
 

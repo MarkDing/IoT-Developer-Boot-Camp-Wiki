@@ -1,4 +1,4 @@
-English | [Chinese](Configure-TI-CC2541-compatible-proprietary-PHY-CN.md)
+English | [Chinese](Configure-TI-CC2541-compatible-proprietary-PHY-CN)
 <details>
 <summary><font size=5>Table of Contents</font> </summary>
 
