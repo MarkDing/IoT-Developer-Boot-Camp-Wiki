@@ -12,5 +12,5 @@
 
 ********
 We discuss the BLE relevant knowledge here that may help people on development.
-* [Bluetooth connection issue location](Bluetooth-connection-issue-location)
+* [Bluetooth connection issue diagnostics](Bluetooth-connection-issue-diagnostics)
 ********
