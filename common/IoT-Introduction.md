@@ -1,3 +1,5 @@
+English | [中文](IoT-Introduction-CN) 
+
 <details>
 <summary><font size=5>Table of Contents</font> </summary>
 

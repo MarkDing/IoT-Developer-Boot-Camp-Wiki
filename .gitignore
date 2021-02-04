@@ -1,3 +1,7 @@
 
 *.un~
 *.md~
+.vscode
+*.DS_Store
+
+

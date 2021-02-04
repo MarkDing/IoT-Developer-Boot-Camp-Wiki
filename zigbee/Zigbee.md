@@ -8,6 +8,7 @@
 - [Tutorial and Examples](Zigbee-Tutorials-and-Examples)
 
 # Advanced
+- [Zigbee Introduction](Zigbee-Introductions)
 - [Understanding EmberZnet](Zigbee-Understandings)
 - [Development Tools](Zigbee-Tools)
 - [Customization](Zigbee-Customization)

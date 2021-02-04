@@ -2,17 +2,17 @@
 <summary><font size=5>Table of Contents</font> </summary>  
 
 - [Color Control Light](#color-control-light)
-  - [1. Summary](#1-summary)
-  - [2. Gecko SDK version](#2-gecko-sdk-version)
-  - [3. Hardware Required](#3-hardware-required)
-  - [4. Connections Required](#4-connections-required)
-  - [5. Setup](#5-setup)
-    - [5.1. Setup the Light Project](#51-setup-the-light-project)
-    - [5.2. Setup the Switch Project](#52-setup-the-switch-project)
-  - [6. How It Works](#6-how-it-works)
-  - [7. .sls Projects Used](#7-sls-projects-used)
-  - [8. How to Port to Another Part](#8-how-to-port-to-another-part)
-  - [9. Special Notes](#9-special-notes)
+	- [1. Summary](#1-summary)
+	- [2. Gecko SDK version](#2-gecko-sdk-version)
+	- [3. Hardware Required](#3-hardware-required)
+	- [4. Connections Required](#4-connections-required)
+	- [5. Setup](#5-setup)
+		- [5.1. Setup the Light Project](#51-setup-the-light-project)
+		- [5.2. Setup the Switch Project](#52-setup-the-switch-project)
+	- [6. How It Works](#6-how-it-works)
+	- [7. .sls Projects Used](#7-sls-projects-used)
+	- [8. How to Port to Another Part](#8-how-to-port-to-another-part)
+	- [9. Special Notes](#9-special-notes)
 </details>
 
 ********
@@ -178,8 +178,6 @@ Form a Zigbee network on the light, and then join the switch into the network.
 This example can be used on any parts. Below are the steps of porting it to other part:
 - Import the .sls file into Simplicity Studio
 - Open the .isc file of each project, turn to "General" tab, hit button "Edit Architecture", then select the board and part.
-
-![](files/ZB-Zigbee-Color-Control-Light-On-TBS2/Change-Part.png)
 
 ## 9. Special Notes ##
 - [Schematic of Thunder Board Sense 2](https://www.silabs.com/documents/public/schematic-files/TBSense2-BRD4166A-D00-schematic.pdf)
