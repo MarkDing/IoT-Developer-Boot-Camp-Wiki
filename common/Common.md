@@ -15,4 +15,5 @@ We discuss the common IoT knowledge here that applies to all wireless product or
 * [Mesh Network Comparison](Mesh-Network-Introduction)
 * [AES CCM Python](AES-CCM-Python)
 * [How To Create a Wonderful Slide](How-To-Create-a-Wonderful-Slide)
+* [IC Boot Up Failure Troubleshoot](IC-Boot-Up-Failure-Troubleshoot)
 ********
