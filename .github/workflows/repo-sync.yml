@@ -7,7 +7,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - name: repo-sync
-      uses: silabs-JimL/github-sync@v3.0.0
+      uses: MarkDing/github-sync@v3.0.0
       env:
         SOURCE_REPO: "https://${{secrets.AUTO_USER}}:${{secrets.AUTO_PASSWD}}@github.com/MarkDing/IoT-Developer-Boot-Camp-Wiki"
         SOURCE_BRANCH: "master"
