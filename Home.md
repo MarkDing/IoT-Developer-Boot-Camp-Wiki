@@ -3,7 +3,7 @@
 ********
 # Welcome
 
-Welcome to the IoT Developer Boot Camp. These pages are intended for those who is learning about the IoT development. The Boot Camp consists of various wireless products. Including Zigbee, Bluetooth, Z-Wave, Proprietary, Wireless hardware. Each of the product learning paths are divided into two parts. 
+Welcome to the Torch IoT Developer Boot Camp. These pages are intended for those who is learning about the IoT development. The Boot Camp consists of various wireless products. Including Zigbee, Bluetooth, Z-Wave, Proprietary, Wireless hardware. Each of the product learning paths are divided into two parts. 
 
 - One day workshop for the beginner. 
 - Series of workshop for intermediate.
