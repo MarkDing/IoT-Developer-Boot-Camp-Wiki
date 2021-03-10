@@ -197,10 +197,10 @@ Advertising是指蓝牙广播设备在3个广播信道里以特定的时间间�
 * 在mesh网络中通过刷新密钥来防止垃圾桶攻击
 
 # 10. 本篇作者
-<table border="2">
+<table border="1">
   <tr>
     <th><img src="files/BL-Bluetooth-Mesh-Overview/MarkDing.jpg"></th>
-    <th> Mark Ding， 现居住在深圳的物联网开发者。 他高度关注物联网生态系，对于如何把复杂的技术问题通过简单的方式传递给物联网开发者充满浓厚的兴趣。他和他的小伙伴们建立了TorchIoTBootCamp小组，贡献了大量关于Zigbee, Bluetooth, Z-Wave, 无线硬件，智能音箱，云服务等文章，发表到GitHub和Zhihu等知识分享站点，并创作了大量的物联网培训视频发布到Bilibili，YuTube等视频网站。</th>
+    <th> Mark Ding， 现居住在深圳的物联网开发者。 他高度关注物联网生态系，对于如何把复杂的技术问题通过简单的方式传递给物联网开发者充满浓厚的兴趣。他和他的小伙伴们建立了TorchIoTBootCamp小组，贡献了大量关于Zigbee, Bluetooth, Z-Wave, 无线硬件，智能音箱，云服务等文章，发表到GitHub和Zhihu等知识分享站点，并创作了大量的物联网培训视频发布到Bilibili，YouTube等视频网站。</th>
   </tr>
 </table>
 
