@@ -4,3 +4,4 @@
 
 * [Bluetooth Mesh Overview](Bluetooth-Mesh-Overview)
 * [Bluetooth connection issue diagnostics](Bluetooth-connection-issue-diagnostics)
+* [Bluetooth Active Scanning](Bluetooth-Active-Scanning)
