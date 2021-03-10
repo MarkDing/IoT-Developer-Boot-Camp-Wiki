@@ -9,7 +9,7 @@
 - [4. 网络管理](#4-网络管理)
 - [5. 云服务](#5-云服务)
 - [6. 物联网将如何改变我们的生活？](#6-物联网将如何改变我们的生活)
-- [The Author of the Article](#the-author-of-the-article)
+- [本篇作者](#本篇作者)
 
 </details>
 
@@ -141,7 +141,7 @@ Amazon智能音箱支持Zigbee协议，那么它如何与支持其它协议，�
 </div>
 
 
-# The Author of the Article
+# 本篇作者
 <table border="1">
   <tr>
     <th>Cheng Yuan</th>
