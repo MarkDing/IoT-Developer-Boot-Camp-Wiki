@@ -9,6 +9,7 @@
 - [4. 网络管理](#4-网络管理)
 - [5. 云服务](#5-云服务)
 - [6. 物联网将如何改变我们的生活？](#6-物联网将如何改变我们的生活)
+- [本篇作者](#本篇作者)
 
 </details>
 
@@ -139,6 +140,14 @@ Amazon智能音箱支持Zigbee协议，那么它如何与支持其它协议，�
 <img src="files/CM-IoT-Introduction/Divergence-Meter.gif">
 </div>
 
-********
+# 本篇作者
+<table border="1">
+  <tr>
+    <th><img src="files/Author/MarkDing.jpg"></th>
+    <th> Mark Ding， 现居住在深圳的物联网开发者。 他高度关注物联网生态系统，对于如何把复杂的技术问题通过简单的方式传递给物联网开发者充满浓厚的兴趣。他和他的小伙伴们建立了TorchIoTBootCamp小组，贡献了大量关于Zigbee, Bluetooth, Z-Wave, 无线硬件，智能音箱，云服务的文章，发表到GitHub和Zhihu等知识分享站点，并创作了大量的物联网课程视频发布到Bilibili，YouTube等视频网站。</th>
+  </tr>
+</table>
+
+
 
 

@@ -9,6 +9,7 @@ English | [中文](IoT-Introduction-CN)
 - [4. Network management](#4-network-management)
 - [5. Cloud Service](#5-cloud-service)
 - [6. How IoT will change our life?](#6-how-iot-will-change-our-life)
+- [The Author of the Article](#the-author-of-the-article)
 
 </details>
 
@@ -132,6 +133,13 @@ The IoT enables these and makes life more comfortable and better than before. We
 <img src="files/CM-IoT-Introduction/Divergence-Meter.gif">
 </div>
 
-********
+# The Author of the Article
+<table border="1">
+  <tr>
+    <th><img src="files/Author/MarkDing.jpg"></th>
+    <th>Mark Ding, a IoT Developer live in Shenzhen. He intensively focus on IoT ecosystem and is extremely interested on how to developer the complex knowledge to IoT developer in a simple way.  He and his partners setup TorchIoTBootCamp group, contributed a large amount of articles of Zigbee, Bluetooth, Z-Wave, Wireless hardware, Smart Speaker, Cloud services which were published to GitHub and Zhihu . Also the team contributed a lot of IoT training video courses and published to Bilibili and YouTube video website.</th>
+  </tr>
+</table>
+
 
 

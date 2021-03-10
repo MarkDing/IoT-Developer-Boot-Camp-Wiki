@@ -1,33 +1,31 @@
 <details>   
 <summary><font size=5>目录</font> </summary>
-<!-- TOC -->
 
 - [天猫精灵对接AliOS 设备](#天猫精灵对接alios-设备)
-    - [1. 介绍](#1-介绍)
-    - [2. 安装AliOS Things Studio](#2-安装alios-things-studio)
-    - [3. Link Kit SDK介绍](#3-link-kit-sdk介绍)
-    - [4. 编译运行Linkkit的示例代码](#4-编译运行linkkit的示例代码)
-    - [5. 在阿里云物联网平台建立设备](#5-在阿里云物联网平台建立设备)
-    - [6. 定制linkkitapp的代码](#6-定制linkkitapp的代码)
-        - [a. app\example\linkkitapp\linkkit_example_solo.c](#a-app\example\linkkitapp\linkkit_example_soloc)
-        - [b. app\example\linkkitapp\app_entry.c](#b-app\example\linkkitapp\app_entryc)
-        - [c. 编译linkkit app并下载到ESP板子上.](#c-编译linkkit-app并下载到esp板子上)
-    - [7. 云智能App和设备配网](#7-云智能app和设备配网)
-    - [8. 天猫精灵语音控制灯](#8-天猫精灵语音控制灯)
+  - [1. 介绍](#1-介绍)
+  - [2. 安装AliOS Things Studio](#2-安装alios-things-studio)
+  - [3. Link Kit SDK介绍](#3-link-kit-sdk介绍)
+  - [4. 编译运行Linkkit的示例代码](#4-编译运行linkkit的示例代码)
+  - [5. 在阿里云物联网平台建立设备](#5-在阿里云物联网平台建立设备)
+  - [6. 定制linkkitapp的代码](#6-定制linkkitapp的代码)
+    - [a. app\example\linkkitapp\linkkit_example_solo.c](#a-appexamplelinkkitapplinkkit_example_soloc)
+    - [b. app\example\linkkitapp\app_entry.c](#b-appexamplelinkkitappapp_entryc)
+    - [c. 编译linkkit app并下载到ESP板子上.](#c-编译linkkit-app并下载到esp板子上)
+  - [7. 云智能App和设备配网](#7-云智能app和设备配网)
+  - [8. 天猫精灵语音控制灯](#8-天猫精灵语音控制灯)
 - [天猫精灵控制Zigbee设备](#天猫精灵控制zigbee设备)
-    - [1. 介绍](#1-介绍-1)
-    - [2. 生成Zigbee的Coordinator](#2-生成zigbee的coordinator)
-        - [2.1.  生成一个blank project](#21--生成一个blank-project)
-        - [2.2 增添文件和功能函数](#22-增添文件和功能函数)
-    - [3. 生成WiFi的网桥](#3-生成wifi的网桥)
-        - [3.1. 网桥设备注册登录阿里云](#31-网桥设备注册登录阿里云)
-        - [3.2. 获取网桥子设备拓扑关系](#32-获取网桥子设备拓扑关系)
-        - [3.3. 子设备的登入和登出](#33-子设备的登入和登出)
-        - [3.4. 子设备的添加与删除](#34-子设备的添加与删除)
-        - [3.5. 子设备灯的开关控制](#35-子设备灯的开关控制)
-    - [4. 天猫精灵控制设备灯的开关](#4-天猫精灵控制设备灯的开关)
-
-<!-- /TOC -->
+  - [1. 介绍](#1-介绍-1)
+  - [2. 生成Zigbee的Coordinator](#2-生成zigbee的coordinator)
+    - [2.1.  生成一个blank project](#21--生成一个blank-project)
+    - [2.2 增添文件和功能函数](#22-增添文件和功能函数)
+  - [3. 生成WiFi的网桥](#3-生成wifi的网桥)
+    - [3.1. 网桥设备注册登录阿里云](#31-网桥设备注册登录阿里云)
+    - [3.2. 获取网桥子设备拓扑关系](#32-获取网桥子设备拓扑关系)
+    - [3.3. 子设备的登入和登出](#33-子设备的登入和登出)
+    - [3.4. 子设备的添加与删除](#34-子设备的添加与删除)
+    - [3.5. 子设备灯的开关控制](#35-子设备灯的开关控制)
+  - [4. 天猫精灵控制设备灯的开关](#4-天猫精灵控制设备灯的开关)
+- [本篇作者](#本篇作者)
 </details>
 
 # 天猫精灵对接AliOS 设备
@@ -476,3 +474,11 @@ res = IOT_Linkkit_Report(devid, ITM_MSG_POST_PROPERTY, (uint8_t *)request, reque
 对天猫精灵说"打开书房的灯", 灯开; "关闭书房的灯", 灯灭; "现在灯是开的么?", 回答"现在灯处于关闭状态"
 
 至此我们实现了天猫精灵以云对云的方式来控制Zigbee设备。
+
+# 本篇作者
+<table border="1">
+  <tr>
+    <th><img src="files/Author/MarkDing.jpg"></th>
+    <th> Mark Ding， 现居住在深圳的物联网开发者。 他高度关注物联网生态系统，对于如何把复杂的技术问题通过简单的方式传递给物联网开发者充满浓厚的兴趣。他和他的小伙伴们建立了TorchIoTBootCamp小组，贡献了大量关于Zigbee, Bluetooth, Z-Wave, 无线硬件，智能音箱，云服务的文章，发表到GitHub和Zhihu等知识分享站点，并创作了大量的物联网课程视频发布到Bilibili，YouTube等视频网站。</th>
+  </tr>
+</table>

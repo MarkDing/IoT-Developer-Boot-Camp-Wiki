@@ -2,54 +2,55 @@
 <summary><font size=5>Table of Contents</font> </summary>
 
 - [1. Introduction](#1-introduction)
-    - [1.1. Silicon Labs Solution Introduction](#11-silicon-labs-solution-introduction)
-    - [1.2. IoT OTA Update Structure Definition](#12-iot-ota-update-structure-definition)
+  - [1.1. Silicon Labs Solution Introduction](#11-silicon-labs-solution-introduction)
+  - [1.2. IoT OTA Update Structure Definition](#12-iot-ota-update-structure-definition)
 - [2. Prerequisite](#2-prerequisite)
-    - [2.1. Hardware Requirement](#21-hardware-requirement)
-    - [2.2. Software Requirement](#22-software-requirement)
-    - [2.3. Bootloader Requirement](#23-bootloader-requirement)
+  - [2.1. Hardware Requirement](#21-hardware-requirement)
+  - [2.2. Software Requirement](#22-software-requirement)
+  - [2.3. Bootloader Requirement](#23-bootloader-requirement)
 - [3. Zigbee OTA Update](#3-zigbee-ota-update)
-    - [3.1. Current OTA process](#31-current-ota-process)
-    - [3.2. New OTA process](#32-new-ota-process)
-        - [3.2.1. NCP-based Server and SoC Client](#321-ncp-based-server-and-soc-client)
-        - [3.2.2. SoC Server and SoC Client](#322-soc-server-and-soc-client)
-    - [3.3. Implementation](#33-implementation)
-        - [3.3.1. NCP-based Server and SoC Client](#331-ncp-based-server-and-soc-client)
-            - [3.3.1.1. Zigbee OTA Client](#3311-zigbee-ota-client)
-            - [3.3.1.2. Zigbee OTA Server in NCP mode with host program](#3312-zigbee-ota-server-in-ncp-mode-with-host-program)
-            - [3.3.1.3. Zigbee OTA Update](#3313-zigbee-ota-update)
-        - [3.3.2. SoC Server and SoC Client](#332-soc-server-and-soc-client)
-            - [3.3.2.1. Zigbee OTA Client](#3321-zigbee-ota-client)
-            - [3.3.2.2. Zigbee OTA Server in SoC mode](#3322-zigbee-ota-server-in-soc-mode)
-            - [3.3.2.3. Zigbee OTA Update](#3323-zigbee-ota-update)
+  - [3.1. Current OTA process](#31-current-ota-process)
+  - [3.2. New OTA process](#32-new-ota-process)
+    - [3.2.1. NCP-based Server and SoC Client](#321-ncp-based-server-and-soc-client)
+    - [3.2.2. SoC Server and SoC Client](#322-soc-server-and-soc-client)
+  - [3.3. Implementation](#33-implementation)
+    - [3.3.1. NCP-based Server and SoC Client](#331-ncp-based-server-and-soc-client)
+      - [3.3.1.1. Zigbee OTA Client](#3311-zigbee-ota-client)
+      - [3.3.1.2. Zigbee OTA Server in NCP mode with host program](#3312-zigbee-ota-server-in-ncp-mode-with-host-program)
+      - [3.3.1.3. Zigbee OTA Update](#3313-zigbee-ota-update)
+    - [3.3.2. SoC Server and SoC Client](#332-soc-server-and-soc-client)
+      - [3.3.2.1. Zigbee OTA Client](#3321-zigbee-ota-client)
+      - [3.3.2.2. Zigbee OTA Server in SoC mode](#3322-zigbee-ota-server-in-soc-mode)
+      - [3.3.2.3. Zigbee OTA Update](#3323-zigbee-ota-update)
 - [4. Proprietary OTA Update](#4-proprietary-ota-update)
-    - [4.1. Current OTA process](#41-current-ota-process)
-    - [4.2. New OTA process](#42-new-ota-process)
-    - [4.3. Implementation](#43-implementation)
-        - [4.3.1. Proprietary OTA Client](#431-proprietary-ota-client)
-        - [4.3.2. Proprietary OTA Server](#432-proprietary-ota-server)
-        - [4.3.3. Proprietary OTA Update](#433-proprietary-ota-update)
+  - [4.1. Current OTA process](#41-current-ota-process)
+  - [4.2. New OTA process](#42-new-ota-process)
+  - [4.3. Implementation](#43-implementation)
+    - [4.3.1. Proprietary OTA Client](#431-proprietary-ota-client)
+    - [4.3.2. Proprietary OTA Server](#432-proprietary-ota-server)
+    - [4.3.3. Proprietary OTA Update](#433-proprietary-ota-update)
 - [5. Bluetooth LE OTA Update](#5-bluetooth-le-ota-update)
-    - [5.1 Current OTA process](#51-current-ota-process)
-    - [5.2 New OTA process](#52-new-ota-process)
-        - [5.2.1 SoC Server and SoC Client](#521-soc-server-and-soc-client)
-        - [5.2.2 NCP-based Server and SoC Client](#522-ncp-based-server-and-soc-client)
-    - [5.3 Implementation](#53-implementation)
-        - [5.3.1 SoC Server and SoC Client](#531-soc-server-and-soc-client)
-            - [5.3.1.1 Internal Flash Bootloader](#5311-internal-flash-bootloader)
-            - [5.3.1.2 BLE OTA Client](#5312-ble-ota-client)
-            - [5.3.1.3 BLE OTA Server](#5313-ble-ota-server)
-            - [5.3.1.4 BLE OTA Update](#5314-ble-ota-update)
-        - [5.3.2 NCP-based Server and SoC Client](#532-ncp-based-server-and-soc-client)
-            - [5.3.2.1 BLE OTA Server Host design](#5321-ble-ota-server-host-design)
-            - [5.3.2.2 BLE OTA Server NCP design](#5322-ble-ota-server-ncp-design)
-            - [5.3.2.3 BLE OTA Client](#5323-ble-ota-client)
-            - [5.3.2.4 BLE OTA Update](#5324-ble-ota-update)
+  - [5.1 Current OTA process](#51-current-ota-process)
+  - [5.2 New OTA process](#52-new-ota-process)
+    - [5.2.1 SoC Server and SoC Client](#521-soc-server-and-soc-client)
+    - [5.2.2 NCP-based Server and SoC Client](#522-ncp-based-server-and-soc-client)
+  - [5.3 Implementation](#53-implementation)
+    - [5.3.1 SoC Server and SoC Client](#531-soc-server-and-soc-client)
+      - [5.3.1.1 Internal Flash Bootloader](#5311-internal-flash-bootloader)
+      - [5.3.1.2 BLE OTA Client](#5312-ble-ota-client)
+      - [5.3.1.3 BLE OTA Server](#5313-ble-ota-server)
+      - [5.3.1.4 BLE OTA Update](#5314-ble-ota-update)
+    - [5.3.2 NCP-based Server and SoC Client](#532-ncp-based-server-and-soc-client)
+      - [5.3.2.1 BLE OTA Server Host design](#5321-ble-ota-server-host-design)
+      - [5.3.2.2 BLE OTA Server NCP design](#5322-ble-ota-server-ncp-design)
+      - [5.3.2.3 BLE OTA Client](#5323-ble-ota-client)
+      - [5.3.2.4 BLE OTA Update](#5324-ble-ota-update)
 - [6. OTA Update Configuration](#6-ota-update-configuration)
-    - [6.1 Commander Tool Operation](#61-commander-tool-operation)
-    - [6.2 Protocol Definition ](#62-protocol-definition)
-    - [6.3 Usage of the JSON Configuration](#63-usage-of-the-json-configuration)
-    - [6.4. Python Script File](#64-python-script-file)
+  - [6.1. Commander Tool Operation](#61-commander-tool-operation)
+  - [6.2. Protocol Definition](#62-protocol-definition)
+  - [6.3. Usage of the JSON Configuration](#63-usage-of-the-json-configuration)
+  - [6.4. Python Script File](#64-python-script-file)
+- [The Author of the Article](#the-author-of-the-article)
 
 </details>
 
@@ -1693,6 +1694,27 @@ Here is the full contents of the [configuration.json](files/CM-IoT-OTA-Update/co
 ## 6.4. Python Script File
 The [ota-update.py](files/CM-IoT-OTA-Update/ota-update.py) is designed for parsing the configuration.json contents and execute the operation intended. 
 Please check attached file for detailed info. 
+
+# The Author of the Article
+<table border="1">
+  <tr>
+    <th><img src="files/Author/MarkDing.jpg"></th>
+    <th>Mark Ding, a IoT Developer live in Shenzhen. He intensively focus on IoT ecosystem and is extremely interested on how to developer the complex knowledge to IoT developer in a simple way.  He and his partners setup TorchIoTBootCamp group, contributed a large amount of articles of Zigbee, Bluetooth, Z-Wave, Wireless hardware, Smart Speaker, Cloud services which were published to GitHub and Zhihu . Also the team contributed a lot of IoT training video courses and published to Bilibili and YouTube video website.</th>
+  </tr>
+  <tr>
+    <th>Cheng Yuan</th>
+    <th>IoT Developer</th>
+  </tr>
+  <tr>
+    <th>Eric Su</th>
+    <th>IoT Developer</th>
+  </tr>
+  <tr>
+    <th>Jessica Zheng</th>
+    <th>IoT Developer</th>
+  </tr>
+</table>
+
 
 
 
