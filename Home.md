@@ -35,7 +35,7 @@ If you are complete new to IoT, It is recommended to start with [IoT Introductio
 <table border="1">
   <tr>
     <th><img src="files/Author/MarkDing.jpg"></th>
-    <th> Mark Ding，现居住在深圳的物联网开发者。 他对于如何把复杂的技术问题通过简单的方式传递给物联网开发者充满浓厚的兴趣。他和他的小伙伴们建立了TorchIoTBootCamp小组，贡献了大量关于Zigbee, Bluetooth, Z-Wave, 无线硬件等文章和培训课程视频，发表到GitHub，Zhihu，Bilibili网站。</th>
+    <th> Mark Ding，现居住在深圳的物联网开发者。 他对于如何把复杂的技术问题通过简单的方式传递给物联网开发者充满浓厚的兴趣。他和他的小伙伴们建立了TorchIoTBootCamp小组，贡献了大量关于Zigbee,Bluetooth,Z-Wave,无线硬件的文章和视频课程并发表到GitHub，Zhihu，Bilibili。</th>
   </tr>
   <tr>
     <th><img src="files/Author/ChengYuan.png"></th>
