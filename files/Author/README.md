@@ -62,7 +62,7 @@
 <table border="1">
   <tr>
     <th><img src="JunFan.jpg"></th>
-    <th> Jun Fan，现居住于深圳的高级射频硬件工程师。专注于物联网领域的芯片（主要接触Silabs的BLE ，Zigbee，Z-Wave，Proprietary协议的芯片）的外围射频及模拟电路设计，测试，调试等工作。</th>
+    <th> Jun Fan，现居住于深圳的高级射频硬件工程师。专注于物联网领域的芯片（主要接触Silabs的BLE, Zigbee, Z-Wave, Proprietary协议的芯片）的外围射频及模拟电路设计，测试，调试等工作。</th>
   </tr>
 </table>
 
