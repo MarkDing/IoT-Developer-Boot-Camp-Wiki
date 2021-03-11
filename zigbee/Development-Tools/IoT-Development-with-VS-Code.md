@@ -383,6 +383,6 @@ Now, we have finished all setup on IoT development with VS Code, enjoy your time
 <table border="1">
   <tr>
     <th><img src="files/Author/MarkDing.jpg"></th>
-    <th>Mark Ding, IoT Developer live in Shenzhen. He is extremely interested on how to deliver the complicate knowledge to IoT developer in a simple way.  He and his partners seutp the TorchIoTBootCamp group, contributed a large amount of articles of Zigbee, Bluetooth, Z-Wave, Wireless hardware, Smart Speaker, Cloud services on GitHub and Zhihu . Also the team contributed a lot of IoT video courses on Bilibili and YouTube.</th>
+    <th>Mark Ding, IoT Developer live in Shenzhen. He is extremely interested on how to deliver the complicate knowledge to IoT developer in a simple way. He and his partners seutp the TorchIoTBootCamp group, contributed a large amount of articles of Zigbee, Bluetooth, Z-Wave, Wireless hardware, Smart Speaker, Cloud services on GitHub and Zhihu . Also the team contributed a lot of IoT video courses on Bilibili and YouTube.</th>
   </tr>
 </table>
