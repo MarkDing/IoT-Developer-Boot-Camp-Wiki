@@ -51,11 +51,11 @@ If you are complete new to IoT, It is recommended to start with [IoT Introductio
   </tr>
   <tr>
     <th><img src="files/Author/AndreaNagy.jpg"></th>
-    <th> Andrea Nagy，现居住于布达佩斯的物联网硬件应用工程师，Andrea还在工作之余到大学里教授无线通讯课程。</th>
+    <th> Andrea Nagy，现居住于布达佩斯的物联网射频硬件应用工程师，Andrea还在工作之余到大学里教授无线通讯课程。</th>
   </tr>
   <tr>
     <th><img src="files/Author/JunFan.jpg"></th>
-    <th> Jun Fan，现居住于深圳的物联网硬件应用工程师，在无线通讯领域耕耘近20年，业内人士都称他为范大哥。</th>
+    <th> Jun Fan，现居住于深圳的高级射频硬件工程师。专注于物联网领域的芯片（主要接触Silabs的BLE ，Zigbee，Z-Wave，Proprietary协议的芯片）的外围射频及模拟电路设计，测试，调试等工作。</th>
   </tr>
   <tr>
     <th><img src="files/Author/PatrikToth.jpg"></th>
